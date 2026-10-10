@@ -1,0 +1,32 @@
+# Local-only infrastructure for BORVAT Mercur evaluation.
+# Never reuse production databases, Redis, volumes, or credentials.
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: "no"
+    environment:
+      POSTGRES_USER: borvat_dev
+      POSTGRES_PASSWORD: ${BORVAT_DEV_DB_PASSWORD:?Set a strong local-only password}
+      POSTGRES_DB: borvat_mercur_dev
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - borvat_dev_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U borvat_dev -d borvat_mercur_dev"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  redis:
+    image: redis:7-alpine
+    restart: "no"
+    ports:
+      - "127.0.0.1:56379:6379"
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+volumes:
+  borvat_dev_pg:
