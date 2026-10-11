@@ -2,6 +2,7 @@ import { createServer } from "node:http";
 import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 import { demoOffers, parseShoppingRequest, rankOffers, prepareDemoCart } from "./smart-shopping.mjs";
+import { demoPage } from "./smart-shopping-page.mjs";
 
 const MAX_BYTES = 4096;
 function json(response, status, data) {
@@ -24,6 +25,7 @@ async function readJson(req) {
 export function buildServer() {
   return createServer(async (req, res) => {
     try {
+      if (req.method === "GET" && req.url === "/") { res.writeHead(200, {"content-type":"text/html; charset=utf-8","cache-control":"no-store"});res.end(demoPage);return; }
       if (req.method === "GET" && req.url === "/health") return json(res, 200, { ok: true, demo: true });
       if (req.method === "POST" && req.url === "/demo/search") {
         const body = await readJson(req);
