@@ -31,7 +31,7 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
     if(records.rows.length!==sorted.length)throw new OrderConflict("NOT_AVAILABLE");
     const offers=records.rows;
     for(const o of offers){
-      if(o.status!=="published"||o.seller_status!=="approved"||o.product_status!=="approved"||o.stock<1||o.market!=="NL"||o.currency!=="EUR"||!safeMoney(Number(o.price_minor)))throw new OrderConflict("NOT_AVAILABLE");
+      if(o.status!=="published"||o.seller_status!=="approved"||o.product_status!=="approved"||(!Number.isSafeInteger(Number(o.stock))||Number(o.stock)<1)||o.market!=="NL"||o.currency!=="EUR"||!safeMoney(Number(o.price_minor)))throw new OrderConflict("NOT_AVAILABLE");
     }
     const held=await db.query("SELECT 1 FROM borvat.risk_cases WHERE offer_id=ANY($1::uuid[]) AND state IN ('open','held') LIMIT 1",[sorted]);
     if(held.rows.length)throw new OrderConflict("RISK_HOLD");
@@ -60,7 +60,7 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
     await db.query("COMMIT");started=false;
     return {orderId,totalMinor:total,sellerCount:grouped.size,replayed:false,demo:true,paymentEnabled:false};
   }catch(error){
-    if(started)await db.query("ROLLBACK");
+    if(started){try{await db.query("ROLLBACK")}catch(rollbackError){error.rollbackError=rollbackError}}
     throw error;
   }finally{db.release()}
 }
