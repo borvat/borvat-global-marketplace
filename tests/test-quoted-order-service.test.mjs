@@ -15,7 +15,7 @@ function pool(rows,held=false,updateRows=1){
  },release:()=>{}})};
 }
 const input=()=>({buyerId:id(100),requestKey:"checkout-test-001",requested:[{offerId:id(1),quantity:2}],shippingBySeller:{[id(11)]:1210}});
-const run=(db,data)=>createQuotedTestOrder(db,data,{authorizeBuyer:async()=>true});
+const run=(db,data)=>createQuotedTestOrder(db,data,{authorizeBuyer:async()=>true,quoteShipping:async()=>data.shippingBySeller});
 test("VAT-aware draft saves one seller suborder and reserved quantity",async()=>{
  const db=pool([offer(1,11)]);const result=await run(db,input());
  assert.equal(result.totalMinor,25410);
@@ -58,7 +58,24 @@ test("cancelled quoted order cannot be presented as successful idempotency repla
  const hash=createHash("sha256").update(JSON.stringify({requested:[[input.requested[0].offerId,1]],shipping:[[Object.keys(input.shippingBySeller)[0],0]],market:"NL",currency:"EUR"})).digest("hex");
  const calls=[];
  const pool={connect:async()=>({query:async(sql,args=[])=>{calls.push(sql);if(sql.startsWith("SELECT id,request_hash"))return {rows:[{id:"00000000-0000-4000-8000-000000000090",request_hash:hash,total_minor:"100",state:"cancelled"}]};return {rows:[],rowCount:1}},release(){}})};
- await assert.rejects(createQuotedTestOrder(pool,input,{authorizeBuyer:async()=>true}),/ORDER_ALREADY_CANCELLED/);
+ await assert.rejects(createQuotedTestOrder(pool,input,{authorizeBuyer:async()=>true,quoteShipping:async()=>input.shippingBySeller}),/ORDER_ALREADY_CANCELLED/);
  assert.ok(calls.includes("ROLLBACK"));
  assert.equal(calls.some(s=>s.startsWith("UPDATE borvat.offers")),false);
+});
+
+test("a missing trusted shipping provider fails closed before the DB opens",async()=>{
+ const db=pool([offer(1,11)]);
+ await assert.rejects(createQuotedTestOrder(db,input(),{authorizeBuyer:async()=>true}),/SHIPPING_AUTHORITY_NOT_CONFIGURED/);
+ assert.equal(db.calls.length,0);
+});
+test("ignores buyer-supplied zero shipping and bills trusted server shipping",async()=>{
+ const db=pool([offer(1,11)]);
+ const data=input();data.shippingBySeller={[id(11)]:0};
+ const result=await createQuotedTestOrder(db,data,{authorizeBuyer:async()=>true,quoteShipping:async()=>({[id(11)]:1210})});
+ assert.equal(result.totalMinor,25410);
+});
+test("untrusted shipping provider response blocks draft",async()=>{
+ const db=pool([offer(1,11)]);
+ await assert.rejects(createQuotedTestOrder(db,input(),{authorizeBuyer:async()=>true,quoteShipping:async()=>null}),/INVALID_SHIPPING/);
+ assert.equal(db.calls.length,0);
 });
