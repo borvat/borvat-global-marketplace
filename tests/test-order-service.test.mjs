@@ -136,3 +136,10 @@ test("buyer UUID casing never changes idempotency advisory scope",async()=>{
  const insert=pool.calls.find(c=>c.sql.startsWith("INSERT INTO borvat.buyer_orders"));
  assert.equal(insert.args[1],uuid(100));
 });
+
+test("authentication receives canonical buyer UUID",async()=>{
+ const pool=fakePool({offers:[offer(1,10)]});
+ let seen;
+ await createTestOrder(pool,{buyerId:uuid(100).toUpperCase(),requestKey:"auth-canonical-001",offerIds:[uuid(1)]},{authorizeBuyer:async id=>(seen=id,true)});
+ assert.equal(seen,uuid(100));
+});
