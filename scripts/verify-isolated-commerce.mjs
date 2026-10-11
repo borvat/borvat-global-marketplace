@@ -9,6 +9,7 @@ const files=[
  "tests/test-cart-pricing.test.mjs",
  "tests/test-checkout-quote.test.mjs",
  "tests/test-server-shipping.test.mjs",
+ "tests/test-buyer-receipt.test.mjs",
  "tests/test-quoted-order-service.test.mjs",
  "tests/test-cancel-draft-order.test.mjs",
  "tests/test-order-cancel-lifecycle.test.mjs"
