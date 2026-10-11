@@ -127,3 +127,12 @@ test("rejects malformed UUIDs before opening DB",async()=>{
  await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"bad-uuid-001",offerIds:["----------12345678901234567890123456"]}),/BAD_OFFERS/);
  assert.equal(pool.calls.length,0);
 });
+
+test("buyer UUID casing never changes idempotency advisory scope",async()=>{
+ const pool=fakePool({offers:[offer(1,10)]});
+ await execute(pool,{buyerId:uuid(100).toUpperCase(),requestKey:"buyer-case-001",offerIds:[uuid(1)]});
+ const lock=pool.calls.find(c=>c.sql.startsWith("SELECT pg_advisory_xact_lock"));
+ assert.equal(lock.args[0],uuid(100)+":buyer-case-001");
+ const insert=pool.calls.find(c=>c.sql.startsWith("INSERT INTO borvat.buyer_orders"));
+ assert.equal(insert.args[1],uuid(100));
+});
