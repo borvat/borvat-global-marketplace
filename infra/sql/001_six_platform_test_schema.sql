@@ -89,6 +89,8 @@ $$;
 CREATE FUNCTION borvat.is_seller_member(target_seller uuid) RETURNS boolean LANGUAGE sql STABLE SECURITY INVOKER AS $$
   SELECT EXISTS(SELECT 1 FROM borvat.memberships m WHERE m.seller_id=target_seller AND m.user_id=borvat.session_user_id())
 $$;
+ALTER TABLE borvat.products ENABLE ROW LEVEL SECURITY;
+ALTER TABLE borvat.products FORCE ROW LEVEL SECURITY;
 ALTER TABLE borvat.sellers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE borvat.memberships ENABLE ROW LEVEL SECURITY;
 ALTER TABLE borvat.offers ENABLE ROW LEVEL SECURITY;
@@ -105,6 +107,7 @@ ALTER TABLE borvat.seller_orders FORCE ROW LEVEL SECURITY;
 ALTER TABLE borvat.buyer_orders FORCE ROW LEVEL SECURITY;
 ALTER TABLE borvat.risk_cases FORCE ROW LEVEL SECURITY;
 ALTER TABLE borvat.audit_events FORCE ROW LEVEL SECURITY;
+-- PRODUCTS and RISK CASES remain invisible to untrusted DB roles until reviewed APIs exist.
 CREATE POLICY seller_read_own ON borvat.sellers FOR SELECT USING (borvat.is_seller_member(id));
 CREATE POLICY memberships_read_own ON borvat.memberships FOR SELECT USING (user_id=borvat.session_user_id());
 CREATE POLICY offers_read_own ON borvat.offers FOR SELECT USING (borvat.is_seller_member(seller_id));
