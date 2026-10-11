@@ -23,6 +23,7 @@ const run=f=>cancelDraftTestOrder(f.pool,f.request,{authorizeBuyer:async()=>true
 test("cancel draft restores stock once, cancels both order levels",async()=>{
  const f=make();const result=await run(f);
  assert.equal(result.restoredLines,1);
+ assert.equal(Number.isInteger(result.restoredLines),true);
  assert.equal(f.calls.filter(c=>c.sql.startsWith("UPDATE borvat.offers")).length,1);
  assert.equal(f.calls.find(c=>c.sql.startsWith("UPDATE borvat.offers")).args[1],2);
  assert.ok(f.calls.some(c=>c.sql.startsWith("UPDATE borvat.seller_orders")));
