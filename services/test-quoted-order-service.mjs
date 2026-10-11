@@ -5,6 +5,11 @@ import {randomUUID,createHash} from "node:crypto";
 import {quoteApprovedCart} from "./test-checkout-quote.mjs";
 const uuid=x=>typeof x==="string"&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x);
 export class CheckoutError extends Error {constructor(code){super(code);this.name="CheckoutError"}}
+const dbInt=value=>{
+ if(typeof value!=="string"&&!Number.isSafeInteger(value))return null;
+ if(typeof value==="string"&&!/^(0|[1-9][0-9]*)$/.test(value))return null;
+ const n=Number(value);return Number.isSafeInteger(n)&&n>=0?n:null;
+};
 export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShipping}={}){
  if(typeof quoteShipping!=="function")throw new CheckoutError("SHIPPING_AUTHORITY_NOT_CONFIGURED");
  if(typeof authorizeBuyer!=="function")throw new CheckoutError("AUTH_NOT_CONFIGURED");
@@ -32,6 +37,7 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShip
   if(prior.rows.length){
    if(prior.rows[0].request_hash!==hash)throw new CheckoutError("IDEMPOTENCY_CONFLICT");
    if(prior.rows[0].state==="cancelled")throw new CheckoutError("ORDER_ALREADY_CANCELLED");
+   if(dbInt(prior.rows[0].total_minor)===null)throw new CheckoutError("INVALID_STORED_TOTAL");
    await db.query("COMMIT");inTx=false;
    return {orderId:prior.rows[0].id,totalMinor:Number(prior.rows[0].total_minor),replayed:true,testOnly:true,paymentEnabled:false};
   }
@@ -41,6 +47,7 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShip
   if(rows.rows.length!==ids.length)throw new CheckoutError("OFFER_MISSING");
   const held=await db.query("SELECT offer_id FROM borvat.risk_cases WHERE offer_id=ANY($1::uuid[]) AND state IN ('open','held') LIMIT 1",[ids]);
   if(held.rows.length)throw new CheckoutError("RISK_HOLD");
+  if(rows.rows.some(o=>dbInt(o.stock)===null||dbInt(o.price_minor)===null))throw new CheckoutError("INVALID_DATABASE_AMOUNT");
   // No buyer price, shipping amount or seller mapping is trusted.
   const shipping=await quoteShipping({buyerId,requested:canonical.map(([offerId,quantity])=>({offerId,quantity})),offers:rows.rows.map(o=>({offerId:o.id,sellerId:o.seller_id,quantity:quantities.get(o.id.toLowerCase()),market:o.market,currency:o.currency})),country:"NL",currency:"EUR"});
   if(!shipping||typeof shipping!=="object"||Array.isArray(shipping))throw new CheckoutError("INVALID_SHIPPING");
