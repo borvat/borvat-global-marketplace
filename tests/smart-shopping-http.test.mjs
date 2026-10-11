@@ -27,3 +27,16 @@ test("HTTP synthetic shopping end-to-end with disabled checkout", async () => {
     assert.equal((await response.json()).needsMarket,true);
   } finally { await new Promise((resolve,reject)=>server.close(err=>err?reject(err):resolve())); }
 });
+
+test("browser demo served by the same HTTP API", async () => {
+  const server=buildServer();server.listen(0,"127.0.0.1");await once(server,"listening");
+  try {
+    const r=await fetch("http://127.0.0.1:"+server.address().port+"/");
+    assert.equal(r.status,200);
+    assert.match(r.headers.get("content-type"),/text\\/html/);
+    const html=await r.text();
+    assert.match(html,/BORVAT Smart Shopping/);
+    assert.match(html,/DEMO/);
+    assert.match(html,/demo\\/search/);
+  } finally {await new Promise(resolve=>server.close(resolve))}
+});
