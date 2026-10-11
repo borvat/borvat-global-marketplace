@@ -13,6 +13,7 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
   if(!Array.isArray(offerIds)||offerIds.length<1||offerIds.length>20||!offerIds.every(x=>validUuid(x))||new Set(offerIds.map(x=>x.toLowerCase())).size!==offerIds.length)throw new OrderConflict("BAD_OFFERS");
   const authorized=await authorizeBuyer(buyerId);
   if(authorized!==true)throw new OrderConflict("UNAUTHORIZED_BUYER");
+  const canonicalBuyerId=buyerId.toLowerCase();
   const sorted=offerIds.map(x=>x.toLowerCase()).sort();
   const requestHash=createHash("sha256").update(JSON.stringify(sorted)).digest("hex");
   const db=await pool.connect();
@@ -21,8 +22,8 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
     await db.query("BEGIN ISOLATION LEVEL SERIALIZABLE");
     started=true;
     // Transaction-scoped advisory lock protects absent idempotency-key rows against concurrent requests.
-    await db.query("SELECT pg_advisory_xact_lock(hashtextextended($1,0))",[buyerId+":"+requestKey]);
-    const prior=await db.query("SELECT id, request_hash, total_minor FROM borvat.buyer_orders WHERE buyer_id=$1 AND idempotency_key=$2",[buyerId,requestKey]);
+    await db.query("SELECT pg_advisory_xact_lock(hashtextextended($1,0))",[canonicalBuyerId+":"+requestKey]);
+    const prior=await db.query("SELECT id, request_hash, total_minor FROM borvat.buyer_orders WHERE buyer_id=$1 AND idempotency_key=$2",[canonicalBuyerId,requestKey]);
     if(prior.rows.length){
       if(prior.rows[0].request_hash!==requestHash)throw new OrderConflict("KEY_REUSED_DIFFERENT_CART");
       await db.query("COMMIT");started=false;
@@ -40,7 +41,7 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
     const total=offers.reduce((n,o)=>n+Number(o.price_minor),0);
     if(!safeMoney(total))throw new OrderConflict("PRICE_OVERFLOW");
     const orderId=randomUUID();
-    await db.query("INSERT INTO borvat.buyer_orders(id,buyer_id,idempotency_key,request_hash,currency,total_minor,state) VALUES ($1,$2,$3,$4,'EUR',$5,'draft')",[orderId,buyerId,requestKey,requestHash,total]);
+    await db.query("INSERT INTO borvat.buyer_orders(id,buyer_id,idempotency_key,request_hash,currency,total_minor,state) VALUES ($1,$2,$3,$4,'EUR',$5,'draft')",[orderId,canonicalBuyerId,requestKey,requestHash,total]);
     const grouped=new Map();
     for(const offer of offers){
       let group=grouped.get(offer.seller_id);
@@ -57,7 +58,7 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
         await db.query("INSERT INTO borvat.order_lines(id,seller_order_id,offer_id,quantity,price_minor) VALUES ($1,$2,$3,1,$4)",[randomUUID(),group.id,offer.id,offer.price_minor]);
       }
     }
-    await db.query("INSERT INTO borvat.outbox_events(id,event_type,aggregate_id,payload) VALUES ($1,'demo_order.created',$2,$3::jsonb)",[randomUUID(),orderId,JSON.stringify({buyerId,sellerCount:grouped.size})]);
+    await db.query("INSERT INTO borvat.outbox_events(id,event_type,aggregate_id,payload) VALUES ($1,'demo_order.created',$2,$3::jsonb)",[randomUUID(),orderId,JSON.stringify({buyerId:canonicalBuyerId,sellerCount:grouped.size})]);
     await db.query("COMMIT");started=false;
     return {orderId,totalMinor:total,sellerCount:grouped.size,replayed:false,demo:true,paymentEnabled:false};
   }catch(error){
