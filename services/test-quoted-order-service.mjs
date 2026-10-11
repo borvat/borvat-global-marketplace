@@ -21,20 +21,9 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShip
  const buyerId=input.buyerId.toLowerCase();
  if(await authorizeBuyer(buyerId)!==true)throw new CheckoutError("UNAUTHORIZED");
  const canonical=[...quantities].sort((a,b)=>a[0].localeCompare(b[0]));
- // The shipping quote is part of the idempotency request. Replays cannot silently change totals.
- // Seller shipping prices must be computed by an independent server-side provider.
- // Never trust a shippingBySeller amount supplied by a buyer request.
- const shipping=await quoteShipping({buyerId,requested:canonical.map(([offerId,quantity])=>({offerId,quantity})),country:"NL",currency:"EUR"});
- if(!shipping||typeof shipping!=="object"||Array.isArray(shipping))throw new CheckoutError("INVALID_SHIPPING");
- const canonicalShipping={};
- for(const [seller,amount] of Object.entries(shipping)){
-  if(!uuid(seller)||!Number.isSafeInteger(amount)||amount<0)throw new CheckoutError("INVALID_SHIPPING");
-  const key=seller.toLowerCase();
-  if(Object.hasOwn(canonicalShipping,key))throw new CheckoutError("DUPLICATE_SHIPPING");
-  canonicalShipping[key]=amount;
- }
- const shippingParts=Object.entries(canonicalShipping).sort((a,b)=>a[0].localeCompare(b[0]));
- const hash=createHash("sha256").update(JSON.stringify({requested:canonical,shipping:shippingParts,market:"NL",currency:"EUR"})).digest("hex");
+ // Idempotency binds buyer and canonical cart. Shipping is priced from locked
+ // server-side offer snapshots only on first creation, not replay.
+ const hash=createHash("sha256").update(JSON.stringify({requested:canonical,market:"NL",currency:"EUR",pricingContract:"trusted_shipping_v2"})).digest("hex");
  const db=await pool.connect();let inTx=false;
  try{
   await db.query("BEGIN ISOLATION LEVEL SERIALIZABLE");inTx=true;
@@ -52,6 +41,17 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShip
   if(rows.rows.length!==ids.length)throw new CheckoutError("OFFER_MISSING");
   const held=await db.query("SELECT offer_id FROM borvat.risk_cases WHERE offer_id=ANY($1::uuid[]) AND state IN ('open','held') LIMIT 1",[ids]);
   if(held.rows.length)throw new CheckoutError("RISK_HOLD");
+  // No buyer price, shipping amount or seller mapping is trusted.
+  const shipping=await quoteShipping({buyerId,requested:canonical.map(([offerId,quantity])=>({offerId,quantity})),offers:rows.rows.map(o=>({offerId:o.id,sellerId:o.seller_id,quantity:quantities.get(o.id.toLowerCase()),market:o.market,currency:o.currency})),country:"NL",currency:"EUR"});
+  if(!shipping||typeof shipping!=="object"||Array.isArray(shipping))throw new CheckoutError("INVALID_SHIPPING");
+  const canonicalShipping={};
+  for(const [seller,amount] of Object.entries(shipping)){
+   if(!uuid(seller)||!Number.isSafeInteger(amount)||amount<0)throw new CheckoutError("INVALID_SHIPPING");
+   const key=seller.toLowerCase();
+   if(Object.hasOwn(canonicalShipping,key))throw new CheckoutError("DUPLICATE_SHIPPING");
+   canonicalShipping[key]=amount;
+  }
+
   const offers=rows.rows.map(o=>({
    id:o.id,sellerId:o.seller_id,stock:Number(o.stock),priceMinor:Number(o.price_minor),market:o.market,currency:o.currency,
    offerStatus:o.status,sellerStatus:o.seller_status,productStatus:o.product_status,taxCategory:o.tax_category,riskHeld:false
