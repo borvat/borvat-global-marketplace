@@ -46,7 +46,8 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds}) {
     for(const [sellerId,group] of grouped){
       await db.query("INSERT INTO borvat.seller_orders(id,buyer_order_id,seller_id,amount_minor) VALUES ($1,$2,$3,$4)",[group.id,orderId,sellerId,group.amount]);
       for(const offer of group.offers) {
-        await db.query("UPDATE borvat.offers SET stock=stock-1,updated_at=now() WHERE id=$1 AND stock>0",[offer.id]);
+        const result = await db.query("UPDATE borvat.offers SET stock=stock-1,updated_at=now() WHERE id=$1 AND stock>0 AND status='published'",[offer.id]);
+        if(result.rowCount!==1)throw new OrderConflict("STOCK_CHANGED");
         await db.query("INSERT INTO borvat.order_lines(id,seller_order_id,offer_id,quantity,price_minor) VALUES ($1,$2,$3,1,$4)",[randomUUID(),group.id,offer.id,offer.price_minor]);
       }
     }
