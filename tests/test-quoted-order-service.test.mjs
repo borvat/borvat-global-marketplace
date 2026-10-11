@@ -77,5 +77,25 @@ test("ignores buyer-supplied zero shipping and bills trusted server shipping",as
 test("untrusted shipping provider response blocks draft",async()=>{
  const db=pool([offer(1,11)]);
  await assert.rejects(createQuotedTestOrder(db,input(),{authorizeBuyer:async()=>true,quoteShipping:async()=>null}),/INVALID_SHIPPING/);
- assert.equal(db.calls.length,0);
+ assert.equal(db.calls.filter(c=>c.sql.startsWith("INSERT INTO")).length,0);
+ assert.ok(db.calls.some(c=>c.sql==="ROLLBACK"));
+});
+
+test("trusted shipping receives locked offer-to-seller snapshots",async()=>{
+ const db=pool([offer(1,11)]);let received;
+ const result=await createQuotedTestOrder(db,input(),{
+  authorizeBuyer:async()=>true,
+  quoteShipping:async ctx=>{received=ctx;return {[id(11)]:1210};}
+ });
+ assert.equal(received.offers[0].sellerId,id(11));
+ assert.equal(received.offers[0].quantity,2);
+ assert.equal(result.totalMinor,25410);
+});
+test("external tariff error cannot create any draft",async()=>{
+ const db=pool([offer(1,11)]);
+ await assert.rejects(createQuotedTestOrder(db,input(),{
+  authorizeBuyer:async()=>true,quoteShipping:async()=>{throw new Error("TARIFF_UNAVAILABLE");}
+ }),/TARIFF_UNAVAILABLE/);
+ assert.equal(db.calls.filter(c=>c.sql.startsWith("INSERT INTO")).length,0);
+ assert.ok(db.calls.some(c=>c.sql==="ROLLBACK"));
 });
