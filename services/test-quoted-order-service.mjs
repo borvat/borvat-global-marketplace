@@ -36,9 +36,10 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer}={}){
  try{
   await db.query("BEGIN ISOLATION LEVEL SERIALIZABLE");inTx=true;
   await db.query("SELECT pg_advisory_xact_lock(hashtextextended($1,0))",[buyerId+":"+input.requestKey]);
-  const prior=await db.query("SELECT id,request_hash,total_minor FROM borvat.buyer_orders WHERE buyer_id=$1 AND idempotency_key=$2",[buyerId,input.requestKey]);
+  const prior=await db.query("SELECT id,request_hash,total_minor,state FROM borvat.buyer_orders WHERE buyer_id=$1 AND idempotency_key=$2",[buyerId,input.requestKey]);
   if(prior.rows.length){
    if(prior.rows[0].request_hash!==hash)throw new CheckoutError("IDEMPOTENCY_CONFLICT");
+   if(prior.rows[0].state==="cancelled")throw new CheckoutError("ORDER_ALREADY_CANCELLED");
    await db.query("COMMIT");inTx=false;
    return {orderId:prior.rows[0].id,totalMinor:Number(prior.rows[0].total_minor),replayed:true,testOnly:true,paymentEnabled:false};
   }
