@@ -8,7 +8,7 @@ test("six-platform sandbox: role separation, seller onboarding, cart, orders, ad
  m.reviewSeller(reviewer,first.seller.id,true);m.reviewSeller(reviewer,second.seller.id,true);
  const a=m.addOffer(first.actor,{productId:"stove",priceMinor:1950,shippingMinor:250,stock:2,currency:"EUR",market:"NL"});
  const b=m.addOffer(second.actor,{productId:"stove",priceMinor:2050,shippingMinor:0,stock:3,currency:"EUR",market:"NL"});
- assert.throws(()=>m.listOffers(buyer).find(o=>o.id===a.id),undefined);
+ assert.equal(m.listOffers(buyer).find(o=>o.id===a.id),undefined);
  m.reviewOffer(reviewer,a.id,true);m.reviewOffer(reviewer,b.id,true);
  assert.equal(m.listOffers(buyer).length,2);
  assert.equal(m.quote(buyer,[a.id,b.id]).totalMinor,4250);
