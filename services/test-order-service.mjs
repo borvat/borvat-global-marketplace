@@ -3,6 +3,13 @@
 // Never expose this function as a direct public HTTP endpoint.
 import { randomUUID, createHash } from "node:crypto";
 const safeMoney=n=>Number.isSafeInteger(n)&&n>=0;
+// PostgreSQL bigint arrives as a decimal string. Reject coercion of null, booleans or decimals.
+const dbNonnegativeInteger=value=>{
+ if(typeof value==="number")return safeMoney(value)?value:null;
+ if(typeof value!=="string"||!/^(0|[1-9][0-9]*)$/.test(value))return null;
+ const n=Number(value);
+ return safeMoney(n)?n:null;
+};
 const validUuid=value=>typeof value==="string"&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
 export class OrderConflict extends Error {constructor(code){super(code);this.name="OrderConflict"}}
 export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{authorizeBuyer}={}) {
@@ -27,6 +34,7 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
     if(prior.rows.length){
       if(prior.rows[0].request_hash!==requestHash)throw new OrderConflict("KEY_REUSED_DIFFERENT_CART");
       if(prior.rows[0].state==="cancelled")throw new OrderConflict("ORDER_ALREADY_CANCELLED");
+      if(dbNonnegativeInteger(prior.rows[0].total_minor)===null)throw new OrderConflict("INVALID_STORED_TOTAL");
       await db.query("COMMIT");started=false;
       return {orderId:prior.rows[0].id,totalMinor:Number(prior.rows[0].total_minor),replayed:true,demo:true};
     }
@@ -37,7 +45,7 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
     const returnedIds=offers.map(o=>typeof o.id==="string"?o.id.toLowerCase():null);
     if(returnedIds.some(id=>id===null)||new Set(returnedIds).size!==sorted.length||returnedIds.some(id=>!sorted.includes(id)))throw new OrderConflict("OFFER_ID_MISMATCH");
     for(const o of offers){
-      if(o.status!=="published"||o.seller_status!=="approved"||o.product_status!=="approved"||(!Number.isSafeInteger(Number(o.stock))||Number(o.stock)<1)||o.market!=="NL"||o.currency!=="EUR"||!safeMoney(Number(o.price_minor)))throw new OrderConflict("NOT_AVAILABLE");
+      if(o.status!=="published"||o.seller_status!=="approved"||o.product_status!=="approved"||(dbNonnegativeInteger(o.stock)===null||dbNonnegativeInteger(o.stock)<1)||o.market!=="NL"||o.currency!=="EUR"||dbNonnegativeInteger(o.price_minor)===null)throw new OrderConflict("NOT_AVAILABLE");
     }
     const held=await db.query("SELECT 1 FROM borvat.risk_cases WHERE offer_id=ANY($1::uuid[]) AND state IN ('open','held') LIMIT 1",[sorted]);
     if(held.rows.length)throw new OrderConflict("RISK_HOLD");
