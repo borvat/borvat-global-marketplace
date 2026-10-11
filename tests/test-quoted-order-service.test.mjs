@@ -111,3 +111,27 @@ test("rejects corrupted PostgreSQL price and quantity before shipping or any ins
   assert.ok(db.calls.some(x=>x.sql==="ROLLBACK"));
  }
 });
+
+test("wrong database offer identity is rejected before trusted shipping",async()=>{
+ const db=pool([offer(2,11)]);let invoked=0;
+ await assert.rejects(createQuotedTestOrder(db,input(),{
+  authorizeBuyer:async()=>true,quoteShipping:async()=>{invoked++;return {[id(11)]:1210};}
+ }),/OFFER_SNAPSHOT_MISMATCH/);
+ assert.equal(invoked,0);
+ assert.equal(db.calls.some(c=>c.sql.startsWith("INSERT INTO")),false);
+});
+test("duplicate database offer identities are rejected before trusted shipping",async()=>{
+ const data=input();data.requested.push({offerId:id(2),quantity:1});
+ const db=pool([offer(1,11),offer(1,11)]);let invoked=0;
+ await assert.rejects(createQuotedTestOrder(db,data,{
+  authorizeBuyer:async()=>true,quoteShipping:async()=>{invoked++;return {[id(11)]:1210};}
+ }),/OFFER_SNAPSHOT_MISMATCH/);
+ assert.equal(invoked,0);
+});
+test("invalid seller snapshot blocks shipping calculation",async()=>{
+ const db=pool([{...offer(1,11),seller_id:null}]);let invoked=0;
+ await assert.rejects(createQuotedTestOrder(db,input(),{
+  authorizeBuyer:async()=>true,quoteShipping:async()=>{invoked++;return {};}
+ }),/INVALID_SELLER_SNAPSHOT/);
+ assert.equal(invoked,0);
+});
