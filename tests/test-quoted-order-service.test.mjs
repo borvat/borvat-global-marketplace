@@ -135,3 +135,18 @@ test("invalid seller snapshot blocks shipping calculation",async()=>{
  }),/INVALID_SELLER_SNAPSHOT/);
  assert.equal(invoked,0);
 });
+
+test("suspended seller fails before shipping authority is called",async()=>{
+ const db=pool([{...offer(1,11),seller_status:"suspended"}]);let called=false;
+ await assert.rejects(createQuotedTestOrder(db,input(),{
+  authorizeBuyer:async()=>true,quoteShipping:async()=>{called=true;return {[id(11)]:1210};}
+ }),/OFFER_NOT_ELIGIBLE/);
+ assert.equal(called,false);
+});
+test("insufficient stock fails before shipping authority is called",async()=>{
+ const db=pool([{...offer(1,11),stock:1}]);let called=false;
+ await assert.rejects(createQuotedTestOrder(db,input(),{
+  authorizeBuyer:async()=>true,quoteShipping:async()=>{called=true;return {[id(11)]:1210};}
+ }),/INSUFFICIENT_STOCK/);
+ assert.equal(called,false);
+});
