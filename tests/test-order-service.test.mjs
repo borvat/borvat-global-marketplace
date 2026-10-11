@@ -14,7 +14,7 @@ function fakePool({existing=null,offers=[],held=false,stockUpdateRows=1}={}){
  },release(){released=true}};
  return {connect:async()=>db,calls,get released(){return released}};
 }
-const offer=(n,seller)=>({id:uuid(n),seller_id:uuid(seller),price_minor:"1000",stock:2,market:"NL",currency:"EUR",status:"published"});
+const offer=(n,seller)=>({id:uuid(n),seller_id:uuid(seller),price_minor:"1000",stock:2,market:"NL",currency:"EUR",status:"published",seller_status:"approved",product_status:"approved"});
 test("commit synthetic split into two merchant suborders and outbox",async()=>{
  const pool=fakePool({offers:[offer(1,10),offer(2,20)]});
  const result=await execute(pool,{buyerId:uuid(100),requestKey:"order-key-0001",offerIds:[uuid(1),uuid(2)]});
@@ -75,4 +75,23 @@ test("identity verification rejection blocks transaction",async()=>{
  const pool=fakePool({offers:[offer(1,10)]});
  await assert.rejects(createTestOrder(pool,{buyerId:uuid(100),requestKey:"auth-test-002",offerIds:[uuid(1)]},{authorizeBuyer:async()=>false}),/UNAUTHORIZED_BUYER/);
  assert.equal(pool.calls.length,0);
+});
+
+test("suspended seller cannot receive a new order",async()=>{
+ const blocked={...offer(1,10),seller_status:"suspended"};
+ const pool=fakePool({offers:[blocked]});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"suspension-001",offerIds:[uuid(1)]}),/NOT_AVAILABLE/);
+ assert.ok(pool.calls.some(c=>c.sql==="ROLLBACK"));
+ assert.equal(pool.calls.some(c=>c.sql.startsWith("UPDATE borvat.offers")),false);
+});
+test("unapproved catalog product cannot be sold despite published offer",async()=>{
+ const blocked={...offer(1,10),product_status:"review"};
+ const pool=fakePool({offers:[blocked]});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"catalog-001",offerIds:[uuid(1)]}),/NOT_AVAILABLE/);
+ assert.equal(pool.calls.some(c=>c.sql.startsWith("UPDATE borvat.offers")),false);
+});
+test("missing seller or product approval data fails closed",async()=>{
+ const pool=fakePool({offers:[{...offer(1,10),seller_status:undefined}]});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"approval-001",offerIds:[uuid(1)]}),/NOT_AVAILABLE/);
+ assert.ok(pool.calls.some(c=>c.sql==="ROLLBACK"));
 });
