@@ -27,11 +27,11 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
       await db.query("COMMIT");started=false;
       return {orderId:prior.rows[0].id,totalMinor:Number(prior.rows[0].total_minor),replayed:true,demo:true};
     }
-    const records=await db.query("SELECT id,seller_id,price_minor,stock,market,currency,status FROM borvat.offers WHERE id=ANY($1::uuid[]) ORDER BY id FOR UPDATE",[sorted]);
+    const records=await db.query("SELECT o.id,o.seller_id,o.price_minor,o.stock,o.market,o.currency,o.status,s.status AS seller_status,p.status AS product_status FROM borvat.offers o JOIN borvat.sellers s ON s.id=o.seller_id JOIN borvat.products p ON p.id=o.product_id WHERE o.id=ANY($1::uuid[]) ORDER BY o.id FOR UPDATE OF o,s,p",[sorted]);
     if(records.rows.length!==sorted.length)throw new OrderConflict("NOT_AVAILABLE");
     const offers=records.rows;
     for(const o of offers){
-      if(o.status!=="published"||o.stock<1||o.market!=="NL"||o.currency!=="EUR"||!safeMoney(Number(o.price_minor)))throw new OrderConflict("NOT_AVAILABLE");
+      if(o.status!=="published"||o.seller_status!=="approved"||o.product_status!=="approved"||o.stock<1||o.market!=="NL"||o.currency!=="EUR"||!safeMoney(Number(o.price_minor)))throw new OrderConflict("NOT_AVAILABLE");
     }
     const held=await db.query("SELECT 1 FROM borvat.risk_cases WHERE offer_id=ANY($1::uuid[]) AND state IN ('open','held') LIMIT 1",[sorted]);
     if(held.rows.length)throw new OrderConflict("RISK_HOLD");
