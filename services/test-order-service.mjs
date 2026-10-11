@@ -23,9 +23,10 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
     started=true;
     // Transaction-scoped advisory lock protects absent idempotency-key rows against concurrent requests.
     await db.query("SELECT pg_advisory_xact_lock(hashtextextended($1,0))",[canonicalBuyerId+":"+requestKey]);
-    const prior=await db.query("SELECT id, request_hash, total_minor FROM borvat.buyer_orders WHERE buyer_id=$1 AND idempotency_key=$2",[canonicalBuyerId,requestKey]);
+    const prior=await db.query("SELECT id, request_hash, total_minor, state FROM borvat.buyer_orders WHERE buyer_id=$1 AND idempotency_key=$2",[canonicalBuyerId,requestKey]);
     if(prior.rows.length){
       if(prior.rows[0].request_hash!==requestHash)throw new OrderConflict("KEY_REUSED_DIFFERENT_CART");
+      if(prior.rows[0].state==="cancelled")throw new OrderConflict("ORDER_ALREADY_CANCELLED");
       await db.query("COMMIT");started=false;
       return {orderId:prior.rows[0].id,totalMinor:Number(prior.rows[0].total_minor),replayed:true,demo:true};
     }
