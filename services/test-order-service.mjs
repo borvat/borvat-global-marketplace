@@ -4,7 +4,10 @@
 import { randomUUID, createHash } from "node:crypto";
 const safeMoney=n=>Number.isSafeInteger(n)&&n>=0;
 export class OrderConflict extends Error {constructor(code){super(code);this.name="OrderConflict"}}
-export async function createTestOrder(pool,{buyerId,requestKey,offerIds}) {
+export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{authorizeBuyer}={}) {
+  if(typeof authorizeBuyer!=="function")throw new OrderConflict("AUTHENTICATION_NOT_CONFIGURED");
+  const authorized=await authorizeBuyer(buyerId);
+  if(authorized!==true)throw new OrderConflict("UNAUTHORIZED_BUYER");
   if(typeof buyerId!=="string"||! /^[0-9a-f-]{36}$/i.test(buyerId))throw new OrderConflict("BAD_BUYER");
   if(typeof requestKey!=="string"||! /^[a-zA-Z0-9_-]{8,100}$/.test(requestKey))throw new OrderConflict("BAD_KEY");
   if(!Array.isArray(offerIds)||offerIds.length<1||offerIds.length>20||!offerIds.every(x=>typeof x==="string"&&/^[0-9a-f-]{36}$/i.test(x))||new Set(offerIds).size!==offerIds.length)throw new OrderConflict("BAD_OFFERS");
@@ -41,6 +44,7 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds}) {
       let group=grouped.get(offer.seller_id);
       if(!group){group={id:randomUUID(),amount:0,offers:[]};grouped.set(offer.seller_id,group)}
       group.amount+=Number(offer.price_minor);
+      if(!safeMoney(group.amount))throw new OrderConflict("PRICE_OVERFLOW");
       group.offers.push(offer);
     }
     for(const [sellerId,group] of grouped){
