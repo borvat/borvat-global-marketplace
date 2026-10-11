@@ -55,7 +55,7 @@ test("missing shipping prevents draft",async()=>{
 test("cancelled quoted order cannot be presented as successful idempotency replay",async()=>{
  const input={buyerId:"00000000-0000-4000-8000-000000000100",requestKey:"cancelled-replay-001",requested:[{offerId:"00000000-0000-4000-8000-000000000001",quantity:1}],shippingBySeller:{"00000000-0000-4000-8000-000000000011":0}};
  const {createHash}=await import("node:crypto");
- const hash=createHash("sha256").update(JSON.stringify({requested:[[input.requested[0].offerId,1]],shipping:[[Object.keys(input.shippingBySeller)[0],0]],market:"NL",currency:"EUR"})).digest("hex");
+ const hash=createHash("sha256").update(JSON.stringify({requested:[[input.requested[0].offerId,1]],market:"NL",currency:"EUR",pricingContract:"trusted_shipping_v2"})).digest("hex");
  const calls=[];
  const pool={connect:async()=>({query:async(sql,args=[])=>{calls.push(sql);if(sql.startsWith("SELECT id,request_hash"))return {rows:[{id:"00000000-0000-4000-8000-000000000090",request_hash:hash,total_minor:"100",state:"cancelled"}]};return {rows:[],rowCount:1}},release(){}})};
  await assert.rejects(createQuotedTestOrder(pool,input,{authorizeBuyer:async()=>true,quoteShipping:async()=>input.shippingBySeller}),/ORDER_ALREADY_CANCELLED/);
