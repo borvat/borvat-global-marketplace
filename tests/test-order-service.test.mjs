@@ -143,3 +143,15 @@ test("authentication receives canonical buyer UUID",async()=>{
  await createTestOrder(pool,{buyerId:uuid(100).toUpperCase(),requestKey:"auth-canonical-001",offerIds:[uuid(1)]},{authorizeBuyer:async id=>(seen=id,true)});
  assert.equal(seen,uuid(100));
 });
+
+test("rejects a returned offer not requested by the buyer",async()=>{
+ const pool=fakePool({offers:[offer(2,10)]});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"wrong-offer-001",offerIds:[uuid(1)]}),/OFFER_ID_MISMATCH/);
+ assert.ok(pool.calls.some(c=>c.sql==="ROLLBACK"));
+ assert.equal(pool.calls.filter(c=>c.sql.startsWith("INSERT INTO")).length,0);
+});
+test("rejects duplicate rows returned for distinct requested offers",async()=>{
+ const pool=fakePool({offers:[offer(1,10),offer(1,10)]});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"duplicate-return-001",offerIds:[uuid(1),uuid(2)]}),/OFFER_ID_MISMATCH/);
+ assert.equal(pool.calls.filter(c=>c.sql.startsWith("UPDATE borvat.offers")).length,0);
+});
