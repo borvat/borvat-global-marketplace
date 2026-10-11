@@ -32,6 +32,9 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
     const records=await db.query("SELECT o.id,o.seller_id,o.price_minor,o.stock,o.market,o.currency,o.status,s.status AS seller_status,p.status AS product_status FROM borvat.offers o JOIN borvat.sellers s ON s.id=o.seller_id JOIN borvat.products p ON p.id=o.product_id WHERE o.id=ANY($1::uuid[]) ORDER BY o.id FOR UPDATE OF o,s,p",[sorted]);
     if(records.rows.length!==sorted.length)throw new OrderConflict("NOT_AVAILABLE");
     const offers=records.rows;
+    // Defend the order boundary against malformed repository responses.
+    const returnedIds=offers.map(o=>typeof o.id==="string"?o.id.toLowerCase():null);
+    if(returnedIds.some(id=>id===null)||new Set(returnedIds).size!==sorted.length||returnedIds.some(id=>!sorted.includes(id)))throw new OrderConflict("OFFER_ID_MISMATCH");
     for(const o of offers){
       if(o.status!=="published"||o.seller_status!=="approved"||o.product_status!=="approved"||(!Number.isSafeInteger(Number(o.stock))||Number(o.stock)<1)||o.market!=="NL"||o.currency!=="EUR"||!safeMoney(Number(o.price_minor)))throw new OrderConflict("NOT_AVAILABLE");
     }
