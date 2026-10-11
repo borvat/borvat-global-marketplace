@@ -11,9 +11,9 @@ export async function createTestOrder(pool,{buyerId,requestKey,offerIds},{author
   if(!validUuid(buyerId))throw new OrderConflict("BAD_BUYER");
   if(typeof requestKey!=="string"||! /^[a-zA-Z0-9_-]{8,100}$/.test(requestKey))throw new OrderConflict("BAD_KEY");
   if(!Array.isArray(offerIds)||offerIds.length<1||offerIds.length>20||!offerIds.every(x=>validUuid(x))||new Set(offerIds.map(x=>x.toLowerCase())).size!==offerIds.length)throw new OrderConflict("BAD_OFFERS");
-  const authorized=await authorizeBuyer(buyerId);
-  if(authorized!==true)throw new OrderConflict("UNAUTHORIZED_BUYER");
   const canonicalBuyerId=buyerId.toLowerCase();
+  const authorized=await authorizeBuyer(canonicalBuyerId);
+  if(authorized!==true)throw new OrderConflict("UNAUTHORIZED_BUYER");
   const sorted=offerIds.map(x=>x.toLowerCase()).sort();
   const requestHash=createHash("sha256").update(JSON.stringify(sorted)).digest("hex");
   const db=await pool.connect();
