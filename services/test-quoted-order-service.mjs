@@ -5,7 +5,8 @@ import {randomUUID,createHash} from "node:crypto";
 import {quoteApprovedCart} from "./test-checkout-quote.mjs";
 const uuid=x=>typeof x==="string"&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x);
 export class CheckoutError extends Error {constructor(code){super(code);this.name="CheckoutError"}}
-export async function createQuotedTestOrder(pool,input,{authorizeBuyer}={}){
+export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShipping}={}){
+ if(typeof quoteShipping!=="function")throw new CheckoutError("SHIPPING_AUTHORITY_NOT_CONFIGURED");
  if(typeof authorizeBuyer!=="function")throw new CheckoutError("AUTH_NOT_CONFIGURED");
  if(!input||!uuid(input.buyerId)||typeof input.requestKey!=="string"||!/^[a-zA-Z0-9_-]{8,100}$/.test(input.requestKey))throw new CheckoutError("INVALID_REQUEST");
  const requested=input.requested;
@@ -21,7 +22,9 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer}={}){
  if(await authorizeBuyer(buyerId)!==true)throw new CheckoutError("UNAUTHORIZED");
  const canonical=[...quantities].sort((a,b)=>a[0].localeCompare(b[0]));
  // The shipping quote is part of the idempotency request. Replays cannot silently change totals.
- const shipping=input.shippingBySeller;
+ // Seller shipping prices must be computed by an independent server-side provider.
+ // Never trust a shippingBySeller amount supplied by a buyer request.
+ const shipping=await quoteShipping({buyerId,requested:canonical.map(([offerId,quantity])=>({offerId,quantity})),country:"NL",currency:"EUR"});
  if(!shipping||typeof shipping!=="object"||Array.isArray(shipping))throw new CheckoutError("INVALID_SHIPPING");
  const canonicalShipping={};
  for(const [seller,amount] of Object.entries(shipping)){
