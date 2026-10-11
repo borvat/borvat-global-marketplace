@@ -45,6 +45,11 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShip
   const ids=canonical.map(([id])=>id);
   const rows=await db.query("SELECT o.id,o.seller_id,o.price_minor,o.stock,o.market,o.currency,o.status,s.status AS seller_status,p.status AS product_status,p.tax_category FROM borvat.offers o JOIN borvat.sellers s ON s.id=o.seller_id JOIN borvat.products p ON p.id=o.product_id WHERE o.id=ANY($1::uuid[]) ORDER BY o.id FOR UPDATE OF o,s,p",[ids]);
   if(rows.rows.length!==ids.length)throw new CheckoutError("OFFER_MISSING");
+  // Match the full requested offer set before passing any row to shipping.
+  const returned=rows.rows.map(o=>typeof o.id==="string"?o.id.toLowerCase():null);
+  if(returned.some(x=>x===null)||new Set(returned).size!==ids.length||returned.some(x=>!ids.includes(x)))throw new CheckoutError("OFFER_SNAPSHOT_MISMATCH");
+  if(rows.rows.some(o=>!uuid(o.seller_id)))throw new CheckoutError("INVALID_SELLER_SNAPSHOT");
+
   const held=await db.query("SELECT offer_id FROM borvat.risk_cases WHERE offer_id=ANY($1::uuid[]) AND state IN ('open','held') LIMIT 1",[ids]);
   if(held.rows.length)throw new CheckoutError("RISK_HOLD");
   if(rows.rows.some(o=>dbInt(o.stock)===null||dbInt(o.price_minor)===null))throw new CheckoutError("INVALID_DATABASE_AMOUNT");
