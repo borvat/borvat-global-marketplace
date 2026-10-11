@@ -155,3 +155,13 @@ test("rejects duplicate rows returned for distinct requested offers",async()=>{
  await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"duplicate-return-001",offerIds:[uuid(1),uuid(2)]}),/OFFER_ID_MISMATCH/);
  assert.equal(pool.calls.filter(c=>c.sql.startsWith("UPDATE borvat.offers")).length,0);
 });
+
+test("cancelled order cannot be replayed as a valid new draft",async()=>{
+ const buyerId=uuid(100),offerIds=[uuid(1)];
+ const {createHash}=await import("node:crypto");
+ const request_hash=createHash("sha256").update(JSON.stringify(offerIds)).digest("hex");
+ const pool=fakePool({existing:{id:uuid(50),request_hash,total_minor:"1000",state:"cancelled"}});
+ await assert.rejects(execute(pool,{buyerId,requestKey:"cancel-replay-001",offerIds}),/ORDER_ALREADY_CANCELLED/);
+ assert.ok(pool.calls.some(c=>c.sql==="ROLLBACK"));
+ assert.equal(pool.calls.some(c=>c.sql.startsWith("UPDATE borvat.offers")),false);
+});
