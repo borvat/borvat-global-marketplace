@@ -7,7 +7,7 @@ function fakePool({existing=null,offers=[],held=false,stockUpdateRows=1}={}){
  const calls=[];let released=false;
  const db={async query(sql,args=[]){calls.push({sql,args});
   if(sql.startsWith("SELECT id, request_hash"))return {rows:existing?[existing]:[]};
-  if(sql.startsWith("SELECT id,seller_id"))return {rows:offers};
+  if(sql.includes("FROM borvat.offers o JOIN borvat.sellers"))return {rows:offers};
   if(sql.startsWith("SELECT 1 FROM borvat.risk_cases"))return {rows:held?[{x:1}]:[]};
   if(sql.startsWith("UPDATE borvat.offers"))return {rowCount:stockUpdateRows,rows:[]};
   return {rows:[],rowCount:1};
@@ -94,4 +94,15 @@ test("missing seller or product approval data fails closed",async()=>{
  const pool=fakePool({offers:[{...offer(1,10),seller_status:undefined}]});
  await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"approval-001",offerIds:[uuid(1)]}),/NOT_AVAILABLE/);
  assert.ok(pool.calls.some(c=>c.sql==="ROLLBACK"));
+});
+
+test("prevents order when a seller approval is missing",async()=>{
+ const pool=fakePool({offers:[{...offer(1,10),seller_status:null}]});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"missing-seller-approval",offerIds:[uuid(1)]}),/NOT_AVAILABLE/);
+ assert.equal(pool.calls.filter(c=>c.sql.startsWith("INSERT INTO")).length,0);
+});
+test("prevents order when inventory quantity is null",async()=>{
+ const pool=fakePool({offers:[{...offer(1,10),stock:null}]});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"missing-stock-value",offerIds:[uuid(1)]}),/NOT_AVAILABLE/);
+ assert.equal(pool.calls.some(c=>c.sql.startsWith("UPDATE borvat.offers")),false);
 });
