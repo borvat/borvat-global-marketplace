@@ -23,5 +23,14 @@ export function quoteApprovedCart({requested,offers,shippingBySeller,country="NL
   lines.push({offerId:key,sellerId:o.sellerId.toLowerCase(),quantity,unitPriceMinor:o.priceMinor,taxCategory:o.taxCategory});
  }
  if(observed.size!==requests.size)throw new QuoteError("CART_SNAPSHOT_MISMATCH");
- return priceBuyerCart(lines,{country,currency,shippingBySeller, ...(taxRates?{vatBpsByCategory:taxRates}:{}), ...(shippingVatBps===undefined?{}:{shippingVatBps})});
+ // Canonicalize the seller UUID keys used for shipping prices.
+ const canonicalShipping={};
+ if(!shippingBySeller||typeof shippingBySeller!=="object"||Array.isArray(shippingBySeller))throw new QuoteError("INVALID_SHIPPING");
+ for(const [seller,value] of Object.entries(shippingBySeller)){
+  if(!id(seller))throw new QuoteError("INVALID_SHIPPING");
+  const canonical=seller.toLowerCase();
+  if(Object.hasOwn(canonicalShipping,canonical))throw new QuoteError("DUPLICATE_SHIPPING_SELLER");
+  canonicalShipping[canonical]=value;
+ }
+ return priceBuyerCart(lines,{country,currency,shippingBySeller:canonicalShipping, ...(taxRates?{vatBpsByCategory:taxRates}:{}), ...(shippingVatBps===undefined?{}:{shippingVatBps})});
 }
