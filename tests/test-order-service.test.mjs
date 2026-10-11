@@ -106,3 +106,24 @@ test("prevents order when inventory quantity is null",async()=>{
  await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"missing-stock-value",offerIds:[uuid(1)]}),/NOT_AVAILABLE/);
  assert.equal(pool.calls.some(c=>c.sql.startsWith("UPDATE borvat.offers")),false);
 });
+
+test("idempotency accepts UUID case changes as the same cart",async()=>{
+ const ids=[uuid(1)], buyerId=uuid(100);
+ const {createHash}=await import("node:crypto");
+ const request_hash=createHash("sha256").update(JSON.stringify(ids)).digest("hex");
+ const pool=fakePool({existing:{id:uuid(50),request_hash,total_minor:"1000"}});
+ const result=await execute(pool,{buyerId,requestKey:"case-replay-001",offerIds:[ids[0].toUpperCase()]});
+ assert.equal(result.replayed,true);
+ assert.equal(pool.calls.some(c=>c.sql.startsWith("UPDATE borvat.offers")),false);
+});
+test("rejects the same UUID in different letter cases before opening DB",async()=>{
+ const id="AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA";
+ const pool=fakePool({});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"case-dupe-001",offerIds:[id,id.toLowerCase()]}),/BAD_OFFERS/);
+ assert.equal(pool.calls.length,0);
+});
+test("rejects malformed UUIDs before opening DB",async()=>{
+ const pool=fakePool({});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"bad-uuid-001",offerIds:["----------12345678901234567890123456"]}),/BAD_OFFERS/);
+ assert.equal(pool.calls.length,0);
+});
