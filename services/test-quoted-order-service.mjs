@@ -76,6 +76,11 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShip
   const quote=quoteApprovedCart({requested:canonical.map(([offerId,quantity])=>({offerId,quantity})),offers,shippingBySeller:canonicalShipping});
   const orderId=randomUUID();
   await db.query("INSERT INTO borvat.buyer_orders(id,buyer_id,idempotency_key,request_hash,currency,total_minor,state) VALUES($1,$2,$3,$4,'EUR',$5,'draft')",[orderId,buyerId,input.requestKey,hash,quote.grossMinor]);
+  // Snapshot preserves seller-level lines, VAT and shipping at order creation.
+  // It is written in the same transaction as stock reservations and the order.
+  const persistedQuote=JSON.stringify({schemaVersion:1,country:quote.country,currency:quote.currency,grossMinor:quote.grossMinor,netMinor:quote.netMinor,vatMinor:quote.vatMinor,sellers:quote.sellers});
+  const quoteHash=createHash("sha256").update(persistedQuote).digest("hex");
+  await db.query("INSERT INTO borvat.order_quote_snapshots(buyer_order_id,currency,gross_minor,net_minor,vat_minor,snapshot,snapshot_sha256) VALUES($1,'EUR',$2,$3,$4,$5::jsonb,$6)",[orderId,quote.grossMinor,quote.netMinor,quote.vatMinor,persistedQuote,quoteHash]);
   for(const seller of quote.sellers){
    const suborderId=randomUUID();
    await db.query("INSERT INTO borvat.seller_orders(id,buyer_order_id,seller_id,amount_minor) VALUES($1,$2,$3,$4)",[suborderId,orderId,seller.sellerId,seller.grossMinor]);
