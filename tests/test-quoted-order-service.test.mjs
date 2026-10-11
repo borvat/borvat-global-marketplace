@@ -150,3 +150,31 @@ test("insufficient stock fails before shipping authority is called",async()=>{
  }),/INSUFFICIENT_STOCK/);
  assert.equal(called,false);
 });
+
+test("full quote snapshot is written with seller shipping and VAT before commit",async()=>{
+ const db=pool([offer(1,11)]);
+ const result=await run(db,input());
+ const insertion=db.calls.find(c=>c.sql.startsWith("INSERT INTO borvat.order_quote_snapshots"));
+ assert.ok(insertion,"immutable snapshot must be inserted");
+ const saved=JSON.parse(insertion.args[4]);
+ assert.equal(saved.grossMinor,result.totalMinor);
+ assert.equal(saved.vatMinor,result.quote.vatMinor);
+ assert.equal(saved.sellers[0].shippingGrossMinor,1210);
+ assert.equal(saved.sellers[0].lines[0].quantity,2);
+ assert.match(insertion.args[5],/^[a-f0-9]{64}$/);
+});
+test("snapshot persistence failure aborts order before reserving stock",async()=>{
+ const calls=[];
+ const offerRow=offer(1,11);
+ const db={connect:async()=>({release(){},async query(sql,args=[]){
+  calls.push({sql,args});
+  if(sql.startsWith("SELECT id,request_hash"))return {rows:[]};
+  if(sql.includes("FROM borvat.offers o JOIN"))return {rows:[offerRow]};
+  if(sql.startsWith("SELECT offer_id FROM borvat.risk_cases"))return {rows:[]};
+  if(sql.startsWith("INSERT INTO borvat.order_quote_snapshots"))throw new Error("SNAPSHOT_WRITE_FAILED");
+  return {rows:[],rowCount:1};
+ }})};
+ await assert.rejects(run(db,input()),/SNAPSHOT_WRITE_FAILED/);
+ assert.ok(calls.some(c=>c.sql==="ROLLBACK"));
+ assert.equal(calls.some(c=>c.sql.startsWith("UPDATE borvat.offers")),false);
+});
