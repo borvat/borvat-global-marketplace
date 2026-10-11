@@ -3,6 +3,7 @@
 // No PSP capture, refunds or live checkout. Never expose this directly to browsers.
 import {randomUUID,createHash} from "node:crypto";
 import {quoteApprovedCart} from "./test-checkout-quote.mjs";
+import {snapshotDigest} from "./test-snapshot-integrity.mjs";
 const uuid=x=>typeof x==="string"&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x);
 export class CheckoutError extends Error {constructor(code){super(code);this.name="CheckoutError"}}
 const dbInt=value=>{
@@ -79,7 +80,7 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShip
   // Snapshot preserves seller-level lines, VAT and shipping at order creation.
   // It is written in the same transaction as stock reservations and the order.
   const persistedQuote=JSON.stringify({schemaVersion:1,country:quote.country,currency:quote.currency,grossMinor:quote.grossMinor,netMinor:quote.netMinor,vatMinor:quote.vatMinor,sellers:quote.sellers});
-  const quoteHash=createHash("sha256").update(persistedQuote).digest("hex");
+  const quoteHash=snapshotDigest(JSON.parse(persistedQuote));
   await db.query("INSERT INTO borvat.order_quote_snapshots(buyer_order_id,currency,gross_minor,net_minor,vat_minor,snapshot,snapshot_sha256) VALUES($1,'EUR',$2,$3,$4,$5::jsonb,$6)",[orderId,quote.grossMinor,quote.netMinor,quote.vatMinor,persistedQuote,quoteHash]);
   for(const seller of quote.sellers){
    const suborderId=randomUUID();
