@@ -47,9 +47,9 @@ export async function cancelDraftTestOrder(pool,{buyerId,orderId},{authorizeBuye
   if(sub.rowCount!==children.rows.length)throw new CancelError("SELLER_ORDER_CHANGED");
   const parentUpdated=await db.query("UPDATE borvat.buyer_orders SET state='cancelled' WHERE id=$1 AND buyer_id=$2 AND state='draft'",[order,buyer]);
   if(parentUpdated.rowCount!==1)throw new CancelError("ORDER_CHANGED");
-  await db.query("INSERT INTO borvat.outbox_events(id,event_type,aggregate_id,payload) VALUES($1,'demo_order.cancelled',$2,$3::jsonb)",[randomUUID(),order,JSON.stringify({buyerId:buyer,restoredLines:lines.length,restoredUnits:[...restock.values()].reduce((a,b)=>a+b,0),paymentEnabled:false})]);
+  await db.query("INSERT INTO borvat.outbox_events(id,event_type,aggregate_id,payload) VALUES($1,'demo_order.cancelled',$2,$3::jsonb)",[randomUUID(),order,JSON.stringify({buyerId:buyer,restoredLines:lines.rows.length,restoredUnits:[...restock.values()].reduce((a,b)=>a+b,0),paymentEnabled:false})]);
   await db.query("COMMIT");started=false;
-  return {orderId:order,replayed:false,restoredLines:lines.length,testOnly:true};
+  return {orderId:order,replayed:false,restoredLines:lines.rows.length,testOnly:true};
  }catch(error){
   if(started){try{await db.query("ROLLBACK")}catch(rollbackError){if(error&&typeof error==="object")error.rollbackError=rollbackError}}
   throw error;
