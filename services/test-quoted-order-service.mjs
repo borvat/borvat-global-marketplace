@@ -53,6 +53,10 @@ export async function createQuotedTestOrder(pool,input,{authorizeBuyer,quoteShip
   const held=await db.query("SELECT offer_id FROM borvat.risk_cases WHERE offer_id=ANY($1::uuid[]) AND state IN ('open','held') LIMIT 1",[ids]);
   if(held.rows.length)throw new CheckoutError("RISK_HOLD");
   if(rows.rows.some(o=>dbInt(o.stock)===null||dbInt(o.price_minor)===null))throw new CheckoutError("INVALID_DATABASE_AMOUNT");
+  // Fail closed before consulting any shipping provider; it must not price ineligible listings.
+  if(rows.rows.some(o=>o.status!=="published"||o.seller_status!=="approved"||o.product_status!=="approved"||o.market!=="NL"||o.currency!=="EUR"))throw new CheckoutError("OFFER_NOT_ELIGIBLE");
+  if(rows.rows.some(o=>dbInt(o.stock)<quantities.get(o.id.toLowerCase())))throw new CheckoutError("INSUFFICIENT_STOCK");
+
   // No buyer price, shipping amount or seller mapping is trusted.
   const shipping=await quoteShipping({buyerId,requested:canonical.map(([offerId,quantity])=>({offerId,quantity})),offers:rows.rows.map(o=>({offerId:o.id,sellerId:o.seller_id,quantity:quantities.get(o.id.toLowerCase()),market:o.market,currency:o.currency})),country:"NL",currency:"EUR"});
   if(!shipping||typeof shipping!=="object"||Array.isArray(shipping))throw new CheckoutError("INVALID_SHIPPING");
