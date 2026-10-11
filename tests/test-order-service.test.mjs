@@ -165,3 +165,19 @@ test("cancelled order cannot be replayed as a valid new draft",async()=>{
  assert.ok(pool.calls.some(c=>c.sql==="ROLLBACK"));
  assert.equal(pool.calls.some(c=>c.sql.startsWith("UPDATE borvat.offers")),false);
 });
+
+test("invalid database price does not silently become zero",async()=>{
+ for(const value of [null,true,"","1.25","9007199254740993"]){
+  const pool=fakePool({offers:[{...offer(1,10),price_minor:value}]});
+  await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"invalid-price-001",offerIds:[uuid(1)]}),/NOT_AVAILABLE/);
+  assert.equal(pool.calls.some(c=>c.sql.startsWith("INSERT INTO")),false);
+ }
+});
+test("corrupt stored idempotent total fails closed",async()=>{
+ const ids=[uuid(1)];
+ const {createHash}=await import("node:crypto");
+ const hash=createHash("sha256").update(JSON.stringify(ids)).digest("hex");
+ const pool=fakePool({existing:{id:uuid(50),request_hash:hash,total_minor:null,state:"draft"}});
+ await assert.rejects(execute(pool,{buyerId:uuid(100),requestKey:"stored-total-001",offerIds:ids}),/INVALID_STORED_TOTAL/);
+ assert.ok(pool.calls.some(c=>c.sql==="ROLLBACK"));
+});
