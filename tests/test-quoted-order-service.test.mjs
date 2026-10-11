@@ -99,3 +99,15 @@ test("external tariff error cannot create any draft",async()=>{
  assert.equal(db.calls.filter(c=>c.sql.startsWith("INSERT INTO")).length,0);
  assert.ok(db.calls.some(c=>c.sql==="ROLLBACK"));
 });
+
+test("rejects corrupted PostgreSQL price and quantity before shipping or any insert",async()=>{
+ for(const patch of [{price_minor:null},{price_minor:"1.2"},{stock:null},{stock:"9007199254740993"}]){
+  const db=pool([{...offer(1,11),...patch}]);let providerCalls=0;
+  await assert.rejects(createQuotedTestOrder(db,input(),{
+   authorizeBuyer:async()=>true,quoteShipping:async()=>{providerCalls++;return {[id(11)]:1210};}
+  }),/INVALID_DATABASE_AMOUNT/);
+  assert.equal(providerCalls,0);
+  assert.equal(db.calls.some(x=>x.sql.startsWith("INSERT INTO")),false);
+  assert.ok(db.calls.some(x=>x.sql==="ROLLBACK"));
+ }
+});
