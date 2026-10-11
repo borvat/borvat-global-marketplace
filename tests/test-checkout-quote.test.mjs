@@ -44,3 +44,11 @@ test("no buyer payment actions exposed",()=>{
  const x=q(req(1),[offer(1)],{[id(11)]:0});
  assert.equal(x.kind,"indicative_test_quote");assert.equal(x.checkoutEnabled,false);
 });
+
+test("canonical shipping seller UUID accepts upper-case key",()=>{
+ const x=q(req(1),[offer(1)],{[id(11).toUpperCase()]:0});
+ assert.equal(x.sellers[0].sellerId,id(11));
+});
+test("duplicate shipping seller UUID with alternate casing is rejected",()=>{
+ assert.throws(()=>q(req(1),[offer(1)],{[id(11)]:0,[id(11).toUpperCase()]:0}),/DUPLICATE_SHIPPING_SELLER/);
+});
