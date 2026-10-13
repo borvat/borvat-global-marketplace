@@ -35,6 +35,7 @@ import {
   submitVendorApplication,
 } from '../domain/vendors.ts';
 import { getVendorLedger, listVendorOrders } from '../domain/vendor-ops.ts';
+import { getPlatformStatus, renderStatusPage } from '../domain/status.ts';
 
 export interface ServerDependencies {
   readonly pool: DbPool;
@@ -110,6 +111,24 @@ export function createApp(deps: ServerDependencies): express.Express {
   app.get('/healthz', (_req, res) => {
     res.json({ status: 'ok', service: 'borvat-marketplace', time: new Date().toISOString() });
   });
+
+  app.get(
+    '/api/status',
+    handle(async () => getPlatformStatus(deps.pool)),
+  );
+
+  // A human opening the base URL should see what the marketplace actually holds.
+  app.get(
+    '/',
+    async (_req, res, next) => {
+      try {
+        const status = await getPlatformStatus(deps.pool);
+        res.type('html').send(renderStatusPage(status));
+      } catch (error) {
+        next(error);
+      }
+    },
+  );
 
   // ------------------------------------------------------------------ identity
 
