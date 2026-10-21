@@ -1,0 +1,27 @@
+{
+  "$schema_note": "Populated only after external clean-room replay (M0-E2). This file is a placeholder describing the required shape.",
+  "status": "PENDING_EXTERNAL_REPLAY",
+  "required_shape": {
+    "generated_at_utc": "ISO-8601 timestamp of comparison",
+    "sources": {
+      "live": { "captured_at": null, "method": "pg_catalog + information_schema queries against production" },
+      "scratch_current": { "captured_at": null, "manifest": "current_manifest" },
+      "scratch_pre_hotfix": { "captured_at": null, "manifest": "pre_hotfix_manifest" }
+    },
+    "object_classes": [
+      "tables", "columns", "types", "functions",
+      "function_acls", "rls_policies", "table_grants",
+      "indexes", "constraints", "triggers", "views",
+      "sequences", "migration_history"
+    ],
+    "entry": {
+      "object_class": "string",
+      "identity": "string (e.g. schema.name(args))",
+      "presence": { "live": "bool", "scratch_current": "bool", "scratch_pre_hotfix": "bool" },
+      "definition_hash": { "live": "sha256|null", "scratch_current": "sha256|null", "scratch_pre_hotfix": "sha256|null" },
+      "classification": "EXPECTED|UNDOCUMENTED|DANGEROUS",
+      "linked_decision": "BOR-DEC-* or null",
+      "notes": "string"
+    }
+  }
+}

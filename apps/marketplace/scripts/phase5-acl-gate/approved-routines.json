@@ -1,0 +1,599 @@
+{
+ "version": 1,
+ "stage": "M1V-1D",
+ "decision": "BOR-DEC-142",
+ "note": "Deny-by-default allowlist. Any public routine executable by anon is a violation. Any non-trigger routine executable by authenticated/service_role that is not listed here is a violation. Trigger/guard routines must never be executable by application roles. Anon EXECUTE is forbidden except for routines explicitly allowlisted with the anon role (M1V-1C public storefront read, BOR-DEC-135).",
+ "routines": [
+  {
+   "signature": "_merchant_store_can_manage(uuid,uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "_p4_enqueue_bol_write(uuid,text,jsonb,bigint,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "_p4_resolve_initial_line_state(uuid,uuid,text,p4_fulfilment_method)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "_refresh_reservation_status(uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "admin_get_seller_application(uuid)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "admin_list_borvat_direct_accounts(integer,timestamp with time zone,uuid,text,text)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "admin_list_borvat_direct_draft_listings(integer,timestamp with time zone,uuid,text,text)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "admin_list_merchant_stores(integer,timestamp with time zone,uuid,text,text)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "admin_list_seller_applications(text,integer,integer)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "admin_review_seller_application(uuid,text,text)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "authorize_channel_live(uuid,uuid,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "begin_offer_import_batch(uuid,uuid,uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "begin_sync_run(uuid,text,jsonb)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "bol_enqueue_offer_delivery_promise_set(uuid,jsonb,text,bigint)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "bol_enqueue_offer_fulfilment_set(uuid,text,text,bigint)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "bol_enqueue_offer_price_set(uuid,integer,text,text,bigint)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "bol_enqueue_offer_resync(uuid,text,bigint)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "bol_enqueue_offer_stock_set(uuid,integer,text,bigint)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "cancel_bol_order_line(uuid,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "cancel_reservation(uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "claim_outbox_batch(uuid,integer,integer)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "claim_shipment_outbox_batch(text,integer,integer)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "close_offer_import_batch(uuid,import_batch_status,text,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "close_reconciliation_batch(uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "company_member_has_permission(uuid,uuid,text)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "complete_outbox_event(uuid,uuid,jsonb)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "complete_outbox_event_live(uuid,uuid,integer,jsonb,text,timestamp with time zone,timestamp with time zone)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "complete_outbox_event_shadow(uuid,uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "complete_shipment_outbox_event(uuid,jsonb)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "create_borvat_direct_account(uuid,text)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "create_borvat_direct_draft_listing(uuid,uuid,text)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "create_merchant_store(uuid,text,text,text,text,text,text,boolean,text)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "create_reservation(uuid,text,uuid,jsonb)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "decide_product_suggestion(uuid,boolean,text)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "defer_outbox_event_kill_switch(uuid,uuid,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "end_sync_run(uuid,text,integer,integer,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "enqueue_outbox_event(uuid,bigint,text,jsonb)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "fail_outbox_event(uuid,uuid,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "fail_shipment_outbox_event(uuid,text,boolean)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "has_role(uuid,app_role)",
+   "roles": [
+    "anon",
+    "authenticated",
+    "service_role"
+   ],
+   "note": "M1B-0T / BOR-DEC-143: RLS policies on products, orders, order_items, agent_audit_log and the tax surfaces call has_role(). Policy expressions are evaluated with the privileges of the querying role, so anon and authenticated MUST hold EXECUTE or every storefront read of those tables fails with 'permission denied for function has_role'. The routine is SECURITY DEFINER, read-only, and returns a boolean for the supplied user id only."
+  },
+
+  {
+   "signature": "ingest_bol_order(uuid,text,timestamp with time zone,text,text,integer,jsonb,jsonb,uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "ingest_bol_shipment_status(uuid,uuid,text,text,timestamp with time zone)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "ingest_imported_offer(uuid,text,text,text,text,text,integer,text,integer,imported_offer_bol_status,jsonb)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "is_company_member(uuid,uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "is_company_owner(uuid,uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "link_imported_offer_to_sku(uuid,uuid,uuid,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "open_reconciliation_batch(uuid,text,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "p4_dispatch_decision(uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "p4_writes_allowed(uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "pack_reservation_allocation(uuid,integer,text,uuid,uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "pick_reservation_allocation(uuid,integer,uuid,uuid,uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "post_inventory_transaction(uuid,text,jsonb,text,uuid,text,jsonb,uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "provision_channel_connection(uuid,uuid,text,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "public_get_store_profile(text)",
+   "roles": [
+    "anon",
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "rebuild_inventory_balances(uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "record_channel_api_call(uuid,uuid,text,text,text,integer,integer,integer,integer,text,jsonb)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "record_channel_shipment_accepted(uuid,text,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "record_channel_shipment_bol_confirmed(uuid,jsonb)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "record_channel_shipment_bol_failure(uuid,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "record_channel_snapshot(uuid,uuid,uuid,integer,bigint,jsonb)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "record_connection_health(uuid,boolean,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "record_internal_ship_and_enqueue_confirmation(uuid,uuid,uuid,uuid,text,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "recover_expired_leases(uuid,integer)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "recover_expired_shipment_leases()",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "reenqueue_drift_finding(uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "reject_imported_offer(uuid,uuid,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "release_reservation(uuid,jsonb,boolean)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "reserve_bol_order_line(uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "resolve_bol_order_line_link(uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "reverse_inventory_transaction(uuid,text)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "reverse_pack_allocation(uuid,integer,text)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "run_reconciliation(uuid)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "seller_get_application(uuid)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_get_legal_identity(uuid)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_get_store_profile(uuid,uuid)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_get_store_public_profile(uuid,uuid)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_list_catalog(uuid,uuid,integer,integer)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_list_inventory(uuid,uuid,integer,integer)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_list_workspaces()",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_store_overview(uuid,uuid)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_submit_application(uuid)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_submit_legal_identity(uuid)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_upsert_application(uuid,uuid,text,text,text,text[],integer,text,text)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_upsert_legal_identifier(uuid,text,text,text)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_upsert_legal_identity(uuid,text,text,text,text,text,text,text,text,text,text,text,text)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "seller_upsert_store_public_profile(uuid,uuid,text,text,text,text,text,text,text,text,text,date)",
+   "roles": [
+    "authenticated"
+   ]
+  },
+  {
+   "signature": "set_channel_kill_switch(text,uuid,boolean,boolean,text)",
+   "roles": [
+    "service_role"
+   ]
+  },
+  {
+   "signature": "set_channel_published_quantity(uuid,integer,text,bigint,jsonb)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "ship_reservation_allocation(uuid,integer,text,uuid,uuid,text,text)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "sku_active_reserved(uuid,uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "sku_sellable_quantity(uuid,uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "transfer_company_ownership(uuid,uuid)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  },
+  {
+   "signature": "update_merchant_store_profile(uuid,text,text,text,text,text,text,text,text,jsonb,jsonb)",
+   "roles": [
+    "authenticated",
+    "service_role"
+   ]
+  }
+ ]
+}

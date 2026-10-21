@@ -1,0 +1,163 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-price: var(--price);
+  --color-success: var(--success);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-surface: var(--surface);
+  --color-account-sky: var(--account-sky);
+  --color-account-sky-soft: var(--account-sky-soft);
+  --color-account-sky-foreground: var(--account-sky-foreground);
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root {
+  --radius: 0.375rem;
+  --background: oklch(0.985 0.005 240);
+  --foreground: oklch(0.15 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 260);
+  /* Borvat identity — graphite ink + red V accent (no bol blue) */
+  --primary: oklch(0.28 0.025 265);
+  --primary-foreground: oklch(1 0 0);
+  --brand: oklch(0.28 0.025 265);
+  --brand-foreground: oklch(1 0 0);
+  --ink: oklch(0.22 0.02 265);
+  --ink-soft: oklch(0.28 0.022 265);
+  --ink-foreground: oklch(0.98 0.004 260);
+  --surface: oklch(0.968 0.004 260);
+  --secondary: oklch(0.96 0.01 260);
+  --secondary-foreground: oklch(0.2 0.03 260);
+  --muted: oklch(0.965 0.006 260);
+  --muted-foreground: oklch(0.52 0.015 265);
+  /* Red V accent */
+  --accent: oklch(0.55 0.21 27);
+  --accent-foreground: oklch(1 0 0);
+  --accent-yellow: oklch(0.9 0.15 90);
+  --price: oklch(0.5 0.22 27);
+  --success: oklch(0.55 0.15 145);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.905 0.006 265);
+  --input: oklch(0.9 0.006 265);
+  --ring: oklch(0.55 0.21 27);
+  --account-sky: oklch(0.93 0.035 235);
+  --account-sky-soft: oklch(0.975 0.014 235);
+  --account-sky-foreground: oklch(0.32 0.06 235);
+}
+
+.dark {
+  --background: oklch(0.15 0.02 260);
+  --foreground: oklch(0.98 0.005 240);
+  --card: oklch(0.2 0.03 260);
+  --card-foreground: oklch(0.98 0.005 240);
+  --popover: oklch(0.2 0.03 260);
+  --popover-foreground: oklch(0.98 0.005 240);
+  --primary: oklch(0.9 0.01 260);
+  --primary-foreground: oklch(0.18 0.02 265);
+  --brand: oklch(0.9 0.01 260);
+  --brand-foreground: oklch(0.18 0.02 265);
+  --ink: oklch(0.18 0.02 265);
+  --ink-soft: oklch(0.24 0.02 265);
+  --ink-foreground: oklch(0.98 0.004 260);
+  --surface: oklch(0.18 0.02 265);
+  --secondary: oklch(0.25 0.03 260);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.25 0.03 260);
+  --muted-foreground: oklch(0.7 0.02 260);
+  --accent: oklch(0.62 0.2 27);
+  --accent-foreground: oklch(1 0 0);
+  --accent-yellow: oklch(0.9 0.15 95);
+  --price: oklch(0.7 0.22 27);
+  --success: oklch(0.65 0.15 145);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.3 0.02 260);
+  --input: oklch(0.3 0.02 260);
+  --ring: oklch(0.55 0.22 265);
+  --account-sky: oklch(0.28 0.045 235);
+  --account-sky-soft: oklch(0.23 0.025 235);
+  --account-sky-foreground: oklch(0.88 0.035 235);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "tnum" 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button,
+  input,
+  select,
+  textarea,
+  table {
+    font-family: var(--font-sans);
+  }
+}
+
+/* Borvat navigation progress bar */
+@utility brv-progress {
+  animation: brv-progress 1.2s ease-in-out infinite;
+}
+
+@keyframes brv-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

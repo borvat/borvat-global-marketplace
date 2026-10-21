@@ -1,0 +1,35 @@
+PHASE 5 — M0-E2 — CURRENT MANIFEST CLEAN-ROOM REPLAY LOG
+=========================================================
+
+STATUS: NOT EXECUTED IN THIS ENVIRONMENT
+
+Reason:
+  The Lovable build sandbox is not an authorized target for clean-room replay:
+  - Running as root; cannot create an isolated unprivileged Postgres role.
+  - No local Docker; cannot spin an ephemeral Postgres service.
+  - The only reachable database is Production (PG* env).
+  - Owner directive (message dated 2026-07-24) explicitly forbids replay
+    against Production.
+
+Authorized replay environments (any ONE of):
+  A. CI runner with a Postgres 15+ service container.
+  B. Local workstation with Docker + supabase CLI (`supabase db reset`).
+  C. Dedicated ephemeral Supabase/Lovable project (non-production).
+  D. Ephemeral non-production Postgres instance.
+
+Replay procedure (to be executed off-sandbox):
+  1. Create empty DB (verify: SELECT count(*) FROM pg_tables WHERE schemaname='public' = 0).
+  2. Apply supabase/migrations/*.sql in filename lexicographic order.
+     - Manifest: docs/PHASE5_M0_MIGRATION_MANIFEST.json → sets.current_manifest
+     - 37 files total, including 20260724210701_*.sql (P5-HF-001).
+  3. For each migration: record filename, sha256 of applied bytes, exit code, wall time.
+  4. Stop on first non-zero exit. Do NOT hand-patch scratch DB.
+  5. Any fix required must be a new committed migration re-run from step 1.
+  6. Populate docs/PHASE5_M0_MIGRATION_MANIFEST.json fields:
+     - scratch_applied_sha256
+     - scratch_execution_status  ∈ {APPLIED, FAILED, NOT_REACHED}
+     - scratch_execution_order
+  7. Extract schema-object inventory from scratch DB (see schema-object-comparison.json spec).
+  8. Compare against live schema; classify diffs EXPECTED / UNDOCUMENTED / DANGEROUS.
+
+Until steps 1–8 complete, the baseline verdict remains BASELINE FAIL.

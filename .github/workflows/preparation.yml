@@ -1,0 +1,67 @@
+name: BORVAT preparation evidence (no deploy)
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: preparation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  foundation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: npm run foundation:check
+      - run: npm run test:foundation
+      - run: npm run source:check
+      - run: npm run test:core-money
+      - name: Verify owner hold rejects advancement
+        run: |
+          if npm run stage:status; then
+            echo 'Unexpected stage advancement'; exit 1
+          fi
+  recovery-completeness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: npm run source:require-complete
+  app-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/marketplace
+    env:
+      VITE_SUPABASE_URL: http://127.0.0.1:54321
+      VITE_SUPABASE_PUBLISHABLE_KEY: local-test-placeholder
+      SUPABASE_URL: http://127.0.0.1:54321
+      SUPABASE_PUBLISHABLE_KEY: local-test-placeholder
+      SITE_URL: http://127.0.0.1:3000
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: npm exec --yes --package=bun@1.3.0 -- bun install --frozen-lockfile --ignore-scripts
+      - run: npm exec --yes --package=bun@1.3.0 -- bun test scripts/buyer-account.test.ts
+      - run: node --import ../../scripts/foundation/no-external-network.mjs ./node_modules/typescript/bin/tsc --noEmit
+      - run: node --import ../../scripts/foundation/no-external-network.mjs ./node_modules/eslint/bin/eslint.js .
+      - run: node --import ../../scripts/foundation/no-external-network.mjs ./node_modules/vite/bin/vite.js build
+  prototype-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: npm run test:prototype

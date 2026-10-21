@@ -1,0 +1,1 @@
+DROP FUNCTION IF EXISTS public._msop_verify_m1b3b();

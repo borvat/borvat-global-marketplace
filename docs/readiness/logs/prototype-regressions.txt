@@ -1,0 +1,268 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test:prototype
+> node --import ./scripts/foundation/no-external-network.mjs --test experiments/product-completion/tests/*.test.mjs
+
+✔ six-platform sandbox: role separation, seller onboarding, cart, orders, ads, quality and admin audit (5.547996ms)
+✔ demo order idempotency protects stock and rejects conflicting repeats (0.405471ms)
+✔ caller cannot inject seller tenant through user creation (0.162766ms)
+✔ independent offers ranked by price in same market and currency (2.056279ms)
+✔ reject invalid amounts and negative inventory (0.664221ms)
+✔ commission uses integer arithmetic with half-up rounding (0.32513ms)
+✔ seller order filter does not disclose other sellers' records (0.256547ms)
+✔ six platform scopes are represented (1.608344ms)
+✔ anonymous or malformed identity cannot obtain permissions (0.31894ms)
+✔ seller may only access own merchant tenant (0.136907ms)
+✔ seller cannot review own application, unrelated reviewer can (0.306962ms)
+✔ platform admin is not automatically seller verification reviewer (0.207653ms)
+✔ ad permission does not authorize payments or risk moderation (0.13268ms)
+✔ seller A cannot access seller B inventory or orders (1.050603ms)
+✔ a buyer cannot access ads, inventory, admin, settlements (0.193342ms)
+✔ reviewer cannot approve own application or own risk case (0.178309ms)
+✖ role does not inherit all capabilities (1.044945ms)
+✔ all nine marketplace tables have FORCE RLS (1.253649ms)
+✔ buyer idempotency and seller order foreign key constraints declared (0.263327ms)
+✔ seller offer reads scoped to memberships and no direct write policy (0.324929ms)
+file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/tests/smart-shopping-http.test.mjs:36
+    assert.match(r.headers.get("content-type"),/text\\/html/);
+                                               ^
+
+SyntaxError: Invalid regular expression flags
+    at compileSourceTextModule (node:internal/modules/esm/utils:318:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:89:18)
+    at #translate (node:internal/modules/esm/loader:434:20)
+    at afterLoad (node:internal/modules/esm/loader:502:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)
+    at afterResolve (node:internal/modules/esm/loader:607:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12)
+    at node:internal/modules/esm/loader:632:32
+    at TracingChannel.tracePromise (node:diagnostics_channel:362:14)
+
+Node.js v24.19.0
+✖ experiments/product-completion/tests/smart-shopping-http.test.mjs (84.338084ms)
+✔ Arabic bundle request recognized (1.264746ms)
+✔ unknown location prevents false ranking (0.362136ms)
+✔ total price includes shipping (0.86222ms)
+✔ fastest priority independent of price (0.175354ms)
+✔ no cross-market offer inclusion (0.258119ms)
+✔ checkout disabled on demo cart (0.282346ms)
+✔ invalid stock and quantity rejected (0.6835ms)
+✔ unsupported product returns no offers (0.1859ms)
+✔ authorized buyer gets immutable quote and locked original total (2.125743ms)
+✔ reordered JSONB object keys retain the same digest (0.265199ms)
+✔ foreign buyer cannot access another order (0.605212ms)
+✔ unauthorized identity blocks database read (0.236376ms)
+✔ missing authorization callback fails closed (0.281845ms)
+✔ wrong receipt digest blocks display (0.246351ms)
+✔ changed stored amount cannot be presented as a receipt (1.382243ms)
+✔ cancel draft restores stock once, cancels both order levels (2.636463ms)
+✔ cancelled draft replay never restores stock twice (0.412952ms)
+✔ confirmed order cannot be cancelled as unpaid draft (0.685002ms)
+✔ buyer cannot cancel missing or foreign order (0.272931ms)
+✔ seller order already processing blocks reversal (0.320153ms)
+✔ wrong seller inventory cannot be increased (0.436287ms)
+✔ restock write failure rolls back all changes (0.353252ms)
+✔ untrusted missing authentication blocks any db access (0.341555ms)
+✔ invalid order ID blocks any db access (0.27173ms)
+✔ one seller, 21 percent VAT included, shipping VAT included (1.978602ms)
+✔ two merchants separate shipping and settlement grouping (10.47732ms)
+✔ quantity multiplier keeps line arithmetic exact (0.197898ms)
+✔ reject unknown seller shipping (0.592794ms)
+✔ reject missing seller shipping (0.208935ms)
+✔ reject duplicate offer rows (0.223928ms)
+✔ reject unsupported currency (0.182315ms)
+✔ reject unsupported country (0.227984ms)
+✔ reject negative and fractional item prices (0.314764ms)
+✔ reject negative and fractional shipping (0.413043ms)
+✔ reject unconfigured category (0.220883ms)
+✔ zero-rated goods do not accrue goods VAT (0.181623ms)
+✔ reject oversized multiplication (0.203246ms)
+✔ reject invalid tax rate (0.184548ms)
+✔ approved snapshot produces multi-merchant indicative quote (9.43561ms)
+✔ stock below requested quantity blocks quote (1.202542ms)
+✔ suspended seller blocks quote (0.178088ms)
+✔ unapproved product blocks quote (0.140692ms)
+✔ risk hold blocks quote (0.164868ms)
+✔ missing authoritative risk state fails closed (0.143897ms)
+✔ wrong returned offer fails closed (0.167843ms)
+✔ duplicate returned offer fails closed (0.216686ms)
+✔ wrong currency blocks quote (0.45111ms)
+✔ missing per-seller shipping blocks quote (0.399142ms)
+✔ requested duplicates in alternate UUID casing blocked (0.457059ms)
+✔ no buyer payment actions exposed (0.160472ms)
+✔ canonical shipping seller UUID accepts upper-case key (0.209336ms)
+✖ duplicate shipping seller UUID with alternate casing is rejected (4.84341ms)
+✔ draft lifecycle: reserve, replay, cancel, no double restoration or cancelled-order replay (3.957024ms)
+✔ commit synthetic split into two merchant suborders and outbox (4.361132ms)
+✔ risk hold aborts and rolls back (1.217605ms)
+✔ prior idempotency key returns same order without updating stock (0.637631ms)
+✔ invalid offer list rejected before connecting (0.276898ms)
+✔ a missing stock update aborts the entire order (0.505712ms)
+✔ a replay with changed contents is rejected without stock changes (0.786225ms)
+✔ unconfigured authentication rejects before database connection (0.239471ms)
+✔ identity verification rejection blocks transaction (0.17946ms)
+✔ suspended seller cannot receive a new order (1.997871ms)
+✔ unapproved catalog product cannot be sold despite published offer (1.123924ms)
+✔ missing seller or product approval data fails closed (0.410148ms)
+✔ prevents order when a seller approval is missing (0.325931ms)
+✔ prevents order when inventory quantity is null (0.294774ms)
+✔ idempotency accepts UUID case changes as the same cart (1.106598ms)
+✔ rejects the same UUID in different letter cases before opening DB (0.203146ms)
+✔ rejects malformed UUIDs before opening DB (0.228915ms)
+✔ buyer UUID casing never changes idempotency advisory scope (0.435115ms)
+✔ authentication receives canonical buyer UUID (0.339171ms)
+✔ rejects a returned offer not requested by the buyer (0.367153ms)
+✔ rejects duplicate rows returned for distinct requested offers (0.243707ms)
+✔ cancelled order cannot be replayed as a valid new draft (0.49761ms)
+✔ invalid database price does not silently become zero (1.0286ms)
+✔ corrupt stored idempotent total fails closed (0.389567ms)
+✔ VAT-aware draft saves one seller suborder and reserved quantity (4.607955ms)
+✔ risk hold prevents draft and rolls back (0.974398ms)
+✔ failed reservation rolls back (1.077924ms)
+✔ suspended seller cannot transact (0.296467ms)
+✔ changed duplicate offer IDs fail before DB (1.224997ms)
+✔ missing shipping prevents draft (0.598021ms)
+✔ cancelled quoted order cannot be presented as successful idempotency replay (0.889201ms)
+✔ a missing trusted shipping provider fails closed before the DB opens (0.327193ms)
+✔ ignores buyer-supplied zero shipping and bills trusted server shipping (0.80253ms)
+✔ untrusted shipping provider response blocks draft (0.580565ms)
+✔ trusted shipping receives locked offer-to-seller snapshots (0.529818ms)
+✔ external tariff error cannot create any draft (0.451711ms)
+✔ rejects corrupted PostgreSQL price and quantity before shipping or any insert (1.699261ms)
+✔ wrong database offer identity is rejected before trusted shipping (0.353983ms)
+✔ duplicate database offer identities are rejected before trusted shipping (7.455476ms)
+✔ invalid seller snapshot blocks shipping calculation (0.2918ms)
+✔ suspended seller fails before shipping authority is called (0.275275ms)
+✔ insufficient stock fails before shipping authority is called (0.203847ms)
+✔ full quote snapshot is written with seller shipping and VAT before commit (0.53075ms)
+✔ snapshot persistence failure aborts order before reserving stock (0.526954ms)
+✖ server tariff resolves correct seller, regardless of buyer price (0.972596ms)
+✖ missing trusted seller snapshot fails closed (0.194362ms)
+✖ seller unknown to tariff configuration blocks checkout (0.140581ms)
+✖ quantity change after quote request is rejected (0.136807ms)
+✖ wrong currency is rejected (0.184068ms)
+✖ duplicate snapshot for one offer blocked (0.15894ms)
+ℹ tests 123
+ℹ suites 0
+ℹ pass 114
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 314.301429
+
+✖ failing tests:
+
+test at experiments/product-completion/tests/roles.test.mjs:16:1
+✖ role does not inherit all capabilities (1.044945ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/tests/roles.test.mjs:18:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at experiments/product-completion/tests/smart-shopping-http.test.mjs:1:1
+✖ experiments/product-completion/tests/smart-shopping-http.test.mjs (84.338084ms)
+  'test failed'
+
+test at experiments/product-completion/tests/test-checkout-quote.test.mjs:52:1
+✖ duplicate shipping seller UUID with alternate casing is rejected (4.84341ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/tests/test-checkout-quote.test.mjs:53:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /DUPLICATE_SHIPPING_SELLER/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at experiments/product-completion/tests/test-server-shipping.test.mjs:6:1
+✖ server tariff resolves correct seller, regardless of buyer price (0.972596ms)
+  Error: INVALID_TARIFF
+      at createFixedSellerShippingProvider (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/services/test-server-shipping.mjs:10:65)
+      at TestContext.<anonymous> (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/tests/test-server-shipping.test.mjs:7:44)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at experiments/product-completion/tests/test-server-shipping.test.mjs:10:1
+✖ missing trusted seller snapshot fails closed (0.194362ms)
+  Error: INVALID_TARIFF
+      at createFixedSellerShippingProvider (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/services/test-server-shipping.mjs:10:65)
+      at TestContext.<anonymous> (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/tests/test-server-shipping.test.mjs:11:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at experiments/product-completion/tests/test-server-shipping.test.mjs:14:1
+✖ seller unknown to tariff configuration blocks checkout (0.140581ms)
+  Error: INVALID_TARIFF
+      at createFixedSellerShippingProvider (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/services/test-server-shipping.mjs:10:65)
+      at TestContext.<anonymous> (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/tests/test-server-shipping.test.mjs:15:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at experiments/product-completion/tests/test-server-shipping.test.mjs:18:1
+✖ quantity change after quote request is rejected (0.136807ms)
+  Error: INVALID_TARIFF
+      at createFixedSellerShippingProvider (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/services/test-server-shipping.mjs:10:65)
+      at TestContext.<anonymous> (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/tests/test-server-shipping.test.mjs:19:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at experiments/product-completion/tests/test-server-shipping.test.mjs:23:1
+✖ wrong currency is rejected (0.184068ms)
+  Error: INVALID_TARIFF
+      at createFixedSellerShippingProvider (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/services/test-server-shipping.mjs:10:65)
+      at TestContext.<anonymous> (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/tests/test-server-shipping.test.mjs:24:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at experiments/product-completion/tests/test-server-shipping.test.mjs:27:1
+✖ duplicate snapshot for one offer blocked (0.15894ms)
+  Error: INVALID_TARIFF
+      at createFixedSellerShippingProvider (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/services/test-server-shipping.mjs:10:65)
+      at TestContext.<anonymous> (file:///workspace/scratch/ece77f5f97ff/marketplace-foundation/experiments/product-completion/tests/test-server-shipping.test.mjs:28:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

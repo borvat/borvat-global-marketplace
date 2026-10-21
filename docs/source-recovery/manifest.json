@@ -1,0 +1,3354 @@
+{
+  "source_project_id": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+  "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+  "date": "2026-10-22",
+  "eligible_text_count": 499,
+  "binary_missing_count": 69,
+  "records": [
+    {
+      "source": ".env",
+      "status": "EXCLUDED_SECRET_CONFIG",
+      "reason": "Never read or copy runtime credentials; provide local-only env example"
+    },
+    {
+      "source": ".github/workflows/phase5-m0-cleanroom.yml",
+      "destination": "apps/marketplace/.github/workflows/phase5-m0-cleanroom.yml",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e6a494779a9353e0dfacac58b6963ccbcb9083590111bb380b01c472814d2e53"
+    },
+    {
+      "source": ".gitignore",
+      "destination": "apps/marketplace/.gitignore",
+      "status": "RECOVERED_TEXT",
+      "sha256": "74366d54bcd8375f43e80ebe6c1963c27bfa139cb2f384a5a4ee113a9a462e81"
+    },
+    {
+      "source": ".lovable/mcp/manifest.json",
+      "destination": "apps/marketplace/.lovable/mcp/manifest.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6119a10bc0faaf713e70e1a639619f9faf0078be789fa46b10ebcefcdd353790"
+    },
+    {
+      "source": ".lovable/plan.md",
+      "destination": "apps/marketplace/.lovable/plan.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7bd53e1d11c03d580af69998db8196a04b670e70b38f24e192682b60227d610a"
+    },
+    {
+      "source": ".lovable/project.json",
+      "destination": "apps/marketplace/.lovable/project.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ecbbd87a5eeb325f21f83cfdb5b7cb88ee61902a93fb12ffbdb839927f5c0ecb"
+    },
+    {
+      "source": ".prettierignore",
+      "destination": "apps/marketplace/.prettierignore",
+      "status": "RECOVERED_TEXT",
+      "sha256": "52c7c767ff0615eec4eb64cc71265877f7f423eb597d665b5e439f337c661a5a"
+    },
+    {
+      "source": ".prettierrc",
+      "destination": "apps/marketplace/.prettierrc",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1ed88d3b99eced8dc3b6f58f26645466dd1ceaca6c5a9b818531c941ac28e55b"
+    },
+    {
+      "source": "AGENTS.md",
+      "destination": "apps/marketplace/AGENTS.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f133dd133392dbac7186755ef73dabf48325521cd3f7084800f0bac9a7513736"
+    },
+    {
+      "source": "ARCHITECTURE_PROPOSAL.md",
+      "destination": "apps/marketplace/ARCHITECTURE_PROPOSAL.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c127bc68271dc1e966d92c777a9b12ed69d8bb16b81d76f1f4f83a6dc12a7017"
+    },
+    {
+      "source": "PHASE1_DEPLOYMENT_READINESS.md",
+      "destination": "apps/marketplace/PHASE1_DEPLOYMENT_READINESS.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8f8b5d1e92195dcd1ddd69e84a601ba88e6c9599ab526d210a74a9843a085f38"
+    },
+    {
+      "source": "PHASE1_HARDENING_REPORT.md",
+      "destination": "apps/marketplace/PHASE1_HARDENING_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1bfdacf5d1446f6ea37bfd660d6932c15629a00b55cb9c1f05eabd7c6fbfcd89"
+    },
+    {
+      "source": "PHASE1_PRODUCTION_DEPLOYMENT_REPORT.md",
+      "destination": "apps/marketplace/PHASE1_PRODUCTION_DEPLOYMENT_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1b5d0b9adb03bb0e0a01699c8ac56e6e55e02eaf6de7da79911db05755622446"
+    },
+    {
+      "source": "PHASE2_CLOSURE_REPORT.md",
+      "destination": "apps/marketplace/PHASE2_CLOSURE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "336a99e96fd3655fcf9fb54ac7e885c65df7acd4a01499290d2b28df3b02437a"
+    },
+    {
+      "source": "PHASE3_CLOSURE_REPORT.md",
+      "destination": "apps/marketplace/PHASE3_CLOSURE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0708ddb3e55f7ad8aff199b62eeead35ce0c0ba0b79f501ff3a1092e57c52d65"
+    },
+    {
+      "source": "PHASE4_CHARTER.md",
+      "destination": "apps/marketplace/PHASE4_CHARTER.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b6caf76802761f843f7366881662de51c0bee7dbf4abeb6bb5a787b58d183077"
+    },
+    {
+      "source": "PHASE4_M5_CHARTER.md",
+      "destination": "apps/marketplace/PHASE4_M5_CHARTER.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "158cb97cac453bbce532c85ea63d262d49a6f17a80a09513514d6f7fdd662b9c"
+    },
+    {
+      "source": "README.md",
+      "destination": "apps/marketplace/README.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ac8aacd1be52ecf9abc829111e14c8a2785ebfeeea626e4ef0a2894c8d6f328c"
+    },
+    {
+      "source": "README_BORVAT_GOVERNANCE.md",
+      "destination": "apps/marketplace/README_BORVAT_GOVERNANCE.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3b09ea7162a0b88cc0bb1766044f3ec097fc3ada00b38af65548c68a802240ec"
+    },
+    {
+      "source": "SECURITY_REPORT.md",
+      "destination": "apps/marketplace/SECURITY_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "47432d9ba42bcedc539d627d0ac8010ac08af47f8a23f424c86f1be795c0e09d"
+    },
+    {
+      "source": "bun.lock",
+      "destination": "apps/marketplace/bun.lock",
+      "status": "RECOVERED_TEXT",
+      "sha256": "36633132ca64156421cd27f8423149c8fdc1b72af5b6fa864cb28e258b6140ff"
+    },
+    {
+      "source": "bunfig.toml",
+      "destination": "apps/marketplace/bunfig.toml",
+      "status": "RECOVERED_TEXT",
+      "sha256": "593326a0c24a3dc22eb311cd004215841034b534a349417ea2579a968cec5609"
+    },
+    {
+      "source": "components.json",
+      "destination": "apps/marketplace/components.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "37c484818824d2521eee3367e7aa2c2abbd19635d8103d19734b6e24603d0292"
+    },
+    {
+      "source": "docs/BORVAT_CURRENT_STATE_V1.md",
+      "destination": "apps/marketplace/docs/BORVAT_CURRENT_STATE_V1.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b8c87fffedc85d6880b6131f1196dafddfdb0965ccd436c6cd9a2943a22743fd"
+    },
+    {
+      "source": "docs/BORVAT_DECISION_LOG_V1.md",
+      "destination": "apps/marketplace/docs/BORVAT_DECISION_LOG_V1.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e6d9680e2a5bfe166342a2f49f09e30eaf81658c4a723ebdba9fb433310ee621"
+    },
+    {
+      "source": "docs/BORVAT_MASTER_BLUEPRINT_V1.md",
+      "destination": "apps/marketplace/docs/BORVAT_MASTER_BLUEPRINT_V1.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1e8a8ada2a9cf875aba90b7837a8f291682f59499aba61d37c17592e472a5f00"
+    },
+    {
+      "source": "docs/BORVAT_PHASE_5_EXECUTION_SPEC_V1.md",
+      "destination": "apps/marketplace/docs/BORVAT_PHASE_5_EXECUTION_SPEC_V1.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "226fc8ea385c0c5842152fb0949e2b595b9375de65de9e612d09d658459c4971"
+    },
+    {
+      "source": "docs/PHASE0_P0_1A_VIEW_GRANT_CLOSURE_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE0_P0_1A_VIEW_GRANT_CLOSURE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6df0d6bf13848487099da2073e571832d36df040107f5e36721e700958f9f803"
+    },
+    {
+      "source": "docs/PHASE0_P0_1_GRANT_HARDENING_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE0_P0_1_GRANT_HARDENING_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "21a53c4f6f2cf0afaf0f75935335e3ef463187e41623b2bc62f69d667c9881df"
+    },
+    {
+      "source": "docs/PHASE0_P0_3_FIXTURE_PURGE_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE0_P0_3_FIXTURE_PURGE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "eec1ebf01b164abc4dd32d8a1e2a567d7bf0b35f4e4e0982e361a3a3267aae4e"
+    },
+    {
+      "source": "docs/PHASE5_LEGACY_PLACE_ORDER_EXPOSURE_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_LEGACY_PLACE_ORDER_EXPOSURE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "59a872c58e11447447632f79be07487269db9d4ec13277ea9c85ae43271487a8"
+    },
+    {
+      "source": "docs/PHASE5_M0_BASELINE_REMEDIATION_PLAN.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_BASELINE_REMEDIATION_PLAN.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a077d1b9c592a2e94c6696d92188ab044931900fff797a5106c30b7dff0f8331"
+    },
+    {
+      "source": "docs/PHASE5_M0_BASELINE_REMEDIATION_PLAN_V2.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_BASELINE_REMEDIATION_PLAN_V2.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1d48b80ddb3f3cde1c551baffc47497fc11999ccc5b141e7abbc93899136f0d7"
+    },
+    {
+      "source": "docs/PHASE5_M0_BASELINE_VERIFICATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_BASELINE_VERIFICATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "598048a17d6c0c1ffbd7203dc2ea10212abc6ce5781a7d0450f26a4b48b2a33e"
+    },
+    {
+      "source": "docs/PHASE5_M0_CI_HARNESS_PATCH_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_CI_HARNESS_PATCH_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7525f1da0480507f649d66054622cc8eb859c813814d462124f80f2e8b412fd2"
+    },
+    {
+      "source": "docs/PHASE5_M0_EXTERNAL_CLEANROOM_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_EXTERNAL_CLEANROOM_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b3db114011c1c83aff5f80ab441a00ba0b49f69cc0e27fc49f6aace73225f754"
+    },
+    {
+      "source": "docs/PHASE5_M0_HARNESS_STATIC_REVIEW.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_HARNESS_STATIC_REVIEW.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3884e0e23c42ee6f435d0a24a47b17cab9c82b8a853dfd61e021383a55247407"
+    },
+    {
+      "source": "docs/PHASE5_M0_LOVABLE_NATIVE_VERIFICATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_LOVABLE_NATIVE_VERIFICATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1ed1dfe1bf8e5b71e2ac3ff0b3e6b94d25dd8002fdff8c8cfdb1478ec3a87450"
+    },
+    {
+      "source": "docs/PHASE5_M0_MIGRATION_MANIFEST.json",
+      "destination": "apps/marketplace/docs/PHASE5_M0_MIGRATION_MANIFEST.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0b01c562eea6287980e663f1832b2b93914bacb5a50c94d592417a4e16207adb"
+    },
+    {
+      "source": "docs/PHASE5_M0_OWNER_DECISION_PACKET.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_OWNER_DECISION_PACKET.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "42df06e5f2142a4c794afaa59b1759bf06d3c8513360d94544d2ecfe14741826"
+    },
+    {
+      "source": "docs/PHASE5_M0_OWNER_DECISION_PACKET_V2.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_OWNER_DECISION_PACKET_V2.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8420b89408a83e2e8121163df4ca428971f35235109e1d7712becbbec6b34943"
+    },
+    {
+      "source": "docs/PHASE5_M0_PREFLIGHT_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M0_PREFLIGHT_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e05ea4efafd1ed68d1ff10c02e0b90e015f4621fe13f371ed07233ab5cbbff42"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M1_MERCHANT_STORES_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M1_MERCHANT_STORES_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a044af1b6088807681f95013b6b5f44835a6520aa5266b56f14d91fcd9a3d395"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2A_BORVAT_DIRECT_ACCOUNT_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2A_BORVAT_DIRECT_ACCOUNT_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "07086d86d9c19185095b406569e219cc007511e68b31788eac475c745ac258f8"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2B1A_SKU_LISTING_UNIQUENESS_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2B1A_SKU_LISTING_UNIQUENESS_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3bb1448f14dddb9aaf5d6dda5c1ec124882ca63d5edd581c4ceaea03f3dc3805"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2B1_DRAFT_LISTING_WRITE_PATH_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2B1_DRAFT_LISTING_WRITE_PATH_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a83fb87a3b82b842b902e8645df09c50459021c5fea0014e76d914b2c71f0e8c"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2B_CHANNEL_LISTINGS_ARCHITECTURE_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2B_CHANNEL_LISTINGS_ARCHITECTURE_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "df53cd290d8239fddf4e4a605aa4b7d8304115b234adadba806669bff1a6c947"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2C1_SELLER_READ_ONLY_UI_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2C1_SELLER_READ_ONLY_UI_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f7739b9b4829d0c4835fc9a509ace1941b9d1700da23e0f2dfb7fdb5aa5e8ae0"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2C_SELLER_ADMIN_READ_SURFACES_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2C_SELLER_ADMIN_READ_SURFACES_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b9a80f4a9589020b516c0e016145dda2ecc81e7d347239ef4f2d4fdd510c570d"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2D1A_PLATFORM_ADMIN_ROLE_GOVERNANCE_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2D1A_PLATFORM_ADMIN_ROLE_GOVERNANCE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c5b02cfc56808d214b232f1af42a12a13cdcd54eb5e26914b0c22c1e27c1daaa"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2D1B_FIRST_PLATFORM_ADMIN_BOOTSTRAP_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2D1B_FIRST_PLATFORM_ADMIN_BOOTSTRAP_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5bfbfd26499d56f81007133638765e465d0b0c381f9319b82d86115548e5415a"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2D1C_FIRST_PLATFORM_ADMIN_ASSIGNMENT_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2D1C_FIRST_PLATFORM_ADMIN_ASSIGNMENT_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3eea901050e5997873f80ffce9911f34dc275a25423ccf18a5877e5c164042a1"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2D2A_PLATFORM_ADMIN_READ_RPC_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2D2A_PLATFORM_ADMIN_READ_RPC_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d07008ef28101a3f1cbee60079b47bb6d23e33fe7ad6a3ea6696b56cdca50088"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2D2B_PLATFORM_ADMIN_READ_ONLY_UI_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2D2B_PLATFORM_ADMIN_READ_ONLY_UI_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1d3e581eadf4bb0731c3fe022cff4216c748659a32e54fdb7089ae20901727b6"
+    },
+    {
+      "source": "docs/PHASE5_M1A_M2D_ADMIN_CROSS_MERCHANT_READ_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1A_M2D_ADMIN_CROSS_MERCHANT_READ_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0ad1f66b72aa4523b44a8aa063825436101668b55672a9b43397403b398e45bc"
+    },
+    {
+      "source": "docs/PHASE5_M1B0A_PUBLIC_SCHEMA_DEFAULT_ACL_PRIVILEGE_DRIFT_HARDENING_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B0A_PUBLIC_SCHEMA_DEFAULT_ACL_PRIVILEGE_DRIFT_HARDENING_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "810c8683f0b61459997c2a72a641c104a697cf0801e465b6556844f0b4f9074a"
+    },
+    {
+      "source": "docs/PHASE5_M1B0B_CRITICAL_FUNCTION_ACL_DRIFT_ROOT_CAUSE_AND_GATE_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B0B_CRITICAL_FUNCTION_ACL_DRIFT_ROOT_CAUSE_AND_GATE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9ce88b9fa0d7fe32747ed587428cb36969d6558ebde65fc1125113249b74723a"
+    },
+    {
+      "source": "docs/PHASE5_M1B0C_ACL_NORMALIZATION_ONLY_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B0C_ACL_NORMALIZATION_ONLY_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "05b214b6f649e4440e0b1aad0f0fcc14a3514adf246c736f1481a0ad92118442"
+    },
+    {
+      "source": "docs/PHASE5_M1B0E_ACL_DRIFT_CYCLE7_NORMALIZATION_ONLY_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B0E_ACL_DRIFT_CYCLE7_NORMALIZATION_ONLY_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ee27ceddcdb75c97b5f4676c9cadf176d406e1796fa2f61448ca624a795d3074"
+    },
+    {
+      "source": "docs/PHASE5_M1B1_PUBLICATION_STATE_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B1_PUBLICATION_STATE_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "92e4700d3a745d0a96ddabb2f2a58b31fbfaf3b97588654ff91f05eb6104a596"
+    },
+    {
+      "source": "docs/PHASE5_M1B2A_TAX_FOUNDATION_ARCHITECTURE_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B2A_TAX_FOUNDATION_ARCHITECTURE_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "899d94eee92a694773a45e072aab8b2f2232cc1c9b0717fd917245c2eb14ff63"
+    },
+    {
+      "source": "docs/PHASE5_M1B2B_TAX_FOUNDATION_IMPLEMENTATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B2B_TAX_FOUNDATION_IMPLEMENTATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c28cc042227afe4dfa68746f2309f9891eb60b2b9586055407b535266be7bfa5"
+    },
+    {
+      "source": "docs/PHASE5_M1B2C_JURISDICTION_TAX_RATE_BAND_CORRECTION_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B2C_JURISDICTION_TAX_RATE_BAND_CORRECTION_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "29c286db206788d235cbccc083961e1d16513685d6b0f05d1c05da44d958c518"
+    },
+    {
+      "source": "docs/PHASE5_M1B2D_JURISDICTION_TAX_RATE_BAND_CORRECTION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B2D_JURISDICTION_TAX_RATE_BAND_CORRECTION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "98781b34be7ac30370014adaeea1973417cb4514a921598733bc602510f98fa7"
+    },
+    {
+      "source": "docs/PHASE5_M1B3A_MERCHANT_STORE_PRICING_ARCHITECTURE_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B3A_MERCHANT_STORE_PRICING_ARCHITECTURE_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7dd1a73a3f816932ffdbb48c851e5c92aae4ed207cc12481fcdef492232a02ff"
+    },
+    {
+      "source": "docs/PHASE5_M1B3B_MERCHANT_STORE_PRICING_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B3B_MERCHANT_STORE_PRICING_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "922e5748f5ae2bd62bf3c361cd58c9ee4f899d16c43ae0b14080bdcf245927ec"
+    },
+    {
+      "source": "docs/PHASE5_M1B3C1_NL_BE_RATE_BAND_DRAFT_SEED_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B3C1_NL_BE_RATE_BAND_DRAFT_SEED_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e5b1d59a14c48204e13492e86a22e35f5e3eeba72b5eb02e6ca97f0f0f7dd6fb"
+    },
+    {
+      "source": "docs/PHASE5_M1B3C2_AUTHORITATIVE_EFFECTIVE_DATE_RATE_VERSION_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B3C2_AUTHORITATIVE_EFFECTIVE_DATE_RATE_VERSION_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8637d8652e710ebb1a3107848c7ecf9f85b5d225f3b3959720ed161752c7a377"
+    },
+    {
+      "source": "docs/PHASE5_M1B3C3_TAX_TEMPORAL_AND_TRANSACTION_TREATMENT_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B3C3_TAX_TEMPORAL_AND_TRANSACTION_TREATMENT_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ade50f0f9ceafef7279ba758cb7b3295d598bcb4b093eb38df153c6b58510830"
+    },
+    {
+      "source": "docs/PHASE5_M1B3C4_TAX_TEMPORAL_SEMANTICS_SCHEMA_CORRECTION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B3C4_TAX_TEMPORAL_SEMANTICS_SCHEMA_CORRECTION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f5865e4e0697086934fbeedd40e76b3285d84b7dc9bb1a3e12632f5043d6cf53"
+    },
+    {
+      "source": "docs/PHASE5_M1B3C5_TAX_PRICING_PUBLICATION_ACL_HARDENING_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B3C5_TAX_PRICING_PUBLICATION_ACL_HARDENING_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c806f14a19e510034ce0834dfa1c9e6cd0e465dde6ec0d3a3b264b47ac4fe571"
+    },
+    {
+      "source": "docs/PHASE5_M1B3C6_CURRENT_NL_BE_TAX_RATE_DRAFT_SEED_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B3C6_CURRENT_NL_BE_TAX_RATE_DRAFT_SEED_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "dfd412f074414b99782c8821400bd2a4738cc2ba030314ec53633aef7495005a"
+    },
+    {
+      "source": "docs/PHASE5_M1B3C_OFFICIAL_NL_BE_TAX_DATA_GOVERNANCE_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B3C_OFFICIAL_NL_BE_TAX_DATA_GOVERNANCE_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "71ce49a96489fa1bc871d7745313a19c1288c53bb2d8ff99991787ee67cd230a"
+    },
+    {
+      "source": "docs/PHASE5_M1B_PUBLICATION_STOREFRONT_ARCHITECTURE_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1B_PUBLICATION_STOREFRONT_ARCHITECTURE_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2bc5f147f1406a064b257ad28c1914eb9418b360ace503400bf730da05b0cd15"
+    },
+    {
+      "source": "docs/PHASE5_M1C1A_GLOBAL_MARKET_SHIPPING_ROUTE_QUOTE_ARCHITECTURE_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1A_GLOBAL_MARKET_SHIPPING_ROUTE_QUOTE_ARCHITECTURE_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "34e778399b4008cf7e786307a3da8c09322a2b338d8ff0d6da472dcff7fdceb1"
+    },
+    {
+      "source": "docs/PHASE5_M1C1B_FULFILLMENT_ORIGIN_STORE_SKU_SHIPPING_PROFILE_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1B_FULFILLMENT_ORIGIN_STORE_SKU_SHIPPING_PROFILE_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "326c2637da06fc6a8972acefc7a373f0e4848555d0b824d9417fec3a59bc4d06"
+    },
+    {
+      "source": "docs/PHASE5_M1C1C_AUTOMATIC_ORIGIN_DESTINATION_SHIPPING_RATE_CARD_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1C_AUTOMATIC_ORIGIN_DESTINATION_SHIPPING_RATE_CARD_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c1e766a67a563ae3a20ae8221628d3e0358a48e87a212aa028b7c236da1ca67e"
+    },
+    {
+      "source": "docs/PHASE5_M1C1DA_DELIVERY_PROMISE_PROFILE_FINAL_ETA_COMPOSITION_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1DA_DELIVERY_PROMISE_PROFILE_FINAL_ETA_COMPOSITION_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e816388e0cd9741a9a6b1c319369f9724b6fb14c49557f3ea4f08be8157446a7"
+    },
+    {
+      "source": "docs/PHASE5_M1C1DB_DELIVERY_PROMISE_PROFILE_WEEKLY_SCHEDULE_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1DB_DELIVERY_PROMISE_PROFILE_WEEKLY_SCHEDULE_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "27c53396595eb194f68577331e3df9669fafbb55dfe150d39b859f43b9bc599f"
+    },
+    {
+      "source": "docs/PHASE5_M1C1DC_STORE_SKU_ORIGIN_DELIVERY_PROMISE_ASSIGNMENT_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1DC_STORE_SKU_ORIGIN_DELIVERY_PROMISE_ASSIGNMENT_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e34b7f874fea4c80ce9ac227a74d9c2209488e5e07c7d539034a35721bb5c8ff"
+    },
+    {
+      "source": "docs/PHASE5_M1C1DD_TRANSIT_TIME_DELIVERY_CALENDAR_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1DD_TRANSIT_TIME_DELIVERY_CALENDAR_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "25c97144467da2ace0ca97eec413e269e8937c4df3d74ce36191e66074c5ac49"
+    },
+    {
+      "source": "docs/PHASE5_M1C1DE_FINAL_ETA_COMPOSITION_RESOLVER_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1DE_FINAL_ETA_COMPOSITION_RESOLVER_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1618ba0a1dc8cf383a0a6bdd280f027c540ef8a253dac0c48013b31f84ddcd82"
+    },
+    {
+      "source": "docs/PHASE5_M1C1DF_EXPLICIT_RATE_LANE_TRANSIT_PROFILE_BINDING_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1DF_EXPLICIT_RATE_LANE_TRANSIT_PROFILE_BINDING_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b31ff1336390528b605ac43e1d255c9bf852a371fe470660d21d70e9d6784c7f"
+    },
+    {
+      "source": "docs/PHASE5_M1C1DG_PRIVATE_INTERNAL_FINAL_ETA_RESOLVER_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1DG_PRIVATE_INTERNAL_FINAL_ETA_RESOLVER_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "927a96fe6731439102659c9be094ef59f9a77086f8f3b340ea69b629ad3a7830"
+    },
+    {
+      "source": "docs/PHASE5_M1C1EA_MANUAL_SHIPPING_QUOTE_WORKFLOW_PRECHECK.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1EA_MANUAL_SHIPPING_QUOTE_WORKFLOW_PRECHECK.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6beaf22ecbd0e497fd5880f7882c86f6ec4c2f01c554a4b1c32ee15f9b7bf6c3"
+    },
+    {
+      "source": "docs/PHASE5_M1C1EB_AUTHORITATIVE_DELIVERY_DESTINATION_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1EB_AUTHORITATIVE_DELIVERY_DESTINATION_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "598a77d7f5070eaa9f56720df0b3246f4188b1b9de72014ccd92be0d0ad5b6e3"
+    },
+    {
+      "source": "docs/PHASE5_M1C1EC_MANUAL_SHIPPING_QUOTE_REQUEST_ITEM_PACKAGE_SNAPSHOT_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1EC_MANUAL_SHIPPING_QUOTE_REQUEST_ITEM_PACKAGE_SNAPSHOT_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5d91ef20c6719e8411b7642f9107aad50f2babc7829ae67dcdc2e8ee8af772ff"
+    },
+    {
+      "source": "docs/PHASE5_M1C1ED_VERSIONED_MANUAL_SHIPPING_QUOTE_OFFER_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1ED_VERSIONED_MANUAL_SHIPPING_QUOTE_OFFER_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "41725102314dd9e8501219c4b8d7a6936ccb11205a83d1247b76392646923d06"
+    },
+    {
+      "source": "docs/PHASE5_M1C1EE_MANUAL_QUOTE_ACCEPTANCE_EXPIRY_INVALIDATION_FOUNDATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1EE_MANUAL_QUOTE_ACCEPTANCE_EXPIRY_INVALIDATION_FOUNDATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "950fa36bc21ab3856445eaa4d1fc29342fed62684bee360097157c3c1a7c07c9"
+    },
+    {
+      "source": "docs/PHASE5_M1C1EE_R2_HARNESS_TRACEABILITY_CONCURRENCY_EVIDENCE_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1EE_R2_HARNESS_TRACEABILITY_CONCURRENCY_EVIDENCE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "990ac257de70ffb20767dc863ccb928b2e73995c36f48099d1ab844070de9f04"
+    },
+    {
+      "source": "docs/PHASE5_M1C1EE_R3_ACCEPTANCE_SETTLEMENT_REPAIR_AND_FAMILY_SERIALIZATION_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1C1EE_R3_ACCEPTANCE_SETTLEMENT_REPAIR_AND_FAMILY_SERIALIZATION_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e79170b571ba89c94de332af035f87e6f95733f3a855580fd9e084885567bc78"
+    },
+    {
+      "source": "docs/PHASE5_M1V0A_OWNER_VISUAL_REVIEW_HANDOFF.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1V0A_OWNER_VISUAL_REVIEW_HANDOFF.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0ee7aa000e62ef3429e55f597e7e9baa4ccf226ea7c36c0eeb9b4cd874c1fe34"
+    },
+    {
+      "source": "docs/PHASE5_M1V0A_VISIBLE_BORVAT_MANAGER_ALPHA_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1V0A_VISIBLE_BORVAT_MANAGER_ALPHA_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8d0b3fb23c679f11b4231e7075dbad5d23987a546fa48836387ef5e9a62c9c3e"
+    },
+    {
+      "source": "docs/PHASE5_M1V0B_OWNER_VISUAL_REVIEW_DELIVERY.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1V0B_OWNER_VISUAL_REVIEW_DELIVERY.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "62232f1e7376fe21e62a0d5d808147483eedd01398b1ff8daed7e6770b189859"
+    },
+    {
+      "source": "docs/PHASE5_M1V0B_PROFESSIONAL_MANAGER_VISUAL_BASELINE_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1V0B_PROFESSIONAL_MANAGER_VISUAL_BASELINE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "887999e600d708730f4b6051609e021696fb254b9ec71839ba773f2e1319134d"
+    },
+    {
+      "source": "docs/PHASE5_M1V1B_QNAN_IBBO_FIRST_LIVE_SELLER_PROVISIONING_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1V1B_QNAN_IBBO_FIRST_LIVE_SELLER_PROVISIONING_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d225142a200ffbfa2a28cb9530aac297addbfd86559863cf7374bea366b24457"
+    },
+    {
+      "source": "docs/PHASE5_M1V1C_SELLER_LEGAL_IDENTITY_AND_PUBLIC_STORE_PROFILE_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1V1C_SELLER_LEGAL_IDENTITY_AND_PUBLIC_STORE_PROFILE_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "cc811416181d949c1d95ae09c08ae2b3e038d981c588e681b9d6ad1f82c5bf7b"
+    },
+    {
+      "source": "docs/PHASE5_M1V1DA_INDEPENDENT_SELLER_VERIFICATION_REVIEWER_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1V1DA_INDEPENDENT_SELLER_VERIFICATION_REVIEWER_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c51ce67ab86cdaee1729377c1dc49f570187a25be17ddfb85e9290d3b56fdf64"
+    },
+    {
+      "source": "docs/PHASE5_M1V1D_SELLER_APPLICATION_AND_VERIFICATION_WORKFLOW_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_M1V1D_SELLER_APPLICATION_AND_VERIFICATION_WORKFLOW_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "bc8c4fad616cb8982ec3516de175ae6c60103a7098622b10cd4dec06f937476d"
+    },
+    {
+      "source": "docs/PHASE5_P5_HF_001_REPORT.md",
+      "destination": "apps/marketplace/docs/PHASE5_P5_HF_001_REPORT.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ae8f568b1bf8058b877cf758a251762c84bda38c76467d5ba105eb14f95c387e"
+    },
+    {
+      "source": "docs/PHASE_5_PROGRAMMER_START_COMMAND.txt",
+      "destination": "apps/marketplace/docs/PHASE_5_PROGRAMMER_START_COMMAND.txt",
+      "status": "RECOVERED_TEXT",
+      "sha256": "01da1e10d4f0c7c3ffd166d0a4510e9d3dde1573466bc32783e47c165b5e2b5c"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/account_support.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/admin_dashboard.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/admin_orders.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/admin_security.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/borvat-m1v0b-navigation.webm",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_admin_dashboard.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_owner-review.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_seller_manager.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_seller_order-desk.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_support_queue.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/owner-review.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_analysis.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_finances.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_manager.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_messages.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_order-desk.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_shipping.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_cases_case_1001.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_inbox_customers.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_inbox_merchants.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_queue.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/phase5-m0/current-replay-log.txt",
+      "destination": "apps/marketplace/docs/phase5-m0/current-replay-log.txt",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6b4377499091eed08b7ea360dca6a9fc1cb8b391b77d667c993c5336cc27ec46"
+    },
+    {
+      "source": "docs/phase5-m0/live-schema-inventory.json",
+      "destination": "apps/marketplace/docs/phase5-m0/live-schema-inventory.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c9d554dd329b59cc71945149375976e138ecca5bab9653e6368f6c8a2c24307e"
+    },
+    {
+      "source": "docs/phase5-m0/lovable-native-diff.md",
+      "destination": "apps/marketplace/docs/phase5-m0/lovable-native-diff.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "832c48389c3875c650dab3dd359a7ef8b689022256410ccf7eb8c79d031e420f"
+    },
+    {
+      "source": "docs/phase5-m0/non-idempotent-migrations.md",
+      "destination": "apps/marketplace/docs/phase5-m0/non-idempotent-migrations.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b5d30bf2d90a21fe548d0d7369b745660a6eb79e8aa896c13cf96a8dff565db5"
+    },
+    {
+      "source": "docs/phase5-m0/pre-hotfix-replay-log.txt",
+      "destination": "apps/marketplace/docs/phase5-m0/pre-hotfix-replay-log.txt",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a02db3eaa453edbfc992c4dd6d1f9a436b78decf9d19240a9ad3656a6e986db9"
+    },
+    {
+      "source": "docs/phase5-m0/replay-log.txt",
+      "destination": "apps/marketplace/docs/phase5-m0/replay-log.txt",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2dae09cca730babaa26892858ec84407118210f8b77058a6a41dc694af531b30"
+    },
+    {
+      "source": "docs/phase5-m0/schema-object-comparison.json",
+      "destination": "apps/marketplace/docs/phase5-m0/schema-object-comparison.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e8e48fc4baf683269ae53c9104d94d5c36522eadb56e36ab5c682df88bdcb9c5"
+    },
+    {
+      "source": "docs/phase5-m0/static-migration-model.json",
+      "destination": "apps/marketplace/docs/phase5-m0/static-migration-model.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c5b1654afac80c3376225ebaf8540917871969cda0e935b0bb02befa9e22396c"
+    },
+    {
+      "source": "docs/phase5-m0/structural-diff-final.md",
+      "destination": "apps/marketplace/docs/phase5-m0/structural-diff-final.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "155f0e8e6211ce788d2aa4e2dfd0225161cc830a9a45804ae1cab6d494736d78"
+    },
+    {
+      "source": "docs/phase5-m0/structural-diff.md",
+      "destination": "apps/marketplace/docs/phase5-m0/structural-diff.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "43b7f449cca1277213a261430685a0c59fb4977b7d753aab66ea1c4f831a1a1b"
+    },
+    {
+      "source": "docs/phase5-m1c1ee-r2/candidate_fix.sql",
+      "destination": "apps/marketplace/docs/phase5-m1c1ee-r2/candidate_fix.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "91c3cc2022eb67b9420be11ae2aa7b812f8b7ca0e9c581a494e43322010fad25"
+    },
+    {
+      "source": "docs/phase5-m1c1ee-r2/concurrency.py",
+      "destination": "apps/marketplace/docs/phase5-m1c1ee-r2/concurrency.py",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f562f72cc21e7eef4178726db9c2b13ab8274feeaeb4c212c6ce4c66a15e4a80"
+    },
+    {
+      "source": "docs/phase5-m1c1ee-r2/concurrency_results.json",
+      "destination": "apps/marketplace/docs/phase5-m1c1ee-r2/concurrency_results.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "41872d21de38833e968db876475d5be0b00d17b9a4136fea6d2cd07048589981"
+    },
+    {
+      "source": "docs/phase5-m1c1ee-r2/harness.py",
+      "destination": "apps/marketplace/docs/phase5-m1c1ee-r2/harness.py",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b07f801df58b390c4485fce2ce43df8e56615fd6335867cd83d746e14e333f47"
+    },
+    {
+      "source": "docs/phase5-m1c1ee-r2/harness_results.json",
+      "destination": "apps/marketplace/docs/phase5-m1c1ee-r2/harness_results.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fe40024eed7012a6074843bc603489bf9de66f56a774010b39daf398d2bb2f11"
+    },
+    {
+      "source": "docs/phase5-m1c1ee-r2/harness_seed.sql",
+      "destination": "apps/marketplace/docs/phase5-m1c1ee-r2/harness_seed.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "28af0d8b6c0edf9efc1a713b31e31f052c4e561da3923f3abac2ef636a3e9067"
+    },
+    {
+      "source": "eslint.config.js",
+      "destination": "apps/marketplace/eslint.config.js",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3266245a1ff610a0b37dbb8b8c77b93a125e0d8758b9838cfd04b2e0a1397d56"
+    },
+    {
+      "source": "package-lock.json",
+      "destination": "apps/marketplace/package-lock.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "df914c06a96e43399944ab5a8b74175401372f0f1be0adf71fdf31a8f4df39cc"
+    },
+    {
+      "source": "package.json",
+      "destination": "apps/marketplace/package.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "26ab38aca5af47aa3156dfd9f01c8dc0f64ddbf35832866ddacd2b027acc22ef"
+    },
+    {
+      "source": "public/favicon.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/beauty.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/boeken.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/elektronica.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/games.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/mode.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/speelgoed.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/sport.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/wonen.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/hero.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/air-purifier.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/book-coding-robot.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/book-smart-living.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/book-sustainable-home.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/cooler-box.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/doorbell.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/drone.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/e-bike.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/earbuds.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/espresso-maker.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/fitness-tracker.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/game-controller.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/gaming-headset.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/indoor-cam.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/ipl-device.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/led-strip.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/mesh-router.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/projector.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/robot-dino.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/robot-vacuum.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/skin-camera.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-hub.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-jumprope.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-kettle.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-lock.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-plug.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-ring.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-scale.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-teddy.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-toothbrush.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smartwatch.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smoke-detector.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/sous-vide.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/stem-kit.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/streaming-stick.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/thermostat.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/uv-band.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/wireless-charger.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "roadmap.md",
+      "destination": "apps/marketplace/roadmap.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "adcf94015f9a14359db3553b1be8505ab05ccb6623920c979684ec65037a37f6"
+    },
+    {
+      "source": "scripts/assign-product-images.ts",
+      "destination": "apps/marketplace/scripts/assign-product-images.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "10c23db3417be2ee7d0d45c43ae5f0a2696716850586f4e38bd6d79a85df2d4f"
+    },
+    {
+      "source": "scripts/buyer-account.test.ts",
+      "destination": "apps/marketplace/scripts/buyer-account.test.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4a6b11b8b179b6b84d00e588dbc37ff5c83546906eb0609723be742c62b1fcd0"
+    },
+    {
+      "source": "scripts/phase1-backfill-preflight.sql",
+      "destination": "apps/marketplace/scripts/phase1-backfill-preflight.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d8946aaede35721ef081b76c2a83eb486e0f9f12a921e65d069f9940f220d578"
+    },
+    {
+      "source": "scripts/phase1-tenancy-tests.ts",
+      "destination": "apps/marketplace/scripts/phase1-tenancy-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6c354d6b2690241a31d253dbd43f07773cea82ee6dbc9c21860826b58b2af1b4"
+    },
+    {
+      "source": "scripts/phase2-mig1-tests.ts",
+      "destination": "apps/marketplace/scripts/phase2-mig1-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "da04d719460adfce46e1efc97c68a4aa6f7b0145dfc24d69f21598582c7d0e3d"
+    },
+    {
+      "source": "scripts/phase2-mig2-tests.ts",
+      "destination": "apps/marketplace/scripts/phase2-mig2-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "14c55bb0005c922186baabeae3d31c21213080341b86fc69bc1e137150f6d207"
+    },
+    {
+      "source": "scripts/phase2-mig3-tests.ts",
+      "destination": "apps/marketplace/scripts/phase2-mig3-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a7129ed971bff35627126868ab9126e4c90a7f772255b96e8454704c1450c465"
+    },
+    {
+      "source": "scripts/phase2-mig4-isolated.ts",
+      "destination": "apps/marketplace/scripts/phase2-mig4-isolated.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4e3025d91754e61706b956677d90f66e106fa0085e3c8793f9b49e714837695f"
+    },
+    {
+      "source": "scripts/phase2-mig4-tests.ts",
+      "destination": "apps/marketplace/scripts/phase2-mig4-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "18921f6f8f96d64652e65cc017cf6ef92f29d187271413db3e574f5ddd10ae42"
+    },
+    {
+      "source": "scripts/phase3-m1-tests.ts",
+      "destination": "apps/marketplace/scripts/phase3-m1-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "bea5f5e7447e4fc47341bca419975c2952b62b8597269c52e3beb897ffa87327"
+    },
+    {
+      "source": "scripts/phase3-m2-tests.ts",
+      "destination": "apps/marketplace/scripts/phase3-m2-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fa0ecebd3df5c6fe53c2fa7e38cdcc256fdd920a30488db4ccb105e97193bac9"
+    },
+    {
+      "source": "scripts/phase3-m3-tests.ts",
+      "destination": "apps/marketplace/scripts/phase3-m3-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7edfd35ccc46c2bca26bfaf30fde97eec00af862227e14a38904312c86f620ca"
+    },
+    {
+      "source": "scripts/phase4-m1-tests.ts",
+      "destination": "apps/marketplace/scripts/phase4-m1-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a1717c3ef3f1bd4599d54bba3194ee299c8a8030c68bf8c4118c7a84ac2690bc"
+    },
+    {
+      "source": "scripts/phase4-m2-tests.ts",
+      "destination": "apps/marketplace/scripts/phase4-m2-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "022b428383238726080085b824d04aedcc9e97163f8c84c7d8c3e02ee70807dd"
+    },
+    {
+      "source": "scripts/phase4-m3-tests.ts",
+      "destination": "apps/marketplace/scripts/phase4-m3-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "14065d14951276803bc01d0b37fa33adda3bc203e8f2e083b85da22b0c9f08a4"
+    },
+    {
+      "source": "scripts/phase4-m4-adapter-tests.ts",
+      "destination": "apps/marketplace/scripts/phase4-m4-adapter-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1a7dfb5926502acd89c6ef0967e45340868ae4b623d3ec39d18dbd4e7828539f"
+    },
+    {
+      "source": "scripts/phase4-m4-bol-demo-smoke.ts",
+      "destination": "apps/marketplace/scripts/phase4-m4-bol-demo-smoke.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4c13e79efac65f6bfe3cf50fd110436a48c11adf9aded1b8d616111620fcf3fe"
+    },
+    {
+      "source": "scripts/phase4-m4-checkpoint-tests.ts",
+      "destination": "apps/marketplace/scripts/phase4-m4-checkpoint-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "99407df1066a58b0e70518cc7dad773928fcda77ccf68c96d7eee0875401bb59"
+    },
+    {
+      "source": "scripts/phase4-m4-post-m5-compat-tests.ts",
+      "destination": "apps/marketplace/scripts/phase4-m4-post-m5-compat-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "993305fb9da0f45444fdd7d8419bbac9694700e53915fe2ba88af5f16032ae6e"
+    },
+    {
+      "source": "scripts/phase4-m4-tests.ts",
+      "destination": "apps/marketplace/scripts/phase4-m4-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2e4dd64615e420794257becb6c298e6cd503a4e1fb1ec4777d6bc5d95aa41b4c"
+    },
+    {
+      "source": "scripts/phase4-m5-tests.ts",
+      "destination": "apps/marketplace/scripts/phase4-m5-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "05c01bd3bf98834386296d5ace7da24819d219bab781a286e564d7097c212933"
+    },
+    {
+      "source": "scripts/phase5-acl-gate/approved-routines.json",
+      "destination": "apps/marketplace/scripts/phase5-acl-gate/approved-routines.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "050b28370c04b3f899a15925438a667d0c75f4cb69c94a386b69bed9a2741c69"
+    },
+    {
+      "source": "scripts/phase5-acl-gate/check-critical-acl.sh",
+      "destination": "apps/marketplace/scripts/phase5-acl-gate/check-critical-acl.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "bb91e8a8d29b357698edcd86d05843e2820e53c8c9752ebdebbddbdac905ff1c"
+    },
+    {
+      "source": "scripts/phase5-m0/assert-empty-db.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/assert-empty-db.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d2dfa714150fd6f5e1968d5262753ab3052ac3ca86d1c362c02a37cd20320c64"
+    },
+    {
+      "source": "scripts/phase5-m0/compare-schema.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/compare-schema.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7b3b962d495a28c36f2cecb514c3d27df22927f20516f1b46c00620194d664f5"
+    },
+    {
+      "source": "scripts/phase5-m0/dump-schema.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/dump-schema.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b473f0a03667e85b0d9fba13644a37ddcf5dc1029bc19cde125def231768db2c"
+    },
+    {
+      "source": "scripts/phase5-m0/generate-gate-report.ts",
+      "destination": "apps/marketplace/scripts/phase5-m0/generate-gate-report.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "aca405884711c63df56b363b83bbaca0c9aba615269c3101562e19b44f743e24"
+    },
+    {
+      "source": "scripts/phase5-m0/lib/common.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/lib/common.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9a145a2455d6f530ec40d7b82e856efeb9ad7673eae0b4831ed7bb66ed71f686"
+    },
+    {
+      "source": "scripts/phase5-m0/manifests/current-manifest.json",
+      "destination": "apps/marketplace/scripts/phase5-m0/manifests/current-manifest.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "24d2e5a8387000b85d08d9878180735e95f91c8ce85800323cf331d0b10f0bb1"
+    },
+    {
+      "source": "scripts/phase5-m0/manifests/m4-checkpoint-manifest.json",
+      "destination": "apps/marketplace/scripts/phase5-m0/manifests/m4-checkpoint-manifest.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "eacace60bd2ff70db9ad1adb9207a3daf42ff362672262048237acd16f413f60"
+    },
+    {
+      "source": "scripts/phase5-m0/manifests/pre-hotfix-manifest.json",
+      "destination": "apps/marketplace/scripts/phase5-m0/manifests/pre-hotfix-manifest.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5fa574e5a3809e6af75e8195829568a0e0ac0e73bfad04e2e9a3e541bcc82075"
+    },
+    {
+      "source": "scripts/phase5-m0/run-baseline-suites.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/run-baseline-suites.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5b930bffd65fef7e536d9161ed9d6949a7b6873281c24a72972def2b4430aff6"
+    },
+    {
+      "source": "scripts/phase5-m0/run-cleanroom.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/run-cleanroom.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "afed38e7610f13ebd8b9d94bfe0856dac53ca762b86cc9abe0496ea7a29761b7"
+    },
+    {
+      "source": "scripts/phase5-m0/run-m4-checkpoint.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/run-m4-checkpoint.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "62768c5bad4d9e481b8883139faa3e65f1d6c8022cbff3ad3d2060ce30da9ac8"
+    },
+    {
+      "source": "scripts/phase5-m0/scan-artifacts-for-secrets.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/scan-artifacts-for-secrets.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2355d3eed3076b79a7412e72040596c756c664f56afff4c9eb6c4899fe00f3fb"
+    },
+    {
+      "source": "scripts/phase5-m0/verify-hotfix-acl.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/verify-hotfix-acl.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "12f43cec6856bd1027cc93b6ac1b72b212c26323f70509fcf4aec2d9451202ba"
+    },
+    {
+      "source": "scripts/phase5-m0/verify-live-readonly-role.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/verify-live-readonly-role.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6ca1e9b0e18ca68dace05c578d0223dc140f8724c799b79e2662c04838c39740"
+    },
+    {
+      "source": "scripts/phase5-m0/write-run-metadata.sh",
+      "destination": "apps/marketplace/scripts/phase5-m0/write-run-metadata.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "27a733a621bdb6f667d319553a9880df15472983d95e6df4578078835ecc8910"
+    },
+    {
+      "source": "scripts/phase5-m1v1c/static-assertions.sh",
+      "destination": "apps/marketplace/scripts/phase5-m1v1c/static-assertions.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "af4fcb83c8cff66f4337d99441f22f3cac66228fd31967301faf942e35c9672a"
+    },
+    {
+      "source": "scripts/phase5-m1v1d/runtime-security-tests.py",
+      "destination": "apps/marketplace/scripts/phase5-m1v1d/runtime-security-tests.py",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ec18384d7e8ec4bc1fda3b765182d75960f3441a9d54707c5229caa9e614b2ed"
+    },
+    {
+      "source": "scripts/phase5-m1v1d/static-assertions.sh",
+      "destination": "apps/marketplace/scripts/phase5-m1v1d/static-assertions.sh",
+      "status": "RECOVERED_TEXT",
+      "sha256": "220d64ad9e09bca57a422cae7f5d1a44453c8fe0132e68d1a9d789bef625a6d2"
+    },
+    {
+      "source": "scripts/redaction-tests.ts",
+      "destination": "apps/marketplace/scripts/redaction-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "283429273c620c52ffc3668c33dc481c9656df858977e2573bb427758155f7a8"
+    },
+    {
+      "source": "scripts/security-tests.ts",
+      "destination": "apps/marketplace/scripts/security-tests.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d4df21c12b9d3a31c62e86625735a67f3628cb2a5ddc599b33f0c92fb8b5c5e8"
+    },
+    {
+      "source": "scripts/seed-buyer-catalog.ts",
+      "destination": "apps/marketplace/scripts/seed-buyer-catalog.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e5c6083718f489fffdb1e36291f4dc644b75c67cfcbbdee58f1767bfc1936f16"
+    },
+    {
+      "source": "src/assets/borvat-logo.jpg.asset.json",
+      "destination": "apps/marketplace/src/assets/borvat-logo.jpg.asset.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "56ba7f8699b881a02fcf27e4a06508e54757f4d9f6d365bf993040f74c52f79a"
+    },
+    {
+      "source": "src/components/demo/inbox.tsx",
+      "destination": "apps/marketplace/src/components/demo/inbox.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7388ce86c6009f0f8245c43901e9a5f942842ca72caadf03df9e820cdbb3adf0"
+    },
+    {
+      "source": "src/components/demo/shell.tsx",
+      "destination": "apps/marketplace/src/components/demo/shell.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ac8ec074b7af82a818765890699fe84bb4e81a3fc7048e9cc0f7ef7cc531e1a3"
+    },
+    {
+      "source": "src/components/demo/skeleton.tsx",
+      "destination": "apps/marketplace/src/components/demo/skeleton.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f31533763c29646a235e2c403d1e5858c17d4a362e1a2f2bc3f5d2a60793b5c1"
+    },
+    {
+      "source": "src/components/product-card.tsx",
+      "destination": "apps/marketplace/src/components/product-card.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fd393960e8fbbfadea9585c3934568cbe93738ed045c0739489181ac8a45e8f4"
+    },
+    {
+      "source": "src/components/product-form.tsx",
+      "destination": "apps/marketplace/src/components/product-form.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e13164839739c2b93c31c4d805f3d346fb92ad5c193dc68aea9ca53a73b1411d"
+    },
+    {
+      "source": "src/components/review/seller-applications-panel.tsx",
+      "destination": "apps/marketplace/src/components/review/seller-applications-panel.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "98ee7ae631011e9d9f4e2b0ff3b56a52baa1cbb6c2af8632cf4e42d5e1a4b216"
+    },
+    {
+      "source": "src/components/site-header.tsx",
+      "destination": "apps/marketplace/src/components/site-header.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "008e516633cb073d521555bc1013cdb889b3c5c4c8117d635d0cf10350c60384"
+    },
+    {
+      "source": "src/components/ui/accordion.tsx",
+      "destination": "apps/marketplace/src/components/ui/accordion.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0903efcd7b746eef0a10c954a541b0dfa7aa1172f3c380a1a88f4e19a317fda3"
+    },
+    {
+      "source": "src/components/ui/alert-dialog.tsx",
+      "destination": "apps/marketplace/src/components/ui/alert-dialog.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ee4d7f3341a1e5592787b7dac8e924bd226189492819f6704d8a7faf8fe64d20"
+    },
+    {
+      "source": "src/components/ui/alert.tsx",
+      "destination": "apps/marketplace/src/components/ui/alert.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e7f4c2e6f78c59270905b4152b7d3ef4d5c6b9e3b2d370daa7b301aa7cbd27b3"
+    },
+    {
+      "source": "src/components/ui/aspect-ratio.tsx",
+      "destination": "apps/marketplace/src/components/ui/aspect-ratio.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d72c73d629e37995a0a71647d851d68d6fdcd7ec120797f36ab83a8ee89f2cab"
+    },
+    {
+      "source": "src/components/ui/avatar.tsx",
+      "destination": "apps/marketplace/src/components/ui/avatar.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0326c9041c5a0b1ba31ff29822c51950b6aeac485cd0985e7df714741a54e7f4"
+    },
+    {
+      "source": "src/components/ui/badge.tsx",
+      "destination": "apps/marketplace/src/components/ui/badge.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6519775252fe729f21c60b92c7c9feefd1fe7d0a8c2cf16d6f1c2fa7e153fe75"
+    },
+    {
+      "source": "src/components/ui/breadcrumb.tsx",
+      "destination": "apps/marketplace/src/components/ui/breadcrumb.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d5224e87344b3ac0f8b002e5dda6a71ff8fee296db8a5fbe6b034d06bd5c2ae1"
+    },
+    {
+      "source": "src/components/ui/button.tsx",
+      "destination": "apps/marketplace/src/components/ui/button.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e39813b666ba434660ec088356a0349246b6803a4e99961295d0c82bab1ab862"
+    },
+    {
+      "source": "src/components/ui/calendar.tsx",
+      "destination": "apps/marketplace/src/components/ui/calendar.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3205837b76f652de06126eb65ab7af601013ca989025cd21ed4cda33bd780b46"
+    },
+    {
+      "source": "src/components/ui/card.tsx",
+      "destination": "apps/marketplace/src/components/ui/card.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f13878a0078a5ef9f3e92af29259fc1e93ea56ea80cb992e0c4dea4e35396459"
+    },
+    {
+      "source": "src/components/ui/carousel.tsx",
+      "destination": "apps/marketplace/src/components/ui/carousel.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "568e00e8edbfab8af67ee902ca9ef5ceb6d5ed6f3045e7f9b3c15b4f7ef9e974"
+    },
+    {
+      "source": "src/components/ui/chart.tsx",
+      "destination": "apps/marketplace/src/components/ui/chart.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "81b1f692f9334ba3030213ff37eeaf2dd762b644e5d96e51ada7072109f07430"
+    },
+    {
+      "source": "src/components/ui/checkbox.tsx",
+      "destination": "apps/marketplace/src/components/ui/checkbox.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c44d02535d5c9c92807576804407dd63d01e7189dbde526e925b53885e645fd4"
+    },
+    {
+      "source": "src/components/ui/collapsible.tsx",
+      "destination": "apps/marketplace/src/components/ui/collapsible.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5f0a45d8f6ca72d37ed10bf0a85306158b67d7cbc386319186ce013ead9bc0a6"
+    },
+    {
+      "source": "src/components/ui/command.tsx",
+      "destination": "apps/marketplace/src/components/ui/command.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ba8c0f8b23044ce9a5066e66d7ab7be3a3c79bfc4a0ab7dfae6ffafe439145a3"
+    },
+    {
+      "source": "src/components/ui/context-menu.tsx",
+      "destination": "apps/marketplace/src/components/ui/context-menu.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9ba8c0fc29c25f440a1d8806e16d42c1083e9909e7ed1f1b9b0deb2ae00e1d13"
+    },
+    {
+      "source": "src/components/ui/dialog.tsx",
+      "destination": "apps/marketplace/src/components/ui/dialog.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e3a6de153fb15597ea95be9c4549211a297c060267787915599e3d680d476bd9"
+    },
+    {
+      "source": "src/components/ui/drawer.tsx",
+      "destination": "apps/marketplace/src/components/ui/drawer.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "478c487f66245641d5fa0f0d1c53a07d68bd60c4b3c497ec4c41ce08b482e14b"
+    },
+    {
+      "source": "src/components/ui/dropdown-menu.tsx",
+      "destination": "apps/marketplace/src/components/ui/dropdown-menu.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c6eb5ff28e5bc3cdbe38a11d680aae56d885285e4aca7c8288609811effc04cb"
+    },
+    {
+      "source": "src/components/ui/form.tsx",
+      "destination": "apps/marketplace/src/components/ui/form.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1ed53d4ab564a64708938643de590f2bef3718b0b2a309c1019c57e9c1fde23f"
+    },
+    {
+      "source": "src/components/ui/hover-card.tsx",
+      "destination": "apps/marketplace/src/components/ui/hover-card.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "69dc172ece56ac77bf3a044a1cd60ed601b0041945d16b5da4c6cc4f42116988"
+    },
+    {
+      "source": "src/components/ui/input-otp.tsx",
+      "destination": "apps/marketplace/src/components/ui/input-otp.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9b94ff8e296ba320ebec6550e0fd1a9763132d7edfa4cac842d4ca926dd5f2e3"
+    },
+    {
+      "source": "src/components/ui/input.tsx",
+      "destination": "apps/marketplace/src/components/ui/input.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "92debb7d6d2d96d9e607a42d5ce8f37b2d63384ae5dd9ffbbf5f047b680ffb85"
+    },
+    {
+      "source": "src/components/ui/label.tsx",
+      "destination": "apps/marketplace/src/components/ui/label.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9f72e2ecf16206593aa9e3c4fbc14cd8e81aa8488d57d92d4a950b30935a9fa9"
+    },
+    {
+      "source": "src/components/ui/menubar.tsx",
+      "destination": "apps/marketplace/src/components/ui/menubar.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e8a3269de7348e04dc1335cf6227bdcdaf2649484da4654f6a6b20f1c8423a84"
+    },
+    {
+      "source": "src/components/ui/navigation-menu.tsx",
+      "destination": "apps/marketplace/src/components/ui/navigation-menu.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "755aecc77b7911ab61159c9fbb9b25254009eb4c32c95b1430b6b5b7d37ed8f0"
+    },
+    {
+      "source": "src/components/ui/pagination.tsx",
+      "destination": "apps/marketplace/src/components/ui/pagination.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "cbe8559c578ee2d34c7daef5ee75dc3afeb795851e294b111dec375ba44a9a2d"
+    },
+    {
+      "source": "src/components/ui/popover.tsx",
+      "destination": "apps/marketplace/src/components/ui/popover.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "861c18577ea5988c6f5ca00d1c677200319fd427cf8b424e59a5cca6ff24f830"
+    },
+    {
+      "source": "src/components/ui/progress.tsx",
+      "destination": "apps/marketplace/src/components/ui/progress.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "418f612946a520d1380b7a0d058185bb6a6d09846846dd6d6904a0016152dd4a"
+    },
+    {
+      "source": "src/components/ui/radio-group.tsx",
+      "destination": "apps/marketplace/src/components/ui/radio-group.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8c55aa0496b00a27fc4f609ca8b43a7e82c6802f6bf613998438b7632899fa96"
+    },
+    {
+      "source": "src/components/ui/resizable.tsx",
+      "destination": "apps/marketplace/src/components/ui/resizable.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f0399fec7bc334f06433b41b6ebf34255942ce4916b99173898893fa7fcc8281"
+    },
+    {
+      "source": "src/components/ui/scroll-area.tsx",
+      "destination": "apps/marketplace/src/components/ui/scroll-area.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b607f562455152a079d70a22538c95072b0267e0d59a1a1cf16a905a2e373a6f"
+    },
+    {
+      "source": "src/components/ui/select.tsx",
+      "destination": "apps/marketplace/src/components/ui/select.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6d4deee18cf7ced0354eb719300833a83caf46400de6ee9c3d1942fa4c579ad4"
+    },
+    {
+      "source": "src/components/ui/separator.tsx",
+      "destination": "apps/marketplace/src/components/ui/separator.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "bf5838b692e5f74fde7083280b99492dd402bce6966e912e79f5e23f14bc98eb"
+    },
+    {
+      "source": "src/components/ui/sheet.tsx",
+      "destination": "apps/marketplace/src/components/ui/sheet.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a82f9341962e766ee925a2fe883b0a9ab5d5dd8475c402ac8e491ee37dc95fde"
+    },
+    {
+      "source": "src/components/ui/sidebar.tsx",
+      "destination": "apps/marketplace/src/components/ui/sidebar.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9f44f4523271f965adec608ae1c3b8a2f350f2f45ba1401a2c7ee33bc5eda238"
+    },
+    {
+      "source": "src/components/ui/skeleton.tsx",
+      "destination": "apps/marketplace/src/components/ui/skeleton.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f4c42257d73925b0b856a3500e2cbdd918fe6744fcd6be87ef28bb88e7eb7366"
+    },
+    {
+      "source": "src/components/ui/slider.tsx",
+      "destination": "apps/marketplace/src/components/ui/slider.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d307cf3ff05b54be4a04389ef4379f9e8b4dc49720197937991ce843a8d4b5ec"
+    },
+    {
+      "source": "src/components/ui/sonner.tsx",
+      "destination": "apps/marketplace/src/components/ui/sonner.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3ad40f66c339e799b1a57c00e10b4627294c7d580d99d8a48ae0d8d4c13cf931"
+    },
+    {
+      "source": "src/components/ui/switch.tsx",
+      "destination": "apps/marketplace/src/components/ui/switch.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c3c298df4ffb56695e4a8f0ff3e37eee08437dec542a677153ec16bed0820107"
+    },
+    {
+      "source": "src/components/ui/table.tsx",
+      "destination": "apps/marketplace/src/components/ui/table.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1e945e564c2cc5ca3ef33019ba7da7a8b94cbc73feb3cbc2b7b33c36ea648d92"
+    },
+    {
+      "source": "src/components/ui/tabs.tsx",
+      "destination": "apps/marketplace/src/components/ui/tabs.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e9b454d2f987c83b36cc8870bba47d9355db4e8f5c733b310dbc1119a7d27654"
+    },
+    {
+      "source": "src/components/ui/textarea.tsx",
+      "destination": "apps/marketplace/src/components/ui/textarea.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "35617a2cf053e52c9e56983bde82d556861d38e462f9e578876c8e99a0432687"
+    },
+    {
+      "source": "src/components/ui/toggle-group.tsx",
+      "destination": "apps/marketplace/src/components/ui/toggle-group.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d59cd3937c967a3e221fdfcfe4ea5cd57eb97cbe37e1ac98126664c9c7db49c1"
+    },
+    {
+      "source": "src/components/ui/toggle.tsx",
+      "destination": "apps/marketplace/src/components/ui/toggle.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "62e6e21993f1ab633b9f830cbbf0c181f3d161bae3a7792dbf2d842d42a2f09c"
+    },
+    {
+      "source": "src/components/ui/tooltip.tsx",
+      "destination": "apps/marketplace/src/components/ui/tooltip.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9682690fc3755d0f4b8684f2d7b1f77945876d41a45b723d0761b26804ad5010"
+    },
+    {
+      "source": "src/demo/companies.ts",
+      "destination": "apps/marketplace/src/demo/companies.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b6cbe25ca961a897066132d3717687d47b07c5a1895e73a5135e4cee4a1e35f4"
+    },
+    {
+      "source": "src/demo/messages.ts",
+      "destination": "apps/marketplace/src/demo/messages.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "47beb7cb372005ddf20ab3436b42c25a65e6088deaf609d251114979d90dc608"
+    },
+    {
+      "source": "src/demo/ops.ts",
+      "destination": "apps/marketplace/src/demo/ops.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "252fabd7e11e8da3a0a1f2445c1d910f542a049564fe5bc869e671ab3c7dfb6f"
+    },
+    {
+      "source": "src/demo/products.ts",
+      "destination": "apps/marketplace/src/demo/products.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f06c6434d1ffd2dc5691d994ba26529c91b7afd526b930a0670ab73afb4b4320"
+    },
+    {
+      "source": "src/demo/quotes.ts",
+      "destination": "apps/marketplace/src/demo/quotes.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ce796e789bec7411d3f100e548046fb195148030b28f4a7b1e9527cfab06e1e7"
+    },
+    {
+      "source": "src/demo/shipping.ts",
+      "destination": "apps/marketplace/src/demo/shipping.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "56a510b9645f1c80b1dd19d0f1df2d23ec7e68cfa3b6ed1fd2d8b99df1e14746"
+    },
+    {
+      "source": "src/hooks/use-mobile.tsx",
+      "destination": "apps/marketplace/src/hooks/use-mobile.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "21eff740f9e5c965c7f0782925a7e8f67ddfcdf0f58b6613550f99c3e1c454e9"
+    },
+    {
+      "source": "src/hooks/useSellerApplication.ts",
+      "destination": "apps/marketplace/src/hooks/useSellerApplication.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6bc99067d0bcb7b24f0bd7399f9d07c382e28e36c0b68075edaed33a932f7ad8"
+    },
+    {
+      "source": "src/hooks/useSellerData.ts",
+      "destination": "apps/marketplace/src/hooks/useSellerData.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "cee79e5474b5f9659b0ec943121c00dca18a7ddeaf1210841cdbe8ae51c9aa8b"
+    },
+    {
+      "source": "src/integrations/lovable/index.ts",
+      "destination": "apps/marketplace/src/integrations/lovable/index.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ff6990c9a3d111edb6efff4171c1ef971b5481a25d2af0bf2134d321cc0ba369"
+    },
+    {
+      "source": "src/integrations/supabase/auth-attacher.ts",
+      "destination": "apps/marketplace/src/integrations/supabase/auth-attacher.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "24d0dbdf8dc0fd49b391a948bd04e1db43b97a1d851acc391dd3d1b13b9797fd"
+    },
+    {
+      "source": "src/integrations/supabase/auth-middleware.ts",
+      "destination": "apps/marketplace/src/integrations/supabase/auth-middleware.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0fc042c2ec276b8d7f4c7c573f39137baca7841e2849c36aab29dc6f1616e91f"
+    },
+    {
+      "source": "src/integrations/supabase/client.server.ts",
+      "destination": "apps/marketplace/src/integrations/supabase/client.server.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f3b4c85383ade973fa5f5cb21e913beda4ac0d7205c536c53bc58e7f831dc580"
+    },
+    {
+      "source": "src/integrations/supabase/client.ts",
+      "destination": "apps/marketplace/src/integrations/supabase/client.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fd07c64d4e312b11ff629b520abb36c613cbfa688db4096b36c53f5832dee741"
+    },
+    {
+      "source": "src/integrations/supabase/previewAuthStorage.ts",
+      "destination": "apps/marketplace/src/integrations/supabase/previewAuthStorage.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c11f61a80071f876a237b06f902f5e278283044e7202d28b33b8341b9fceafa2"
+    },
+    {
+      "source": "src/integrations/supabase/types.ts",
+      "destination": "apps/marketplace/src/integrations/supabase/types.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f945f45ed49b2a019405c9ebe2d75c654cf007db40dc32dff31d5145af46681a"
+    },
+    {
+      "source": "src/lib/admin/ui.tsx",
+      "destination": "apps/marketplace/src/lib/admin/ui.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "019d546361398a8d910f5589be55e59b35b3255d879874671131067456a53ee3"
+    },
+    {
+      "source": "src/lib/buyer-account.ts",
+      "destination": "apps/marketplace/src/lib/buyer-account.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3a02d8715388b5303fa327ce0496bb71c611e31b9e1b4ce96767934f3f64e360"
+    },
+    {
+      "source": "src/lib/email-templates/_brand.ts",
+      "destination": "apps/marketplace/src/lib/email-templates/_brand.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ebef6446145162aa9234d2733cd5636317fd33727b72d1e1c25313c34b13a448"
+    },
+    {
+      "source": "src/lib/email-templates/_layout.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/_layout.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b75b6f8181acfd0fe57d026c12977ba25ee1b2e0bacdf1b495eab29710c22c50"
+    },
+    {
+      "source": "src/lib/email-templates/email-change.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/email-change.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0e94db60ce1e92dc394079b7c2afffeac4c5161b8868869fab5042762850f137"
+    },
+    {
+      "source": "src/lib/email-templates/invite.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/invite.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0bae1e05b60911b3e414a13ec945a58e91cc6ac505f980907364ac0cb818b9e8"
+    },
+    {
+      "source": "src/lib/email-templates/magic-link.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/magic-link.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8517917df954a6cc699971ad5dd98ec5c66e16af8b1daabc250a4fe00b6570c2"
+    },
+    {
+      "source": "src/lib/email-templates/order-delivered.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/order-delivered.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7650a8a095d3d7d0f7380e053cc5cf1361d0694840b790c5132faa1222cc451f"
+    },
+    {
+      "source": "src/lib/email-templates/order-processing.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/order-processing.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5d4806663ea70b17f7d82adcb9c755f832a1fffa0a55baa5f0ffdfd75873efa9"
+    },
+    {
+      "source": "src/lib/email-templates/order-shipped.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/order-shipped.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "78ed515fb056880db32fce4f6ddb29bb4db912dd30dbff8135058683412bd436"
+    },
+    {
+      "source": "src/lib/email-templates/reauthentication.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/reauthentication.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "74e302e51bf60b0c6cfc9b1a5426646beaf876887b39e286e40b7c8ac09579f5"
+    },
+    {
+      "source": "src/lib/email-templates/recovery.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/recovery.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4ba67b3d7c54bcdc9b2bb51688e2f87da9262fd5cfcffd919d05e0d8c15912dd"
+    },
+    {
+      "source": "src/lib/email-templates/registry.ts",
+      "destination": "apps/marketplace/src/lib/email-templates/registry.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4f4f81c9a496a49b345afc442315a8f3c8a2a5af8b3e690f1c7d1e2378461999"
+    },
+    {
+      "source": "src/lib/email-templates/send-email.ts",
+      "destination": "apps/marketplace/src/lib/email-templates/send-email.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f7efb85bc7d830b23c92dd4a87f8d429ac6fc905a22df8e5ffc10ba9991577ba"
+    },
+    {
+      "source": "src/lib/email-templates/signup.tsx",
+      "destination": "apps/marketplace/src/lib/email-templates/signup.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6a3c8152b32b60cb86eee0ac087ad5c5d5b612e900d4c3d378f93c831382f10d"
+    },
+    {
+      "source": "src/lib/error-capture.ts",
+      "destination": "apps/marketplace/src/lib/error-capture.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "adc4f6f1c8bdae036c9605b2db8372f2c6ed9fa037487ce288e2947472cfc568"
+    },
+    {
+      "source": "src/lib/error-page.ts",
+      "destination": "apps/marketplace/src/lib/error-page.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "635915886f5d44a18b6add2a53959dbe2e8ba1bb3f7e597fc714650e74157bb6"
+    },
+    {
+      "source": "src/lib/format.ts",
+      "destination": "apps/marketplace/src/lib/format.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "339d045c6e270a9bcbb1bb353c7cff5eda0bfafc416529c96b5505f5ab49ffaf"
+    },
+    {
+      "source": "src/lib/lovable-error-reporting.ts",
+      "destination": "apps/marketplace/src/lib/lovable-error-reporting.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2e8e6986898a82da17e34de05ef731ce5b2697fca8fb39c02964a094d840644f"
+    },
+    {
+      "source": "src/lib/mcp/context.ts",
+      "destination": "apps/marketplace/src/lib/mcp/context.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0103a40278f779a08d49bab8e89025ae95d3e70069327681a4887bba8c731f17"
+    },
+    {
+      "source": "src/lib/mcp/crypto.ts",
+      "destination": "apps/marketplace/src/lib/mcp/crypto.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "dea4efeb64a0ea3147a3e599641ef1798a3b1220d41fd63f65fb8c9146dce7fe"
+    },
+    {
+      "source": "src/lib/mcp/index.ts",
+      "destination": "apps/marketplace/src/lib/mcp/index.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a4a1a04f0ce1aa5a2f20341717b3d0659a78e8063ebe02c27dddc426afc49ba9"
+    },
+    {
+      "source": "src/lib/mcp/supabase.ts",
+      "destination": "apps/marketplace/src/lib/mcp/supabase.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "401c7fbc0b2480d38dbd22bfe067904505a39c51afdc7bcaad50df093f9fb6d5"
+    },
+    {
+      "source": "src/lib/mcp/tools/analyze_catalog.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/analyze_catalog.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5b1abc942741681d18fe076d95e098e49d40e9095d900c794537965aa2f8ff3a"
+    },
+    {
+      "source": "src/lib/mcp/tools/analyze_inventory.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/analyze_inventory.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fb4c8fcb4d2202e7a1cecc13c6d2f3d2b6d9867c5e6670f9b9e0e851d3cb8fed"
+    },
+    {
+      "source": "src/lib/mcp/tools/analyze_sales.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/analyze_sales.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fc86efd71a4df464fc536454aa455f2337336d2c8ee08b0b575b16a4bc03fbba"
+    },
+    {
+      "source": "src/lib/mcp/tools/bol_configure.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/bol_configure.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "606933c6cae098eb1bc954af47f865651be4d7706d8fbdd64c8277bba992349e"
+    },
+    {
+      "source": "src/lib/mcp/tools/bol_import_products.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/bol_import_products.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1e4d5c0c04616a3d5948bef84199e3edf19d9e403c4fc17f16f2fdeb1bb6f629"
+    },
+    {
+      "source": "src/lib/mcp/tools/compare_products.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/compare_products.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "65b8fbf0c4670beb332ea58a74d66ea29a173de7c2dd804bac853ca28a64f5de"
+    },
+    {
+      "source": "src/lib/mcp/tools/create_product.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/create_product.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "754ccb5b10255550e68d8823bb4ac365716d3eb0c8716e1f69fde369918c1a0d"
+    },
+    {
+      "source": "src/lib/mcp/tools/detect_listing_problems.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/detect_listing_problems.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "21b39f597a3836d48de9fb58531ba72c466eef37a4cfc743da6b29338e75be4e"
+    },
+    {
+      "source": "src/lib/mcp/tools/forget_memory.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/forget_memory.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4e70a6c4271fef0d7c9ade79f570041e8b247770cfacb20942193b11c8e807a9"
+    },
+    {
+      "source": "src/lib/mcp/tools/get_product.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/get_product.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "744bc9ad8cd66aa1364f64f8f32de798cb5f619399cffb33f0e8e5681a359439"
+    },
+    {
+      "source": "src/lib/mcp/tools/get_recommendations.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/get_recommendations.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ed3ea602c55d05dd9047e970e26704515d399447d557aec89fab1045f219ed39"
+    },
+    {
+      "source": "src/lib/mcp/tools/get_shop_information.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/get_shop_information.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6510a0134a08bbd18b8317ce6f15faf9cf79076afe75f625a7b55f98fa7bc535"
+    },
+    {
+      "source": "src/lib/mcp/tools/list_my_orders.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/list_my_orders.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b58208b96cbebbfe89815a552b97f89fc79aa4dcf503252df3f5a856dadc3169"
+    },
+    {
+      "source": "src/lib/mcp/tools/list_my_products.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/list_my_products.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "91f05692aa185fcab63c3589244170a6027e778114239e8c638b6a3a20b553e5"
+    },
+    {
+      "source": "src/lib/mcp/tools/list_seller_orders.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/list_seller_orders.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "de9151260eabeb2bc8888e18267d4ce577712c78870a875626cd2742c156e794"
+    },
+    {
+      "source": "src/lib/mcp/tools/monitor_marketplace_quality.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/monitor_marketplace_quality.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ae76af5664d22c72944d7b9270b681f4e5a6a7071cde6e39652b6ab21dd4cfd9"
+    },
+    {
+      "source": "src/lib/mcp/tools/recommend_price.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/recommend_price.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "47561ed723ee779f86aa23078f241074c638ff02a100f32b98f59f5e977ea7fd"
+    },
+    {
+      "source": "src/lib/mcp/tools/search_products.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/search_products.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a1040a94c4ec96294df07b9457dfa363ed56f4332af78b891164c74ace5f5754"
+    },
+    {
+      "source": "src/lib/mcp/tools/suggest_product_content.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/suggest_product_content.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6d8a993ff58279187498d96a54e993b7bb70276de2181fe59a217659a2dadff7"
+    },
+    {
+      "source": "src/lib/mcp/tools/update_order_status.ts",
+      "destination": "apps/marketplace/src/lib/mcp/tools/update_order_status.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "dc7755ef5e9e4370de09895be23d33e001726fd01affd02aa3fdddc25630730b"
+    },
+    {
+      "source": "src/lib/order-status.functions.ts",
+      "destination": "apps/marketplace/src/lib/order-status.functions.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "59378969b84ce91ab68b5bce92412fd34308e79a80c14e58b932dc326fa7ed95"
+    },
+    {
+      "source": "src/lib/order-status.ts",
+      "destination": "apps/marketplace/src/lib/order-status.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8b2c658bfc760a39f199484ee16d1f09b61dd8ed5773cd431819402cbfbd4888"
+    },
+    {
+      "source": "src/lib/outbox/bol-adapter.ts",
+      "destination": "apps/marketplace/src/lib/outbox/bol-adapter.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "005a797014df507aee4b94d4088fe1c1f2daaf2bc431cc5ef70affb55b741d01"
+    },
+    {
+      "source": "src/lib/outbox/bol-worker.ts",
+      "destination": "apps/marketplace/src/lib/outbox/bol-worker.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "11fb8f61bcb6a6cdc736a7d2565f98692f97cf6e7c094ba8e8f51bdd5f21dd25"
+    },
+    {
+      "source": "src/lib/outbox/mock-adapter.ts",
+      "destination": "apps/marketplace/src/lib/outbox/mock-adapter.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5da30605eb9edb1ca80f073ab2c16dd0fa51fe6664dd0a8db32f1057c9bccb3e"
+    },
+    {
+      "source": "src/lib/outbox/worker.ts",
+      "destination": "apps/marketplace/src/lib/outbox/worker.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "133ade04be7df2756f62cf5a1d172c24fb81531fce76895e0c3cc8453322f416"
+    },
+    {
+      "source": "src/lib/store-profile.functions.ts",
+      "destination": "apps/marketplace/src/lib/store-profile.functions.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "39b5b3717fab457b43577fe10c1bb520a278f42809bc18bfcddf5b9928b0d883"
+    },
+    {
+      "source": "src/lib/utils.ts",
+      "destination": "apps/marketplace/src/lib/utils.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d1f1e0d62cb8d8d1e04c26e14de842d8a151f75812d81b046c65b5d1fe8e4b27"
+    },
+    {
+      "source": "src/routeTree.gen.ts",
+      "destination": "apps/marketplace/src/routeTree.gen.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "76cbbde0c2f4ac2f5b3706a69296e81aa8a653e3ae10357f19a03d9a0c94fc33"
+    },
+    {
+      "source": "src/router.tsx",
+      "destination": "apps/marketplace/src/router.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f8ed7ef7fd731cf3e0e132941df81b855f62cda36cb37d4e336e19f340f9cd5a"
+    },
+    {
+      "source": "src/routes/README.md",
+      "destination": "apps/marketplace/src/routes/README.md",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5c8187dbe79dac7a3c494f2600585508f5d15e75f04f21ea364d0de14de10575"
+    },
+    {
+      "source": "src/routes/[.]lovable.oauth.consent.tsx",
+      "destination": "apps/marketplace/src/routes/[.]lovable.oauth.consent.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "835f2287b0901916e0a2d0f117d940b74edeaac00e5191d0b7053d6d1b8e52a1"
+    },
+    {
+      "source": "src/routes/[.mcp]/invoke-tool/$tool.ts",
+      "destination": "apps/marketplace/src/routes/[.mcp]/invoke-tool/$tool.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b03a93ec85a825b62f6f682f77761ce38011e48777c8b7db10625e88d79db484"
+    },
+    {
+      "source": "src/routes/[.mcp]/list-tools.ts",
+      "destination": "apps/marketplace/src/routes/[.mcp]/list-tools.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4422149dde63eed11e62093a190edf2185b74ffeb5638dfb9161a740b947d5d0"
+    },
+    {
+      "source": "src/routes/[.well-known]/oauth-protected-resource.ts",
+      "destination": "apps/marketplace/src/routes/[.well-known]/oauth-protected-resource.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6c27da6ba40e461119fd65b63d77fa21833b434d0c21f06077d685606b4a6fef"
+    },
+    {
+      "source": "src/routes/__root.tsx",
+      "destination": "apps/marketplace/src/routes/__root.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0c765c21fb55c5bf5aead9e492e1544d5577cfb82ee9054eda27a514f264e7ff"
+    },
+    {
+      "source": "src/routes/_authenticated/account.support.$conversationId.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/account.support.$conversationId.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6d2fec21032f173e2af86c6ff7dd1ccf1745ed7fae4402dce144d651c80758a3"
+    },
+    {
+      "source": "src/routes/_authenticated/account.support.index.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/account.support.index.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "69b3bce82f16e7eef392947737413d95c66b9a24ddb9aace4b41f3af129f8efa"
+    },
+    {
+      "source": "src/routes/_authenticated/account.support.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/account.support.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4ffd1b4c88360177a49c505acb87bd095791052571d0744d728432348d1de1d8"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/audit.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/audit.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "924b89da0ab1749892bf6acefed30e30941c0c11b003c64521b9a57d51570c99"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/channels.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/channels.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "72912735120d7d31f96abdfc16fc789439ffd74586f5a8d4ea908cec703584e8"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/companies.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/companies.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2ebfceb2940a14c7167dc3d541188f7ff238dc6d283385983e7626fa59ee2a71"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/dashboard.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/dashboard.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c1f17b55deccc1d6f2121fa1c17488fe8b669911e7ce0419e4d937c6d544620f"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/health.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/health.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0d05d146d8a2fa20303bf25435584fc3b43da9445726a9ff75d0e2e726b1e125"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/index.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/index.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c5c177a852794e0c9744c66b6637df199d34814e90ba08a6b2cf224712103718"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/listings.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/listings.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "613600853c9fbb6fce93751c0fe9cc88a100bcf795a7daf64bafb0834d712c08"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/orders.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/orders.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a1598e27d4bd6a5748662348be8d2314965bcbf56b41cd310694af3f8438b80f"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/products.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/products.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "09e7bd7b702499568addd88f7b9b68fa9118a34990327b1892fcbf95562c44bd"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/quotes.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/quotes.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0a44a3eab95d4359c6ec22fe39e9fd70deec398f1e694746e753e2508997e29a"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/route.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/route.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fd7b2fe5c7757e083a06d67f9d781e4455d46c9e54b8c68da01b978437771b1f"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/security.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/security.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "329704b518ebc7e41ec55eb906ad3cea9a7db520b558e1957d36414158065e12"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/seller-applications.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/seller-applications.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "23bd5e7b131d3006c4b7a670adaf6a5a3b4ed0be81413e0c5361bf3500f1d15e"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/shipping.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/shipping.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a223457d2138f0f004594307467ee7865568a7d761112ea6d7a707e7da8050f9"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/stores.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/stores.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "eab1834449924db87e7e05a46ec7d9fe3e863855d8d92ab8f194029826267a32"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/support.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/support.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5e04d3febcc08df0ef2ebf19ecd13999099aa5250ad1d5675ef95939cc444a36"
+    },
+    {
+      "source": "src/routes/_authenticated/admin/users.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/admin/users.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9b95afb1cb19ad7c4a639d2f8bc46e9b2e9f0ed4c9ae8854fdfac453537e27d5"
+    },
+    {
+      "source": "src/routes/_authenticated/checkout.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/checkout.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2febcac09f7c9375f34b3189043e2011a9cc667aff10a406790dccaabfdbd664"
+    },
+    {
+      "source": "src/routes/_authenticated/orders.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/orders.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "918c7e63d685e55d899a3a664563811585c7d6d2c621151d18c56ee162634268"
+    },
+    {
+      "source": "src/routes/_authenticated/owner-review.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/owner-review.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "61fe7a234c01e3852a0af1f0cf6fb11f63ec1edf93776781c8a1e846a4004982"
+    },
+    {
+      "source": "src/routes/_authenticated/review/index.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/review/index.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "97866c2d2d31b6e27e6ab35d82785c2ee5e441fe60011317e0e3c9eeda5cb4d3"
+    },
+    {
+      "source": "src/routes/_authenticated/review/route.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/review/route.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "bd6f3dd57ee33964b5a26c6d7ba88958d37911e1e822ea3b8b4ed5b5be72ce69"
+    },
+    {
+      "source": "src/routes/_authenticated/review/seller-applications.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/review/seller-applications.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9870206bcf73545f919c6a9735f0143be41c4d68f874367498ac2f394dcef6b8"
+    },
+    {
+      "source": "src/routes/_authenticated/route.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/route.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4a1027b782afc72194b77fce25bd84bdbfa464271e9b14e878f647d44c3beb20"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.advertising.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.advertising.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "523d5412e60aec6487b62666670b5ddb61126a7fe41434ece53d1da8bb9033ea"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.analysis.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.analysis.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d8fa80e5cd8db9f7440fea7d4a4ddd7774c29d335ead8c301e7e4a0b912f30b4"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.catalog.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.catalog.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "92f13ed1aeb84eb6424b48870fc24f371bfc3949fdda64faa51b2a1eedc9389a"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.dashboard.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.dashboard.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1eb9babd10949514027ee69ddbe99cb7e54223d0843b85693a750a72cee906c1"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.finances.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.finances.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0aae0d7a72b2e9bd59e29304e6fe06da244cb15516a716cf8f8560ec45305bdb"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.inventory.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.inventory.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d07972716c267a16f85e01d17d636cbb3f717b95009fe94b7784c0add17106cc"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.listings.$listingId.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.listings.$listingId.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1750affed365d77c65af9bb532b9082d82c1d01244e93b905bc0400658f4f02b"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.manager.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.manager.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f456d3ff799db937b85d0c2d7999d0b03924118b32b0fd140df73bf1143cb07c"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.messages.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.messages.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c106c425a3ae762435c1c0155b659c6e048964b3a4b2d5fb43f9395a3b414363"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.onboarding.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.onboarding.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ee0f4631928cf437e9ec89df57d53f19a02aee3f9c86f2fbc9c37f2d272906b2"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.order-desk.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.order-desk.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9aef253a3c2c6159657fc411d8bb4bd3c6783a239331fff17c3fe61186aa750a"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.orders.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.orders.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2ecfbc434d9a029aeece015b6e1a83e6398d3ae35ef6429f7a8523c4537060de"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.performance.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.performance.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b42c31e8f57d6824530bba6a7effdde7ad104de0c267d659e9e3d164dfe79c48"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.products.$id.edit.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.products.$id.edit.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5ba76c4507818b127f6301896bcd4b0266c84df2fce89f6cd377f46af2b64eb9"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.products.new.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.products.new.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a8ce999ef217901a68220d1f4d45270ef8b043c507b484a67c504af01f16eeda"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.products.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.products.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e95f97ced0a9143826fee548f5dd29aee286869add022f5ff69c41e9892392ad"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.promotions.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.promotions.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0bf8f120f8aad784e6f33701f52376d5c7845920ad08717b0c52fd9374fd7e87"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.questions.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.questions.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ca0e0e3e3ec11706f9be546040d8a9a3ff7fb3fe520f78f4a0bd9b2ee58a4a2b"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.quotes.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.quotes.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "29a7f595331a79277b09e3f77bf1b526d19d3b2aea364d2815d50de2ad2acbcf"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.reviews.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.reviews.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b27cca1ef2e04dfc02d3ee72ad3bca0686336a1cab857ed4e2d6f59050d10335"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.settings.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.settings.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ff86bcb9a17af79c51f4c8c6a0066d7c7a3bbe46742a7fba70963c5563f6b9e5"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.shipping.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.shipping.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "73a24acaa9f38561f6af4ab6cdd41c192ea338ff9a43ee24945174eabab79c32"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.store.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.store.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d328c0642471374ae4270091608604ea5237418e572b151999e2ec326dd7890d"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.stores.$storeId.listings.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.stores.$storeId.listings.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b2257ca663b8ccdddf9d04f6a41bcf4121d44b0e8e7c2225d3ccc12d77fc3b1a"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.stores.$storeId.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.stores.$storeId.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f100ff1a109aeac613870de25c04cf95513b2ada744d2a765e3628e022a7fabb"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.stores.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.stores.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "249dcbdeda5a6985f34f9716d104027fb9eceaa162b15bad7a22ae1baf781a11"
+    },
+    {
+      "source": "src/routes/_authenticated/seller.suggestions.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/seller.suggestions.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3d13384780b7c2b63088e6563c6234648c47a6cdaeecb6633ff1cf040aae0f71"
+    },
+    {
+      "source": "src/routes/_authenticated/support.cases.$caseId.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/support.cases.$caseId.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9a91d97e1d24eec6b36a460f01a074c1846f24ddc01495643719473d82a2b6ac"
+    },
+    {
+      "source": "src/routes/_authenticated/support.inbox.customers.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/support.inbox.customers.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b935fae642bb592dd414b9be8154f7181ed3ecfeb5f151e3bdb3b559d1051071"
+    },
+    {
+      "source": "src/routes/_authenticated/support.inbox.merchants.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/support.inbox.merchants.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b0088115e0bcf97443c709ec2d3423911d75de90c29c0896ac1da434873c8ccb"
+    },
+    {
+      "source": "src/routes/_authenticated/support.queue.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/support.queue.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7795a09707a48a2ef3267829c506afd0dba862165dd3b9469c900314b2855bed"
+    },
+    {
+      "source": "src/routes/_authenticated/wishlist.tsx",
+      "destination": "apps/marketplace/src/routes/_authenticated/wishlist.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8cae40fe2182a3974a5b5c9eee90f8d9f8e7f93bddb396fab8082ba6fb1a522f"
+    },
+    {
+      "source": "src/routes/account.tsx",
+      "destination": "apps/marketplace/src/routes/account.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a7934bc72968e790c8cc242c6d6cfea822b90dc6e324233ac2a9e4c8c323dc87"
+    },
+    {
+      "source": "src/routes/auth.tsx",
+      "destination": "apps/marketplace/src/routes/auth.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "bfd8ba0e4e327d4dd45c8c023a7e3eeca350a65504b3500971e0dbcb7d3fb90d"
+    },
+    {
+      "source": "src/routes/c.$slug.tsx",
+      "destination": "apps/marketplace/src/routes/c.$slug.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0a26f5d8359f99b040d5a910bd74469c2bd677ccc7f5deb33e987e1e6f6eef77"
+    },
+    {
+      "source": "src/routes/cart.tsx",
+      "destination": "apps/marketplace/src/routes/cart.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2f2a646143ae566177c6e926265bfeb1a0e7c44b833cbf19307e045f5cd294c8"
+    },
+    {
+      "source": "src/routes/index.tsx",
+      "destination": "apps/marketplace/src/routes/index.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "20d7987ea72b27716b041159a944031ac5a37c211955e998fab467942a561622"
+    },
+    {
+      "source": "src/routes/lovable/email/auth/preview.ts",
+      "destination": "apps/marketplace/src/routes/lovable/email/auth/preview.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e5f9ef07723df62194d0e9759ef7f1e06c5a83181aeeacb4e34e20c48e61601d"
+    },
+    {
+      "source": "src/routes/lovable/email/auth/webhook.ts",
+      "destination": "apps/marketplace/src/routes/lovable/email/auth/webhook.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "97cf5c5607a8fb04b8cfde93099caeb8a167631dc86365afe6b2ff54d724de2f"
+    },
+    {
+      "source": "src/routes/lovable/email/transactional/preview.ts",
+      "destination": "apps/marketplace/src/routes/lovable/email/transactional/preview.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9a3b5987633f960b19a499d5fdbdfbc0600a313279b157605b2187bfd3440297"
+    },
+    {
+      "source": "src/routes/mcp.ts",
+      "destination": "apps/marketplace/src/routes/mcp.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "015ee546b020cfaca50d6b5bd59ed2ab6d7944f67b24fff05fe50f211e9954ab"
+    },
+    {
+      "source": "src/routes/product.$id.tsx",
+      "destination": "apps/marketplace/src/routes/product.$id.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0df360e8b49be6133742186afa2fc38f096bde1638a700947e21fa41697e4cb7"
+    },
+    {
+      "source": "src/routes/search.tsx",
+      "destination": "apps/marketplace/src/routes/search.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "193a0be97201c76c03008b5c112f040549247e0f3ec65a4265ef6b2ed50ba5a3"
+    },
+    {
+      "source": "src/routes/seller.$id.tsx",
+      "destination": "apps/marketplace/src/routes/seller.$id.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3c3e85982e7646c29d2f690ec9fe367c5b89a859f24b6b9ad43a6accdf1c1996"
+    },
+    {
+      "source": "src/routes/seller.tsx",
+      "destination": "apps/marketplace/src/routes/seller.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0c8a41f37f620ad5bbaf628d9a75353492020fa17aa724aac6b748c03d269f8d"
+    },
+    {
+      "source": "src/routes/store.$slug.tsx",
+      "destination": "apps/marketplace/src/routes/store.$slug.tsx",
+      "status": "RECOVERED_TEXT",
+      "sha256": "00478f10641b4ea21b22f566591dcbd9664cb866fe40fd5dc36aef3fdbbf5fdb"
+    },
+    {
+      "source": "src/server.ts",
+      "destination": "apps/marketplace/src/server.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f0ee683067afee145f81a63a3af76b3d3767e2a1f61f0e82582f8da184ad3ef6"
+    },
+    {
+      "source": "src/start.ts",
+      "destination": "apps/marketplace/src/start.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "14a377e6b881f57c252819c5c5d254f89d8c916f0090837224df4a8d5a0f608e"
+    },
+    {
+      "source": "src/styles.css",
+      "destination": "apps/marketplace/src/styles.css",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0345642ea64053e45900789a76d1b07aa069bf9547dd854d5c0c328a77fe7910"
+    },
+    {
+      "source": "supabase/config.toml",
+      "destination": "apps/marketplace/supabase/config.toml",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7492e20c9c097361f3bf7ca4c976b9fc10bb9ce4aaf2746103ff9f8fe2a18394"
+    },
+    {
+      "source": "supabase/migrations/20260723113505_4664c694-4392-4872-8635-1d7e84fe7d3d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723113505_4664c694-4392-4872-8635-1d7e84fe7d3d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2abf03a5fbc626251344ab631c4e26c7c9b63fa96642fe24b6467e8765c95789"
+    },
+    {
+      "source": "supabase/migrations/20260723113515_228a0455-6dfe-4120-8af3-6d2b9ed3fd88.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723113515_228a0455-6dfe-4120-8af3-6d2b9ed3fd88.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a9e06bcb6d1fc77dcc380a3ea117197878e8fef5db19ee681ace1abd6fceaecf"
+    },
+    {
+      "source": "supabase/migrations/20260723113622_b82a2a64-35d6-4285-8c72-050e88b1af52.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723113622_b82a2a64-35d6-4285-8c72-050e88b1af52.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "16276fbdcf86d7d77495c593c9060ec9c793f19c9d58cf4767dbc6eac49c160a"
+    },
+    {
+      "source": "supabase/migrations/20260723114313_5e523486-d737-4816-9891-d6d9fbfc7355.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723114313_5e523486-d737-4816-9891-d6d9fbfc7355.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4f59367b0f3fa3cd9b02c55efed2601c2e9a79175790717937188dab018100b8"
+    },
+    {
+      "source": "supabase/migrations/20260723145302_079b61ee-6d53-41fe-801b-37f746a8956a.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723145302_079b61ee-6d53-41fe-801b-37f746a8956a.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fa67dd9c87c69896d66bff14845651590cdb890c833e44e94a514450bbaf3b3b"
+    },
+    {
+      "source": "supabase/migrations/20260723151729_abdb9fc8-b808-4f91-84d4-975d90127826.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723151729_abdb9fc8-b808-4f91-84d4-975d90127826.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "08304151f0fb0a459eb2f72671fae5bf12b6fc3b73bb8f3ed04f8e5e8e5414fe"
+    },
+    {
+      "source": "supabase/migrations/20260723152640_8af6146e-5348-4a7d-9a13-4d942e40c6df.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723152640_8af6146e-5348-4a7d-9a13-4d942e40c6df.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e1086bd40079f23d0dd8432d7a7cf6555bfca583ae7c0c01ef9c18ecf33e17b9"
+    },
+    {
+      "source": "supabase/migrations/20260723154058_0d2ed9e8-3b00-4d74-a90e-bb79f1a4f2b5.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723154058_0d2ed9e8-3b00-4d74-a90e-bb79f1a4f2b5.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "126490d00c66b66156a99ff89eb5b1dfe30f0b2c7b7eeeabc6681d426d1f48cc"
+    },
+    {
+      "source": "supabase/migrations/20260723194859_c42c8642-3f61-477a-bf8a-8b06581de0a4.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723194859_c42c8642-3f61-477a-bf8a-8b06581de0a4.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6bb92659d782ff6bb934ab99650b7435ad6ca987dd7d3852dc372215b1f193ec"
+    },
+    {
+      "source": "supabase/migrations/20260723195605_b9bc6b44-01b1-43b7-bcfb-252d2e695154.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723195605_b9bc6b44-01b1-43b7-bcfb-252d2e695154.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3413b4cc09eb691a4574dd951a30d01bbb52c11fa8a0b809de1d27c6407a7686"
+    },
+    {
+      "source": "supabase/migrations/20260723200056_4379bc04-b394-4081-b083-198ee22c7120.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723200056_4379bc04-b394-4081-b083-198ee22c7120.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4ec760a6f541a53458d12c3359a0be763e4872a5325ada5a44bea7b2cfc144a9"
+    },
+    {
+      "source": "supabase/migrations/20260723201307_cac97cc5-42fc-46aa-a4b6-247da16af185.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723201307_cac97cc5-42fc-46aa-a4b6-247da16af185.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a896eb7fa5f4343e820c783a37fcff5fccdf3a5703c016683bfc12d992acc45e"
+    },
+    {
+      "source": "supabase/migrations/20260723205432_8880115d-cabb-4b72-ad4a-69604973601f.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723205432_8880115d-cabb-4b72-ad4a-69604973601f.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2f2cf0414208817b4a92dda3610ce8200388f83fe2f10ab20a58043898c64fa4"
+    },
+    {
+      "source": "supabase/migrations/20260723210329_c6066fad-95de-4b38-a1d7-f9746e14c5f1.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723210329_c6066fad-95de-4b38-a1d7-f9746e14c5f1.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "dcbf70de7d076a1adef8d9271abb8bebe3c47dde7d7e574d290cfdd99a1fda5e"
+    },
+    {
+      "source": "supabase/migrations/20260723210405_925f984e-c68d-484a-be49-379af78452ec.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723210405_925f984e-c68d-484a-be49-379af78452ec.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5f969afed833a6594e75a8c89e28f35f138df5fed27eb8a994d6bd9b5fce2809"
+    },
+    {
+      "source": "supabase/migrations/20260723211217_bdbee695-4b09-4f95-9e8d-a80f53321cd2.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723211217_bdbee695-4b09-4f95-9e8d-a80f53321cd2.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d876144524d8d37f6ed79299b2e6feb4f4507a32ba455785d611bc78111a33b9"
+    },
+    {
+      "source": "supabase/migrations/20260723211753_14b2847c-774e-4459-b31d-d26561805b6b.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723211753_14b2847c-774e-4459-b31d-d26561805b6b.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "43eebd18d58ff0dabfd3a49415539c1eb5b396f3bd781affe572a6909c552d9b"
+    },
+    {
+      "source": "supabase/migrations/20260723212027_f36deef0-56b3-461e-8cb3-4f9485fe14b3.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723212027_f36deef0-56b3-461e-8cb3-4f9485fe14b3.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5bd88e9d7356cd2328ff8716654ef21c04587a259fd99abcc06060fd50c76eac"
+    },
+    {
+      "source": "supabase/migrations/20260723214441_c24c46b3-400e-42ee-a499-e057e611f3de.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723214441_c24c46b3-400e-42ee-a499-e057e611f3de.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "52e10738e1205755be62be4f935cf67d72a7f1c45af16d6812dcc520730b3e57"
+    },
+    {
+      "source": "supabase/migrations/20260723220800_332a3780-2496-451f-b99f-36b13ad218ae.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723220800_332a3780-2496-451f-b99f-36b13ad218ae.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1679757f18af974d90c18021040e4dae3398af29fe9a9676b7c9c1e92b29677b"
+    },
+    {
+      "source": "supabase/migrations/20260723221649_d6173221-f2c3-478b-a493-e41462cab359.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723221649_d6173221-f2c3-478b-a493-e41462cab359.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8f21528f8e71c43c67cc1ab42a5e5feab1fafb909f7ae85dd313aceade40f988"
+    },
+    {
+      "source": "supabase/migrations/20260723222334_e4530f91-f1ed-4f4b-b4b4-5135c261a6d5.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723222334_e4530f91-f1ed-4f4b-b4b4-5135c261a6d5.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "17d6087d4f0bc96d19b7bf4af5fc50b89f866c5b8abe7a4707fcebde6997d958"
+    },
+    {
+      "source": "supabase/migrations/20260723223139_d0b194cd-3c06-4650-a5b5-38e7352bcd53.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723223139_d0b194cd-3c06-4650-a5b5-38e7352bcd53.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "efffbb8e406f31c9098550299dc32bbf6f2b2d18bdf4e202639de1918910a0c3"
+    },
+    {
+      "source": "supabase/migrations/20260723225107_344df817-f1de-41e4-8c6e-781dc9697825.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723225107_344df817-f1de-41e4-8c6e-781dc9697825.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f8672b09dd8b9b7d6cd552cd3afb45d01d14be02f519442d7734c6b119abbd49"
+    },
+    {
+      "source": "supabase/migrations/20260723225908_2c345c8b-3cbf-4252-80a7-766f8ea9dccc.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723225908_2c345c8b-3cbf-4252-80a7-766f8ea9dccc.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7a86b0396a8aeb5e827eb9d80b5745c4785bf9a27dc1447972257bb273a08925"
+    },
+    {
+      "source": "supabase/migrations/20260723230213_c50fba75-41fd-440c-93e0-6c70aa5d09cd.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723230213_c50fba75-41fd-440c-93e0-6c70aa5d09cd.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f15bffe0cae698c2e866fc710a6dac9c122922a078a8777628be72d21bbcd89e"
+    },
+    {
+      "source": "supabase/migrations/20260723230949_0df12683-6bb0-434c-af8c-c5eb74d9687e.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723230949_0df12683-6bb0-434c-af8c-c5eb74d9687e.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6feec8c83f4779e9c3c4d13ee9360af32713441795e647848e5dff82ce956358"
+    },
+    {
+      "source": "supabase/migrations/20260723231644_7c5bc2c2-f3b2-498a-a34f-5cf70ebfa829.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723231644_7c5bc2c2-f3b2-498a-a34f-5cf70ebfa829.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fedc94f518ed2ba3b6beaa125286ed6f88d6b02247b9485f1dd7df4037fe11f7"
+    },
+    {
+      "source": "supabase/migrations/20260723232557_e7d3423f-58ee-4bec-b94b-d05d6b67ed8a.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260723232557_e7d3423f-58ee-4bec-b94b-d05d6b67ed8a.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3a47bb75a56e409adc534769aaa944685537e0ada8d06aad6e47c76eeba0f079"
+    },
+    {
+      "source": "supabase/migrations/20260724003715_7e73d357-0c2e-4d9d-9140-9f9db893344e.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724003715_7e73d357-0c2e-4d9d-9140-9f9db893344e.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5dd8c115f2d97c5ac224060b7b1e964590b226dc2b472ef8d2fdbe1d672edaa5"
+    },
+    {
+      "source": "supabase/migrations/20260724004912_18fcad33-8a8c-41a7-a3e6-df51e203b8e1.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724004912_18fcad33-8a8c-41a7-a3e6-df51e203b8e1.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "195e58b54d61335e6936e62360adf66cdbc096774f55b8e96b5d1ab6ee8bde0e"
+    },
+    {
+      "source": "supabase/migrations/20260724005016_889022db-568d-4661-a63d-0862ab737d4c.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724005016_889022db-568d-4661-a63d-0862ab737d4c.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f1272d77b5d09f1945ecbae5c679a94cda4e3b5d64c8130d006858d9b7cc287c"
+    },
+    {
+      "source": "supabase/migrations/20260724012108_8606989c-fd3e-49e9-80e4-1cecfdba6531.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724012108_8606989c-fd3e-49e9-80e4-1cecfdba6531.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c66201a808a96e343dc55acf617e56063ed6281360bfbb6645de185458ce15b8"
+    },
+    {
+      "source": "supabase/migrations/20260724012242_b65ade6d-bdb8-46c9-bdd5-0739eca5894f.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724012242_b65ade6d-bdb8-46c9-bdd5-0739eca5894f.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "619c31361888b32b07c058ee84e38c647980afc4b4b0959b0eaff263204e0910"
+    },
+    {
+      "source": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1793625438ce6811c4c63b58eb21318009e961a96c3a022e00ecec21ce633435"
+    },
+    {
+      "source": "supabase/migrations/20260724195929_8cebda88-d1dd-4bf3-b032-28173668d808.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724195929_8cebda88-d1dd-4bf3-b032-28173668d808.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6d31ac5f2e2775f2e0ee4b576b400aaae037889ac2fa5e0308e2fe0388673b2e"
+    },
+    {
+      "source": "supabase/migrations/20260724210701_b6184936-e4a0-410d-8047-f67a2d026319.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724210701_b6184936-e4a0-410d-8047-f67a2d026319.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ab8671e41862b0f05266b80323d721e84201e18cf8c2cfa14be4ca415353eeef"
+    },
+    {
+      "source": "supabase/migrations/20260724221616_ca682252-4df7-41a0-bd5e-d6fd877ed780.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724221616_ca682252-4df7-41a0-bd5e-d6fd877ed780.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "bf90d77f8900332006533649e840abc0ba9c9bda08f3130e21fde3ce3e4c49b2"
+    },
+    {
+      "source": "supabase/migrations/20260724221718_87e3f3c9-aabf-4a32-b9b6-49c4546f8b35.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724221718_87e3f3c9-aabf-4a32-b9b6-49c4546f8b35.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a1734bc9ee69373d6715f220583d7c25836e87a1d7e633ddf5ac2d21dd1a6258"
+    },
+    {
+      "source": "supabase/migrations/20260724221925_cf3f8ced-513b-46a4-bd6b-722ccb8a43b0.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724221925_cf3f8ced-513b-46a4-bd6b-722ccb8a43b0.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8100d8c60e8194fd291927ee03c576a0fce2d77b6a3d87dfdf36ffaeaa4c758c"
+    },
+    {
+      "source": "supabase/migrations/20260724222835_0c93a28a-8f84-4b32-b9cf-2af64605c422.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724222835_0c93a28a-8f84-4b32-b9cf-2af64605c422.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3a3bb773baa96a8156a992b52ceddf5882dd0a054461e416e77a9b9dd734b8dd"
+    },
+    {
+      "source": "supabase/migrations/20260724223025_3128587e-88a3-483e-9318-25e92de047e3.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724223025_3128587e-88a3-483e-9318-25e92de047e3.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "78caa1b86b4295bde563d54632bffef6dbf9b2ad625528c9f9ab8b18749821d0"
+    },
+    {
+      "source": "supabase/migrations/20260724223116_e22e2587-690c-413f-a72a-f9663ec4f4a6.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724223116_e22e2587-690c-413f-a72a-f9663ec4f4a6.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "271d0b1bb85343f8fc4c19bc26dd7c6c34b73456c7201a343544f2a389d7ade0"
+    },
+    {
+      "source": "supabase/migrations/20260724230432_75c8d77f-3654-43b4-834d-c2714b67f0d8.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260724230432_75c8d77f-3654-43b4-834d-c2714b67f0d8.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "643bde7d7d17c2389ad020fd9b660ad77b5b241a738e08f929e2e61159007721"
+    },
+    {
+      "source": "supabase/migrations/20260725214423_f150c58a-ae77-4a82-9fd1-73d7b3f69485.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260725214423_f150c58a-ae77-4a82-9fd1-73d7b3f69485.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "00d39dc7b68caaada7bc427fb6aade3feabeff6c118f59084923a450b1bbf331"
+    },
+    {
+      "source": "supabase/migrations/20260725220916_681aeeb2-13a2-42c6-8b2e-0902e1ce457f.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260725220916_681aeeb2-13a2-42c6-8b2e-0902e1ce457f.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2eeb33d59e1200faf3aa04dcf75a464ac1ca03b6233470afc534e43eb51f5e7c"
+    },
+    {
+      "source": "supabase/migrations/20260725221734_509d914a-eb20-4ee2-bbb0-b81329ecb7c9.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260725221734_509d914a-eb20-4ee2-bbb0-b81329ecb7c9.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3c6e4f6a3ca50ca50b2d9cf2b6748a43addc6c97ceb94fa7f760ba9b2aa0efd4"
+    },
+    {
+      "source": "supabase/migrations/20260725225152_dc570225-1ab9-4be7-9ca1-b442d69028a1.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260725225152_dc570225-1ab9-4be7-9ca1-b442d69028a1.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5316f1225584c54535a6d814abcb6e0a5f7accca7dd62b664ba742f7d9135a50"
+    },
+    {
+      "source": "supabase/migrations/20260725225243_9a86cbfc-28f9-4364-bc8b-f2bea8f9341d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260725225243_9a86cbfc-28f9-4364-bc8b-f2bea8f9341d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fa19e6b0326facc752ce07728afa1194ac8ccbd46f09385d9188f6772805650c"
+    },
+    {
+      "source": "supabase/migrations/20260726093908_70ac2449-599a-4444-b350-4ff5d05feee5.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726093908_70ac2449-599a-4444-b350-4ff5d05feee5.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7a692224613281c9d24296d3cd14aa15a1a6f43f37e8c679f811734e943091e0"
+    },
+    {
+      "source": "supabase/migrations/20260726094140_2dfdf99b-f8ba-4294-befc-9d9b2bb7005d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726094140_2dfdf99b-f8ba-4294-befc-9d9b2bb7005d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0f9671651a0c7a22634c2e6bc3396c877067404faf67f3fdcd89d351a930c885"
+    },
+    {
+      "source": "supabase/migrations/20260726101032_8e632f41-8849-45ed-9592-f6b38b9172d9.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726101032_8e632f41-8849-45ed-9592-f6b38b9172d9.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a1f4c11a8ab2456543dc788cefac9d6a8e7654e621fce8386b3edb877347f53c"
+    },
+    {
+      "source": "supabase/migrations/20260726101415_ecb12204-23c3-4f86-a5cc-1c06e291b74f.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726101415_ecb12204-23c3-4f86-a5cc-1c06e291b74f.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "78267663de078a4737bb25d9be09794cfcaa4500bb133d0da2e1c3de1e198552"
+    },
+    {
+      "source": "supabase/migrations/20260726101526_79cfa30e-2274-4871-b136-30311abf5b15.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726101526_79cfa30e-2274-4871-b136-30311abf5b15.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "51bcfc5cd1d82c94e7e9078881176df6da6ec4b72e2acf9ae974a2ef6e759ef7"
+    },
+    {
+      "source": "supabase/migrations/20260726101601_30e578dd-3fa2-48e1-b3d9-cdde2cb6fe64.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726101601_30e578dd-3fa2-48e1-b3d9-cdde2cb6fe64.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "15ad1c25b996912bdc5bad63ca941457597a851b2347beeff164226b8523448a"
+    },
+    {
+      "source": "supabase/migrations/20260726104223_d678c67e-8ae8-4833-bcee-9bb4c4867604.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726104223_d678c67e-8ae8-4833-bcee-9bb4c4867604.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "838231cbb85733901adf14b115076950500d27a49caaeb2b183161153740236d"
+    },
+    {
+      "source": "supabase/migrations/20260726104420_87409108-1967-44b8-a725-e25a34bbd7c7.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726104420_87409108-1967-44b8-a725-e25a34bbd7c7.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "68abc4d20c9e61a541a23013e44d74ea0fa184b6aa1c7be4e4f53457d6599ff7"
+    },
+    {
+      "source": "supabase/migrations/20260726104552_05ec1b2e-a567-493e-8a13-f0b9caab89a8.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726104552_05ec1b2e-a567-493e-8a13-f0b9caab89a8.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ee621b433a79e5decd51160e31ff192fcda7088aeab232939b9f0ac48a82d5ea"
+    },
+    {
+      "source": "supabase/migrations/20260726104624_569d744b-1481-49b7-b829-ebc34ad149ef.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726104624_569d744b-1481-49b7-b829-ebc34ad149ef.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "335fb37f286d5bcde445eb77bc6fe0509ecab87dc1a070a65eca8d265266bff1"
+    },
+    {
+      "source": "supabase/migrations/20260726111836_8cd62f3d-4588-4648-af5e-aae463bb50e8.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726111836_8cd62f3d-4588-4648-af5e-aae463bb50e8.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "70dc998604ccaf06460bd0480ee3fafe5f847ec3a5f3abfa73c3332422c4a55b"
+    },
+    {
+      "source": "supabase/migrations/20260726111931_6b0e6af9-0aea-46e8-806c-0f193c748358.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726111931_6b0e6af9-0aea-46e8-806c-0f193c748358.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c9821795e7c76714094e73ddae2296a09f8f2ce6bef3c402f35815bc16448c0f"
+    },
+    {
+      "source": "supabase/migrations/20260726120009_4ad063cd-695b-4e39-acf9-0e91465f502d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726120009_4ad063cd-695b-4e39-acf9-0e91465f502d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f22ea07c7c40736354060ed61ea32ac78302855937fceb4cc36ebd31fdb98503"
+    },
+    {
+      "source": "supabase/migrations/20260726120330_bf2eb983-0550-42e2-9f1e-0dec263b6525.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726120330_bf2eb983-0550-42e2-9f1e-0dec263b6525.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "33a2a38a416c38c7c6deb912d03ad684fa63ec8eedc38f3ef2e4903974841906"
+    },
+    {
+      "source": "supabase/migrations/20260726120424_61fa12a5-f2ce-4b4d-8b60-c530a759225d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726120424_61fa12a5-f2ce-4b4d-8b60-c530a759225d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ba173634f43a17fb2d76ca0a52751dc5c7c73f4e1a8b2c590055c909fd802a38"
+    },
+    {
+      "source": "supabase/migrations/20260726120523_211ffc41-6b07-4f78-9e49-1d5313c2fcbb.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726120523_211ffc41-6b07-4f78-9e49-1d5313c2fcbb.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4345e269994a4fc5446a69f244fde26371d7687f745f747bde51598449fe6734"
+    },
+    {
+      "source": "supabase/migrations/20260726121418_716266b4-3847-4a04-a795-91c64421ace8.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726121418_716266b4-3847-4a04-a795-91c64421ace8.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "eafe8b5a995f0ef9aa250d71124be6a6a5c7e7af4bafd091fadb25b72cbf404b"
+    },
+    {
+      "source": "supabase/migrations/20260726122400_dcfe0dd4-0429-403b-a3e5-ec4ca2c47439.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726122400_dcfe0dd4-0429-403b-a3e5-ec4ca2c47439.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f9397287ab4a201cdf84d19db14397e13b7db54fc048035df46b55af3ec60b2c"
+    },
+    {
+      "source": "supabase/migrations/20260726123143_c618205a-7195-40cf-9d4c-9c55e3929ab7.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726123143_c618205a-7195-40cf-9d4c-9c55e3929ab7.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0403c3b4728285b55f8add97b7283645ed1d0e09778a1e449f44ba8c5e8c07f9"
+    },
+    {
+      "source": "supabase/migrations/20260726123305_29ca2b42-fac2-4824-bd69-ecdc1af7a22d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726123305_29ca2b42-fac2-4824-bd69-ecdc1af7a22d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "29d07262477b485043d75cee95c66418eb4f5ff789bd6ec6f34144603dd63f84"
+    },
+    {
+      "source": "supabase/migrations/20260726125706_ceb5ea9d-3f8b-4368-bb2e-34bafdf4e7cb.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726125706_ceb5ea9d-3f8b-4368-bb2e-34bafdf4e7cb.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "f6239a9a25095db818885700c5bd10d79bc936d1d4ab1ae4bc03553150fe19d0"
+    },
+    {
+      "source": "supabase/migrations/20260726125905_6c80d575-35e1-415d-805a-0a70fda31df1.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726125905_6c80d575-35e1-415d-805a-0a70fda31df1.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a3eafd9213efd0870eafc0cd115065ff0c0b9e00a9c463d31056dbd0e8aff013"
+    },
+    {
+      "source": "supabase/migrations/20260726130022_ab7d900e-b47c-4793-9747-771e0d894154.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726130022_ab7d900e-b47c-4793-9747-771e0d894154.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "241d8e147179e51ce5eb504ea2437e91048014267ecd56764964fb6d3eb2dad5"
+    },
+    {
+      "source": "supabase/migrations/20260726130057_ff7bae3a-299a-4665-a4e7-bf7f4b959501.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726130057_ff7bae3a-299a-4665-a4e7-bf7f4b959501.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b6a7ea4de0bfb713df14d722b0b04db5ca8dc21aefdfd49684425f61f468b79e"
+    },
+    {
+      "source": "supabase/migrations/20260726132802_4bc73294-f528-4586-9565-9460f08a0a04.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726132802_4bc73294-f528-4586-9565-9460f08a0a04.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "db634bbdf14e6c18cc792bbc324f0f0b49f4f246cf6498ac99fde0d5f957c6dc"
+    },
+    {
+      "source": "supabase/migrations/20260726133107_55e4783f-93ee-48da-9eca-6aefda113ce2.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726133107_55e4783f-93ee-48da-9eca-6aefda113ce2.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6f24a04119bf7f0460c07aeb39c50e7d153c3efde1f6ef5ff5abcea96350063e"
+    },
+    {
+      "source": "supabase/migrations/20260726135031_079b314e-4bf1-4e75-a591-87fb9a91809d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726135031_079b314e-4bf1-4e75-a591-87fb9a91809d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d69edf42ec977bd97ce35cfe9c3601b0eff543a0f71c6dffdb9f16dc42b9cfd1"
+    },
+    {
+      "source": "supabase/migrations/20260726135308_14788f4e-1eb7-4901-a847-46b3522e8032.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726135308_14788f4e-1eb7-4901-a847-46b3522e8032.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "bf4c0d25212657d6e8190469062ae53af9a571e2a800590ab351a5f106898536"
+    },
+    {
+      "source": "supabase/migrations/20260726142003_e576889e-9353-41da-a6e3-f226363e43a3.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726142003_e576889e-9353-41da-a6e3-f226363e43a3.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "dd599edd2e478e2bffd10cb030c398de1d370b33611da2da5c0cb69a9157e681"
+    },
+    {
+      "source": "supabase/migrations/20260726142346_d67bcd9b-293c-444d-bd9a-f2a6b1916964.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726142346_d67bcd9b-293c-444d-bd9a-f2a6b1916964.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2c3348766c7b2c7fa9a9872b871c8355a0a0a4c8f166c5538a35b551afb45353"
+    },
+    {
+      "source": "supabase/migrations/20260726142523_1f0e4b6d-285f-4ed7-89f0-1db03f440253.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726142523_1f0e4b6d-285f-4ed7-89f0-1db03f440253.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "183bc20c56d6782971cff496f03fafa6f415df22ea2974fc08aeda4dae4a3a30"
+    },
+    {
+      "source": "supabase/migrations/20260726145235_3f228759-0ea6-4096-add6-0fc7592c05e4.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726145235_3f228759-0ea6-4096-add6-0fc7592c05e4.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "bd42afda47103a6272dc3b19ee44df6ebfd0b759713bf4d8944541ba44e204ab"
+    },
+    {
+      "source": "supabase/migrations/20260726145444_38013293-50fc-4721-b25e-1928a7ee9fc8.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726145444_38013293-50fc-4721-b25e-1928a7ee9fc8.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3a3755cffd7a1bf9c2d3803b915249255d0fb9751dace8e1fa94eb510553f65b"
+    },
+    {
+      "source": "supabase/migrations/20260726150928_f60ba0f7-8276-41e9-a2a1-4f35f5718452.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726150928_f60ba0f7-8276-41e9-a2a1-4f35f5718452.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6acd4baba868e94e68f9210758d25bf1c240b76b8736f492dc2efbca8d3698b8"
+    },
+    {
+      "source": "supabase/migrations/20260726151219_6c863dac-c016-4652-939b-18c0a78285b6.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726151219_6c863dac-c016-4652-939b-18c0a78285b6.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "75659b1449c0ed3a531d93c7c844b3e7716abbead931452978f66afac83dfd7f"
+    },
+    {
+      "source": "supabase/migrations/20260726153323_26526402-fd88-4f89-82c6-64ed9393a726.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726153323_26526402-fd88-4f89-82c6-64ed9393a726.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3b321c79952e5a5263c6e3480a150fb20ff4b814acfd830a16e0d50e09d389f2"
+    },
+    {
+      "source": "supabase/migrations/20260726160351_66a1da93-1b4b-46e3-a65f-8783e23a15f7.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726160351_66a1da93-1b4b-46e3-a65f-8783e23a15f7.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "68875ce6e4f749f4397a897ac57a81740e320a4ec174f8eeabe10673926fe699"
+    },
+    {
+      "source": "supabase/migrations/20260726161132_3ee6e6db-645e-4e29-9f40-6742c5f4a7a3.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726161132_3ee6e6db-645e-4e29-9f40-6742c5f4a7a3.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "1b819655abb5debadfdc2cf6f60d04fbea769bbcc7f4664220c942e6f3e592b9"
+    },
+    {
+      "source": "supabase/migrations/20260726162558_35b31159-1fb7-4617-9bc1-a0228707d217.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726162558_35b31159-1fb7-4617-9bc1-a0228707d217.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2a9e36ee609142b749a1307f7d30dafce7ddd09b0604af6cacb8f4e9d31888ce"
+    },
+    {
+      "source": "supabase/migrations/20260726163821_21fc8e1b-ee79-4fa7-8465-01ed9050240d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726163821_21fc8e1b-ee79-4fa7-8465-01ed9050240d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "0b7f8319479976f4686601bd353ce81998dba32c6bf6f475b25a97d53327c04a"
+    },
+    {
+      "source": "supabase/migrations/20260726164218_beb8aae5-51a5-4e7e-a56d-d21c650516b6.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726164218_beb8aae5-51a5-4e7e-a56d-d21c650516b6.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "c9bb68a984d7b8e2de8116f7d99a3417fcbe91b0d640379bb73c4dbb22f06596"
+    },
+    {
+      "source": "supabase/migrations/20260726170407_b000671d-950d-4d7f-a7a7-d71ba828e3de.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726170407_b000671d-950d-4d7f-a7a7-d71ba828e3de.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ebcbf0c528e188db30681f95e924d06f22da5bbfda140ee4127599247227558b"
+    },
+    {
+      "source": "supabase/migrations/20260726171748_bee85150-ef33-454f-a3bf-012e042ac78d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726171748_bee85150-ef33-454f-a3bf-012e042ac78d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e50186d2067e4eda823066f1d6a6b1f7d49d4876448358b7761c48a060aa4291"
+    },
+    {
+      "source": "supabase/migrations/20260726172003_695bb3d9-2977-4ded-ad59-94cf2219b016.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726172003_695bb3d9-2977-4ded-ad59-94cf2219b016.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ec99004df8d0f71d1a79fd7e3ca9fa114f03d2b02fed8eb1c97bce984faa670a"
+    },
+    {
+      "source": "supabase/migrations/20260726173300_fd917dbd-1537-432f-883a-db4878791cdd.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726173300_fd917dbd-1537-432f-883a-db4878791cdd.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "998a66c4343238e8faae836641bd515b655d89c68c1331b47906430159d51f90"
+    },
+    {
+      "source": "supabase/migrations/20260726173604_9d2f97fd-c0dd-4bc7-bd4f-3f62c73418b1.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726173604_9d2f97fd-c0dd-4bc7-bd4f-3f62c73418b1.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a061ca8fec178965bb9d1804b1958faf02755946e9c0eb8dc40b8b2a3675d366"
+    },
+    {
+      "source": "supabase/migrations/20260726173802_f9a154a9-a404-4db4-a31e-0b679e49198d.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726173802_f9a154a9-a404-4db4-a31e-0b679e49198d.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "afbf5fcd5953292134f60cc61c5498590783eceaf281f6bb5793f01d75ebf650"
+    },
+    {
+      "source": "supabase/migrations/20260726174310_bbe55081-d718-4cde-bba8-af80c94d22b9.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726174310_bbe55081-d718-4cde-bba8-af80c94d22b9.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2f23fe8dcf3611746f38348d0da833db0f5cb9e4872ca053dcbdb874daf9ca89"
+    },
+    {
+      "source": "supabase/migrations/20260726175606_6b3976ac-e756-48a1-af05-b8013c5699c7.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726175606_6b3976ac-e756-48a1-af05-b8013c5699c7.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "16fbcf4afbf88b45ebbac66d1e7696120e39e3b1490e5932b4324185cca5e2fb"
+    },
+    {
+      "source": "supabase/migrations/20260726175856_1ed001f9-3de5-436e-b7b3-3128a26ccfc2.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726175856_1ed001f9-3de5-436e-b7b3-3128a26ccfc2.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "7c22d75606de057eef68527b6ccff050f7601590c7dcc8323499faad6a82b35a"
+    },
+    {
+      "source": "supabase/migrations/20260726182333_33be8782-0015-410d-a90f-af902c8f2d28.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726182333_33be8782-0015-410d-a90f-af902c8f2d28.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3f7d00a7da38a86671635278d3234bdc6ab0b9aa9111afdb51fb5a0b50b59edf"
+    },
+    {
+      "source": "supabase/migrations/20260726182733_e308ecfa-7d82-45d3-b8f0-a3c2065a212e.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726182733_e308ecfa-7d82-45d3-b8f0-a3c2065a212e.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "4ec01a0198ca4048832ad02eb44899da18fe435fffbba97e6a7c8768d2907d89"
+    },
+    {
+      "source": "supabase/migrations/20260726183419_c8314b0c-d656-4331-b883-381feae412c9.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726183419_c8314b0c-d656-4331-b883-381feae412c9.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ed9ae87f26db6d907968a99b32fc99d9a80fc9c96b0cebed25abbdfeacbc1776"
+    },
+    {
+      "source": "supabase/migrations/20260726183622_b5751787-20e9-4328-9525-7d4c4a4fe9a4.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726183622_b5751787-20e9-4328-9525-7d4c4a4fe9a4.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a9a3287d9ab729ac1fc076e4f0a0de5f85efd70370ebfcac808da9dac744dc94"
+    },
+    {
+      "source": "supabase/migrations/20260726183821_44a0d748-1138-4fa3-9e27-65a9e708c518.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726183821_44a0d748-1138-4fa3-9e27-65a9e708c518.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2bb2e64b30392215d099650caaede0eabd5e9774b82ffe21f22d007ac4592c7b"
+    },
+    {
+      "source": "supabase/migrations/20260726183851_89c82ee8-08df-457f-be1d-860f16c0c261.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726183851_89c82ee8-08df-457f-be1d-860f16c0c261.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fdf6eb555eb6540bf041b88d2620c124fa877aa7ca14bdce17ae29d74abfcdaf"
+    },
+    {
+      "source": "supabase/migrations/20260726184646_4fd716ee-b420-4b71-8529-4ff8a5ee3364.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726184646_4fd716ee-b420-4b71-8529-4ff8a5ee3364.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9850414e078b6b5f1401e646b5e2b4bfb61920c1cbe84aac51fff8669f3bb562"
+    },
+    {
+      "source": "supabase/migrations/20260726184803_644eabeb-ea8e-4619-b256-485c73905219.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726184803_644eabeb-ea8e-4619-b256-485c73905219.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6d96b828709bb03c99063d189bddac9e8c28e0c9b9581df9c88a041513acd1ad"
+    },
+    {
+      "source": "supabase/migrations/20260726184935_82b18410-712a-4b99-9a5d-655199ba7a82.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726184935_82b18410-712a-4b99-9a5d-655199ba7a82.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "b43b709aace06a3d706f75ef1ee3a28da9680efed76038a78c71d94dd2c3110a"
+    },
+    {
+      "source": "supabase/migrations/20260726192314_ffd713c8-cc26-4d1a-aae2-1c4c97735b97.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726192314_ffd713c8-cc26-4d1a-aae2-1c4c97735b97.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "ce92d0a61fec4443362fe71f37af12b927310bad3f38dccc416a3cb1ec24981c"
+    },
+    {
+      "source": "supabase/migrations/20260726192627_8df542fc-beba-4242-b8bf-e2e6afc35cf5.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726192627_8df542fc-beba-4242-b8bf-e2e6afc35cf5.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "87ea3c62a216b7271fc92118bfdcb676319dbdbc5b91fa098636a7ec81588267"
+    },
+    {
+      "source": "supabase/migrations/20260726192842_2fc07a0b-6184-43d4-a95e-571396ffa413.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726192842_2fc07a0b-6184-43d4-a95e-571396ffa413.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "08ada0c29471801b53ba627d2b8520b606f97f7d16d83996a1808ee3b03e5fa8"
+    },
+    {
+      "source": "supabase/migrations/20260726214308_03045e91-363a-4f08-9b6c-b3bbec0edc45.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726214308_03045e91-363a-4f08-9b6c-b3bbec0edc45.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e25ac01131718074538e86e7e4d35ca53b83e28391a47ac61f262a08c4990b38"
+    },
+    {
+      "source": "supabase/migrations/20260726214522_fb4806d3-028b-48de-90e8-77b8bad98fba.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726214522_fb4806d3-028b-48de-90e8-77b8bad98fba.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "3c85bfbe94e070b73437874f4caa3db82a265cd9069d41f499f76c4b4d0ea304"
+    },
+    {
+      "source": "supabase/migrations/20260726220909_5543b19d-d14f-41d7-a175-ad2f645456ba.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726220909_5543b19d-d14f-41d7-a175-ad2f645456ba.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a0f3ba17f6c8c818ec256c9113f762df75199f9c3423b24f687fb15c1927680b"
+    },
+    {
+      "source": "supabase/migrations/20260726221731_bcbbde98-f138-4c21-a657-b47e020d21b7.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726221731_bcbbde98-f138-4c21-a657-b47e020d21b7.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "05b02073e3ae44cbc63a8ceaa2a25a132fffb1318cd207117b395f4a5e6e1b25"
+    },
+    {
+      "source": "supabase/migrations/20260726222113_03979829-84cc-4227-9acc-4af87c59d72b.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726222113_03979829-84cc-4227-9acc-4af87c59d72b.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "fe151e1b92bcd176c0960a5ca520e18c22002a0f17f0ba08224cf58171ed56ed"
+    },
+    {
+      "source": "supabase/migrations/20260726222737_f2f7df2e-2e4d-415c-bfb1-7240853878bc.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726222737_f2f7df2e-2e4d-415c-bfb1-7240853878bc.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "618f60ef1a4ce6738323f96be278459bc1c106af562dbbf2e0388850fd9c88c8"
+    },
+    {
+      "source": "supabase/migrations/20260726223934_b6bb2a1f-81c4-4caa-805e-e393855e033f.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726223934_b6bb2a1f-81c4-4caa-805e-e393855e033f.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "a29ecd30b5669edbce65f9e6c3192e8f066f4dc4cde873b388c81277d92fab28"
+    },
+    {
+      "source": "supabase/migrations/20260726224044_92a47f0c-0b1c-46b6-b207-ea3f737963e2.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260726224044_92a47f0c-0b1c-46b6-b207-ea3f737963e2.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2f1bbfc9cef05351d885ea98307c8cc648f8585a97f07f1b3036b061f502fbf0"
+    },
+    {
+      "source": "supabase/migrations/20260727170206_5ff4475f-4367-4060-8798-def5973bca0c.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260727170206_5ff4475f-4367-4060-8798-def5973bca0c.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "e8e1076157a562a7e81ef96d8d254b9e3ce3071377253795df8cdeda0e20f52e"
+    },
+    {
+      "source": "supabase/migrations/20260727170355_cb59c59d-5b02-4837-910f-ddca54ea0aa1.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260727170355_cb59c59d-5b02-4837-910f-ddca54ea0aa1.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "49387a59d546ac84127d0299e044286da165bc091997cc43e2108d80231969f4"
+    },
+    {
+      "source": "supabase/migrations/20260727192406_35244702-24a3-426b-801c-19f75baa2d2a.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260727192406_35244702-24a3-426b-801c-19f75baa2d2a.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "2a216a88c1153462128d1f076c7604a980608b8c998852d3d3b82dcbc3fc1704"
+    },
+    {
+      "source": "supabase/migrations/20260727192557_5a366cf7-0a1e-4c7a-8235-c171a29b34d8.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260727192557_5a366cf7-0a1e-4c7a-8235-c171a29b34d8.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "52de318ccb9e62e7a0a01a9828194e0ff8da1b5006e5dc2c4d068a155dcf066b"
+    },
+    {
+      "source": "supabase/migrations/20260731232446_f9ee9ffa-914e-4ad3-845d-40d8e570b23c.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260731232446_f9ee9ffa-914e-4ad3-845d-40d8e570b23c.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6af0045465a9c349c88e3b35d088e77f345d9e59236ad58f253204edca69f488"
+    },
+    {
+      "source": "supabase/migrations/20260731233755_d8f69aff-7b46-4c3b-85b0-b23dfb9a87b3.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260731233755_d8f69aff-7b46-4c3b-85b0-b23dfb9a87b3.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "6e50d5ae353721c55b479addd1c7b7a1fd587c85ac715869bcbc599ad55aa5aa"
+    },
+    {
+      "source": "supabase/migrations/20260731235603_61a36e53-e5d9-4915-9bf3-69bd97aafd51.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260731235603_61a36e53-e5d9-4915-9bf3-69bd97aafd51.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "9e9d7b469e4aed302c59c6c39d2e05c0e465e169259e6b501034f1ec8ba7e62d"
+    },
+    {
+      "source": "supabase/migrations/20260801002900_e4713db2-62c8-471b-b069-bf4dabb3f676.sql",
+      "destination": "apps/marketplace/supabase/migrations/20260801002900_e4713db2-62c8-471b-b069-bf4dabb3f676.sql",
+      "status": "RECOVERED_TEXT",
+      "sha256": "5334a0531e9ba9e457a0a7aa15a17e29b2f9b4c75ce3bcc6d5083ae559ecea5e"
+    },
+    {
+      "source": "tsconfig.json",
+      "destination": "apps/marketplace/tsconfig.json",
+      "status": "RECOVERED_TEXT",
+      "sha256": "8f085c1d4841928370f6922fc9b8cabe3dfe84d266fc734a08d3e0dc3f92490d"
+    },
+    {
+      "source": "vite.config.ts",
+      "destination": "apps/marketplace/vite.config.ts",
+      "status": "RECOVERED_TEXT",
+      "sha256": "d46db96cd624d9aa84694ab6401615efca7a1af4548d18bb952ebeac6fe05602"
+    }
+  ],
+  "scope": "Snapshot import, not original Git history. SHA256 checks prove the recovered text against read results, not binary parity or production function correctness. Runtime environment/DB/secrets intentionally excluded."
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "codex_execution_authorized": false,
+  "automatic_main_merge": false,
+  "automatic_deployment": false,
+  "live_payments": false,
+  "production_database_writes": false,
+  "owner_review_status": "PENDING",
+  "advancement_enabled": false
+}

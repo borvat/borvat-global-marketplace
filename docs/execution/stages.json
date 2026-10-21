@@ -1,0 +1,120 @@
+{
+  "stages": [
+    {
+      "id": "C0",
+      "title": "Engineering foundation and owner review",
+      "milestone_number": 1,
+      "depends_on": [],
+      "execution": "OWNER_REVIEW_PENDING",
+      "required_acceptance": [],
+      "evidence_status": "PENDING"
+    },
+    {
+      "id": "C1",
+      "title": "Identity, security and legacy lockdown",
+      "milestone_number": 2,
+      "depends_on": [
+        "C0"
+      ],
+      "execution": "ON_HOLD",
+      "required_acceptance": [
+        "A01",
+        "A02",
+        "A04",
+        "A05",
+        "A15",
+        "A28",
+        "A29",
+        "A31"
+      ],
+      "evidence_status": "NOT_RUN"
+    },
+    {
+      "id": "C2",
+      "title": "Seller, catalog and offers",
+      "milestone_number": 3,
+      "depends_on": [
+        "C1"
+      ],
+      "execution": "ON_HOLD",
+      "required_acceptance": [
+        "A03",
+        "A06",
+        "A07",
+        "A08",
+        "A27",
+        "A32"
+      ],
+      "evidence_status": "NOT_RUN"
+    },
+    {
+      "id": "C3",
+      "title": "Quotes, orders and inventory lifecycle",
+      "milestone_number": 4,
+      "depends_on": [
+        "C2"
+      ],
+      "execution": "ON_HOLD",
+      "required_acceptance": [
+        "A09",
+        "A11",
+        "A17",
+        "A25"
+      ],
+      "evidence_status": "NOT_RUN"
+    },
+    {
+      "id": "C4",
+      "title": "Payment sandbox and finance reconciliation",
+      "milestone_number": 5,
+      "depends_on": [
+        "C3"
+      ],
+      "execution": "ON_HOLD",
+      "required_acceptance": [
+        "A10",
+        "A12",
+        "A13",
+        "A14",
+        "A16",
+        "A21",
+        "A22",
+        "A24"
+      ],
+      "evidence_status": "NOT_RUN"
+    },
+    {
+      "id": "C5",
+      "title": "Fulfilment, returns and accounting",
+      "milestone_number": 6,
+      "depends_on": [
+        "C4"
+      ],
+      "execution": "ON_HOLD",
+      "required_acceptance": [
+        "A18",
+        "A19",
+        "A20",
+        "A23",
+        "A26",
+        "A30"
+      ],
+      "evidence_status": "NOT_RUN"
+    },
+    {
+      "id": "C6",
+      "title": "Acceptance, resilience and launch review",
+      "milestone_number": 7,
+      "depends_on": [
+        "C5"
+      ],
+      "execution": "ON_HOLD",
+      "required_acceptance": [
+        "A33",
+        "A34",
+        "A35"
+      ],
+      "evidence_status": "NOT_RUN"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "phase_issues": [
+    {
+      "stage": "C0",
+      "number": 6,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/6",
+      "title": "[C0] Engineering foundation and owner review"
+    },
+    {
+      "stage": "C1",
+      "number": 7,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/7",
+      "title": "[C1] Identity, security and legacy lockdown"
+    },
+    {
+      "stage": "C2",
+      "number": 8,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/8",
+      "title": "[C2] Seller, catalog and offers"
+    },
+    {
+      "stage": "C3",
+      "number": 9,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/9",
+      "title": "[C3] Quotes, orders and inventory lifecycle"
+    },
+    {
+      "stage": "C4",
+      "number": 10,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/10",
+      "title": "[C4] Payment sandbox and finance reconciliation"
+    },
+    {
+      "stage": "C5",
+      "number": 11,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/11",
+      "title": "[C5] Fulfilment, returns and accounting"
+    },
+    {
+      "stage": "C6",
+      "number": 12,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/12",
+      "title": "[C6] Acceptance, resilience and launch review"
+    }
+  ],
+  "blocker_issues": [
+    {
+      "number": 13,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/13",
+      "title": "[C0 blocker] Recover 69 original binary assets and prove full source parity"
+    },
+    {
+      "number": 14,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/14",
+      "title": "[C0 blocker] Select authoritative lockfile and restore clean app verification"
+    },
+    {
+      "number": 15,
+      "url": "https://github.com/borvat/borvat-global-marketplace/issues/15",
+      "title": "[C0 blocker] Diagnose preserved prototype regressions without claiming production readiness"
+    }
+  ],
+  "existing_ci_issue": {
+    "number": 2,
+    "url": "https://github.com/borvat/borvat-global-marketplace/issues/2"
+  },
+  "milestones": [
+    {
+      "stage": "C0",
+      "number": 1,
+      "url": "https://github.com/borvat/borvat-global-marketplace/milestone/1"
+    },
+    {
+      "stage": "C1",
+      "number": 2,
+      "url": "https://github.com/borvat/borvat-global-marketplace/milestone/2"
+    },
+    {
+      "stage": "C2",
+      "number": 3,
+      "url": "https://github.com/borvat/borvat-global-marketplace/milestone/3"
+    },
+    {
+      "stage": "C3",
+      "number": 4,
+      "url": "https://github.com/borvat/borvat-global-marketplace/milestone/4"
+    },
+    {
+      "stage": "C4",
+      "number": 5,
+      "url": "https://github.com/borvat/borvat-global-marketplace/milestone/5"
+    },
+    {
+      "stage": "C5",
+      "number": 6,
+      "url": "https://github.com/borvat/borvat-global-marketplace/milestone/6"
+    },
+    {
+      "stage": "C6",
+      "number": 7,
+      "url": "https://github.com/borvat/borvat-global-marketplace/milestone/7"
+    }
+  ]
+}

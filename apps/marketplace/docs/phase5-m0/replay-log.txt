@@ -1,0 +1,53 @@
+M0-E1 Clean-room replay log
+Date: 2026-07-24
+Operator: Lovable agent (sandbox exec tool)
+Target: fresh Postgres 16 instance, timestamped filename order over supabase/migrations/*.sql
+
+STATUS: NOT EXECUTED IN THIS ENVELOPE.
+
+Reason:
+  The sandbox available to this agent runs as root and cannot host a local
+  Postgres server. Postgres refuses to run as uid 0:
+
+      initdb: error: cannot be run as root
+      initdb: hint: Please log in (using, e.g., "su") as the (unprivileged)
+        user that will own the server process.
+
+  The sandbox image also lacks `useradd` and `su`, so we cannot bootstrap
+  an unprivileged user in-line and rerun initdb + pg_ctl. Attempted:
+
+    - $ initdb -U postgres -A trust -D /tmp/scratch-pg
+        -> "cannot be run as root"
+    - $ useradd -m pguser
+        -> "bash: useradd: command not found"
+    - $ su -s /bin/bash pguser -c 'initdb ...'
+        -> "bash: su: command not found"
+
+  Consequently we cannot produce the following artefacts in this envelope:
+    - a scratch schema-only dump (docs/phase5-m0/scratch.sql)
+    - a live-clone schema-only dump (docs/phase5-m0/live.sql)
+    - a full apgdiff structural comparison of ALL 60+ objects
+
+What IS in evidence, executed against the live target DB via managed psql:
+    - the `public.place_order` function inspection reported in
+      docs/PHASE5_P5_HF_001_REPORT.md § 2. That inspection is the source of
+      the drift entries in docs/phase5-m0/structural-diff.md.
+
+Required to complete M0-E1 outside this sandbox:
+    1. Provision a scratch Postgres 16 host with an unprivileged OS user
+       and the Supabase-required extensions (pgcrypto, pgjwt, pgsodium,
+       vault, pg_stat_statements as needed).
+    2. Bootstrap the auth and vault schemas per Supabase's stock init.
+    3. Replay every file in supabase/migrations/ in filename order via
+       `psql -v ON_ERROR_STOP=1 -f <file>` and capture stdout/stderr per
+       file into this replay log.
+    4. `pg_dump --schema-only --no-owner --no-privileges` the scratch DB
+       and a production clone into docs/phase5-m0/scratch.sql and
+       docs/phase5-m0/live.sql respectively.
+    5. Run apgdiff (or an equivalent) between the two dumps and record
+       every delta in docs/phase5-m0/structural-diff.md with the
+       {EXPECTED, UNDOCUMENTED, DANGEROUS} classification demanded by the
+       owner directive.
+
+Until steps 1–5 complete, this file remains "NOT EXECUTED IN THIS ENVELOPE"
+and the baseline verdict cannot be BASELINE PASS.

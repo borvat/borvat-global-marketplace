@@ -1,0 +1,22 @@
+▶ money arithmetic
+  ✔ currency precision follows ISO 4217 (1.039907ms)
+  ✔ decimal parsing respects currency precision (0.27175ms)
+  ✔ formatting is stable (0.185069ms)
+  ✔ division rounds half away from zero (0.144007ms)
+  ✔ tax is extracted from a tax inclusive price (0.127242ms)
+  ✔ commission is a basis point share of the vendor base (0.126551ms)
+✔ money arithmetic (2.869294ms)
+▶ pricing engine
+  ✔ two vendors produce two groups and one shipping charge each (0.466753ms)
+  ✔ one vendor shipping one parcel charges the highest line shipping once (0.19266ms)
+  ✔ a free shipping threshold removes the vendor shipping charge (0.898404ms)
+  ✔ an empty basket cannot be priced (0.356377ms)
+✔ pricing engine (2.255028ms)
+ℹ tests 10
+ℹ suites 2
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 133.151661

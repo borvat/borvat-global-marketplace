@@ -1,0 +1,10 @@
+import {test} from "node:test";
+import assert from "node:assert/strict";
+import {canAccess,canReviewSellerApplication,consoles} from "../prototypes/platform-access.mjs";
+const seller={authenticated:true,userId:"seller1",roles:["seller_admin"],tenantIds:["A"]};
+test("six platform scopes are represented",()=>assert.deepEqual(Object.keys(consoles),["identity","seller","ads","buyer","admin","trust"]));
+test("anonymous or malformed identity cannot obtain permissions",()=>{assert.equal(canAccess(null,"catalog:read"),false);assert.equal(canAccess({authenticated:false,userId:"x",roles:["platform_admin"]},"configuration:read"),false)});
+test("seller may only access own merchant tenant",()=>{assert.equal(canAccess(seller,"offer:own:write",{tenantId:"A",subjectTenantId:"A"}),true);assert.equal(canAccess(seller,"offer:own:write",{tenantId:"A",subjectTenantId:"B"}),false);assert.equal(canAccess(seller,"offer:own:write",{tenantId:"B",subjectTenantId:"B"}),false)});
+test("seller cannot review own application, unrelated reviewer can",()=>{const reviewer={authenticated:true,userId:"reviewer",roles:["seller_reviewer"],tenantIds:[]};assert.equal(canReviewSellerApplication(seller,"seller1","A"),false);assert.equal(canReviewSellerApplication(reviewer,"seller1","A"),true);assert.equal(canReviewSellerApplication({...reviewer,userId:"seller1"},"seller1","A"),false);assert.equal(canReviewSellerApplication({...reviewer,tenantIds:["A"]},"seller1","A"),false)});
+test("platform admin is not automatically seller verification reviewer",()=>assert.equal(canReviewSellerApplication({authenticated:true,userId:"admin",roles:["platform_admin"],tenantIds:[]},"seller","B"),false));
+test("ad permission does not authorize payments or risk moderation",()=>{assert.equal(canAccess(seller,"ad_campaign:own:draft",{tenantId:"A",subjectTenantId:"A"}),true);assert.equal(canAccess(seller,"risk_case:review"),false);assert.equal(canAccess(seller,"payout:approve"),false)});

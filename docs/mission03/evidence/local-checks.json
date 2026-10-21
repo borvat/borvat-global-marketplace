@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-21",
+  "lovable_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+  "runtime": "v24.19.0",
+  "rows": [
+    {
+      "id": "U01",
+      "status": "PASS",
+      "scope": "Original buyer query test assertions, adapted to node assert; no database"
+    },
+    {
+      "id": "U02",
+      "status": "PASS",
+      "scope": "Original empty identity test assertions"
+    },
+    {
+      "id": "U03",
+      "status": "PASS",
+      "scope": "Original unknown and pending display test assertions"
+    },
+    {
+      "id": "R01",
+      "status": "DEFECT_REPRODUCED",
+      "observed": {
+        "label": "Betaald",
+        "tone": "neutral"
+      },
+      "expected": "new alone must not assert payment without PSP evidence"
+    },
+    {
+      "id": "S01",
+      "status": "OBSERVED_STATIC",
+      "path": "src/routes/_authenticated/checkout.tsx"
+    },
+    {
+      "id": "S02",
+      "status": "OBSERVED_STATIC",
+      "path": "src/routes/_authenticated/seller.finances.tsx"
+    },
+    {
+      "id": "S03",
+      "status": "OBSERVED_STATIC",
+      "path": "src/routes/_authenticated/seller.shipping.tsx"
+    },
+    {
+      "id": "S04",
+      "status": "OBSERVED_STATIC",
+      "path": "src/routes/_authenticated/admin/orders.tsx"
+    }
+  ],
+  "e2e": "NOT_RUN",
+  "database_acl": "NOT_RUN",
+  "psp_sandbox": "NOT_RUN",
+  "full_build": "NOT_RUN"
+}

@@ -1,0 +1,314 @@
+[
+ {
+  "id": "S01",
+  "reqs": "1,2",
+  "kind": "Static catalog inspection",
+  "desc": "dropped acceptance_conditions table is absent",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S02",
+  "reqs": "3",
+  "kind": "Static catalog inspection",
+  "desc": "early resolver m1c1ee_offer_effective_status is absent",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S03",
+  "reqs": "3",
+  "kind": "Static catalog inspection",
+  "desc": "remaining helper is classified as a guard",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S04",
+  "reqs": "4",
+  "kind": "Static catalog inspection",
+  "desc": "offer status contract is exactly the six authorized values",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S05",
+  "reqs": "4",
+  "kind": "Static catalog inspection",
+  "desc": "no guard body references the invalidated offer status",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S06",
+  "reqs": "5",
+  "kind": "Static catalog inspection",
+  "desc": "manual quote scope is exactly 7 tables",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S07",
+  "reqs": "5",
+  "kind": "Static catalog inspection",
+  "desc": "the only new business tables are acceptances and state_events",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S08",
+  "reqs": "6",
+  "kind": "Static catalog inspection",
+  "desc": "RLS enabled AND forced on acceptances",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S09",
+  "reqs": "6",
+  "kind": "Static catalog inspection",
+  "desc": "RLS enabled AND forced on state_events",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S10",
+  "reqs": "6",
+  "kind": "Static catalog inspection",
+  "desc": "zero RLS policies on the two new tables (deny by default)",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S11",
+  "reqs": "7",
+  "kind": "Static catalog inspection",
+  "desc": "every m1c1e guard pins an empty search_path",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S12",
+  "reqs": "8",
+  "kind": "Static catalog inspection",
+  "desc": "one acceptance per request family is a unique key",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S13",
+  "reqs": "8",
+  "kind": "Static catalog inspection",
+  "desc": "one acceptance per request and per offer are unique keys",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S14",
+  "reqs": "8",
+  "kind": "Static catalog inspection",
+  "desc": "at most one accepted offer version per request",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S15",
+  "reqs": "9",
+  "kind": "Static catalog inspection",
+  "desc": "acceptance settlement trigger is deferred to commit",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S16",
+  "reqs": "9",
+  "kind": "Static catalog inspection",
+  "desc": "acceptance write guard covers INSERT, UPDATE and DELETE",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S17",
+  "reqs": "10",
+  "kind": "Static catalog inspection",
+  "desc": "state events carry no order, payment or carrier artefact column",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "S18",
+  "reqs": "10",
+  "kind": "Static catalog inspection",
+  "desc": "no test-bypass column exists on the new business tables",
+  "result": "PASS",
+  "detail": "got=True"
+ },
+ {
+  "id": "B01",
+  "reqs": "11",
+  "kind": "Runtime harness",
+  "desc": "happy path: acceptance + settlement commit clean",
+  "result": "PASS",
+  "detail": "committed-equivalent: deferred triggers fired clean"
+ },
+ {
+  "id": "B02",
+  "reqs": "12",
+  "kind": "Runtime harness",
+  "desc": "acceptance rows are immutable (UPDATE rejected)",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: manual quote acceptances are terminal and immutable (UPDATE rejected)"
+ },
+ {
+  "id": "B03",
+  "reqs": "12",
+  "kind": "Runtime harness",
+  "desc": "acceptance rows are undeletable (DELETE rejected)",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: manual quote acceptances are terminal and immutable (DELETE rejected)"
+ },
+ {
+  "id": "B04",
+  "reqs": "13",
+  "kind": "Runtime harness",
+  "desc": "state events are append-only (UPDATE rejected)",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: manual quote state events are append-only (UPDATE rejected)"
+ },
+ {
+  "id": "B05",
+  "reqs": "13",
+  "kind": "Runtime harness",
+  "desc": "state events are append-only (DELETE rejected)",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: manual quote state events are append-only (DELETE rejected)"
+ },
+ {
+  "id": "B06",
+  "reqs": "14",
+  "kind": "Runtime harness",
+  "desc": "a second acceptance in the same family is rejected",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: offer is not acceptable (offer_not_published)"
+ },
+ {
+  "id": "B07",
+  "reqs": "15",
+  "kind": "Runtime harness",
+  "desc": "an expired offer can never be accepted (expiry derived at read time)",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: offer is not acceptable (offer_expired)"
+ },
+ {
+  "id": "B08",
+  "reqs": "15",
+  "kind": "Runtime harness",
+  "desc": "a draft offer can never be accepted",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: offer is not acceptable (offer_not_published)"
+ },
+ {
+  "id": "B09",
+  "reqs": "15",
+  "kind": "Runtime harness",
+  "desc": "a withdrawn offer can never be accepted",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: offer is not acceptable (offer_not_published)"
+ },
+ {
+  "id": "B10",
+  "reqs": "16",
+  "kind": "Runtime harness",
+  "desc": "acceptance without offer settlement fails at commit",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1ED: terminal offers are historically frozen"
+ },
+ {
+  "id": "B11",
+  "reqs": "16",
+  "kind": "Runtime harness",
+  "desc": "an offer cannot be settled to accepted without an acceptance",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: an accepted offer requires a recorded acceptance snapshot"
+ },
+ {
+  "id": "B12",
+  "reqs": "16",
+  "kind": "Runtime harness",
+  "desc": "a request cannot be settled to accepted without an acceptance",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: an accepted request requires a recorded acceptance snapshot"
+ },
+ {
+  "id": "B13",
+  "reqs": "17",
+  "kind": "Runtime harness",
+  "desc": "the acceptance charge must equal the offer charge",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: the acceptance snapshot must match the published offer exactly"
+ },
+ {
+  "id": "B14",
+  "reqs": "17",
+  "kind": "Runtime harness",
+  "desc": "the acceptance must name the exact offer version",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: acceptance must name the exact offer version"
+ },
+ {
+  "id": "B15",
+  "reqs": "18",
+  "kind": "Runtime harness",
+  "desc": "only the owning buyer may accept",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: only the owning buyer may accept a manual quote offer"
+ },
+ {
+  "id": "B16",
+  "reqs": "19",
+  "kind": "Runtime harness",
+  "desc": "an accepted family is closed to new request versions",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: a request family with a recorded acceptance is closed to new versions"
+ },
+ {
+  "id": "B17",
+  "reqs": "19",
+  "kind": "Runtime harness",
+  "desc": "an accepted request can never be closed",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EC: terminal manual quote requests are historical and immutable"
+ },
+ {
+  "id": "B18",
+  "reqs": "20",
+  "kind": "Runtime harness",
+  "desc": "closing a request requires every outstanding offer to be closed first",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: closing a manual quote request requires every outstanding offer to be superseded, withdrawn or expired first"
+ },
+ {
+  "id": "B19",
+  "reqs": "21",
+  "kind": "Runtime harness",
+  "desc": "a superseded offer version can never be accepted",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: offer is not acceptable (offer_not_published)"
+ },
+ {
+  "id": "B20",
+  "reqs": "22",
+  "kind": "Runtime harness",
+  "desc": "acceptance is impossible while the request is not quoted",
+  "result": "PASS",
+  "detail": "SQLSTATE=P0001 ERROR:  M1C1EE: offer is not acceptable (offer_not_published)"
+ },
+ {
+  "id": "B21",
+  "reqs": "23",
+  "kind": "Runtime harness",
+  "desc": "no order, payment or reservation row is produced by an acceptance",
+  "result": "PASS",
+  "detail": "committed-equivalent: deferred triggers fired clean"
+ }
+]

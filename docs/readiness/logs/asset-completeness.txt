@@ -1,0 +1,12 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> source:require-complete
+> node scripts/foundation/source-parity.mjs --require-assets
+
+{
+  "verified_text": 499,
+  "total_text": 499,
+  "unresolved_binary": 69,
+  "excluded_secret_configs": 1,
+  "mismatches": []
+}

@@ -1,0 +1,24 @@
+name: BORVAT isolated commerce tests
+on:
+  push:
+    branches:
+      - development/borvat-product-completion
+    paths:
+      - 'services/**'
+      - 'tests/**'
+      - 'scripts/verify-isolated-commerce.mjs'
+      - '.github/workflows/isolated-commerce.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  commerce-node:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test isolated commerce logic
+        run: node scripts/verify-isolated-commerce.mjs

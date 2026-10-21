@@ -1,0 +1,481 @@
+{
+  "status": "PLAN_NOT_EXECUTED",
+  "local_executed_checks": "evidence/local-checks.json",
+  "acceptance_policy": "No readiness claim without full journey with named real sandbox/test doubles, fixed SHA, evidence per case, no unexplained P0/P1",
+  "cases": [
+    {
+      "id": "A01",
+      "area": "Auth",
+      "given": "Synthetic buyer with unverified email",
+      "when": "Register, verify, login, reset, logout, replay expired session",
+      "expected": "Verification accurate; reset single-use; expired/revoked session denied",
+      "required_evidence": [
+        "UI trace",
+        "auth provider status",
+        "API denies"
+      ],
+      "stage": "C1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A02",
+      "area": "Isolation",
+      "given": "Buyers A/B and sellers X/Y; known foreign IDs",
+      "when": "Read/change foreign order/cart/application/statement/doc via API,RPC,REST,MCP",
+      "expected": "No unauthorized rows or writes; company_id tampering denied",
+      "required_evidence": [
+        "HTTP deny results",
+        "DB audit",
+        "no row delta"
+      ],
+      "stage": "C1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A03",
+      "area": "Seller KYB",
+      "given": "Company owner is also platform admin",
+      "when": "Approve own application, spoof approved_at or reviewer",
+      "expected": "Forbidden; independent reviewer positive path works; no live seller affected",
+      "required_evidence": [
+        "separate JWT role sessions",
+        "application audit trail"
+      ],
+      "stage": "C2",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A04",
+      "area": "Legacy bypass",
+      "given": "Browser auth user and legacy data API",
+      "when": "Direct INSERT orders/order_items, call place_order overloads, invoke MCP status mutation",
+      "expected": "All noncanonical creation/financial writes denied; checkout disabled in legacy",
+      "required_evidence": [
+        "catalog ACL+policies",
+        "negative real HTTP probes"
+      ],
+      "stage": "C1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A05",
+      "area": "Status integrity",
+      "given": "New order without PSP evidence",
+      "when": "Render buyer account or submit invalid status/type",
+      "expected": "No paid claim; invalid command rejected before side effect",
+      "required_evidence": [
+        "unit regression F04",
+        "server validation result"
+      ],
+      "stage": "C1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A06",
+      "area": "Catalog",
+      "given": "Two legitimate sellers list same model; different pack/variant exists",
+      "when": "Submit matching GTIN and conflicting specifications",
+      "expected": "Shared canonical product only when verified matching; ambiguous conflict manual review; stock separate",
+      "required_evidence": [
+        "catalog records",
+        "admin dedup decision"
+      ],
+      "stage": "C2",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A07",
+      "area": "Safety",
+      "given": "Restricted product or missing required manufacturer/warnings",
+      "when": "Publish offer",
+      "expected": "Denied with reason; safety notice/recall can identify impacted orders",
+      "required_evidence": [
+        "publication reject",
+        "notice queue",
+        "recall drill"
+      ],
+      "stage": "C2",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A08",
+      "area": "Publication",
+      "given": "Verified platform seller, PSP missing capability/tax/shipping",
+      "when": "Activate offer then revoke eligibility",
+      "expected": "Inactive until all gates; revocation prevents new quotes",
+      "required_evidence": [
+        "provider sandbox capability",
+        "offer API results"
+      ],
+      "stage": "C2",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A09",
+      "area": "Quote",
+      "given": "Cart with stale price and mixed sellers",
+      "when": "Tamper totals; use old quote; checkout two seller groups",
+      "expected": "Server totals; expired rejected; 422 mixed seller; clear separate checkout UI",
+      "required_evidence": [
+        "request/response",
+        "snapshot totals"
+      ],
+      "stage": "C3",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A10",
+      "area": "Payments",
+      "given": "PSP sandbox hosted Checkout",
+      "when": "Simulate successful card and async method; close browser before redirect",
+      "expected": "Only authoritative succeeded payment confirms; session.completed with unpaid state remains pending",
+      "required_evidence": [
+        "provider sandbox object IDs",
+        "signed event and DB effect"
+      ],
+      "stage": "C4",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A11",
+      "area": "Concurrency",
+      "given": "One unit available",
+      "when": "100 concurrent checkout attempts",
+      "expected": "At most one successful allocation; no negative stock; no 100 charges",
+      "required_evidence": [
+        "parallel test log",
+        "warehouse balance",
+        "payment intents"
+      ],
+      "stage": "C3",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A12",
+      "area": "Idempotency",
+      "given": "Existing attempt with uncertain PSP timeout",
+      "when": "Retry same key, changed-body same key, crash worker after provider create",
+      "expected": "Same attempt/session; changed body 409; no duplicate provider charge",
+      "required_evidence": [
+        "provider query",
+        "outbox/inbox records"
+      ],
+      "stage": "C4",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A13",
+      "area": "Reservation expiry",
+      "given": "Pending payment expires and stock is sold elsewhere",
+      "when": "Late success callback arrives",
+      "expected": "Re-reserve or visible exception+test refund, never oversell/unowned payment",
+      "required_evidence": [
+        "event ordering trace",
+        "inventory",
+        "provider refund"
+      ],
+      "stage": "C4",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A14",
+      "area": "Webhook",
+      "given": "Known account/payment",
+      "when": "Replay duplicate, reversed-order, forged-signature, wrong-mode/account/amount events",
+      "expected": "Auth/correlation failures quarantined; one business effect; no state regression",
+      "required_evidence": [
+        "raw signature test result redacted",
+        "inbox count",
+        "money totals"
+      ],
+      "stage": "C4",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A15",
+      "area": "Audit",
+      "given": "Audit insert/storage fails",
+      "when": "Attempt sensitive command",
+      "expected": "No external effect before durable command/audit; actionable failure and retry",
+      "required_evidence": [
+        "fault injection",
+        "DB rollback",
+        "provider call count"
+      ],
+      "stage": "C1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A16",
+      "area": "Cancellation",
+      "given": "Capture races cancel or refund races twice",
+      "when": "Run concurrent commands",
+      "expected": "One valid outcome; captured funds compensated if needed; no overrefund",
+      "required_evidence": [
+        "parallel transaction logs",
+        "PSP balance"
+      ],
+      "stage": "C4",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A17",
+      "area": "Shipping price",
+      "given": "Two sellers different postage; destination changed",
+      "when": "Request quote",
+      "expected": "Per-seller approved rate; no global free-shipping threshold; new destination invalidates quote",
+      "required_evidence": [
+        "quote snapshots",
+        "delivery rules"
+      ],
+      "stage": "C3",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A18",
+      "area": "Fulfilment",
+      "given": "Paid order with multiple line units",
+      "when": "Partial pick/pack/shipment and carrier failure then delivery",
+      "expected": "Bounded quantities; buyer sees correct tracking; exception remains actionable",
+      "required_evidence": [
+        "warehouse adapter trace",
+        "UI status",
+        "shipment events"
+      ],
+      "stage": "C5",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A19",
+      "area": "Withdrawal",
+      "given": "Delivered order within right-to-withdraw window",
+      "when": "Buyer submits function without customer service permission",
+      "expected": "Notice timestamp and durable confirmation captured; logistics review cannot reject notice submission",
+      "required_evidence": [
+        "buyer trace",
+        "captured mailbox",
+        "return state"
+      ],
+      "stage": "C5",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A20",
+      "area": "Partial return",
+      "given": "Order with 3 units, one returned, allocated discounts/shipping",
+      "when": "Inspect and refund one, replay command",
+      "expected": "Exactly legal refund amount once; tax and commission credits correctly allocated; quarantine then disposition",
+      "required_evidence": [
+        "cent-level ledger",
+        "provider refund",
+        "inventory delta"
+      ],
+      "stage": "C5",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A21",
+      "area": "Refund after payout",
+      "given": "Seller already paid, insufficient PSP balance",
+      "when": "Refund/dispute arrives",
+      "expected": "Provider state/deficit surfaced; recovery case; no false succeeded or other seller debit",
+      "required_evidence": [
+        "provider scenario or declared inability",
+        "finance case"
+      ],
+      "stage": "C4",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A22",
+      "area": "Commission",
+      "given": "Versioned commission and tax treatment, 1-cent rounding edges",
+      "when": "Change rate after order, process partial/full return",
+      "expected": "Old orders keep snapshots; integer conservation and deterministic allocation",
+      "required_evidence": [
+        "independent calculation fixtures",
+        "original/credit documents"
+      ],
+      "stage": "C4",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A23",
+      "area": "Accounting outage",
+      "given": "PSP payment confirmed, Accounting unavailable",
+      "when": "Process and retry duplicated export events",
+      "expected": "Durable pending export, alert, no duplicate invoice; statements not falsely closed",
+      "required_evidence": [
+        "outbox/DLQ",
+        "adapter dedup",
+        "doc IDs"
+      ],
+      "stage": "C5",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A24",
+      "area": "Reconciliation",
+      "given": "Orders/payments/refunds/fees/payout events with intentional mismatch",
+      "when": "Run daily statement and reconcile against PSP",
+      "expected": "Mismatch blocks close; explained corrections append; bank match separate",
+      "required_evidence": [
+        "independent provider totals",
+        "statement lines",
+        "variance"
+      ],
+      "stage": "C4",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A25",
+      "area": "Dependency failure",
+      "given": "Warehouse down before payment or SAM down",
+      "when": "Checkout and normal seller fulfilment",
+      "expected": "No charge without reserve; SAM outage does not block ordinary commerce",
+      "required_evidence": [
+        "fault logs",
+        "PSP request count"
+      ],
+      "stage": "C3",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A26",
+      "area": "Privacy",
+      "given": "Buyer data and retained financial obligations",
+      "when": "Access/export/erase; unauthorized document URL; retention expiry",
+      "expected": "Identity verified, private access denied, legal retention explained; nonrequired PII deleted",
+      "required_evidence": [
+        "rights report",
+        "signed URL denial",
+        "retention audit"
+      ],
+      "stage": "C5",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A27",
+      "area": "Reviews",
+      "given": "Delivered buyer and unpurchased/self seller users",
+      "when": "Create review, duplicate, moderator removes",
+      "expected": "Only eligible purchased line verified; duplicate bounded; reason+original preserved",
+      "required_evidence": [
+        "review rows",
+        "audit",
+        "public projection"
+      ],
+      "stage": "C2",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A28",
+      "area": "SAM",
+      "given": "Token for seller X, absent/changed approval",
+      "when": "Propose/execute foreign or financially forbidden command",
+      "expected": "Company/capability/body/version-bound approval enforced; no direct paid/payout setters",
+      "required_evidence": [
+        "MCP/API denial",
+        "audit"
+      ],
+      "stage": "C1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A29",
+      "area": "ACL drift",
+      "given": "Empty local DB replayed, representative runtime roles",
+      "when": "Run ACL gate, simulate fail, redeploy/replay regrant scenario",
+      "expected": "Zero unexpected privileges; intended fail exits nonzero; stable fix proven",
+      "required_evidence": [
+        "catalog snapshot",
+        "gate logs",
+        "migration hashes"
+      ],
+      "stage": "C1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A30",
+      "area": "Disputes",
+      "given": "Buyer and seller support participants",
+      "when": "Open delivery dispute, reply, escalate, appeal decision",
+      "expected": "Scoped persisted thread, reasons and deadlines; no private unrelated orders exposed",
+      "required_evidence": [
+        "case trail",
+        "role denial",
+        "resolution record"
+      ],
+      "stage": "C5",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A31",
+      "area": "Upload security",
+      "given": "Oversize/polyglot/executable and unauthorized file IDs",
+      "when": "Upload/request download",
+      "expected": "Quarantine/size/content/auth checks; no public KYB URL or PII logs",
+      "required_evidence": [
+        "storage policy probes",
+        "scan result"
+      ],
+      "stage": "C1",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A32",
+      "area": "Portability",
+      "given": "Six synthetic founding merchants provisioned normally",
+      "when": "Onboard seventh without DB/code exception",
+      "expected": "Same workflow, permissions and offer model; no name/ID branches",
+      "required_evidence": [
+        "workflow trace",
+        "code/schema diff"
+      ],
+      "stage": "C2",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A33",
+      "area": "Load/restore",
+      "given": "Declared staging resources with 10k offers/100 sellers",
+      "when": "50 users, worker crash, backup restore",
+      "expected": "Measure p95 targets; no lost/duplicated money events; RPO/RTO measured not assumed",
+      "required_evidence": [
+        "load report",
+        "restore timestamps",
+        "reconciliation"
+      ],
+      "stage": "C6",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A34",
+      "area": "Full journey",
+      "given": "Clean DB, fixed SHA, two sellers and buyer, actual PSP sandbox",
+      "when": "Seller signup/review/product→buyer purchase→warehouse→carrier delivery→statement",
+      "expected": "All transitions linked; buyer/seller/admin independently verified; no mock masquerades as real provider",
+      "required_evidence": [
+        "UI trace",
+        "DB snapshots",
+        "PSP refs",
+        "Warehouse/Accounting adapter identity"
+      ],
+      "stage": "C6",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "A35",
+      "area": "DAC7",
+      "given": "Synthetic goods sellers: 29/€2000, 30/€1, 1/€2000.01",
+      "when": "Evaluate relevant seller reporting exclusion and export correction",
+      "expected": "First satisfies threshold exclusion; other two do not; other exclusions independent; no tax-liability inference",
+      "required_evidence": [
+        "deterministic threshold cases",
+        "scoped export/correction"
+      ],
+      "stage": "C6",
+      "status": "NOT_RUN"
+    }
+  ]
+}
