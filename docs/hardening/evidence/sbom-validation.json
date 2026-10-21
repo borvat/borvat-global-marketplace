@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "schema_url": "https://raw.githubusercontent.com/CycloneDX/specification/1.6/schema/bom-1.6.schema.json",
+  "schema_sha256": "3e92dddbc30cf7f6a02b80f0942b1a4cfd4fb1c26f1dfc4310afa9d613cafb93",
+  "components": 1124,
+  "errors": []
+}

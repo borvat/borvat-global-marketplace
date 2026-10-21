@@ -1,0 +1,541 @@
+{
+  "scope": "Current hardening snapshot, supersedes older evidence only for modified paths; excludes itself",
+  "prior_head": "d7f4ffd11c291262ce9c92a17a64fc42d3a663b4",
+  "records": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "b50e67ebe25f5d1d025e43c6e577b6c30d32bcbcc426dc50c924aa90fd201364",
+      "bytes": 1723
+    },
+    {
+      "path": "README.md",
+      "sha256": "f17461438cf1193264446945584861e5c573d368e6d5b552130e6a5949557605",
+      "bytes": 4055
+    },
+    {
+      "path": "docs/architecture/ADR-005-oss-foundation-selection.md",
+      "sha256": "5909979f06cedef595a40dda7a04541b957588e88cb0430a2fc32bea517c77e7",
+      "bytes": 7136
+    },
+    {
+      "path": "docs/execution/GATES.md",
+      "sha256": "784ddf6c0af5d7f93195c292407898ef28096a67a03c9117f722fef81c7a762f",
+      "bytes": 2068
+    },
+    {
+      "path": "docs/execution/STAGES.md",
+      "sha256": "d46b50ff6423316b83c9fa3039da1a822f06ac6f2b2f80a60a11a22bee7a470f",
+      "bytes": 4152
+    },
+    {
+      "path": "docs/execution/TRACKER.md",
+      "sha256": "4be54a410c43fcf2c144ca66f239ec3ba7a7b0816926bde845a2d0481b10c3ea",
+      "bytes": 2694
+    },
+    {
+      "path": "docs/execution/policy.json",
+      "sha256": "9013a571449c92f7d9509b9cd4266aa6a3aa4948eaa637ec56247e3fc68133ec",
+      "bytes": 490
+    },
+    {
+      "path": "docs/execution/stages.json",
+      "sha256": "6daa748c0d60d8bee6c997cb50a5c7d5ddf033e35b3274a4d68a7b31c1231c5e",
+      "bytes": 2888
+    },
+    {
+      "path": "docs/hardening/ACCEPTANCE-35.md",
+      "sha256": "c3db7642255249005eea7b56c5f6c2857df9a6551f46a1a471efbb182a5ad61f",
+      "bytes": 4454
+    },
+    {
+      "path": "docs/hardening/ARCHITECTURE.md",
+      "sha256": "8abac48a13897a9b480cb398b5571a38e2775829e7106ae31eeccb7aeb2fd25a",
+      "bytes": 5362
+    },
+    {
+      "path": "docs/hardening/CODEX-STAGES.md",
+      "sha256": "b10cfb4e3ecdfabebc2e7b1c3e9b51fb6916fe1be985c79bf288bd4b5277263c",
+      "bytes": 4166
+    },
+    {
+      "path": "docs/hardening/CONTRACT-ALIGNMENT.md",
+      "sha256": "75a34f324bd995da46132e72a5f5a35fe1f381d5d33410cbb26e2fdb97926198",
+      "bytes": 3609
+    },
+    {
+      "path": "docs/hardening/REPORT.md",
+      "sha256": "b81dd9603210aac491982364408e62b39bf00d9e014778d48ab68933d7130324",
+      "bytes": 7772
+    },
+    {
+      "path": "docs/hardening/SECURITY-LICENSE.md",
+      "sha256": "8f1995453165e33e83e53a7e072e02dd43c7cf0192654c40d0890d4c0d4b2fe4",
+      "bytes": 4888
+    },
+    {
+      "path": "docs/hardening/acceptance-35.json",
+      "sha256": "657735802ac2f704821251b1623c9b0ab403f5fbd0248208c1db8ef54bd9cc67",
+      "bytes": 13159
+    },
+    {
+      "path": "docs/hardening/evidence/accounting-envelope-example.json",
+      "sha256": "5a49961a892e8a5088b7d895d0a8005e20141fd8c2ed0b8415ba442b5d76ddc2",
+      "bytes": 560
+    },
+    {
+      "path": "docs/hardening/evidence/accounting-envelope-source.json",
+      "sha256": "ccf0e2e8fb1ed907b50dd7e87bab8a73478c301a8a6be7f808324b887c55f2f3",
+      "bytes": 1602
+    },
+    {
+      "path": "docs/hardening/evidence/accounting-envelope-validation.json",
+      "sha256": "59cc92d9513e9bfba3b90190df60b3c3be1b5b4c30081ef8cb2c86cb56ac00d9",
+      "bytes": 128
+    },
+    {
+      "path": "docs/hardening/evidence/actual-workspace-inventory.json.gz",
+      "sha256": "be04448f8576d3027dfc4243ab929ff0f3032a39f1133dde58686149fb9c3dc6",
+      "bytes": 260147
+    },
+    {
+      "path": "docs/hardening/evidence/asset-retry.json",
+      "sha256": "9991ea27470c2d4f3cac509870d16d761c28cca1f4e9448b9fe9e5e320f5a52b",
+      "bytes": 257
+    },
+    {
+      "path": "docs/hardening/evidence/audit-summary.json",
+      "sha256": "3a1ddfae7d9dfc01a8ee1f7c5c7feafc2719f4a9555d1aaa7e15ae8095e6a15b",
+      "bytes": 610
+    },
+    {
+      "path": "docs/hardening/evidence/backend-plan-audit-overrides.json.gz",
+      "sha256": "f0184e6c5e9dcf833325e978f0467823c9f1d8e9ef2818bca42d01cb98a274cc",
+      "bytes": 4218
+    },
+    {
+      "path": "docs/hardening/evidence/backend-plan-package-lock.json.gz",
+      "sha256": "3363b536a568807f37eb688af206ba19cdeba5edb312bab55cd8f932f96fb3d3",
+      "bytes": 120659
+    },
+    {
+      "path": "docs/hardening/evidence/backend-plan-package.json.gz",
+      "sha256": "bfd8f4fde2d431cc3f9196099830f45dbb02bdef6632767036e11eeac521ff0e",
+      "bytes": 256
+    },
+    {
+      "path": "docs/hardening/evidence/backend-sbom-summary.json",
+      "sha256": "2b9d76f3a022ce4fcc4d9ee2998e3dca7c3482bb4bd1f5b9122f4db66c11d4d6",
+      "bytes": 228
+    },
+    {
+      "path": "docs/hardening/evidence/backend-sbom.cdx.json.gz",
+      "sha256": "7f9573d90b2a0f705fbe30d54b6ffa13f7984c576c52376ac1abdbd42ffe4926",
+      "bytes": 133043
+    },
+    {
+      "path": "docs/hardening/evidence/blockers.json",
+      "sha256": "74e6a1689beb29f2ee60d47f7ed02761dd48f13013517462b6dff339f7cf06d4",
+      "bytes": 2154
+    },
+    {
+      "path": "docs/hardening/evidence/borvat-candidate-result.json",
+      "sha256": "fe4b38fe06e26ab673885f6a730ad47c1a2531ea2f8b928ef83a164a2603e5a7",
+      "bytes": 415
+    },
+    {
+      "path": "docs/hardening/evidence/foundation-exit.json",
+      "sha256": "445ebbaaf487f293df52dd79dd156f4c7fcd896b6d0d124164e317c2aa0dc8b7",
+      "bytes": 95
+    },
+    {
+      "path": "docs/hardening/evidence/four-overrides-candidate-bun.lock.gz",
+      "sha256": "23852317cb05314adb35196f144602bfc5d05253dad3237ce597f1c97a350e5a",
+      "bytes": 273364
+    },
+    {
+      "path": "docs/hardening/evidence/four-overrides-candidate-package.json.gz",
+      "sha256": "7200f89f9e3f2e60996e4d40b543d7aff8748f5ef9619e8b4862563bf4286c8f",
+      "bytes": 595
+    },
+    {
+      "path": "docs/hardening/evidence/lovable-lint-after-full-format.json.gz",
+      "sha256": "d6114de8413a5ab24b0f3e0318baee41c817fdd4144aa7fc89a5c543b3dcba0e",
+      "bytes": 101602
+    },
+    {
+      "path": "docs/hardening/evidence/mercur-four-overrides-audit.json.gz",
+      "sha256": "c0299b0ac94afea0922439d2ca4aa696acac548b5a052ed9e5674d11eeda7906",
+      "bytes": 7517
+    },
+    {
+      "path": "docs/hardening/evidence/mercur-overrides-audit.json.gz",
+      "sha256": "7f9fceb722365ae3080742184cee42933f2b713f962b92d512e9e32c286b5599",
+      "bytes": 7605
+    },
+    {
+      "path": "docs/hardening/evidence/missing-assets-69.json",
+      "sha256": "4fa2f06e2bc19cbc2464b0b3b59f06a19539756ced6b1bf36f5a0ded67170edd",
+      "bytes": 18249
+    },
+    {
+      "path": "docs/hardening/evidence/payment-audit.json",
+      "sha256": "ed23214523225549805f6ea70d8fd0c3edc7737c563d9fd3ed63c97fa7607713",
+      "bytes": 360
+    },
+    {
+      "path": "docs/hardening/evidence/proxy-published-integrity.json",
+      "sha256": "bb4c2648fda33e578c240805e8b620b06c3c031e22bb3bba760a786ae8493a75",
+      "bytes": 98
+    },
+    {
+      "path": "docs/hardening/evidence/sbom-validation.json",
+      "sha256": "6846683a32a293721ed19945e97b749bc2d5154b5f5fb614d1e9a57ad25d5640",
+      "bytes": 255
+    },
+    {
+      "path": "docs/hardening/evidence/source-pins.json",
+      "sha256": "53cd671dbee9c9acad150df70c3b4d160efa320df5a730608d120098108341b2",
+      "bytes": 900
+    },
+    {
+      "path": "docs/hardening/evidence/tested-three-overrides.bun.lock.gz",
+      "sha256": "22937dcebdcc25ee93d535e9ca05ef2ee80dcea966d770f616e42759f1d43575",
+      "bytes": 265149
+    },
+    {
+      "path": "docs/hardening/evidence/tested-three-overrides.package.json",
+      "sha256": "85323ba3403fc78a2bc7b0fe0a5404ce66a25ec3d1324e4098f96c95c22bb754",
+      "bytes": 1621
+    },
+    {
+      "path": "docs/hardening/evidence/wms-command-source.ts",
+      "sha256": "197e23158e084ba51db248a4676a42bc47d45935dc4578ae6d17ac5ac9ff3e20",
+      "bytes": 2418
+    },
+    {
+      "path": "docs/hardening/logs/foundation-check.txt",
+      "sha256": "274eb72edf8d526681e82dc8e0d964308153e2be3e30420a4da95089414b7dc7",
+      "bytes": 385
+    },
+    {
+      "path": "docs/hardening/logs/foundation-tests.txt",
+      "sha256": "8294c09452badceb0d3bc56631030ed38bcdf8a80d1fc1c5c958484392cb22a3",
+      "bytes": 954
+    },
+    {
+      "path": "docs/hardening/logs/integration-contracts.tap",
+      "sha256": "f1dc1bd7aaff120ee32ae03daa5ac27a565eadd1fef2b1d1940f68f2d33a3855",
+      "bytes": 765
+    },
+    {
+      "path": "docs/hardening/logs/lovable-build-final.txt",
+      "sha256": "b0888122b043d1498e28e859275e1883ef68993f0b54685f735839d3fc8c914e",
+      "bytes": 4748
+    },
+    {
+      "path": "docs/hardening/logs/lovable-buyer-tests-candidate.txt",
+      "sha256": "233c55229a5458b6975297d54a83f3ffc49e432326135b5616a6337888d4c1ac",
+      "bytes": 503
+    },
+    {
+      "path": "docs/hardening/logs/lovable-typecheck-narrow-reader-final.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/hardening/logs/mercur-build-final.log",
+      "sha256": "4d258257002d5ec106ec20097201f18abbfc712459455b2d180a215230ea81d8",
+      "bytes": 3463
+    },
+    {
+      "path": "docs/hardening/logs/mercur-build-overrides.log",
+      "sha256": "7f79514ffa04a7a050239cfa6e4a254eb57e3b4328c4bb8e4bb1e45e24b601e6",
+      "bytes": 3463
+    },
+    {
+      "path": "docs/hardening/logs/native-expanded/command.json",
+      "sha256": "b7b799f6f94a8fc45c3aff35eedeada4ae511e69d70f85c61b6b372db03caf30",
+      "bytes": 1618
+    },
+    {
+      "path": "docs/hardening/logs/native-expanded/exit.json",
+      "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+      "bytes": 16
+    },
+    {
+      "path": "docs/hardening/logs/native-expanded/results.json.gz",
+      "sha256": "8005acf98cc33f20260284301c1bc7e323c6cd65b0c4c58674c43ca96fa220e1",
+      "bytes": 4134
+    },
+    {
+      "path": "docs/hardening/logs/native-expanded/test.log",
+      "sha256": "2d2284c381eecb8ac49b373e2d1b82e85ae3c96b33610518a6474b70cbd3f979",
+      "bytes": 2600
+    },
+    {
+      "path": "docs/hardening/logs/native-four-overrides/command.json",
+      "sha256": "bfe29901cd87cbcdc7b09f0d9d03e81c3fb7945b7be1fbe12c5534eeec24511e",
+      "bytes": 1078
+    },
+    {
+      "path": "docs/hardening/logs/native-four-overrides/exit.json",
+      "sha256": "2618b95f1f6be6bfde8537756f85b83845d039001563135b9d59d817446733eb",
+      "bytes": 16
+    },
+    {
+      "path": "docs/hardening/logs/native-four-overrides/results.json.gz",
+      "sha256": "9ec3ec080bb94f77da739c136c8e836350e2ab706c7afb006b4bf54cc4490b8e",
+      "bytes": 2730
+    },
+    {
+      "path": "docs/hardening/logs/native-four-overrides/test.full.log.gz",
+      "sha256": "2119ad3eb387a54890500e2945eec4b171507adf32e6de6323bf66499ba94836",
+      "bytes": 12973
+    },
+    {
+      "path": "docs/hardening/logs/native-four-overrides/test.log",
+      "sha256": "958d51f8118145a12cbee2672b0b1ccbe1985e3f3dafceeb7f03f949a23372b7",
+      "bytes": 8259
+    },
+    {
+      "path": "docs/hardening/logs/native-overrides/command.json",
+      "sha256": "d9a3b26ceb64e3bc19bc08d4b43dbb377519132e97bb964ddd745c99bba40126",
+      "bytes": 1693
+    },
+    {
+      "path": "docs/hardening/logs/native-overrides/exit.json",
+      "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+      "bytes": 16
+    },
+    {
+      "path": "docs/hardening/logs/native-overrides/results.json.gz",
+      "sha256": "b1d067a4bc0c0f358498af98beaa588a5de074a6a68ccfb1bf24a28898923445",
+      "bytes": 4563
+    },
+    {
+      "path": "docs/hardening/logs/native-overrides/test.log",
+      "sha256": "e42804aeb7adb15709ba639747ae3e2110cd5942c4a4e159640e268790eb2327",
+      "bytes": 2636
+    },
+    {
+      "path": "docs/hardening/logs/native-own/command.json",
+      "sha256": "914cf8db43005b7bf582fa4cf69e5d1e3b40178f2c515078af3c3be04ea1b938",
+      "bytes": 871
+    },
+    {
+      "path": "docs/hardening/logs/native-own/exit.json",
+      "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+      "bytes": 16
+    },
+    {
+      "path": "docs/hardening/logs/native-own/results.json.gz",
+      "sha256": "c88869a14b48b6d6685d01ba46cd13468dedb1290d2d672431052f46586b1879",
+      "bytes": 886
+    },
+    {
+      "path": "docs/hardening/logs/native-own/test.full.log.gz",
+      "sha256": "e7db5bbd5fc39d2a5f9b27faa70462eb2d07ba33ebda60db7e3e0b4cd1e9c0b7",
+      "bytes": 5458
+    },
+    {
+      "path": "docs/hardening/logs/native-own/test.log",
+      "sha256": "34a7ae616b961de1d72f9ef15f5d29c5445f155ea78fe11a1dd712a472c58e82",
+      "bytes": 5984
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap-overrides/command.json",
+      "sha256": "d949de8fbd5d11f2e3998ae1b11b97dada079115b1f332dac9fd0f5d4656ebe4",
+      "bytes": 912
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap-overrides/exit.json",
+      "sha256": "2618b95f1f6be6bfde8537756f85b83845d039001563135b9d59d817446733eb",
+      "bytes": 16
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap-overrides/results.json.gz",
+      "sha256": "324b60dc5b4779f597c4db4a4f92f98d622ed4d32caa0bc9e8df3bea9145af27",
+      "bytes": 1006
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap-overrides/test.full.log.gz",
+      "sha256": "37bba0f95d7bdba1e5eb01d0a115b5d9ed989da3abd84af575f94951a43419cb",
+      "bytes": 5850
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap-overrides/test.log",
+      "sha256": "2f15959a5ab2fa3f04df340f61cebe81e702fb30bd64ea0ac05ab2b893ebb126",
+      "bytes": 10702
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap/command.json",
+      "sha256": "3a0aef77b0560777a0be470b2fe2a0bd8fb5457b905da6c2d3aad31ed28562c8",
+      "bytes": 902
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap/exit.json",
+      "sha256": "2618b95f1f6be6bfde8537756f85b83845d039001563135b9d59d817446733eb",
+      "bytes": 16
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap/results.json.gz",
+      "sha256": "177ad25c165e9a6d383239930fdaecc7807126d5fe13eb91b390a6aa4513bdca",
+      "bytes": 1005
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap/test.full.log.gz",
+      "sha256": "548c254b3292b8d76a6ca854b86d85f081200d97e77de82d49c52161cfa193c9",
+      "bytes": 5826
+    },
+    {
+      "path": "docs/hardening/logs/native-payout-gap/test.log",
+      "sha256": "492665784bab8054341da878857f7ca20e6ae9194028360dbe9044a618cb7dfa",
+      "bytes": 10676
+    },
+    {
+      "path": "docs/hardening/logs/payment/exit.json",
+      "sha256": "ed35d244fcb9fb0a72cbf3eb21e5d7937b61662cd0f32477df0418ee773eb78b",
+      "bytes": 214
+    },
+    {
+      "path": "docs/hardening/logs/payment/restore.json",
+      "sha256": "a3fae7743773a0c54d7ba8e32ec8612080f4555466966e4b2c1dda6371df4e25",
+      "bytes": 491
+    },
+    {
+      "path": "docs/hardening/logs/payment/test.tap",
+      "sha256": "3fa4de34caa67da90d4ad30aa8a6059edffa137c6f76ff0b7efcc3651c0b5f47",
+      "bytes": 2200
+    },
+    {
+      "path": "docs/hardening/logs/proxy-frozen-install.log",
+      "sha256": "c3aa3b79e8e2678d75b07f38e3c83f864bfa609820fd09cb9f29aba07f30f886",
+      "bytes": 62
+    },
+    {
+      "path": "docs/hardening/logs/proxy-regression.txt",
+      "sha256": "536d0b4d500a0268d357af3083a9356650b6fceba2923b952372583d6370b928",
+      "bytes": 187
+    },
+    {
+      "path": "docs/hardening/logs/source-parity.txt",
+      "sha256": "9484619fd384fed9f7ae16de9c4ec45eb6e38b4d499bb09731d653de430b3a9a",
+      "bytes": 287
+    },
+    {
+      "path": "docs/hardening/logs/stage-status.txt",
+      "sha256": "26cf5caf6c9b63cafad9c0838a56781236fea092aae6e4f21da121878058e287",
+      "bytes": 304
+    },
+    {
+      "path": "experiments/mercur-hardening/README.md",
+      "sha256": "d12ab0bb7e0b46075a2e851e9acc267486ae806f5b0e46f5bbfc27159e06180e",
+      "bytes": 2739
+    },
+    {
+      "path": "experiments/mercur-hardening/borvat/buyer-account-typecheck-candidate.patch",
+      "sha256": "f4541ccf3072915dd8d6d6b84d6a0248a0fa033aee49d3f1548f6ddbd0c5bd37",
+      "bytes": 1053
+    },
+    {
+      "path": "experiments/mercur-hardening/contracts/adapters.mjs",
+      "sha256": "706b14ddb3b54e48f52c8f01a893f354bca1425d7054a956eb9d1ddf7171ad4c",
+      "bytes": 1657
+    },
+    {
+      "path": "experiments/mercur-hardening/contracts/adapters.test.mjs",
+      "sha256": "62c70341b546fa5aa650edc64cd4c2c5c57ba3d9454c288aa7b89c69857c117a",
+      "bytes": 2746
+    },
+    {
+      "path": "experiments/mercur-hardening/native/hardening.spec.ts",
+      "sha256": "f2d30da45db9756a43ffca606577b7d254dae8e3cd03715c15423ce3c2486c33",
+      "bytes": 4570
+    },
+    {
+      "path": "experiments/mercur-hardening/native/payout-durability-gap.spec.ts",
+      "sha256": "6865fe52e4fdb215f453cc3709b7da85838533e5045058ba4a3ae6f255546f6f",
+      "bytes": 1492
+    },
+    {
+      "path": "experiments/mercur-hardening/package-lock.json",
+      "sha256": "4aede84baabc24aae0ac2a4c55013e1e3c379bb76a09a208e08aec14d679855b",
+      "bytes": 5686
+    },
+    {
+      "path": "experiments/mercur-hardening/package.json",
+      "sha256": "74441f324254422fc0fcfcfd847d5ab59bf0990d34c99d3695224066c2c1c383",
+      "bytes": 310
+    },
+    {
+      "path": "experiments/mercur-hardening/payment/crash-worker.mjs",
+      "sha256": "205753d90166881c95cde760565e619f2191ac2af51bdf8983b9c3d0982745e9",
+      "bytes": 344
+    },
+    {
+      "path": "experiments/mercur-hardening/payment/durability.test.mjs",
+      "sha256": "348bbd8ecbf419c1f77df77f499b37b3f164316e6be9876746127c355b9ab173",
+      "bytes": 11355
+    },
+    {
+      "path": "experiments/mercur-hardening/payment/restore-proof.mjs",
+      "sha256": "631bd213e31247ca007c9434eb8e2a551cf4d5c560d55af47cb6193ace4f06a7",
+      "bytes": 3884
+    },
+    {
+      "path": "experiments/mercur-hardening/payment/schema.sql",
+      "sha256": "99c13646f89e2e3a186b6ea498bf80daf88752e9c6cb492f1fc4f391481fb68b",
+      "bytes": 4887
+    },
+    {
+      "path": "experiments/mercur-hardening/payment/service.mjs",
+      "sha256": "d6d498e65eafe2a20d6319c0df0b0e0160097137c7319f68f8ba3d5847dafb82",
+      "bytes": 6544
+    },
+    {
+      "path": "experiments/mercur-hardening/reproduction/build-hardening-final.py",
+      "sha256": "eaac01cfac735a92e9d4e20256bf05cd71f4f73a16e4aab0d0e4de553a8ea8dc",
+      "bytes": 938
+    },
+    {
+      "path": "experiments/mercur-hardening/reproduction/build-hardening-overrides.py",
+      "sha256": "727cf678b9606d4411f218de1fab2fe122149efc8329c63b0b580da322eb34d7",
+      "bytes": 942
+    },
+    {
+      "path": "experiments/mercur-hardening/reproduction/run-hardening-four.py",
+      "sha256": "58e343829d6c46f9867bb2e09e2c97f03962c210de1cfb4529c789e2d22033f8",
+      "bytes": 3364
+    },
+    {
+      "path": "experiments/mercur-hardening/reproduction/run-hardening-native.py",
+      "sha256": "03a06f06d5356af21991f21534eca07336785120e9d87e82212969fe0121f3f7",
+      "bytes": 3593
+    },
+    {
+      "path": "experiments/mercur-hardening/reproduction/run-hardening-overrides.py",
+      "sha256": "583ca1b4c2dbfcee3a72f9b4791167081743db085e2ff8dcc94cab780be36d41",
+      "bytes": 3629
+    },
+    {
+      "path": "experiments/mercur-hardening/reproduction/run-hardening-own.py",
+      "sha256": "47a3a71b946c0e22e2cfdcb39a95697cb460306234b3b97a12c49875df0b46c8",
+      "bytes": 3254
+    },
+    {
+      "path": "experiments/mercur-hardening/reproduction/run-hardening-payment.py",
+      "sha256": "cc8a8f00465798bb4cbaa3c748e04e60a28221455bd6aee796d2f0011ca0e124",
+      "bytes": 3353
+    },
+    {
+      "path": "experiments/mercur-hardening/reproduction/uid-test.c",
+      "sha256": "9e1de5d729d3aa9c26553338f8b9c53dbb4147b0c8c88bc147a1d213d9c5cc73",
+      "bytes": 270
+    },
+    {
+      "path": "tests/foundation/gate.test.mjs",
+      "sha256": "a20b14b633c9b21399f855f908f86b2dee62d72066a7196095546fd5a17eafeb",
+      "bytes": 3139
+    }
+  ]
+}

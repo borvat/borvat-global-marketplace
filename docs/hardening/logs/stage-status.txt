@@ -1,0 +1,13 @@
+
+> stage:status
+> node scripts/foundation/gate.mjs C1
+
+{
+  "eligible": false,
+  "reasons": [
+    "OWNER_AUTHORIZATION_ABSENT",
+    "FOUNDATION_DECISION_NOT_APPROVED",
+    "MISSING_STAGE_OR_EVIDENCE"
+  ]
+}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.

@@ -1,0 +1,126 @@
+EVIDENCE EXCERPT: full original log in test.full.log.gz; line numbers retained.
+1:   console.warn
+2:     apply-product-change-actions: "when" name should be defined. A random one will be assigned to it, which is not recommended for production.
+3:      ({ buckets })=>buckets.productsToDelete.length > 0
+4: 
+5:       278 |       { buckets },
+6:       279 |       ({ buckets }) => buckets.productsToDelete.length > 0,
+7:     > 280 |     ).then(() => {
+8:           |       ^
+9:       281 |       const { data: productOffers } = useQueryGraphStep({
+10:       282 |         entity: "offer",
+11:       283 |         fields: ["id"],
+12: 
+13:       at Object.then (../node_modules/.bun/@medusajs+workflows-sdk@2.21.2+70882bbb1846fe7b/node_modules/@medusajs/workflows-sdk/src/utils/composer/when.ts:128:19)
+14:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/apply-product-change-actions.ts:280:7)
+15:       at createWorkflow (../node_modules/.bun/@medusajs+workflows-sdk@2.21.2+70882bbb1846fe7b/node_modules/@medusajs/workflows-sdk/src/utils/composer/create-workflow.ts:170:33)
+16:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/apply-product-change-actions.ts:69:5)
+17:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/confirm-product-change.ts:20:1)
+18:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/index.ts:2:1)
+19:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/index.ts:3:1)
+20:       at Object.<anonymous> (../packages/core/src/workflows/index.ts:21:1)
+21:       at Object.<anonymous> (helpers/create-seller-user.ts:21:20)
+22:       at Object.<anonymous> (http/borvat/hardening.spec.ts:7:27)
+23: 
+24: (node:36) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+25: (Use `node --trace-warnings ...` to show where the warning was created)
+755: 
+756:   console.log
+757:     Connection Error: Connection ended unexpectedly
+758: 
+759:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+760: 
+761:   console.log
+762:     Connection Error: Connection ended unexpectedly
+763: 
+764:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+765: 
+766:   console.log
+767:     Connection Error: Connection ended unexpectedly
+768: 
+769:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+770: 
+771:   console.log
+772:     Connection Error: Connection ended unexpectedly
+773: 
+774:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+775: 
+776:   console.log
+777:     Connection Error: Connection ended unexpectedly
+778: 
+779:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+780: 
+781:   console.log
+782:     Connection Error: Connection ended unexpectedly
+783: 
+784:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+785: 
+786:   console.log
+787:     Connection Error: Connection ended unexpectedly
+788: 
+789:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+790: 
+791:   console.log
+792:     Connection Error: Connection ended unexpectedly
+793: 
+794:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+795: 
+796:   console.log
+797:     Connection Error: Connection ended unexpectedly
+798: 
+799:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+800: 
+801:   console.log
+802:     Connection Error: Connection ended unexpectedly
+803: 
+804:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+805: 
+806:   console.log
+807:     Connection Error: Connection ended unexpectedly
+808: 
+809:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+810: 
+811:   console.log
+812:     Connection Error: Connection ended unexpectedly
+813: 
+814:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+815: 
+816:   console.log
+817:     Connection Error: Connection ended unexpectedly
+818: 
+819:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+820: 
+821:   console.log
+822:     Connection Error: Connection ended unexpectedly
+823: 
+824:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+825: 
+826:   console.log
+827:     Connection Error: Connection ended unexpectedly
+828: 
+829:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+830: 
+831:   console.log
+832:     Connection Error: Connection ended unexpectedly
+833: 
+834:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+835: 
+836: {"level":"info","message":"Seller with id: sel_01M5G8EMNBGMEV8FNTZ3AP8RZZ was not found","timestamp":"2026-10-21 18:14:03"}
+837:   console.log
+838:     Connection Error: Connection ended unexpectedly
+839: 
+840:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+841: 
+842:   console.log
+843:     Connection Error: Connection ended unexpectedly
+844: 
+845:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+846: 
+847: {"level":"info","message":"Seller with id: sel_01M5G8EMXEH7S5C53C9R9JEXAM was not found","timestamp":"2026-10-21 18:14:03"}
+848: Test Suites: 1 passed, 1 total
+849: Tests:       11 passed, 11 total
+850: Snapshots:   0 total
+851: Time:        15.35 s
+852: Ran all test suites within paths "http/borvat/hardening.spec.ts".
+853: Test results written to: ../../hardening/native-own/results.json
+854: Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

@@ -1,0 +1,444 @@
+{
+  "note": "All complete BORVAT acceptance journeys remain NOT_RUN; component evidence is not a substitute. FAIL denotes an observed relevant native financial counterexample.",
+  "cases": [
+    {
+      "id": "A01",
+      "area": "Auth",
+      "stage": "C1",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Native customer/member actor probes only; full verification/reset/session UI not run",
+      "required_evidence": [
+        "UI trace",
+        "auth provider status",
+        "API denies"
+      ]
+    },
+    {
+      "id": "A02",
+      "area": "Isolation",
+      "stage": "C1",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Native HTTP seller/buyer boundaries and proof-schema RLS; full RPC/MCP/file/report/job matrix absent",
+      "required_evidence": [
+        "HTTP deny results",
+        "DB audit",
+        "no row delta"
+      ]
+    },
+    {
+      "id": "A03",
+      "area": "Seller KYB",
+      "stage": "C2",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "separate JWT role sessions",
+        "application audit trail"
+      ]
+    },
+    {
+      "id": "A04",
+      "area": "Legacy bypass",
+      "stage": "C1",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "catalog ACL+policies",
+        "negative real HTTP probes"
+      ]
+    },
+    {
+      "id": "A05",
+      "area": "Status integrity",
+      "stage": "C1",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "unit regression F04",
+        "server validation result"
+      ]
+    },
+    {
+      "id": "A06",
+      "area": "Catalog",
+      "stage": "C2",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "catalog records",
+        "admin dedup decision"
+      ]
+    },
+    {
+      "id": "A07",
+      "area": "Safety",
+      "stage": "C2",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "publication reject",
+        "notice queue",
+        "recall drill"
+      ]
+    },
+    {
+      "id": "A08",
+      "area": "Publication",
+      "stage": "C2",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "provider sandbox capability",
+        "offer API results"
+      ]
+    },
+    {
+      "id": "A09",
+      "area": "Quote",
+      "stage": "C3",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Native offer price/quantity tests only; accepted quote full UI not proven",
+      "required_evidence": [
+        "request/response",
+        "snapshot totals"
+      ]
+    },
+    {
+      "id": "A10",
+      "area": "Payments",
+      "stage": "C4",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "FAIL",
+      "evidence_note": "H06 native payout loses recovery row; separate Surooh P01-P24 are not native wiring",
+      "required_evidence": [
+        "provider sandbox object IDs",
+        "signed event and DB effect"
+      ]
+    },
+    {
+      "id": "A11",
+      "area": "Concurrency",
+      "stage": "C3",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Proof queue/worker concurrency and earlier core last-unit test; native simultaneous order race not run",
+      "required_evidence": [
+        "parallel test log",
+        "warehouse balance",
+        "payment intents"
+      ]
+    },
+    {
+      "id": "A12",
+      "area": "Idempotency",
+      "stage": "C4",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Proof idempotent intent and native capture replay; complete checkout retry chain absent",
+      "required_evidence": [
+        "provider query",
+        "outbox/inbox records"
+      ]
+    },
+    {
+      "id": "A13",
+      "area": "Reservation expiry",
+      "stage": "C4",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "event ordering trace",
+        "inventory",
+        "provider refund"
+      ]
+    },
+    {
+      "id": "A14",
+      "area": "Webhook",
+      "stage": "C4",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Proof HMAC/timestamp/inbox cases; real provider signature protocol not exercised",
+      "required_evidence": [
+        "raw signature test result redacted",
+        "inbox count",
+        "money totals"
+      ]
+    },
+    {
+      "id": "A15",
+      "area": "Audit",
+      "stage": "C1",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Proof append-only events; complete admin/native audit coverage absent",
+      "required_evidence": [
+        "fault injection",
+        "DB rollback",
+        "provider call count"
+      ]
+    },
+    {
+      "id": "A16",
+      "area": "Cancellation",
+      "stage": "C4",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Native cancel/refund allocation component tests; full UI/provider path absent",
+      "required_evidence": [
+        "parallel transaction logs",
+        "PSP balance"
+      ]
+    },
+    {
+      "id": "A17",
+      "area": "Shipping price",
+      "stage": "C3",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "quote snapshots",
+        "delivery rules"
+      ]
+    },
+    {
+      "id": "A18",
+      "area": "Fulfilment",
+      "stage": "C5",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Native fulfillment/stock components; WMS gateway not connected",
+      "required_evidence": [
+        "warehouse adapter trace",
+        "UI status",
+        "shipment events"
+      ]
+    },
+    {
+      "id": "A19",
+      "area": "Withdrawal",
+      "stage": "C5",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "buyer trace",
+        "captured mailbox",
+        "return state"
+      ]
+    },
+    {
+      "id": "A20",
+      "area": "Partial return",
+      "stage": "C5",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Native return scoping/restock components; consumer workflow not E2E",
+      "required_evidence": [
+        "cent-level ledger",
+        "provider refund",
+        "inventory delta"
+      ]
+    },
+    {
+      "id": "A21",
+      "area": "Refund after payout",
+      "stage": "C4",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "provider scenario or declared inability",
+        "finance case"
+      ]
+    },
+    {
+      "id": "A22",
+      "area": "Commission",
+      "stage": "C4",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Earlier native commission component tests; Accounting posting absent",
+      "required_evidence": [
+        "independent calculation fixtures",
+        "original/credit documents"
+      ]
+    },
+    {
+      "id": "A23",
+      "area": "Accounting outage",
+      "stage": "C5",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Pure accounting contract and durable pending state design; actual outage integration absent",
+      "required_evidence": [
+        "outbox/DLQ",
+        "adapter dedup",
+        "doc IDs"
+      ]
+    },
+    {
+      "id": "A24",
+      "area": "Reconciliation",
+      "stage": "C4",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "FAIL",
+      "evidence_note": "H06 recovery failure; Surooh proof restores its own state only",
+      "required_evidence": [
+        "independent provider totals",
+        "statement lines",
+        "variance"
+      ]
+    },
+    {
+      "id": "A25",
+      "area": "Dependency failure",
+      "stage": "C3",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Proof provider outage/restart; cross-system outage chain absent",
+      "required_evidence": [
+        "fault logs",
+        "PSP request count"
+      ]
+    },
+    {
+      "id": "A26",
+      "area": "Privacy",
+      "stage": "C5",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "rights report",
+        "signed URL denial",
+        "retention audit"
+      ]
+    },
+    {
+      "id": "A27",
+      "area": "Reviews",
+      "stage": "C2",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "review rows",
+        "audit",
+        "public projection"
+      ]
+    },
+    {
+      "id": "A28",
+      "area": "SAM",
+      "stage": "C1",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "SAM allowlisted projection only; real SAM tool boundary not run",
+      "required_evidence": [
+        "MCP/API denial",
+        "audit"
+      ]
+    },
+    {
+      "id": "A29",
+      "area": "ACL drift",
+      "stage": "C1",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Default-native/trusted service gaps observed; persisted authorization/ACL drift suite absent",
+      "required_evidence": [
+        "catalog snapshot",
+        "gate logs",
+        "migration hashes"
+      ]
+    },
+    {
+      "id": "A30",
+      "area": "Disputes",
+      "stage": "C5",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "case trail",
+        "role denial",
+        "resolution record"
+      ]
+    },
+    {
+      "id": "A31",
+      "area": "Upload security",
+      "stage": "C1",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "storage policy probes",
+        "scan result"
+      ]
+    },
+    {
+      "id": "A32",
+      "area": "Portability",
+      "stage": "C2",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "499 text files match; 69 binaries missing and app build fails",
+      "required_evidence": [
+        "workflow trace",
+        "code/schema diff"
+      ]
+    },
+    {
+      "id": "A33",
+      "area": "Load/restore",
+      "stage": "C6",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "PARTIAL",
+      "evidence_note": "Proof logical backup/restore only; no full native/PITR/load proof",
+      "required_evidence": [
+        "load report",
+        "restore timestamps",
+        "reconciliation"
+      ]
+    },
+    {
+      "id": "A34",
+      "area": "Full journey",
+      "stage": "C6",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "UI trace",
+        "DB snapshots",
+        "PSP refs",
+        "Warehouse/Accounting adapter identity"
+      ]
+    },
+    {
+      "id": "A35",
+      "area": "DAC7",
+      "stage": "C6",
+      "end_to_end_status": "NOT_RUN",
+      "component_status": "NOT_RUN",
+      "evidence_note": "No complete new execution evidence for this scenario; original requirements remain",
+      "required_evidence": [
+        "deterministic threshold cases",
+        "scoped export/correction"
+      ]
+    }
+  ]
+}

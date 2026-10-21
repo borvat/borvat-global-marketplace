@@ -14,3 +14,5 @@ test('missing and malformed evidence fail closed',()=>{assert.equal(evaluateGate
 test('offline complete proposal is inspection only and does not mutate policy',()=>{const copy=structuredClone(policy);assert.equal(evaluateGate(copy,stage,receipt()).eligible,true);assert.deepEqual(copy,policy);});
 
 test('Codex authorization alone cannot bypass an unapproved foundation decision',()=>{for(const value of [false,undefined]){const r=evaluateGate({...policy,foundation_decision_approved:value},stage,receipt());assert.equal(r.eligible,false);assert.ok(r.reasons.includes('FOUNDATION_DECISION_NOT_APPROVED'));}});
+
+test('preferred candidate and research acceptance do not authorize implementation',()=>{const r=evaluateGate({...policy,research_results_accepted:true,candidate_design_accepted:true,foundation_decision_approved:false,codex_execution_authorized:false,advancement_enabled:false},stage,receipt());assert.equal(r.eligible,false);assert.ok(r.reasons.includes('OWNER_AUTHORIZATION_ABSENT'));assert.ok(r.reasons.includes('FOUNDATION_DECISION_NOT_APPROVED'));});

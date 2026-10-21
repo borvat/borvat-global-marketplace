@@ -1,0 +1,22 @@
+{
+  "scope": "Full experimental Bun workspace scanner results; not deployment-image reachability",
+  "unique_advisory_urls_by_severity": {
+    "high": 43,
+    "low": 10,
+    "moderate": 43,
+    "critical": 2
+  },
+  "installed_resolution_counterexample": "H07 actual Framework Express loads proxy-addr 2.0.7 despite candidate lock 2.0.8; scanner closure rejected",
+  "three_overrides_native_tests": {
+    "passed": 86,
+    "skipped": 2
+  },
+  "four_overrides_diagnostic": {
+    "passed": 24,
+    "failed": 2,
+    "failures": [
+      "H06 payout deletion",
+      "H07 vulnerable installed resolution"
+    ]
+  }
+}

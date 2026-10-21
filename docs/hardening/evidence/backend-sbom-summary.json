@@ -1,0 +1,6 @@
+{
+  "components": 1124,
+  "dependency_nodes": 1125,
+  "unresolved_optional_or_platform_dependencies": [],
+  "scope": "resolved npm backend plan, not deployed image; npm sbom rejected peer constraints, explicit conversion used"
+}

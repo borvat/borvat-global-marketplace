@@ -1,0 +1,22 @@
+
+> test:foundation
+> node --test tests/foundation/*.test.mjs
+
+✔ owner hold denies even otherwise complete evidence (1.468093ms)
+✔ changed SHA invalidates approval and acceptance evidence (0.18589ms)
+✔ failed or not-run evidence cannot unlock next stage (0.15312ms)
+✔ missing prerequisite and open critical finding block (0.306131ms)
+✔ forbidden merge/deploy/money policy always denied (0.226832ms)
+✔ missing and malformed evidence fail closed (0.264178ms)
+✔ offline complete proposal is inspection only and does not mutate policy (0.954418ms)
+✔ Codex authorization alone cannot bypass an unapproved foundation decision (0.13938ms)
+✔ preferred candidate and research acceptance do not authorize implementation (0.262856ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 102.841969
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.

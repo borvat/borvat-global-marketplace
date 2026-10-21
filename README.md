@@ -34,3 +34,7 @@ Start with [current evidence](docs/readiness/REPORT.md), [module map](docs/archi
 ## Independent OSS evaluation
 
 See [evaluation and test evidence](docs/oss-evaluation/README.md), [proposed ADR-005](docs/architecture/ADR-005-oss-foundation-selection.md) and [conditional phase plan](docs/execution/OSS-REVISED-PLAN.md). Option 1 (Mercur + Surooh extensions) is recommended, not adopted. Independent PostgreSQL verification of the archived core now passes 37 tests, while a separate injected post-capture failure exposes a durability gap. Original source and production remain unchanged. Foundation decision and Codex authorization are separate, both pending.
+
+## Mercur hardening — review pending
+
+[Hardening results and blockers](docs/hardening/REPORT.md), [security and licenses](docs/hardening/SECURITY-LICENSE.md), [35 scenario statuses](docs/hardening/ACCEPTANCE-35.md), and [C0–C6 execution instructions](docs/hardening/CODEX-STAGES.md). Mercur is the accepted design candidate only. Native payment recovery and installed dependency tests fail; no final foundation acceptance, Codex execution, merge or deployment is authorized.

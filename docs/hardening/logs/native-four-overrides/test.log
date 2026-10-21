@@ -1,0 +1,159 @@
+EVIDENCE EXCERPT: full original log in test.full.log.gz; line numbers retained.
+1: (node:224) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+2: (Use `node --trace-warnings ...` to show where the warning was created)
+3: FAIL http/borvat/payout-durability-gap.spec.ts (14.542 s)
+4:   ● Console
+5: 
+6:     console.warn
+7:       apply-product-change-actions: "when" name should be defined. A random one will be assigned to it, which is not recommended for production.
+8:        ({ buckets })=>buckets.productsToDelete.length > 0
+9: 
+10:       278 |       { buckets },
+11:       279 |       ({ buckets }) => buckets.productsToDelete.length > 0,
+12:     > 280 |     ).then(() => {
+13:           |       ^
+14:       281 |       const { data: productOffers } = useQueryGraphStep({
+15:       282 |         entity: "offer",
+16:       283 |         fields: ["id"],
+17: 
+18:       at Object.then (../node_modules/.bun/@medusajs+workflows-sdk@2.21.2+70882bbb1846fe7b/node_modules/@medusajs/workflows-sdk/src/utils/composer/when.ts:128:19)
+19:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/apply-product-change-actions.ts:280:7)
+20:       at createWorkflow (../node_modules/.bun/@medusajs+workflows-sdk@2.21.2+70882bbb1846fe7b/node_modules/@medusajs/workflows-sdk/src/utils/composer/create-workflow.ts:170:33)
+21:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/apply-product-change-actions.ts:69:5)
+22:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/confirm-product-change.ts:20:1)
+23:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/index.ts:2:1)
+24:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/index.ts:3:1)
+25:       at Object.<anonymous> (../packages/core/src/workflows/index.ts:21:1)
+4088:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+4089: 
+4090:     console.log
+4091:       NATIVE_PAYOUT_DURABILITY_EVIDENCE {"simulated_provider_effects":1,"durable_payout_rows":0,"real_payments":false}
+4092: 
+4093:       at Object.log (http/borvat/payout-durability-gap.spec.ts:14:12)
+4094: 
+4095:   ●  › H06 native payout must retain durable recovery row after committed provider effect and lost response
+4096: 
+4097:     expect(received).toBeGreaterThan(expected)
+4098: 
+4099:     Expected: > 0
+4100:     Received:   0
+4101: 
+4102:       13 |    const rows=await service.listPayouts({account_id:account.id},{withDeleted:true});
+4103:       14 |    console.log('NATIVE_PAYOUT_DURABILITY_EVIDENCE',JSON.stringify({simulated_provider_effects:effects.length,durable_payout_rows:rows.length,real_payments:false}));
+4104:     > 15 |    expect(effects).toHaveLength(1);expect(rows.length).toBeGreaterThan(0);
+4105:          |                                                        ^
+4106:       16 |   }finally{spy.mockRestore()}
+4107:       17 |  })
+4108:       18 | }})
+4109: 
+4110:       at Object.toBeGreaterThan (http/borvat/payout-durability-gap.spec.ts:15:56)
+4111: 
+4112: (node:224) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+4113: FAIL http/borvat/hardening.spec.ts (14.16 s)
+4114:   ● Console
+4115: 
+4116:     console.warn
+4117:       apply-product-change-actions: "when" name should be defined. A random one will be assigned to it, which is not recommended for production.
+4118:        ({ buckets })=>buckets.productsToDelete.length > 0
+4119: 
+4120:       278 |       { buckets },
+8214: 
+8215:     console.log
+8216:       Connection Error: Connection ended unexpectedly
+8217: 
+8218:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8219: 
+8220:     console.log
+8221:       Connection Error: Connection ended unexpectedly
+8222: 
+8223:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8224: 
+8225:     console.log
+8226:       Connection Error: Connection ended unexpectedly
+8227: 
+8228:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8229: 
+8230:     console.log
+8231:       Connection Error: Connection ended unexpectedly
+8232: 
+8233:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8234: 
+8235:     console.log
+8236:       Connection Error: Connection ended unexpectedly
+8237: 
+8238:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8239: 
+8240:     console.log
+8241:       Connection Error: Connection ended unexpectedly
+8242: 
+8243:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8244: 
+8245:     console.log
+8246:       Connection Error: Connection ended unexpectedly
+8247: 
+8248:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8249: 
+8250:     console.log
+8251:       Connection Error: Connection ended unexpectedly
+8252: 
+8253:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8254: 
+8255:     console.log
+8256:       Connection Error: Connection ended unexpectedly
+8257: 
+8258:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8259: 
+8260:     console.log
+8261:       Connection Error: Connection ended unexpectedly
+8262: 
+8263:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8264: 
+8265:     console.log
+8266:       Connection Error: Connection ended unexpectedly
+8267: 
+8268:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8269: 
+8270:     console.log
+8271:       {"level":"info","message":"Seller with id: sel_01M5G9XJVF3T2ZY7SPS9DNSQBE was not found","timestamp":"2026-10-21 18:39:42"}
+8272: 
+8273:       at Console.log (../node_modules/.bun/winston@3.19.0/node_modules/winston/lib/winston/transports/console.js:87:23)
+8274: 
+8275:     console.log
+8276:       Connection Error: Connection ended unexpectedly
+8277: 
+8278:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8279: 
+8280:     console.log
+8281:       Connection Error: Connection ended unexpectedly
+8282: 
+8283:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+8284: 
+8285:     console.log
+8286:       {"level":"info","message":"Seller with id: sel_01M5G9XK7AEPT7HD12ZGYMWQY1 was not found","timestamp":"2026-10-21 18:39:42"}
+8287: 
+8288:       at Console.log (../node_modules/.bun/winston@3.19.0/node_modules/winston/lib/winston/transports/console.js:87:23)
+8289: 
+8290:   ● H07 actual framework Express resolves fixed proxy-addr and rejects cross-family spoof
+8291: 
+8292:     expect(received).toBe(expected) // Object.is equality
+8293: 
+8294:     Expected: "2.0.8"
+8295:     Received: "2.0.7"
+8296: 
+8297:       52 |  const expressRequire=createRequire(frameworkRequire.resolve('express'));
+8298:       53 |  const proxy=expressRequire('proxy-addr');
+8299:     > 54 |  expect(expressRequire('proxy-addr/package.json').version).toBe('2.0.8');
+8300:          |                                                            ^
+8301:       55 |  expect(proxy.compile('::/1')('203.0.113.7')).toBe(false);
+8302:       56 |  expect(proxy.compile('::/1')('::ffff:203.0.113.7')).toBe(false);
+8303:       57 |  expect(proxy.compile('::/1')('2001:db8::1')).toBe(true);
+8304: 
+8305:       at Object.toBe (http/borvat/hardening.spec.ts:54:60)
+8306: 
+8307: Test Suites: 2 failed, 1 passed, 3 total
+8308: Tests:       2 failed, 24 passed, 26 total
+8309: Snapshots:   0 total
+8310: Time:        102.824 s
+8311: Ran all test suites within paths "http/borvat/hardening.spec.ts", "http/payment/split-order-payments.spec.ts", "http/borvat/payout-durability-gap.spec.ts".
+8312: Test results written to: ../../hardening/native-four-overrides/results.json
+8313: Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

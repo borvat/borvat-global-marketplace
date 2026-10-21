@@ -1,0 +1,351 @@
+{
+  "recovered_this_phase": 0,
+  "missing": [
+    {
+      "source": "docs/owner-review/m1v0b/account_support.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/admin_dashboard.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/admin_orders.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/admin_security.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/borvat-m1v0b-navigation.webm",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_admin_dashboard.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_owner-review.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_seller_manager.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_seller_order-desk.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_support_queue.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/owner-review.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_analysis.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_finances.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_manager.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_messages.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_order-desk.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_shipping.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_cases_case_1001.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_inbox_customers.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_inbox_merchants.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_queue.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/favicon.png",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/beauty.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/boeken.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/elektronica.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/games.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/mode.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/speelgoed.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/sport.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/categories/wonen.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/hero.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/air-purifier.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/book-coding-robot.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/book-smart-living.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/book-sustainable-home.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/cooler-box.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/doorbell.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/drone.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/e-bike.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/earbuds.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/espresso-maker.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/fitness-tracker.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/game-controller.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/gaming-headset.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/indoor-cam.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/ipl-device.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/led-strip.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/mesh-router.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/projector.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/robot-dino.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/robot-vacuum.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/skin-camera.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-hub.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-jumprope.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-kettle.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-lock.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-plug.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-ring.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-scale.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-teddy.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smart-toothbrush.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smartwatch.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/smoke-detector.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/sous-vide.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/stem-kit.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/streaming-stick.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/thermostat.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/uv-band.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    },
+    {
+      "source": "public/images/products/wireless-charger.jpg",
+      "status": "BINARY_NOT_RECOVERED",
+      "reason": "Connector returns lossy decoded text; preview download HTTP 401; published domain HTTP 402; editor browser requires authentication"
+    }
+  ],
+  "reason": "Original preview requires authentication (401); public asset URL 404; connector text replacement is not binary recovery. No placeholders committed."
+}

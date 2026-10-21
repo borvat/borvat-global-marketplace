@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "event_id": "evt_synthetic_1",
+  "event_version": 1,
+  "event_type": "marketplace.fee.invoiced",
+  "company_id": "synthetic-legal-entity-A",
+  "source_system": "borvat-marketplace",
+  "source_ref": "order_1",
+  "occurred_at": "2026-10-22T00:00:00Z",
+  "effective_date": "2026-10-22",
+  "correlation_id": "corr_1",
+  "evidence_refs": [
+    "test://fixture"
+  ],
+  "payload": {
+    "currency": "EUR",
+    "lines": [
+      {
+        "net_minor": "1000",
+        "tax_minor": "210",
+        "gross_minor": "1210"
+      }
+    ]
+  }
+}

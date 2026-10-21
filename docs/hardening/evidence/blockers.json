@@ -1,0 +1,59 @@
+{
+  "final_recommendation": "REJECT_FINAL_ACCEPTANCE_RETAIN_CANDIDATE",
+  "blockers": [
+    {
+      "id": "B01",
+      "status": "FAIL",
+      "description": "Native payout deletes recovery record after ambiguous provider success",
+      "issue": "https://github.com/borvat/borvat-global-marketplace/issues/21"
+    },
+    {
+      "id": "B02",
+      "status": "FAIL",
+      "description": "Actual Framework Express resolves vulnerable proxy-addr 2.0.7 despite lock override",
+      "issue": "https://github.com/borvat/borvat-global-marketplace/issues/18"
+    },
+    {
+      "id": "B03",
+      "status": "OPEN",
+      "description": "Remaining critical/high dependencies and shipped-image/license review",
+      "issue": "https://github.com/borvat/borvat-global-marketplace/issues/18"
+    },
+    {
+      "id": "B04",
+      "status": "PARTIAL",
+      "description": "Native background/privileged service authorization not comprehensively proven",
+      "issue": "https://github.com/borvat/borvat-global-marketplace/issues/18"
+    },
+    {
+      "id": "B05",
+      "status": "BLOCKED",
+      "description": "69 original binary assets unavailable, app build fails",
+      "issue": "https://github.com/borvat/borvat-global-marketplace/issues/13"
+    },
+    {
+      "id": "B06",
+      "status": "PARTIAL",
+      "description": "Type fix passes in sandbox only; original lint/type debt and misleading paid status remain",
+      "issue": "https://github.com/borvat/borvat-global-marketplace/issues/14"
+    },
+    {
+      "id": "B07",
+      "status": "NOT_RUN",
+      "description": "Native Mercur restore/PITR/upgrade/load rehearsal",
+      "issue": "https://github.com/borvat/borvat-global-marketplace/issues/6"
+    },
+    {
+      "id": "B08",
+      "status": "NOT_RUN",
+      "description": "All 35 full E2E cases and actual cross-system adapters",
+      "issue": "https://github.com/borvat/borvat-global-marketplace/issues/6"
+    },
+    {
+      "id": "B09",
+      "status": "HOLD",
+      "description": "Owner final foundation and separate Codex-stage approval absent",
+      "issue": "https://github.com/borvat/borvat-global-marketplace/issues/17"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+(node:35) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:35) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:35) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:35) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:35) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:35) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:35) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:35) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+
+Test Suites: 10 passed, 10 total
+Tests:       2 skipped, 86 passed, 88 total
+Snapshots:   0 total
+Time:        298.788 s
+Ran all test suites within paths "http/borvat/independent.spec.ts", "http/borvat/hardening.spec.ts", "http/inventory/vendor/inventory.spec.ts", "http/customer/vendor/customer.spec.ts", "http/reservations/vendor/reservations.spec.ts", "http/returns/vendor/returns.spec.ts", "http/payment/split-order-payments.spec.ts", "http/offer/cart/cart.spec.ts", "http/offer/order/order.spec.ts", "http/promotions/store/offer-promotion-cart.spec.ts".
+Test results written to: ../../hardening/native-overrides/results.json
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

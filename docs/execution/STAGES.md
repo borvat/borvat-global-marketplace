@@ -17,3 +17,7 @@ For each future issue, implementation instruction: read repository and app AGENT
 ## Proposed foundation revision — not yet authorized
 
 ADR-005 recommends Mercur OSS core plus Surooh extensions following independent prototype execution. The conditional C0–C6 changes, files, acceptance deltas, risks and rollback are in [OSS-REVISED-PLAN.md](OSS-REVISED-PLAN.md). Preserve all original acceptance mappings. The owner must adopt the foundation decision and separately authorize Codex before any implementation.
+
+## Mercur hardening prerequisite
+
+Research/preferred candidate accepted only. See [hardening stage instructions](../hardening/CODEX-STAGES.md), [all 35 scenario status rows](../hardening/ACCEPTANCE-35.md) and [blocking findings](../hardening/REPORT.md). No stage may start or advance from candidate acceptance alone.

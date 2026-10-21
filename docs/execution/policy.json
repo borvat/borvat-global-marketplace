@@ -5,8 +5,11 @@
   "automatic_deployment": false,
   "live_payments": false,
   "production_database_writes": false,
-  "owner_review_status": "PENDING",
+  "owner_review_status": "CANDIDATE_ACCEPTED_FINAL_FOUNDATION_PENDING",
   "advancement_enabled": false,
   "foundation_decision_approved": false,
-  "foundation_decision_adr": "ADR-005"
+  "foundation_decision_adr": "ADR-005",
+  "research_results_accepted": true,
+  "preferred_candidate": "Mercur",
+  "candidate_design_accepted": true
 }

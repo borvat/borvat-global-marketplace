@@ -42,3 +42,9 @@ Before cutover, rollback is simply discarding the isolated candidate branch and 
 ## Owner decision record
 
 Decision: **PENDING**. Accepted option: **none yet**. Approval URL and reviewed commit: **not supplied**. All execution/deployment/payment policies remain false. The offline gate cannot authenticate a human review and never starts an agent.
+
+## Hardening review update — 2026-10-22
+
+The owner accepted the research and Mercur as the first design candidate, explicitly withholding application transfer, Codex, PR merge and production approval. Candidate status is accepted; final foundation status is **NOT APPROVED**. See ../hardening/REPORT.md and ../hardening/ARCHITECTURE.md. Expanded tests prove native API isolation and the opt-in permission hook, but raw services trust privileged callers and native payout H06 loses its recovery row on simulated response loss. A separate durable Surooh proof does not close native financial wiring. Dependency/source/build/restore/contract gaps also remain. Recommendation: retain Mercur as preferred candidate and **reject final foundation/readiness acceptance for now**. This does not reject its suitability permanently. Original sources and default/main branches are unchanged.
+
+Hardening addendum: actual module-resolution test H07 failed: Framework Express still loads proxy-addr 2.0.7 despite attempted 2.0.8 override. H06 financial recovery failure remains. See [hardening report](../hardening/REPORT.md). Final adoption remains rejected at this gate; preferred-candidate status is unchanged.

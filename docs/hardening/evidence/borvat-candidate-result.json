@@ -1,0 +1,15 @@
+{
+  "typecheck_exit_code": 0,
+  "buyer_helper_tests": {
+    "passed": 3,
+    "failed": 0
+  },
+  "scope": "isolated source copy only; original unchanged",
+  "candidate_helper_sha256": "3c9c724154262c44d572a174e4b0018a72565afdb15bae09f191740b1228165f",
+  "build": "FAIL: original hero.jpg unavailable",
+  "lint_after_full_format": {
+    "errors": 174,
+    "warnings": 25
+  },
+  "production_or_import_applied": false
+}

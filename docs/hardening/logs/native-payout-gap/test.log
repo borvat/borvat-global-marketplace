@@ -1,0 +1,126 @@
+EVIDENCE EXCERPT: full original log in test.full.log.gz; line numbers retained.
+1:   console.warn
+2:     apply-product-change-actions: "when" name should be defined. A random one will be assigned to it, which is not recommended for production.
+3:      ({ buckets })=>buckets.productsToDelete.length > 0
+4: 
+5:       278 |       { buckets },
+6:       279 |       ({ buckets }) => buckets.productsToDelete.length > 0,
+7:     > 280 |     ).then(() => {
+8:           |       ^
+9:       281 |       const { data: productOffers } = useQueryGraphStep({
+10:       282 |         entity: "offer",
+11:       283 |         fields: ["id"],
+12: 
+13:       at Object.then (../node_modules/.bun/@medusajs+workflows-sdk@2.21.2+70882bbb1846fe7b/node_modules/@medusajs/workflows-sdk/src/utils/composer/when.ts:128:19)
+14:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/apply-product-change-actions.ts:280:7)
+15:       at createWorkflow (../node_modules/.bun/@medusajs+workflows-sdk@2.21.2+70882bbb1846fe7b/node_modules/@medusajs/workflows-sdk/src/utils/composer/create-workflow.ts:170:33)
+16:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/apply-product-change-actions.ts:69:5)
+17:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/confirm-product-change.ts:20:1)
+18:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/workflows/index.ts:2:1)
+19:       at Object.<anonymous> (../packages/core/src/workflows/product-edit/index.ts:3:1)
+20:       at Object.<anonymous> (../packages/core/src/workflows/index.ts:21:1)
+21:       at Object.<anonymous> (helpers/create-seller-user.ts:21:20)
+22:       at Object.<anonymous> (http/borvat/payout-durability-gap.spec.ts:6:27)
+23: 
+24: (node:36) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+25: (Use `node --trace-warnings ...` to show where the warning was created)
+696: {"level":"info","message":"Sync links: \"create\" seller_seller_fulfillment_fulfillment_set","timestamp":"2026-10-21 18:18:03"}
+697: {"level":"info","message":"Sync links: \"create\" inventory_inventory_item_seller_seller","timestamp":"2026-10-21 18:18:03"}
+698: {"level":"info","message":"Sync links: \"create\" product_product_category_media_media_image","timestamp":"2026-10-21 18:18:03"}
+699: {"level":"info","message":"Sync links: \"create\" product_product_collection_media_media_image","timestamp":"2026-10-21 18:18:03"}
+700: {"level":"info","message":"Sync links: \"create\" offer_inventory_item","timestamp":"2026-10-21 18:18:03"}
+701: {"level":"info","message":"Sync links: \"create\" offer_offer_pricing_price","timestamp":"2026-10-21 18:18:03"}
+702: {"level":"info","message":"Sync links: \"create\" order_group_order","timestamp":"2026-10-21 18:18:03"}
+703: {"level":"info","message":"Sync links: \"create\" order_order_line_item_offer_offer","timestamp":"2026-10-21 18:18:03"}
+704: {"level":"info","message":"Sync links: \"create\" order_order_payout_payout","timestamp":"2026-10-21 18:18:03"}
+705: {"level":"info","message":"Sync links: \"create\" order_order_seller_seller","timestamp":"2026-10-21 18:18:03"}
+706: {"level":"info","message":"Sync links: \"create\" payout_payout_seller_seller","timestamp":"2026-10-21 18:18:03"}
+707: {"level":"info","message":"Sync links: \"create\" pricing_price_list_seller_seller","timestamp":"2026-10-21 18:18:03"}
+708: {"level":"info","message":"Sync links: \"create\" product_category_attribute","timestamp":"2026-10-21 18:18:03"}
+709: {"level":"info","message":"Sync links: \"create\" product_attribute_value_link","timestamp":"2026-10-21 18:18:03"}
+710: {"level":"info","message":"Sync links: \"create\" product_product_review_review","timestamp":"2026-10-21 18:18:03"}
+711: {"level":"info","message":"Sync links: \"create\" product_seller","timestamp":"2026-10-21 18:18:03"}
+712: {"level":"info","message":"Sync links: \"create\" promotion_promotion_seller_seller","timestamp":"2026-10-21 18:18:03"}
+713: {"level":"info","message":"Sync links: \"create\" customer_customer_group_seller_seller","timestamp":"2026-10-21 18:18:03"}
+714: {"level":"info","message":"Sync links: \"create\" seller_seller_customer_customer","timestamp":"2026-10-21 18:18:03"}
+715: {"level":"info","message":"Sync links: \"create\" seller_seller_payout_payout_account","timestamp":"2026-10-21 18:18:03"}
+716: {"level":"info","message":"Sync links: \"create\" seller_seller_review_review","timestamp":"2026-10-21 18:18:03"}
+717: {"level":"info","message":"Sync links: \"create\" seller_seller_fulfillment_service_zone","timestamp":"2026-10-21 18:18:03"}
+718: {"level":"info","message":"Sync links: \"create\" fulfillment_shipping_option_seller_seller","timestamp":"2026-10-21 18:18:03"}
+719: {"level":"info","message":"Sync links: \"create\" stock_location_stock_location_seller_seller","timestamp":"2026-10-21 18:18:03"}
+720: {"level":"warn","message":"Local Event Bus installed. This is not recommended for production.","timestamp":"2026-10-21 18:18:03"}
+721: {"level":"info","message":"Locking module: Using \"in-memory\" as default.","timestamp":"2026-10-21 18:18:03"}
+722: {"level":"info","message":"Search indexes already up-to-date","timestamp":"2026-10-21 18:18:04"}
+723: {"level":"info","message":"redisUrl not found. A fake redis instance will be used.","timestamp":"2026-10-21 18:18:04"}
+724: {"level":"info","message":"Using flag MEDUSA_FF_RBAC_FILTER_FIELDS from environment with value false","timestamp":"2026-10-21 18:18:04"}
+725: {"level":"info","message":"Using flag MEDUSA_FF_RBAC from environment with value false","timestamp":"2026-10-21 18:18:04"}
+726: {"level":"info","message":"No link to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+draft-order@2.21.2+7ed9f7463c009191/node_modules/@medusajs/draft-order/.medusa/server/src/links. skipped.","timestamp":"2026-10-21 18:18:04"}
+727: {"level":"info","message":"No link to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/src/links. skipped.","timestamp":"2026-10-21 18:18:04"}
+728: {"level":"info","message":"No workflow to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+draft-order@2.21.2+7ed9f7463c009191/node_modules/@medusajs/draft-order/.medusa/server/src/workflows. skipped.","timestamp":"2026-10-21 18:18:04"}
+729: {"level":"info","message":"No workflow to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/src/workflows. skipped.","timestamp":"2026-10-21 18:18:04"}
+730: {"level":"info","message":"No subscriber to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+draft-order@2.21.2+7ed9f7463c009191/node_modules/@medusajs/draft-order/.medusa/server/src/subscribers. skipped.","timestamp":"2026-10-21 18:18:04"}
+731: {"level":"info","message":"No subscriber to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/src/subscribers. skipped.","timestamp":"2026-10-21 18:18:04"}
+732: {"level":"info","message":"No job to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+draft-order@2.21.2+7ed9f7463c009191/node_modules/@medusajs/draft-order/.medusa/server/src/jobs. skipped.","timestamp":"2026-10-21 18:18:04"}
+733: {"level":"info","message":"No job to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/packages/core/.medusa/server/src/jobs. skipped.","timestamp":"2026-10-21 18:18:04"}
+734: {"level":"info","message":"No job to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+medusa@2.21.2+b620b13d44a9b581/node_modules/@medusajs/medusa/dist/jobs. skipped.","timestamp":"2026-10-21 18:18:04"}
+735: {"level":"info","message":"No job to load from /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/src/jobs. skipped.","timestamp":"2026-10-21 18:18:04"}
+736:   console.log
+737:     Connection Error: Connection ended unexpectedly
+738: 
+739:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+740: 
+741:   console.log
+742:     Connection Error: Connection ended unexpectedly
+743: 
+744:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+745: 
+746:   console.log
+747:     Connection Error: Connection ended unexpectedly
+748: 
+749:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+750: 
+751:   console.log
+752:     Connection Error: Connection ended unexpectedly
+753: 
+754:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+755: 
+756:   console.log
+757:     Connection Error: Connection ended unexpectedly
+758: 
+759:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+760: 
+761:   console.log
+762:     Connection Error: Connection ended unexpectedly
+763: 
+764:       at Logger._log (../node_modules/.bun/knex@3.2.10/node_modules/knex/lib/logger.js:42:13)
+765: 
+766:   console.log
+767:     NATIVE_PAYOUT_DURABILITY_EVIDENCE {"simulated_provider_effects":1,"durable_payout_rows":0,"real_payments":false}
+768: 
+769:       at Object.log (http/borvat/payout-durability-gap.spec.ts:14:12)
+770: 
+771: FAIL http/borvat/payout-durability-gap.spec.ts (10.299 s)
+772:   ●  › H06 native payout must retain durable recovery row after committed provider effect and lost response
+773: 
+774:     expect(received).toBeGreaterThan(expected)
+775: 
+776:     Expected: > 0
+777:     Received:   0
+778: 
+779:       13 |    const rows=await service.listPayouts({account_id:account.id},{withDeleted:true});
+780:       14 |    console.log('NATIVE_PAYOUT_DURABILITY_EVIDENCE',JSON.stringify({simulated_provider_effects:effects.length,durable_payout_rows:rows.length,real_payments:false}));
+781:     > 15 |    expect(effects).toHaveLength(1);expect(rows.length).toBeGreaterThan(0);
+782:          |                                                        ^
+783:       16 |   }finally{spy.mockRestore()}
+784:       17 |  })
+785:       18 | }})
+786: 
+787:       at Object.toBeGreaterThan (http/borvat/payout-durability-gap.spec.ts:15:56)
+788: 
+789: Test Suites: 1 failed, 1 total
+790: Tests:       1 failed, 1 total
+791: Snapshots:   0 total
+792: Time:        10.338 s
+793: Ran all test suites within paths "http/borvat/payout-durability-gap.spec.ts".
+794: Test results written to: ../../hardening/native-payout-gap/results.json
+795: Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

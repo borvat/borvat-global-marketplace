@@ -122,9 +122,11 @@
     "adr": "ADR-005",
     "recommended_option": 1,
     "preferred_candidate": "Mercur 2.3.7 / Medusa 2.21.2",
-    "decision": "PROPOSED",
-    "owner_approval": "PENDING",
+    "decision": "PREFERRED_CANDIDATE_ACCEPTED",
+    "owner_approval": "RESEARCH_AND_CANDIDATE_ONLY",
     "codex_authorized": false,
-    "plan": "OSS-REVISED-PLAN.md"
+    "plan": "OSS-REVISED-PLAN.md",
+    "hardening_report": "../hardening/REPORT.md",
+    "final_foundation_approval": "PENDING"
   }
 }

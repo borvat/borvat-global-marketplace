@@ -17,3 +17,5 @@ Blockers: [#13](https://github.com/borvat/borvat-global-marketplace/issues/13), 
 ## Independent OSS evaluation — decision pending
 
 Option 1 (Mercur + Surooh extensions) is proposed in ADR-005, with no implementation or replacement authorized. Owner decision: [#17](https://github.com/borvat/borvat-global-marketplace/issues/17). Proposed Mercur security/license/dependency prerequisites: [#18](https://github.com/borvat/borvat-global-marketplace/issues/18). Independently reproduced current-core payment durability finding: [#19](https://github.com/borvat/borvat-global-marketplace/issues/19). C0–C6 stay ON HOLD; review [conditional plan](OSS-REVISED-PLAN.md).
+
+Hardening update: [report](../hardening/REPORT.md), [C0–C6](../hardening/CODEX-STAGES.md). Candidate accepted only; every stage remains HOLD. Native payout durability failure tracked in [#21](https://github.com/borvat/borvat-global-marketplace/issues/21). Security resolution, missing assets, native worker isolation, restore and 35-case end-to-end evidence remain prerequisites.

@@ -1,0 +1,37 @@
+{
+  "Mercur": {
+    "version": "2.3.7",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b"
+  },
+  "Medusa": {
+    "tested_version": "2.21.2",
+    "2.22": "source inspection only"
+  },
+  "BORVAT_LOVABLE": {
+    "commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+    "verified_text": 499,
+    "missing_binary": 69
+  },
+  "Accounting": {
+    "repo": "borvat/surooh-accounting",
+    "pr": 23,
+    "commit": "f8d250805548f9ab4e2730bd50a5b0150ec96828",
+    "reviewed": [
+      "contracts/event-envelope.schema.json",
+      "docs/evaluation/reuse-integration.md"
+    ]
+  },
+  "WMS": {
+    "repo": "borvat/surooh-commerce",
+    "pr": 16,
+    "commit": "35232d0a5015bcc39e7b91604d17a5259cafc464",
+    "reviewed": [
+      "src/lib/warehouse-command-contract.ts"
+    ],
+    "engine": "not finally adopted"
+  },
+  "SAM": {
+    "implementation_reviewed": false,
+    "status": "boundary design only"
+  }
+}
