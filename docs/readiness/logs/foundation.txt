@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> foundation:check
+> node scripts/foundation/check.mjs
+
+{"status":"PASS","api_operations":49,"acceptance_specifications":35,"modules":12,"stages":7,"execution":"ON_HOLD","note":"Contract/reference/policy checks only; no full OpenAPI metaschema validation or production certification"}

@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-21",
+  "timezone": "Asia/Damascus",
+  "lovable": {
+    "project_id": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+    "name": "BORVAT STORE",
+    "commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+    "url": "https://lovable.dev/projects/092a5ea2-1dc1-4ffd-a4b4-efe2d3237298"
+  },
+  "github": {
+    "repository": "borvat/borvat-global-marketplace",
+    "files": [
+      ".gitignore",
+      "README.md",
+      "docs/ARCHITECTURE.md",
+      "docs/ACCEPTANCE.md"
+    ],
+    "application_code_present": false,
+    "commit_sha": "02243d583fb935555177d105e22ee45dc0b93a34",
+    "tree_sha": "ae8c11ad6a8f9aaeaf0c0c0fb71f78943e9bfc2a"
+  },
+  "replit": {
+    "app": "surooh-commerce",
+    "origin_reported": "https://github.com/borvat/surooh-commerce",
+    "reported_commit": "18aa4ca51a44d624879dd2bd9e41fdc96cc450fd",
+    "relationship_proven": false,
+    "evidence_kind": "Replit Agent read-only report; not independently executed tests"
+  },
+  "current_database_queries": {
+    "attempted": "SELECT counts and catalog ACL/policy metadata only",
+    "result": "UNAVAILABLE",
+    "live_counts_verified": false
+  },
+  "prohibited_actions_performed": [],
+  "source_file_sha256": {
+    "scripts/buyer-account.test.ts": "5d153a310c3d4af7deda13983e81921843de1de4190071609aebbbb2dd8324c5",
+    "src/hooks/useSellerApplication.ts": "1389e5b14e9fbbf26b4be76d473a91e1d063ec62d31442c8febdf6b0725ebe8f",
+    "src/hooks/useSellerData.ts": "c4b52f2ab3eb062ac9500e1ce71d67a9a0df1029545250eadaaca634ba188f24",
+    "src/lib/buyer-account.ts": "3dcebcf6bcc50866808e9658953237816e1b1907e2f56ad3574deff958655697",
+    "src/lib/mcp/context.ts": "5f705d43e701d0563cd8b952495daccc882d915bef6194580e7c72d252a6b1d1",
+    "src/lib/order-status.functions.ts": "80e17d58de1188d4a0fc5d2c7693cc0d335503d39009e9d9b7a4f423790d1dfd",
+    "src/routes/_authenticated/admin/orders.tsx": "ddb32fe9d2336ae484ca37d7a5773fbb6b0c78db4d0254459f5dad21f9438fa9",
+    "src/routes/_authenticated/checkout.tsx": "ea604007d45a3db1f4da2273e3a866ee4c9de5bd8c17b84386649406b072adda",
+    "src/routes/_authenticated/seller.finances.tsx": "68434b7ae1b4c7cd305894f30b427ebf38de689718049b2e730985c9233d3ffe",
+    "src/routes/_authenticated/seller.shipping.tsx": "340d7cdb86da92f4134658086054b11b8f336ce6d4af1e58901e45fa637e768a"
+  }
+}

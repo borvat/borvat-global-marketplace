@@ -1,0 +1,22 @@
+{
+  "main": "02243d583fb935555177d105e22ee45dc0b93a34",
+  "development/borvat-product-completion": {
+    "sha": "f50dcdbc347dc1dd3abc75b3798d923530609319",
+    "files": 58,
+    "preserved_at": "experiments/product-completion"
+  },
+  "feat/core-engine-v1": {
+    "sha": "edf090b3d73a9c2a8d5f3e44d2887ce7c94d898c",
+    "files": 45,
+    "preserved_at": "experiments/core-engine-v1"
+  },
+  "feature/mercur-foundation": {
+    "sha": "aec5a5970c66591a546ffa60b5352fba1c887508",
+    "status": "prior ancestor/prototype branch preserved remotely; not merged"
+  },
+  "import/borvat-lovable-source-review": {
+    "sha": "13153ac56eaf8ae3cb32c91af9e540b5fbba8992",
+    "status": "8-file partial import; full text snapshot preferred; original branch untouched"
+  },
+  "originals_modified": false
+}

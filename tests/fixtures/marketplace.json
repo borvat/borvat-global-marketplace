@@ -1,0 +1,22 @@
+{
+  "mode": "synthetic",
+  "market": "NL",
+  "currency": "EUR",
+  "sellers": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "name": "Synthetic Seller A",
+      "email": "seller-a@example.test"
+    },
+    {
+      "id": "22222222-2222-4222-8222-222222222222",
+      "name": "Synthetic Seller B",
+      "email": "seller-b@example.test"
+    }
+  ],
+  "buyer": {
+    "id": "33333333-3333-4333-8333-333333333333",
+    "email": "buyer@example.test"
+  },
+  "rule": "No real register/VAT/bank/customer identity; never seed production"
+}

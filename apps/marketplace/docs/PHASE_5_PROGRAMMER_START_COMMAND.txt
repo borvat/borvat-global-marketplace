@@ -1,0 +1,20 @@
+BORVAT PHASE 5 — PROGRAMMER START COMMAND
+
+Read these files completely before making any change:
+1. /docs/BORVAT_MASTER_BLUEPRINT_V1.md
+2. /docs/BORVAT_CURRENT_STATE_V1.md
+3. /docs/BORVAT_DECISION_LOG_V1.md
+4. /docs/BORVAT_PHASE_5_EXECUTION_SPEC_V1.md
+
+Implement Phase 5 as M0–M10. Start with M0 read-only inspection and deliver a Preflight Report before any migration or functional code. Do not modify locked Phase 1–4 migrations. Use additive migrations only. Reuse and extend the canonical product, inventory, reservation, order, shipment, outbox and authorization models; do not create parallel sources of truth.
+
+Hard gates:
+- No Bol live activation.
+- No Stripe live or seller payouts.
+- No hardcoding for the six founding companies.
+- B2C product prices include VAT; shipping is separate.
+- Multi-merchant checkout must reserve the full cart atomically.
+- All sensitive writes are server-side, idempotent, tenant-scoped and audited.
+- Phase 5 is not complete without clean-room migrations, RLS/grants evidence, concurrency tests, at least 15 E2E flows, the seventh-tenant test, runbooks, rollback, Current State update and owner approval.
+
+For each milestone, return: scope, migrations, schema/RPCs, RLS/grants, tests, failures found, hotfixes, rollback, open risks, commit hash, and explicit exit-gate evidence.

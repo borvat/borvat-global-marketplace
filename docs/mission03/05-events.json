@@ -1,0 +1,269 @@
+{
+  "status": "PROPOSED",
+  "envelope": {
+    "required": [
+      "event_id",
+      "event_type",
+      "schema_version",
+      "producer",
+      "occurred_at",
+      "correlation_id",
+      "causation_id",
+      "company_id",
+      "operator_entity_id",
+      "market",
+      "aggregate_id",
+      "aggregate_version",
+      "payload"
+    ],
+    "types": {
+      "event_id": "uuid",
+      "schema_version": "positive integer",
+      "occurred_at": "UTC RFC3339",
+      "company_id": "legal seller UUID, not user UUID",
+      "payload": "event-specific allowlisted object"
+    }
+  },
+  "delivery": {
+    "semantics": "at least once",
+    "producer": "transactional outbox with lease/claim token",
+    "consumer": "durable inbox dedup then business command transaction",
+    "ordering": "per aggregate version; stale event ignored with audit; gaps trigger authoritative re-fetch/replay",
+    "retry": "bounded exponential backoff with jitter; rate limits respected; exhausted messages DLQ with actionable alert",
+    "replay": "operator-scoped, idempotent, evidence preserved; never blind resend financial action",
+    "security": "signed transport/service scoped credentials; no PII documents/secrets; test and live separately; size limits"
+  },
+  "events": [
+    {
+      "type": "seller.approved",
+      "producer": "seller-compliance",
+      "consumers": [
+        "offers",
+        "audit"
+      ],
+      "required_payload_fields": [
+        "application_id",
+        "seller_entity_id",
+        "reviewer_id",
+        "decision_version"
+      ],
+      "effect": "Recheck publication prerequisites; never force PSP eligibility"
+    },
+    {
+      "type": "seller.suspended",
+      "producer": "seller-compliance",
+      "consumers": [
+        "offers",
+        "operations"
+      ],
+      "required_payload_fields": [
+        "seller_entity_id",
+        "reason_code",
+        "decision_version"
+      ],
+      "effect": "Block new sales, flag pending fulfilment for policy; do not silently cancel paid orders"
+    },
+    {
+      "type": "offer.published",
+      "producer": "catalog",
+      "consumers": [
+        "search"
+      ],
+      "required_payload_fields": [
+        "offer_id",
+        "offer_version",
+        "product_id",
+        "market"
+      ],
+      "effect": "Update public disposable search read model"
+    },
+    {
+      "type": "checkout.reservation_requested",
+      "producer": "checkout",
+      "consumers": [
+        "warehouse"
+      ],
+      "required_payload_fields": [
+        "attempt_id",
+        "order_id",
+        "seller_entity_id",
+        "items",
+        "expires_at"
+      ],
+      "effect": "Atomic idempotent reservation; order remains pending"
+    },
+    {
+      "type": "inventory.reserved",
+      "producer": "warehouse",
+      "consumers": [
+        "checkout"
+      ],
+      "required_payload_fields": [
+        "reservation_id",
+        "order_id",
+        "items",
+        "expires_at"
+      ],
+      "effect": "Record readiness and create PSP test session intent"
+    },
+    {
+      "type": "payment.confirmed",
+      "producer": "payment-reconciliation",
+      "consumers": [
+        "orders",
+        "warehouse",
+        "accounting"
+      ],
+      "required_payload_fields": [
+        "payment_id",
+        "order_id",
+        "provider_account_id",
+        "provider_reference",
+        "amount_minor",
+        "currency",
+        "mode"
+      ],
+      "effect": "Confirm order, commit holds and export financial obligation; one effect each"
+    },
+    {
+      "type": "payment.failed",
+      "producer": "payment-reconciliation",
+      "consumers": [
+        "orders",
+        "warehouse"
+      ],
+      "required_payload_fields": [
+        "payment_id",
+        "order_id",
+        "reason_code"
+      ],
+      "effect": "Release uncommitted holds safely; never overwrite succeeded"
+    },
+    {
+      "type": "shipment.handed_over",
+      "producer": "warehouse",
+      "consumers": [
+        "orders",
+        "buyer-notification"
+      ],
+      "required_payload_fields": [
+        "shipment_id",
+        "seller_order_id",
+        "items",
+        "carrier",
+        "tracking_code"
+      ],
+      "effect": "Record handover; captured test notification"
+    },
+    {
+      "type": "shipment.delivered",
+      "producer": "warehouse",
+      "consumers": [
+        "orders",
+        "returns",
+        "analytics"
+      ],
+      "required_payload_fields": [
+        "shipment_id",
+        "seller_order_id",
+        "items",
+        "delivered_at",
+        "carrier_event_ref"
+      ],
+      "effect": "Update delivered quantity/evidence; start relevant consumer timeline, not paid state"
+    },
+    {
+      "type": "return.notice_received",
+      "producer": "returns",
+      "consumers": [
+        "support",
+        "buyer-notification"
+      ],
+      "required_payload_fields": [
+        "return_id",
+        "order_id",
+        "seller_entity_id",
+        "notice_at",
+        "items"
+      ],
+      "effect": "Durable withdrawal acknowledgement through test mailbox"
+    },
+    {
+      "type": "return.inspected",
+      "producer": "warehouse",
+      "consumers": [
+        "returns"
+      ],
+      "required_payload_fields": [
+        "return_id",
+        "items",
+        "dispositions"
+      ],
+      "effect": "Quarantine/restock according to inspection; no automatic refund success"
+    },
+    {
+      "type": "refund.confirmed",
+      "producer": "payment-reconciliation",
+      "consumers": [
+        "accounting",
+        "statements",
+        "buyer-notification"
+      ],
+      "required_payload_fields": [
+        "refund_id",
+        "payment_id",
+        "return_id",
+        "allocations",
+        "amount_minor",
+        "currency",
+        "provider_ref"
+      ],
+      "effect": "Append refund and commission/tax reversals, no duplicate credit"
+    },
+    {
+      "type": "payout.observed",
+      "producer": "payment-reconciliation",
+      "consumers": [
+        "statements",
+        "accounting"
+      ],
+      "required_payload_fields": [
+        "provider_account_id",
+        "external_payout_id",
+        "status",
+        "amount_minor",
+        "currency"
+      ],
+      "effect": "Update payout evidence independent of order delivery/bank matching"
+    },
+    {
+      "type": "accounting.document_accepted",
+      "producer": "accounting",
+      "consumers": [
+        "reconciliation"
+      ],
+      "required_payload_fields": [
+        "export_id",
+        "entity_id",
+        "external_document_id",
+        "document_kind"
+      ],
+      "effect": "Dedup link legal invoice/credit; no duplicate number issue"
+    },
+    {
+      "type": "risk.flagged",
+      "producer": "risk",
+      "consumers": [
+        "support",
+        "sam"
+      ],
+      "required_payload_fields": [
+        "finding_id",
+        "resource_id",
+        "reason_code",
+        "severity"
+      ],
+      "effect": "Create scoped review task; SAM sees minimized data"
+    }
+  ]
+}

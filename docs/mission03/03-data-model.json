@@ -1,0 +1,767 @@
+{
+  "status": "PROPOSED_LOGICAL_MODEL_NOT_A_MIGRATION",
+  "date": "2026-10-21",
+  "naming": "target domain names; map to existing schema before DDL",
+  "type_rules": {
+    "ids": "UUID; trusted auth foreign identity",
+    "timestamps": "timestamptz UTC; IANA timezone for business calendars",
+    "money": "bigint minor EUR MVP; API safe integer ±9007199254740991; nonnegative except explicit signed reporting deltas",
+    "scope": "company_id/entity_id refers to legal seller unless explicitly operator; never interchangeable with user_id"
+  },
+  "tables": [
+    {
+      "name": "users",
+      "authority": "Identity provider",
+      "fields": {
+        "id": "uuid PK external auth subject",
+        "email_verified": "boolean trusted claim",
+        "status": "active|disabled",
+        "created_at": "timestamptz"
+      },
+      "keys": [
+        "PK(id)"
+      ],
+      "invariants": [
+        "Do not duplicate provider passwords; soft disable does not delete financial contracts"
+      ],
+      "existing_mapping": "Supabase auth.users; profiles is a separate private/public projection"
+    },
+    {
+      "name": "legal_entities",
+      "authority": "Seller registry",
+      "fields": {
+        "id": "uuid PK",
+        "legal_name": "text",
+        "registration_country": "ISO country",
+        "register_number": "text",
+        "vat_number": "text nullable",
+        "tax_residencies": "private child records",
+        "verification_state": "draft|pending|verified|suspended",
+        "operator": "boolean"
+      },
+      "keys": [
+        "PK(id)",
+        "unique(country,register_number) when present"
+      ],
+      "invariants": [
+        "Operator is explicit; no name-based special case; tax IDs private"
+      ],
+      "existing_mapping": "companies + company_legal_identities + company_legal_identifiers; preserve IDs"
+    },
+    {
+      "name": "memberships",
+      "authority": "Identity",
+      "fields": {
+        "entity_id": "uuid FK legal_entities",
+        "user_id": "uuid FK users",
+        "capabilities": "join to explicit role/capability tables",
+        "status": "active|revoked"
+      },
+      "keys": [
+        "PK(entity_id,user_id)"
+      ],
+      "invariants": [
+        "Only authorized company context; staff roles separate; membership revocation invalidates access"
+      ],
+      "existing_mapping": "company_members + company_member_roles; platform user_roles remains distinct"
+    },
+    {
+      "name": "seller_applications",
+      "authority": "Seller compliance",
+      "fields": {
+        "id": "uuid PK",
+        "entity_id": "uuid FK",
+        "status": "versioned state enum",
+        "reviewer_user_id": "uuid nullable",
+        "evidence_document_ids": "private document links",
+        "terms_version": "text",
+        "version": "integer"
+      },
+      "keys": [
+        "unique(entity_id)"
+      ],
+      "invariants": [
+        "Self-review denied; review reason/event immutable; approval does not mean PSP eligible"
+      ],
+      "existing_mapping": "seller_applications + seller_application_events"
+    },
+    {
+      "name": "stores",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "entity_id": "uuid FK",
+        "slug": "text",
+        "public_profile": "approved JSON field allowlist",
+        "status": "draft|active|suspended"
+      },
+      "keys": [
+        "unique(slug)",
+        "unique(id,entity_id)"
+      ],
+      "invariants": [
+        "Only approved public fields exposed; separate private return/KYB information"
+      ],
+      "existing_mapping": "merchant_stores + merchant_store_public_profiles"
+    },
+    {
+      "name": "products",
+      "authority": "Central catalog",
+      "fields": {
+        "id": "uuid PK",
+        "category_id": "uuid FK",
+        "brand": "text",
+        "model": "text",
+        "title": "localized text",
+        "identifiers": "typed GTIN/brand/model children",
+        "safety_data": "manufacturer, EU responsible person, warnings, evidence refs",
+        "status": "draft|review|approved|restricted"
+      },
+      "keys": [
+        "GTIN uniqueness on canonical normalized identifier when validated"
+      ],
+      "invariants": [
+        "Do not merge solely on EAN; distinguish variants/pack sizes; duplicate suggestions require confidence/evidence/reviewer"
+      ],
+      "existing_mapping": "catalog_products; legacy products requires explicit cutover"
+    },
+    {
+      "name": "seller_skus",
+      "authority": "Seller catalog",
+      "fields": {
+        "id": "uuid PK",
+        "entity_id": "uuid FK",
+        "sku_code": "text",
+        "product_id": "uuid FK products",
+        "pack_spec": "JSON immutable per version"
+      },
+      "keys": [
+        "unique(entity_id,sku_code)",
+        "unique(id,entity_id)"
+      ],
+      "invariants": [
+        "Shared product does not share seller stock/costs"
+      ],
+      "existing_mapping": "catalog_skus; check whether existing catalog is tenant-scoped before central mapping"
+    },
+    {
+      "name": "offers",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "entity_id": "uuid FK",
+        "store_id": "uuid",
+        "sku_id": "uuid",
+        "product_id": "uuid",
+        "status": "draft|review|active|paused|withdrawn",
+        "current_version": "integer",
+        "condition": "new MVP",
+        "market": "NL"
+      },
+      "keys": [
+        "FK(store_id,entity_id) stores",
+        "FK(sku_id,entity_id) seller_skus",
+        "unique(store_id,sku_id,condition,market)"
+      ],
+      "invariants": [
+        "Publication requires seller/PSP/tax/safety/shipping gates; no application-provided seller_id override"
+      ],
+      "existing_mapping": "catalog_offers + channel_listings + borvat_direct_listing_publications; reconcile semantics"
+    },
+    {
+      "name": "offer_versions",
+      "authority": "Marketplace",
+      "fields": {
+        "offer_id": "uuid FK",
+        "version": "integer",
+        "gross_minor": "bigint >=0",
+        "currency": "EUR MVP",
+        "tax_treatment_version": "uuid FK",
+        "shipping_profile_version": "uuid FK",
+        "effective_at": "timestamptz"
+      },
+      "keys": [
+        "PK(offer_id,version)"
+      ],
+      "invariants": [
+        "Immutable once quoted; integer totals bounded to JS safe integer"
+      ],
+      "existing_mapping": "merchant_store_offer_prices + version mapping"
+    },
+    {
+      "name": "carts",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "buyer_id": "uuid FK users",
+        "version": "integer",
+        "updated_at": "timestamptz"
+      },
+      "keys": [
+        "PK(id)"
+      ],
+      "invariants": [
+        "Buyer-only; cart not quote or reservation"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "cart_lines",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "cart_id": "uuid FK",
+        "offer_id": "uuid FK",
+        "quantity": "integer >0"
+      },
+      "keys": [
+        "unique(cart_id,offer_id)"
+      ],
+      "invariants": [
+        "Server validates upper bounds; no client total"
+      ],
+      "existing_mapping": "legacy cart_items product_id must migrate to offer_id"
+    },
+    {
+      "name": "quotes",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "buyer_id": "uuid",
+        "seller_entity_id": "uuid",
+        "cart_version": "integer",
+        "currency": "EUR",
+        "amounts": "net/tax/shipping/discount/gross minor",
+        "address_snapshot": "encrypted private JSON",
+        "line_snapshots": "immutable versions/tax/fee/delivery fields",
+        "expires_at": "timestamptz",
+        "status": "valid|consumed|expired"
+      },
+      "keys": [
+        "PK(id)",
+        "unique order consumption"
+      ],
+      "invariants": [
+        "Server-authoritative; address hash and prices bind quote; scope one seller MVP"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "checkout_attempts",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "buyer_id": "uuid",
+        "quote_id": "uuid FK",
+        "order_id": "uuid FK",
+        "idempotency_key": "text",
+        "request_hash": "text",
+        "state": "created|provider_pending|session_created|failed",
+        "provider_session_ref": "text nullable"
+      },
+      "keys": [
+        "unique(buyer_id,idempotency_key)"
+      ],
+      "invariants": [
+        "Same key+different body=409; provider timeout reconciles before retry; no DB lock during network call"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "orders",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "buyer_id": "uuid FK",
+        "market": "NL",
+        "operator_entity_id": "uuid FK",
+        "currency": "EUR",
+        "status": "order lifecycle",
+        "payment_status": "derived separate projection",
+        "gross_minor": "bigint",
+        "version": "integer",
+        "contract_snapshot": "immutable seller/legal/terms/totals/address refs"
+      },
+      "keys": [
+        "PK(id)"
+      ],
+      "invariants": [
+        "No client INSERT; financial/payment/order states separate; no cascade deletion with auth user"
+      ],
+      "existing_mapping": "new canonical order root; legacy orders must be isolated"
+    },
+    {
+      "name": "seller_orders",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "order_id": "uuid FK",
+        "seller_entity_id": "uuid FK",
+        "store_id": "uuid FK",
+        "amounts": "bigint net/tax/shipping/discount/gross",
+        "status": "seller fulfilment lifecycle",
+        "version": "integer"
+      },
+      "keys": [
+        "unique(order_id,seller_entity_id,store_id)",
+        "unique(id,seller_entity_id)",
+        "FK(store_id,seller_entity_id) stores"
+      ],
+      "invariants": [
+        "One root supports later multiple sellers; seller reads own slice only"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "order_lines",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "seller_order_id": "uuid FK",
+        "seller_entity_id": "uuid",
+        "offer_id": "uuid",
+        "offer_version": "integer",
+        "sku_id": "uuid",
+        "quantity": "integer >0",
+        "unit_gross_minor": "bigint",
+        "line_net_minor": "bigint",
+        "line_tax_minor": "bigint",
+        "line_gross_minor": "bigint",
+        "commission_rule_version": "uuid",
+        "product_snapshot": "immutable title/condition/identifiers/terms"
+      },
+      "keys": [
+        "FK(seller_order_id,seller_entity_id) seller_orders",
+        "FK(sku_id,seller_entity_id) seller_skus"
+      ],
+      "invariants": [
+        "Immutable price/tax/commission; shipped+cancelled quantities never exceed ordered; returns never exceed delivered eligible quantity"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "reservations",
+      "authority": "Warehouse",
+      "fields": {
+        "id": "uuid PK",
+        "seller_entity_id": "uuid",
+        "order_line_id": "uuid FK",
+        "sku_id": "uuid",
+        "quantity": "integer >0",
+        "state": "held|committed|consumed|released|expired",
+        "expires_at": "timestamptz",
+        "warehouse_ref": "text"
+      },
+      "keys": [
+        "unique(source_system,idempotency_key)",
+        "FK(sku_id,seller_entity_id) seller_skus"
+      ],
+      "invariants": [
+        "Atomic availability check; source Warehouse authoritative; expiry vs capture reconciled"
+      ],
+      "existing_mapping": "inventory_reservation_headers/lines/allocations behind adapter"
+    },
+    {
+      "name": "provider_accounts",
+      "authority": "PSP observed registry",
+      "fields": {
+        "id": "uuid PK",
+        "seller_entity_id": "uuid",
+        "provider": "stripe",
+        "external_account_id": "text",
+        "mode": "test|live",
+        "charges_enabled": "boolean",
+        "payouts_enabled": "boolean",
+        "requirements_state": "minimized JSON"
+      },
+      "keys": [
+        "unique(provider,external_account_id,mode)"
+      ],
+      "invariants": [
+        "No bank secrets; only provider evidence changes capability; test/live never mix"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "payments",
+      "authority": "PSP truth projected",
+      "fields": {
+        "id": "uuid PK",
+        "order_id": "uuid FK",
+        "provider_account_id": "uuid FK",
+        "external_payment_id": "text nullable",
+        "mode": "test|live",
+        "amount_minor": "bigint >0",
+        "currency": "EUR",
+        "status": "payment lifecycle",
+        "captured_minor": "bigint >=0",
+        "version": "integer",
+        "attempt_number": "positive integer"
+      },
+      "keys": [
+        "unique(provider_account_id,external_payment_id)",
+        "unique(order_id,attempt_number)"
+      ],
+      "invariants": [
+        "One successful payable obligation per order; amount/currency/account correlated; browser cannot mark paid"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "payment_allocations",
+      "authority": "Marketplace reconciliation",
+      "fields": {
+        "id": "uuid PK",
+        "payment_id": "uuid FK",
+        "seller_order_id": "uuid FK",
+        "goods_minor": "bigint",
+        "shipping_minor": "bigint",
+        "tax_minor": "bigint",
+        "platform_fee_minor": "bigint",
+        "provider_fee_minor": "bigint nullable",
+        "discount_minor": "bigint >=0 allocated discount net amount; tax recalculated on discounted line"
+      },
+      "keys": [
+        "unique(payment_id,seller_order_id)"
+      ],
+      "invariants": [
+        "Amounts reconcile payment gross; allocation rounding deterministic; unknown PSP fee not zero",
+        "goods_minor and shipping_minor are net; gross allocation = goods_net + shipping_net + tax - allocated discount; clarify tax categories per line before DDL"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "shipments",
+      "authority": "Warehouse/carrier",
+      "fields": {
+        "id": "uuid PK",
+        "seller_entity_id": "uuid",
+        "seller_order_id": "uuid",
+        "carrier": "text allowlist",
+        "tracking_code": "text",
+        "tracking_url": "validated optional URL",
+        "status": "shipment lifecycle",
+        "delivered_at": "timestamptz nullable",
+        "external_ref": "text"
+      },
+      "keys": [
+        "unique(carrier,external_ref) when present",
+        "FK(seller_order_id,seller_entity_id) seller_orders"
+      ],
+      "invariants": [
+        "Separate shipment_lines(line_id,quantity); sum shipped bounded by ordered; carrier evidence for delivery"
+      ],
+      "existing_mapping": "channel_shipments is channel-specific; do not pretend BORVAT shipment canonical yet"
+    },
+    {
+      "name": "returns",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "buyer_id": "uuid",
+        "seller_entity_id": "uuid",
+        "seller_order_id": "uuid",
+        "reason": "withdrawal|defect|wrong_item|other",
+        "notice_at": "timestamptz",
+        "status": "return lifecycle",
+        "confirmation_ref": "text"
+      },
+      "keys": [
+        "PK(id)"
+      ],
+      "invariants": [
+        "Separate return_lines(order_line_id,quantity,disposition); buyer ownership checked; quarantine before restock"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "refunds",
+      "authority": "PSP truth projected",
+      "fields": {
+        "id": "uuid PK",
+        "payment_id": "uuid FK",
+        "return_id": "uuid nullable",
+        "amount_minor": "bigint >0",
+        "external_refund_id": "text nullable",
+        "status": "requested|submitted|pending|succeeded|failed",
+        "idempotency_key": "text",
+        "provider_account_id": "uuid FK provider_accounts"
+      },
+      "keys": [
+        "unique(payment_id,idempotency_key)",
+        "unique(provider_account_id,external_refund_id)"
+      ],
+      "invariants": [
+        "Sum pending+succeeded <= captured minus prior confirmed refunds; serialized lock; refund_lines allocate item/tax/shipping/commission credit"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "commission_rule_versions",
+      "authority": "Marketplace finance",
+      "fields": {
+        "id": "uuid PK",
+        "seller_entity_id": "uuid nullable",
+        "category_id": "uuid nullable",
+        "basis": "net_goods_ex_vat_ex_shipping",
+        "rate_basis_points": "integer 0..10000",
+        "fixed_minor": "bigint >=0",
+        "service_tax_treatment_id": "uuid",
+        "effective_from": "timestamptz",
+        "effective_to": "timestamptz nullable",
+        "refund_policy_version": "text"
+      },
+      "keys": [
+        "No overlapping effective approved rule for same scope+precedence"
+      ],
+      "invariants": [
+        "Explicit precedence seller/category/platform; snapshot rule at checkout; commercial rate awaits owner decision"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "finance_entries",
+      "authority": "Reconciliation subledger",
+      "fields": {
+        "id": "uuid PK",
+        "batch_id": "uuid",
+        "entity_id": "uuid FK",
+        "account": "clearing|commission|tax|provider_fee|refund|receivable|payable",
+        "side": "debit|credit",
+        "amount_minor": "bigint >0",
+        "currency": "EUR",
+        "source_event_id": "uuid",
+        "order_line_id": "uuid nullable"
+      },
+      "keys": [
+        "unique(source_event_id,entry_sequence)",
+        "sum debits=credits per batch/entity/currency"
+      ],
+      "invariants": [
+        "Append-only; reversals new batches; operational mirror not accounting source of truth or spendable wallet"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "statements",
+      "authority": "Marketplace finance",
+      "fields": {
+        "id": "uuid PK",
+        "seller_entity_id": "uuid",
+        "period_start": "date",
+        "period_end": "date",
+        "currency": "EUR",
+        "status": "draft|reconciled|closed",
+        "version": "integer",
+        "totals": "gross/refunds/commission/tax/providerfees/expected_payout",
+        "reconciliation_ref": "uuid"
+      },
+      "keys": [
+        "unique(seller_entity_id,period_start,period_end,currency,version)"
+      ],
+      "invariants": [
+        "Statement_lines link immutable finance entries; no unexplained variance at closure; correction creates revision not overwrite"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "payout_observations",
+      "authority": "PSP truth projected",
+      "fields": {
+        "id": "uuid PK",
+        "provider_account_id": "uuid",
+        "external_payout_id": "text",
+        "amount_minor": "bigint",
+        "currency": "EUR",
+        "status": "pending|paid|failed|reversed",
+        "bank_match_state": "unmatched|matched|exception"
+      },
+      "keys": [
+        "unique(provider_account_id,external_payout_id)"
+      ],
+      "invariants": [
+        "PSP payout != platform custody != bank receipt; no ordinary API to force paid"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "accounting_exports",
+      "authority": "Accounting",
+      "fields": {
+        "id": "uuid PK",
+        "source_event_id": "uuid",
+        "entity_id": "uuid",
+        "document_kind": "goods_invoice|commission_invoice|credit|clearing",
+        "external_document_id": "text nullable",
+        "status": "pending|accepted|failed"
+      },
+      "keys": [
+        "unique(entity_id,source_event_id,document_kind)"
+      ],
+      "invariants": [
+        "Invoice number assigned by accounting; durable retry/DLQ; e-Boekhouden remains read-only"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "support_cases",
+      "authority": "Marketplace support",
+      "fields": {
+        "id": "uuid PK",
+        "buyer_id": "uuid",
+        "seller_entity_id": "uuid nullable",
+        "seller_order_id": "uuid nullable",
+        "type": "delivery|return|dispute|product_safety|other",
+        "assignee_user_id": "uuid nullable",
+        "status": "open|waiting|resolved|appealed",
+        "version": "integer"
+      },
+      "keys": [
+        "PK(id)"
+      ],
+      "invariants": [
+        "Private messages with scoped attachments; risk findings separate from public seller reputation"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "reviews",
+      "authority": "Marketplace",
+      "fields": {
+        "id": "uuid PK",
+        "buyer_id": "uuid",
+        "order_line_id": "uuid FK",
+        "product_id": "uuid",
+        "seller_entity_id": "uuid",
+        "rating": "integer 1..5",
+        "text": "bounded text",
+        "moderation_status": "pending|published|removed"
+      },
+      "keys": [
+        "unique(buyer_id,order_line_id,review_kind)"
+      ],
+      "invariants": [
+        "Verified purchase derived server-side; moderation reasons/events retained; no self-generated scores"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "documents",
+      "authority": "Private object store registry",
+      "fields": {
+        "id": "uuid PK",
+        "entity_id": "uuid nullable",
+        "owner_user_id": "uuid",
+        "purpose": "kyb|case|invoice",
+        "object_key": "opaque text",
+        "sha256": "text",
+        "scan_state": "quarantined|clean|rejected",
+        "retention_class": "policy key"
+      },
+      "keys": [
+        "PK(id)"
+      ],
+      "invariants": [
+        "No public URLs; purpose-based access and expiring links; no PII document bytes in events"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "audit_events",
+      "authority": "Immutable audit",
+      "fields": {
+        "id": "uuid PK",
+        "actor_id": "uuid or system",
+        "company_id": "uuid nullable",
+        "action": "text",
+        "resource_id": "uuid",
+        "correlation_id": "uuid",
+        "before_hash": "text nullable",
+        "after_hash": "text nullable",
+        "reason": "text minimized",
+        "occurred_at": "timestamptz"
+      },
+      "keys": [
+        "PK(id)"
+      ],
+      "invariants": [
+        "Write in command transaction; denied attempts logged securely; no credential/identity document content"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "outbox",
+      "authority": "Domain owner",
+      "fields": {
+        "event_id": "uuid PK",
+        "aggregate_id": "uuid",
+        "aggregate_version": "integer",
+        "company_id": "uuid",
+        "event_type": "text",
+        "schema_version": "integer",
+        "payload": "allowlisted JSON",
+        "status": "pending|leased|delivered|dead_letter",
+        "attempts": "integer",
+        "next_attempt_at": "timestamptz",
+        "claim_token": "uuid nullable"
+      },
+      "keys": [
+        "unique(aggregate_id,aggregate_version,event_type)"
+      ],
+      "invariants": [
+        "Transactional append; lease and claim token protect concurrent workers; at-least-once delivery"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "inbox",
+      "authority": "Consumer",
+      "fields": {
+        "consumer": "text",
+        "provider": "text",
+        "account_id": "text",
+        "external_event_id": "text",
+        "mode": "test|live",
+        "payload_hash": "text",
+        "received_at": "timestamptz",
+        "processed_at": "timestamptz nullable"
+      },
+      "keys": [
+        "unique(consumer,provider,account_id,mode,external_event_id)"
+      ],
+      "invariants": [
+        "Webhook auth before accept; durable save before 2xx; dedup+business-effect uniqueness; conflicting payload quarantined"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    },
+    {
+      "name": "idempotency_records",
+      "authority": "Command API",
+      "fields": {
+        "principal_id": "uuid",
+        "scope": "operation/account",
+        "key": "text",
+        "request_hash": "text",
+        "response": "redacted JSON",
+        "state": "in_progress|completed",
+        "expires_at": "timestamptz"
+      },
+      "keys": [
+        "PK(principal_id,scope,key)"
+      ],
+      "invariants": [
+        "Concurrent replay returns same resource; different hash returns 409; financial external IDs retained beyond transient response-cache TTL"
+      ],
+      "existing_mapping": "new domain object; reconcile existing schema in C0"
+    }
+  ],
+  "implementation_requirements": [
+    "Expand described child tables into explicit DDL with composite ownership FKs before C2/C3; no unvalidated JSON as substitute for money/quantity constraints",
+    "Tenant RLS+least privileges and trusted RPC/API boundaries; public catalog projection strips private data",
+    "Foreign key delete RESTRICT for orders/finance, retention-aware pseudonymization for users; no auth-user cascade deleting financial records",
+    "Index scope+status+created_at on transactional tables; unique external IDs scoped to provider account and mode",
+    "Use DB transactions with consistent lock order: order, payment, refund allocation, reservation; Warehouse remote effects via outbox saga",
+    "Do not run historical fixture-purge migrations against production or blindly replay data-dependent assertions",
+    "Financial totals, quantity caps and refund cumulative bounds require locks/constraint triggers or serialized command procedures; CHECK alone cannot enforce cross-row sums"
+  ]
+}

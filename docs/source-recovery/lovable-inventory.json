@@ -1,0 +1,2278 @@
+[
+  {
+    "path": ".env",
+    "binary": false
+  },
+  {
+    "path": ".github/workflows/phase5-m0-cleanroom.yml",
+    "binary": false
+  },
+  {
+    "path": ".gitignore",
+    "binary": false
+  },
+  {
+    "path": ".lovable/mcp/manifest.json",
+    "binary": false
+  },
+  {
+    "path": ".lovable/plan.md",
+    "binary": false
+  },
+  {
+    "path": ".lovable/project.json",
+    "binary": false
+  },
+  {
+    "path": ".prettierignore",
+    "binary": false
+  },
+  {
+    "path": ".prettierrc",
+    "binary": false
+  },
+  {
+    "path": "AGENTS.md",
+    "binary": false
+  },
+  {
+    "path": "ARCHITECTURE_PROPOSAL.md",
+    "binary": false
+  },
+  {
+    "path": "PHASE1_DEPLOYMENT_READINESS.md",
+    "binary": false
+  },
+  {
+    "path": "PHASE1_HARDENING_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "PHASE1_PRODUCTION_DEPLOYMENT_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "PHASE2_CLOSURE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "PHASE3_CLOSURE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "PHASE4_CHARTER.md",
+    "binary": false
+  },
+  {
+    "path": "PHASE4_M5_CHARTER.md",
+    "binary": false
+  },
+  {
+    "path": "README.md",
+    "binary": false
+  },
+  {
+    "path": "README_BORVAT_GOVERNANCE.md",
+    "binary": false
+  },
+  {
+    "path": "SECURITY_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "bun.lock",
+    "binary": false
+  },
+  {
+    "path": "bunfig.toml",
+    "binary": false
+  },
+  {
+    "path": "components.json",
+    "binary": false
+  },
+  {
+    "path": "docs/BORVAT_CURRENT_STATE_V1.md",
+    "binary": false
+  },
+  {
+    "path": "docs/BORVAT_DECISION_LOG_V1.md",
+    "binary": false
+  },
+  {
+    "path": "docs/BORVAT_MASTER_BLUEPRINT_V1.md",
+    "binary": false
+  },
+  {
+    "path": "docs/BORVAT_PHASE_5_EXECUTION_SPEC_V1.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE0_P0_1A_VIEW_GRANT_CLOSURE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE0_P0_1_GRANT_HARDENING_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE0_P0_3_FIXTURE_PURGE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_LEGACY_PLACE_ORDER_EXPOSURE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_BASELINE_REMEDIATION_PLAN.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_BASELINE_REMEDIATION_PLAN_V2.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_BASELINE_VERIFICATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_CI_HARNESS_PATCH_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_EXTERNAL_CLEANROOM_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_HARNESS_STATIC_REVIEW.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_LOVABLE_NATIVE_VERIFICATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_MIGRATION_MANIFEST.json",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_OWNER_DECISION_PACKET.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_OWNER_DECISION_PACKET_V2.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M0_PREFLIGHT_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M1_MERCHANT_STORES_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2A_BORVAT_DIRECT_ACCOUNT_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2B1A_SKU_LISTING_UNIQUENESS_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2B1_DRAFT_LISTING_WRITE_PATH_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2B_CHANNEL_LISTINGS_ARCHITECTURE_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2C1_SELLER_READ_ONLY_UI_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2C_SELLER_ADMIN_READ_SURFACES_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2D1A_PLATFORM_ADMIN_ROLE_GOVERNANCE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2D1B_FIRST_PLATFORM_ADMIN_BOOTSTRAP_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2D1C_FIRST_PLATFORM_ADMIN_ASSIGNMENT_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2D2A_PLATFORM_ADMIN_READ_RPC_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2D2B_PLATFORM_ADMIN_READ_ONLY_UI_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1A_M2D_ADMIN_CROSS_MERCHANT_READ_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B0A_PUBLIC_SCHEMA_DEFAULT_ACL_PRIVILEGE_DRIFT_HARDENING_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B0B_CRITICAL_FUNCTION_ACL_DRIFT_ROOT_CAUSE_AND_GATE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B0C_ACL_NORMALIZATION_ONLY_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B0E_ACL_DRIFT_CYCLE7_NORMALIZATION_ONLY_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B1_PUBLICATION_STATE_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B2A_TAX_FOUNDATION_ARCHITECTURE_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B2B_TAX_FOUNDATION_IMPLEMENTATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B2C_JURISDICTION_TAX_RATE_BAND_CORRECTION_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B2D_JURISDICTION_TAX_RATE_BAND_CORRECTION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B3A_MERCHANT_STORE_PRICING_ARCHITECTURE_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B3B_MERCHANT_STORE_PRICING_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B3C1_NL_BE_RATE_BAND_DRAFT_SEED_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B3C2_AUTHORITATIVE_EFFECTIVE_DATE_RATE_VERSION_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B3C3_TAX_TEMPORAL_AND_TRANSACTION_TREATMENT_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B3C4_TAX_TEMPORAL_SEMANTICS_SCHEMA_CORRECTION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B3C5_TAX_PRICING_PUBLICATION_ACL_HARDENING_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B3C6_CURRENT_NL_BE_TAX_RATE_DRAFT_SEED_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B3C_OFFICIAL_NL_BE_TAX_DATA_GOVERNANCE_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1B_PUBLICATION_STOREFRONT_ARCHITECTURE_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1A_GLOBAL_MARKET_SHIPPING_ROUTE_QUOTE_ARCHITECTURE_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1B_FULFILLMENT_ORIGIN_STORE_SKU_SHIPPING_PROFILE_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1C_AUTOMATIC_ORIGIN_DESTINATION_SHIPPING_RATE_CARD_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1DA_DELIVERY_PROMISE_PROFILE_FINAL_ETA_COMPOSITION_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1DB_DELIVERY_PROMISE_PROFILE_WEEKLY_SCHEDULE_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1DC_STORE_SKU_ORIGIN_DELIVERY_PROMISE_ASSIGNMENT_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1DD_TRANSIT_TIME_DELIVERY_CALENDAR_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1DE_FINAL_ETA_COMPOSITION_RESOLVER_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1DF_EXPLICIT_RATE_LANE_TRANSIT_PROFILE_BINDING_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1DG_PRIVATE_INTERNAL_FINAL_ETA_RESOLVER_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1EA_MANUAL_SHIPPING_QUOTE_WORKFLOW_PRECHECK.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1EB_AUTHORITATIVE_DELIVERY_DESTINATION_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1EC_MANUAL_SHIPPING_QUOTE_REQUEST_ITEM_PACKAGE_SNAPSHOT_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1ED_VERSIONED_MANUAL_SHIPPING_QUOTE_OFFER_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1EE_MANUAL_QUOTE_ACCEPTANCE_EXPIRY_INVALIDATION_FOUNDATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1EE_R2_HARNESS_TRACEABILITY_CONCURRENCY_EVIDENCE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1C1EE_R3_ACCEPTANCE_SETTLEMENT_REPAIR_AND_FAMILY_SERIALIZATION_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1V0A_OWNER_VISUAL_REVIEW_HANDOFF.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1V0A_VISIBLE_BORVAT_MANAGER_ALPHA_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1V0B_OWNER_VISUAL_REVIEW_DELIVERY.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1V0B_PROFESSIONAL_MANAGER_VISUAL_BASELINE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1V1B_QNAN_IBBO_FIRST_LIVE_SELLER_PROVISIONING_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1V1C_SELLER_LEGAL_IDENTITY_AND_PUBLIC_STORE_PROFILE_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1V1DA_INDEPENDENT_SELLER_VERIFICATION_REVIEWER_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_M1V1D_SELLER_APPLICATION_AND_VERIFICATION_WORKFLOW_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE5_P5_HF_001_REPORT.md",
+    "binary": false
+  },
+  {
+    "path": "docs/PHASE_5_PROGRAMMER_START_COMMAND.txt",
+    "binary": false
+  },
+  {
+    "path": "docs/owner-review/m1v0b/account_support.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/admin_dashboard.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/admin_orders.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/admin_security.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/borvat-m1v0b-navigation.webm",
+    "binary": false
+  },
+  {
+    "path": "docs/owner-review/m1v0b/m_admin_dashboard.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/m_owner-review.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/m_seller_manager.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/m_seller_order-desk.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/m_support_queue.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/owner-review.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/seller_analysis.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/seller_finances.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/seller_manager.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/seller_messages.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/seller_order-desk.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/seller_shipping.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/support_cases_case_1001.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/support_inbox_customers.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/support_inbox_merchants.png",
+    "binary": true
+  },
+  {
+    "path": "docs/owner-review/m1v0b/support_queue.png",
+    "binary": true
+  },
+  {
+    "path": "docs/phase5-m0/current-replay-log.txt",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m0/live-schema-inventory.json",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m0/lovable-native-diff.md",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m0/non-idempotent-migrations.md",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m0/pre-hotfix-replay-log.txt",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m0/replay-log.txt",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m0/schema-object-comparison.json",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m0/static-migration-model.json",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m0/structural-diff-final.md",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m0/structural-diff.md",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m1c1ee-r2/candidate_fix.sql",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m1c1ee-r2/concurrency.py",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m1c1ee-r2/concurrency_results.json",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m1c1ee-r2/harness.py",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m1c1ee-r2/harness_results.json",
+    "binary": false
+  },
+  {
+    "path": "docs/phase5-m1c1ee-r2/harness_seed.sql",
+    "binary": false
+  },
+  {
+    "path": "eslint.config.js",
+    "binary": false
+  },
+  {
+    "path": "package-lock.json",
+    "binary": false
+  },
+  {
+    "path": "package.json",
+    "binary": false
+  },
+  {
+    "path": "public/favicon.png",
+    "binary": true
+  },
+  {
+    "path": "public/images/categories/beauty.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/categories/boeken.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/categories/elektronica.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/categories/games.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/categories/mode.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/categories/speelgoed.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/categories/sport.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/categories/wonen.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/hero.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/air-purifier.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/book-coding-robot.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/book-smart-living.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/book-sustainable-home.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/cooler-box.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/doorbell.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/drone.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/e-bike.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/earbuds.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/espresso-maker.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/fitness-tracker.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/game-controller.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/gaming-headset.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/indoor-cam.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/ipl-device.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/led-strip.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/mesh-router.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/projector.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/robot-dino.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/robot-vacuum.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/skin-camera.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smart-hub.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smart-jumprope.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smart-kettle.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smart-lock.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smart-plug.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smart-ring.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smart-scale.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smart-teddy.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smart-toothbrush.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smartwatch.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/smoke-detector.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/sous-vide.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/stem-kit.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/streaming-stick.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/thermostat.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/uv-band.jpg",
+    "binary": true
+  },
+  {
+    "path": "public/images/products/wireless-charger.jpg",
+    "binary": true
+  },
+  {
+    "path": "roadmap.md",
+    "binary": false
+  },
+  {
+    "path": "scripts/assign-product-images.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/buyer-account.test.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase1-backfill-preflight.sql",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase1-tenancy-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase2-mig1-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase2-mig2-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase2-mig3-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase2-mig4-isolated.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase2-mig4-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase3-m1-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase3-m2-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase3-m3-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase4-m1-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase4-m2-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase4-m3-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase4-m4-adapter-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase4-m4-bol-demo-smoke.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase4-m4-checkpoint-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase4-m4-post-m5-compat-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase4-m4-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase4-m5-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-acl-gate/approved-routines.json",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-acl-gate/check-critical-acl.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/assert-empty-db.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/compare-schema.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/dump-schema.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/generate-gate-report.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/lib/common.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/manifests/current-manifest.json",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/manifests/m4-checkpoint-manifest.json",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/manifests/pre-hotfix-manifest.json",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/run-baseline-suites.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/run-cleanroom.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/run-m4-checkpoint.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/scan-artifacts-for-secrets.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/verify-hotfix-acl.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/verify-live-readonly-role.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m0/write-run-metadata.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m1v1c/static-assertions.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m1v1d/runtime-security-tests.py",
+    "binary": false
+  },
+  {
+    "path": "scripts/phase5-m1v1d/static-assertions.sh",
+    "binary": false
+  },
+  {
+    "path": "scripts/redaction-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/security-tests.ts",
+    "binary": false
+  },
+  {
+    "path": "scripts/seed-buyer-catalog.ts",
+    "binary": false
+  },
+  {
+    "path": "src/assets/borvat-logo.jpg.asset.json",
+    "binary": false
+  },
+  {
+    "path": "src/components/demo/inbox.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/demo/shell.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/demo/skeleton.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/product-card.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/product-form.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/review/seller-applications-panel.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/site-header.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/accordion.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/alert-dialog.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/alert.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/aspect-ratio.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/avatar.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/badge.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/breadcrumb.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/button.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/calendar.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/card.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/carousel.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/chart.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/checkbox.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/collapsible.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/command.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/context-menu.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/dialog.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/drawer.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/dropdown-menu.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/form.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/hover-card.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/input-otp.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/input.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/label.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/menubar.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/navigation-menu.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/pagination.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/popover.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/progress.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/radio-group.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/resizable.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/scroll-area.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/select.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/separator.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/sheet.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/sidebar.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/skeleton.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/slider.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/sonner.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/switch.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/table.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/tabs.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/textarea.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/toggle-group.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/toggle.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/components/ui/tooltip.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/demo/companies.ts",
+    "binary": false
+  },
+  {
+    "path": "src/demo/messages.ts",
+    "binary": false
+  },
+  {
+    "path": "src/demo/ops.ts",
+    "binary": false
+  },
+  {
+    "path": "src/demo/products.ts",
+    "binary": false
+  },
+  {
+    "path": "src/demo/quotes.ts",
+    "binary": false
+  },
+  {
+    "path": "src/demo/shipping.ts",
+    "binary": false
+  },
+  {
+    "path": "src/hooks/use-mobile.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/hooks/useSellerApplication.ts",
+    "binary": false
+  },
+  {
+    "path": "src/hooks/useSellerData.ts",
+    "binary": false
+  },
+  {
+    "path": "src/integrations/lovable/index.ts",
+    "binary": false
+  },
+  {
+    "path": "src/integrations/supabase/auth-attacher.ts",
+    "binary": false
+  },
+  {
+    "path": "src/integrations/supabase/auth-middleware.ts",
+    "binary": false
+  },
+  {
+    "path": "src/integrations/supabase/client.server.ts",
+    "binary": false
+  },
+  {
+    "path": "src/integrations/supabase/client.ts",
+    "binary": false
+  },
+  {
+    "path": "src/integrations/supabase/previewAuthStorage.ts",
+    "binary": false
+  },
+  {
+    "path": "src/integrations/supabase/types.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/admin/ui.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/buyer-account.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/_brand.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/_layout.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/email-change.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/invite.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/magic-link.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/order-delivered.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/order-processing.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/order-shipped.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/reauthentication.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/recovery.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/registry.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/send-email.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/email-templates/signup.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/lib/error-capture.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/error-page.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/format.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/lovable-error-reporting.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/context.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/crypto.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/index.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/supabase.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/analyze_catalog.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/analyze_inventory.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/analyze_sales.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/bol_configure.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/bol_import_products.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/compare_products.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/create_product.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/detect_listing_problems.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/forget_memory.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/get_product.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/get_recommendations.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/get_shop_information.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/list_my_orders.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/list_my_products.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/list_seller_orders.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/monitor_marketplace_quality.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/recommend_price.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/search_products.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/suggest_product_content.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/mcp/tools/update_order_status.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/order-status.functions.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/order-status.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/outbox/bol-adapter.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/outbox/bol-worker.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/outbox/mock-adapter.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/outbox/worker.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/store-profile.functions.ts",
+    "binary": false
+  },
+  {
+    "path": "src/lib/utils.ts",
+    "binary": false
+  },
+  {
+    "path": "src/routeTree.gen.ts",
+    "binary": false
+  },
+  {
+    "path": "src/router.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/README.md",
+    "binary": false
+  },
+  {
+    "path": "src/routes/[.]lovable.oauth.consent.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/[.mcp]/invoke-tool/$tool.ts",
+    "binary": false
+  },
+  {
+    "path": "src/routes/[.mcp]/list-tools.ts",
+    "binary": false
+  },
+  {
+    "path": "src/routes/[.well-known]/oauth-protected-resource.ts",
+    "binary": false
+  },
+  {
+    "path": "src/routes/__root.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/account.support.$conversationId.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/account.support.index.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/account.support.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/audit.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/channels.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/companies.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/dashboard.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/health.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/index.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/listings.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/orders.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/products.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/quotes.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/route.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/security.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/seller-applications.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/shipping.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/stores.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/support.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/admin/users.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/checkout.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/orders.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/owner-review.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/review/index.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/review/route.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/review/seller-applications.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/route.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.advertising.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.analysis.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.catalog.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.dashboard.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.finances.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.inventory.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.listings.$listingId.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.manager.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.messages.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.onboarding.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.order-desk.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.orders.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.performance.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.products.$id.edit.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.products.new.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.products.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.promotions.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.questions.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.quotes.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.reviews.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.settings.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.shipping.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.store.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.stores.$storeId.listings.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.stores.$storeId.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.stores.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/seller.suggestions.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/support.cases.$caseId.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/support.inbox.customers.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/support.inbox.merchants.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/support.queue.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/_authenticated/wishlist.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/account.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/auth.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/c.$slug.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/cart.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/index.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/lovable/email/auth/preview.ts",
+    "binary": false
+  },
+  {
+    "path": "src/routes/lovable/email/auth/webhook.ts",
+    "binary": false
+  },
+  {
+    "path": "src/routes/lovable/email/transactional/preview.ts",
+    "binary": false
+  },
+  {
+    "path": "src/routes/mcp.ts",
+    "binary": false
+  },
+  {
+    "path": "src/routes/product.$id.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/search.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/seller.$id.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/seller.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/routes/store.$slug.tsx",
+    "binary": false
+  },
+  {
+    "path": "src/server.ts",
+    "binary": false
+  },
+  {
+    "path": "src/start.ts",
+    "binary": false
+  },
+  {
+    "path": "src/styles.css",
+    "binary": false
+  },
+  {
+    "path": "supabase/config.toml",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723113505_4664c694-4392-4872-8635-1d7e84fe7d3d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723113515_228a0455-6dfe-4120-8af3-6d2b9ed3fd88.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723113622_b82a2a64-35d6-4285-8c72-050e88b1af52.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723114313_5e523486-d737-4816-9891-d6d9fbfc7355.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723145302_079b61ee-6d53-41fe-801b-37f746a8956a.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723151729_abdb9fc8-b808-4f91-84d4-975d90127826.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723152640_8af6146e-5348-4a7d-9a13-4d942e40c6df.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723154058_0d2ed9e8-3b00-4d74-a90e-bb79f1a4f2b5.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723194859_c42c8642-3f61-477a-bf8a-8b06581de0a4.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723195605_b9bc6b44-01b1-43b7-bcfb-252d2e695154.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723200056_4379bc04-b394-4081-b083-198ee22c7120.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723201307_cac97cc5-42fc-46aa-a4b6-247da16af185.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723205432_8880115d-cabb-4b72-ad4a-69604973601f.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723210329_c6066fad-95de-4b38-a1d7-f9746e14c5f1.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723210405_925f984e-c68d-484a-be49-379af78452ec.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723211217_bdbee695-4b09-4f95-9e8d-a80f53321cd2.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723211753_14b2847c-774e-4459-b31d-d26561805b6b.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723212027_f36deef0-56b3-461e-8cb3-4f9485fe14b3.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723214441_c24c46b3-400e-42ee-a499-e057e611f3de.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723220800_332a3780-2496-451f-b99f-36b13ad218ae.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723221649_d6173221-f2c3-478b-a493-e41462cab359.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723222334_e4530f91-f1ed-4f4b-b4b4-5135c261a6d5.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723223139_d0b194cd-3c06-4650-a5b5-38e7352bcd53.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723225107_344df817-f1de-41e4-8c6e-781dc9697825.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723225908_2c345c8b-3cbf-4252-80a7-766f8ea9dccc.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723230213_c50fba75-41fd-440c-93e0-6c70aa5d09cd.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723230949_0df12683-6bb0-434c-af8c-c5eb74d9687e.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723231644_7c5bc2c2-f3b2-498a-a34f-5cf70ebfa829.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260723232557_e7d3423f-58ee-4bec-b94b-d05d6b67ed8a.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724003715_7e73d357-0c2e-4d9d-9140-9f9db893344e.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724004912_18fcad33-8a8c-41a7-a3e6-df51e203b8e1.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724005016_889022db-568d-4661-a63d-0862ab737d4c.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724012108_8606989c-fd3e-49e9-80e4-1cecfdba6531.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724012242_b65ade6d-bdb8-46c9-bdd5-0739eca5894f.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724195929_8cebda88-d1dd-4bf3-b032-28173668d808.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724210701_b6184936-e4a0-410d-8047-f67a2d026319.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724221616_ca682252-4df7-41a0-bd5e-d6fd877ed780.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724221718_87e3f3c9-aabf-4a32-b9b6-49c4546f8b35.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724221925_cf3f8ced-513b-46a4-bd6b-722ccb8a43b0.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724222835_0c93a28a-8f84-4b32-b9cf-2af64605c422.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724223025_3128587e-88a3-483e-9318-25e92de047e3.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724223116_e22e2587-690c-413f-a72a-f9663ec4f4a6.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260724230432_75c8d77f-3654-43b4-834d-c2714b67f0d8.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260725214423_f150c58a-ae77-4a82-9fd1-73d7b3f69485.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260725220916_681aeeb2-13a2-42c6-8b2e-0902e1ce457f.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260725221734_509d914a-eb20-4ee2-bbb0-b81329ecb7c9.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260725225152_dc570225-1ab9-4be7-9ca1-b442d69028a1.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260725225243_9a86cbfc-28f9-4364-bc8b-f2bea8f9341d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726093908_70ac2449-599a-4444-b350-4ff5d05feee5.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726094140_2dfdf99b-f8ba-4294-befc-9d9b2bb7005d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726101032_8e632f41-8849-45ed-9592-f6b38b9172d9.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726101415_ecb12204-23c3-4f86-a5cc-1c06e291b74f.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726101526_79cfa30e-2274-4871-b136-30311abf5b15.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726101601_30e578dd-3fa2-48e1-b3d9-cdde2cb6fe64.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726104223_d678c67e-8ae8-4833-bcee-9bb4c4867604.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726104420_87409108-1967-44b8-a725-e25a34bbd7c7.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726104552_05ec1b2e-a567-493e-8a13-f0b9caab89a8.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726104624_569d744b-1481-49b7-b829-ebc34ad149ef.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726111836_8cd62f3d-4588-4648-af5e-aae463bb50e8.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726111931_6b0e6af9-0aea-46e8-806c-0f193c748358.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726120009_4ad063cd-695b-4e39-acf9-0e91465f502d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726120330_bf2eb983-0550-42e2-9f1e-0dec263b6525.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726120424_61fa12a5-f2ce-4b4d-8b60-c530a759225d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726120523_211ffc41-6b07-4f78-9e49-1d5313c2fcbb.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726121418_716266b4-3847-4a04-a795-91c64421ace8.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726122400_dcfe0dd4-0429-403b-a3e5-ec4ca2c47439.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726123143_c618205a-7195-40cf-9d4c-9c55e3929ab7.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726123305_29ca2b42-fac2-4824-bd69-ecdc1af7a22d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726125706_ceb5ea9d-3f8b-4368-bb2e-34bafdf4e7cb.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726125905_6c80d575-35e1-415d-805a-0a70fda31df1.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726130022_ab7d900e-b47c-4793-9747-771e0d894154.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726130057_ff7bae3a-299a-4665-a4e7-bf7f4b959501.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726132802_4bc73294-f528-4586-9565-9460f08a0a04.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726133107_55e4783f-93ee-48da-9eca-6aefda113ce2.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726135031_079b314e-4bf1-4e75-a591-87fb9a91809d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726135308_14788f4e-1eb7-4901-a847-46b3522e8032.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726142003_e576889e-9353-41da-a6e3-f226363e43a3.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726142346_d67bcd9b-293c-444d-bd9a-f2a6b1916964.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726142523_1f0e4b6d-285f-4ed7-89f0-1db03f440253.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726145235_3f228759-0ea6-4096-add6-0fc7592c05e4.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726145444_38013293-50fc-4721-b25e-1928a7ee9fc8.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726150928_f60ba0f7-8276-41e9-a2a1-4f35f5718452.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726151219_6c863dac-c016-4652-939b-18c0a78285b6.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726153323_26526402-fd88-4f89-82c6-64ed9393a726.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726160351_66a1da93-1b4b-46e3-a65f-8783e23a15f7.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726161132_3ee6e6db-645e-4e29-9f40-6742c5f4a7a3.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726162558_35b31159-1fb7-4617-9bc1-a0228707d217.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726163821_21fc8e1b-ee79-4fa7-8465-01ed9050240d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726164218_beb8aae5-51a5-4e7e-a56d-d21c650516b6.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726170407_b000671d-950d-4d7f-a7a7-d71ba828e3de.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726171748_bee85150-ef33-454f-a3bf-012e042ac78d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726172003_695bb3d9-2977-4ded-ad59-94cf2219b016.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726173300_fd917dbd-1537-432f-883a-db4878791cdd.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726173604_9d2f97fd-c0dd-4bc7-bd4f-3f62c73418b1.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726173802_f9a154a9-a404-4db4-a31e-0b679e49198d.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726174310_bbe55081-d718-4cde-bba8-af80c94d22b9.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726175606_6b3976ac-e756-48a1-af05-b8013c5699c7.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726175856_1ed001f9-3de5-436e-b7b3-3128a26ccfc2.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726182333_33be8782-0015-410d-a90f-af902c8f2d28.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726182733_e308ecfa-7d82-45d3-b8f0-a3c2065a212e.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726183419_c8314b0c-d656-4331-b883-381feae412c9.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726183622_b5751787-20e9-4328-9525-7d4c4a4fe9a4.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726183821_44a0d748-1138-4fa3-9e27-65a9e708c518.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726183851_89c82ee8-08df-457f-be1d-860f16c0c261.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726184646_4fd716ee-b420-4b71-8529-4ff8a5ee3364.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726184803_644eabeb-ea8e-4619-b256-485c73905219.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726184935_82b18410-712a-4b99-9a5d-655199ba7a82.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726192314_ffd713c8-cc26-4d1a-aae2-1c4c97735b97.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726192627_8df542fc-beba-4242-b8bf-e2e6afc35cf5.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726192842_2fc07a0b-6184-43d4-a95e-571396ffa413.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726214308_03045e91-363a-4f08-9b6c-b3bbec0edc45.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726214522_fb4806d3-028b-48de-90e8-77b8bad98fba.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726220909_5543b19d-d14f-41d7-a175-ad2f645456ba.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726221731_bcbbde98-f138-4c21-a657-b47e020d21b7.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726222113_03979829-84cc-4227-9acc-4af87c59d72b.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726222737_f2f7df2e-2e4d-415c-bfb1-7240853878bc.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726223934_b6bb2a1f-81c4-4caa-805e-e393855e033f.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260726224044_92a47f0c-0b1c-46b6-b207-ea3f737963e2.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260727170206_5ff4475f-4367-4060-8798-def5973bca0c.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260727170355_cb59c59d-5b02-4837-910f-ddca54ea0aa1.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260727192406_35244702-24a3-426b-801c-19f75baa2d2a.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260727192557_5a366cf7-0a1e-4c7a-8235-c171a29b34d8.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260731232446_f9ee9ffa-914e-4ad3-845d-40d8e570b23c.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260731233755_d8f69aff-7b46-4c3b-85b0-b23dfb9a87b3.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260731235603_61a36e53-e5d9-4915-9bf3-69bd97aafd51.sql",
+    "binary": false
+  },
+  {
+    "path": "supabase/migrations/20260801002900_e4713db2-62c8-471b-b069-bf4dabb3f676.sql",
+    "binary": false
+  },
+  {
+    "path": "tsconfig.json",
+    "binary": false
+  },
+  {
+    "path": "vite.config.ts",
+    "binary": false
+  }
+]

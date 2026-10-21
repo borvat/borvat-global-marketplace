@@ -1,0 +1,21 @@
+PHASE 5 — M0-E2 — PRE-HOTFIX MANIFEST CLEAN-ROOM REPLAY LOG
+===========================================================
+
+STATUS: NOT EXECUTED IN THIS ENVIRONMENT
+
+Scope:
+  Replay the 36-migration pre-hotfix manifest (all files EXCEPT
+  20260724210701_b6184936-e4a0-410d-8047-f67a2d026319.sql — P5-HF-001).
+
+Purpose:
+  Establish the state as it existed immediately before P5-HF-001 so that:
+    - The M4 checkpoint tests (scripts/phase4-m4-tests.ts,
+      scripts/phase4-m4-adapter-tests.ts) can be executed against the
+      historical schema they were written for.
+    - The delta introduced by P5-HF-001 is measurable in isolation.
+
+Procedure: identical to current-replay-log.txt but stops before the hotfix
+migration. See docs/PHASE5_M0_MIGRATION_MANIFEST.json → sets.pre_hotfix_manifest.
+
+Constraint: same environment restrictions apply. Do NOT replay against
+Production. Do NOT execute inside the Lovable build sandbox.

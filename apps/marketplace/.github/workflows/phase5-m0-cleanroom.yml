@@ -1,0 +1,329 @@
+name: Phase 5 — M0 Clean-Room Baseline
+
+# M0-E3 CI Harness — patched under BOR-DEC-029.
+#
+# HARD RULES:
+#   - Never writes to Production.
+#   - Migrations selected by pinned manifest (SHA-256 verified).
+#   - Job D is gated by workflow_dispatch input AND a protected environment.
+#   - Live account role privileges are proved read-only BEFORE pg_dump runs.
+#   - Every artifact is secret-scanned before upload.
+#   - Every artifact carries GITHUB_SHA / RUN_ID / RUN_ATTEMPT / workflow SHA
+#     / manifest SHAs / tool versions via artifacts/run-metadata.json.
+
+on:
+  workflow_dispatch:
+    inputs:
+      include_live_snapshot:
+        description: "Pull live schema snapshot (requires protected-env approval)"
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - "supabase/migrations/**"
+      - "scripts/phase5-m0/**"
+      - ".github/workflows/phase5-m0-cleanroom.yml"
+      - "scripts/phase4-m4-*.ts"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phase5-m0-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "20.11.1"
+  POSTGRES_IMAGE: "postgres:15.6-alpine"
+  PSQL_CLIENT_VERSION: "15"
+  PHASE5_CLEANROOM: "true"
+
+jobs:
+  # ---------------------------------------------------------------
+  # Job A — Pre-hotfix replay (36 migrations)
+  # ---------------------------------------------------------------
+  pre_hotfix_replay:
+    name: A — Pre-hotfix clean-room replay
+    runs-on: ubuntu-22.04
+    services:
+      postgres:
+        image: postgres:15.6-alpine
+        env:
+          POSTGRES_PASSWORD: cleanroom
+          POSTGRES_DB: cleanroom_pre
+        ports: ["5433:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s
+          --health-timeout 5s --health-retries 20
+    env:
+      PGHOST: localhost
+      PGPORT: "5433"
+      PGUSER: postgres
+      PGPASSWORD: cleanroom
+      PGDATABASE: cleanroom_pre
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "${{ env.NODE_VERSION }}" }
+      - uses: oven-sh/setup-bun@v1
+        with: { bun-version: latest }
+      - name: Install psql client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql-client-${{ env.PSQL_CLIENT_VERSION }}
+      - name: Wait for Postgres
+        run: |
+          for i in $(seq 1 30); do
+            pg_isready -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" && break
+            sleep 1
+          done
+      - name: Write run metadata
+        run: bash scripts/phase5-m0/write-run-metadata.sh artifacts/run-metadata.json
+      - name: Replay pre-hotfix manifest
+        run: bash scripts/phase5-m0/run-cleanroom.sh pre_hotfix
+      - name: Dump schema
+        run: bash scripts/phase5-m0/dump-schema.sh artifacts/pre-hotfix/schema.sql local
+      - name: Secret scan
+        run: bash scripts/phase5-m0/scan-artifacts-for-secrets.sh artifacts/pre-hotfix/
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase5-m0-pre-hotfix
+          path: |
+            artifacts/pre-hotfix/
+            artifacts/run-metadata.json
+          retention-days: 14
+
+  # ---------------------------------------------------------------
+  # Job B — Current replay (37 migrations) + hotfix ACL verify
+  # ---------------------------------------------------------------
+  current_replay:
+    name: B — Current clean-room replay + ACL verify
+    runs-on: ubuntu-22.04
+    services:
+      postgres:
+        image: postgres:15.6-alpine
+        env:
+          POSTGRES_PASSWORD: cleanroom
+          POSTGRES_DB: cleanroom_current
+        ports: ["5434:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s
+          --health-timeout 5s --health-retries 20
+    env:
+      PGHOST: localhost
+      PGPORT: "5434"
+      PGUSER: postgres
+      PGPASSWORD: cleanroom
+      PGDATABASE: cleanroom_current
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "${{ env.NODE_VERSION }}" }
+      - uses: oven-sh/setup-bun@v1
+        with: { bun-version: latest }
+      - name: Install psql client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql-client-${{ env.PSQL_CLIENT_VERSION }}
+      - name: Wait for Postgres
+        run: |
+          for i in $(seq 1 30); do
+            pg_isready -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" && break
+            sleep 1
+          done
+      - name: Write run metadata
+        run: bash scripts/phase5-m0/write-run-metadata.sh artifacts/run-metadata.json
+      - name: Replay current manifest
+        run: bash scripts/phase5-m0/run-cleanroom.sh current
+      - name: Verify P5-HF-001 ACL
+        run: bash scripts/phase5-m0/verify-hotfix-acl.sh
+      - name: Dump schema
+        run: bash scripts/phase5-m0/dump-schema.sh artifacts/current/schema.sql local
+      - name: Secret scan
+        run: bash scripts/phase5-m0/scan-artifacts-for-secrets.sh artifacts/current/
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase5-m0-current
+          path: |
+            artifacts/current/
+            artifacts/run-metadata.json
+          retention-days: 14
+
+  # ---------------------------------------------------------------
+  # Job C — Baseline suites against CURRENT
+  # ---------------------------------------------------------------
+  baseline_suites:
+    name: C — Baseline suites + post-M5 compatibility
+    needs: current_replay
+    runs-on: ubuntu-22.04
+    services:
+      postgres:
+        image: postgres:15.6-alpine
+        env:
+          POSTGRES_PASSWORD: cleanroom
+          POSTGRES_DB: cleanroom_current
+        ports: ["5434:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s
+          --health-timeout 5s --health-retries 20
+    env:
+      PGHOST: localhost
+      PGPORT: "5434"
+      PGUSER: postgres
+      PGPASSWORD: cleanroom
+      PGDATABASE: cleanroom_current
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "${{ env.NODE_VERSION }}" }
+      - uses: oven-sh/setup-bun@v1
+        with: { bun-version: latest }
+      - name: Install psql client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql-client-${{ env.PSQL_CLIENT_VERSION }}
+      - name: Wait for Postgres
+        run: |
+          for i in $(seq 1 30); do
+            pg_isready -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" && break
+            sleep 1
+          done
+      - name: Install deps
+        run: bun install --frozen-lockfile || bun install
+      - name: Re-apply current manifest onto fresh service DB
+        run: bash scripts/phase5-m0/run-cleanroom.sh current
+      - name: Run baseline suites
+        run: bash scripts/phase5-m0/run-baseline-suites.sh
+      - name: Secret scan
+        if: always()
+        run: bash scripts/phase5-m0/scan-artifacts-for-secrets.sh artifacts/suites/
+      - name: Upload suite results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase5-m0-suites
+          path: artifacts/suites/
+          retention-days: 14
+
+  # ---------------------------------------------------------------
+  # Job C2 — M4 checkpoint (pre-M5 schema) + historical suites
+  # ---------------------------------------------------------------
+  m4_checkpoint:
+    name: C2 — M4 checkpoint replay + historical suites
+    runs-on: ubuntu-22.04
+    services:
+      postgres:
+        image: postgres:15.6-alpine
+        env:
+          POSTGRES_PASSWORD: cleanroom
+          POSTGRES_DB: cleanroom_m4
+        ports: ["5435:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s
+          --health-timeout 5s --health-retries 20
+    env:
+      PGHOST: localhost
+      PGPORT: "5435"
+      PGUSER: postgres
+      PGPASSWORD: cleanroom
+      PGDATABASE: cleanroom_m4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "${{ env.NODE_VERSION }}" }
+      - uses: oven-sh/setup-bun@v1
+        with: { bun-version: latest }
+      - name: Install psql client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql-client-${{ env.PSQL_CLIENT_VERSION }}
+      - name: Wait for Postgres
+        run: |
+          for i in $(seq 1 30); do
+            pg_isready -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" && break
+            sleep 1
+          done
+      - name: Install deps
+        run: bun install --frozen-lockfile || bun install
+      - name: Replay M4 checkpoint & run historical suites
+        run: bash scripts/phase5-m0/run-m4-checkpoint.sh
+      - name: Secret scan
+        if: always()
+        run: bash scripts/phase5-m0/scan-artifacts-for-secrets.sh artifacts/m4-checkpoint/
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase5-m0-m4-checkpoint
+          path: artifacts/m4-checkpoint/
+          retention-days: 14
+
+  # ---------------------------------------------------------------
+  # Job D — Live schema snapshot (READ-ONLY, protected environment)
+  # ---------------------------------------------------------------
+  live_schema_snapshot:
+    name: D — Live schema snapshot (read-only, gated)
+    if: github.event_name == 'workflow_dispatch' && inputs.include_live_snapshot == true
+    runs-on: ubuntu-22.04
+    environment: phase5-m0-live-readonly
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install psql client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql-client-${{ env.PSQL_CLIENT_VERSION }}
+      - name: Read-only role preflight (fails closed before pg_dump)
+        env:
+          PHASE5_LIVE_READONLY_DSN: ${{ secrets.PHASE5_LIVE_READONLY_DSN }}
+        run: bash scripts/phase5-m0/verify-live-readonly-role.sh
+      - name: Schema-only snapshot
+        env:
+          PHASE5_LIVE_READONLY_DSN: ${{ secrets.PHASE5_LIVE_READONLY_DSN }}
+        run: bash scripts/phase5-m0/dump-schema.sh artifacts/live/schema.sql live
+      - name: Secret scan (blocking)
+        run: bash scripts/phase5-m0/scan-artifacts-for-secrets.sh artifacts/live/
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase5-m0-live-schema
+          path: artifacts/live/
+          retention-days: 7
+
+  # ---------------------------------------------------------------
+  # Job E — Diff + Gate report (always runs)
+  # ---------------------------------------------------------------
+  gate_report:
+    name: E — Structural diff and gate report
+    needs: [pre_hotfix_replay, current_replay, baseline_suites, m4_checkpoint]
+    if: always()
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "${{ env.NODE_VERSION }}" }
+      - uses: oven-sh/setup-bun@v1
+        with: { bun-version: latest }
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with: { path: artifacts/ }
+      - name: Structural diff
+        run: bash scripts/phase5-m0/compare-schema.sh
+      - name: Generate gate report
+        run: bun run scripts/phase5-m0/generate-gate-report.ts
+      - name: Secret scan (final)
+        run: bash scripts/phase5-m0/scan-artifacts-for-secrets.sh artifacts/
+      - name: Upload gate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase5-m0-gate-report
+          path: |
+            docs/PHASE5_M0_CI_CLEANROOM_GATE_REPORT.md
+            artifacts/diff/
+            artifacts/secret-scan.json
+          retention-days: 30

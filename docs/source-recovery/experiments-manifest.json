@@ -1,0 +1,416 @@
+{
+  "files": [
+    {
+      "destination": "experiments/product-completion/.gitignore",
+      "sha256": "f452c3859c8f318ae502bbdcde75273a47d03107dae9c5d18a6a37c484413495"
+    },
+    {
+      "destination": "experiments/product-completion/.github/workflows/isolated-commerce.yml",
+      "sha256": "93c2b07a0c6c38f6dc87415fe55f35262b1e30fa6123ae69cfe941e7937c0346"
+    },
+    {
+      "destination": "experiments/product-completion/docs/ACCEPTANCE.md",
+      "sha256": "2f34d7d3a567c19287fff29adf244a0aae9c64ef8ccf4fe9d7a25f49b074a842"
+    },
+    {
+      "destination": "experiments/product-completion/.github/workflows/foundation-checks.yml",
+      "sha256": "a0f3014c49dd6b1e76f00bdaac02b5312092b8b7c11bd8199ac1baa4101e6881"
+    },
+    {
+      "destination": "experiments/product-completion/README.md",
+      "sha256": "ce9136f4fa95e72aba14f4e390ba9445e5da9690a32738b29e443cbf7ff693d2"
+    },
+    {
+      "destination": "experiments/product-completion/contracts/shopping-intent.schema.json",
+      "sha256": "b1b16cf9b47a8317a004ac678e4b2d3c12d920d5112d941b64966f605b4b0d30"
+    },
+    {
+      "destination": "experiments/product-completion/docs/AI-NATIVE-COMMERCE-MVP.md",
+      "sha256": "786f1bc2335710e3178781dee905817d45536edef0ed277afb9ce833cc4e669a"
+    },
+    {
+      "destination": "experiments/product-completion/docs/EXECUTION-STATUS.md",
+      "sha256": "b7966e7bcdc3e074168f418b201938b841eaba478db119c6d72a82b8c688f24d"
+    },
+    {
+      "destination": "experiments/product-completion/docs/IMPLEMENTATION-PLAN.md",
+      "sha256": "d89f6ca414c796548f9ff4335e714d8bea43f3d55a0442f4c1c0eb2e61a2535a"
+    },
+    {
+      "destination": "experiments/product-completion/docs/ARCHITECTURE.md",
+      "sha256": "df4ddc1123e24bd8b66df4e32e6b8e973cc2b34b7b5b416957c430d338166828"
+    },
+    {
+      "destination": "experiments/product-completion/docs/COMPLETE-MARKETPLACE-PLATFORM-SCOPE.md",
+      "sha256": "a1191b85918e69b0de2c97d6ad27eeadbab127f8f7f68f487e449c6cb7b96e3b"
+    },
+    {
+      "destination": "experiments/product-completion/docs/DEPENDENCY-REVIEW.md",
+      "sha256": "73ace99dca365b087579eb75471f2900e9604c1fdafceeead464ff6164d92947"
+    },
+    {
+      "destination": "experiments/product-completion/docs/LOCAL-ENVIRONMENT.md",
+      "sha256": "048c8d091b145374a54358160c25c2a7c3d8bed65d46107c9f94f1a79889668f"
+    },
+    {
+      "destination": "experiments/product-completion/docs/SIX-PLATFORM-NEXT-ACCEPTANCE-GATES.md",
+      "sha256": "eedab889eded468fd5275db42659080b3f6316c700706432de54066f283999f1"
+    },
+    {
+      "destination": "experiments/product-completion/docs/LEGACY-LOVABLE-AUDIT-2026-10-11.md",
+      "sha256": "5d91aa59246ced84c2c68f83e8185710abd517dac22b195af92541230986bcb4"
+    },
+    {
+      "destination": "experiments/product-completion/docs/PROTOTYPE-BOUNDARIES.md",
+      "sha256": "ccf7e43f9524f39d0299671831eba480f35a475d52203448f86647726755652f"
+    },
+    {
+      "destination": "experiments/product-completion/docs/LEGACY-REUSE-AND-PLATFORM-EXECUTION.md",
+      "sha256": "2d365762faf52b9a76d10c1c522466bbd62608b0c187e5a7cd6656ae1e8c29c2"
+    },
+    {
+      "destination": "experiments/product-completion/docs/INSTALLATION.md",
+      "sha256": "309257b143ffec2d5485c7603cbfc371e10bc3233627033b533c293a3b0d8232"
+    },
+    {
+      "destination": "experiments/product-completion/infra/.env.example",
+      "sha256": "92053d376bb70c73e8c8909a43d1186ab9df3f485481c2d91a6e6b271de3c15e"
+    },
+    {
+      "destination": "experiments/product-completion/infra/compose.dev.yml",
+      "sha256": "aed3441bd65b50bdbdafb8590d5914aa72fda152825ca119e29c657313c92f8c"
+    },
+    {
+      "destination": "experiments/product-completion/infra/sql/002_test_order_lines.sql",
+      "sha256": "95e092ecb8ede1ec949ffe5a5bd2049fb116d367c71c1315f7983d428f398b79"
+    },
+    {
+      "destination": "experiments/product-completion/docs/SIX-PLATFORM-SANDBOX-EXECUTION.md",
+      "sha256": "f739d9032a19f9aa677e02026ca4898713f144fff970bbab6b640983413bf7c7"
+    },
+    {
+      "destination": "experiments/product-completion/infra/sql/003_test_product_tax_category.sql",
+      "sha256": "6411ef007836e9e2f8b471b1ae06433922c65bbb01bbca2f254c062bbd20d7f2"
+    },
+    {
+      "destination": "experiments/product-completion/infra/sql/001_six_platform_test_schema.sql",
+      "sha256": "068d147fdb8421b654164a88ac306b431078537c9afec004015545f43df20d7f"
+    },
+    {
+      "destination": "experiments/product-completion/prototypes/roles.mjs",
+      "sha256": "810864a30245c1312575c1c1c8f01a68d7cc9600c87353619b91c1fbd1052fcf"
+    },
+    {
+      "destination": "experiments/product-completion/prototypes/marketplace-sandbox.mjs",
+      "sha256": "c6470c5eb7a3041b9ffb5f5cec00cae5e852323f2ec7aea602c8d9e556f0496a"
+    },
+    {
+      "destination": "experiments/product-completion/prototypes/platform-access.mjs",
+      "sha256": "b1583af4123b311a306c89d96e8c721e7f2fc6ff5d4283925723179a792c038e"
+    },
+    {
+      "destination": "experiments/product-completion/prototypes/offer-engine.mjs",
+      "sha256": "9f565ef419e05190c251370a3432109faa5f9f5f551acfcb8eebd5083f75ab9c"
+    },
+    {
+      "destination": "experiments/product-completion/prototypes/smart-shopping-page.mjs",
+      "sha256": "30a4bfac92ad5f2f419bc3f1a0c985bf819a34b76d2e2899153df3d33f65ebdb"
+    },
+    {
+      "destination": "experiments/product-completion/infra/sql/004_test_immutable_quote_snapshot.sql",
+      "sha256": "8806b29246564c40735b07d9ad290debd99c386bc141fdc24abebc1fe38a672d"
+    },
+    {
+      "destination": "experiments/product-completion/scripts/verify-isolated-commerce.mjs",
+      "sha256": "ab62fb3f66aa5a1d199cbe9bb637691f540315a7cfe679d5c353c9c8242b05c0"
+    },
+    {
+      "destination": "experiments/product-completion/scripts/bootstrap-mercur-local.sh",
+      "sha256": "9cafec3a0d92ba0690f002b789affe6b544812cfcd09499ff0d33ff62d667e81"
+    },
+    {
+      "destination": "experiments/product-completion/scripts/check-foundation.mjs",
+      "sha256": "cc07c64d20aaa0f7cda737aeb4380c5a13b85f4912a1d512b6cf111348de1dd2"
+    },
+    {
+      "destination": "experiments/product-completion/services/test-buyer-receipt.mjs",
+      "sha256": "61bb11db147dec708c1b61984dc732b856ca01dc297f77678f7827bfa5b862d1"
+    },
+    {
+      "destination": "experiments/product-completion/prototypes/smart-shopping.mjs",
+      "sha256": "a690b906b61c3add6da1f0b150b40d395be87e6b6c16852472ee884ce0c7fa99"
+    },
+    {
+      "destination": "experiments/product-completion/prototypes/smart-shopping-server.mjs",
+      "sha256": "b23cbcc8556458e638bd50203f7f6f8fe14e1d5e0639fd829c3c5683d43a9600"
+    },
+    {
+      "destination": "experiments/product-completion/services/test-checkout-quote.mjs",
+      "sha256": "e453e85293fcb5b9a135800213aafc520c4b57aeb589244cee0cda23a24fec27"
+    },
+    {
+      "destination": "experiments/product-completion/services/test-cancel-draft-order.mjs",
+      "sha256": "cf95e8f19dda48bc3296be373370f16d5851e604e87472d27539f0f4e7f66345"
+    },
+    {
+      "destination": "experiments/product-completion/services/test-quoted-order-service.mjs",
+      "sha256": "75b61642eebe7a9f27f450ba641ef0b13ad7b81ba8a150bc2c7c53341dd2150e"
+    },
+    {
+      "destination": "experiments/product-completion/services/test-server-shipping.mjs",
+      "sha256": "0e48f0b5560832127a100657f2b7c99dec0a61acd12b03f5565115a4a5ad0b90"
+    },
+    {
+      "destination": "experiments/product-completion/services/test-order-service.mjs",
+      "sha256": "a02bd1b9e43375d830905ce265588d29e5745bc9ba99c96edac7257dcb4e50e8"
+    },
+    {
+      "destination": "experiments/product-completion/services/test-cart-pricing.mjs",
+      "sha256": "8cd210697010d4b43769765c33a681d19237a2fadac63e002af33336b8072bdb"
+    },
+    {
+      "destination": "experiments/product-completion/tests/platform-access.test.mjs",
+      "sha256": "f29c9744129bf344c9a16ccdc33c1b83099e649e929f78c1c61497ef93ae0a91"
+    },
+    {
+      "destination": "experiments/product-completion/tests/roles.test.mjs",
+      "sha256": "dc47ba4da4c1df97ec7abc28868e1533b86a6469a56bb8f7f8f46da308a26ff2"
+    },
+    {
+      "destination": "experiments/product-completion/tests/marketplace-sandbox.test.mjs",
+      "sha256": "74f5294ac1f04a34100783c64057179c02b021819b3109404b5df0246c452e46"
+    },
+    {
+      "destination": "experiments/product-completion/tests/six-platform-schema.test.mjs",
+      "sha256": "b2f71c6307569e0a60d9bb9f4598b63c9d01180ea11c4b626db45b03fa9bf5d4"
+    },
+    {
+      "destination": "experiments/product-completion/services/test-snapshot-integrity.mjs",
+      "sha256": "f4c86ad5c11fd92cc064ec2cf3e7764713b7e1fa8c5b0257bb9888368725126e"
+    },
+    {
+      "destination": "experiments/product-completion/tests/offer-engine.test.mjs",
+      "sha256": "cdf44378750cb8de18b633ee1e225e0ce663151457fec41409bf1fd6b3946143"
+    },
+    {
+      "destination": "experiments/product-completion/tests/smart-shopping-http.test.mjs",
+      "sha256": "58515f9de9b78f856fe528dcd8472a7867f1f3f9874a1ff0b0d7c59fa83fe2c2"
+    },
+    {
+      "destination": "experiments/product-completion/tests/test-buyer-receipt.test.mjs",
+      "sha256": "3121d402cbb2beb8d86f1eb8d540856dd9d7e9326181035c9266263d3f6a2a63"
+    },
+    {
+      "destination": "experiments/product-completion/tests/test-cart-pricing.test.mjs",
+      "sha256": "34042422a43108c9292bd83bf1a837577267c50661902ebd57a5e51cd535fdfd"
+    },
+    {
+      "destination": "experiments/product-completion/tests/test-checkout-quote.test.mjs",
+      "sha256": "7fd485294e2a86610bf6d229d87b54ebd12c842cb221eb28ecf560088f9b9fbe"
+    },
+    {
+      "destination": "experiments/product-completion/tests/test-cancel-draft-order.test.mjs",
+      "sha256": "e1a33bcbb86961961f558c4a496e15ce8941d33c54a4f03bcf67fcd6297504a8"
+    },
+    {
+      "destination": "experiments/product-completion/tests/smart-shopping.test.mjs",
+      "sha256": "d6064d2152e66e95f8e58a24c390cca5e3e7d024399a42b8462e94b3142feedf"
+    },
+    {
+      "destination": "experiments/product-completion/tests/test-server-shipping.test.mjs",
+      "sha256": "5d28508745cf624df0fc90ca13c54efbe44fdf8bec4eb20f0f2d50029a477a8b"
+    },
+    {
+      "destination": "experiments/product-completion/tests/test-order-service.test.mjs",
+      "sha256": "d24b9d2c73a03268fcbacb2e6a2474770dda5f38e784aa03e74608019578e96f"
+    },
+    {
+      "destination": "experiments/product-completion/tests/test-quoted-order-service.test.mjs",
+      "sha256": "e599aa6b072e0bcd777d21ac5e03f128d40506bd898b8ed64afcd43befe9a2c3"
+    },
+    {
+      "destination": "experiments/product-completion/tests/test-order-cancel-lifecycle.test.mjs",
+      "sha256": "e9edb041b3b7ae5744cdc61e4294c2d42b851832fff58af9043c8fedec701a29"
+    },
+    {
+      "destination": "experiments/core-engine-v1/README.md",
+      "sha256": "59e00f4f571ea155f8b8f6bb011506a7235d73ff413d1d9680f83a7ea8f19577"
+    },
+    {
+      "destination": "experiments/core-engine-v1/migrations/001_identity_tenancy.sql",
+      "sha256": "bb27d30d5dc7e6f051ce7b89252afa88070bb42760b94127ee17656a70ffac97"
+    },
+    {
+      "destination": "experiments/core-engine-v1/docs/ARCHITECTURE.md",
+      "sha256": "df4ddc1123e24bd8b66df4e32e6b8e973cc2b34b7b5b416957c430d338166828"
+    },
+    {
+      "destination": "experiments/core-engine-v1/.gitignore",
+      "sha256": "f452c3859c8f318ae502bbdcde75273a47d03107dae9c5d18a6a37c484413495"
+    },
+    {
+      "destination": "experiments/core-engine-v1/docs/ACCEPTANCE.md",
+      "sha256": "2f34d7d3a567c19287fff29adf244a0aae9c64ef8ccf4fe9d7a25f49b074a842"
+    },
+    {
+      "destination": "experiments/core-engine-v1/.env.example",
+      "sha256": "eb716492c2ab085769ae12abd3a2b4f28556b95aeec692f828e32d8395d8e677"
+    },
+    {
+      "destination": "experiments/core-engine-v1/migrations/003_catalog.sql",
+      "sha256": "e3cce6a1895f505f79a86c794ae3eab98d4834975a766244fdb8d960b5992d4f"
+    },
+    {
+      "destination": "experiments/core-engine-v1/migrations/005_cart.sql",
+      "sha256": "25da7ab27371127555799f400c5f7b85d6df1679462fe8a49e6e783f3b2038a3"
+    },
+    {
+      "destination": "experiments/core-engine-v1/migrations/002_vendors.sql",
+      "sha256": "16e0a7436ca0de13a2373ab54efe4a9881e76bfebb7e5b1bc572a58c7112ff54"
+    },
+    {
+      "destination": "experiments/core-engine-v1/migrations/004_inventory.sql",
+      "sha256": "1cb937e51419c1e90067f983e1b5f6f93f8d41455a0156106e8ada553839cb29"
+    },
+    {
+      "destination": "experiments/core-engine-v1/migrations/006_orders_money.sql",
+      "sha256": "c08c2a6c1c4e36afc5e8ad6a75fec6070b093d7aa7be5e3d8e4006db7f25b232"
+    },
+    {
+      "destination": "experiments/core-engine-v1/migrations/007_audit.sql",
+      "sha256": "ce1124e28655ab2054fdb4c30f8a4b81981f5f691357c96c9b9332c803f7d772"
+    },
+    {
+      "destination": "experiments/core-engine-v1/scripts/e2e-http.sh",
+      "sha256": "be9a4b5105495f00c2c4ae9455bb503549c7c856b633ef46b6a52621a9de0db8"
+    },
+    {
+      "destination": "experiments/core-engine-v1/package-lock.json",
+      "sha256": "dae8e73ca59c7c1915fc4ee82b9f0c6777677bcb555e8c0b1132dce1380c0d9d"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/config.ts",
+      "sha256": "aef30a87ec51f0b3330e7511ef393aad4b374415fb4395a95451c16dfaf9c169"
+    },
+    {
+      "destination": "experiments/core-engine-v1/package.json",
+      "sha256": "8044400e8a7d1fc30047050ad41ed56c1f3170a3695caf76001abdc2d3a8e83e"
+    },
+    {
+      "destination": "experiments/core-engine-v1/scripts/pretty.py",
+      "sha256": "2dae311726f0aec9044d0ec502b0bfd578d0e41fff36be177d3f1ab1a71447f0"
+    },
+    {
+      "destination": "experiments/core-engine-v1/migrations/008_row_level_security.sql",
+      "sha256": "26d9a5c540120f75e385c90b48365ba40fab24ab52c0f6be71614890b279fc3c"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/db/pool.ts",
+      "sha256": "b85f8f6f0b6988facb70cda6e0b5f1ce53fd0901e8edf5e32e6454e1ba951986"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/db/seed.ts",
+      "sha256": "725b62610476f89ab82b4b014f51c5e6dce827dc98fee6b10f22b7da3bbab101"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/cart.ts",
+      "sha256": "3e0d00a570949fb8ceecb84d2d274f8ebcf2483c842a440316a6f77763f4bcdf"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/audit.ts",
+      "sha256": "03a4baab58ab846482b7f91b6e6c0930ffdd132ab925db6f93a6db5222930168"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/db/migrate.ts",
+      "sha256": "aa8d8dbf008a6e8d156841f347aa9acf52b283e13db7b9524848ba20bd820179"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/catalog.ts",
+      "sha256": "2eeec1fd1bbcbf341adc31c1157fff205dbaad2d95e0c42a15581a4f481dbf71"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/ids.ts",
+      "sha256": "578ab8b62c6302617955ac02fc4a4cbba7959231486c92cddfaa77a5de79cd80"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/inventory.ts",
+      "sha256": "a7cfbfe4226f77a7d3084b1361883958da4b605a819ac667cd158f1fe8a4e1b1"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/errors.ts",
+      "sha256": "4dc07b7ce103352fb0938d11c2ba2b608be2ce580cfa3226dc5533b17cdefe0b"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/identity.ts",
+      "sha256": "9c7f8dbdf27d66dc8a1f017b1635f7f9d3c0269b93fbc7cba669ed0f0a4a472c"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/crypto.ts",
+      "sha256": "81b67efc4ef5f794f23d76799e7ac2a80f28409881e40429eb1e04a3d0441417"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/checkout.ts",
+      "sha256": "58dff9908e6350ccf35ef9176544d3f6cde1189d95e59d0f44603e06079f8ff7"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/pricing.ts",
+      "sha256": "a43424ab9e7af2202c2719fb35834c24f949011209e31d9ee06537b0ba7b87bc"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/offers.ts",
+      "sha256": "3055e1025c39fd7f56a8841974f47c7d29633b7b787695cc3f4b2435ef3f4721"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/money.ts",
+      "sha256": "3d529f6cfa7c594df5be9c4d5de4b15e5bc6e769bbac8f483421837eabbc799c"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/status.ts",
+      "sha256": "4cfde7144acd3979eabf51524bb83797374b39f21c86f1e52ae5d24a43f0ece9"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/payments.ts",
+      "sha256": "7e14dc139f47b74458ef108e3b3280ca79eb3c3332bbf2f5d67852b36cf6f999"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/vendor-ops.ts",
+      "sha256": "5a26832399a2c37259e44ad19e9cbdc7292620439abbd9da910d00ee1585ec8d"
+    },
+    {
+      "destination": "experiments/core-engine-v1/tests/02-vendor-onboarding.test.ts",
+      "sha256": "524efd1761d332add850c496cec912e4f4920d3f8e6657dd89ad31957e82efb1"
+    },
+    {
+      "destination": "experiments/core-engine-v1/tests/03-money-pricing.test.ts",
+      "sha256": "f050719bd2f710c03d089a6c90346dc20a41a56bb764c66dfa1162ead0cbe30f"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/http/server.ts",
+      "sha256": "dbb884e98157c174c1dd3ea06a8032f7c8b20a5eed68aed10717f28c358bd42e"
+    },
+    {
+      "destination": "experiments/core-engine-v1/src/domain/vendors.ts",
+      "sha256": "23b5e4903ce6f9e39f5f3d3683f6193367ce69360d283f559fdc178af088ba80"
+    },
+    {
+      "destination": "experiments/core-engine-v1/tests/01-isolation.test.ts",
+      "sha256": "6d0ec6fb549fc52c104e53a5c213c12ed603c5246c1872608befac1e8545b878"
+    },
+    {
+      "destination": "experiments/core-engine-v1/tests/04-inventory.test.ts",
+      "sha256": "a63e6119b1f917901d64c444fc05c302e0dae5d215dc3063996f371dbcb258bf"
+    },
+    {
+      "destination": "experiments/core-engine-v1/tests/helpers/harness.ts",
+      "sha256": "939bc6855d02236c4e01af5c26f50974f6ddb10c25a5e50700a122316fa723ef"
+    },
+    {
+      "destination": "experiments/core-engine-v1/tests/05-checkout.test.ts",
+      "sha256": "7bac0e4320dbe641bf5c653fc88946cedf798f391ab80c0144d2cfb7abb41713"
+    },
+    {
+      "destination": "experiments/core-engine-v1/tsconfig.json",
+      "sha256": "74cc81ba21fd2d2b47c7de6a6e20370c5a3d1da3cc6bd36b442844a097432056"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+[
+ {
+  "id": "C1",
+  "title": "double acceptance of the same offer, two sessions",
+  "expected": "B blocks on A's family lock; after A commits, B fails on merit; exactly 1 acceptance",
+  "observed": "B blocked on lock (timeout 57014): True; replay: SQLSTATE=P0001 ERROR:  M1C1EE: offer is not acceptable (offer_not_published); acceptances=1",
+  "result": "PASS",
+  "note": "B while-blocked error: SQLSTATE=57014 ERROR:  canceling statement due to statement timeout"
+ },
+ {
+  "id": "C2",
+  "title": "acceptance vs concurrent request revision",
+  "expected": "acceptance wins; the accepted family is closed to new request versions",
+  "observed": "concurrent revision: REVISION SUCCEEDED; surviving-draft submission: SQLSTATE=P0001 ERROR:  M1C1EC: at least one request item is required on submission; post-commit revision: SQLSTATE=P0001 ERROR:  M1C1EE: a request family with a recorded acceptance is closed to new versions; acceptances=1",
+  "result": "PASS",
+  "note": ""
+ },
+ {
+  "id": "C3",
+  "title": "acceptance vs concurrent offer withdrawal",
+  "expected": "withdrawal blocks on the acceptance's row lock, then is refused; offer ends accepted",
+  "observed": "concurrent withdrawal: SQLSTATE=57014 ERROR:  canceling statement due to statement timeout; post-commit withdrawal: SQLSTATE=P0001 ERROR:  M1C1ED: terminal offers are historically frozen; final offer status=accepted",
+  "result": "PASS",
+  "note": ""
+ },
+ {
+  "id": "C4",
+  "title": "acceptance vs expiry transition",
+  "expected": "read-time expiry refuses acceptance; the expiry transition commits; no acceptance exists",
+  "observed": "A (accept past expiry): SQLSTATE=P0001 ERROR:  M1C1EE: offer is not acceptable (offer_expired); B: expiry transition committed; post-expiry accept: SQLSTATE=P0001 ERROR:  M1C1EE: offer is not acceptable (offer_not_published); acceptances=0",
+  "result": "PASS",
+  "note": ""
+ }
+]

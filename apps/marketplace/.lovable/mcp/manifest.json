@@ -1,0 +1,582 @@
+{
+  "version": 1,
+  "sdk_version": "0.24.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://bmtjeyuiwfubwvpxwojr.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "borvat-mcp",
+      "version": "0.2.0",
+      "title": "Borvat® Agent-Native Marketplace"
+    },
+    "tools": [
+      {
+        "name": "search_products",
+        "title": "Zoek producten",
+        "description": "Zoek actieve producten in de Borvat-marketplace op titel. Geeft id, titel, prijs (in centen), voorraad en rating terug.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Zoekterm die in productitels moet voorkomen."
+            },
+            "limit": {
+              "description": "Maximum aantal resultaten (standaard 20).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_product",
+        "title": "Product-details",
+        "description": "Haal de volledige details op van één product via zijn ID.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+              "description": "Product-ID (UUID)."
+            }
+          },
+          "required": [
+            "product_id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "compare_products",
+        "title": "Producten vergelijken",
+        "description": "Vergelijk 2-5 producten op prijs, voorraad, rating en verkoper.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "ids": {
+              "minItems": 2,
+              "maxItems": 5,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid",
+                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+              },
+              "description": "Product-IDs om te vergelijken."
+            }
+          },
+          "required": [
+            "ids"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_shop_information",
+        "title": "Winkelinformatie",
+        "description": "Publieke informatie over een verkoper: naam, aantal actieve producten en gemiddelde rating.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "seller_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            }
+          },
+          "required": [
+            "seller_id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_recommendations",
+        "title": "Aanbevelingen (koper)",
+        "description": "Persoonlijke productaanbevelingen op basis van eerdere bestellingen en opgeslagen voorkeuren.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_my_orders",
+        "title": "Mijn bestellingen (koper)",
+        "description": "Geeft alle bestellingen van de ingelogde koper, inclusief items met status en tracking-info.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_my_products",
+        "title": "Mijn producten (verkoper)",
+        "description": "Geeft alle producten van de ingelogde verkoper terug.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_seller_orders",
+        "title": "Inkomende bestellingen (verkoper)",
+        "description": "Geeft de order-items terug van producten die door de ingelogde verkoper zijn verkocht, optioneel gefilterd op status.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "new",
+                "processing",
+                "shipped",
+                "delivered",
+                "cancelled"
+              ]
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "analyze_catalog",
+        "title": "Catalogus analyseren (verkoper)",
+        "description": "Statistieken over jouw producten: aantal, actief, drafts, gemiddelde prijs, producten zonder afbeelding of beschrijving.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "analyze_sales",
+        "title": "Verkoop analyseren (verkoper)",
+        "description": "Omzet en aantal verkopen over de laatste N dagen voor jouw items.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "days": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 365
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "analyze_inventory",
+        "title": "Voorraad analyseren (verkoper)",
+        "description": "Producten met lage of geen voorraad.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "detect_listing_problems",
+        "title": "Listingproblemen detecteren (verkoper)",
+        "description": "Vindt jouw producten met korte titel, ontbrekende afbeelding, zwakke beschrijving of extreme prijs.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "create_product_draft",
+        "title": "Product-concept maken (verkoper)",
+        "description": "Maakt een CONCEPT-product voor de ingelogde verkoper. Het product is NIET zichtbaar in de winkel totdat de verkoper het publiceert via het dashboard. Prijs in centen.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 3
+            },
+            "price_cents": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "stock": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "description": {
+              "type": "string"
+            },
+            "image_url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "category_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            }
+          },
+          "required": [
+            "title",
+            "price_cents",
+            "stock"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "suggest_product_content",
+        "title": "Content-suggestie (verkoper)",
+        "description": "Maakt een suggestie (draft) voor betere titel of beschrijving voor een van jouw producten. Wordt NIET automatisch toegepast — de verkoper moet accepteren via het dashboard.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            },
+            "suggestion_type": {
+              "type": "string",
+              "enum": [
+                "title",
+                "description"
+              ]
+            },
+            "suggested_value": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 4000
+            },
+            "reasoning": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          "required": [
+            "product_id",
+            "suggestion_type",
+            "suggested_value"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "recommend_price",
+        "title": "Prijs-aanbeveling (verkoper)",
+        "description": "Analyseert markt + kosten en stelt een prijs voor. Vereist purchase_cost_cents en minimum_margin_pct. Geeft `missing_cost_data` terug als kosten ontbreken. Wordt NIET toegepast — alleen als suggestie opgeslagen.",
+        "annotations": {
+          "readOnlyHint": false,
+          "idempotentHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            },
+            "purchase_cost_cents": {
+              "description": "Inkoopprijs per stuk in centen",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "shipping_cost_cents": {
+              "description": "Verzendkosten per stuk in centen",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "marketplace_fee_pct": {
+              "description": "Marketplace commissie (%)",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 50
+            },
+            "vat_pct": {
+              "description": "BTW-percentage; default 21 (NL)",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 30
+            },
+            "minimum_margin_pct": {
+              "description": "Gewenste netto marge (%)",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "reasoning": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          "required": [
+            "product_id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "update_order_status",
+        "title": "Bestelstatus bijwerken",
+        "description": "Werkt de status van één order-item bij (processing / shipped / delivered / cancelled). Alleen de verkoper van dat item mag dit. Bij 'shipped' zijn tracking-velden aanbevolen.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "order_item_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "processing",
+                "shipped",
+                "delivered",
+                "cancelled"
+              ]
+            },
+            "tracking_carrier": {
+              "type": "string",
+              "maxLength": 50
+            },
+            "tracking_code": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "tracking_url": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "order_item_id",
+            "status"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "bol_configure",
+        "title": "Bol.com API-credentials opslaan",
+        "description": "Slaat de Bol.com Retailer API client_id en client_secret van de ingelogde verkoper versleuteld op. Nodig voor bol_import_products. Credentials aanvragen: partnerplatform.bol.com → Instellingen → API.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "client_id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Bol.com API client_id."
+            },
+            "client_secret": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Bol.com API client_secret."
+            }
+          },
+          "required": [
+            "client_id",
+            "client_secret"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "bol_import_products",
+        "title": "Importeer producten uit Bol.com",
+        "description": "Haalt de offer-export op uit de Bol.com Retailer API van de ingelogde verkoper en synchroniseert titel, prijs en voorraad naar Borvat. Bol.com credentials moeten eerst met bol_configure opgeslagen zijn.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "limit": {
+              "description": "Max aantal offers om te importeren (standaard 50).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "monitor_marketplace_quality",
+        "title": "Marketplace-kwaliteit (admin)",
+        "description": "Alleen admins. Overzicht van marketplace-kwaliteit: producten zonder afbeelding, inactieve verkopers, dubbele titels.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "forget_memory",
+        "title": "Vergeet opgeslagen voorkeur",
+        "description": "Verwijdert opgeslagen agent-geheugen voor de ingelogde gebruiker binnen een scope, optioneel een specifieke key.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "key": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}

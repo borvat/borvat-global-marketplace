@@ -1,0 +1,124 @@
+{
+  "placement": "preserve original app files; no empty placeholder implementations",
+  "modules": [
+    {
+      "id": "buyer",
+      "name": "Buyer Accounts & Experience",
+      "source_paths": [
+        "auth.tsx",
+        "account.tsx",
+        "_authenticated/orders.tsx",
+        "lib/buyer-account.ts"
+      ],
+      "maturity": "Real auth/read code; full privacy E2E NOT_RUN"
+    },
+    {
+      "id": "seller",
+      "name": "Seller Onboarding & Seller Center",
+      "source_paths": [
+        "hooks/useSellerApplication.ts",
+        "hooks/useSellerData.ts",
+        "_authenticated/seller.*",
+        "components/review"
+      ],
+      "maturity": "Membership/RPC workflow exists; current approval/KYB unverified"
+    },
+    {
+      "id": "catalog",
+      "name": "Product Catalog & Offers",
+      "source_paths": [
+        "product.$id.tsx",
+        "c.$slug.tsx",
+        "search.tsx",
+        "product-card.tsx",
+        "catalog SQL"
+      ],
+      "maturity": "Legacy public products and canonical catalog coexist; cutover pending"
+    },
+    {
+      "id": "checkout",
+      "name": "Cart & Checkout",
+      "source_paths": [
+        "cart.tsx",
+        "_authenticated/checkout.tsx"
+      ],
+      "maturity": "Cart code exists; checkout hard-disabled"
+    },
+    {
+      "id": "orders",
+      "name": "Order Management",
+      "source_paths": [
+        "_authenticated/orders.tsx",
+        "lib/order-status.functions.ts",
+        "order RPC"
+      ],
+      "maturity": "Legacy status path present; no canonical E2E proof"
+    },
+    {
+      "id": "payment",
+      "name": "Payment Provider Integration",
+      "source_paths": [
+        "future server adapter",
+        "checkout + payment event contracts"
+      ],
+      "maturity": "NOT_IMPLEMENTED/NOT_VERIFIED; test-only design"
+    },
+    {
+      "id": "settlements",
+      "name": "Commissions & Seller Settlements",
+      "source_paths": [
+        "_authenticated/seller.finances.tsx",
+        "finance contracts"
+      ],
+      "maturity": "Demo UI; no proven operational settlement engine"
+    },
+    {
+      "id": "fulfilment",
+      "name": "Shipping & Fulfillment",
+      "source_paths": [
+        "_authenticated/seller.shipping.tsx",
+        "inventory reservation SQL",
+        "outbox"
+      ],
+      "maturity": "Foundations and demos; carrier order lifecycle pending"
+    },
+    {
+      "id": "returns",
+      "name": "Returns & Refunds",
+      "source_paths": [
+        "future return/refund domain",
+        "support routes"
+      ],
+      "maturity": "No verified complete return-to-provider-refund flow"
+    },
+    {
+      "id": "admin",
+      "name": "Admin & Moderation",
+      "source_paths": [
+        "_authenticated/admin/*",
+        "review/*"
+      ],
+      "maturity": "Mixed real review surfaces and demo orders/metrics"
+    },
+    {
+      "id": "security",
+      "name": "Security & Multi-Tenant Isolation",
+      "source_paths": [
+        "integrations/supabase",
+        "lib/mcp/context.ts",
+        "ACL scripts",
+        "migrations"
+      ],
+      "maturity": "Foundations exist, historical ACL drift; live state NOT_VERIFIED"
+    },
+    {
+      "id": "analytics",
+      "name": "Analytics & Reporting",
+      "source_paths": [
+        "seller.analysis/performance",
+        "MCP analyze tools"
+      ],
+      "maturity": "Mixed demo/read analysis; no cross-system reconciliation proof"
+    }
+  ]
+}

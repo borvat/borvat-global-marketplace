@@ -1,0 +1,20 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test:foundation
+> node --test tests/foundation/*.test.mjs
+
+✔ owner hold denies even otherwise complete evidence (0.956482ms)
+✔ changed SHA invalidates approval and acceptance evidence (0.164518ms)
+✔ failed or not-run evidence cannot unlock next stage (0.137037ms)
+✔ missing prerequisite and open critical finding block (0.205449ms)
+✔ forbidden merge/deploy/money policy always denied (0.255204ms)
+✔ missing and malformed evidence fail closed (0.133091ms)
+✔ offline complete proposal is inspection only and does not mutate policy (0.704462ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106.620452

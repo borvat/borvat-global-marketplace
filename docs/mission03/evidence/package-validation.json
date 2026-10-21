@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-21",
+  "json_parse": "PASS",
+  "internal_openapi_references": "PASS",
+  "unique_operation_ids": 49,
+  "acceptance_cases": 35,
+  "acceptance_all_NOT_RUN": true,
+  "local_source_behavior_checks_passed": 3,
+  "payment_label_defect_reproduced": true,
+  "full_openapi_metaschema_validation": "NOT_RUN: validator not installed",
+  "html_visual_render": "NOT_RUN: browser binary unavailable",
+  "html_structure": "PASS",
+  "application_e2e": "NOT_RUN",
+  "production_mutations": 0
+}

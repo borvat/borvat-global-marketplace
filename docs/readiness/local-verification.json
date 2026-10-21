@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-22",
+  "node": "v24.19.0",
+  "psp_sandbox": "NOT_RUN",
+  "postgres_replay": "NOT_RUN: no local PostgreSQL/Docker runtime",
+  "live_database": "NOT_ACCESSED",
+  "production_changes": false,
+  "checks": [
+    {
+      "name": "buyer-account",
+      "command": [
+        "npm",
+        "exec",
+        "--yes",
+        "--package=bun@1.3.0",
+        "--",
+        "bun",
+        "test",
+        "scripts/buyer-account.test.ts"
+      ],
+      "cwd": "apps/marketplace",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "docs/readiness/logs/buyer-account.txt",
+      "log_sha256": "545dec008765a007fc26057f25d90d127f06e981b770941679346cb56b64331a"
+    },
+    {
+      "name": "core-money",
+      "command": [
+        "node",
+        "--test",
+        "experiments/core-engine-v1/tests/03-money-pricing.test.ts"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "docs/readiness/logs/core-money.txt",
+      "log_sha256": "a7b3ab8f88f9267a347a725d26be293296fcac1089d7029907d12f085ff139cf"
+    },
+    {
+      "name": "prototype-regressions",
+      "command": [
+        "npm",
+        "run",
+        "test:prototype"
+      ],
+      "cwd": ".",
+      "exit_code": 1,
+      "status": "FAIL",
+      "log": "docs/readiness/logs/prototype-regressions.txt",
+      "log_sha256": "a3fae8368fda21581f3f27c5f665dd728ee7aaa06cc63f2022e60937f402d8b0"
+    },
+    {
+      "name": "app-typecheck",
+      "command": [
+        "node",
+        "--import",
+        "../../scripts/foundation/no-external-network.mjs",
+        "./node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "cwd": "apps/marketplace",
+      "exit_code": 2,
+      "status": "FAIL",
+      "log": "docs/readiness/logs/app-typecheck.txt",
+      "log_sha256": "a6a77146e05e3efb0c946787cf5f4c56badc07eebf6f0029b17d73202a21a3d7"
+    },
+    {
+      "name": "app-lint",
+      "command": [
+        "node",
+        "--import",
+        "../../scripts/foundation/no-external-network.mjs",
+        "./node_modules/eslint/bin/eslint.js",
+        "."
+      ],
+      "cwd": "apps/marketplace",
+      "exit_code": 1,
+      "status": "FAIL",
+      "log": "docs/readiness/logs/app-lint.txt.gz",
+      "log_sha256": "c9a4132f9a55255f7710e1ea8683bcae11110c0340e0cddc955563e076a058d4",
+      "uncompressed_log_sha256": "d98e594600d3601d9a9e6b7475d48e21453b6db65015e826904ed5bfcdfb9b92",
+      "summary": "9385 problems: 9360 errors, 25 warnings; 9204 errors potentially fixable; no auto-fix performed"
+    },
+    {
+      "name": "app-build",
+      "command": [
+        "node",
+        "--import",
+        "../../scripts/foundation/no-external-network.mjs",
+        "./node_modules/vite/bin/vite.js",
+        "build"
+      ],
+      "cwd": "apps/marketplace",
+      "exit_code": 1,
+      "status": "FAIL",
+      "log": "docs/readiness/logs/app-build.txt",
+      "log_sha256": "f40c5d3a9427f477b09aae4f0155c87426b23d12356fb459564bb3406b35fd5a"
+    },
+    {
+      "name": "foundation",
+      "command": [
+        "npm",
+        "run",
+        "foundation:check"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "docs/readiness/logs/foundation.txt",
+      "log_sha256": "18448a363f7a500ccf59617c58de1913a32b03d22f095eda251d334ff9565014"
+    },
+    {
+      "name": "gate-tests",
+      "command": [
+        "npm",
+        "run",
+        "test:foundation"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "docs/readiness/logs/gate-tests.txt",
+      "log_sha256": "0341de62eea22d6b05aaca898190bebc3d128c8876fe61d11bfe16e5fc825c25"
+    },
+    {
+      "name": "source-parity",
+      "command": [
+        "npm",
+        "run",
+        "source:check"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "docs/readiness/logs/source-parity.txt",
+      "log_sha256": "51cccde5fd8c6e525f0a256df04bb4baf5b6645fc0a2e4f9a13e2bed118e5f93"
+    },
+    {
+      "name": "asset-completeness",
+      "command": [
+        "npm",
+        "run",
+        "source:require-complete"
+      ],
+      "exit_code": 1,
+      "status": "BLOCKED",
+      "log": "docs/readiness/logs/asset-completeness.txt",
+      "log_sha256": "38352f03711f86a25099fb2eee47185bfc69be9abea80a097720725fa2c8c9de"
+    },
+    {
+      "name": "stage-hold",
+      "command": [
+        "npm",
+        "run",
+        "stage:status"
+      ],
+      "exit_code": 1,
+      "status": "EXPECTED_HOLD",
+      "log": "docs/readiness/logs/stage-hold.txt",
+      "log_sha256": "4de17640646f0106bb5f317c19724cf2e7818debe51c02604a7e490c8ab964ca"
+    }
+  ]
+}
