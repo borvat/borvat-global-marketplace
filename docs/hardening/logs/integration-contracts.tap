@@ -1,0 +1,16 @@
+✔ I01 accounting company binding and required v1 envelope fields (1.036573ms)
+✔ I02 forged company data denied in accounting and SAM adapters (0.427214ms)
+✔ I03 unbalanced money snapshots cannot reach accounting (0.146992ms)
+✔ I04 idempotency event and source reference are stable on retry (0.754057ms)
+✔ I05 WMS receives mapped UUID rather than opaque Mercur order id (0.33788ms)
+✔ I06 missing ID map and forged warehouse role denied (0.268585ms)
+✔ I07 reserve/label/handoff are not fabricated as supported gateway actions (0.164859ms)
+✔ I08 SAM gets allowlisted read projection without buyer PII, KYB or money commands (0.108634ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.354193

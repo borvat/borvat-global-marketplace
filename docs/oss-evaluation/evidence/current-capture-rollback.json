@@ -1,0 +1,15 @@
+{
+  "simulated_external_effects": [
+    {
+      "key": "pay_42b5fdbdf926e5df43bac1187407653d",
+      "amount": "2390"
+    }
+  ],
+  "durable_records": {
+    "orders": 0,
+    "payments": 0,
+    "idempotency_keys": 0
+  },
+  "production_invariant": "A successful external effect must retain a durable intent or reconciliation record after local SQL failure",
+  "real_money": false
+}

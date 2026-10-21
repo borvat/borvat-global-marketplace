@@ -1,0 +1,24 @@
+--- a/src/lib/buyer-account.ts
++++ b/src/lib/buyer-account.ts
+@@ -1,19 +1,10 @@
++import type { SupabaseClient } from "@supabase/supabase-js";
+ import type { Database } from "@/integrations/supabase/types";
+ 
+ export type RecentBuyerOrder = Pick<Database["public"]["Tables"]["orders"]["Row"], "id" | "created_at" | "status" | "total_cents">;
+ 
+ // Accept only a browser RLS client; callers must supply the verified auth user's ID.
+-type OrderReader = {
+-  from: (table: "orders") => {
+-    select: (columns: "id,created_at,status,total_cents") => {
+-      eq: (column: "user_id", value: string) => {
+-        order: (column: "created_at", options: { ascending: false }) => {
+-          limit: (count: number) => PromiseLike<{ data: RecentBuyerOrder[] | null; error: { message: string } | null }>;
+-        };
+-      };
+-    };
+-  };
+-};
++type OrderReader = Pick<SupabaseClient<Database>, "from">;
+ 
+ export function readRecentBuyerOrders(client: OrderReader, userId: string) {
+   if (!userId.trim()) throw new Error("Een aangemeld account is vereist.");

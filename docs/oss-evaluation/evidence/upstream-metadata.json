@@ -1,0 +1,1317 @@
+[
+  {
+    "candidate": "mercur",
+    "repository": "mercurjs/mercur",
+    "tag": "v2.3.7",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "release_published_at": "2026-10-08T15:51:08Z",
+    "release_url": "https://github.com/mercurjs/mercur/releases/tag/v2.3.7",
+    "observed_pushed_at": "2026-10-21T16:48:52Z",
+    "archived": false,
+    "advisory_list_limit": 30,
+    "advisories_returned": 4,
+    "advisories": [
+      {
+        "id": "GHSA-w4vq-6jvh-cfpg",
+        "severity": "high",
+        "url": "https://github.com/mercurjs/mercur/security/advisories/GHSA-w4vq-6jvh-cfpg",
+        "summary": "Seller promotions lose their seller scope on cart refresh, discounting other sellers' items",
+        "published_at": "2026-10-12T16:11:39Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@mercurjs/core"
+            },
+            "vulnerable_version_range": "<= 2.3.6",
+            "patched_versions": "2.3.7",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-g3pm-h4c6-4xjj",
+        "severity": "high",
+        "url": "https://github.com/mercurjs/mercur/security/advisories/GHSA-g3pm-h4c6-4xjj",
+        "summary": "Vendor API missing object-level authorization allows cross-seller store takeover",
+        "published_at": "2026-08-31T16:14:06Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@mercurjs/core"
+            },
+            "vulnerable_version_range": "<=2.3.1",
+            "patched_versions": "2.3.2",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-qc6m-3g2c-xv4v",
+        "severity": "medium",
+        "url": "https://github.com/mercurjs/mercur/security/advisories/GHSA-qc6m-3g2c-xv4v",
+        "summary": "Vendor variant media route missing seller ownership check allows cross-seller image tampering",
+        "published_at": "2026-09-17T11:14:23Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@mercurjs/core"
+            },
+            "vulnerable_version_range": ">= 2.1.0, <= 2.1.6",
+            "patched_versions": "2.2.0",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-622p-q5x2-5hxw",
+        "severity": "medium",
+        "url": "https://github.com/mercurjs/mercur/security/advisories/GHSA-622p-q5x2-5hxw",
+        "summary": "Vendors can add other sellers' customers to their customer groups",
+        "published_at": "2026-09-17T11:14:35Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@mercurjs/core"
+            },
+            "vulnerable_version_range": ">= 2.2.0, <= 2.3.4",
+            "patched_versions": "2.3.5",
+            "vulnerable_functions": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "candidate": "medusa",
+    "repository": "medusajs/medusa",
+    "tag": "v2.22.0",
+    "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+    "release_published_at": "2026-10-21T10:58:20Z",
+    "release_url": "https://github.com/medusajs/medusa/releases/tag/v2.22.0",
+    "observed_pushed_at": "2026-10-21T20:53:22Z",
+    "archived": false,
+    "advisory_list_limit": 30,
+    "advisories_returned": 0,
+    "advisories": []
+  },
+  {
+    "candidate": "vendure",
+    "repository": "vendurehq/vendure",
+    "tag": "v3.8.0",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "release_published_at": "2026-10-12T13:49:35Z",
+    "release_url": "https://github.com/vendurehq/vendure/releases/tag/v3.8.0",
+    "observed_pushed_at": "2026-10-21T13:36:23Z",
+    "archived": false,
+    "advisory_list_limit": 30,
+    "advisories_returned": 30,
+    "advisories": [
+      {
+        "id": "GHSA-gg28-cx38-jxxr",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-gg28-cx38-jxxr",
+        "summary": "Vendure createProductOption missing channel scoping allows cross-channel ProductOptionGroup writes",
+        "published_at": "2026-09-02T07:51:36Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": ">= 3.6.0, < 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-37xp-mjp8-6f9x",
+        "severity": "high",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-37xp-mjp8-6f9x",
+        "summary": "`rotateApiKey` performs no ownership / permission-subset check and returns the new plaintext secret, so an admin holding only `UpdateApiKey` can rotate a higher-privileged API key and hijack a live credential for it (vertical privilege escalation)",
+        "published_at": "2026-10-05T10:56:26Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": ">= 3.6.0, < 3.7.4",
+            "patched_versions": "3.7.4",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-7g8c-5hg8-348m",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-7g8c-5hg8-348m",
+        "summary": "AISLE-2026-0093 Missing channel scoping in TranslatableSaver.update allows cross-channel entity mutation by restricted administrators",
+        "published_at": "2026-09-30T16:59:06Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.6.5",
+            "patched_versions": "3.6.5",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-f94w-2928-x43p",
+        "severity": "high",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-f94w-2928-x43p",
+        "summary": "Cross-channel data disclosure \u2014 duplicateEntity copies entities from channels the caller cannot access",
+        "published_at": "2026-09-02T07:51:15Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-c63h-3vvx-48ph",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-c63h-3vvx-48ph",
+        "summary": "Incomplete fix for GHSA-6f65-4fv2-wwch: verifyUserPassword still returns early for users with no NativeAuthenticationMethod",
+        "published_at": "2026-09-02T07:52:10Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-8ghm-q833-cmgp",
+        "severity": "low",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-8ghm-q833-cmgp",
+        "summary": "Stock Level Race Condition Allows Inventory Overselling via Concurrent Checkout",
+        "published_at": "2026-10-05T10:56:27Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.4",
+            "patched_versions": "3.7.4",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-37j3-p93w-fq6w",
+        "severity": "high",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-37j3-p93w-fq6w",
+        "summary": "Channel-scoped administrators can read the global administrator directory via the Admin API",
+        "published_at": "2026-09-02T07:51:26Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-422x-jq57-j238",
+        "severity": "critical",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-422x-jq57-j238",
+        "summary": "Any Administrator with UpdateCatalog or UpdateProduct permission can pull a Product belonging to a completely different Channel into their own Channel, gaining full ongoing edit and delete control over it",
+        "published_at": "2026-09-02T07:50:47Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-22x4-937q-5fr5",
+        "severity": "critical",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-22x4-937q-5fr5",
+        "summary": "Any Administrator with UpdateChannel/DeleteChannel permission can rename or permanently delete any Channel in the system, including ones they have no relationship to at all",
+        "published_at": "2026-09-02T07:50:57Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-fp4j-ff6j-9793",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-fp4j-ff6j-9793",
+        "summary": "Cross-channel destructive-write IDOR in PromotionService.softDeletePromotion, FacetValueService.delete, and ProductOptionService.delete (missing active-channel scoping)",
+        "published_at": "2026-08-06T17:05:07Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.2",
+            "patched_versions": "3.7.2",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-hc75-2v4j-x372",
+        "severity": "high",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-hc75-2v4j-x372",
+        "summary": "Broken Access Control \u2014 adjustDraftOrderLine is reachable by unauthenticated users (Vendure)",
+        "published_at": "2026-08-03T08:19:20Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "<= 3.7.1",
+            "patched_versions": "3.7.2",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-5fpx-9m35-w745",
+        "severity": "high",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-5fpx-9m35-w745",
+        "summary": "Authenticated session is not bound to its API audience (cross-context session replay)",
+        "published_at": "2026-09-30T13:39:51Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.8.0",
+            "patched_versions": "3.8.0",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-7qvr-c5vf-xxfh",
+        "severity": "critical",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-7qvr-c5vf-xxfh",
+        "summary": "Cross-channel payment/refund IDOR \u2014 money movement across tenants (payment-side sibling of GHSA-frwg)",
+        "published_at": "2026-09-02T07:50:38Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-v85r-wfgv-jcqc",
+        "severity": "critical",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-v85r-wfgv-jcqc",
+        "summary": "Privilege escalation to SuperAdmin via updateAdministrator password reset",
+        "published_at": "2026-08-03T17:50:51Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "<= 3.7.1",
+            "patched_versions": "3.7.2",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-wr5h-x3x6-4h23",
+        "severity": "critical",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-wr5h-x3x6-4h23",
+        "summary": "Unauthenticated account takeover of external/SSO customers via registerCustomerAccount (native-side sibling of GHSA-6j36)",
+        "published_at": "2026-09-02T07:51:06Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-rgjm-ff27-p2hf",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-rgjm-ff27-p2hf",
+        "summary": "Cross-channel write IDOR in AssetService.update and StockLocationService.update (missing channel scoping)",
+        "published_at": "2026-08-06T17:05:30Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.2",
+            "patched_versions": "3.7.2",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-6j36-r6pr-59x4",
+        "severity": "critical",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-6j36-r6pr-59x4",
+        "summary": "External-authentication account takeover: external login linked to a pre-existing account by email without verification",
+        "published_at": "2026-07-01T10:55:21Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.0",
+            "patched_versions": "3.7.0",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-xhq9-whgq-49j5",
+        "severity": "high",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-xhq9-whgq-49j5",
+        "summary": "Stored XSS in the Admin Dashboard via unsafe HTML-stripping (innerHTML) of entity descriptions",
+        "published_at": "2026-07-01T10:47:31Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "",
+              "name": "@vendure/dashboard"
+            },
+            "vulnerable_version_range": "latest / all current",
+            "patched_versions": "3.6.5",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-vr2h-89r2-9rwv",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-vr2h-89r2-9rwv",
+        "summary": "Permissive CORS default allows any origin to make credentialed cross-origin requests",
+        "published_at": "2026-09-02T07:51:58Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-f4r3-h6jf-4m29",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-f4r3-h6jf-4m29",
+        "summary": "Stored XSS via SVG upload in `@vendure/asset-server-plugin`",
+        "published_at": "2026-09-02T07:52:19Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/asset-server-plugin"
+            },
+            "vulnerable_version_range": "< 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-jgm3-qmp2-c4p7",
+        "severity": "high",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-jgm3-qmp2-c4p7",
+        "summary": "Unauthenticated ReDoS via `regex` filter on SQLite backends",
+        "published_at": "2026-07-01T10:47:38Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "vendure/core"
+            },
+            "vulnerable_version_range": "<=3.6.4",
+            "patched_versions": "3.6.5",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-32jm-mf7r-7qw5",
+        "severity": "high",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-32jm-mf7r-7qw5",
+        "summary": "RequestContext serialization persists session token and request headers into job data",
+        "published_at": "2026-09-02T11:37:12Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": ">= 1.4.0, < 3.7.3",
+            "patched_versions": "3.7.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-xf65-r35x-wmmv",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-xf65-r35x-wmmv",
+        "summary": "Shop API list queries can return non-public entities when filterOperator is OR",
+        "published_at": "2026-07-01T10:47:50Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": ">= 1.0.0",
+            "patched_versions": "3.6.5",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-9pp3-53p2-ww9v",
+        "severity": "critical",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-9pp3-53p2-ww9v",
+        "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') in @vendure/core",
+        "published_at": "2026-04-13T09:38:30Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": ">=1.7.4, <2.3.4",
+            "patched_versions": "2.3.4",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": ">=3.0.0, <3.5.7",
+            "patched_versions": "3.5.7",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": ">=3.6.0, <3.6.2",
+            "patched_versions": "3.6.2",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-88rq-mq4v-frmm",
+        "severity": "high",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-88rq-mq4v-frmm",
+        "summary": "File upload MIME type bypass allows uploading arbitrary file types via Content-Type header manipulation",
+        "published_at": "2026-08-24T14:59:57Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "<= 3.6.4",
+            "patched_versions": "3.6.5",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-6f65-4fv2-wwch",
+        "severity": "low",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-6f65-4fv2-wwch",
+        "summary": "Timing attack enables user enumeration in NativeAuthenticationStrategy",
+        "published_at": "2026-01-30T12:35:49Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "<= 3.5.2",
+            "patched_versions": "3.5.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-r9mq-3c9r-fmjq",
+        "severity": "critical",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-r9mq-3c9r-fmjq",
+        "summary": "Local file read vulnerability with AssetServerPlugin & LocalAssetStorageStrategy",
+        "published_at": "2024-10-15T10:56:35Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/asset-server-plugin"
+            },
+            "vulnerable_version_range": "<3.0.5, <2.3.3",
+            "patched_versions": "3.0.5, 2.3.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-wm63-7627-ch33",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-wm63-7627-ch33",
+        "summary": "Insecure currencyCode handling allows wrong payment amounts",
+        "published_at": "2023-11-17T13:51:16Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 2.1.3",
+            "patched_versions": "2.1.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-gm68-572p-q28r",
+        "severity": "medium",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-gm68-572p-q28r",
+        "summary": "Authenticated XSS in admin-ui description",
+        "published_at": "2023-07-04T11:56:16Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/admin-ui-plugin"
+            },
+            "vulnerable_version_range": "< 2.0.3",
+            "patched_versions": "2.0.3",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-h9wq-xcqx-mqxm",
+        "severity": "low",
+        "url": "https://github.com/vendurehq/vendure/security/advisories/GHSA-h9wq-xcqx-mqxm",
+        "summary": "CSRF impacting all API requests",
+        "published_at": "2023-07-11T09:23:28Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "npm",
+              "name": "@vendure/core"
+            },
+            "vulnerable_version_range": "< 2.0.3",
+            "patched_versions": "2.0.3",
+            "vulnerable_functions": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "candidate": "saleor",
+    "repository": "saleor/saleor",
+    "tag": "3.23.44",
+    "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+    "release_published_at": "2026-10-20T16:50:29Z",
+    "release_url": "https://github.com/saleor/saleor/releases/tag/3.23.44",
+    "observed_pushed_at": "2026-10-21T12:23:05Z",
+    "archived": false,
+    "advisory_list_limit": 30,
+    "advisories_returned": 16,
+    "advisories": [
+      {
+        "id": "GHSA-xqqq-qhgq-gx53",
+        "severity": "medium",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-xqqq-qhgq-gx53",
+        "summary": "Anonymous users can bypass authorization checks in selected GraphQL paths",
+        "published_at": "2026-07-27T12:38:41Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">= 3.14.67, < 3.23.22",
+            "patched_versions": "3.23.22",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">= 3.14.67, < 3.22.63",
+            "patched_versions": "3.22.63",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">= 3.14.67, < 3.21.67",
+            "patched_versions": "3.21.67",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-6whj-8p3f-2xqp",
+        "severity": "high",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-6whj-8p3f-2xqp",
+        "summary": "Account pre-hijacking vulnerability due to unverified anonymous order merge",
+        "published_at": "2026-07-27T12:38:11Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">= 2.10.0rc1, < 3.23.22",
+            "patched_versions": "3.23.22",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">= 2.10.0rc1, < 3.22.63",
+            "patched_versions": "3.22.63",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">= 2.10.0rc1, < 3.21.67",
+            "patched_versions": "3.21.67",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-m3rm-m4vq-27x7",
+        "severity": "medium",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-m3rm-m4vq-27x7",
+        "summary": "User enumeration vulnerability due to different error messages",
+        "published_at": "2026-04-08T12:56:33Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.10.0,<3.23.0a3",
+            "patched_versions": "3.23.0a3",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.10.0,<3.22.47",
+            "patched_versions": "3.22.47",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.10.0,<3.21.54",
+            "patched_versions": "3.21.54",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.10.0,<3.20.118",
+            "patched_versions": "3.20.118",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-hwph-9537-mc3p",
+        "severity": "medium",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-hwph-9537-mc3p",
+        "summary": "Cross-Account Email Change via Unbound Confirmation Token",
+        "published_at": "2026-04-08T12:56:35Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.10.0,<3.23.0a3",
+            "patched_versions": "3.23.0a3",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.10.0,<3.22.47",
+            "patched_versions": "3.22.47",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.10.0,<3.21.54",
+            "patched_versions": "3.21.54",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.10.0,<3.20.118",
+            "patched_versions": "3.20.118",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-gqqv-xwx3-jj4h",
+        "severity": "high",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-gqqv-xwx3-jj4h",
+        "summary": "Resource exhaustion vulnerability in GraphQL queries",
+        "published_at": "2026-04-08T12:56:37Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.0.0,<3.23.0a3",
+            "patched_versions": "3.23.0a3",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.0.0,<3.22.47",
+            "patched_versions": "3.22.47",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.0.0,<3.21.54",
+            "patched_versions": "3.21.54",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.0.0,<3.20.118",
+            "patched_versions": "3.20.118",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-24jw-f244-qfpp",
+        "severity": "high",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-24jw-f244-qfpp",
+        "summary": "Denial of Service via Unbounded GraphQL Query Batching",
+        "published_at": "2026-04-08T12:56:56Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.0.0,<3.23.0a3",
+            "patched_versions": "3.23.0a3",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.0.0,<3.22.47",
+            "patched_versions": "3.22.47",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.0.0,<3.21.54",
+            "patched_versions": "3.21.54",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=2.0.0,<3.20.118",
+            "patched_versions": "3.20.118",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-r6fj-f4r9-36gr",
+        "severity": "high",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-r6fj-f4r9-36gr",
+        "summary": "Insecure Direct Object Reference (IDOR) in GraphQL API",
+        "published_at": "2026-01-23T11:22:51Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=3.2.0, <3.22.29",
+            "patched_versions": "3.22.29",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=3.2.0, <3.21.45",
+            "patched_versions": "3.21.45",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=3.2.0, <3.20.110",
+            "patched_versions": "3.20.110",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-666h-2p49-pg95",
+        "severity": "high",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-666h-2p49-pg95",
+        "summary": "Stored XSS via Unrestricted File Uploads",
+        "published_at": "2026-01-21T12:36:17Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=3.0.0, < 3.22.27",
+            "patched_versions": "3.22.27",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=3.0.0, < 3.21.43",
+            "patched_versions": "3.21.43",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor/saleor"
+            },
+            "vulnerable_version_range": ">=3.0.0, < 3.20.108",
+            "patched_versions": "3.20.108",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-8jcj-r5g2-qrpv",
+        "severity": "high",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-8jcj-r5g2-qrpv",
+        "summary": "Lack of proper HTML sanitization in rich text fields",
+        "published_at": "2026-01-21T12:36:14Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "Saleor"
+            },
+            "vulnerable_version_range": ">=3.0.0, < 3.22.27",
+            "patched_versions": "3.22.27",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "Saleor"
+            },
+            "vulnerable_version_range": ">= 3.0.0, < 3.21.43",
+            "patched_versions": "3.21.43",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "Saleor"
+            },
+            "vulnerable_version_range": ">= 3.0.0, < 3.20.108",
+            "patched_versions": "3.20.108",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-8w67-mfm5-fwx5",
+        "severity": "medium",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-8w67-mfm5-fwx5",
+        "summary": "User enumeration vulnerability in Saleor due to different error messages",
+        "published_at": "2025-09-09T11:17:34Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "Saleor"
+            },
+            "vulnerable_version_range": ">=3.21.0, <3.21.16",
+            "patched_versions": "3.21.16",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-mrj3-f2h4-7w45",
+        "severity": "medium",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-mrj3-f2h4-7w45",
+        "summary": "Customers addresses leak when using Warehouse as a `Pickup: Local stock only` delivery method",
+        "published_at": "2024-03-27T13:46:01Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.14.56, < 3.14.61",
+            "patched_versions": "3.14.61",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.15.31, < 3.15.37",
+            "patched_versions": "3.15.37",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.16.27, < 3.16.34",
+            "patched_versions": "3.16.34",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.17.25, < 3.17.32",
+            "patched_versions": "3.17.32",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.18.19, < 3.18.28",
+            "patched_versions": "3.18.28",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.19.5, < 3.19.15",
+            "patched_versions": "3.19.15",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-ff69-fwjf-3c9w",
+        "severity": "medium",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-ff69-fwjf-3c9w",
+        "summary": "CSRF bypass in refreshToken mutation",
+        "published_at": "2024-04-08T13:05:30Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.10.0, < 3.14.64",
+            "patched_versions": "3.14.64",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.15.0, < 3.15.39",
+            "patched_versions": "3.15.39",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.16.0, < 3.16.39",
+            "patched_versions": "3.16.39",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.17.0, < 3.17.35",
+            "patched_versions": "3.17.35",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.18.0, < 3.18.31",
+            "patched_versions": "3.18.31",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.19.0, < 3.19.19",
+            "patched_versions": "3.19.19",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-3rqj-9v87-2x3f",
+        "severity": "medium",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-3rqj-9v87-2x3f",
+        "summary": "Non-constant time HMAC comparison in Adyen plugin",
+        "published_at": "2023-05-24T12:03:28Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 2.11.0, < 3.7.68",
+            "patched_versions": "3.7.68",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.8.0, < 3.8.40",
+            "patched_versions": "3.8.40",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.9.0, < 3.9.49",
+            "patched_versions": "3.9.49",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.10.0, < 3.10.36",
+            "patched_versions": "3.10.36",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.11.0, < 3.11.35",
+            "patched_versions": "3.11.35",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.12.0, < 3.12.25",
+            "patched_versions": "3.12.25",
+            "vulnerable_functions": []
+          },
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": ">= 3.13.0, < 3.13.16",
+            "patched_versions": "3.13.16",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-3hvj-3cg9-v242",
+        "severity": "low",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-3hvj-3cg9-v242",
+        "summary": "Unauthenticated Information Disclosure Vulnerability via Python Exceptions",
+        "published_at": "2023-03-02T12:03:03Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "saleor"
+            },
+            "vulnerable_version_range": "\u2265 2.0.0",
+            "patched_versions": "3.11.12, 3.10.14, 3.9.27, 3.8.30, 3.7.59, 3.1.48",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-r8qr-wwg3-2r85",
+        "severity": "medium",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-r8qr-wwg3-2r85",
+        "summary": "Staff-Authenticated Error Message Information Disclosure Vulnerability via Python Exceptions",
+        "published_at": "2023-03-02T12:16:10Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "Saleor"
+            },
+            "vulnerable_version_range": ">= 2.0.0",
+            "patched_versions": "3.11.12, 3.10.14, 3.9.27, 3.8.30, 3.7.59, 3.1.48",
+            "vulnerable_functions": []
+          }
+        ]
+      },
+      {
+        "id": "GHSA-xhq8-8c5v-w8ff",
+        "severity": "medium",
+        "url": "https://github.com/saleor/saleor/security/advisories/GHSA-xhq8-8c5v-w8ff",
+        "summary": "Improper object type validation in mutations leading to unauthorized access",
+        "published_at": "2022-10-03T12:05:35Z",
+        "vulnerabilities": [
+          {
+            "package": {
+              "ecosystem": "ghcr",
+              "name": "Saleor"
+            },
+            "vulnerable_version_range": ">= 2.0.0",
+            "patched_versions": "3.7.17, 3.6.18, 3.5.23, 3.4.24, 3.3.26, 3.2.14, 3.1.24",
+            "vulnerable_functions": []
+          }
+        ]
+      }
+    ]
+  }
+]

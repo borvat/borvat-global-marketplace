@@ -1,0 +1,1 @@
+{"exit_code": 1, "command": ["node", "--import", "tsx", "--test", "--test-reporter=tap", "tests/06-independent-capture-rollback.test.ts"]}

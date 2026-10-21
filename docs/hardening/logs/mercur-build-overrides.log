@@ -1,0 +1,60 @@
+$ turbo run build "--filter=@mercurjs/core..." "--env-mode=loose" --force
+• turbo 2.9.14
+
+   • Packages in scope: @mercurjs/cli, @mercurjs/core, @mercurjs/dashboard-sdk, @mercurjs/types
+   • Running build in 4 packages
+   • Remote caching disabled
+
+@mercurjs/types:build: cache bypass, force executing 68877b7cb83076a1
+@mercurjs/dashboard-sdk:build: cache bypass, force executing e7025542b30b4da3
+@mercurjs/types:build: $ tsc
+@mercurjs/dashboard-sdk:build: $ tsup
+@mercurjs/dashboard-sdk:build: CLI Building entry: src/index.ts, src/vite.ts
+@mercurjs/dashboard-sdk:build: CLI Using tsconfig: tsconfig.json
+@mercurjs/dashboard-sdk:build: CLI tsup v8.5.1
+@mercurjs/dashboard-sdk:build: CLI Using tsup config: /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/packages/dashboard-sdk/tsup.config.ts
+@mercurjs/dashboard-sdk:build: CLI Target: es2020
+@mercurjs/dashboard-sdk:build: CLI Cleaning output folder
+@mercurjs/dashboard-sdk:build: ESM Build start
+@mercurjs/dashboard-sdk:build: CJS Build start
+@mercurjs/dashboard-sdk:build: ESM dist/index.js          1.20 KB
+@mercurjs/dashboard-sdk:build: ESM dist/chunk-3RG5ZIWI.js 390.00 B
+@mercurjs/dashboard-sdk:build: ESM dist/vite.js           39.19 KB
+@mercurjs/dashboard-sdk:build: ESM ⚡️ Build success in 65ms
+@mercurjs/dashboard-sdk:build: CJS dist/index.cjs 2.49 KB
+@mercurjs/dashboard-sdk:build: CJS dist/vite.cjs  43.08 KB
+@mercurjs/dashboard-sdk:build: CJS ⚡️ Build success in 64ms
+@mercurjs/dashboard-sdk:build: DTS Build start
+@mercurjs/dashboard-sdk:build: DTS ⚡️ Build success in 2839ms
+@mercurjs/dashboard-sdk:build: DTS dist/index.d.ts           6.99 KB
+@mercurjs/dashboard-sdk:build: DTS dist/vite.d.ts            549.00 B
+@mercurjs/dashboard-sdk:build: DTS dist/types-BTgTMD_t.d.ts  10.04 KB
+@mercurjs/dashboard-sdk:build: DTS dist/index.d.cts          7.00 KB
+@mercurjs/dashboard-sdk:build: DTS dist/vite.d.cts           550.00 B
+@mercurjs/dashboard-sdk:build: DTS dist/types-BTgTMD_t.d.cts 10.04 KB
+@mercurjs/cli:build: cache bypass, force executing bcc0c88df277a5a2
+@mercurjs/cli:build: $ bun scripts/generate-routes-manifest.ts && tsup
+@mercurjs/cli:build: Wrote 562 routes (330 medusa, 266 core) to packages/cli/routes-manifest.json
+@mercurjs/cli:build: CLI Building entry: src/index.ts
+@mercurjs/cli:build: CLI Using tsconfig: tsconfig.json
+@mercurjs/cli:build: CLI tsup v8.5.1
+@mercurjs/cli:build: CLI Using tsup config: /workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/packages/cli/tsup.config.ts
+@mercurjs/cli:build: CLI Target: esnext
+@mercurjs/cli:build: CLI Cleaning output folder
+@mercurjs/cli:build: ESM Build start
+@mercurjs/cli:build: ESM dist/index.js     53.07 KB
+@mercurjs/cli:build: ESM dist/index.js.map 253.07 KB
+@mercurjs/cli:build: ESM ⚡️ Build success in 341ms
+@mercurjs/cli:build: DTS Build start
+@mercurjs/cli:build: DTS ⚡️ Build success in 3507ms
+@mercurjs/cli:build: DTS dist/index.d.ts 4.62 KB
+@mercurjs/core:build: cache bypass, force executing b370062b7ff549fd
+@mercurjs/core:build: $ bun ./node_modules/@mercurjs/cli/dist/index.js codegen && rm -rf .medusa && tsc --declaration --outDir .medusa/server && bun run copy:patches
+@mercurjs/core:build: ✔ Route types generated successfully.
+@mercurjs/core:build: 
+@mercurjs/core:build: $ mkdir -p .medusa/server/src/patches/patches && cp src/patches/patches/*.patch .medusa/server/src/patches/patches/
+
+ Tasks:    4 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    22.769s 
+

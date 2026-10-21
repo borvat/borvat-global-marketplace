@@ -1,0 +1,10 @@
+[
+  {
+    "url": "https://id-preview--092a5ea2-1dc1-4ffd-a4b4-efe2d3237298.lovable.app/images/hero.jpg",
+    "error": "HTTP Error 401: Unauthorized"
+  },
+  {
+    "url": "https://borvatshop.com/images/hero.jpg",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

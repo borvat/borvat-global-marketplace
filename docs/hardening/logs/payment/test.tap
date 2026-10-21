@@ -1,0 +1,32 @@
+✔ P01 committed immutable intent exists before any provider call (71.427172ms)
+✔ P02 buyer cannot see or queue another buyer/merchant order (18.555723ms)
+✔ P03 seller actor cannot request a buyer payment (11.898974ms)
+✔ P04 concurrent identical retries create one durable intent (45.715323ms)
+✔ P05 reused idempotency key with a different order is refused (18.65986ms)
+✔ P06 successful provider commit + failed local SQL is recovered without duplicate charge (40.155734ms)
+✔ P07 lost provider response retains recovery intent and lookup restores state (29.011042ms)
+✔ P08 actual worker SIGKILL after provider effect survives a fresh process restart (141.810212ms)
+✔ P09 competing workers lease once and retain one final confirmation event (38.181939ms)
+✔ P10 provider outage creates no charge and unknown outcomes never get blind new keys (37.723434ms)
+✔ P11 mismatched provider amount is quarantined and never marks order paid (27.405446ms)
+✔ P12 revoked buyer authorization is rechecked by background worker (24.95296ms)
+✔ P13 API role cannot forge money state or insert a worker operation (23.47036ms)
+✔ P14 even worker cannot rewrite committed amount or merchant (25.329482ms)
+✔ P15 immutable audit events reject update and delete (22.171122ms)
+✔ P16 forged signature is denied without inbox mutation (22.66379ms)
+✔ P17 concurrent duplicate webhooks insert only one hint and never declare payment (36.232562ms)
+✔ P18 same webhook id with a changed body is rejected (24.754119ms)
+✔ P19 signed foreign tenant event cannot move another tenant operation (20.170231ms)
+✔ P20 expired event and out-of-order unpaid hint cannot regress paid state (30.830805ms)
+✔ P21 non-owner roles do not bypass RLS and pooled sessions do not leak context (21.470811ms)
+✔ P22 worker tenant scope cannot claim another tenant operation (19.288242ms)
+✔ P23 unavailable historical provider lookup after a crash never causes blind recapture (247.506386ms)
+✔ P24 stale worker lease cannot finalize and reconciliation uses the same provider fact (30.187646ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1163.492771

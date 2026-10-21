@@ -13,3 +13,11 @@ All stages inherit the detailed acceptance scenarios in docs/mission03/06-accept
 | C6 | Full acceptance on fixed SHA, resilience/restore/load and legal review; C5 evidence | all modules, runbooks, acceptance evidence | all 35 cases with named real sandbox vs mock boundaries, no P0/P1, restore and reconciliation | misleading launch claim; readiness report only, launch remains separate owner decision |
 
 For each future issue, implementation instruction: read repository and app AGENTS, preserve imported source and decisions; modify only mapped domain files; use synthetic isolated fixtures; supply commands, exit codes and raw log hashes; stop at dependencies/approval blockers; no live effects or merge. Changes outside stage scope need a new ADR. Never use source-preservation experiments as evidence the chosen UI/database/PSP journey works end-to-end.
+
+## Proposed foundation revision — not yet authorized
+
+ADR-005 recommends Mercur OSS core plus Surooh extensions following independent prototype execution. The conditional C0–C6 changes, files, acceptance deltas, risks and rollback are in [OSS-REVISED-PLAN.md](OSS-REVISED-PLAN.md). Preserve all original acceptance mappings. The owner must adopt the foundation decision and separately authorize Codex before any implementation.
+
+## Mercur hardening prerequisite
+
+Research/preferred candidate accepted only. See [hardening stage instructions](../hardening/CODEX-STAGES.md), [all 35 scenario status rows](../hardening/ACCEPTANCE-35.md) and [blocking findings](../hardening/REPORT.md). No stage may start or advance from candidate acceptance alone.

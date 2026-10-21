@@ -1,0 +1,274 @@
+TAP version 13
+# Subtest: row level security and tenant isolation
+    # Subtest: a vendor sees only its own offers
+    ok 1 - a vendor sees only its own offers
+      ---
+      duration_ms: 4.225599
+      type: 'test'
+      ...
+    # Subtest: without tenant context no offer is visible at all
+    ok 2 - without tenant context no offer is visible at all
+      ---
+      duration_ms: 2.324203
+      type: 'test'
+      ...
+    # Subtest: a vendor cannot update another vendor offer
+    ok 3 - a vendor cannot update another vendor offer
+      ---
+      duration_ms: 3.048665
+      type: 'test'
+      ...
+    # Subtest: a vendor cannot insert an offer owned by another vendor
+    ok 4 - a vendor cannot insert an offer owned by another vendor
+      ---
+      duration_ms: 2.930858
+      type: 'test'
+      ...
+    # Subtest: the vendor-facing offer update refuses a foreign offer
+    ok 5 - the vendor-facing offer update refuses a foreign offer
+      ---
+      duration_ms: 3.040092
+      type: 'test'
+      ...
+    # Subtest: public read exposes active offers only
+    ok 6 - public read exposes active offers only
+      ---
+      duration_ms: 12.167317
+      type: 'test'
+      ...
+    # Subtest: a buyer cannot read another buyer cart
+    ok 7 - a buyer cannot read another buyer cart
+      ---
+      duration_ms: 12.924862
+      type: 'test'
+      ...
+    # Subtest: a vendor cannot read another vendor inventory ledger
+    ok 8 - a vendor cannot read another vendor inventory ledger
+      ---
+      duration_ms: 3.065631
+      type: 'test'
+      ...
+    # Subtest: platform mode sees every tenant
+    ok 9 - platform mode sees every tenant
+      ---
+      duration_ms: 1.272478
+      type: 'test'
+      ...
+    1..9
+ok 1 - row level security and tenant isolation
+  ---
+  duration_ms: 775.805064
+  type: 'suite'
+  ...
+# Subtest: vendor onboarding
+    # Subtest: an applicant cannot approve its own application
+    ok 1 - an applicant cannot approve its own application
+      ---
+      duration_ms: 116.698694
+      type: 'test'
+      ...
+    # Subtest: the database itself refuses a self-approved vendor profile
+    ok 2 - the database itself refuses a self-approved vendor profile
+      ---
+      duration_ms: 99.96145
+      type: 'test'
+      ...
+    # Subtest: a platform administrator approval creates the vendor tenant
+    ok 3 - a platform administrator approval creates the vendor tenant
+      ---
+      duration_ms: 135.633027
+      type: 'test'
+      ...
+    # Subtest: a seller cannot open two applications at once
+    ok 4 - a seller cannot open two applications at once
+      ---
+      duration_ms: 96.961695
+      type: 'test'
+      ...
+    # Subtest: rejection requires a reason and blocks later approval
+    ok 5 - rejection requires a reason and blocks later approval
+      ---
+      duration_ms: 132.11276
+      type: 'test'
+      ...
+    1..5
+ok 2 - vendor onboarding
+  ---
+  duration_ms: 937.518004
+  type: 'suite'
+  ...
+# Subtest: money arithmetic
+    # Subtest: currency precision follows ISO 4217
+    ok 1 - currency precision follows ISO 4217
+      ---
+      duration_ms: 1.1346
+      type: 'test'
+      ...
+    # Subtest: decimal parsing respects currency precision
+    ok 2 - decimal parsing respects currency precision
+      ---
+      duration_ms: 0.321264
+      type: 'test'
+      ...
+    # Subtest: formatting is stable
+    ok 3 - formatting is stable
+      ---
+      duration_ms: 0.222336
+      type: 'test'
+      ...
+    # Subtest: division rounds half away from zero
+    ok 4 - division rounds half away from zero
+      ---
+      duration_ms: 0.128253
+      type: 'test'
+      ...
+    # Subtest: tax is extracted from a tax inclusive price
+    ok 5 - tax is extracted from a tax inclusive price
+      ---
+      duration_ms: 0.116566
+      type: 'test'
+      ...
+    # Subtest: commission is a basis point share of the vendor base
+    ok 6 - commission is a basis point share of the vendor base
+      ---
+      duration_ms: 0.150947
+      type: 'test'
+      ...
+    1..6
+ok 3 - money arithmetic
+  ---
+  duration_ms: 3.272401
+  type: 'suite'
+  ...
+# Subtest: pricing engine
+    # Subtest: two vendors produce two groups and one shipping charge each
+    ok 1 - two vendors produce two groups and one shipping charge each
+      ---
+      duration_ms: 1.168852
+      type: 'test'
+      ...
+    # Subtest: one vendor shipping one parcel charges the highest line shipping once
+    ok 2 - one vendor shipping one parcel charges the highest line shipping once
+      ---
+      duration_ms: 0.264078
+      type: 'test'
+      ...
+    # Subtest: a free shipping threshold removes the vendor shipping charge
+    ok 3 - a free shipping threshold removes the vendor shipping charge
+      ---
+      duration_ms: 0.189395
+      type: 'test'
+      ...
+    # Subtest: an empty basket cannot be priced
+    ok 4 - an empty basket cannot be priced
+      ---
+      duration_ms: 0.265851
+      type: 'test'
+      ...
+    1..4
+ok 4 - pricing engine
+  ---
+  duration_ms: 2.252465
+  type: 'suite'
+  ...
+# Subtest: inventory integrity
+    # Subtest: stock movements are recorded with the resulting balance
+    ok 1 - stock movements are recorded with the resulting balance
+      ---
+      duration_ms: 25.217838
+      type: 'test'
+      ...
+    # Subtest: stock can never be driven negative
+    ok 2 - stock can never be driven negative
+      ---
+      duration_ms: 16.741907
+      type: 'test'
+      ...
+    # Subtest: two concurrent buyers cannot oversell the last unit
+    ok 3 - two concurrent buyers cannot oversell the last unit
+      ---
+      duration_ms: 34.143776
+      type: 'test'
+      ...
+    # Subtest: ledgers reject updates and deletes through policy and through trigger
+    ok 4 - ledgers reject updates and deletes through policy and through trigger
+      ---
+      duration_ms: 11.732638
+      type: 'test'
+      ...
+    # Subtest: the money ledger and the audit log cannot be rewritten
+    ok 5 - the money ledger and the audit log cannot be rewritten
+      ---
+      duration_ms: 4.693322
+      type: 'test'
+      ...
+    1..5
+ok 5 - inventory integrity
+  ---
+  duration_ms: 637.142551
+  type: 'suite'
+  ...
+# Subtest: multi-vendor checkout
+    # Subtest: a cart mixes offers from two vendors and prices them with tax
+    ok 1 - a cart mixes offers from two vendors and prices them with tax
+      ---
+      duration_ms: 35.396585
+      type: 'test'
+      ...
+    # Subtest: the quote matches the cart total
+    ok 2 - the quote matches the cart total
+      ---
+      duration_ms: 52.247856
+      type: 'test'
+      ...
+    # Subtest: checkout splits the order per vendor and charges commission
+    ok 3 - checkout splits the order per vendor and charges commission
+      ---
+      duration_ms: 89.186306
+      type: 'test'
+      ...
+    # Subtest: reusing an idempotency key for another basket is refused
+    ok 4 - reusing an idempotency key for another basket is refused
+      ---
+      duration_ms: 18.96213
+      type: 'test'
+      ...
+    # Subtest: checkout refuses to charge a different total than the customer saw
+    ok 5 - checkout refuses to charge a different total than the customer saw
+      ---
+      duration_ms: 30.509779
+      type: 'test'
+      ...
+    # Subtest: a declined payment leaves no order and no reserved stock
+    ok 6 - a declined payment leaves no order and no reserved stock
+      ---
+      duration_ms: 72.887751
+      type: 'test'
+      ...
+    # Subtest: a paused offer blocks checkout instead of selling something unavailable
+    ok 7 - a paused offer blocks checkout instead of selling something unavailable
+      ---
+      duration_ms: 96.892485
+      type: 'test'
+      ...
+    # Subtest: a cart cannot hold more than the available stock
+    ok 8 - a cart cannot hold more than the available stock
+      ---
+      duration_ms: 18.18314
+      type: 'test'
+      ...
+    1..8
+ok 6 - multi-vendor checkout
+  ---
+  duration_ms: 1245.484184
+  type: 'suite'
+  ...
+1..6
+# tests 37
+# suites 6
+# pass 37
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4991.521673

@@ -1,0 +1,13 @@
+# Mercur foundation hardening lab
+
+Preparation/proof code only. Not installed into BORVAT or Mercur production. No Codex, live PSP, SMTP, real sellers, paid services, production migration or deployment. Read `docs/hardening/REPORT.md` and the failed native payout proof before interpreting passing tests.
+
+`payment/` is a separate Surooh service-schema proof using PostgreSQL with a second database as a synthetic provider ledger. API and worker are distinct NOSUPERUSER/NOBYPASSRLS roles; browser roles cannot change money state. Local URL/name guards reject remote or non-disposable DBs. Schema setup/reset requires a fresh test database and an admin connection; do not run it against an existing system. Test configuration uses only TEST_* local synthetic URLs. Runtime must preload `scripts/foundation/no-external-network.mjs`.
+
+Run `npm ci --ignore-scripts`. Provision fresh `borvat_hardening_main` and `borvat_hardening_psp` PostgreSQL databases, roles surooh_api / surooh_worker / synthetic_psp, and deny public access to provider DB. Set local TEST_ADMIN_DATABASE_URL, TEST_API_DATABASE_URL, TEST_WORKER_DATABASE_URL and TEST_PROVIDER_DATABASE_URL. The PSP role owns only its disposable DB, never a real provider credential. Run `node --test --test-concurrency=1 payment/durability.test.mjs`, then `node payment/restore-proof.mjs` in the same local test environment. The latter creates `borvat_hardening_restore`, restores a repeatable-read application snapshot and proves reconciliation against an advanced synthetic provider ledger. It is not pg_dump/PITR or a Mercur schema restore.
+
+`native/` contains REST/permission fixture and native payout counterexample specs, placed under the pinned upstream checkout's integration-tests/http/borvat. Runtime roles and business source remain unmodified; the fixture resolver is injected only into the test container to demonstrate the native extension hook. Raw module services trust caller code; the worker-adapter probe delegates to the authenticated API. Native payout H06 intentionally fails because response loss deletes its recovery row; do not weaken it.
+
+`contracts/` contains pure proposed boundary translators and eight probes, not connections to the other systems. Snapshot source/locks, exact pins, audits, CycloneDX BOM and log hashes are under docs/hardening/evidence. No blanket permission or license for proprietary third-party materials is inferred. Medusa Enterprise flags stay disabled.
+
+Node 24.19.0, Bun 1.3.8 and disposable PostgreSQL 17.6 were used. The restricted test host still needed the previously documented PostgreSQL-only uid startup shim; no shim was applied to Node or business SQL. Repeat on ordinary non-root PostgreSQL before migration certification.

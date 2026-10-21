@@ -1,0 +1,1 @@
+{"exit_code": 0, "command": ["node", "--import", "tsx", "--test", "--test-concurrency=1", "--test-reporter=tap", "tests/01-isolation.test.ts", "tests/02-vendor-onboarding.test.ts", "tests/03-money-pricing.test.ts", "tests/04-inventory.test.ts", "tests/05-checkout.test.ts"]}

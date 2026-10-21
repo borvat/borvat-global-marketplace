@@ -100,5 +100,26 @@
       "number": 7,
       "url": "https://github.com/borvat/borvat-global-marketplace/milestone/7"
     }
-  ]
+  ],
+  "oss_evaluation": {
+    "branch": "prep/oss-foundation-evaluation-2026-10-22",
+    "adr": "ADR-005",
+    "recommendation_option": 1,
+    "approval": "PENDING",
+    "issues": [
+      {
+        "number": 17,
+        "url": "https://github.com/borvat/borvat-global-marketplace/issues/17"
+      },
+      {
+        "number": 18,
+        "url": "https://github.com/borvat/borvat-global-marketplace/issues/18"
+      },
+      {
+        "number": 19,
+        "url": "https://github.com/borvat/borvat-global-marketplace/issues/19"
+      }
+    ],
+    "all_stages": "ON_HOLD"
+  }
 }

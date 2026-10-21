@@ -1,0 +1,40 @@
+{
+  "evaluated_date": "2026-10-22",
+  "current_base_commit": "2c6204bcf433bbb48db4090ad6ba86235368255a",
+  "lovable_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+  "current_core_origin": "edf090b3d73a9c2a8d5f3e44d2887ce7c94d898c",
+  "candidates": [
+    {
+      "candidate": "mercur",
+      "repository": "mercurjs/mercur",
+      "tag": "v2.3.7",
+      "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+      "release_published_at": "2026-10-08T15:51:08Z",
+      "release_url": "https://github.com/mercurjs/mercur/releases/tag/v2.3.7"
+    },
+    {
+      "candidate": "medusa",
+      "repository": "medusajs/medusa",
+      "tag": "v2.22.0",
+      "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+      "release_published_at": "2026-10-21T10:58:20Z",
+      "release_url": "https://github.com/medusajs/medusa/releases/tag/v2.22.0"
+    },
+    {
+      "candidate": "vendure",
+      "repository": "vendurehq/vendure",
+      "tag": "v3.8.0",
+      "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+      "release_published_at": "2026-10-12T13:49:35Z",
+      "release_url": "https://github.com/vendurehq/vendure/releases/tag/v3.8.0"
+    },
+    {
+      "candidate": "saleor",
+      "repository": "saleor/saleor",
+      "tag": "3.23.44",
+      "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+      "release_published_at": "2026-10-20T16:50:29Z",
+      "release_url": "https://github.com/saleor/saleor/releases/tag/3.23.44"
+    }
+  ]
+}

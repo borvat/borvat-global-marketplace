@@ -1,0 +1,341 @@
+{
+  "note": "Hashes cover new evaluation evidence/harness and changed engineering files; manifest excludes itself. No upstream runtime vendored, production source replaced or data directory included.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3575,
+      "sha256": "d3b21a3bee7be47448b29f76ccc2f96dfe6567e3acde42d56e97f656ae2c1b64",
+      "git_blob_sha1": "61297634159eb1a97e02d99a04a3f93491721f6e"
+    },
+    {
+      "path": "docs/architecture/ADR-003-runtime-and-modules.md",
+      "bytes": 1265,
+      "sha256": "d1b88e99b0759c32b2f553d77af199fe5089e90a57c4817efe29bc4b75fe70f9",
+      "git_blob_sha1": "8d7b331c434dc1dd0ecc0d2bf5871386a98808c9"
+    },
+    {
+      "path": "docs/architecture/ADR-005-oss-foundation-selection.md",
+      "bytes": 5934,
+      "sha256": "dd77c7908d31d1670076414ca97f6060d977be7572baff3a4179ae0d5e31291e",
+      "git_blob_sha1": "952e7a95da369dd1dbbc72df349138f9e8d5fcb0"
+    },
+    {
+      "path": "docs/execution/GATES.md",
+      "bytes": 1788,
+      "sha256": "3b400cae2fd3db8c29975983f919a756dad8ecdac25205c2326ba4cb1564fbbe",
+      "git_blob_sha1": "4da4713761e29e96319c86812e2b49f12ae461f3"
+    },
+    {
+      "path": "docs/execution/OSS-REVISED-PLAN.md",
+      "bytes": 6328,
+      "sha256": "fd26b9ce1b2b64b7cac0e29985b28e34f1d091b7e87e32808c9f561a56948271",
+      "git_blob_sha1": "36d89bbb8240cc44887be9772116600c225b076d"
+    },
+    {
+      "path": "docs/execution/STAGES.md",
+      "bytes": 3834,
+      "sha256": "3d102e345ae3e54cbbb8b4e645aae3ca4f1d8ae746224fb81b0f0ca3b467006f",
+      "git_blob_sha1": "e1a00c77b3f3a6e2834fd4bcfb3429ca814479de"
+    },
+    {
+      "path": "docs/execution/TRACKER.md",
+      "bytes": 2311,
+      "sha256": "add367d1909e60a5aa8e527387620997db70e0f0750f4834331dc37b85569746",
+      "git_blob_sha1": "3945ba7255abac935ec7b016dfda894ae16292f6"
+    },
+    {
+      "path": "docs/execution/github-tracker.json",
+      "bytes": 3655,
+      "sha256": "a6534a77339b2c8d9dffd6a577877e524ec6b1f7b3469098002b2c5f050e0cf6",
+      "git_blob_sha1": "4cb37cc677e35d09d166e29a69f790f0177bdf23"
+    },
+    {
+      "path": "docs/execution/policy.json",
+      "bytes": 345,
+      "sha256": "12752a1ca3d15ab1bf09ad21173c374a196bfb072fa8833c99114df40adf1a2a",
+      "git_blob_sha1": "145fd5ef0143c5725ff2e9880a8fe2ca04fc9fd8"
+    },
+    {
+      "path": "docs/execution/stages.json",
+      "bytes": 2754,
+      "sha256": "7896c2f21b11dd45a6d4f702aef0c551c7a8029ac08b76a662c8e1a11ba7826b",
+      "git_blob_sha1": "50e94227a670602244ee91b3c2932eb675db2b84"
+    },
+    {
+      "path": "docs/oss-evaluation/COMPARISON.md",
+      "bytes": 9175,
+      "sha256": "5d972c0dbdb98154270ab2a015f9291aebf09cb815c4dc5cae926f85a78c5c28",
+      "git_blob_sha1": "f7a3792fcc5def62a444a5330bfc782cb1170624"
+    },
+    {
+      "path": "docs/oss-evaluation/LICENSES-SECURITY.md",
+      "bytes": 6428,
+      "sha256": "7766f7f36d96713a2d89739c75f58af3822d9541e21817dd631642bf098e4634",
+      "git_blob_sha1": "5cc759b0a6c1e4224c5ef469c65c950cef8190db"
+    },
+    {
+      "path": "docs/oss-evaluation/README.md",
+      "bytes": 3478,
+      "sha256": "b7cdae025a815ff75a58f490fb5cdbd01223ced3bc353a888137c51c70a7f73a",
+      "git_blob_sha1": "d39effacb3e4476fc9c397bc650ca538b12d2cdb"
+    },
+    {
+      "path": "docs/oss-evaluation/REUSE-INTEGRATIONS.md",
+      "bytes": 6963,
+      "sha256": "d003d714e8b492f35b350682b0ca3daaaab1176887fc905f448d2921e06587c6",
+      "git_blob_sha1": "2cdfcd22f8926d152f74c21b9b200547f93626be"
+    },
+    {
+      "path": "docs/oss-evaluation/TCO.md",
+      "bytes": 3104,
+      "sha256": "2d4381a92dae0d822b45ae92c90d310857d960a84a48d5248ceec86760102ab9",
+      "git_blob_sha1": "292025cf6fe2a122422ca43582c8013cb7db4872"
+    },
+    {
+      "path": "docs/oss-evaluation/TEST-REPORT.md",
+      "bytes": 7798,
+      "sha256": "15ceadb354fb9ffad4a6cab35af0a778eb2bbeeccf5746b88558a8484f8f84d9",
+      "git_blob_sha1": "d20b6232041cd320f637df095d199358093b1fdb"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/current-capture-rollback.json",
+      "bytes": 378,
+      "sha256": "ff4e84eb3c16e6cf491bb1e7cd35fc823ba403052c80421b5784634e9118b396",
+      "git_blob_sha1": "4c0c1bc14b3ccc1950cb4051b7cf6bbe6600785a"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/current-core-audit.json",
+      "bytes": 363,
+      "sha256": "ed64e8caf3f2718b41ca24b5e257c8ae8269211adfd122ac0a0beaa37699596e",
+      "git_blob_sha1": "bc0dea90727224a3881a4abda13c4110473898c7"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/current-core-exit.json",
+      "bytes": 274,
+      "sha256": "21ca04e60342f1d282fbd62b6c5e1818a418dfe8c2475b86f38905cd70db16cb",
+      "git_blob_sha1": "4b8bf748f6197d25d168907c7d365fb03e632285"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/current-fault-exit.json",
+      "bytes": 138,
+      "sha256": "fcc4a878a525397f6d75a3080472371288f8c8625e8c6aa67854c35b58469218",
+      "git_blob_sha1": "41d0a2a475b339a4ea2a12d0647d022f35fb5f87"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/foundation-verification.json",
+      "bytes": 629,
+      "sha256": "697ff0e6c720009061231008edce7da9b62886f5e48a2af9aebdbe82d7192cc8",
+      "git_blob_sha1": "f2c9f6e4de75a95044244be00d492116905d7cac"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/mercur-independent-exit.json",
+      "bytes": 16,
+      "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+      "git_blob_sha1": "6c1660a57c81c309c9153b029ab6ff63ef24320d"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/mercur-independent-results.json",
+      "bytes": 2175,
+      "sha256": "abe0fea40b02b947f8dc2708eff9a5120ea700b0d2beb51fdca75b97738eb1ec",
+      "git_blob_sha1": "5aaa3e931459dcc57727cd2e45cad9c941438737"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/mercur-upstream-command.json",
+      "bytes": 1560,
+      "sha256": "274b4af6441354d1beb0fd6b3ccb86b552c50c11141fa699c529310c7a0e51b2",
+      "git_blob_sha1": "5483a664981c7ab4002bbb711616e0b4dfd1ee91"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/mercur-upstream-exit.json",
+      "bytes": 16,
+      "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+      "git_blob_sha1": "6c1660a57c81c309c9153b029ab6ff63ef24320d"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/mercur-upstream-results.json",
+      "bytes": 57586,
+      "sha256": "304e79c77e6203f010f40809d7c858e12ac31427669a306f0259014c18d91a8f",
+      "git_blob_sha1": "37441d592a4743caa26b4465185a79b97a0c7e9b"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/mercur-workspace-audit.json",
+      "bytes": 39892,
+      "sha256": "e7ef8f185324b21acb69c273b796f911fc0cf4f99d28dccd2de423185802a631",
+      "git_blob_sha1": "3176d20a500f384c5329977f3c56eff973641cf7"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/pins.json",
+      "bytes": 1450,
+      "sha256": "01463e5ae97f647d39da7b4374498728968b10c037dbbd293ae2a31558313bab",
+      "git_blob_sha1": "52692b3b05e0c5474f9b31ee623993e10404d78e"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/remote-verification.json",
+      "bytes": 1011,
+      "sha256": "ec2a958270bc69601ec619d00fa0b956c84b80b7416a86bb0c78435e67b513eb",
+      "git_blob_sha1": "da11d3c8fc5e3fa14d85f7a6a0c22bb2ee7b0203"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/source-files.json",
+      "bytes": 16630,
+      "sha256": "b0a0768ef7cec7f395b0c1b008cc058b1ce2dee72365d384da5a5365e344bc41",
+      "git_blob_sha1": "71994bac6552a596f6ab7c4e10edf7a8d853b35a"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/upstream-metadata.json",
+      "bytes": 45483,
+      "sha256": "bee8a8bd24e98181629f7526aab3e683cd6870b5d3aee127a7c037ed564989c6",
+      "git_blob_sha1": "1a3cf1710472d76922339626eb1bbe0e09622bcc"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/vendure-full-audit.json",
+      "bytes": 11306,
+      "sha256": "a68748ce1744c8bca2e83c86c478a1060332ffc1aeeade50d72c5fb1facc6cb7",
+      "git_blob_sha1": "c9d52b314eea87d5d5638ceec8389dad5f1fe873"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/vendure-results.json",
+      "bytes": 5204,
+      "sha256": "0716596b7ff11c0451b787c2c1f8a3bb0a40b974e0dd05875bdcb4431040b0da",
+      "git_blob_sha1": "a09abc1530773d214736ac1993906bc2f8612e2c"
+    },
+    {
+      "path": "docs/oss-evaluation/evidence/vendure-runtime-audit.json",
+      "bytes": 6900,
+      "sha256": "aca44f8478eeb73822a55bd300870bdfc783168c96a874077ad3be32298d4302",
+      "git_blob_sha1": "44ce0ef3a7356f418c366451ec5792f429539aec"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/current-app-role.txt",
+      "bytes": 68,
+      "sha256": "c2e5c04eabfff0e6eb666ec4a0aff7ee5c03b470c633b8dbb2c4c973e2d524e8",
+      "git_blob_sha1": "4e02cb9e2b80a9d9552e35c2cca67af4db9501fa"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/current-capture-rollback.tap",
+      "bytes": 1096,
+      "sha256": "25ea9a920a029f408ee06c9044d4856565377fc1dfb85dfa1267fa6802dbee30",
+      "git_blob_sha1": "55d0e6d5fc7c28327a9921e08dc8f41d539da9ea"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/current-core.tap",
+      "bytes": 8030,
+      "sha256": "610bcb726c4a1c61a114201154a6568557145f873505c316f49e078165806871",
+      "git_blob_sha1": "b2e74e0dde540bbe875bdff66cb613f9fbd5c0d4"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/gate-hold-latest.txt",
+      "bytes": 150,
+      "sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24",
+      "git_blob_sha1": "b50d3c09c51495fe002b96bb40c37f30452e02dc"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/mercur-auth-smoke.txt",
+      "bytes": 74797,
+      "sha256": "a93df15a53af9493420cb2d9239d21ebf677223e01860f9a3d200d7cd728eb88",
+      "git_blob_sha1": "08869049a288db34a497f99bd58f2893a5cfec5a"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/mercur-build.txt",
+      "bytes": 3423,
+      "sha256": "e191c1f70e30452c18b020b0b83077a01c877456260f6ae8031baca90f408e71",
+      "git_blob_sha1": "045188323df8cbd222f49809bbc30a05bec07243"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/mercur-independent.txt",
+      "bytes": 73978,
+      "sha256": "0e34b50749d9dcbe2d08cce193ebe999744e8c8d7924b42039423254ddaee2e3",
+      "git_blob_sha1": "729ee0ed67afb7eb7e06f3affda68c29529ecc91"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/mercur-upstream.txt",
+      "bytes": 1726,
+      "sha256": "8474a428bb2282befe5746689b2e17e64ad3e9dd0ce4a74fe938dd8b4fd5dc9b",
+      "git_blob_sha1": "da697344bdeeac6dd355bb17629effcd56d639d8"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/vendure.txt",
+      "bytes": 2330,
+      "sha256": "63af74c9742608ed7297f3a95f0c3820a5f3fb69de105e9ac6bfc307b6714e08",
+      "git_blob_sha1": "85c5b6e9f087e6732e4ef459cf526a3253c563ef"
+    },
+    {
+      "path": "experiments/oss-evaluation/.gitignore",
+      "bytes": 111,
+      "sha256": "21d3bd1f5968ca6ca2c2c57f3f8276669096c62682e1b8c86f3e11af1d8ad8b0",
+      "git_blob_sha1": "05dafd7bb7898f794e06cf043ea35fd9b6a96612"
+    },
+    {
+      "path": "experiments/oss-evaluation/README.md",
+      "bytes": 2185,
+      "sha256": "3f5c5dcb192524c1b00b8b9d43daf7862519c14644d54b06d47be81b195ec9a9",
+      "git_blob_sha1": "9ad85db546aeb87c35386509e9df721d0d0e962a"
+    },
+    {
+      "path": "experiments/oss-evaluation/REPRODUCE.md",
+      "bytes": 4603,
+      "sha256": "2e63cf952abd64bb5491ec76361a2b0ed3c175df4843d8b2773a47b4b8360195",
+      "git_blob_sha1": "120e0653632dc51c751975ff77af2a7b7244ffe6"
+    },
+    {
+      "path": "experiments/oss-evaluation/current-core/capture-rollback.test.ts",
+      "bytes": 2420,
+      "sha256": "aacc06add7bba79842b087509038fc31f2e2984268258eb9195839f6fe0d461d",
+      "git_blob_sha1": "ee59931ed9cd89b55f5db378a53af5c7e5ec08f2"
+    },
+    {
+      "path": "experiments/oss-evaluation/mercur/independent.spec.ts",
+      "bytes": 2344,
+      "sha256": "1d7e01302f7b080f86f68508e0ae21f0ea7d32e2301acc5a0b2080d3dc9bd7de",
+      "git_blob_sha1": "e52e93ae61eeafccd1e3e9601cc96c110823aa2e"
+    },
+    {
+      "path": "experiments/oss-evaluation/vendure/evaluate.ts",
+      "bytes": 10867,
+      "sha256": "d21299e420da84fdf3a38eee74b0c1f22b57b99d70390ba30c5e5df8f6e88519",
+      "git_blob_sha1": "f977d4fe40f33deb15eaaf7eae18d6849879d4b6"
+    },
+    {
+      "path": "experiments/oss-evaluation/vendure/package-lock.json",
+      "bytes": 216788,
+      "sha256": "8bca150c6f9e6ff00894dc87e501b74dca1dc07edfd044219ae7d80e11aed42f",
+      "git_blob_sha1": "866ae5a7f171be2921538535bc1b6823af02fec2"
+    },
+    {
+      "path": "experiments/oss-evaluation/vendure/package.json",
+      "bytes": 578,
+      "sha256": "677a95375e7d4af3f1a02e65ee9e15338737bcda23868425d10b8edfe2da22c6",
+      "git_blob_sha1": "13e12470d51830fb149f3c5b8c9e9e221f812f26"
+    },
+    {
+      "path": "experiments/oss-evaluation/vendure/products.csv",
+      "bytes": 281,
+      "sha256": "5d1f573a0c74c94064130978a30c20d73c8ba41d72594478cfd0a419dab5b9d5",
+      "git_blob_sha1": "f8084103a32433a7929fe2d4a8984f2ab0811b3d"
+    },
+    {
+      "path": "experiments/oss-evaluation/vendure/tsconfig.json",
+      "bytes": 203,
+      "sha256": "791f241187d87e8a23d0ceb25228581b0ac58d1a6c463a9d679cb6336a6fcf7a",
+      "git_blob_sha1": "48a76c1ff8941cafc9e3b2ab06fe513b9c288d0a"
+    },
+    {
+      "path": "scripts/foundation/check.mjs",
+      "bytes": 2104,
+      "sha256": "2b7ee1e99c752a023408439a7141c11d529e0e132541b89667c4159660566b5d",
+      "git_blob_sha1": "b95240d4e871173cb563606c8d7849e57f7587b0"
+    },
+    {
+      "path": "scripts/foundation/gate.mjs",
+      "bytes": 2398,
+      "sha256": "822ec67e527bc7750be1b33384e2093c0147e1b99f9e71e71d628f3c98a0a0fc",
+      "git_blob_sha1": "f704883dc8a96f76d2b1b14549c966139c18fb5a"
+    },
+    {
+      "path": "tests/foundation/gate.test.mjs",
+      "bytes": 2683,
+      "sha256": "e61507e26f73a872fe503b946064c1c8983b4b0e61fe2d2f93f1e200e79e36ab",
+      "git_blob_sha1": "e2ce9a309f3de11b1fe501dc39243b2bdc2c6dff"
+    }
+  ]
+}

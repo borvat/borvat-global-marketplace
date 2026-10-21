@@ -7,7 +7,8 @@
       "depends_on": [],
       "execution": "OWNER_REVIEW_PENDING",
       "required_acceptance": [],
-      "evidence_status": "PENDING"
+      "evidence_status": "PENDING",
+      "required_foundation_decision": "ADR-005 owner review, then separate explicit Codex authorization"
     },
     {
       "id": "C1",
@@ -116,5 +117,16 @@
       ],
       "evidence_status": "NOT_RUN"
     }
-  ]
+  ],
+  "foundation_selection": {
+    "adr": "ADR-005",
+    "recommended_option": 1,
+    "preferred_candidate": "Mercur 2.3.7 / Medusa 2.21.2",
+    "decision": "PREFERRED_CANDIDATE_ACCEPTED",
+    "owner_approval": "RESEARCH_AND_CANDIDATE_ONLY",
+    "codex_authorized": false,
+    "plan": "OSS-REVISED-PLAN.md",
+    "hardening_report": "../hardening/REPORT.md",
+    "final_foundation_approval": "PENDING"
+  }
 }

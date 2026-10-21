@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:surooh:accounting:event:1.0",
+  "title": "Surooh Accounting Event Envelope — proposed v1.0",
+  "description": "Envelope validation only. Type-specific business validation and authorization are mandatory server-side; accepted does not mean posted.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "event_id", "event_version", "event_type", "company_id", "source_system", "source_ref", "occurred_at", "effective_date", "correlation_id", "evidence_refs", "payload"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "event_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "event_version": {"type": "integer", "minimum": 1},
+    "event_type": {"enum": ["sales.invoice.recognized", "sales.credit.recognized", "marketplace.fee.invoiced", "marketplace.settlement.received", "marketplace.refund.confirmed", "stock.received", "stock.issued", "stock.returned", "stock.adjusted", "stock.landed-cost.approved"]},
+    "company_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "source_system": {"type": "string", "minLength": 1, "maxLength": 64},
+    "source_ref": {"type": "string", "minLength": 1, "maxLength": 128},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "effective_date": {"type": "string", "format": "date"},
+    "correlation_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "payload": {"type": "object"}
+  }
+}

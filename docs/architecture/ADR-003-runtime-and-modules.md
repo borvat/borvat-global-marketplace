@@ -7,3 +7,5 @@ The useful application is TanStack Start/React/Supabase with existing seller/com
 Existing Mercur proposal remains an unvalidated alternative, not the selected runtime. Existing PostgreSQL core is a separate tested-in-part candidate, not interchangeable with Supabase Auth/RLS or the Lovable UI. Preserve it without enabling its schema/API or assuming its 12% default commission is a commercial decision.
 
 Run product parity, licence, deployment portability and accounting/payment responsibility comparisons before any engine switch. No framework migration, feature construction or business-logic correction is part of this preparation commit.
+
+Follow-up: independent evaluation is now documented in ADR-005. Its option-1 recommendation remains PROPOSED; no runtime switch or source reorganization has occurred. This ADR remains the preservation baseline pending the owner decision.

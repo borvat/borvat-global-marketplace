@@ -1,0 +1,1 @@
+{"name":"borvat-mercur-foundation-hardening-lab","version":"0.0.0","private":true,"type":"module","description":"Isolated synthetic durability and authorization proof; not installed into BORVAT or Mercur","scripts":{"test":"node --test --test-concurrency=1 payment/*.test.mjs"},"dependencies":{"pg":"8.23.1"}}

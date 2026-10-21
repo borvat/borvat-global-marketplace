@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-22",
+  "evaluated_commit": "b277aff7f2ac750a0a60b0aa39137de9c2f00e89",
+  "tree_sha": "470e79c805f2e7715c2dcfc92114761653dddec4",
+  "remote_changed_blobs_verified": 55,
+  "blob_mismatches": 0,
+  "unexpected_paths": 0,
+  "deletions": 0,
+  "original_app_blobs": "UNCHANGED_FROM_PARENT",
+  "archived_experiment_blobs": "UNCHANGED_FROM_PARENT",
+  "main_sha": "02243d583fb935555177d105e22ee45dc0b93a34",
+  "main_unchanged": true,
+  "pull_request": {
+    "url": "https://github.com/borvat/borvat-global-marketplace/pull/20",
+    "number": 20,
+    "draft": true,
+    "merged": false,
+    "auto_merge": null,
+    "base": "prep/engineering-foundation-2026-10-22"
+  },
+  "ci": {
+    "url": "https://github.com/borvat/borvat-global-marketplace/actions/runs/39684087121",
+    "conclusion": "startup_failure",
+    "jobs": 0,
+    "cause": "UNKNOWN; no billing/permissions changes attempted",
+    "local_tests_are_not_github_ci_success": true
+  },
+  "codex_started": false,
+  "foundation_adopted": false
+}

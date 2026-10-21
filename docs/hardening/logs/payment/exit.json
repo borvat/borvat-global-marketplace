@@ -1,0 +1,1 @@
+{"exit_code": 0, "postgres": "17.6", "payment_provider": "isolated synthetic ledger in separate PostgreSQL database; no external PSP", "test_command": "node --test --test-concurrency=1 payment/durability.test.mjs"}

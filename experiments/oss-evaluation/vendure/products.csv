@@ -1,0 +1,3 @@
+name,slug,description,assets,facets,optionGroups,optionValues,sku,price,taxCategory,stockOnHand,trackInventory,variantAssets,variantFacets
+Synthetic A,synthetic-a,Fixture only,,,,,SYN-A,10.00,standard,3,true,,
+Synthetic B,synthetic-b,Fixture only,,,,,SYN-B,20.00,standard,2,true,,
