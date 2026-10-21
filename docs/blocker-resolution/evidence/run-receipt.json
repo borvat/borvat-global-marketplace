@@ -1,0 +1,35 @@
+{
+  "basis_commit": "44228fbf911b83e108a69183ea1ab18d5d8d878a",
+  "upstream_mercur": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+  "node": "24.19.0",
+  "bun": "1.3.8",
+  "postgres": "17.6",
+  "native_test_results": {
+    "passed": 28,
+    "failed": 0,
+    "skipped": 0
+  },
+  "new_worker_proof_tests": 10,
+  "payment_regression_tests": 24,
+  "dependency_trial_tests": 4,
+  "native_core_patch_sha256": "1742e1e40aa06f557391a60afeec40874da3d4dc5680b549b5b1c417d2e89b05",
+  "mercur_bun_lock_sha256": "3f25328b2962d7190e6b42d43f2708f670eb1a469f76507649a0a9a3837073a4",
+  "hosted_ci": "HOSTED_CI_BLOCKED \u2014 ALTERNATIVE_VERIFICATION_REQUIRED",
+  "native_build_environment": {
+    "TURBO_TELEMETRY_DISABLED": "1",
+    "DO_NOT_TRACK": "1",
+    "NODE_OPTIONS": "preload repository loopback-only network guard"
+  },
+  "lab_compiler_note": "Stale backup node_modules directories excluded from core tsconfig in lab only; fresh clone should not contain backups. No business source excluded.",
+  "borvat_reproduction": {
+    "script": "experiments/blocker-resolution/borvat-sandbox.py",
+    "results": "docs/blocker-resolution/logs/borvat/repro-results.json",
+    "source_snapshot_unchanged": true
+  },
+  "commands": {
+    "native": "node node_modules/jest/bin/jest.js --runInBand --forceExit --json --runTestsByPath http/borvat/hardening.spec.ts http/payment/split-order-payments.spec.ts http/borvat/payout-durability-gap.spec.ts (cwd integration-tests)",
+    "payment_worker": "BORVAT_LAB_ROOT=<lab> BORVAT_FOUNDATION_ROOT=<foundation> python experiments/blocker-resolution/reproduction/run-resolution-payment.py",
+    "runtime": "node experiments/blocker-resolution/verify-runtime.cjs <disposable-mercur>",
+    "dependency_trial": "NODE_OPTIONS=--import=<foundation>/scripts/foundation/no-external-network.mjs node --test trial.test.mjs"
+  }
+}

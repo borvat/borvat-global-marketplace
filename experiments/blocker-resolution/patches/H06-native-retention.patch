@@ -1,0 +1,40 @@
+diff --git a/packages/core/src/modules/payout/services/payout-module-service.ts b/packages/core/src/modules/payout/services/payout-module-service.ts
+index b8c53d6..cc9306d 100644
+--- a/packages/core/src/modules/payout/services/payout-module-service.ts
++++ b/packages/core/src/modules/payout/services/payout-module-service.ts
+@@ -165,6 +165,12 @@ export default class PayoutModuleService extends MedusaService({
+         input: CreatePayoutDTO,
+         @MedusaContext() sharedContext?: Context<EntityManager>
+     ): Promise<PayoutDTO> {
++        // A provider effect cannot participate in an ambient SQL transaction.
++        // Reject before creating an intent or invoking the provider.
++        if (sharedContext?.transactionManager) {
++            throw new MedusaError(MedusaError.Types.NOT_ALLOWED,
++                "PAYOUT_REQUIRES_INDEPENDENT_COMMITTED_INTENT")
++        }
+         const { payout, payoutAccount } = await this.createPayouts_(input, sharedContext)
+ 
+         let updated: InferEntityType<typeof Payout>
+@@ -174,8 +180,8 @@ export default class PayoutModuleService extends MedusaService({
+                 amount: input.amount,
+                 currency_code: input.currency_code,
+                 context: {
+-                    idempotency_key: payout.id,
+-                    ...input.context
++                    ...input.context,
++                    idempotency_key: payout.id
+                 },
+                 data: {
+                     ...payoutAccount.data,
+@@ -192,7 +198,10 @@ export default class PayoutModuleService extends MedusaService({
+                 sharedContext
+             )
+         } catch (error) {
+-            await this.deletePayouts(payout.id, sharedContext).catch(() => null)
++            // Keep the committed PENDING record after ALL ambiguous failures.
++            // Never compensate a possible external success by deleting evidence.
++            // A separate reconciler must query the provider using payout.id;
++            // callers must not resubmit createPayouts to recover this operation.
+             throw error
+         }
+ 

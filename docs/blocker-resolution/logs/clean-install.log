@@ -1,0 +1,13 @@
+bun install v1.3.8 (b64edcb4)
+
++ @eslint/js@10.0.1
++ eslint@10.6.0
++ globals@17.6.0
++ oxlint@1.67.0
++ pg-god@1.0.12
++ prettier@3.8.3
++ turbo@2.9.14
++ typescript@5.9.3
++ typescript-eslint@8.60.0
+
+4409 packages installed [94.81s]

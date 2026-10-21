@@ -1,0 +1,291 @@
+{
+  "basis_commit": "44228fbf911b83e108a69183ea1ab18d5d8d878a",
+  "scope": "Only new final-blocker evidence; inherits existing source/docs unchanged; excludes itself",
+  "records": [
+    {
+      "path": "docs/architecture/ADR-006-final-blocker-resolution.md",
+      "sha256": "3ac180507123e29e0d9df6fe5601fc6863994d859e335106d083367ac63f3c59",
+      "bytes": 1558
+    },
+    {
+      "path": "docs/blocker-resolution/FUTURE-TASKS.md",
+      "sha256": "54fac6f81414706a1551af1bcbd21c672e7fea23833b0587c9684cf03ef64f0c",
+      "bytes": 3283
+    },
+    {
+      "path": "docs/blocker-resolution/RECOVERY.md",
+      "sha256": "bd271470f798321330b99f1624f33241fc400c5559c2b3eeb4ed55443b743cd9",
+      "bytes": 2500
+    },
+    {
+      "path": "docs/blocker-resolution/REPORT.md",
+      "sha256": "f50edcbf1ccf03332734baf0f996ba4845ae08e80d862f35c858b469027e74d1",
+      "bytes": 7173
+    },
+    {
+      "path": "docs/blocker-resolution/evidence/asset-retry.json",
+      "sha256": "ea3653f2ab05933696585c4f2724d1521eba26321ffb11f1caaaf2dd08eb19be",
+      "bytes": 501
+    },
+    {
+      "path": "docs/blocker-resolution/evidence/borvat-lint-summary.json",
+      "sha256": "50bdc81dbd45f1d968709784428c854352e76d8e42b990040c6302c163f13db7",
+      "bytes": 229
+    },
+    {
+      "path": "docs/blocker-resolution/evidence/dependency-trial-sbom.cdx.json.gz",
+      "sha256": "713f945454103910fb0c915b89a05353f81a3bb74dc2b824ad97695e82dea491",
+      "bytes": 17118
+    },
+    {
+      "path": "docs/blocker-resolution/evidence/http-trial-audit.json",
+      "sha256": "9a2280dab8af3ebca0f39c8370efeb13848dc18f514043f6df42ad14d6c3f402",
+      "bytes": 360
+    },
+    {
+      "path": "docs/blocker-resolution/evidence/reachability.json",
+      "sha256": "fb04a63ac4ff55a9fe06e2db0c0bb802b45e0de5c3e71cdd599fdd981f1f97f8",
+      "bytes": 9274
+    },
+    {
+      "path": "docs/blocker-resolution/evidence/run-receipt.json",
+      "sha256": "d4205b93cac583713a21039b9870dcc469ecf0807bec414c95c78cc731afbf2e",
+      "bytes": 1836
+    },
+    {
+      "path": "docs/blocker-resolution/evidence/runtime-preflight.json",
+      "sha256": "ce8d72f6132de823189d8e7871e6b3d4c521f2519f61ab9bf7c610d54f3386db",
+      "bytes": 370
+    },
+    {
+      "path": "docs/blocker-resolution/evidence/runtime-resolution.json",
+      "sha256": "82c365f78a71b32061c6c403567d98bcbe16d4c3272904135df7c9ac030efb5d",
+      "bytes": 564
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/build-exit.json",
+      "sha256": "f8f01f343330108db9e9a8a869c809b01132500a328d04883d0f117444bfbf04",
+      "bytes": 156
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/build.txt",
+      "sha256": "a23632f20003f59e8b28407a41ca975af74c4cd0c4a8e6a16fbb5604224a87e9",
+      "bytes": 4748
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/lint-fix-exit.json",
+      "sha256": "1c0f45d1bc78bc2e86ac7e79b9809b8f4788a6d30494f4c4650647ee7725732c",
+      "bytes": 185
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/repro-build.stderr",
+      "sha256": "2f4d6199d63a13d97385f0e82e76caeaa9edc276ba68993a523633c43e790abf",
+      "bytes": 4647
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/repro-build.stdout",
+      "sha256": "50f2df46593b5e94d0844ee4bf50ac91d3a50156ed3414163cc76c13d188d0ec",
+      "bytes": 109
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/repro-lint-summary.json",
+      "sha256": "d484f4069eecad602e9d53948195b1517fb6525ea0dd3a4e7553e389e36b337d",
+      "bytes": 37
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/repro-results.json",
+      "sha256": "23fea61959fbf4e88d9901efe6aeff3b93ff6e2cdd41efc10ed48d40585f4ebe",
+      "bytes": 426
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/repro-typecheck.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/repro-typecheck.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/typecheck-exit.json",
+      "sha256": "bddafac2001c8b8902ce1c05b8ce5ab54f0fc3350c5f8ac43355421680c342ea",
+      "bytes": 161
+    },
+    {
+      "path": "docs/blocker-resolution/logs/borvat/typecheck.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/blocker-resolution/logs/clean-install.log",
+      "sha256": "d687a4ef1c2338f8d49e3d91eba70b025e57a58e349877fe1f2c71705418af9b",
+      "bytes": 228
+    },
+    {
+      "path": "docs/blocker-resolution/logs/foundation/exits.json",
+      "sha256": "77aede595f56ea8ed6236c7cc21450bd9c15f8a35c4ffd9cdc925eea1ea2952b",
+      "bytes": 49
+    },
+    {
+      "path": "docs/blocker-resolution/logs/foundation/gates.log",
+      "sha256": "4976bfa23958b93572ed9a9715658c719e8f488f0e041e183f58c58281c3997e",
+      "bytes": 795
+    },
+    {
+      "path": "docs/blocker-resolution/logs/foundation/reference.log",
+      "sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8",
+      "bytes": 229
+    },
+    {
+      "path": "docs/blocker-resolution/logs/foundation/source.log",
+      "sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d",
+      "bytes": 127
+    },
+    {
+      "path": "docs/blocker-resolution/logs/http-trial-install.log",
+      "sha256": "efca0ed303120677034df7300ff53dfb532c364b9715e1924eab6fbb05bc8a03",
+      "bytes": 125
+    },
+    {
+      "path": "docs/blocker-resolution/logs/http-trial-tests.tap",
+      "sha256": "35be125b633a4812b2552ae49106af70c2f5989056c41f7327498f2ea3ff7daf",
+      "bytes": 409
+    },
+    {
+      "path": "docs/blocker-resolution/logs/native-build.log",
+      "sha256": "248a938e907b561441eea0ac77d3b61cc0df7c5c959587d093f321455b4a928c",
+      "bytes": 3463
+    },
+    {
+      "path": "docs/blocker-resolution/logs/native/command.json",
+      "sha256": "1af0f7f95bf947b35dfd92975e770226b8d454cc02b4719f5f0a0164378a06cf",
+      "bytes": 1064
+    },
+    {
+      "path": "docs/blocker-resolution/logs/native/exit.json",
+      "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01",
+      "bytes": 16
+    },
+    {
+      "path": "docs/blocker-resolution/logs/native/results.json.gz",
+      "sha256": "e5b7d9a4fb6b0b673c7763de86a46e49a876528c48c5916ecd01092ce73ed868",
+      "bytes": 1815
+    },
+    {
+      "path": "docs/blocker-resolution/logs/native/test.full.log.gz",
+      "sha256": "60a683e7636d1e90200514414ead6415aa1f15ca67f7bb2ba401f4dca8bad081",
+      "bytes": 524
+    },
+    {
+      "path": "docs/blocker-resolution/logs/native/test.log",
+      "sha256": "a0f1e1c44a2c726d8c8055e33e2cc0a7b41f0112728d71995785eea52e0e862e",
+      "bytes": 1770
+    },
+    {
+      "path": "docs/blocker-resolution/logs/payment/exit.json",
+      "sha256": "ed35d244fcb9fb0a72cbf3eb21e5d7937b61662cd0f32477df0418ee773eb78b",
+      "bytes": 214
+    },
+    {
+      "path": "docs/blocker-resolution/logs/payment/jobs.tap",
+      "sha256": "2a22b7c2221c7d2e879723a65304a5ed8dfa0be83792fccde65ecdb2d46f2e18",
+      "bytes": 872
+    },
+    {
+      "path": "docs/blocker-resolution/logs/payment/restore.json",
+      "sha256": "a3fae7743773a0c54d7ba8e32ec8612080f4555466966e4b2c1dda6371df4e25",
+      "bytes": 491
+    },
+    {
+      "path": "docs/blocker-resolution/logs/payment/test.tap",
+      "sha256": "503dd65120a8dddb4dc33ff540030d9778998ec9a8b85462242f74d4ef1e0566",
+      "bytes": 2200
+    },
+    {
+      "path": "docs/blocker-resolution/readiness.json",
+      "sha256": "ebf1e890281e14a085fd1af5d417561a2b96c49fa672fafc840c4e057cc2a0b3",
+      "bytes": 1671
+    },
+    {
+      "path": "experiments/blocker-resolution/README.md",
+      "sha256": "19e5d9c17e743777d44633239bd102272b0037dddeeed5797a2816628365beb1",
+      "bytes": 4107
+    },
+    {
+      "path": "experiments/blocker-resolution/borvat-sandbox.py",
+      "sha256": "8606d14cdcb76ae458d4f060476bd8fafad99b03871a02c44c8eaec50ee87b3e",
+      "bytes": 2120
+    },
+    {
+      "path": "experiments/blocker-resolution/dependency-trial/package-lock.json",
+      "sha256": "86fbf62c04d76ae800dd0c2b1161e0994a2635e189ad8ad8d53f2726437c87ee",
+      "bytes": 40703
+    },
+    {
+      "path": "experiments/blocker-resolution/dependency-trial/package.json",
+      "sha256": "db448055171c429bf9ea33d6f2cc9d549f2225aed8e218d34d1f46ee70594754",
+      "bytes": 254
+    },
+    {
+      "path": "experiments/blocker-resolution/dependency-trial/trial.test.mjs",
+      "sha256": "a448bcfb84032430722d383caf032d78cec7e1f711c1cc342071cc7dc6b21822",
+      "bytes": 2200
+    },
+    {
+      "path": "experiments/blocker-resolution/jobs/jobs.test.mjs",
+      "sha256": "5263e0900c1b96011c131594aafc0ca76856549b434aef01b781fc28f8c665d4",
+      "bytes": 4861
+    },
+    {
+      "path": "experiments/blocker-resolution/jobs/schema.sql",
+      "sha256": "9cd96e1e665ab857d4ecafeff2a043327f2d2f3bd0960893ede6e3c53626ae3f",
+      "bytes": 3369
+    },
+    {
+      "path": "experiments/blocker-resolution/native/hardening.spec.ts",
+      "sha256": "f2d30da45db9756a43ffca606577b7d254dae8e3cd03715c15423ce3c2486c33",
+      "bytes": 4570
+    },
+    {
+      "path": "experiments/blocker-resolution/native/payout-durability-gap.spec.ts",
+      "sha256": "b84173ce0726b8ba69363a962f63517414f50740f188af36763cf705db66dc30",
+      "bytes": 3466
+    },
+    {
+      "path": "experiments/blocker-resolution/patches/H06-native-retention.patch",
+      "sha256": "1742e1e40aa06f557391a60afeec40874da3d4dc5680b549b5b1c417d2e89b05",
+      "bytes": 2099
+    },
+    {
+      "path": "experiments/blocker-resolution/reproduction/build-resolution.py",
+      "sha256": "9546ef99e6edf2fee08efa03146dfee5cf05d5201609d563f108b532489eae7d",
+      "bytes": 1250
+    },
+    {
+      "path": "experiments/blocker-resolution/reproduction/reachability.cjs",
+      "sha256": "2f22b0a2e29337761e92a14c132e998fb983b459ec885ad355a979ed47120ba7",
+      "bytes": 2301
+    },
+    {
+      "path": "experiments/blocker-resolution/reproduction/run-resolution-native.py",
+      "sha256": "4353775794e0c8ec11c0420f2b473ee54ff1e12d173072c3fe523fb2818b58f7",
+      "bytes": 3552
+    },
+    {
+      "path": "experiments/blocker-resolution/reproduction/run-resolution-payment.py",
+      "sha256": "fc4ea95023a08d2dc081305207279d13f68fd45a579a9fcc50c504417cc0a2d8",
+      "bytes": 3841
+    },
+    {
+      "path": "experiments/blocker-resolution/verify-evidence.mjs",
+      "sha256": "0c31b4b310c51295f4f05906ead671655f19461f8ed05e11a737bc3356066820",
+      "bytes": 1520
+    },
+    {
+      "path": "experiments/blocker-resolution/verify-runtime.cjs",
+      "sha256": "8694dd9d588ed8e7d1875c330daa8e494dd4115e1dc5efd571b022803508dbf8",
+      "bytes": 1333
+    }
+  ]
+}

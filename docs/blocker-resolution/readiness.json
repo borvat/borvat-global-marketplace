@@ -1,0 +1,49 @@
+{
+  "basis_commit": "44228fbf911b83e108a69183ea1ab18d5d8d878a",
+  "hosted_ci": "HOSTED_CI_BLOCKED \u2014 ALTERNATIVE_VERIFICATION_REQUIRED",
+  "eligible_for_C1": false,
+  "codex_authorized": false,
+  "final_foundation_approved": false,
+  "blockers": [
+    {
+      "id": "H06_RECORD_RETENTION",
+      "status": "CLOSED",
+      "detail": "Native lost-response and PostgreSQL finalization-failure records retained; broader financial recovery remains open"
+    },
+    {
+      "id": "H07_INSTALLED_PROXY",
+      "status": "CLOSED",
+      "detail": "Clean frozen install and real Framework Express resolution pass"
+    },
+    {
+      "id": "FULL_NATIVE_FINANCIAL_RECOVERY",
+      "status": "OPEN",
+      "detail": "Coordinator/business-key lookup/replay/process recovery on all native money paths not integrated"
+    },
+    {
+      "id": "DEPENDENCY_REACHABILITY",
+      "status": "OPEN",
+      "detail": "14 affected package/version instances reachable, 8 unresolved graph edges; trial fixes not promoted"
+    },
+    {
+      "id": "NATIVE_BACKGROUND_AUTHORITY",
+      "status": "PARTIAL",
+      "detail": "10 PostgreSQL gateway tests pass; native job ingress coverage incomplete"
+    },
+    {
+      "id": "BORVAT_TYPES",
+      "status": "CLOSED",
+      "detail": "Isolated candidate typecheck passes; original source preserved"
+    },
+    {
+      "id": "BORVAT_ASSETS_BUILD_LINT",
+      "status": "BLOCKED",
+      "detail": "69 missing original binaries, build fails, 156 lint errors"
+    },
+    {
+      "id": "NATIVE_RESTORE_E2E",
+      "status": "NOT_RUN",
+      "detail": "Proof schema restore only; full native operational restore and 35 E2E cases outstanding"
+    }
+  ]
+}

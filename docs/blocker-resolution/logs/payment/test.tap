@@ -1,0 +1,32 @@
+✔ P01 committed immutable intent exists before any provider call (65.435702ms)
+✔ P02 buyer cannot see or queue another buyer/merchant order (17.640934ms)
+✔ P03 seller actor cannot request a buyer payment (26.958656ms)
+✔ P04 concurrent identical retries create one durable intent (38.973625ms)
+✔ P05 reused idempotency key with a different order is refused (15.706841ms)
+✔ P06 successful provider commit + failed local SQL is recovered without duplicate charge (34.525237ms)
+✔ P07 lost provider response retains recovery intent and lookup restores state (23.938646ms)
+✔ P08 actual worker SIGKILL after provider effect survives a fresh process restart (133.616859ms)
+✔ P09 competing workers lease once and retain one final confirmation event (40.7172ms)
+✔ P10 provider outage creates no charge and unknown outcomes never get blind new keys (28.170793ms)
+✔ P11 mismatched provider amount is quarantined and never marks order paid (43.842468ms)
+✔ P12 revoked buyer authorization is rechecked by background worker (37.492522ms)
+✔ P13 API role cannot forge money state or insert a worker operation (20.780809ms)
+✔ P14 even worker cannot rewrite committed amount or merchant (21.347524ms)
+✔ P15 immutable audit events reject update and delete (16.221053ms)
+✔ P16 forged signature is denied without inbox mutation (20.674439ms)
+✔ P17 concurrent duplicate webhooks insert only one hint and never declare payment (25.875121ms)
+✔ P18 same webhook id with a changed body is rejected (17.967516ms)
+✔ P19 signed foreign tenant event cannot move another tenant operation (14.825287ms)
+✔ P20 expired event and out-of-order unpaid hint cannot regress paid state (24.598256ms)
+✔ P21 non-owner roles do not bypass RLS and pooled sessions do not leak context (15.837003ms)
+✔ P22 worker tenant scope cannot claim another tenant operation (18.488392ms)
+✔ P23 unavailable historical provider lookup after a crash never causes blind recapture (112.52119ms)
+✔ P24 stale worker lease cannot finalize and reconciliation uses the same provider fact (31.087417ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 978.984699

@@ -1,0 +1,12 @@
+# Data and financial recovery plan
+
+Rehearse in disposable PostgreSQL first. Owner: Marketplace owns order/quote/financial-operation intent and event delivery; PSP owns external money facts; Accounting owns posted invoice/credit/fee/clearing facts; WMS inventory authority must use the latest accepted cross-system contract before integration. Do not inherit an older physical-stock ownership assumption without reviewing the Accounting/WMS decision. SAM observes/proposes only, with explicit operation authority.
+
+1. Stop financial dispatch and ingress; preserve immutable journal, inbox, outbox, provider keys and audit. Capture reviewed commit/schema/lock/SBOM plus snapshot cutoff and unacknowledged operations. Never rotate business idempotency identities to recover an ambiguous result.
+2. Restore full native schema/data into a fresh database, with identical migrations and restricted roles. Verify foreign keys, row counts/hashes, tenant policies, sequences, membership revocations, operation/outbox uniqueness and catalog/offer/order mappings. Proof-schema restore passing is not sufficient.
+3. Reconcile every READY/IN_FLIGHT/UNKNOWN operation against synthetic provider lookup, including provider outcomes newer than the database backup. Only trusted matching account/amount/currency/reference may finalize. Unknown or contradictory facts enter manual-review quarantine; do not issue a fresh capture/payout.
+4. Replay outbox deliveries idempotently, in dependency order. Accounting and WMS consumers own their deduplication; Marketplace does not directly rewrite their ledgers or quantities. Duplicate/out-of-order invoices, credits, reservations and returns must not create another effect.
+5. Rehearse failed migration rollback before dispatch resumes. If the data schema is not backward compatible, use reviewed forward repair rather than restoring stale application code over advanced financial data. Preserve all externally committed facts.
+6. Record measured recovery point/time, evidence SHA, exact commands and exits, zero duplicated external effects, all tenant negative tests, unresolved/manual items and human review. RPO/RTO are not yet measured or promised. Production cutover/restore remains unauthorized.
+
+Current evidence: 24 PostgreSQL payment tests and proof-schema logical restore pass; 28 native selected tests pass including a real payout UPDATE trigger failure. Native full restore/PITR, native automatic reconciliation and financial upgrade rehearsal remain NOT_RUN.
