@@ -1,0 +1,8 @@
+{
+  "eligible": false,
+  "reasons": [
+    "OWNER_AUTHORIZATION_ABSENT",
+    "FOUNDATION_DECISION_NOT_APPROVED",
+    "MISSING_STAGE_OR_EVIDENCE"
+  ]
+}

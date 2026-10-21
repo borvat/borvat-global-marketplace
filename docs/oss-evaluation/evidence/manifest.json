@@ -75,9 +75,9 @@
     },
     {
       "path": "docs/oss-evaluation/README.md",
-      "bytes": 2938,
-      "sha256": "c36d13acdafa1a1f17fccc58a8e2f507d9985f713f75d209c0d62c2cdeaa6412",
-      "git_blob_sha1": "23bc3667985d6522167691836bc223d4ceb2e3ba"
+      "bytes": 3478,
+      "sha256": "b7cdae025a815ff75a58f490fb5cdbd01223ced3bc353a888137c51c70a7f73a",
+      "git_blob_sha1": "d39effacb3e4476fc9c397bc650ca538b12d2cdb"
     },
     {
       "path": "docs/oss-evaluation/REUSE-INTEGRATIONS.md",
@@ -170,6 +170,12 @@
       "git_blob_sha1": "52692b3b05e0c5474f9b31ee623993e10404d78e"
     },
     {
+      "path": "docs/oss-evaluation/evidence/remote-verification.json",
+      "bytes": 1011,
+      "sha256": "ec2a958270bc69601ec619d00fa0b956c84b80b7416a86bb0c78435e67b513eb",
+      "git_blob_sha1": "da11d3c8fc5e3fa14d85f7a6a0c22bb2ee7b0203"
+    },
+    {
       "path": "docs/oss-evaluation/evidence/source-files.json",
       "bytes": 16630,
       "sha256": "b0a0768ef7cec7f395b0c1b008cc058b1ce2dee72365d384da5a5365e344bc41",
@@ -216,6 +222,12 @@
       "bytes": 8030,
       "sha256": "610bcb726c4a1c61a114201154a6568557145f873505c316f49e078165806871",
       "git_blob_sha1": "b2e74e0dde540bbe875bdff66cb613f9fbd5c0d4"
+    },
+    {
+      "path": "docs/oss-evaluation/logs/gate-hold-latest.txt",
+      "bytes": 150,
+      "sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24",
+      "git_blob_sha1": "b50d3c09c51495fe002b96bb40c37f30452e02dc"
     },
     {
       "path": "docs/oss-evaluation/logs/mercur-auth-smoke.txt",
