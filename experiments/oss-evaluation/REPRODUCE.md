@@ -1,0 +1,23 @@
+# Reproduce the isolated evaluation
+
+Prerequisites: Node 24.19.0, Bun 1.3.8, git, Python 3 and an ordinary non-root disposable PostgreSQL instance. No Docker is required for Vendure/sql.js. Never load any .env from Lovable or a hosted system. Use public package registry credentials only if required for downloads, never a production service token.
+
+## Vendure
+
+From this directory, clone the public Vendure repository into an external temporary working directory and detach at `e53fb43e1ca45dc869ec8d4893738e17f14774d7`. Extract only its `packages/dev-server/example-plugins/multivendor-plugin` into `vendure/upstream-multivendor`; retain upstream LICENSE next to it. The shipped harness imports this path. Do not alter the plugin. Then in `vendure`: run `npm ci --ignore-scripts`, followed by `npm test`. Expect exit **1**, with 15 PASS and the explicit NL shipping-tax fit FAIL. Tests initialize synthetic data locally, fake payments, fulfill locally, observe Pending refund and destroy the server. `data/` is a disposable fixture baseline; remove only that evaluation directory before a completely fresh initialization. No live provider exists in this plugin.
+
+## Mercur
+
+Use a fresh public checkout at `57fa9cf7de35829ce493a3ace29deb4f36d0838b`, not an unclean checkout of canary/main. Run Bun 1.3.8 frozen installation. Build `@mercurjs/core...` with its dependency packages. The CLI generates a routes manifest from pinned dependencies; serve that file from `packages/cli` on a loopback Python HTTP server and set `MERCUR_ROUTES_MANIFEST_URL` to that exact local URL. Use Turbo `--env-mode=loose` so the override reaches the core codegen task. Keep the generated route types as build output; no backend source patch is needed. The default CLI canary fetch is not a reproducible input.
+
+Provide a dedicated disposable PostgreSQL instance on loopback. The test helper creates/drops temporary databases and snapshots; its user needs permissions only in this isolated instance. Set `DB_HOST=localhost`, `DB_PORT` to the local port, `DB_USERNAME`/`DB_PASSWORD` to synthetic credentials, and `DATABASE_URL` to the same local instance. Do not substitute `127.0.0.1` in this helper version without handling its SSL heuristic. Enable synthetic seller registration only, set `MEDUSA_FF_RBAC=false`, `MEDUSA_FF_RBAC_FILTER_FIELDS=false`, `MEDUSA_DISABLE_TELEMETRY=true`, and test JWT/cookie secrets. No Stripe, SMTP, Warehouse, Accounting or SAM credentials.
+
+Copy `mercur/independent.spec.ts` into the checkout's `integration-tests/http/borvat/`. Run the selected cases listed in `docs/oss-evaluation/evidence/mercur-upstream-command.json` and then the independent spec using Jest `--runInBand --forceExit --json --outputFile=...`, `TEST_TYPE=integration:http`, and Node `--experimental-vm-modules`. Runtime Node must preload the absolute repository `scripts/foundation/no-external-network.mjs` path. Expected totals: upstream 123 PASS + 2 SKIPPED; independent 4 PASS. Preserve actual output if anything differs; do not silently adjust the candidate version. Redis in these limited tests is an in-memory fake; no durable queue reliability is established.
+
+## Current archived core
+
+Copy `experiments/core-engine-v1` into an external temporary directory and use its original lock with `npm ci --ignore-scripts`. Create a fresh dedicated PostgreSQL database, with schema-owner admin role and a separate `borvat_app` LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOBYPASSRLS. Supply local `ADMIN_DATABASE_URL` and `APP_DATABASE_URL`; set API_HOST=127.0.0.1 and preload the network guard. The tests reset the public schema: never use any existing database. Run its five original test files sequentially (`--test-concurrency=1`): expected 37 PASS.
+
+Copy this directory's `current-core/capture-rollback.test.ts` into that copied core's tests, then run it separately under Node/tsx. Expect **1 FAIL** and a synthetic JSON record showing an external simulated effect with zero durable order/payment/idempotency rows after SQL rollback. This failure is the finding. Do not modify the preserved original experiment or weaken the assertion.
+
+Stop all local test processes and disposable PostgreSQL when complete. Preserve logs/JSON and hashes, never node_modules, database files, real identity records or secrets. The unusual uid-only host workaround described in TEST-REPORT.md is not part of production setup; repeat on a normal non-root PostgreSQL environment before treating migrations/restore as launch evidence. No automatic deployment, main merge, agent dispatch or phase transition is part of these instructions.

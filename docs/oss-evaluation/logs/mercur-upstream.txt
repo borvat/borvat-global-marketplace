@@ -1,0 +1,14 @@
+(node:36) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:36) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:36) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:36) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+(node:36) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+
+Test Suites: 8 passed, 8 total
+Tests:       2 skipped, 123 passed, 125 total
+Snapshots:   0 total
+Time:        200.751 s
+Ran all test suites within paths "http/auth/vendor/auth.spec.ts", "http/seller/vendor/seller.spec.ts", "http/offer/cart/cart.spec.ts", "http/offer/order/order.spec.ts", "http/payment/split-order-payments.spec.ts", "http/commission-rates/admin/commission-calculation.spec.ts", "http/payouts/vendor/payout-module-service.spec.ts", "http/promotions/store/offer-promotion-cart.spec.ts".
+Test results written to: ../../mercur-results-full/results.json
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

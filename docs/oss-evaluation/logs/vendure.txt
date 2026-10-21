@@ -1,0 +1,16 @@
+PASS V01 synthetic seller registration [{"id":"T_2","code":"synthetic-alpha","token":"synthetic-alpha-token"},{"id":"T_3","code":"synthetic-beta","token":"synthetic-beta-token"}]
+PASS V02 seller catalog assignment [{"id":"T_1","sku":"SYN-A","stockOnHand":3},{"id":"T_2","sku":"SYN-B","stockOnHand":2}]
+PASS V03 seller A cannot read seller B product {"visible":1,"foreign":null}
+PASS V04 anonymous admin denied {}
+PASS V05 cart server pricing and mixed seller lines {"id":"T_1","code":"NB8TZ8WLMGSL2YF1","state":"AddingItems","totalWithTax":3630,"lines":[{"id":"T_1","quantity":1,"productVariant":{"id":"T_1","sku":"SYN-A"}},{"id":"T_2","quantity":1,"productVariant":{"id":"T_2","sku":"SYN-B"}}]}
+PASS V06 stock limit prevents excessive quantity {"addItemToOrder":{"errorCode":"INSUFFICIENT_STOCK_ERROR","message":"Only 2 items were added to the order due to insufficient stock"}}
+PASS V07 shipping methods per seller {"eligibleShippingMethods":[{"id":"T_1","code":"synthetic-alpha-shipping","priceWithTax":600},{"id":"T_2","code":"synthetic-beta-shipping","priceWithTax":600}]}
+PASS V08 fake payment creates two seller orders and fee {"order":{"id":"T_1","type":"Aggregate","sellerOrders":[{"id":"T_2","type":"Seller","totalWithTax":3807,"surcharges":[{"sku":"FEE","priceWithTax":-423}],"payments":[{"id":"T_2","amount":3807,"state":"Settled"}]},{"id":"T_3","type":"Seller","totalWithTax":2718,"surcharges":[{"sku":"FEE","priceWithTax":-302}],"payments":[{"id":"T_3","amount":2718,"state":"Settled"}]}]}}
+PASS V09 seller A cannot read seller B order {"visible":[{"id":"T_2","type":"Seller"}],"hidden":1}
+PASS V10 forged foreign channel token denied {}
+PASS V11 foreign product write denied without mutation {"product":{"id":"T_2","enabled":true}}
+PASS V12 foreign seller refund denied {}
+PASS V13 own fulfillment ships and delivers locally {"id":"T_1","state":"Pending","trackingCode":"SYN-TRACK-1"}
+PASS V14 refund remains Pending without provider support {"id":"T_1","state":"Pending","total":100,"transactionId":null}
+PASS V15 over-refund rejected {"refundOrder":{"errorCode":"REFUND_AMOUNT_ERROR","message":"The amount specified exceeds the refundable amount for this payment"}}
+FAIL V16 BORVAT NL shipping tax fit Upstream example hardcodes 20% shipping tax; BORVAT NL fixture expects 21%. Configuration adaptation required.

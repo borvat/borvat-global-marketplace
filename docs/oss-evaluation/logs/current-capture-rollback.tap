@@ -1,0 +1,29 @@
+TAP version 13
+# Subtest: C38 durable payment intent survives simulated successful capture then SQL failure
+not ok 1 - C38 durable payment intent survives simulated successful capture then SQL failure
+  ---
+  duration_ms: 886.107819
+  type: 'test'
+  location: '/workspace/scratch/ece77f5f97ff/oss-evaluation/current-core/tests/06-independent-capture-rollback.test.ts:1:310'
+  failureType: 'testCodeFailure'
+  error: 'No durable payment intent survived the transaction rollback after the simulated external effect'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/current-core/tests/06-independent-capture-rollback.test.ts:22:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1224.318259

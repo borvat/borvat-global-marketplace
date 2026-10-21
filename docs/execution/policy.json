@@ -6,5 +6,7 @@
   "live_payments": false,
   "production_database_writes": false,
   "owner_review_status": "PENDING",
-  "advancement_enabled": false
+  "advancement_enabled": false,
+  "foundation_decision_approved": false,
+  "foundation_decision_adr": "ADR-005"
 }

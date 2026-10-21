@@ -1,0 +1,1 @@
+[ { rolname: 'borvat_app', rolsuper: false, rolbypassrls: false } ]

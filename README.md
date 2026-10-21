@@ -30,3 +30,7 @@ The original npm lock is stale. An unapproved regenerated npm lock is archived f
 **Known blockers:** binary source parity; app clean build; failing prototype tests; pending isolated PostgreSQL/Supabase replay and E2E; ACL/legacy order and payment display findings; final legal operator/PSP decisions; manual owner review. The 35 acceptance scenarios are specifications, not 35 passing tests.
 
 Start with [current evidence](docs/readiness/REPORT.md), [module map](docs/architecture/MODULES.md), [stages](docs/execution/STAGES.md) and [transition policy](docs/execution/GATES.md). Future implementation stays ON HOLD until the owner explicitly authorizes Codex. Do not use the old baseline's start prompt as authorization.
+
+## Independent OSS evaluation
+
+See [evaluation and test evidence](docs/oss-evaluation/README.md), [proposed ADR-005](docs/architecture/ADR-005-oss-foundation-selection.md) and [conditional phase plan](docs/execution/OSS-REVISED-PLAN.md). Option 1 (Mercur + Surooh extensions) is recommended, not adopted. Independent PostgreSQL verification of the archived core now passes 37 tests, while a separate injected post-capture failure exposes a durability gap. Original source and production remain unchanged. Foundation decision and Codex authorization are separate, both pending.

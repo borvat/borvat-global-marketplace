@@ -1,0 +1,303 @@
+[
+  {
+    "candidate": "mercur",
+    "path": "LICENSE",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "28e6cee89a908a9f718c7796f4472fd6322b9ae20e159a020dbec0ec75a52ccf",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/LICENSE"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/modules/offer/models/offer.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "a237b285fc0e395df9f6bfb8031ef265aa0de36901c090fe0d536b91bc8d5bb8",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/modules/offer/models/offer.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/modules/seller/models/seller-member.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "7312f73993ede1654c94998bd511a3fd11f8b1e2ed72b73b43efae91034d25b4",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/modules/seller/models/seller-member.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/api/utils/ensure-seller-middleware.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "3e733553b3089cc83f93a190c5252572cd6fab4c6149b5b60f0197e46a6891d0",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/api/utils/ensure-seller-middleware.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/api/utils/ensure-seller-scope-middleware.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "9205c6d62241b9b1acc7dccc67b44cb28590b4542213328c58a3422d5d4ba054",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/api/utils/ensure-seller-scope-middleware.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/api/utils/permissions-middleware.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "aad851de903e3ab7cd99f551337bae9c0957843b81f71a84cd5c6915ff332376",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/api/utils/permissions-middleware.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/with-mercur.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "59a40ca88bc8a8df5ae82ce59341dfebaafe31de5a3cb94722df8804c03c2eb5",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/with-mercur.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/utils/disable-medusa-middlewares.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "e7162c7aa328775f7845c73f2f5f871fc15a94731e09a47e653a29c94a750706",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/utils/disable-medusa-middlewares.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/modules/payout/providers/system.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "a4cf0b9bfbbf096de0e6a33765995fc562d5cb118641cc6ee6d1fe502bfe5c08",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/modules/payout/providers/system.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/modules/payout/services/payout-module-service.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "e11ae67c8dce52ddf475dbdf674860b06aaf08f190968d0cc8e5cf8646d54c90",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/modules/payout/services/payout-module-service.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "packages/core/src/patches/register.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "763f80a5630596e59a4fe9c66f40deb266a26f3d08426a44120d73056fd7cde2",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/packages/core/src/patches/register.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "integration-tests/http/offer/cart/cart.spec.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "c6b6176c4837a199aeb6ce07bd9e2d9e7bdb6e575b1cc9dabef05f7e98998c4f",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/integration-tests/http/offer/cart/cart.spec.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "integration-tests/http/offer/order/order.spec.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "0ca4ec679ad83ab0b7ef00a073c1c0f31162e73616749b5b62acb32df4f92d22",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/integration-tests/http/offer/order/order.spec.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "integration-tests/http/payment/split-order-payments.spec.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "78ba8a4eebf72d0a25e89c334cb42245f511cf2b86b883e596177fa6d3d711e3",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/integration-tests/http/payment/split-order-payments.spec.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "integration-tests/http/commission-rates/admin/commission-calculation.spec.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "3d46942ed5c15658a44fa42b3bb1f969d682bc0255c781dc814d6ba14b25af25",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/integration-tests/http/commission-rates/admin/commission-calculation.spec.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": "integration-tests/http/payouts/vendor/payout-module-service.spec.ts",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "1d12715990595011a17cc45450cc50d4db199923a94c95495fe7215ea6bf7aaa",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/integration-tests/http/payouts/vendor/payout-module-service.spec.ts"
+  },
+  {
+    "candidate": "mercur",
+    "path": ".github/workflows/integration-tests.yml",
+    "commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+    "sha256": "8a80c709697b0322cd9da947cd408b2f02e00bf3c7715f879e1415e3e912d8ce",
+    "url": "https://github.com/mercurjs/mercur/blob/57fa9cf7de35829ce493a3ace29deb4f36d0838b/.github/workflows/integration-tests.yml"
+  },
+  {
+    "candidate": "medusa",
+    "path": "LICENSE",
+    "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+    "sha256": "cf67cc556c17e0b00dc0c74a3d71db8dec9aae98af747a2503803a640fba9bb5",
+    "url": "https://github.com/medusajs/medusa/blob/205aff40bacfa0049e0b9d3a7913a674738bff31/LICENSE"
+  },
+  {
+    "candidate": "medusa",
+    "path": "ENTERPRISE-LICENSE.md",
+    "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+    "sha256": "2e0b6e1a06fc2fbc9d4f6bb57cf61ea707bb470711f8c068acc42b85fd30b5d4",
+    "url": "https://github.com/medusajs/medusa/blob/205aff40bacfa0049e0b9d3a7913a674738bff31/ENTERPRISE-LICENSE.md"
+  },
+  {
+    "candidate": "medusa",
+    "path": "packages/modules/inventory/src/models/reservation-item.ts",
+    "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+    "sha256": "3cffe2b3c405ba1b9d5eb09adf14fadcd2a7d9de52a59ffef9cc60bcb7f96b74",
+    "url": "https://github.com/medusajs/medusa/blob/205aff40bacfa0049e0b9d3a7913a674738bff31/packages/modules/inventory/src/models/reservation-item.ts"
+  },
+  {
+    "candidate": "medusa",
+    "path": "packages/modules/inventory/src/repositories/inventory-level.ts",
+    "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+    "sha256": "a4675dfcc44e7138f784a4d876ed00e4fbfd0c7b0d83dfba47335c4de3ad379f",
+    "url": "https://github.com/medusajs/medusa/blob/205aff40bacfa0049e0b9d3a7913a674738bff31/packages/modules/inventory/src/repositories/inventory-level.ts"
+  },
+  {
+    "candidate": "medusa",
+    "path": "packages/modules/rbac/LICENSE",
+    "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+    "sha256": "3d6549028b42ec4c195124d88699e13215a11291bea1ad10106590a711d9f8db",
+    "url": "https://github.com/medusajs/medusa/blob/205aff40bacfa0049e0b9d3a7913a674738bff31/packages/modules/rbac/LICENSE"
+  },
+  {
+    "candidate": "medusa",
+    "path": "packages/core/core-flows/src/order/workflows/create-order.ts",
+    "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+    "sha256": "45807b1684060c6144133aaa6d534ac8faae4fdb88ccbbc8b7ac60a7fe25a84a",
+    "url": "https://github.com/medusajs/medusa/blob/205aff40bacfa0049e0b9d3a7913a674738bff31/packages/core/core-flows/src/order/workflows/create-order.ts"
+  },
+  {
+    "candidate": "medusa",
+    "path": "packages/medusa/src/api/store/carts/[id]/complete/route.ts",
+    "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+    "sha256": "58cd04d22abd8be952bcc4bf8742ddb33aec9d6995ed4ac13e9d6bda1a4774a0",
+    "url": "https://github.com/medusajs/medusa/blob/205aff40bacfa0049e0b9d3a7913a674738bff31/packages/medusa/src/api/store/carts/[id]/complete/route.ts"
+  },
+  {
+    "candidate": "medusa",
+    "path": "integration-tests/http/__tests__/order/store/order.spec.ts",
+    "commit": "205aff40bacfa0049e0b9d3a7913a674738bff31",
+    "sha256": "b59877ae5ce3fbcdd7d2ab7131af8f5d3eba106576e885b0599e0fdc95b0dee7",
+    "url": "https://github.com/medusajs/medusa/blob/205aff40bacfa0049e0b9d3a7913a674738bff31/integration-tests/http/__tests__/order/store/order.spec.ts"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/core/src/entity/channel/channel.entity.ts",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "df39ee6a3b5c319de6fb72e2ffd4a21690758da693b8a32d9f6dc7e4c5b1d1c6",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/core/src/entity/channel/channel.entity.ts"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/core/src/entity/seller/seller.entity.ts",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "29db3c9efe7f3d93ed9611e020946637f0677777fc34e362eace6eaf5d149768",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/core/src/entity/seller/seller.entity.ts"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/core/src/service/services/order.service.ts",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "27636d660bfeb6fc433b4295121a58cb8f93c13fc7b3c03654d62179e83e98d6",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/core/src/service/services/order.service.ts"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/core/src/service/services/payment.service.ts",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "c18aeac3c80195b6b7bd6c2a7e9ebba1131733d434e972ea30554c76b4e526ef",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/core/src/service/services/payment.service.ts"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/dev-server/example-plugins/multivendor-plugin/README.md",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "052be92236fbe50e57debb6013aa9c4e24e52445d1fd6a19d23c32ff5011b2cc",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/dev-server/example-plugins/multivendor-plugin/README.md"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/dev-server/example-plugins/multivendor-plugin/service/mv.service.ts",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "7026c551cbc2ef3b6f113a88422c95c4e1a16b2eb2417d0cee0a406ef21bac58",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/dev-server/example-plugins/multivendor-plugin/service/mv.service.ts"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/dev-server/example-plugins/multivendor-plugin/config/mv-order-seller-strategy.ts",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "ca1684da617b2d9e2ab71728be469ac01de9585014930061b179d19a05861f09",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/dev-server/example-plugins/multivendor-plugin/config/mv-order-seller-strategy.ts"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/dev-server/example-plugins/multivendor-plugin/config/mv-payment-handler.ts",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "bd78d454e81cb5cf4a7af1d7ae84ce5b84323ba91f3fcd01d4587a9e24c19a5d",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/dev-server/example-plugins/multivendor-plugin/config/mv-payment-handler.ts"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/dev-server/example-plugins/multivendor-plugin/payment/mv-connect-sdk.ts",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "c0a0025ad3fcbe61ff7ec63772478d35511fb7e2951c99a38ce680306d0b683e",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/dev-server/example-plugins/multivendor-plugin/payment/mv-connect-sdk.ts"
+  },
+  {
+    "candidate": "vendure",
+    "path": "packages/core/e2e/order-multi-vendor.e2e-spec.ts",
+    "commit": "e53fb43e1ca45dc869ec8d4893738e17f14774d7",
+    "sha256": "770e36a9099e2b0d9389c4ca8deeeddc2bbb620d9ecdae55a7c99d6744c59947",
+    "url": "https://github.com/vendurehq/vendure/blob/e53fb43e1ca45dc869ec8d4893738e17f14774d7/packages/core/e2e/order-multi-vendor.e2e-spec.ts"
+  },
+  {
+    "candidate": "saleor",
+    "path": "LICENSE",
+    "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+    "sha256": "70e2aa4451206e213dc32078c07ca703c7c2b6e9a8e63803ee11db4deea7313b",
+    "url": "https://github.com/saleor/saleor/blob/b2587a12ea15edf3432aaa4c6a5065c9c9ca049f/LICENSE"
+  },
+  {
+    "candidate": "saleor",
+    "path": "saleor/channel/models.py",
+    "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+    "sha256": "11c9152b7f7ae67580cce206c72590ebe3f3d797640e763b3a67a556533213d8",
+    "url": "https://github.com/saleor/saleor/blob/b2587a12ea15edf3432aaa4c6a5065c9c9ca049f/saleor/channel/models.py"
+  },
+  {
+    "candidate": "saleor",
+    "path": "saleor/checkout/complete_checkout.py",
+    "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+    "sha256": "b3ad86a3c332205879524d4ad8e85fdd51aa57d85459ad70a6c9bfa3cacb63bf",
+    "url": "https://github.com/saleor/saleor/blob/b2587a12ea15edf3432aaa4c6a5065c9c9ca049f/saleor/checkout/complete_checkout.py"
+  },
+  {
+    "candidate": "saleor",
+    "path": "saleor/order/actions.py",
+    "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+    "sha256": "77526abd4b0688d17b0e8e184c34bec1104565ed3eeea65964ce615dce24e08d",
+    "url": "https://github.com/saleor/saleor/blob/b2587a12ea15edf3432aaa4c6a5065c9c9ca049f/saleor/order/actions.py"
+  },
+  {
+    "candidate": "saleor",
+    "path": "saleor/warehouse/management.py",
+    "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+    "sha256": "03cbde44b995b5607d1d9e56d296abb34ba7dca2b87ab1dfe7547330a969dacf",
+    "url": "https://github.com/saleor/saleor/blob/b2587a12ea15edf3432aaa4c6a5065c9c9ca049f/saleor/warehouse/management.py"
+  },
+  {
+    "candidate": "saleor",
+    "path": "saleor/graphql/order/mutations/order_refund.py",
+    "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+    "sha256": "f15f38859260a4246396b1931fa325172e9e9f35bb619d1bf8c845806c868913",
+    "url": "https://github.com/saleor/saleor/blob/b2587a12ea15edf3432aaa4c6a5065c9c9ca049f/saleor/graphql/order/mutations/order_refund.py"
+  },
+  {
+    "candidate": "saleor",
+    "path": "saleor/graphql/order/mutations/fulfillment_return_products.py",
+    "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+    "sha256": "b928efad5822efde5f02622cbef56d3f3277047dad6520e5ce150037f96c2fe5",
+    "url": "https://github.com/saleor/saleor/blob/b2587a12ea15edf3432aaa4c6a5065c9c9ca049f/saleor/graphql/order/mutations/fulfillment_return_products.py"
+  },
+  {
+    "candidate": "saleor",
+    "path": "saleor/graphql/channel/tests/mutations/test_channel_create.py",
+    "commit": "b2587a12ea15edf3432aaa4c6a5065c9c9ca049f",
+    "sha256": "b921ed79c8a5f7831b5a6093ff5f847c42eecc26fc016e94069c9e3dd389b4a6",
+    "url": "https://github.com/saleor/saleor/blob/b2587a12ea15edf3432aaa4c6a5065c9c9ca049f/saleor/graphql/channel/tests/mutations/test_channel_create.py"
+  }
+]

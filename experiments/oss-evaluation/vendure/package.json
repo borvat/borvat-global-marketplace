@@ -1,0 +1,24 @@
+{
+  "name": "borvat-vendure-isolated-evaluation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --import ../../../scripts/foundation/no-external-network.mjs -r ts-node/register/transpile-only evaluate.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "dependencies": {
+    "@vendure/core": "3.8.0",
+    "sql.js": "1.13.0"
+  },
+  "devDependencies": {
+    "@vendure/testing": "3.8.0",
+    "typescript": "5.8.2",
+    "ts-node": "10.9.2",
+    "vitest": "3.2.4"
+  },
+  "private": true
+}

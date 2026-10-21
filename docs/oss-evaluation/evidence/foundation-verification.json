@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-22",
+  "foundation_check": "PASS",
+  "gate_tests": {
+    "passed": 8,
+    "failed": 0
+  },
+  "original_lovable_text_hashes": {
+    "matched": 499,
+    "mismatched": 0,
+    "missing_binaries": 69
+  },
+  "original_archived_sources": "UNCHANGED",
+  "stage_transition": "HOLD",
+  "foundation_decision_approved": false,
+  "codex_authorized": false,
+  "production_changes": false,
+  "main_merge": false,
+  "deployment": false,
+  "real_payments": false,
+  "full_35_acceptance_cases": "NOT_RUN",
+  "replit_discovery": {
+    "search_BORVAT": 0,
+    "exact_BORVAT_STORE": false,
+    "source_reuse": "UNVERIFIED"
+  }
+}

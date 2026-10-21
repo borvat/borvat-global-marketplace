@@ -7,3 +7,5 @@ For a later phase proposal supply: exact reviewed code commit SHA, stage ID and 
 `gate.mjs` currently always denies advancement when owner authorization is absent. Its tests verify denial for missing/failed/misbound evidence. No workflow calls a merge/deployment API. CI has contents:read only. No Codex agent is assigned to any issue.
 
 **Limit:** main is currently unprotected in GitHub. This branch does not claim server-enforced protection against a repository administrator's manual merge or arbitrary future workflow changes. Branch protection/rulesets and required reviewers need a separate reviewed settings action; no protection/permission setting was changed here. Draft PR plus no auto-merge is the current review boundary.
+
+ADR-005 adds an independent foundation decision before any implementation handoff. `foundation_decision_approved` remains false and the offline gate denies even an otherwise complete Codex authorization/receipt. It must be changed only through a separately reviewed exact-SHA-bound owner decision; that review does not enable Codex by itself. See OSS-REVISED-PLAN.md.

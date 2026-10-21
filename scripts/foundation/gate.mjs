@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 export function evaluateGate(policy,stage,receipt) {
  const reasons=[];
  if(!policy.codex_execution_authorized||!policy.advancement_enabled)reasons.push('OWNER_AUTHORIZATION_ABSENT');
+ if(policy.foundation_decision_approved!==true)reasons.push('FOUNDATION_DECISION_NOT_APPROVED');
  if(policy.automatic_main_merge||policy.automatic_deployment||policy.live_payments||policy.production_database_writes)reasons.push('FORBIDDEN_POLICY');
  if(!stage||!receipt)return {eligible:false,reasons:[...reasons,'MISSING_STAGE_OR_EVIDENCE']};
  if(!/^[a-f0-9]{40}$/.test(receipt.commit_sha??''))reasons.push('UNPINNED_COMMIT');

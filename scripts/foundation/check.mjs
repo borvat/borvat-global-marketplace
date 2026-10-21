@@ -19,6 +19,8 @@ assert.equal(cases.length,35);assert.equal(new Set(cases.map(c=>c.id)).size,35);
 assert.ok(cases.every(c=>c.status==='NOT_RUN'));
 const policy=json('docs/execution/policy.json');
 for(const k of ['codex_execution_authorized','advancement_enabled','automatic_main_merge','automatic_deployment','live_payments','production_database_writes'])assert.equal(policy[k],false);
+assert.equal(policy.foundation_decision_approved,false);
+assert.equal(policy.foundation_decision_adr,'ADR-005');
 assert.equal(json('docs/execution/stages.json').stages.length,7);
 assert.equal(json('docs/architecture/module-map.json').modules.length,12);
 assert.ok(!fs.existsSync(path.join(root,'apps/marketplace/.env')));

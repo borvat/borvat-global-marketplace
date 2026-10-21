@@ -1,0 +1,221 @@
+{
+  "candidate": "Vendure",
+  "version": "3.8.0",
+  "database": "sqljs; no PostgreSQL concurrency validation",
+  "payment": "upstream fake MyConnectSdk; no provider connection",
+  "results": [
+    {
+      "name": "V01 synthetic seller registration",
+      "status": "PASS",
+      "detail": [
+        {
+          "id": "T_2",
+          "code": "synthetic-alpha",
+          "token": "synthetic-alpha-token"
+        },
+        {
+          "id": "T_3",
+          "code": "synthetic-beta",
+          "token": "synthetic-beta-token"
+        }
+      ]
+    },
+    {
+      "name": "V02 seller catalog assignment",
+      "status": "PASS",
+      "detail": [
+        {
+          "id": "T_1",
+          "sku": "SYN-A",
+          "stockOnHand": 3
+        },
+        {
+          "id": "T_2",
+          "sku": "SYN-B",
+          "stockOnHand": 2
+        }
+      ]
+    },
+    {
+      "name": "V03 seller A cannot read seller B product",
+      "status": "PASS",
+      "detail": {
+        "visible": 1,
+        "foreign": null
+      }
+    },
+    {
+      "name": "V04 anonymous admin denied",
+      "status": "PASS"
+    },
+    {
+      "name": "V05 cart server pricing and mixed seller lines",
+      "status": "PASS",
+      "detail": {
+        "id": "T_1",
+        "code": "NB8TZ8WLMGSL2YF1",
+        "state": "AddingItems",
+        "totalWithTax": 3630,
+        "lines": [
+          {
+            "id": "T_1",
+            "quantity": 1,
+            "productVariant": {
+              "id": "T_1",
+              "sku": "SYN-A"
+            }
+          },
+          {
+            "id": "T_2",
+            "quantity": 1,
+            "productVariant": {
+              "id": "T_2",
+              "sku": "SYN-B"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "V06 stock limit prevents excessive quantity",
+      "status": "PASS",
+      "detail": {
+        "addItemToOrder": {
+          "errorCode": "INSUFFICIENT_STOCK_ERROR",
+          "message": "Only 2 items were added to the order due to insufficient stock"
+        }
+      }
+    },
+    {
+      "name": "V07 shipping methods per seller",
+      "status": "PASS",
+      "detail": {
+        "eligibleShippingMethods": [
+          {
+            "id": "T_1",
+            "code": "synthetic-alpha-shipping",
+            "priceWithTax": 600
+          },
+          {
+            "id": "T_2",
+            "code": "synthetic-beta-shipping",
+            "priceWithTax": 600
+          }
+        ]
+      }
+    },
+    {
+      "name": "V08 fake payment creates two seller orders and fee",
+      "status": "PASS",
+      "detail": {
+        "order": {
+          "id": "T_1",
+          "type": "Aggregate",
+          "sellerOrders": [
+            {
+              "id": "T_2",
+              "type": "Seller",
+              "totalWithTax": 3807,
+              "surcharges": [
+                {
+                  "sku": "FEE",
+                  "priceWithTax": -423
+                }
+              ],
+              "payments": [
+                {
+                  "id": "T_2",
+                  "amount": 3807,
+                  "state": "Settled"
+                }
+              ]
+            },
+            {
+              "id": "T_3",
+              "type": "Seller",
+              "totalWithTax": 2718,
+              "surcharges": [
+                {
+                  "sku": "FEE",
+                  "priceWithTax": -302
+                }
+              ],
+              "payments": [
+                {
+                  "id": "T_3",
+                  "amount": 2718,
+                  "state": "Settled"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "V09 seller A cannot read seller B order",
+      "status": "PASS",
+      "detail": {
+        "visible": [
+          {
+            "id": "T_2",
+            "type": "Seller"
+          }
+        ],
+        "hidden": 1
+      }
+    },
+    {
+      "name": "V10 forged foreign channel token denied",
+      "status": "PASS"
+    },
+    {
+      "name": "V11 foreign product write denied without mutation",
+      "status": "PASS",
+      "detail": {
+        "product": {
+          "id": "T_2",
+          "enabled": true
+        }
+      }
+    },
+    {
+      "name": "V12 foreign seller refund denied",
+      "status": "PASS"
+    },
+    {
+      "name": "V13 own fulfillment ships and delivers locally",
+      "status": "PASS",
+      "detail": {
+        "id": "T_1",
+        "state": "Pending",
+        "trackingCode": "SYN-TRACK-1"
+      }
+    },
+    {
+      "name": "V14 refund remains Pending without provider support",
+      "status": "PASS",
+      "detail": {
+        "id": "T_1",
+        "state": "Pending",
+        "total": 100,
+        "transactionId": null
+      }
+    },
+    {
+      "name": "V15 over-refund rejected",
+      "status": "PASS",
+      "detail": {
+        "refundOrder": {
+          "errorCode": "REFUND_AMOUNT_ERROR",
+          "message": "The amount specified exceeds the refundable amount for this payment"
+        }
+      }
+    },
+    {
+      "name": "V16 BORVAT NL shipping tax fit",
+      "status": "FAIL",
+      "error": "Upstream example hardcodes 20% shipping tax; BORVAT NL fixture expects 21%. Configuration adaptation required."
+    }
+  ]
+}
