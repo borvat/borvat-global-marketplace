@@ -50,3 +50,11 @@ Lovable source SHA and last-edited timestamp were re-read and remained unchanged
 GitHub CI is configured; successful execution must be read from actual run evidence. Existing #2 documents pre-runner startup failures; current browser also shows an account billing warning. Neither cause nor runner success is assumed. No billing/permissions settings were changed. Main is unprotected: this report does not claim settings-enforced protection. A Draft PR and explicit manual approval policy are the current boundary; no automatic transition or merge mechanism exists.
 
 **Decision requested later, not now:** review the Draft PR and blockers. No Codex handoff until the owner gives final explicit approval. Failed/blocked checks must be resolved or specifically reviewed as scope-limited risks; they are not hidden behind a green documentation check.
+
+## Published draft and remote verification
+
+[Draft PR #16](https://github.com/borvat/borvat-global-marketplace/pull/16) remains draft, unmerged, with no auto-merge. Snapshot commit `c417d7e53666f86858fa815134235cffd53ea999`: all **663 local files match GitHub blob hashes**, with 665 repository blobs including two unchanged inherited main documents. Recursive tree is not truncated; zero mismatches. This is byte-level import evidence, not functional E2E.
+
+[CI run 39679615135](https://github.com/borvat/borvat-global-marketplace/actions/runs/39679615135) completed with **startup_failure**, before usable test execution. Exact account/runner cause is not established. Local check results are reported separately and do not stand in for this failed run. No payment/billing/permissions change was attempted. REMOTE-VERIFICATION.json contains the observed remote state.
+
+Main and Lovable source SHA were rechecked unchanged. Seven milestones and stage Issues #6–#12 exist, with blockers #13–#15; no Codex assignment/dispatch was made. This evidence addendum changes documentation only.

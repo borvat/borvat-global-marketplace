@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-22",
+  "verified_snapshot": {
+    "commit": "c417d7e53666f86858fa815134235cffd53ea999",
+    "expected_files": 663,
+    "remote_blob_count": 665,
+    "mismatches": [],
+    "truncated": false
+  },
+  "main_sha": "02243d583fb935555177d105e22ee45dc0b93a34",
+  "main_unchanged": true,
+  "lovable_sha": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+  "lovable_unchanged": true,
+  "pr": {
+    "number": 16,
+    "url": "https://github.com/borvat/borvat-global-marketplace/pull/16",
+    "draft": true,
+    "merged": false,
+    "auto_merge": false
+  },
+  "ci": {
+    "id": 39679615135,
+    "url": "https://github.com/borvat/borvat-global-marketplace/actions/runs/39679615135",
+    "status": "completed",
+    "conclusion": "startup_failure",
+    "jobs": 0,
+    "reason": "Provider reports startup_failure; exact account/runner cause not independently established; no billing or permissions changed"
+  },
+  "codex_started": false,
+  "production_mutations": false
+}
