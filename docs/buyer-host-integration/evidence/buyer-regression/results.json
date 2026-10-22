@@ -1,0 +1,24 @@
+{
+  "browser": "154.0.8037.57",
+  "scope": "synthetic routed buyer preview; not original app/SSR/native integration",
+  "results": [
+    {
+      "width": 1440,
+      "status": "PASS",
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "width": 390,
+      "status": "PASS",
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "width": 320,
+      "status": "PASS",
+      "pageErrors": [],
+      "externalRequests": []
+    }
+  ]
+}

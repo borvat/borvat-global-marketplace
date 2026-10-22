@@ -1,0 +1,57 @@
+{
+  "scope": "isolated host adapter; not TanStack original router or hydration",
+  "browser": "154.0.8037.57",
+  "results": [
+    {
+      "width": 1440,
+      "status": "PASS",
+      "cases": [
+        "injected-host-history",
+        "interrupted-read-navigation",
+        "repeated-link-no-extra-history",
+        "back-forward",
+        "stale-cart",
+        "out-of-order-read-ignored",
+        "filter-replace",
+        "keyboard-focus",
+        "synchronous-reader-retry"
+      ],
+      "errors": [],
+      "external": []
+    },
+    {
+      "width": 390,
+      "status": "PASS",
+      "cases": [
+        "injected-host-history",
+        "interrupted-read-navigation",
+        "repeated-link-no-extra-history",
+        "back-forward",
+        "stale-cart",
+        "out-of-order-read-ignored",
+        "filter-replace",
+        "keyboard-focus",
+        "synchronous-reader-retry"
+      ],
+      "errors": [],
+      "external": []
+    },
+    {
+      "width": 320,
+      "status": "PASS",
+      "cases": [
+        "injected-host-history",
+        "interrupted-read-navigation",
+        "repeated-link-no-extra-history",
+        "back-forward",
+        "stale-cart",
+        "out-of-order-read-ignored",
+        "filter-replace",
+        "keyboard-focus",
+        "synchronous-reader-retry"
+      ],
+      "errors": [],
+      "external": []
+    }
+  ]
+}

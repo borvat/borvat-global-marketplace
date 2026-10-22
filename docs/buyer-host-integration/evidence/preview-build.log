@@ -1,0 +1,10 @@
+vite v8.1.5 building client environment for production...
+[2K
+transforming...✓ 36 modules transformed.
+rendering chunks...
+computing gzip size...
+experiments/commercial-application/dist/index.html                   0.41 kB │ gzip:  0.29 kB
+experiments/commercial-application/dist/assets/index-AYOWksDR.css  101.64 kB │ gzip: 16.94 kB
+experiments/commercial-application/dist/assets/index-BF4xTdU9.js   260.42 kB │ gzip: 80.52 kB
+
+✓ built in 243ms

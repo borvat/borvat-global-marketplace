@@ -6,6 +6,8 @@
     "../../apps/marketplace/src/lib/commercial/**/*.ts",
     "tests/commercial.test.tsx",
     "buyer-states.tsx",
-    "tests/buyer-discovery.test.tsx"
+    "tests/buyer-discovery.test.tsx",
+    "host-navigation.tsx",
+    "tests/buyer-navigation.test.tsx"
   ]
 }
