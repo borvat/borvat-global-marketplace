@@ -1,0 +1,13 @@
+{
+  "source": "f37a41ed9300fe041938b1e25cf71bb410c4fafb",
+  "argv": [
+    "node",
+    "--import",
+    "/workspace/borvat-continuation/tools/node_modules/tsx/dist/loader.mjs",
+    "--test",
+    "tests/commercial.test.tsx"
+  ],
+  "cwd": "experiments/commercial-application",
+  "exit": 0,
+  "log_sha256": "1a9e64473cbc3520df84c140fa56f8e3968930b855deeac61e808b400508ad99"
+}

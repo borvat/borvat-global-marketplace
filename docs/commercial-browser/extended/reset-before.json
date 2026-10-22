@@ -1,0 +1,10 @@
+{
+  "browser": "154.0.8037.57",
+  "scope": "synthetic commercial preview; not full app or native integration",
+  "results": [
+    {
+      "status": "FAIL",
+      "error": "reset must discard unsaved seller input\n\n'17.00' !== '749.00'\n"
+    }
+  ]
+}

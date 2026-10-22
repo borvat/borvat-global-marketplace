@@ -1,0 +1,69 @@
+{
+  "source": "f37a41ed9300fe041938b1e25cf71bb410c4fafb",
+  "status_before": "",
+  "started": "2026-10-22T02:42:45.262635+00:00",
+  "commands": [
+    {
+      "name": "browser",
+      "argv": [
+        "node",
+        "experiments/commercial-application/browser-cycle.mjs"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "commercial-tests",
+      "argv": [
+        "node",
+        "--import",
+        "/workspace/borvat-continuation/tools/node_modules/tsx/dist/loader.mjs",
+        "--test",
+        "experiments/commercial-application/tests/commercial.test.tsx"
+      ],
+      "exit": 1,
+      "log_sha256": "d37c6918a8a3438709990babb081802cfdeb6a07b7c6f90e199a25d573a4f2f7"
+    },
+    {
+      "name": "preview-build",
+      "argv": [
+        "node",
+        "experiments/commercial-application/node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "experiments/commercial-application/vite.config.mjs"
+      ],
+      "exit": 0,
+      "log_sha256": "2855f627981acfbe81f75483be17c3caa90dabefb58ae23170a58323527cf626"
+    },
+    {
+      "name": "foundation",
+      "argv": [
+        "node",
+        "scripts/foundation/check.mjs"
+      ],
+      "exit": 0,
+      "log_sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8"
+    },
+    {
+      "name": "parity",
+      "argv": [
+        "node",
+        "scripts/foundation/source-parity.mjs"
+      ],
+      "exit": 0,
+      "log_sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d"
+    },
+    {
+      "name": "c1-gate",
+      "argv": [
+        "node",
+        "scripts/foundation/gate.mjs",
+        "C1"
+      ],
+      "exit": 1,
+      "log_sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24"
+    }
+  ],
+  "status_after": ""
+}

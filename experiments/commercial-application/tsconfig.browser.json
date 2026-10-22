@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "main.tsx",
+    "../../apps/marketplace/src/components/commercial/**/*.tsx",
+    "../../apps/marketplace/src/lib/commercial/**/*.ts",
+    "tests/commercial.test.tsx"
+  ]
+}
