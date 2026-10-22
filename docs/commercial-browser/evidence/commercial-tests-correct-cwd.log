@@ -1,0 +1,30 @@
+✔ buyer compares two sellers for one original demo product (1.067426ms)
+✔ mixed seller cart has exact article totals and no shipping/payment estimate (0.334764ms)
+✔ quantity change and removal update totals without reserving example stock (0.124037ms)
+✔ local request clears cart, snapshots article prices and remains unpaid (0.227052ms)
+✔ buyer/seller/admin share request progress per seller without early whole-order completion (0.299951ms)
+✔ seller price edit requires draft/review/publish before buyer can request (0.230146ms)
+✔ admin can return review item to concept (0.102875ms)
+✔ price parser accepts comma and dot decimals without float rounding (0.219891ms)
+✔ malformed commercial prices leave state unchanged (0.357428ms)
+✔ out-of-range and fractional quantities do not corrupt cart (0.681296ms)
+✔ offer changed after cart entry surfaces review requirement and can be removed (0.325971ms)
+✔ empty request produces no demo order (0.157677ms)
+✔ two adapter instances and reset have disposable independent state (0.120181ms)
+✔ react subscriber sees consistent snapshot and unsubscribe works (0.134312ms)
+✔ initial UI renders original brand, comparison, missing-image disclosure and demo boundaries (28.688864ms)
+✔ cart UI renders seller quantities and a disabled payment control (1.982914ms)
+✔ seller UI renders editable offers and selected shop requests (4.847145ms)
+✔ admin UI renders moderation and shared request overview (2.067711ms)
+✔ buyer order UI shows completion without payment claims (2.284778ms)
+✔ empty UI panels explain missing cart and request data (1.954972ms)
+✔ catalog search trims whitespace, combines category and omits review-only product (0.161954ms)
+✔ catalog price order uses cheapest published offer rather than array position (0.206241ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 283.55117
