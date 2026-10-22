@@ -1,6 +1,44 @@
-# Later NL/BE catalog and channel stages — proposals only
+# BORVAT NL/BE store roadmap — proposals only
 
 BORVAT should serve the owner's independently owned catalog first and retain separate seller-offer identities for a later marketplace. bol is one sales channel, never the canonical catalog or customer source. The current fictional collection does not establish ownership, licensing, commercial service terms or real integrations.
+
+## Owner-requested platform capabilities — plan only
+
+Added on 2026-10-22 at the owner's request to put these capabilities in the plan. This update authorizes no implementation, activation, spending or gate change. It extends the existing BORVAT roadmap; it creates neither another project nor another production service.
+
+Status describes verified delivery, not whether an unverified scaffold exists somewhere in the imported source:
+
+- **Implemented:** bounded code with the stated local evidence; never shorthand for production readiness.
+- **Partially demonstrated:** only a synthetic or limited workflow is shown; the full portal/control is not accepted.
+- **Planned:** a requirement for a separately scoped future stage; not claimed delivered.
+- **Blocked:** acceptance or activation depends on unresolved prerequisites or approval gates.
+
+| Capability | Current status and demonstrated scope | Planned completion and dependencies |
+|---|---|---|
+| Shared buyer journey and host-navigation boundary | **Implemented in the isolated demo only.** PR25 provides routed discovery/product/offer/cart; PR26 provides injectable host navigation and reader-error recovery. Original-app integration remains **blocked**. | Preserve original design and canonical product/offer/seller distinctions; complete the original router/service boundaries described in [the dependency map](../buyer-host-integration/DEPENDENCIES.md). |
+| Buyer portal | **Partially demonstrated:** synthetic browsing, cart and disposable requests. Authenticated account/order/service lifecycle is **planned**, with live acceptance **blocked**. | Own-account access, order history/status, delivery tracking, invoice references, returns and support/dispute cases. Depend on verified identity, order ownership, native stock/financial references and agreed customer-service terms. Demo requests are not paid orders. |
+| Seller portal with own-data visibility | **Partially demonstrated:** demo shop selection, offer draft/review and request preparation. Shop switching is not authentication or tenant isolation. | A seller sees and manages only its authorized company/store data: own catalog/offers/orders, fulfillment projections, support cases and settlement references. Define scoped staff roles and prove cross-seller denial with isolated tests before acceptance. Preserve company/store/product/SKU semantics; do not create another stock or money balance. |
+| Administration portal with auditable roles | **Partially demonstrated:** synthetic offer moderation and overview only. Auditable administrative permissions are **planned**, not proven by demo view selection. | Explicit role/action matrix, limited access by responsibility, recorded actor/time/reason/outcome, review history and approval requirements for sensitive actions. Cover seller onboarding, moderation, support escalation and policy changes. Existing security/approval gates stay separate. |
+| Fraud and risk monitoring | **Planned; not implemented or validated as a fraud-control system.** | Explainable alerts with evidence/source/time, rule/model version where applicable, severity, review status and reviewer decision. Include false-positive handling, proportionate action, escalation, customer/seller notification rules and an appeal/reconsideration workflow. Evaluate outcomes and access/retention limits. Alerts indicate risk, not proven guilt; no claim that fraud is eliminated. |
+| Customer support and disputes | **Planned for accepted end-to-end delivery.** Synthetic requests do not demonstrate a support system. | Buyer/seller cases tied to order/line references, evidence, communication history, ownership, status, escalation, response targets and review/appeal outcomes. Route approved returns/refunds through their authoritative workflows; support decisions must not directly rewrite stock or financial ledgers. |
+| Shipping and fulfillment integration | **Blocked for real integration; planned dependency.** | Verified service regions, rates/terms, carrier/label/tracking contracts, shipment/cancellation/return states and interrupted/repeated-action handling. WMS remains the authority for quantities, reservations and physical movements. Tracking/labels do not themselves prove inventory movement or delivery. No carrier connection or booking is authorized here. |
+| Payment and seller settlement integration | **Blocked for activation; planned dependency.** Demo payment remains disabled. | Separately reviewed provider onboarding, payment/refund/dispute lifecycle, commission/settlement rules, reconciliation and native accounting references. Accounting/native ERPNext owns invoices, credits, GL and valuation; provider statuses and UI summaries must not become a parallel financial ledger. No payment/payout or provider activation is authorized here. |
+| External marketing and advertising center | **Planned; not connected.** | A distinct area for externally delivered Meta/Google campaigns: account ownership, permitted audience/consent provenance, content review, budgets/limits, approvals, reporting and attribution. Separate external spend from marketplace listing fees and report assumptions. No ad account connection, audience import, campaign creation or spending in this update. |
+| Internal sponsored seller listings | **Planned for a later stage, after core portals and basic controls.** | Clearly labeled sponsored placements, seller eligibility, approved creative/product rules, ranking/disclosure policy, budget controls, performance reporting, billing/reconciliation and invalid-traffic review. Separate these records and commercial terms from external Meta/Google campaigns. No paid placement, auction/bidding engine, monetization or revenue claim is activated. |
+
+## Delivery order and acceptance boundaries
+
+1. **Foundation and integration prerequisites:** recover authorized assets and reviewed runtime access; agree owner catalog/PIM and identity/company/store/product/offer mappings. Resolve original-app integration boundaries with synthetic services before any live activity. Preserve one authoritative inventory and accounting source.
+2. **Core buyer, seller and administration portals:** complete the bounded buyer lifecycle, seller own-data visibility and auditable role-based administration. Include basic support/dispute handling, moderation and explainable risk alerts with human review and appeal. Evidence must show both legitimate workflows and inappropriate-access denials; a demo role selector is insufficient.
+3. **Operational and commercial integration:** separately review shipping, payments/refunds/settlements and authoritative WMS/Accounting contracts, reconciliation, interrupted actions and customer-service policies. Confirm NL/BE commercial, language and professional accounting requirements. Technical success alone does not authorize activation.
+4. **External marketing tooling:** only after separately approved account, data-use, budget and approval controls; keep Meta/Google campaigns distinct from internal sponsored inventory. Existing bol customer-data and self-promotion restrictions below remain in force for planning.
+5. **Advanced sponsored-listing monetization:** only after core portals, basic risk/admin/support controls and reliable billing/reconciliation are accepted. Review paid-placement disclosures, seller fairness and invalid-traffic handling before any separate activation decision.
+
+These are ordered planning milestones, not new phase approvals or gate renamings. C0/C1, PREPARATION/P01/M1 and all existing operational, security and professional-review gates remain unchanged. Missing media, original runtime/router/SSR acceptance and native integration blockers below are not closed by adding requirements to this plan.
+
+The separate **Syria–Europe B2B idea is an independent future brand**. It is outside BORVAT's implementation scope, catalog, roadmap delivery commitments, identity and financial boundaries unless a distinct future brief explicitly defines it. It is not silently incorporated into these portals or advertising features.
+
+## Existing catalog and channel prerequisites
 
 | Next bounded stage | Required input / acceptance |
 |---|---|
