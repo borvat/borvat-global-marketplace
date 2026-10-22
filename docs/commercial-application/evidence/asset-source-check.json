@@ -1,0 +1,43 @@
+{
+  "date_local": "2026-10-22 Asia/Damascus",
+  "original_assets_unresolved": 69,
+  "recovered": 0,
+  "lovable_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+  "lovable_head": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+  "source_head_changed": false,
+  "replit_search": "No matching editable BORVAT app; exact BORVAT STORE lookup found=false. Not proof no other backup exists.",
+  "library_queries": [
+    "BORVAT title",
+    "hero.jpg title",
+    "BORVAT STORE title"
+  ],
+  "archive_inspected": {
+    "name": "BORVAT_Mission03_Design_and_Audit.zip",
+    "sha256": "49342d1c48f79be1cd6db94902608f50a7096928f5b27a9202241a3897b6f2d6",
+    "entries": [
+      "BORVAT_Mission03/01-audit.md",
+      "BORVAT_Mission03/02-product-architecture.md",
+      "BORVAT_Mission03/03-data-model.json",
+      "BORVAT_Mission03/04-openapi.json",
+      "BORVAT_Mission03/05-events.json",
+      "BORVAT_Mission03/06-acceptance.json",
+      "BORVAT_Mission03/07-codex-workplan.md",
+      "BORVAT_Mission03/08-eu-payments.md",
+      "BORVAT_Mission03/09-integration-contracts.md",
+      "BORVAT_Mission03/README.md",
+      "BORVAT_Mission03/evidence/SHA256SUMS.txt",
+      "BORVAT_Mission03/evidence/local-checks.json",
+      "BORVAT_Mission03/evidence/package-validation.json",
+      "BORVAT_Mission03/evidence/source-provenance.json",
+      "BORVAT_Mission03/report.html"
+    ],
+    "image_or_video_entries": 0
+  },
+  "unavailable_urls_retried": false,
+  "generated_replacements": false,
+  "needed_input": "Authorized original binary export, proven source repository/LFS or owned backup matching existing 69-path inventory.",
+  "github_main_media_check": {
+    "commit": "02243d583fb935555177d105e22ee45dc0b93a34",
+    "image_or_video_blobs": 0
+  }
+}

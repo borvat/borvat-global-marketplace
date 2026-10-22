@@ -1,0 +1,8 @@
+{
+  "status": "BLOCKED",
+  "interactive_browser_tests": "NOT_RUN",
+  "attempts": 1,
+  "local_url": "http://127.0.0.1:4178/",
+  "result": "Cloud browser reported net::ERR_CONNECTION_REFUSED. Node Playwright Chromium binary absent. Offline jsdom setup also unavailable (ENOTCACHED); no network install or browser retry performed.",
+  "scope": "Static React rendering and adapter tests do not certify clicks, hydration, mobile layout, keyboard operation or screenshots."
+}

@@ -1,0 +1,26 @@
+{
+  "node": "v24.19.0",
+  "installed_packages": {
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "vite": "8.0.16",
+    "typescript": "5.9.3",
+    "eslint": "9.39.4",
+    "tsx": "4.21.0",
+    "@react-email/render": "2.1.0",
+    "@vitejs/plugin-react": "5.2.0",
+    "@tailwindcss/vite": "4.2.4"
+  },
+  "dependency_installation": "REUSED_EXISTING_LOCAL_RUNTIME; clean authoritative install NOT_CERTIFIED",
+  "reused_input_sha256": {
+    "apps/marketplace/src/components/ui/button.tsx": "e39813b666ba434660ec088356a0349246b6803a4e99961295d0c82bab1ab862",
+    "apps/marketplace/src/components/ui/card.tsx": "f13878a0078a5ef9f3e92af29259fc1e93ea56ea80cb992e0c4dea4e35396459",
+    "apps/marketplace/src/components/ui/input.tsx": "92debb7d6d2d96d9e607a42d5ce8f37b2d63384ae5dd9ffbbf5f047b680ffb85",
+    "apps/marketplace/src/components/ui/label.tsx": "9f72e2ecf16206593aa9e3c4fbc14cd8e81aa8488d57d92d4a950b30935a9fa9",
+    "apps/marketplace/src/components/ui/badge.tsx": "6519775252fe729f21c60b92c7c9feefd1fe7d0a8c2cf16d6f1c2fa7e153fe75",
+    "apps/marketplace/src/lib/format.ts": "339d045c6e270a9bcbb1bb353c7cff5eda0bfafc416529c96b5505f5ab49ffaf",
+    "apps/marketplace/src/lib/utils.ts": "d1f1e0d62cb8d8d1e04c26e14de842d8a151f75812d81b046c65b5d1fe8e4b27",
+    "apps/marketplace/src/styles.css": "0345642ea64053e45900789a76d1b07aa069bf9547dd854d5c0c328a77fe7910",
+    "apps/marketplace/src/demo/products.ts": "f06c6434d1ffd2dc5691d994ba26529c91b7afd526b930a0670ab73afb4b4320"
+  }
+}

@@ -1,0 +1,39 @@
+✔ buyer compares two sellers for one original demo product (1.495394ms)
+✔ mixed seller cart has exact article totals and no shipping/payment estimate (0.330648ms)
+✔ quantity change and removal update totals without reserving example stock (0.135485ms)
+✔ local request clears cart, snapshots article prices and remains unpaid (0.251689ms)
+✔ buyer/seller/admin share request progress per seller without early whole-order completion (0.332601ms)
+✔ seller price edit requires draft/review/publish before buyer can request (0.255835ms)
+✔ admin can return review item to concept (0.215816ms)
+✔ price parser accepts comma and dot decimals without float rounding (0.207933ms)
+✔ malformed commercial prices leave state unchanged (0.375025ms)
+✔ out-of-range and fractional quantities do not corrupt cart (0.875679ms)
+✔ offer changed after cart entry surfaces review requirement and can be removed (0.346442ms)
+✔ empty request produces no demo order (0.16634ms)
+✔ two adapter instances and reset have disposable independent state (0.135094ms)
+✔ react subscriber sees consistent snapshot and unsubscribe works (0.326983ms)
+✔ initial UI renders original brand, comparison, missing-image disclosure and demo boundaries (33.683585ms)
+✔ cart UI renders seller quantities and a disabled payment control (2.411674ms)
+✔ seller UI renders editable offers and selected shop requests (5.229301ms)
+✔ admin UI renders moderation and shared request overview (5.420999ms)
+✔ buyer order UI shows completion without payment claims (1.870048ms)
+✔ empty UI panels explain missing cart and request data (2.640349ms)
+✔ catalog search trims whitespace, combines category and omits review-only product (0.189666ms)
+✔ catalog price order uses cheapest published offer rather than array position (0.238379ms)
+✔ original processing template renders HTML and text from synthetic preview fixture (80.868888ms)
+✔ original shipped template renders HTML and text from synthetic preview fixture (13.034232ms)
+✔ original delivered template renders HTML and text from synthetic preview fixture (11.301312ms)
+✔ original signup component renders a synthetic preview without delivery (3.066411ms)
+✔ original invite component renders a synthetic preview without delivery (2.345785ms)
+✔ original magic link component renders a synthetic preview without delivery (2.956104ms)
+✔ original recovery component renders a synthetic preview without delivery (3.492804ms)
+✔ original email change component renders a synthetic preview without delivery (3.176577ms)
+✔ original reauthentication component renders a synthetic preview without delivery (2.969315ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 761.787997

@@ -1,0 +1,12 @@
+tests/email-render.test.tsx(21,61): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '{ siteUrl: string; orderNumber: string; customerName: string; items: { title: string; quantity: number; }[]; orderTotal: string; trackingCarrier: string; trackingCode: string; trackingUrl: string; } | { ...; } | { ...; }' is not assignable to parameter of type '(Attributes & Props) | null | undefined'.
+      Type '{ siteUrl: string; orderNumber: string; customerName: string; items: { title: string; quantity: number; }[]; orderTotal: string; }' is not assignable to type 'Attributes & Props'.
+        Type '{ siteUrl: string; orderNumber: string; customerName: string; items: { title: string; quantity: number; }[]; orderTotal: string; }' is missing the following properties from type 'Props': trackingCarrier, trackingCode
+tests/email-render.test.tsx(55,51): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(({ siteName, siteUrl, recipient, confirmationUrl }: SignupEmailProps) => Element) | (({ siteName, siteUrl, confirmationUrl }: InviteEmailProps) => Element) | (({ siteName, siteUrl, confirmationUrl }: MagicLinkEmailProps) => Element) | (({ siteName, siteUrl, confirmationUrl }: RecoveryEmailProps) => Element) | (({ s...' is not assignable to parameter of type 'string | FunctionComponent<SignupEmailProps> | ComponentClass<SignupEmailProps, any>'.
+      Type '({ siteName, siteUrl, oldEmail, newEmail, confirmationUrl, }: EmailChangeEmailProps) => JSX.Element' is not assignable to type 'string | FunctionComponent<SignupEmailProps> | ComponentClass<SignupEmailProps, any>'.
+        Type '({ siteName, siteUrl, oldEmail, newEmail, confirmationUrl, }: EmailChangeEmailProps) => JSX.Element' is not assignable to type 'FunctionComponent<SignupEmailProps>'.
+          Types of parameters '__0' and 'props' are incompatible.
+            Type 'SignupEmailProps' is missing the following properties from type 'EmailChangeEmailProps': oldEmail, email, newEmail
