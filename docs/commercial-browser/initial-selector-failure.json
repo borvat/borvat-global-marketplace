@@ -1,0 +1,10 @@
+{
+  "browser": "154.0.8037.57",
+  "scope": "synthetic commercial preview; not full app or native integration",
+  "results": [
+    {
+      "status": "FAIL",
+      "error": "locator.click: Error: strict mode violation: getByRole('button', { name: 'Publiceer in demo', exact: true }) resolved to 2 elements:\n    1) <button class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2\">Publiceer in demo</button> aka getByRole('button', { name: 'Publiceer in demo' }).first()\n    2) <button class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2\">Publiceer in demo</button> aka getByRole('button', { name: 'Publiceer in demo' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Publiceer in demo', exact: true })\u001b[22m\n"
+    }
+  ]
+}
