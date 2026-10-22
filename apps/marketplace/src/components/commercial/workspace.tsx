@@ -109,10 +109,14 @@ export function CommercialWorkspace({
   adapter,
   initialView = "Koper",
   initialBuyerTab = "Producten",
+  embeddedBuyer = false,
+  buyerNavigation,
 }: {
   adapter: CommercialDemoAdapter;
   initialView?: View;
   initialBuyerTab?: BuyerTab;
+  embeddedBuyer?: boolean;
+  buyerNavigation?: (tab: BuyerTab) => void;
 }) {
   const data = useSyncExternalStore(adapter.subscribe, adapter.getSnapshot, adapter.getSnapshot);
   const [view, setView] = useState<View>(initialView);
@@ -167,48 +171,57 @@ export function CommercialWorkspace({
   );
   const review = data.offers.filter((offer) => offer.state === "review");
   const count = data.cart.reduce((sum, line) => sum + line.quantity, 0);
+  const Content = embeddedBuyer ? "div" : "main";
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="bg-accent px-4 py-3 text-center text-sm font-semibold text-accent-foreground">
-        LOKALE DEMO · fictieve gegevens · geen betaling of echte bestelling · wijzigingen verdwijnen
-        bij herladen
-      </div>
-      <header className="bg-ink text-ink-foreground">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-6">
-          <div>
-            <span className="text-3xl font-extrabold tracking-tight">
-              BOR<span className="text-red-400">V</span>AT
-            </span>
-            <p className="mt-1 text-sm">Samen ontdekken. Zelfstandig verkopen.</p>
+      {!embeddedBuyer && (
+        <>
+          <div className="bg-accent px-4 py-3 text-center text-sm font-semibold text-accent-foreground">
+            LOKALE DEMO · fictieve gegevens · geen betaling of echte bestelling · wijzigingen
+            verdwijnen bij herladen
           </div>
-          <nav aria-label="Voorbeeldweergaven" className="flex flex-wrap gap-2">
-            {(["Koper", "Verkoper", "Beheer"] as const).map((item) => (
-              <Button
-                key={item}
-                variant={view === item ? "secondary" : "outline"}
-                className="text-foreground"
-                aria-pressed={view === item}
-                onClick={() => {
-                  setView(item);
-                  setError("");
-                  setNotice("");
-                }}
-              >
-                {item}
-              </Button>
-            ))}
-          </nav>
-        </div>
-      </header>
-      <main className="mx-auto max-w-7xl space-y-6 px-5 py-8">
+          <header className="bg-ink text-ink-foreground">
+            <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-6">
+              <div>
+                <span className="text-3xl font-extrabold tracking-tight">
+                  BOR<span className="text-red-400">V</span>AT
+                </span>
+                <p className="mt-1 text-sm">Samen ontdekken. Zelfstandig verkopen.</p>
+              </div>
+              <nav aria-label="Voorbeeldweergaven" className="flex flex-wrap gap-2">
+                {(["Koper", "Verkoper", "Beheer"] as const).map((item) => (
+                  <Button
+                    key={item}
+                    variant={view === item ? "secondary" : "outline"}
+                    className="text-foreground"
+                    aria-pressed={view === item}
+                    onClick={() => {
+                      setView(item);
+                      setError("");
+                      setNotice("");
+                    }}
+                  >
+                    {item}
+                  </Button>
+                ))}
+              </nav>
+            </div>
+          </header>
+        </>
+      )}
+      <Content className={embeddedBuyer ? "space-y-6" : "mx-auto max-w-7xl space-y-6 px-5 py-8"}>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold">
-              {view === "Koper"
-                ? "Ontdek je volgende favoriet"
-                : view === "Verkoper"
-                  ? "Verkoperscentrum"
-                  : "Beheer van het voorbeeld"}
+            <h1 tabIndex={-1} className="text-2xl font-bold">
+              {embeddedBuyer
+                ? buyerTab === "Mandje"
+                  ? "Je voorbeeldmandje"
+                  : "Mijn demo-aanvragen"
+                : view === "Koper"
+                  ? "Ontdek je volgende favoriet"
+                  : view === "Verkoper"
+                    ? "Verkoperscentrum"
+                    : "Beheer van het voorbeeld"}
             </h1>
             <p className="mt-1 text-muted-foreground">
               {view === "Koper"
@@ -247,7 +260,7 @@ export function CommercialWorkspace({
                   key={tab}
                   variant={buyerTab === tab ? "default" : "outline"}
                   aria-pressed={buyerTab === tab}
-                  onClick={() => setBuyerTab(tab)}
+                  onClick={() => (buyerNavigation ? buyerNavigation(tab) : setBuyerTab(tab))}
                 >
                   {tab}
                   {tab === "Mandje" ? ` (${count})` : ""}
@@ -434,6 +447,7 @@ export function CommercialWorkspace({
                     act(() => {
                       adapter.submitDemoRequest();
                       setBuyerTab("Aanvragen");
+                      buyerNavigation?.("Aanvragen");
                     })
                   }
                 >
@@ -565,7 +579,7 @@ export function CommercialWorkspace({
           BORVAT commerciële werkproef · oorspronkelijke componenten en kleuren · alleen geheugen ·
           WMS/Accounting niet aangesloten · ontbrekende media worden niet vervangen
         </footer>
-      </main>
+      </Content>
     </div>
   );
 }

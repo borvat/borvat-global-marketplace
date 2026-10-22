@@ -1,3 +1,5 @@
+> Current continuation: the default local entry now opens the routed NL/BE buyer preview. Discovery is `/discover`, products are `/product/:id`, and the existing demo cart/requests are `/cart` and `/requests`. The prior seller/admin workbench remains at `/workbench`, sharing the same in-memory adapter during local navigation. See [current report](../../docs/buyer-discovery/REPORT.md) and [later-stage roadmap](../../docs/buyer-discovery/ROADMAP.md). This remains a standalone synthetic preview, not the original app/SSR or native integration. The historical PR23 scope below describes its starting point.
+
 # BORVAT commercial application workbench
 
 Preparation-only functional UI, stacked on PR22 commit `7306cd9d9479a81b3443d8611e754450b9efd4a8`. This is an additional local entry into **the existing BORVAT app**, not a replacement project or a backend implementation. New reusable application components live in `apps/marketplace/src/components/commercial` and `src/lib/commercial`. Existing 499 imported text files, route wiring, checkout disable flag, Lovable app, main and PR22 are preserved.

@@ -1,0 +1,130 @@
+{
+  "source": "bed52d55d81b41784bdc9bb3f3e0082a8e37c387",
+  "status_before": "",
+  "started": "2026-10-22T03:28:47.652613+00:00",
+  "commands": [
+    {
+      "name": "buyer-browser",
+      "argv": [
+        "node",
+        "experiments/commercial-application/buyer-browser.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "workbench-regression",
+      "argv": [
+        "node",
+        "experiments/commercial-application/browser-cycle.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "commercial-tests",
+      "argv": [
+        "node",
+        "--import",
+        "tsx",
+        "--test",
+        "tests/commercial.test.tsx",
+        "tests/buyer-discovery.test.tsx"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "log_sha256": "d691a9d3244a21d83166e11257f438e7229d4d66039a764f05d19fb33f939e9f"
+    },
+    {
+      "name": "commercial-types",
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "tsconfig.browser.json",
+        "--noEmit"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scoped-lint",
+      "argv": [
+        "node",
+        "apps/marketplace/node_modules/eslint/bin/eslint.js",
+        "--config",
+        "apps/marketplace/eslint.config.js",
+        "apps/marketplace/src/components/commercial/buyer-journey.tsx",
+        "apps/marketplace/src/components/commercial/workspace.tsx",
+        "apps/marketplace/src/lib/commercial/buyer-discovery.ts",
+        "experiments/commercial-application/main.tsx",
+        "experiments/commercial-application/buyer-states.tsx",
+        "experiments/commercial-application/tests/buyer-discovery.test.tsx",
+        "-f",
+        "json"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "598f27198072997cacc3d7152f19525dc929fe1918a0f01ca034a30cfd4e9539"
+    },
+    {
+      "name": "preview-build",
+      "argv": [
+        "node",
+        "experiments/commercial-application/node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "experiments/commercial-application/vite.config.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "6001ec13e41b6aaff5e25e9f111e5d8ef051cf9092109c8a819eb5954e728236"
+    },
+    {
+      "name": "foundation",
+      "argv": [
+        "node",
+        "scripts/foundation/check.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8"
+    },
+    {
+      "name": "parity",
+      "argv": [
+        "node",
+        "scripts/foundation/source-parity.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d"
+    },
+    {
+      "name": "asset-gate",
+      "argv": [
+        "node",
+        "scripts/foundation/source-parity.mjs",
+        "--require-assets"
+      ],
+      "cwd": ".",
+      "exit": 1,
+      "log_sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d"
+    },
+    {
+      "name": "c1-gate",
+      "argv": [
+        "node",
+        "scripts/foundation/gate.mjs",
+        "C1"
+      ],
+      "cwd": ".",
+      "exit": 1,
+      "log_sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24"
+    }
+  ],
+  "status_after": ""
+}

@@ -23,7 +23,7 @@ try {
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `${name}: horizontal overflow at ${width}`);
       await page.screenshot({ path: `${out}/${width}-${name}.png`, fullPage: true });
     };
-    await page.goto('http://127.0.0.1:4178/');
+    await page.goto('http://127.0.0.1:4178/workbench');
     await page.getByTestId('product').first().waitFor();
     await layout('catalog');
     await page.getByLabel('Zoek producten', { exact: true }).fill('no-synthetic-match');
