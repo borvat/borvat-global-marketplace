@@ -122,6 +122,8 @@ export function CommercialWorkspace({
   const [sort, setSort] = useState("title");
   const [selected, setSelected] = useState(data.products[0].id);
   const [sellerId, setSellerId] = useState("demo-a");
+  const [resetVersion, setResetVersion] = useState(0);
+  const [clearedQuantity, setClearedQuantity] = useState<string | null>(null);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const act = (work: () => void) => {
@@ -218,6 +220,8 @@ export function CommercialWorkspace({
             variant="outline"
             onClick={() => {
               adapter.reset();
+              setResetVersion((version) => version + 1);
+              setClearedQuantity(null);
               setNotice("Demo teruggezet.");
               setError("");
             }}
@@ -391,12 +395,19 @@ export function CommercialWorkspace({
                             min="1"
                             max="99"
                             id={`qty-${line.offerId}`}
-                            value={line.quantity}
-                            onChange={(event) =>
+                            value={clearedQuantity === line.offerId ? "" : line.quantity}
+                            onBlur={() => setClearedQuantity(null)}
+                            onChange={(event) => {
+                              // An empty edit is not an explicit quantity of zero/removal.
+                              if (event.target.value === "") {
+                                setClearedQuantity(line.offerId);
+                                return;
+                              }
+                              setClearedQuantity(null);
                               act(() =>
                                 adapter.setQuantity(line.offerId, Number(event.target.value)),
-                              )
-                            }
+                              );
+                            }}
                           />
                         </div>
                         <Button
@@ -474,7 +485,7 @@ export function CommercialWorkspace({
                       beschikbaarheidsprojectie: {offer.availabilityExample}
                     </p>
                     <OfferEditor
-                      key={`${offer.id}-${offer.priceCents}`}
+                      key={`${offer.id}-${offer.priceCents}-${resetVersion}`}
                       offer={offer}
                       adapter={adapter}
                       act={act}
