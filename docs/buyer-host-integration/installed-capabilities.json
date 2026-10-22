@@ -1,0 +1,11 @@
+{
+  "checked": "existing permitted preview runtime; no install attempted",
+  "packages": {
+    "@tanstack/react-router": false,
+    "@tanstack/react-query": false,
+    "@tanstack/react-start": false,
+    "@lovable.dev/vite-tanstack-config": false,
+    "@lovable.dev/mcp-js": false,
+    "@supabase/supabase-js": false
+  }
+}
