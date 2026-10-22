@@ -1,4 +1,12 @@
-import { useEffect, useState, useSyncExternalStore, type MouseEvent, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useSyncExternalStore,
+  type MouseEvent,
+  type ReactNode,
+} from "react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
@@ -14,16 +22,12 @@ import {
 } from "../../lib/commercial/buyer-discovery";
 import { CommercialWorkspace } from "./workspace";
 
-const subscribeLocation = (listener: () => void) => {
-  window.addEventListener("popstate", listener);
-  return () => window.removeEventListener("popstate", listener);
-};
-const currentLocation = () => window.location.pathname + window.location.search;
-function navigate(href: string, replace = false) {
-  if (href === currentLocation()) return;
-  window.history[replace ? "replaceState" : "pushState"](null, "", href);
-  window.dispatchEvent(new PopStateEvent("popstate"));
-}
+import {
+  browserBuyerNavigation,
+  type BuyerNavigation,
+} from "../../lib/commercial/buyer-navigation";
+const NavigationContext = createContext<BuyerNavigation>(browserBuyerNavigation);
+
 function LocalLink({
   href,
   children,
@@ -33,6 +37,7 @@ function LocalLink({
   children: ReactNode;
   className?: string;
 }) {
+  const { navigate } = useContext(NavigationContext);
   return (
     <a
       href={href}
@@ -61,14 +66,26 @@ function MissingMedia() {
 
 type LoadState =
   { status: "loading" } | { status: "error" } | { status: "ready"; catalog: Catalog };
-export function BuyerJourney({
-  adapter,
-  readCatalog = readDemoCatalog,
-}: {
+type BuyerJourneyProps = {
   adapter: CommercialDemoAdapter;
   readCatalog?: CatalogReader;
-}) {
-  const href = useSyncExternalStore(subscribeLocation, currentLocation, () => "/discover");
+  navigation?: BuyerNavigation;
+};
+export function BuyerJourney({ navigation = browserBuyerNavigation, ...props }: BuyerJourneyProps) {
+  return (
+    <NavigationContext.Provider value={navigation}>
+      <BuyerJourneyView {...props} />
+    </NavigationContext.Provider>
+  );
+}
+function BuyerJourneyView({ adapter, readCatalog = readDemoCatalog }: BuyerJourneyProps) {
+  const navigation = useContext(NavigationContext);
+  const { navigate } = navigation;
+  const href = useSyncExternalStore(
+    navigation.subscribe,
+    navigation.getSnapshot,
+    navigation.getServerSnapshot,
+  );
   const route = buyerLocation(href);
   const snapshot = useSyncExternalStore(
     adapter.subscribe,
@@ -82,7 +99,11 @@ export function BuyerJourney({
   useEffect(() => {
     const controller = new AbortController();
     setLoad((previous) => (previous.status === "ready" ? previous : { status: "loading" }));
-    readCatalog(snapshot, controller.signal)
+    Promise.resolve()
+      .then(() => {
+        if (controller.signal.aborted) throw new Error("Catalog read cancelled");
+        return readCatalog(snapshot, controller.signal);
+      })
       .then((catalog) => {
         if (!controller.signal.aborted) setLoad({ status: "ready", catalog });
       })

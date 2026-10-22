@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';import {mkdir,writeFile} from 'node:fs/promises';import {resolve} from 'node:path';import {pathToFileURL} from 'node:url';
+const {chromium}=await import(pathToFileURL(resolve(process.env.PLAYWRIGHT_MODULE)));const out=resolve(process.env.BROWSER_EVIDENCE_DIR);await mkdir(out,{recursive:true});const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH,headless:true});const results=[];
+try{for(const width of [1440,390,320]){
+ const page=await browser.newPage({viewport:{width,height:900}});const errors=[],external=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/*',route=>{const u=new URL(route.request().url());if(u.hostname==='127.0.0.1'&&u.port==='4178')return route.continue();external.push(u.origin);return route.abort();});
+ const nav=()=>page.getByRole('navigation',{name:'Hoofdnavigatie'});
+ const shot=async name=>{assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);assert.equal(await page.getByRole('main').count(),1);await page.screenshot({path:`${out}/${width}-${name}.png`,fullPage:true});};
+ await page.goto('http://127.0.0.1:4178/host-navigation.html?case=race');await page.getByText('Voorbeeldcollectie laden…',{exact:true}).waitFor();
+ const startLength=await page.evaluate(()=>history.length);
+ await nav().getByRole('link',{name:'Mandje (1)',exact:true}).focus();await page.keyboard.press('Enter');
+ await page.getByLabel('Aantal · Voorbeeldwinkel A',{exact:true}).waitFor();
+ assert.equal(await page.evaluate(()=>history.state.isolatedHost),true,'host history metadata survives navigation');
+ assert.equal(await page.locator('h1').evaluate(el=>el===document.activeElement),true);
+ await nav().getByRole('link',{name:'Mandje (1)',exact:true}).dblclick();assert.equal(await page.evaluate(()=>history.length),startLength+1);
+ await page.getByRole('button',{name:'Fixture: draft offer',exact:true}).click();
+ await page.getByRole('alert').waitFor();assert.equal(await page.getByRole('button',{name:'Bewaar demo-aanvraag',exact:true}).isDisabled(),true);
+ await page.getByRole('button',{name:'Fixture: resolve newest',exact:true}).click();
+ assert.equal(new URL(page.url()).pathname,'/cart','late read cannot undo navigation');
+ await shot('interrupted-cart');
+ await page.goBack();await page.getByText('De gekozen aanbieding is niet beschikbaar. Kies opnieuw.',{exact:true}).waitFor();
+ await page.getByRole('button',{name:'Fixture: resolve older',exact:true}).click();
+ assert.equal(await page.getByRole('button',{name:'Voeg gekozen aanbod toe',exact:true}).isDisabled(),true,'aborted old read cannot resurrect stale offer');
+ await page.goForward();await page.getByRole('alert').waitFor();
+ await page.getByRole('button',{name:'Verwijder · Voorbeeldwinkel A',exact:true}).click();assert.equal(await page.getByRole('alert').count(),0);
+ await nav().getByRole('link',{name:'Ontdekken',exact:true}).click();await page.getByLabel('Zoek producten',{exact:true}).fill('tafel');
+ const filterLength=await page.evaluate(()=>history.length);await page.getByLabel('Zoek producten',{exact:true}).fill('eettafel');assert.equal(await page.evaluate(()=>history.length),filterLength,'host receives replace for filters');
+ assert.equal(new URL(page.url()).searchParams.get('country'),'BE');assert.equal(await page.evaluate(()=>history.state.isolatedHost),true);
+ await shot('host-discovery');
+ await page.goto('http://127.0.0.1:4178/host-navigation.html?case=sync-error');await page.getByText('De voorbeeldcollectie kon niet worden geladen.',{exact:true}).waitFor();await shot('reader-error');
+ await page.getByRole('button',{name:'Opnieuw proberen',exact:true}).click();await page.getByText('De voorbeeldcollectie kon niet worden geladen.',{exact:true}).waitFor();
+ await page.getByRole('button',{name:'Opnieuw proberen',exact:true}).click();await page.locator('input[value="demo-offer-1"]').waitFor();await shot('reader-recovered');
+ assert.deepEqual(errors,[]);assert.deepEqual(external,[]);results.push({width,status:'PASS',cases:['injected-host-history','interrupted-read-navigation','repeated-link-no-extra-history','back-forward','stale-cart','out-of-order-read-ignored','filter-replace','keyboard-focus','synchronous-reader-retry'],errors,external});await page.close();
+}}catch(error){results.push({status:'FAIL',error:error.message});throw error;}finally{await writeFile(`${out}/results.json`,JSON.stringify({scope:'isolated host adapter; not TanStack original router or hydration',browser:browser.version(),results},null,2));await browser.close();}
