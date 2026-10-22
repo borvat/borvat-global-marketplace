@@ -1,0 +1,875 @@
+{
+  "count": 69,
+  "source_head_unchanged": true,
+  "new_original_source_available": false,
+  "original_http_attempts_not_repeated": true,
+  "records": [
+    {
+      "path": "docs/owner-review/m1v0b/account_support.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/admin_dashboard.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/admin_orders.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/admin_security.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/borvat-m1v0b-navigation.webm",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "docs/PHASE5_M1V0B_OWNER_VISUAL_REVIEW_DELIVERY.md",
+          "line": 16,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/m_admin_dashboard.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/m_owner-review.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/m_seller_manager.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/m_seller_order-desk.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/m_support_queue.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/owner-review.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/seller_analysis.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/seller_finances.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/seller_manager.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/seller_messages.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/seller_order-desk.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/seller_shipping.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/support_cases_case_1001.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/support_inbox_customers.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/support_inbox_merchants.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "docs/owner-review/m1v0b/support_queue.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Historical screenshot/video acceptance evidence unavailable; no runtime image import assumed",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/favicon.png",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "src/routes/__root.tsx",
+          "line": 87,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Browser identity icon absent; direct static URL can fail",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/categories/beauty.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Category navigation/image parity unavailable",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/categories/boeken.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Category navigation/image parity unavailable",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/categories/elektronica.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Category navigation/image parity unavailable",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/categories/games.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Category navigation/image parity unavailable",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/categories/mode.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Category navigation/image parity unavailable",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/categories/speelgoed.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Category navigation/image parity unavailable",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/categories/sport.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Category navigation/image parity unavailable",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/categories/wonen.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [],
+      "impact": "Category navigation/image parity unavailable",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/hero.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "src/routes/index.tsx",
+          "line": 6,
+          "kind": "IMPORT"
+        }
+      ],
+      "impact": "Static asset import can block bundling; restore original required",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/air-purifier.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "scripts/assign-product-images.ts",
+          "line": 18,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/book-coding-robot.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 30,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/book-smart-living.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 32,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/book-sustainable-home.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 31,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/cooler-box.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 20,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/doorbell.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 19,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/drone.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 12,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/e-bike.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "scripts/assign-product-images.ts",
+          "line": 21,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/earbuds.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "scripts/assign-product-images.ts",
+          "line": 20,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/espresso-maker.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 4,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/fitness-tracker.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 5,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/game-controller.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "scripts/assign-product-images.ts",
+          "line": 22,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/gaming-headset.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 6,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/indoor-cam.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 8,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/ipl-device.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 9,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/led-strip.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 10,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/mesh-router.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 29,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/projector.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "scripts/assign-product-images.ts",
+          "line": 23,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/robot-dino.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 11,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/robot-vacuum.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "scripts/assign-product-images.ts",
+          "line": 17,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/skin-camera.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 7,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smart-hub.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "scripts/assign-product-images.ts",
+          "line": 16,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smart-jumprope.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 16,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smart-kettle.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 17,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smart-lock.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 13,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smart-plug.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 22,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smart-ring.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 21,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smart-scale.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 18,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smart-teddy.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 14,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smart-toothbrush.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 23,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smartwatch.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "scripts/assign-product-images.ts",
+          "line": 19,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/smoke-detector.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 15,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/sous-vide.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 25,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/stem-kit.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 26,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/streaming-stick.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 27,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/thermostat.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 24,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/uv-band.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 28,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    },
+    {
+      "path": "public/images/products/wireless-charger.jpg",
+      "source_project": "092a5ea2-1dc1-4ffd-a4b4-efe2d3237298",
+      "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+      "status": "ORIGINAL_BINARY_UNAVAILABLE",
+      "references": [
+        {
+          "path": "supabase/migrations/20260724013158_0b11fe5b-8739-42fa-9121-24462d0b8ace.sql",
+          "line": 3,
+          "kind": "REFERENCE"
+        }
+      ],
+      "impact": "Product image/display parity unavailable; linked catalog references recorded",
+      "new_fetch_attempted": false
+    }
+  ]
+}

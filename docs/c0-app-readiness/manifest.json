@@ -1,0 +1,129 @@
+{
+  "base_commit": "1edf8349dd3fac907fa182f913b4abe873612357",
+  "scope": "ordinary_application_only",
+  "C0": "HOLD",
+  "C1_authorized": false,
+  "hosted_ci": "BLOCKED",
+  "records": [
+    {
+      "path": "docs/c0-app-readiness/ARCHITECTURE-REVIEW.md",
+      "sha256": "754d9995a6f777240bed3203df26bc340beb8bb8a177fb3b06bd0f88bafffd24",
+      "bytes": 2456
+    },
+    {
+      "path": "docs/c0-app-readiness/ASSETS.md",
+      "sha256": "4c7de31e1f8434efd6861e13c8d17afcd0e6eea3b36660e2406274dd7f976cf4",
+      "bytes": 1351
+    },
+    {
+      "path": "docs/c0-app-readiness/INTEGRATION.md",
+      "sha256": "068e914ed6bf708a472558c39600b3b4d7916f864d4e38810088d3da589ad41f",
+      "bytes": 4223
+    },
+    {
+      "path": "docs/c0-app-readiness/PLAN.md",
+      "sha256": "e7d69e72d29b9c0e77da22c8dbd6c89851184778a27048a7b7916a1cce410865",
+      "bytes": 2332
+    },
+    {
+      "path": "docs/c0-app-readiness/REPORT.md",
+      "sha256": "d3bebf2ce8f33705e1b553a540cb9b3beaaab253a069f030e8b9069cef5f4cfd",
+      "bytes": 2691
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/asset-impact.json",
+      "sha256": "38a43cc323e47e27fd92a90d86e0711d507390df0967f9a4879aa1fabca50f75",
+      "bytes": 34767
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/borvat-build.log",
+      "sha256": "8c1cfc055984323655a73f08aa1632e5b975f6aec57ce9f5a94ea07367cbf195",
+      "bytes": 4762
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/borvat-checks.json",
+      "sha256": "88d268a8ef01ba04cce00f51bd5efa8f18e7f322f76c305f5000f064adbc376d",
+      "bytes": 23516
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/borvat-lint.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/borvat-lint.stdout",
+      "sha256": "ce77f78fd40b5c93de76ef3434a4709b68d63171ac97be241b08d191c87e9db0",
+      "bytes": 257241
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/borvat-types.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/borvat-types.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/email-render-results.json",
+      "sha256": "011369956c54acdf7fe66924e32d03db1f3137a56cef381f79bd0efa9bc8067c",
+      "bytes": 1027
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/foundation/commands.json",
+      "sha256": "8121d562d693dbf4c7566212aa33bf8e80429c9fcc724b804b25beaef6d33f85",
+      "bytes": 518
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/foundation/gate.log",
+      "sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24",
+      "bytes": 150
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/foundation/reference.log",
+      "sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8",
+      "bytes": 229
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/foundation/source.log",
+      "sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d",
+      "bytes": 127
+    },
+    {
+      "path": "docs/c0-app-readiness/evidence/foundation/unit.log",
+      "sha256": "3f87ae2a4bb1ada9a7da0cfc042fdcee252141bc9f876538cf65dbdf24f5c4e8",
+      "bytes": 795
+    },
+    {
+      "path": "experiments/app-readiness-c0/README.md",
+      "sha256": "201e1c6332b22602521d5fc3c13758cd8451c0805723591fda5f8b746032edfd",
+      "bytes": 2383
+    },
+    {
+      "path": "experiments/app-readiness-c0/apply-candidate.py",
+      "sha256": "1141ddf6bc9a772050a8abd9752ec2434be0c16e640bc6dbf6f3081d72b1a91d",
+      "bytes": 1147
+    },
+    {
+      "path": "experiments/app-readiness-c0/borvat-email-types.delta.patch",
+      "sha256": "6c49b9b938594d52e4f5fd68caea87532bfee2f0147d1269208f8436c3249882",
+      "bytes": 7360
+    },
+    {
+      "path": "experiments/app-readiness-c0/check-borvat.executed.py.txt",
+      "sha256": "5b875cd018a1a6cc77c96aec5737f5c1d4f273d481048f08c2a6b39793c72a55",
+      "bytes": 2002
+    },
+    {
+      "path": "experiments/app-readiness-c0/email-render-test.executed.ts.txt",
+      "sha256": "b4632837e2ee05932b2363e1310f234bacb1917545dcc802bf558b0b1a5621aa",
+      "bytes": 2020
+    },
+    {
+      "path": "experiments/app-readiness-c0/file-hashes.json",
+      "sha256": "d3d767e64bfb8913cf63c4ef05ba37a7002df190fa7011241e0efb571e2675d9",
+      "bytes": 1517
+    }
+  ]
+}

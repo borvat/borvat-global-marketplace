@@ -1,0 +1,20 @@
+from pathlib import Path
+import os,subprocess,hashlib,json,shutil
+root=Path('/workspace/scratch/ece77f5f97ff');out=root/'oss-evaluation/critical-path';src=out/'borvat-typed';probe=out/'borvat-build-probe'
+# Keep the renderer test outside app lint/source scope during authoritative checks.
+test=src/'email-render-test.ts'
+if test.exists():shutil.move(test,out/'email-render-test.ts.saved')
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+def files(p):return {str(f.relative_to(p)):sha(f) for f in (p/'src').rglob('*') if f.is_file()}
+before=files(src);env=os.environ.copy()
+for k in list(env):
+ if any(x in k for x in ['SUPABASE','STRIPE','LOVABLE_API_KEY','DATABASE_URL','SMTP_']):env.pop(k,None)
+env['NODE_OPTIONS']='--import='+str(root/'marketplace-foundation/scripts/foundation/no-external-network.mjs')
+commands=[['node','node_modules/typescript/bin/tsc','--noEmit'],['node','node_modules/eslint/bin/eslint.js','.','-f','json']];results=[]
+for name,cmd in zip(['types','lint'],commands):
+ r=subprocess.run(cmd,cwd=src,env=env,capture_output=True,text=True,timeout=120);(out/('borvat-'+name+'.stdout')).write_text(r.stdout);(out/('borvat-'+name+'.stderr')).write_text(r.stderr);results.append({'name':name,'command':cmd,'exit':r.returncode})
+assert before==files(src),'check rewrote source'
+shutil.copytree(src,probe,ignore=shutil.ignore_patterns('node_modules','.output','.tanstack','dist'),dirs_exist_ok=True)
+(probe/'node_modules').symlink_to((src/'node_modules').resolve(),target_is_directory=True)
+cmd=['node','node_modules/vite/bin/vite.js','build'];r=subprocess.run(cmd,cwd=probe,env=env,capture_output=True,text=True,timeout=120);(out/'borvat-build.log').write_text(r.stdout+r.stderr);results.append({'name':'build','command':cmd,'exit':r.returncode,'probe_drift':[k for k,v in files(probe).items() if before.get(k)!=v]})
+(out/'borvat-checks.json').write_text(json.dumps({'checks':results,'typed_source_unchanged':before==files(src),'source_hashes':before},indent=2));print(results)

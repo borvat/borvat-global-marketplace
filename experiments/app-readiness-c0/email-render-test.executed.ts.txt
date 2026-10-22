@@ -1,0 +1,20 @@
+import {strict as assert} from 'node:assert';
+import React from 'react';
+import {render} from '@react-email/render';
+import {TEMPLATES} from './src/lib/email-templates/registry';
+import {template as p} from '../../closure/borvat-typed/src/lib/email-templates/order-processing';
+import {template as s} from '../../closure/borvat-typed/src/lib/email-templates/order-shipped';
+import {template as d} from '../../closure/borvat-typed/src/lib/email-templates/order-delivered';
+const results=[];
+for(const [name,old] of [['order-processing',p],['order-shipped',s],['order-delivered',d]] as const){
+ const typed=TEMPLATES[name];
+ for(const plainText of [false,true])assert.equal(await render(typed.element(old.previewData),{plainText}),await render(React.createElement(old.component as React.ComponentType<typeof old.previewData>,old.previewData),{plainText}));
+ assert.equal(typeof typed.subject==='function'?typed.subject(old.previewData):typed.subject,typeof old.subject==='function'?old.subject(old.previewData):old.subject);
+ results.push({name,valid_html_text_subject_parity:'PASS'});
+ assert.throws(()=>typed.element({items:'not-an-array'}));results.push({name,malformed_data_rejected:'PASS'});
+}
+const props={siteName:'Synthetic BORVAT',siteUrl:'https://example.test',confirmationUrl:'https://example.test/confirm',recipient:'buyer@example.test',oldEmail:'old@example.test',email:'buyer@example.test',newEmail:'new@example.test',token:'123456'};
+for(const [name,file] of Object.entries({SignupEmail:'signup',InviteEmail:'invite',MagicLinkEmail:'magic-link',RecoveryEmail:'recovery',EmailChangeEmail:'email-change',ReauthenticationEmail:'reauthentication'})){
+ const component=(await import('./src/lib/email-templates/'+file+'.tsx'))[name];const html=await render(React.createElement(component,props));assert.ok(html.includes('<html'));assert.ok(html.includes('Synthetic BORVAT'));results.push({name,render:'PASS'});
+}
+console.log(JSON.stringify({status:'PASS',cases:results.length,results,send_invocations:0},null,2));

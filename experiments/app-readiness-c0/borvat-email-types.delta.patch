@@ -1,0 +1,209 @@
+--- a/src/routes/lovable/email/transactional/preview.ts
++++ b/src/routes/lovable/email/transactional/preview.ts
+@@ -1,4 +1,3 @@
+-import * as React from "react";
+ import { render } from "@react-email/render";
+ import { createFileRoute } from "@tanstack/react-router";
+ import { TEMPLATES } from "@/lib/email-templates/registry";
+@@ -48,7 +47,7 @@
+           }
+ 
+           try {
+-            const html = await render(React.createElement(entry.component, entry.previewData));
++            const html = await render(entry.element(entry.previewData));
+             const resolvedSubject =
+               typeof entry.subject === "function"
+                 ? entry.subject(entry.previewData)
+--- a/src/routes/lovable/email/auth/preview.ts
++++ b/src/routes/lovable/email/auth/preview.ts
+@@ -7,15 +7,6 @@
+ import { RecoveryEmail } from "@/lib/email-templates/recovery";
+ import { EmailChangeEmail } from "@/lib/email-templates/email-change";
+ import { ReauthenticationEmail } from "@/lib/email-templates/reauthentication";
+-
+-const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
+-  signup: SignupEmail,
+-  invite: InviteEmail,
+-  magiclink: MagicLinkEmail,
+-  recovery: RecoveryEmail,
+-  email_change: EmailChangeEmail,
+-  reauthentication: ReauthenticationEmail,
+-};
+ 
+ // Configuration
+ const SITE_NAME = "My Bol.com Clone";
+@@ -28,7 +19,7 @@
+ // even if the project's domain has changed since the template was scaffolded.
+ const SAMPLE_PROJECT_URL = "https://092a5ea2-1dc1-4ffd-a4b4-efe2d3237298.lovableproject.com";
+ const SAMPLE_EMAIL = "user@example.test";
+-const SAMPLE_DATA: Record<string, object> = {
++const SAMPLE_DATA = {
+   signup: {
+     siteName: SITE_NAME,
+     siteUrl: SAMPLE_PROJECT_URL,
+@@ -37,10 +28,12 @@
+   },
+   magiclink: {
+     siteName: SITE_NAME,
++    siteUrl: SAMPLE_PROJECT_URL,
+     confirmationUrl: SAMPLE_PROJECT_URL,
+   },
+   recovery: {
+     siteName: SITE_NAME,
++    siteUrl: SAMPLE_PROJECT_URL,
+     confirmationUrl: SAMPLE_PROJECT_URL,
+   },
+   invite: {
+@@ -50,14 +43,26 @@
+   },
+   email_change: {
+     siteName: SITE_NAME,
++    siteUrl: SAMPLE_PROJECT_URL,
+     oldEmail: SAMPLE_EMAIL,
+     email: SAMPLE_EMAIL,
+     newEmail: SAMPLE_EMAIL,
+     confirmationUrl: SAMPLE_PROJECT_URL,
+   },
+   reauthentication: {
++    siteName: SITE_NAME,
++    siteUrl: SAMPLE_PROJECT_URL,
+     token: "123456",
+   },
++};
++
++const EMAIL_PREVIEWS: Record<string, () => React.ReactElement> = {
++  signup: () => React.createElement(SignupEmail, SAMPLE_DATA.signup),
++  invite: () => React.createElement(InviteEmail, SAMPLE_DATA.invite),
++  magiclink: () => React.createElement(MagicLinkEmail, SAMPLE_DATA.magiclink),
++  recovery: () => React.createElement(RecoveryEmail, SAMPLE_DATA.recovery),
++  email_change: () => React.createElement(EmailChangeEmail, SAMPLE_DATA.email_change),
++  reauthentication: () => React.createElement(ReauthenticationEmail, SAMPLE_DATA.reauthentication),
+ };
+ 
+ export const Route = createFileRoute("/lovable/email/auth/preview")({
+@@ -84,14 +89,13 @@
+           return Response.json({ error: "Invalid JSON in request body" }, { status: 400 });
+         }
+ 
+-        const EmailTemplate = EMAIL_TEMPLATES[type];
++        const preview = EMAIL_PREVIEWS[type];
+ 
+-        if (!EmailTemplate) {
++        if (!preview) {
+           return Response.json({ error: `Unknown email type: ${type}` }, { status: 400 });
+         }
+ 
+-        const sampleData = SAMPLE_DATA[type] || {};
+-        const html = await render(React.createElement(EmailTemplate, sampleData));
++        const html = await render(preview());
+ 
+         return new Response(html, {
+           status: 200,
+--- a/src/lib/email-templates/send-email.ts
++++ b/src/lib/email-templates/send-email.ts
+@@ -1,4 +1,3 @@
+-import * as React from "react";
+ import { render } from "@react-email/render";
+ import { EmailAPIError, sendLovableEmail } from "@lovable.dev/email-js";
+ import { TEMPLATES } from "./registry";
+@@ -57,7 +56,7 @@
+   }
+ 
+   const templateData = options.templateData ?? {};
+-  const element = React.createElement(template.component, templateData);
++  const element = template.element(templateData);
+   const html = await render(element);
+   const text = await render(element, { plainText: true });
+   const subject =
+--- a/src/lib/email-templates/order-delivered.tsx
++++ b/src/lib/email-templates/order-delivered.tsx
+@@ -73,7 +73,7 @@
+     items: [{ title: "Slimme WiFi-lamp", quantity: 2 }],
+     orderTotal: "€ 49,98",
+   },
+-} satisfies TemplateEntry;
++} satisfies TemplateEntry<Props>;
+ 
+ const summary = {
+   border: "1px solid #eeeeee",
+--- a/src/lib/email-templates/registry.ts
++++ b/src/lib/email-templates/registry.ts
+@@ -1,20 +1,43 @@
+-import type { ComponentType } from "react";
+-
+-export interface TemplateEntry {
+-  component: ComponentType<any>;
+-  subject: string | ((data: Record<string, any>) => string);
++import * as React from "react";
++import { z } from "zod";
++export interface TemplateEntry<P extends object> {
++  component: React.ComponentType<P>;
++  subject: string | ((data: Record<string, unknown>) => string);
+   displayName?: string;
+-  previewData?: Record<string, any>;
+-  /** Fixed recipient — overrides caller-provided recipientEmail when set. */
++  previewData?: P;
+   to?: string;
+ }
+-
++const base = z
++  .object({
++    siteUrl: z.string(),
++    orderNumber: z.string(),
++    customerName: z.string(),
++    items: z.array(z.object({ title: z.string(), quantity: z.number() })),
++    orderTotal: z.string(),
++  })
++  .passthrough();
++const shipped = base.extend({
++  trackingCarrier: z.string(),
++  trackingCode: z.string(),
++  trackingUrl: z.string().optional(),
++});
++function bind<P extends object>(entry: TemplateEntry<P>, schema: z.ZodType<P>) {
++  return {
++    subject: (data: unknown) =>
++      typeof entry.subject === "function"
++        ? entry.subject(z.record(z.string(), z.unknown()).parse(data))
++        : entry.subject,
++    displayName: entry.displayName,
++    previewData: entry.previewData,
++    to: entry.to,
++    element: (data: unknown) => React.createElement(entry.component, schema.parse(data)),
++  };
++}
+ import { template as orderProcessing } from "./order-processing";
+ import { template as orderShipped } from "./order-shipped";
+ import { template as orderDelivered } from "./order-delivered";
+-
+-export const TEMPLATES: Record<string, TemplateEntry> = {
+-  "order-processing": orderProcessing,
+-  "order-shipped": orderShipped,
+-  "order-delivered": orderDelivered,
++export const TEMPLATES: Record<string, ReturnType<typeof bind>> = {
++  "order-processing": bind(orderProcessing, base),
++  "order-shipped": bind(orderShipped, shipped),
++  "order-delivered": bind(orderDelivered, base),
+ };
+--- a/src/lib/email-templates/order-processing.tsx
++++ b/src/lib/email-templates/order-processing.tsx
+@@ -74,7 +74,7 @@
+     items: [{ title: "Slimme WiFi-lamp", quantity: 2 }],
+     orderTotal: "€ 49,98",
+   },
+-} satisfies TemplateEntry;
++} satisfies TemplateEntry<Props>;
+ 
+ const summary = {
+   border: "1px solid #eeeeee",
+--- a/src/lib/email-templates/order-shipped.tsx
++++ b/src/lib/email-templates/order-shipped.tsx
+@@ -104,7 +104,7 @@
+     trackingCode: "3SBXYZ1234567",
+     trackingUrl: "https://postnl.nl/tracktrace/?B=3SBXYZ1234567",
+   },
+-} satisfies TemplateEntry;
++} satisfies TemplateEntry<Props>;
+ 
+ const trackingBox = {
+   border: "1px solid #eeeeee",

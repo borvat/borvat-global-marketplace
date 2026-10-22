@@ -1,0 +1,36 @@
+[
+  {
+    "name": "reference",
+    "command": [
+      "node",
+      "scripts/foundation/check.mjs"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "unit",
+    "command": [
+      "node",
+      "--test",
+      "tests/foundation/gate.test.mjs"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "source",
+    "command": [
+      "node",
+      "scripts/foundation/source-parity.mjs"
+    ],
+    "exit": 0
+  },
+  {
+    "name": "gate",
+    "command": [
+      "node",
+      "scripts/foundation/gate.mjs",
+      "C1"
+    ],
+    "exit": 1
+  }
+]
