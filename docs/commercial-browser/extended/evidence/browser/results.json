@@ -1,0 +1,63 @@
+{
+  "browser": "154.0.8037.57",
+  "scope": "synthetic commercial preview; not full app or native integration",
+  "results": [
+    {
+      "width": 1440,
+      "status": "PASS",
+      "extendedCases": [
+        "cart-removal",
+        "stale-cart",
+        "stale-cart-removal",
+        "return-to-draft",
+        "republish-cart",
+        "double-submit",
+        "double-prepare",
+        "keyboard-navigation",
+        "reset-unsaved-input",
+        "reload-draft-and-cart",
+        "keyboard-quantity"
+      ],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "width": 390,
+      "status": "PASS",
+      "extendedCases": [
+        "cart-removal",
+        "stale-cart",
+        "stale-cart-removal",
+        "return-to-draft",
+        "republish-cart",
+        "double-submit",
+        "double-prepare",
+        "keyboard-navigation",
+        "reset-unsaved-input",
+        "reload-draft-and-cart",
+        "keyboard-quantity"
+      ],
+      "pageErrors": [],
+      "externalRequests": []
+    },
+    {
+      "width": 320,
+      "status": "PASS",
+      "extendedCases": [
+        "cart-removal",
+        "stale-cart",
+        "stale-cart-removal",
+        "return-to-draft",
+        "republish-cart",
+        "double-submit",
+        "double-prepare",
+        "keyboard-navigation",
+        "reset-unsaved-input",
+        "reload-draft-and-cart",
+        "keyboard-quantity"
+      ],
+      "pageErrors": [],
+      "externalRequests": []
+    }
+  ]
+}

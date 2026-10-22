@@ -1,0 +1,103 @@
+{
+  "source": "f9dc58c545d964b2676f677133ae34a48d73445b",
+  "status_before": "",
+  "started": "2026-10-22T02:52:37.960306+00:00",
+  "commands": [
+    {
+      "name": "browser",
+      "argv": [
+        "node",
+        "experiments/commercial-application/browser-cycle.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "commercial-tests",
+      "argv": [
+        "node",
+        "--import",
+        "tsx",
+        "--test",
+        "tests/commercial.test.tsx"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "log_sha256": "b642f7b10d14b0fe581312d41875bc93143d77d2d15111cd61a85701b3a7ddae"
+    },
+    {
+      "name": "commercial-types",
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "tsconfig.browser.json",
+        "--noEmit"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "changed-component-lint",
+      "argv": [
+        "node",
+        "apps/marketplace/node_modules/eslint/bin/eslint.js",
+        "--config",
+        "apps/marketplace/eslint.config.js",
+        "apps/marketplace/src/components/commercial/workspace.tsx",
+        "-f",
+        "json"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "2f37a091c7793200524a025e7ed6308e36fe274c0661258a099c6dcb73f8af39"
+    },
+    {
+      "name": "preview-build",
+      "argv": [
+        "node",
+        "experiments/commercial-application/node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "experiments/commercial-application/vite.config.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "bc2ccf8e2321ef03619d4fa0984e08e4ddc57556e58a4434b85c2ddccecb2bfe"
+    },
+    {
+      "name": "foundation",
+      "argv": [
+        "node",
+        "scripts/foundation/check.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8"
+    },
+    {
+      "name": "parity",
+      "argv": [
+        "node",
+        "scripts/foundation/source-parity.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "log_sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d"
+    },
+    {
+      "name": "c1-gate",
+      "argv": [
+        "node",
+        "scripts/foundation/gate.mjs",
+        "C1"
+      ],
+      "cwd": ".",
+      "exit": 1,
+      "log_sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24"
+    }
+  ],
+  "status_after": ""
+}

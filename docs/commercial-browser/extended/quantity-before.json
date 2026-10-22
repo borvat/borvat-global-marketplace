@@ -1,0 +1,6 @@
+{
+  "action": "select quantity then Backspace",
+  "quantityInputsRemaining": 0,
+  "cartEmpty": true,
+  "expected": "Retain the line while editing; only explicit removal or zero removes it"
+}
