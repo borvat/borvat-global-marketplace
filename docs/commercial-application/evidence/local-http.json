@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "argv": [
+    "node",
+    "node_modules/vite/bin/vite.js",
+    "--config",
+    "vite.config.mjs",
+    "--port",
+    "4181"
+  ],
+  "requests": [
+    {
+      "path": "/",
+      "status": 200,
+      "sha256": "9547ef39341762bb3bdb0e43b7e11142875a47c89362789dcf113a6992502b98"
+    },
+    {
+      "path": "/main.tsx",
+      "status": 200,
+      "sha256": "b6b583ea8e0a59b1c1e23d45ecc94ad9dd0ecb4dba8472d1f9e5702278d06862"
+    }
+  ],
+  "scope": "Local HTTP HTML/module smoke only; no browser rendering/hydration/click certification"
+}

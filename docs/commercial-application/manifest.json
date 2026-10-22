@@ -1,0 +1,170 @@
+{
+  "base_commit": "7306cd9d9479a81b3443d8611e754450b9efd4a8",
+  "scope": "commercial_application_only",
+  "C0": "HOLD",
+  "C1_authorized": false,
+  "Codex_authorized": false,
+  "detailed_diagnostic_disclosure": "PENDING_HUMAN_REVIEW; excluded; not retried",
+  "records": [
+    {
+      "path": "apps/marketplace/src/components/commercial/workspace.tsx",
+      "sha256": "c09200cc289b6e53d47c18c2d15319d93f1d4fe4df758d2a01a795953df59143",
+      "bytes": 22823
+    },
+    {
+      "path": "apps/marketplace/src/lib/commercial/demo-adapter.ts",
+      "sha256": "df2f4d63660dfdf9784156464c63b7ef1a7f1e6a9043a5294be855b9039304d5",
+      "bytes": 8882
+    },
+    {
+      "path": "experiments/commercial-application/README.md",
+      "sha256": "ea011f4652d7b507737f89441add242db3a5cf6de2aeb365c0b581d9c05417d7",
+      "bytes": 3722
+    },
+    {
+      "path": "experiments/commercial-application/http-smoke.py",
+      "sha256": "b3fc7614ea600ebe4f65d9a68da8209d7c738180aa320990f232854f1c91f57c",
+      "bytes": 1812
+    },
+    {
+      "path": "experiments/commercial-application/index.html",
+      "sha256": "8dbee3e0e460aa3d60be523053d5503d9d5ee10cc17f05c063843f4b8322256b",
+      "bytes": 317
+    },
+    {
+      "path": "experiments/commercial-application/main.tsx",
+      "sha256": "7e3329622e5bcd3542e111d3449120824ce26aae1666c6f0f81a6b6fba5c7e94",
+      "bytes": 561
+    },
+    {
+      "path": "experiments/commercial-application/prepare-local.py",
+      "sha256": "0eaa854d1d0e36e0bd0d5163da916a373b15c55f4959e6335ff3a8369b10ce21",
+      "bytes": 760
+    },
+    {
+      "path": "experiments/commercial-application/tests/commercial.test.tsx",
+      "sha256": "08ff473f175cececdcd0ba1ddb42cebda94f16033a89db90a9e2a29289faf6e9",
+      "bytes": 10391
+    },
+    {
+      "path": "experiments/commercial-application/tests/email-render.test.tsx",
+      "sha256": "b6269db5d1110a47c54db0ffed1cc7b6a4be9c0fe027970a45bc2d6487587fa0",
+      "bytes": 3160
+    },
+    {
+      "path": "experiments/commercial-application/tsconfig.json",
+      "sha256": "cfd729770acee97a2a7fdca2169c09b66c4b114161a2df67b8f7c27fdca73c60",
+      "bytes": 574
+    },
+    {
+      "path": "experiments/commercial-application/verify.py",
+      "sha256": "8a1e0751b660162881d546441c736fdf61c6a060071a8c97d2adbdf11b6c8988",
+      "bytes": 2309
+    },
+    {
+      "path": "experiments/commercial-application/vite.config.mjs",
+      "sha256": "8740b418147fcc5fca2ca82bb18f3c939c300f8e23fd7c25df6b2797546dd524",
+      "bytes": 639
+    },
+    {
+      "path": "docs/commercial-application/ACCEPTANCE.md",
+      "sha256": "d7fd9a8705caef53bb48b7f8fbc129dcf20724d2ac7744a19b70f7fa5d7376a9",
+      "bytes": 1949
+    },
+    {
+      "path": "docs/commercial-application/C0-PLAN.md",
+      "sha256": "cf97ab7934dc003941d956bb43dd90738b98d13514c655e3f1c18517818f85eb",
+      "bytes": 2355
+    },
+    {
+      "path": "docs/commercial-application/INTEGRATION.md",
+      "sha256": "f97fd3cab485eab7e6f3472441fc17e3048c145f46aed926761b479861a2d529",
+      "bytes": 1957
+    },
+    {
+      "path": "docs/commercial-application/REPORT.md",
+      "sha256": "8a2a4b02872f2610cfaf31b2eba8909a9e28d3ec21449fdcefc7a7ebd11ea65b",
+      "bytes": 5476
+    },
+    {
+      "path": "docs/commercial-application/REVIEW.md",
+      "sha256": "a30a5741104690c3678d8a903710ab0b151cfd4a309458c1d17bf179a70aa316",
+      "bytes": 2249
+    },
+    {
+      "path": "docs/commercial-application/evidence/asset-source-check.json",
+      "sha256": "d5a4beb8b2ce8483898999ac75b92e75e34c59019693cb647edd501b5868a746",
+      "bytes": 1736
+    },
+    {
+      "path": "docs/commercial-application/evidence/browser-status.json",
+      "sha256": "ba258daf8d2292c86d5bd3f39331d633d78b99fe04e1b29e073d7801b0df92f0",
+      "bytes": 470
+    },
+    {
+      "path": "docs/commercial-application/evidence/c1-gate.log",
+      "sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24",
+      "bytes": 150
+    },
+    {
+      "path": "docs/commercial-application/evidence/commands.json",
+      "sha256": "b462379e2eb7172414f1833d37e4d51b03de03bee8da70be8ed12c3c50cc72d7",
+      "bytes": 2985
+    },
+    {
+      "path": "docs/commercial-application/evidence/commercial-build.log",
+      "sha256": "8d9e33b46b33feae533899991d0a8a9f76b590f561a1475d6207edb32ec405aa",
+      "bytes": 353
+    },
+    {
+      "path": "docs/commercial-application/evidence/commercial-lint.log",
+      "sha256": "6539aee39ea92f935ba77b8457eaea130a5e69b0b4d0ad4c6585a0e0df8b0c0c",
+      "bytes": 1434
+    },
+    {
+      "path": "docs/commercial-application/evidence/commercial-tests.log",
+      "sha256": "68af9df08beca448175266b187c8b08190c3bf151503e9803f99fd599637054b",
+      "bytes": 2780
+    },
+    {
+      "path": "docs/commercial-application/evidence/commercial-types.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "docs/commercial-application/evidence/development-commands.json",
+      "sha256": "0bf7663e2d621d2354a84abd0ae0bebad2738b23fd521599eeb7f5e29b4721a5",
+      "bytes": 2683
+    },
+    {
+      "path": "docs/commercial-application/evidence/development-types-failure.log",
+      "sha256": "f45cb66a7a9ef26c579e9f3ee8f301f367861793e79b5723f19a38baff34b5ab",
+      "bytes": 2080
+    },
+    {
+      "path": "docs/commercial-application/evidence/foundation-reference.log",
+      "sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8",
+      "bytes": 229
+    },
+    {
+      "path": "docs/commercial-application/evidence/local-http-server.log",
+      "sha256": "f2e51c7f6951142c43c90cee9dd6482e750b8881261c87ee8ddff4143a124fec",
+      "bytes": 159
+    },
+    {
+      "path": "docs/commercial-application/evidence/local-http.json",
+      "sha256": "9a7168e4f93d5ab426d3c77bb750a13a0954d9680749ee0f4db8c74ca7ab6a00",
+      "bytes": 553
+    },
+    {
+      "path": "docs/commercial-application/evidence/runtime-and-reuse.json",
+      "sha256": "e7ef63442747e1a0760c0f37517cadef2fcf7f974f3912793f64a7d8819c06bd",
+      "bytes": 1481
+    },
+    {
+      "path": "docs/commercial-application/evidence/source-parity.log",
+      "sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d",
+      "bytes": 127
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "base_commit": "7306cd9d9479a81b3443d8611e754450b9efd4a8",
+  "runtime": "v24.19.0",
+  "commands": [
+    {
+      "name": "commercial-types",
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "tsconfig.json",
+        "--noEmit"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 2,
+      "expected_exit": 0,
+      "status": "FAIL",
+      "log_sha256": "f45cb66a7a9ef26c579e9f3ee8f301f367861793e79b5723f19a38baff34b5ab"
+    },
+    {
+      "name": "commercial-tests",
+      "argv": [
+        "node",
+        "--import",
+        "tsx",
+        "--test",
+        "tests/commercial.test.tsx",
+        "tests/email-render.test.tsx"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "10c7e5bf9418f6020af6024a2e47e4328eef9d4ccd87aebee1e410094fc473a7"
+    },
+    {
+      "name": "commercial-build",
+      "argv": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "vite.config.mjs"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "9016c9ba0dd4e0a5620dc2c79a5ea07eb38603840ab8404829ff3f8794b7dcc2"
+    },
+    {
+      "name": "commercial-lint",
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/lib/commercial/demo-adapter.ts",
+        "src/components/commercial/workspace.tsx",
+        "-f",
+        "json"
+      ],
+      "cwd": "apps/marketplace",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "695e98cc48ad81875df6660d67b033f85cdad410600b4bd3e7adb2c24d677077"
+    },
+    {
+      "name": "foundation-reference",
+      "argv": [
+        "node",
+        "scripts/foundation/check.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8"
+    },
+    {
+      "name": "source-parity",
+      "argv": [
+        "node",
+        "scripts/foundation/source-parity.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d"
+    },
+    {
+      "name": "c1-gate",
+      "argv": [
+        "node",
+        "scripts/foundation/gate.mjs",
+        "C1"
+      ],
+      "cwd": ".",
+      "exit": 1,
+      "expected_exit": 1,
+      "status": "HOLD",
+      "log_sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24"
+    }
+  ]
+}

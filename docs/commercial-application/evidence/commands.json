@@ -1,0 +1,110 @@
+{
+  "base_commit": "7306cd9d9479a81b3443d8611e754450b9efd4a8",
+  "runtime": "v24.19.0",
+  "commands": [
+    {
+      "name": "commercial-types",
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "tsconfig.json",
+        "--noEmit"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "commercial-tests",
+      "argv": [
+        "node",
+        "--import",
+        "tsx",
+        "--test",
+        "tests/commercial.test.tsx",
+        "tests/email-render.test.tsx"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "68af9df08beca448175266b187c8b08190c3bf151503e9803f99fd599637054b"
+    },
+    {
+      "name": "commercial-build",
+      "argv": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "vite.config.mjs"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "8d9e33b46b33feae533899991d0a8a9f76b590f561a1475d6207edb32ec405aa"
+    },
+    {
+      "name": "commercial-lint",
+      "argv": [
+        "node",
+        "apps/marketplace/node_modules/eslint/bin/eslint.js",
+        "--config",
+        "apps/marketplace/eslint.config.js",
+        "apps/marketplace/src/lib/commercial/demo-adapter.ts",
+        "apps/marketplace/src/components/commercial/workspace.tsx",
+        "experiments/commercial-application/main.tsx",
+        "experiments/commercial-application/tests/commercial.test.tsx",
+        "experiments/commercial-application/tests/email-render.test.tsx",
+        "-f",
+        "json"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "6539aee39ea92f935ba77b8457eaea130a5e69b0b4d0ad4c6585a0e0df8b0c0c"
+    },
+    {
+      "name": "foundation-reference",
+      "argv": [
+        "node",
+        "scripts/foundation/check.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8"
+    },
+    {
+      "name": "source-parity",
+      "argv": [
+        "node",
+        "scripts/foundation/source-parity.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "PASS",
+      "log_sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d"
+    },
+    {
+      "name": "c1-gate",
+      "argv": [
+        "node",
+        "scripts/foundation/gate.mjs",
+        "C1"
+      ],
+      "cwd": ".",
+      "exit": 1,
+      "expected_exit": 1,
+      "status": "HOLD",
+      "log_sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24"
+    }
+  ]
+}
