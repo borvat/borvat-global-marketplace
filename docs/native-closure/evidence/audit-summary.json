@@ -1,0 +1,17 @@
+{
+  "scope": "Whole experimental workspace, unique advisory URLs; not exploit counts",
+  "critical": 0,
+  "high": 9,
+  "moderate": 19,
+  "low": 7,
+  "remaining_high_packages": [
+    "braces",
+    "image-size",
+    "react-router",
+    "sharp",
+    "vite",
+    "webpack-dev-middleware"
+  ],
+  "backend_dependency_instances_affected": 2,
+  "unresolved_backend_edges": 0
+}

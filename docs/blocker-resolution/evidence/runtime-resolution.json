@@ -1,0 +1,10 @@
+{
+  "framework": "/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+framework@2.21.2+99d28bfdd9f454a1/node_modules/@medusajs/framework/dist/index.js",
+  "express": "/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/express@4.22.3/node_modules/express/index.js",
+  "express_version": "4.22.3",
+  "proxy": "/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/proxy-addr@2.0.8/node_modules/proxy-addr/index.js",
+  "proxy_version": "2.0.8",
+  "IPv4": false,
+  "mapped": false,
+  "IPv6": true
+}

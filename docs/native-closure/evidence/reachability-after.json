@@ -1,0 +1,47 @@
+{
+  "scope": "Actual installed dependency traversal from backend roots; dependency reachability is NOT exploitability or request-path reachability. Optional/peer-only imports may be missed. Unresolved nodes prevent clean certification.",
+  "visited_packages": 924,
+  "backend_reachable_high_critical": [
+    {
+      "name": "vite",
+      "version": "7.3.6",
+      "path": "<MERCUR>/node_modules/.bun/vite@7.3.6+b56c02bbb6a00a5a/node_modules/vite/package.json",
+      "dependency_path": [
+        "@medusajs/medusa",
+        "@medusajs/admin-bundler",
+        "vite"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-587h-7wmj-h5pm"
+        }
+      ]
+    },
+    {
+      "name": "braces",
+      "version": "3.0.3",
+      "path": "<MERCUR>/node_modules/.bun/braces@3.0.3/node_modules/braces/package.json",
+      "dependency_path": [
+        "@medusajs/medusa",
+        "@medusajs/admin-bundler",
+        "tailwindcss",
+        "chokidar",
+        "braces"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm"
+        }
+      ]
+    }
+  ],
+  "unresolved": [],
+  "other_workspace_high_critical_names": [
+    "image-size",
+    "react-router",
+    "sharp",
+    "webpack-dev-middleware"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "surooh-http-dependency-trial",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "compression": "1.8.2",
+    "express": "4.22.3",
+    "proxy-addr": "2.0.8",
+    "axios": "1.20.0",
+    "tar": "7.5.22"
+  },
+  "version": "0.0.0"
+}

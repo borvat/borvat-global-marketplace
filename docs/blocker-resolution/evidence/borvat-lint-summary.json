@@ -1,0 +1,11 @@
+{
+  "errors": 156,
+  "warnings": 25,
+  "rules": {
+    "@typescript-eslint/no-explicit-any": 152,
+    "no-empty": 3,
+    "react-refresh/only-export-components": 19,
+    "prefer-const": 1,
+    "react-hooks/exhaustive-deps": 6
+  }
+}

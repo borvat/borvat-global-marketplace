@@ -1,0 +1,53 @@
+{
+  "numPassedTests": 60,
+  "numFailedTests": 11,
+  "numPendingTests": 0,
+  "numPassedTestSuites": 3,
+  "numFailedTestSuites": 2,
+  "failed_cases": [
+    {
+      "name": " NA2 order-edit-confirmed accepts a matching persisted authority then enters native body",
+      "message": "Error: expect(received).rejects.toThrow(expected)\n\nExpected substring: \"AUTHORIZED_NATIVE_BODY_REACHED\"\n\nReceived function did not throw\n    at Object.toThrow (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/expect@30.4.1/node_modules/expect/build/index.js:2155:20)\n    at Object.toThrow (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/borvat/native-authority.spec.ts:23:357)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)"
+    },
+    {
+      "name": " Split order payments (split at capture) vendor capture lets a seller capture the payment of a cart that only holds its own order",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: undefined\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:258:27)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:255:21)"
+    },
+    {
+      "name": " Split order payments (split at capture) capture gives every order its own captured payment collection",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: undefined\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:219:23)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at captureEverything (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:216:17)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:306:21)"
+    },
+    {
+      "name": " Split order payments (split at capture) capture exposes the order's own payment collection on the admin order",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: undefined\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:219:23)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at captureEverything (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:216:17)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:338:21)"
+    },
+    {
+      "name": " Split order payments (split at capture) capture does not split the same capture twice",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: undefined\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:219:23)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at captureEverything (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:216:17)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:354:21)"
+    },
+    {
+      "name": " Split order payments (split at capture) refund refunds an order's payment through the stock admin route",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: undefined\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:219:23)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at captureEverything (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:216:17)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:375:21)"
+    },
+    {
+      "name": " Split order payments (split at capture) refund cannot refund more than the order's share",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: undefined\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:219:23)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at captureEverything (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:216:17)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:394:21)"
+    },
+    {
+      "name": " Split order payments (split at capture) refund lets a seller refund only their own order's payment",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: undefined\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:219:23)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at captureEverything (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:216:17)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:410:21)"
+    },
+    {
+      "name": " Split order payments (split at capture) cancel refunds only the canceled order after capture",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: undefined\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:219:23)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at captureEverything (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:216:17)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:436:21)"
+    },
+    {
+      "name": " Split order payments (split at capture) cancel keeps the authorization for the remaining order, then refunds the canceled share on capture",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: undefined\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:475:27)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:472:21)"
+    },
+    {
+      "name": " Split order payments (split at capture) cancel voids the cart payment once every order is canceled",
+      "message": "Error: expect(received).toBeTruthy()\n\nReceived: null\n    at toBeTruthy (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:508:27)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at eventually (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:168:32)\n    at Object.<anonymous> (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/integration-tests/http/payment/split-order-payments.spec.ts:503:21)"
+    }
+  ]
+}

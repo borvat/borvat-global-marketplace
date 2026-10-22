@@ -1,0 +1,345 @@
+{
+  "scope": "Actual installed dependency traversal from backend roots; dependency reachability is NOT exploitability or request-path reachability. Optional/peer-only imports may be missed. Unresolved nodes prevent clean certification.",
+  "visited_packages": 777,
+  "backend_reachable_high_critical": [
+    {
+      "name": "compression",
+      "version": "1.8.1",
+      "path": "<MERCUR>/node_modules/.bun/compression@1.8.1/node_modules/compression/package.json",
+      "dependency_path": [
+        "@medusajs/framework",
+        "compression"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-vc2v-76pw-4v95"
+        }
+      ]
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.16",
+      "path": "<MERCUR>/node_modules/.bun/postcss@8.5.16/node_modules/postcss/package.json",
+      "dependency_path": [
+        "@mercurjs/core",
+        "sanitize-html",
+        "postcss"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-r28c-9q8g-f849"
+        }
+      ]
+    },
+    {
+      "name": "figlet",
+      "version": "1.11.0",
+      "path": "<MERCUR>/node_modules/.bun/figlet@1.11.0/node_modules/figlet/package.json",
+      "dependency_path": [
+        "@medusajs/framework",
+        "@jercle/yargonaut",
+        "figlet"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-62ch-8vmq-8xm7"
+        }
+      ]
+    },
+    {
+      "name": "axios",
+      "version": "1.16.1",
+      "path": "<MERCUR>/node_modules/.bun/axios@1.16.1/node_modules/axios/package.json",
+      "dependency_path": [
+        "@medusajs/framework",
+        "@medusajs/telemetry",
+        "axios"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-gcfj-64vw-6mp9"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-m8m8-qj5v-23w3"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-c29m-xwm3-cm6r"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-mghh-pgcx-3jjj"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-x97p-jq2g-jp4f"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-3pq3-5fj3-cg6v"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-542g-h47m-68v8"
+        }
+      ]
+    },
+    {
+      "name": "vite",
+      "version": "7.3.6",
+      "path": "<MERCUR>/node_modules/.bun/vite@7.3.6+b56c02bbb6a00a5a/node_modules/vite/package.json",
+      "dependency_path": [
+        "@medusajs/medusa",
+        "@medusajs/admin-bundler",
+        "vite"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-587h-7wmj-h5pm"
+        }
+      ]
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.12",
+      "path": "<MERCUR>/node_modules/.bun/nanoid@3.3.12/node_modules/nanoid/package.json",
+      "dependency_path": [
+        "@mercurjs/core",
+        "sanitize-html",
+        "postcss",
+        "nanoid"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-28wg-ghj8-5hjv"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-2v37-7h3g-55p8"
+        }
+      ]
+    },
+    {
+      "name": "source-map-js",
+      "version": "1.2.1",
+      "path": "<MERCUR>/node_modules/.bun/source-map-js@1.2.1/node_modules/source-map-js/package.json",
+      "dependency_path": [
+        "@mercurjs/core",
+        "sanitize-html",
+        "postcss",
+        "source-map-js"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q"
+        }
+      ]
+    },
+    {
+      "name": "follow-redirects",
+      "version": "1.16.0",
+      "path": "<MERCUR>/node_modules/.bun/follow-redirects@1.16.0/node_modules/follow-redirects/package.json",
+      "dependency_path": [
+        "@medusajs/framework",
+        "@medusajs/telemetry",
+        "axios",
+        "follow-redirects"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-q3jh-wrc6-jgq8"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-8r9p-f939-6h3c"
+        }
+      ]
+    },
+    {
+      "name": "form-data",
+      "version": "4.0.5",
+      "path": "<MERCUR>/node_modules/.bun/form-data@4.0.5/node_modules/form-data/package.json",
+      "dependency_path": [
+        "@medusajs/framework",
+        "@medusajs/telemetry",
+        "axios",
+        "form-data"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-hmw2-7cc7-3qxx"
+        }
+      ]
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.6",
+      "path": "<MERCUR>/node_modules/.bun/brace-expansion@5.0.6/node_modules/brace-expansion/package.json",
+      "dependency_path": [
+        "@medusajs/framework",
+        "glob",
+        "minimatch",
+        "brace-expansion"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p"
+        }
+      ]
+    },
+    {
+      "name": "browserslist",
+      "version": "4.28.2",
+      "path": "<MERCUR>/node_modules/.bun/browserslist@4.28.2+d57303656020464d/node_modules/browserslist/package.json",
+      "dependency_path": [
+        "@medusajs/medusa",
+        "@medusajs/admin-bundler",
+        "autoprefixer",
+        "browserslist"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g"
+        }
+      ]
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.15",
+      "path": "<MERCUR>/node_modules/.bun/postcss@8.5.15/node_modules/postcss/package.json",
+      "dependency_path": [
+        "@medusajs/medusa",
+        "@medusajs/admin-bundler",
+        "tailwindcss",
+        "postcss"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-r28c-9q8g-f849"
+        }
+      ]
+    },
+    {
+      "name": "braces",
+      "version": "3.0.3",
+      "path": "<MERCUR>/node_modules/.bun/braces@3.0.3/node_modules/braces/package.json",
+      "dependency_path": [
+        "@medusajs/medusa",
+        "@medusajs/admin-bundler",
+        "tailwindcss",
+        "chokidar",
+        "braces"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm"
+        }
+      ]
+    },
+    {
+      "name": "immutable",
+      "version": "5.1.5",
+      "path": "<MERCUR>/node_modules/.bun/immutable@5.1.5/node_modules/immutable/package.json",
+      "dependency_path": [
+        "@medusajs/framework",
+        "@medusajs/utils",
+        "@graphql-codegen/typescript",
+        "@graphql-codegen/visitor-plugin-common",
+        "@graphql-tools/relay-operation-optimizer",
+        "@ardatan/relay-compiler",
+        "immutable"
+      ],
+      "advisories": [
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-v56q-mh7h-f735"
+        },
+        {
+          "severity": "high",
+          "url": "https://github.com/advisories/GHSA-xvcm-6775-5m9r"
+        }
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "parent": "@medusajs/framework",
+      "name": "@medusajs/deps"
+    },
+    {
+      "parent": "@medusajs/modules-sdk",
+      "name": "@medusajs/deps"
+    },
+    {
+      "parent": "@medusajs/orchestration",
+      "name": "@medusajs/deps"
+    },
+    {
+      "parent": "@medusajs/utils",
+      "name": "@medusajs/deps"
+    },
+    {
+      "parent": "@medusajs/workflows-sdk",
+      "name": "@medusajs/deps"
+    },
+    {
+      "parent": "@medusajs/query",
+      "name": "@medusajs/deps"
+    },
+    {
+      "parent": "@babel/helper-compilation-targets",
+      "name": "@babel/compat-data"
+    },
+    {
+      "parent": "fast-xml-builder",
+      "name": "xml-naming"
+    }
+  ],
+  "other_workspace_high_critical_names": [
+    "@grpc/grpc-js",
+    "@storybook/core",
+    "http-proxy-middleware",
+    "image-size",
+    "joi",
+    "js-yaml",
+    "react-router",
+    "sharp",
+    "storybook",
+    "tar",
+    "webpack-dev-middleware"
+  ]
+}

@@ -1,0 +1,18 @@
+✔ J01 own seller command executes once under contention (228.309242ms)
+✔ J02 foreign seller and forged tenant context rejected (11.261583ms)
+✔ J03 buyer and unknown administrator payload cannot enqueue (102.466863ms)
+✔ J04 revoked membership after queue is rechecked by worker (199.198701ms)
+✔ J05 foreign resource injected by privileged transport cannot cross tenant (12.67905ms)
+✔ J06 pooled API identity does not persist beyond transaction (10.527277ms)
+✔ J07 worker and API cannot directly rewrite domain rows or audit (12.460781ms)
+✔ J08 duplicate/conflicting command identity (11.943096ms)
+✔ J09 concurrent duplicate enqueue creates one command (16.304328ms)
+✔ J10 exception rollback leaves no partial domain effect (17.488218ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 784.61563

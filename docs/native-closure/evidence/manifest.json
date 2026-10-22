@@ -1,0 +1,446 @@
+{
+  "basis_commit": "2b1358cfde15f998624f818dd62ec53d2e3b0404",
+  "scope": "New native closure artifacts only, excludes itself; previous source/evidence inherited unchanged",
+  "records": [
+    {
+      "path": "docs/native-closure/C0-C6.md",
+      "bytes": 3726,
+      "sha256": "1a702813296f4f442f79705156a182d8fb0188d139ae2fddfc3371b92ad81eb0"
+    },
+    {
+      "path": "docs/native-closure/INTEGRATION.md",
+      "bytes": 3045,
+      "sha256": "68e468e08d5993a41d96b98081aab5edde1ea7aae4bfe71ae8273ec25f9b2574"
+    },
+    {
+      "path": "docs/native-closure/REPORT.md",
+      "bytes": 10229,
+      "sha256": "018e75cf1473fbb7dd6008bf7fb5bdb4979ea681955b02fc5e2a5799e9606e9c"
+    },
+    {
+      "path": "docs/native-closure/evidence/asset-recovery-attempts.json",
+      "bytes": 14217,
+      "sha256": "17d41fa9a990f2b137ec2e074ab85a276bfb768a0cb3770c95208a60f8c8dc56"
+    },
+    {
+      "path": "docs/native-closure/evidence/audit-final.json.gz",
+      "bytes": 3084,
+      "sha256": "197ebb53f6bf64329cf2332910cd975105c1139ce423242776c393fa0d723fc0"
+    },
+    {
+      "path": "docs/native-closure/evidence/audit-summary.json",
+      "bytes": 368,
+      "sha256": "bf7a65d4567979e595bc01777f169cdfd298fb17f2ba76fd2fd18ecd302af18d"
+    },
+    {
+      "path": "docs/native-closure/evidence/borvat-checks.json",
+      "bytes": 324,
+      "sha256": "0970c2a168952f3eef8b3057c631e3a523f8bb5b5ca8e6d2548a03d2357f03aa"
+    },
+    {
+      "path": "docs/native-closure/evidence/borvat-javascript-parity.json",
+      "bytes": 608,
+      "sha256": "a3fb59f09d59820158214a9fee1c53671933762d835579ce9c13354c6c8a06ca"
+    },
+    {
+      "path": "docs/native-closure/evidence/borvat-lint-summary.json",
+      "bytes": 102,
+      "sha256": "c4197bb5e3969c5b0b352bd05fa7fea8cc98866158d0bb50635ac577d1accf41"
+    },
+    {
+      "path": "docs/native-closure/evidence/candidate-bun.lock.gz",
+      "bytes": 273588,
+      "sha256": "b5acf013edcbd4c578abecc8314d1141f95de5152b9d255e90b240d5125c483f"
+    },
+    {
+      "path": "docs/native-closure/evidence/candidate-package.json.gz",
+      "bytes": 841,
+      "sha256": "dd8c444acd497f83a6a593cc6c082a7df7430ae00ab2c11ef01332079349b6be"
+    },
+    {
+      "path": "docs/native-closure/evidence/command-example.json",
+      "bytes": 422,
+      "sha256": "35aaa8952cdcf1e34323c11092550737945f19e915a3b915348f132a0e14ecbf"
+    },
+    {
+      "path": "docs/native-closure/evidence/contract-tests.json",
+      "bytes": 1214,
+      "sha256": "d05f1757a55993a45d99e08810eeb6578228fef1dfaf79bd8d43a100347b875f"
+    },
+    {
+      "path": "docs/native-closure/evidence/final-profile-exits.json",
+      "bytes": 74,
+      "sha256": "c773e38d8db5ccad3e3bfac32ebc481031e7316974547a61a6ca597318d3fd7d"
+    },
+    {
+      "path": "docs/native-closure/evidence/financial-entrypoints.json",
+      "bytes": 2260,
+      "sha256": "b9cdeaf558349da7483bbffea1f95c1b03e07d4cbedc21f9f4d0735170653e77"
+    },
+    {
+      "path": "docs/native-closure/evidence/full-workspace-installed.json.gz",
+      "bytes": 2092,
+      "sha256": "8fd3b9c38eccffcfc050489dca55897d43e6ee4204c4eaaccd65061e257b49e3"
+    },
+    {
+      "path": "docs/native-closure/evidence/full-workspace-sbom.cdx.json.gz",
+      "bytes": 477760,
+      "sha256": "368e395cc14d0ed1474826415f36eff899e46921dd103dbd4a9fb7734eeb4a4e"
+    },
+    {
+      "path": "docs/native-closure/evidence/full-workspace-summary.json",
+      "bytes": 149,
+      "sha256": "fd46aa750db1682692027f59aee00ee9b349c7ed8970e96e4733488b117b0629"
+    },
+    {
+      "path": "docs/native-closure/evidence/installed-backend-sbom.cdx.json.gz",
+      "bytes": 180754,
+      "sha256": "d8c561e78ebb7f02c5c1b5511188c10313acb3ac6d94164b1d6fe748c4b821b4"
+    },
+    {
+      "path": "docs/native-closure/evidence/installed-version-checks.json",
+      "bytes": 4767,
+      "sha256": "1dc8223544698009d855b1b7c4b15ef49d34f3d75bae2344309ad4c4fb1df90a"
+    },
+    {
+      "path": "docs/native-closure/evidence/integration-source-pins.json",
+      "bytes": 514,
+      "sha256": "7d157bb934f8545f2b1dd2bc59526550be20c3dc97111b7c10c2fa21ff4b5aae"
+    },
+    {
+      "path": "docs/native-closure/evidence/lock-dependency-preflight.json",
+      "bytes": 674,
+      "sha256": "330b76e61c9721d5816dfce7b61b053db59134f5fc2847b0772335ed723ebe9a"
+    },
+    {
+      "path": "docs/native-closure/evidence/medusa-entrypoints.json",
+      "bytes": 2441,
+      "sha256": "767a15860d054002605ff269b050cdb85184c52b0b70feed764eeb0532729b47"
+    },
+    {
+      "path": "docs/native-closure/evidence/native-ingress-inventory.json",
+      "bytes": 1446,
+      "sha256": "2c49a3fa38cc510888a93d78af123c31e004cf07b35114bd1507c00ae93a4770"
+    },
+    {
+      "path": "docs/native-closure/evidence/native-restore-result.json",
+      "bytes": 33557,
+      "sha256": "c07d0d034ec7ff9dd3be22c3e74a2a2a2671fbc8aa3670e5df4057a7e18029a4"
+    },
+    {
+      "path": "docs/native-closure/evidence/pg-client-build.json",
+      "bytes": 660,
+      "sha256": "6a80cc5c16c6b32858ec75ce81a6ff8befba135b8f46a66efad5b790adc44617"
+    },
+    {
+      "path": "docs/native-closure/evidence/reachability-after.json",
+      "bytes": 1344,
+      "sha256": "880aa334718ed6a6ef11ceac1d080698bc38dc31017b5317b2e789bb7cb613e7"
+    },
+    {
+      "path": "docs/native-closure/evidence/registry-pins.json",
+      "bytes": 1310,
+      "sha256": "e8a318d57879f3495670aada3a14098380cab7efbcb63eaa5dab17be75675158"
+    },
+    {
+      "path": "docs/native-closure/evidence/run-receipt.json",
+      "bytes": 3418,
+      "sha256": "f5ff313b3db0308a8f27a77bd7140ba83912441c7a0bce395970170e7af7061c"
+    },
+    {
+      "path": "docs/native-closure/evidence/runtime-final.json",
+      "bytes": 370,
+      "sha256": "ce8d72f6132de823189d8e7871e6b3d4c521f2519f61ab9bf7c610d54f3386db"
+    },
+    {
+      "path": "docs/native-closure/evidence/sbom-validation.json",
+      "bytes": 146,
+      "sha256": "635de1a29f7322781ea5109885c3d361a3a914a0044e14b872b54d8a019b9e28"
+    },
+    {
+      "path": "docs/native-closure/evidence/scoped-lock-preflight.json",
+      "bytes": 2137,
+      "sha256": "c7df22e5ab23e3442c8eb1450e74a5ffb3098fb00294f07f54cf953a64cd920d"
+    },
+    {
+      "path": "docs/native-closure/evidence/second-batch-metadata.json.gz",
+      "bytes": 4207,
+      "sha256": "66d69b329d4d40f3273a37d07da08b9cc6c10b2eac8756bee303f307123f071e"
+    },
+    {
+      "path": "docs/native-closure/evidence/verified-package-metadata.json.gz",
+      "bytes": 7151,
+      "sha256": "7db4c91d8069f95c2d4fce8516c666a5b7c94e41b1e932826bae5d1ca8a64348"
+    },
+    {
+      "path": "docs/native-closure/logs/borvat-build-exit.json",
+      "bytes": 490,
+      "sha256": "8019da89a322708cfcb3cd0a1561e5593f0b3806bd19dcd645b6294cab852543"
+    },
+    {
+      "path": "docs/native-closure/logs/borvat-build.log",
+      "bytes": 4760,
+      "sha256": "d10dfe78c882f05a4949f6529425f0f596b2ce430f3cffa87637c60571aaf167"
+    },
+    {
+      "path": "docs/native-closure/logs/borvat-lint.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/native-closure/logs/borvat-typecheck.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/native-closure/logs/borvat-typecheck.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/native-closure/logs/dependency-frozen-install.log",
+      "bytes": 228,
+      "sha256": "870b6412bd4469376fd0f1174592f363b67fabe412057daa6f30fa7e980c914d"
+    },
+    {
+      "path": "docs/native-closure/logs/foundation/exits.json",
+      "bytes": 54,
+      "sha256": "38d87c9b0f1ed424524a9beb9af4c78ba7255fb4627fad32765a77c918f3b6a7"
+    },
+    {
+      "path": "docs/native-closure/logs/foundation/gate-tests.log",
+      "bytes": 793,
+      "sha256": "841c3a095bdc7817a86f0fbed56ac04c373c77df786a7e82900d08c91f9f56be"
+    },
+    {
+      "path": "docs/native-closure/logs/foundation/reference.log",
+      "bytes": 229,
+      "sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8"
+    },
+    {
+      "path": "docs/native-closure/logs/foundation/source.log",
+      "bytes": 127,
+      "sha256": "d7e67af31b0029e149417a37354a4cbaef1c15e58175ea94b50cb5376d8df22d"
+    },
+    {
+      "path": "docs/native-closure/logs/native-authority-only/command.json",
+      "bytes": 894,
+      "sha256": "256c2a37f271b6791dc01b61833750ec87b538cb6bd66eed0110d79853d41f62"
+    },
+    {
+      "path": "docs/native-closure/logs/native-authority-only/exit.json",
+      "bytes": 16,
+      "sha256": "2618b95f1f6be6bfde8537756f85b83845d039001563135b9d59d817446733eb"
+    },
+    {
+      "path": "docs/native-closure/logs/native-authority-only/results.json.gz",
+      "bytes": 2708,
+      "sha256": "3b973136f367de12ab7c4aac19744d12a0da679082bac1c40c9b795cf4be30bc"
+    },
+    {
+      "path": "docs/native-closure/logs/native-authority-only/summary.json",
+      "bytes": 1719,
+      "sha256": "279cfabcd6d3fa63ca04e366e19b98c866d383493d6c5ff3f30460671bbdd190"
+    },
+    {
+      "path": "docs/native-closure/logs/native-authority-only/test.log.gz",
+      "bytes": 6585,
+      "sha256": "fd2a6780ac9398c5dc69c1514be94bc93a5214a60f1b2a23c3a31861f13147c4"
+    },
+    {
+      "path": "docs/native-closure/logs/native-build.log",
+      "bytes": 3463,
+      "sha256": "c415df3902503f93fe42f718ba5392789f82416a8b6d7118b6b1302a721f27d6"
+    },
+    {
+      "path": "docs/native-closure/logs/native-control/command.json",
+      "bytes": 1149,
+      "sha256": "3cffcd2d0c5841acda3e280015f9d9000c0d7531c81351469550a1615f47d524"
+    },
+    {
+      "path": "docs/native-closure/logs/native-control/exit.json",
+      "bytes": 16,
+      "sha256": "124fd50cb6d223cdd18fedc166d00af7254199b6e6dedf9be82f71db87af6d01"
+    },
+    {
+      "path": "docs/native-closure/logs/native-control/results.json.gz",
+      "bytes": 2085,
+      "sha256": "099d6b4f85ba96f3306c632cb92268c1e9b57cc30866db19899de84e783e8af2"
+    },
+    {
+      "path": "docs/native-closure/logs/native-control/summary.json",
+      "bytes": 151,
+      "sha256": "4f6649d7719e14ab1b66c2324be6379939a1fe0569dc1115da9f149e70e2238d"
+    },
+    {
+      "path": "docs/native-closure/logs/native-control/test.log.gz",
+      "bytes": 534,
+      "sha256": "4462bef72952551c75a5b001f7a8c083d6a9c7bd74e96ecc458478e7bc5833a6"
+    },
+    {
+      "path": "docs/native-closure/logs/native-guard-regression/command.json",
+      "bytes": 1235,
+      "sha256": "ac664b524868d0f4cc8821da24c67323b2656bfef1fb8c601190cf70cbd28441"
+    },
+    {
+      "path": "docs/native-closure/logs/native-guard-regression/exit.json",
+      "bytes": 16,
+      "sha256": "2618b95f1f6be6bfde8537756f85b83845d039001563135b9d59d817446733eb"
+    },
+    {
+      "path": "docs/native-closure/logs/native-guard-regression/results.json.gz",
+      "bytes": 4212,
+      "sha256": "a6eaf99faa19b6bd6dbd0d17d0d8028d54fd6d0959718fbe3cac99d9b17632ce"
+    },
+    {
+      "path": "docs/native-closure/logs/native-guard-regression/summary.json",
+      "bytes": 9094,
+      "sha256": "74c1d4f032b1bb232c0e8253b53ca2216164c46fe1953aa805bf65577193bdfe"
+    },
+    {
+      "path": "docs/native-closure/logs/native-guard-regression/test.log.gz",
+      "bytes": 14521,
+      "sha256": "2125f0942d9f42134ff31efd21269578408e02190050eec2d9701ac9abb2696c"
+    },
+    {
+      "path": "docs/native-closure/logs/pg-client-build.log.gz",
+      "bytes": 13236,
+      "sha256": "7d2d80beca9129ee9ba178b7c38ae4ffd7e22a00a6a28f993089acc5f6af609e"
+    },
+    {
+      "path": "docs/native-closure/logs/pg-client-configure.log.gz",
+      "bytes": 3381,
+      "sha256": "88c9e80b15246c0a84af1648b288157d4daf9bda31e93b83f8bd6bdc8d83e510"
+    },
+    {
+      "path": "docs/native-closure/logs/pg-client-download-m4.log.gz",
+      "bytes": 137,
+      "sha256": "2688c861b4de056e650271865771abc0ff55d5c2c50c6c64d21fe0609fb1f512"
+    },
+    {
+      "path": "docs/native-closure/logs/pg-client-download-tools.log.gz",
+      "bytes": 172,
+      "sha256": "737fef7de8e73ef46d1491640e6c507d29d841aeb57fcf8d4f7afc1104a07a2c"
+    },
+    {
+      "path": "docs/native-closure/logs/pg-client-generated-headers.log.gz",
+      "bytes": 656,
+      "sha256": "53fe5fce7c7deeaf27b0788e9f759857f48ef6f6a41d9469a216ac1b1258e51d"
+    },
+    {
+      "path": "docs/native-closure/logs/scoped-frozen-install.log",
+      "bytes": 62,
+      "sha256": "2d83eb3c3c3797b74693a28b931eee8c96d7d9a820f26a93007105f43bc05bec"
+    },
+    {
+      "path": "docs/native-closure/readiness.json",
+      "bytes": 1477,
+      "sha256": "a43db21eefd02b99f6f3a2606b76d5399a2db003e9763b091b5991fddd39c68d"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/README.md",
+      "bytes": 4098,
+      "sha256": "1eaea89ebcf08ce8db8574719142c8082728dddda38cb2c4f3ed83e3c5d89a1b"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/contracts/shared-command-v1.schema.json",
+      "bytes": 1304,
+      "sha256": "73cc82bf0a933469c3c9dff702eece8363750752759fdde9bf376b9869f8abe1"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/contracts/shared-core-authority.json",
+      "bytes": 2000,
+      "sha256": "beb9e9e678ae001db2ee81fef82145572c5001dff1d5fac412c69c8af9f84327"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/native/durable-native-harness.ts",
+      "bytes": 6570,
+      "sha256": "7f79e3d3299a93562819480406b59fe09e45c77196409081f2b59069e42d6596"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/native/native-authority.spec.ts",
+      "bytes": 3171,
+      "sha256": "f86828c7f75b30a2c81aff3b97a9f0558319b4bf1824ae64f1c08968a0dadbad"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/native/native-money.spec.ts",
+      "bytes": 4062,
+      "sha256": "cf785951b071139a71fb8c53842197e0262e33a71dde9023d860fcda9e9e2f7c"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/native/native-restore.ts",
+      "bytes": 4504,
+      "sha256": "16bb184285ff5a7dd94d3142731abdbfa0cc520849db44ba732e1db0a297e6ce"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/patches/borvat-sandbox-types-lint.delta.patch",
+      "bytes": 50495,
+      "sha256": "bcb7fe2e8f2153a6e6293e959a2cac0f0c1a613a6ba39bc0dbff9be799d4f358"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/patches/native-event-authority.REJECTED.patch",
+      "bytes": 6034,
+      "sha256": "2137090bb9e422e3ca692238052d19e955f1ce5f5b63c443fe1a5e28abda790e"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/build-closure.py",
+      "bytes": 1247,
+      "sha256": "c15117243be99b9eea498bcd965373ff21bcf395be09b1622d871bcc7797d7c0"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/collect-installed.cjs",
+      "bytes": 4253,
+      "sha256": "7efbe3e9230e67f8c61645a8edcb187f9013a903a46a9267c97ceef1c86ad990"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/collect-workspace.cjs",
+      "bytes": 4669,
+      "sha256": "dfbc196245e10031a6f30ebde2b9667b28628590150be11da785dde8524549ed"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/contracts-fixtures.py",
+      "bytes": 2138,
+      "sha256": "32dd4e0feb409e41d211cc30e028a2cc05ab31bf372f2b2661f958af3dafccff"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/retry-assets.py",
+      "bytes": 1660,
+      "sha256": "107067da486848003192abb132f35c642f778ae24a744a2d6fc1e924aa00e54a"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/run-closure-authority.py",
+      "bytes": 4098,
+      "sha256": "7247fe15ac2bfef686ff980fd506d9075d76d5190da0b2b21643d311309dfe79"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/run-closure-control.py",
+      "bytes": 4207,
+      "sha256": "a02d84056da2c8cf1aa6c84aa7548eca9966090ce9a2aba9850b941f14d0a558"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/run-closure-final.py",
+      "bytes": 4244,
+      "sha256": "4848c48ed9a80f6b4fa2d2fbed798c4c0f4f760c45019b1598d22584bed56e3b"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/run-closure-native.py",
+      "bytes": 3847,
+      "sha256": "eb0e5f304868d94e4185600db8e9397b19896834f2ca8001b52320d434760a02"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/update-lock.cjs",
+      "bytes": 1923,
+      "sha256": "41b7ea40ca79ec8cb39df8b50c8e715bdd3dde18ca487c885708b9ad6f4af75f"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/reproduction/update-scoped-lock.cjs",
+      "bytes": 1746,
+      "sha256": "990995a6927c716e35ecb98ba7accf338a639d7f1ba05fff79a0fd6ee95b139f"
+    },
+    {
+      "path": "experiments/mercur-hardening/native-closure/verify-evidence.mjs",
+      "bytes": 1395,
+      "sha256": "786fc2d3e43e04630b4791a2bf75cd3a8edb20a8ece191ca5e18a603d05ec494"
+    }
+  ]
+}

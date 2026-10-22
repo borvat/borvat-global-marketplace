@@ -1,0 +1,13 @@
+{
+  "exit": 1,
+  "command": "node node_modules/vite/bin/vite.js build",
+  "input_source_hash": "da54194926a056d23b0b1d5e88b95a6a74b77998d0522e83c529ebaf8afd6ad9",
+  "scope": "Byte-identical separate build probe; final typed sandbox source preserved",
+  "build_probe_source_drift": [
+    "src/routes/mcp.ts",
+    "src/routes/[.mcp]/list-tools.ts",
+    "src/routes/[.well-known]/oauth-protected-resource.ts",
+    "src/routes/[.mcp]/invoke-tool/$tool.ts"
+  ],
+  "external_network": "blocked"
+}

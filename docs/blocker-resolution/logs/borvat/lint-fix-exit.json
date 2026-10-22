@@ -1,0 +1,1 @@
+{"command": ["node", "node_modules/eslint/bin/eslint.js", ".", "--fix", "--format", "json"], "exit_code": 1, "scope": "isolated previously formatted sandbox; original source unchanged"}

@@ -1,0 +1,12 @@
+✔ D01 fixed proxy keeps IPv4 outside IPv6 trust (2.169793ms)
+✔ D02 compression emits valid gzip through Express HTTP (29.32579ms)
+✔ D03 axios follows local redirect and preserves JSON transport (18.856988ms)
+✔ D04 tar fixed candidate roundtrip uses isolated archive paths (12.699706ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 367.332025

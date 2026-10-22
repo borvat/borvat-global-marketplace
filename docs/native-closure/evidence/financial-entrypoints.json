@@ -1,0 +1,48 @@
+{
+  "upstream_commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+  "reviewed_mercur_sources": [
+    {
+      "path": "packages/core/src/api/vendor/payments/[id]/capture/route.ts",
+      "sha256": "fc77008b7540014085ee3c6ad268a74758b3100e6ca64479386dd43f93bb0d5c"
+    },
+    {
+      "path": "packages/core/src/api/vendor/payments/[id]/refund/route.ts",
+      "sha256": "74ba2e19a7143467a55d0d57fd1445efeff4c959170f92482a9445775ba4c8e8"
+    },
+    {
+      "path": "packages/core/src/subscribers/payment-webhook.ts",
+      "sha256": "ee561299e6556783b6320831385a17cf61e9ba315e16d34a924d882c0ab0e7db"
+    },
+    {
+      "path": "packages/core/src/subscribers/payout-webhook.ts",
+      "sha256": "cc8e2fa0d8f51337643b291422e9bfd858f34a59fc38d919abfc314b9663bf57"
+    },
+    {
+      "path": "packages/core/src/subscribers/split-order-payment-captured.ts",
+      "sha256": "2b17fb580beac6c093a580c75fdd578b672917017eb90936c921098b4137d460"
+    },
+    {
+      "path": "packages/core/src/subscribers/split-order-canceled.ts",
+      "sha256": "e62685bb27e4f3eba754ba113eb9f31ce404fa92f403863bea99f7b64e24b96a"
+    },
+    {
+      "path": "packages/core/src/workflows/payment/steps/record-payment-captures.ts",
+      "sha256": "ae2e8be2fe76314430b871ea1439e41ff846c1ec49d34a44c7f08602acf0cc2f"
+    },
+    {
+      "path": "packages/core/src/workflows/payout/steps/create-payout.ts",
+      "sha256": "75a2ca8f4a917b036f0b63ec761bb7b0c95ca8c5af104e9305cd0fba3ed77631"
+    }
+  ],
+  "medusa_provider_methods": {
+    "capturePayment": "fault/reconcile native module tests with registered harness",
+    "refundPayment": "fault/reconcile native module tests with registered harness",
+    "createPayouts": "fault/reconcile native module tests with registered harness",
+    "authorizePaymentSession": "NOT_CLOSED; auto-capture/authorization may create external effects",
+    "cancelPayment": "NOT_CLOSED; provider void path not journal-wrapped",
+    "deletePaymentSession": "NOT_CLOSED; external delete/cancel path",
+    "getWebhookActionAndData": "signature/provider-event provenance and durable native inbox not fully integrated"
+  },
+  "all_financial_paths_closed": false,
+  "native_process_crash_and_restart": "NOT_RUN; earlier process-kill evidence is separate proof schema"
+}

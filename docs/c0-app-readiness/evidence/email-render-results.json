@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "cases": 12,
+  "results": [
+    {
+      "name": "order-processing",
+      "valid_html_text_subject_parity": "PASS"
+    },
+    {
+      "name": "order-processing",
+      "malformed_data_rejected": "PASS"
+    },
+    {
+      "name": "order-shipped",
+      "valid_html_text_subject_parity": "PASS"
+    },
+    {
+      "name": "order-shipped",
+      "malformed_data_rejected": "PASS"
+    },
+    {
+      "name": "order-delivered",
+      "valid_html_text_subject_parity": "PASS"
+    },
+    {
+      "name": "order-delivered",
+      "malformed_data_rejected": "PASS"
+    },
+    {
+      "name": "SignupEmail",
+      "render": "PASS"
+    },
+    {
+      "name": "InviteEmail",
+      "render": "PASS"
+    },
+    {
+      "name": "MagicLinkEmail",
+      "render": "PASS"
+    },
+    {
+      "name": "RecoveryEmail",
+      "render": "PASS"
+    },
+    {
+      "name": "EmailChangeEmail",
+      "render": "PASS"
+    },
+    {
+      "name": "ReauthenticationEmail",
+      "render": "PASS"
+    }
+  ],
+  "send_invocations": 0
+}

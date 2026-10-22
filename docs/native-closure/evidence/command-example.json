@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "command_id": "synthetic-command-1",
+  "company_id": "A",
+  "source": "BORVAT Marketplace",
+  "operation": "reserve_bundle",
+  "external_key": "order-native-1:reservation:v1",
+  "payload": {
+    "order_id": "order-native-1",
+    "items": [
+      {
+        "sku": "SYNTHETIC-A",
+        "quantity": 1
+      }
+    ]
+  },
+  "policy_version": "shared-core-001",
+  "bom_version": "synthetic-bom-v1"
+}

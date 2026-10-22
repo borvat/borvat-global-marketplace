@@ -1,0 +1,23 @@
+{
+  "scope": "Erased JavaScript AST comparison, ignoring parentheses and formatting; not browser E2E",
+  "changed_source_files": 27,
+  "type_only_equivalent": 23,
+  "review_required": [
+    {
+      "path": "scripts/phase1-tenancy-tests.ts",
+      "erased_js_ast_equal": false
+    },
+    {
+      "path": "src/integrations/supabase/previewAuthStorage.ts",
+      "erased_js_ast_equal": false
+    },
+    {
+      "path": "src/lib/order-status.functions.ts",
+      "erased_js_ast_equal": false
+    },
+    {
+      "path": "src/routes/_authenticated/seller.orders.tsx",
+      "erased_js_ast_equal": false
+    }
+  ]
+}

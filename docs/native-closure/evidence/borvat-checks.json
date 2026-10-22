@@ -1,0 +1,21 @@
+{
+  "typecheck": {
+    "exit": 0,
+    "command": [
+      "node",
+      "node_modules/typescript/bin/tsc",
+      "--noEmit"
+    ]
+  },
+  "lint": {
+    "exit": 1,
+    "command": [
+      "node",
+      "node_modules/eslint/bin/eslint.js",
+      ".",
+      "--format",
+      "json"
+    ]
+  },
+  "source_drift_during_checks": []
+}

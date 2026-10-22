@@ -1,0 +1,102 @@
+{
+  "changed": [
+    {
+      "key": "brace-expansion",
+      "from": "5.0.6",
+      "to": "5.0.12"
+    },
+    {
+      "key": "http-proxy-middleware",
+      "from": "3.0.5",
+      "to": "3.0.7"
+    },
+    {
+      "key": "js-yaml",
+      "from": "4.1.1",
+      "to": "4.3.2"
+    },
+    {
+      "key": "@eslint/eslintrc/js-yaml",
+      "from": "4.3.0",
+      "to": "4.3.2"
+    },
+    {
+      "key": "@istanbuljs/load-nyc-config/js-yaml",
+      "from": "3.14.2",
+      "to": "3.15.2"
+    },
+    {
+      "key": "cli-ux/js-yaml",
+      "from": "3.14.2",
+      "to": "3.15.2"
+    },
+    {
+      "key": "@eslint/eslintrc/minimatch/brace-expansion",
+      "from": "1.1.15",
+      "to": "1.1.21"
+    },
+    {
+      "key": "eslint-plugin-import/minimatch/brace-expansion",
+      "from": "1.1.15",
+      "to": "1.1.21"
+    },
+    {
+      "key": "eslint-plugin-jsx-a11y/minimatch/brace-expansion",
+      "from": "1.1.15",
+      "to": "1.1.21"
+    },
+    {
+      "key": "eslint-plugin-react/minimatch/brace-expansion",
+      "from": "1.1.15",
+      "to": "1.1.21"
+    },
+    {
+      "key": "fork-ts-checker-webpack-plugin/minimatch/brace-expansion",
+      "from": "1.1.15",
+      "to": "1.1.21"
+    },
+    {
+      "key": "glob/minimatch/brace-expansion",
+      "from": "1.1.15",
+      "to": "1.1.21"
+    },
+    {
+      "key": "ignore-walk/minimatch/brace-expansion",
+      "from": "1.1.15",
+      "to": "1.1.21"
+    },
+    {
+      "key": "test-exclude/minimatch/brace-expansion",
+      "from": "1.1.15",
+      "to": "1.1.21"
+    },
+    {
+      "key": "@jest/reporters/glob/minimatch/brace-expansion",
+      "from": "2.1.1",
+      "to": "2.1.7"
+    },
+    {
+      "key": "@mercurjs/storefront/eslint/minimatch/brace-expansion",
+      "from": "1.1.15",
+      "to": "1.1.21"
+    },
+    {
+      "key": "jest-config/glob/minimatch/brace-expansion",
+      "from": "2.1.1",
+      "to": "2.1.7"
+    },
+    {
+      "key": "jest-runtime/glob/minimatch/brace-expansion",
+      "from": "2.1.1",
+      "to": "2.1.7"
+    }
+  ],
+  "unresolved": [],
+  "not_promoted": [
+    "vite",
+    "react-router",
+    "webpack-dev-middleware",
+    "sharp",
+    "image-size"
+  ]
+}

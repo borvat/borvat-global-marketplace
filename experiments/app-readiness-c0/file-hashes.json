@@ -1,0 +1,30 @@
+{
+  "src/routes/lovable/email/transactional/preview.ts": {
+    "before": "f0266b4b5082caec60e09118659342e1ef467d4a888d4c536cc0bc76e884b85d",
+    "after": "9eaa45a62377e3bd0f65910a067e77a0065880b52448fd49656116473c6d22aa"
+  },
+  "src/routes/lovable/email/auth/preview.ts": {
+    "before": "63c1821e2dbad53f4e6f3a918e0fd14266a25cfeeae0c1b9bfc1e26a59baa285",
+    "after": "1db5e688d226a52bfff0fe867da0e56fcc5d48090490115d7a853dc4426ee28b"
+  },
+  "src/lib/email-templates/send-email.ts": {
+    "before": "fabd5af9053eb05b5c2a101bf53f07b1a71884dc6f5efbcc7810d06a393d31ea",
+    "after": "5cc8a35e8817fa87da25513e423662451f5514d4926b38a9c5864bd9192437e2"
+  },
+  "src/lib/email-templates/order-delivered.tsx": {
+    "before": "6364d59fb7877c9cd5af2ec018468ae7ddf8fdc259b13eb574928d0af894aae9",
+    "after": "06fd1f6b1d801f3650b3455b0d4f81354fa884af1598cdb66383d18de4d230a0"
+  },
+  "src/lib/email-templates/registry.ts": {
+    "before": "9afd1735f3e24dce24fb8359fdc87bc146ade8bbc3e013baba6d6d8a69301500",
+    "after": "73d9b9d99fa37984fa2227bec67f2ea83396d5dad7687921272439845517b71f"
+  },
+  "src/lib/email-templates/order-processing.tsx": {
+    "before": "700e1bb8d26140754158275e314272eead4a1836483651a76b5b7e725f29824e",
+    "after": "931fa9becf4e50b96f7adfd03ddf729a673e9e9a796661dbedce985297b53392"
+  },
+  "src/lib/email-templates/order-shipped.tsx": {
+    "before": "85d6f01fffc340f7dcb0608bc124aab0cd0fa4c65d60b825705bd6161a31990a",
+    "after": "27b19d51f87f1eaf0932cc5ea473012b983774e7aff1a10230621e3efc828823"
+  }
+}

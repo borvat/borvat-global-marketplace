@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "framework": "2.21.2",
+  "express": "4.22.3",
+  "proxy": "2.0.8",
+  "express_path": "/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/express@4.22.3/node_modules/express/index.js",
+  "proxy_path": "/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/proxy-addr@2.0.8/node_modules/proxy-addr/index.js"
+}

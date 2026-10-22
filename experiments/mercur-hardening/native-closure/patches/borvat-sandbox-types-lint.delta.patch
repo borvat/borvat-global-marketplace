@@ -1,0 +1,1264 @@
+--- a/scripts/phase1-tenancy-tests.ts
++++ b/scripts/phase1-tenancy-tests.ts
+@@ -214,7 +214,7 @@
+     );
+     check(
+       "T15 transfer to non-member is rejected",
+-      !!badErr || (badTransfer as any)?.ok === false,
++      !!badErr || (badTransfer as unknown)?.ok === false,
+       badErr?.message ?? JSON.stringify(badTransfer),
+     );
+ 
+@@ -235,7 +235,7 @@
+     );
+     check(
+       "T17 owner transfers ownership to active member",
+-      !transferErr && (okTransfer as any)?.ok === true,
++      !transferErr && (okTransfer as unknown)?.ok === true,
+       transferErr?.message,
+     );
+ 
+@@ -343,12 +343,14 @@
+       }),
+     ]);
+     const wins = [r1, r2].filter(
+-      (r) => r.status === "fulfilled" && !(r.value as any).error && (r.value as any).data?.ok,
++      (r) =>
++        r.status === "fulfilled" && !(r.value as unknown).error && (r.value as unknown).data?.ok,
+     ).length;
+     const fails = [r1, r2].filter(
+       (r) =>
+         r.status === "rejected" ||
+-        (r.status === "fulfilled" && ((r.value as any).error || !(r.value as any).data?.ok)),
++        (r.status === "fulfilled" &&
++          ((r.value as unknown).error || !(r.value as unknown).data?.ok)),
+     ).length;
+     check(
+       "T27 concurrent transfers serialize (exactly one succeeds)",
+@@ -378,12 +380,14 @@
+     // Carol (viewer of A) tries: SET the flag, then direct UPDATE.  RLS UPDATE policy
+     // restricts writes to the current owner, so no row is affected regardless of the flag.
+     try {
+-      await carol.client.rpc("set_config" as any, {
++      await carol.client.rpc("set_config" as unknown, {
+         setting_name: "app.allow_owner_change",
+         new_value: "yes",
+         is_local: true,
+       });
+-    } catch {}
++    } catch (error) {
++      console.warn("[isolated tenancy diagnostic]", error);
++    }
+     const { data: spoofUpd, error: spoofUpdErr } = await carol.client
+       .from("companies")
+       .update({ owner_user_id: carol.uid })
+@@ -441,7 +445,7 @@
+       .order("created_at", { ascending: false })
+       .limit(5);
+     const auditHit = auditRows?.find(
+-      (r: any) => r.input_summary?.company_id === compA.id && r.input_summary?.to === bob.uid,
++      (r: unknown) => r.input_summary?.company_id === compA.id && r.input_summary?.to === bob.uid,
+     );
+     check(
+       "T33 transfer audit written in same transaction",
+@@ -493,12 +497,14 @@
+       `SELECT user_id FROM public.company_members WHERE company_id='${compA.id}' AND status='active' AND user_id <> '${currentOwner}' LIMIT 1`,
+     );
+     try {
+-      await ownerClient.rpc("set_config" as any, {
++      await ownerClient.rpc("set_config" as unknown, {
+         setting_name: "app.allow_owner_change",
+         new_value: "yes",
+         is_local: true,
+       });
+-    } catch {}
++    } catch (error) {
++      console.warn("[isolated tenancy diagnostic]", error);
++    }
+     const { data: ownerSpoof, error: ownerSpoofErr } = await ownerClient
+       .from("companies")
+       .update({ owner_user_id: otherActive })
+@@ -576,7 +582,9 @@
+       psql(
+         `DROP TRIGGER IF EXISTS _t34_audit_fault ON public.agent_audit_log; DROP FUNCTION IF EXISTS public._t34_inject_fault();`,
+       );
+-    } catch {}
++    } catch (error) {
++      console.warn("[isolated tenancy diagnostic]", error);
++    }
+     for (const cid of cleanupCompanies) await admin.from("companies").delete().eq("id", cid);
+     for (const u of cleanupUsers) await admin.auth.admin.deleteUser(u.uid).catch(() => {});
+   }
+--- a/scripts/phase2-mig1-tests.ts
++++ b/scripts/phase2-mig1-tests.ts
+@@ -359,7 +359,7 @@
+       .from("role_permissions")
+       .select("permission_id, permissions(key)")
+       .eq("role_id", viewerRole);
+-    const viewerKeys = new Set((viewer.data ?? []).map((r: any) => r.permissions.key));
++    const viewerKeys = new Set((viewer.data ?? []).map((r: unknown) => r.permissions.key));
+     check(
+       "T33 viewer inherits phase-2 read perms",
+       viewerKeys.has("reservations.read") && viewerKeys.has("channels.read"),
+@@ -371,7 +371,7 @@
+       .from("role_permissions")
+       .select("permission_id, permissions(key)")
+       .eq("role_id", operatorRoleId);
+-    const opKeys = new Set((op.data ?? []).map((r: any) => r.permissions.key));
++    const opKeys = new Set((op.data ?? []).map((r: unknown) => r.permissions.key));
+     check(
+       "T34 operator has fulfilment.pick/pack/ship",
+       opKeys.has("fulfilment.pick") &&
+@@ -387,7 +387,7 @@
+       .from("role_permissions")
+       .select("permission_id, permissions(key)")
+       .eq("role_id", ownerRoleId);
+-    const ownKeys = new Set((own.data ?? []).map((r: any) => r.permissions.key));
++    const ownKeys = new Set((own.data ?? []).map((r: unknown) => r.permissions.key));
+     check("T37 owner has reservations.override", ownKeys.has("reservations.override"));
+ 
+     const adminRoleId = await roleId("admin");
+@@ -395,7 +395,7 @@
+       .from("role_permissions")
+       .select("permission_id, permissions(key)")
+       .eq("role_id", adminRoleId);
+-    const adKeys = new Set((ad.data ?? []).map((r: any) => r.permissions.key));
++    const adKeys = new Set((ad.data ?? []).map((r: unknown) => r.permissions.key));
+     check("T38 admin does NOT have reservations.override", !adKeys.has("reservations.override"));
+   } finally {
+     // Cleanup
+@@ -406,7 +406,7 @@
+         .in(
+           "warehouse_id",
+           (await admin.from("warehouses").select("id").eq("company_id", c)).data?.map(
+-            (w: any) => w.id,
++            (w: unknown) => w.id,
+           ) ?? [],
+         );
+       await admin.from("warehouses").delete().eq("company_id", c);
+@@ -416,7 +416,7 @@
+         .in(
+           "offer_id",
+           (await admin.from("catalog_offers").select("id").eq("company_id", c)).data?.map(
+-            (o: any) => o.id,
++            (o: unknown) => o.id,
+           ) ?? [],
+         );
+       await admin.from("catalog_offers").delete().eq("company_id", c);
+@@ -428,7 +428,7 @@
+         .in(
+           "member_id",
+           (await admin.from("company_members").select("id").eq("company_id", c)).data?.map(
+-            (m: any) => m.id,
++            (m: unknown) => m.id,
+           ) ?? [],
+         );
+       await admin.from("company_members").delete().eq("company_id", c);
+--- a/scripts/phase2-mig3-tests.ts
++++ b/scripts/phase2-mig3-tests.ts
+@@ -260,7 +260,8 @@
+         ).data!.map((x) => x.id),
+       );
+     const allocSku1Wh1 = allocs!.find(
+-      (a: any) => a.warehouse_id === wh1!.id && a.inventory_reservation_lines.sku_id === sku1!.id,
++      (a: unknown) =>
++        a.warehouse_id === wh1!.id && a.inventory_reservation_lines.sku_id === sku1!.id,
+     );
+     const { data: pickRes, error: ePick } = await alice.client.rpc("pick_reservation_allocation", {
+       _allocation_id: allocSku1Wh1!.id,
+@@ -275,8 +276,8 @@
+       .eq("company_id", comp!.id)
+       .eq("sku_id", sku1!.id)
+       .eq("warehouse_id", wh1!.id);
+-    const sellable = bals!.find((b: any) => b.disposition === "sellable")?.quantity;
+-    const picked = bals!.find((b: any) => b.disposition === "picked")?.quantity;
++    const sellable = bals!.find((b: unknown) => b.disposition === "sellable")?.quantity;
++    const picked = bals!.find((b: unknown) => b.disposition === "picked")?.quantity;
+     check("E.02 sellable decremented", sellable === 94, `got ${sellable}`);
+     check("E.03 picked incremented", picked === 6, `got ${picked}`);
+ 
+@@ -296,7 +297,8 @@
+ 
+     // ── F. Release: cannot release more than remaining; then cancel; then no pick ──
+     const allocSku2Wh1 = allocs!.find(
+-      (a: any) => a.warehouse_id === wh1!.id && a.inventory_reservation_lines.sku_id === sku2!.id,
++      (a: unknown) =>
++        a.warehouse_id === wh1!.id && a.inventory_reservation_lines.sku_id === sku2!.id,
+     );
+     const line_sku2 = allocSku2Wh1!.line_id as string;
+ 
+@@ -343,7 +345,8 @@
+     check("F.07 sku2 hold released to 0", ar2After === 0, `got ${ar2After}`);
+ 
+     const allocSku1Wh2 = allocs!.find(
+-      (a: any) => a.warehouse_id === wh2!.id && a.inventory_reservation_lines.sku_id === sku1!.id,
++      (a: unknown) =>
++        a.warehouse_id === wh2!.id && a.inventory_reservation_lines.sku_id === sku1!.id,
+     );
+     const { error: ePickCancelled } = await alice.client.rpc("pick_reservation_allocation", {
+       _allocation_id: allocSku1Wh2!.id,
+@@ -399,13 +402,13 @@
+     ).data;
+     const activeReservedWh1 = (holdWh1 ?? [])
+       .filter(
+-        (a: any) =>
++        (a: unknown) =>
+           a.inventory_reservation_lines.sku_id === sku1!.id &&
+           a.inventory_reservation_lines.inventory_reservation_headers.company_id === comp!.id &&
+           a.inventory_reservation_lines.inventory_reservation_headers.status === "active",
+       )
+       .reduce(
+-        (s: number, a: any) =>
++        (s: number, a: unknown) =>
+           s + (a.allocated_quantity - a.consumed_quantity - a.released_quantity),
+         0,
+       );
+--- a/scripts/phase2-mig4-isolated.ts
++++ b/scripts/phase2-mig4-isolated.ts
+@@ -26,10 +26,10 @@
+ 
+ async function retry<T>(
+   label: string,
+-  fn: () => Promise<{ data: T | null; error: any }>,
++  fn: () => Promise<{ data: T | null; error: unknown }>,
+   tries = 5,
+-): Promise<{ data: T | null; error: any }> {
+-  let last: any = { data: null, error: { message: "no attempts" } };
++): Promise<{ data: T | null; error: unknown }> {
++  let last: unknown = { data: null, error: { message: "no attempts" } };
+   for (let i = 1; i <= tries; i++) {
+     const r = await fn();
+     const msg = r.error?.message ?? "";
+@@ -116,9 +116,9 @@
+           _allocation_id: allocId,
+           _quantity: 6,
+           _idempotency_key: key,
+-        }) as any,
+-    );
+-    check("C.pre first ship ok", (first.data as any)?.ok === true, first.error?.message);
++        }) as unknown,
++    );
++    check("C.pre first ship ok", (first.data as unknown)?.ok === true, first.error?.message);
+ 
+     await new Promise((r) => setTimeout(r, 400));
+     const replay = await retry(
+@@ -128,10 +128,10 @@
+           _allocation_id: allocId,
+           _quantity: 6,
+           _idempotency_key: key,
+-        }) as any,
+-    );
+-    const r = replay.data as any;
+-    const f = first.data as any;
++        }) as unknown,
++    );
++    const r = replay.data as unknown;
++    const f = first.data as unknown;
+     const idempotent =
+       r?.idempotent_replay === true ||
+       (r?.transaction_id && r.transaction_id === f?.transaction_id);
+@@ -196,7 +196,7 @@
+             _listing_id: listingId,
+             _new_quantity: q,
+             _reason: "seed-" + q,
+-          }) as any,
++          }) as unknown,
+       );
+       if (r.error) throw new Error("seed publish failed: " + r.error.message);
+       await new Promise((res) => setTimeout(res, 250));
+@@ -206,7 +206,11 @@
+       .select("published_version")
+       .eq("id", listingId)
+       .single();
+-    check("H.pre listing version = 2", (cur as any).published_version === 2, JSON.stringify(cur));
++    check(
++      "H.pre listing version = 2",
++      (cur as unknown).published_version === 2,
++      JSON.stringify(cur),
++    );
+ 
+     await new Promise((res) => setTimeout(res, 400));
+     const occ = await retry(
+@@ -217,7 +221,7 @@
+           _new_quantity: 30,
+           _reason: "occ",
+           _expected_version: 1,
+-        }) as any,
++        }) as unknown,
+     );
+     check(
+       "H.04 version conflict rejected",
+@@ -235,11 +239,11 @@
+           _new_quantity: 25,
+           _reason: "occ-ok",
+           _expected_version: 2,
+-        }) as any,
++        }) as unknown,
+     );
+     check(
+       "H.04b correct expected_version succeeds",
+-      !okv.error && (okv.data as any)?.ok === true,
++      !okv.error && (okv.data as unknown)?.ok === true,
+       okv.error?.message,
+     );
+   }
+--- a/scripts/phase2-mig4-tests.ts
++++ b/scripts/phase2-mig4-tests.ts
+@@ -125,7 +125,7 @@
+       { _listing_id: crypto.randomUUID(), _new_quantity: 1, _reason: "test" },
+     ],
+   ] as const) {
+-    const { error } = await anonC.rpc(n, a as any);
++    const { error } = await anonC.rpc(n, a as unknown);
+     check(`I.${n} rejects anon`, !!error, error?.message);
+   }
+ 
+@@ -257,8 +257,8 @@
+   const okShips = shipAttempts.filter(
+     (s) =>
+       s.status === "fulfilled" &&
+-      (s.value as any).data?.ok &&
+-      !(s.value as any).data?.idempotent_replay,
++      (s.value as unknown).data?.ok &&
++      !(s.value as unknown).data?.idempotent_replay,
+   ).length;
+   check("E.01 exactly one of 20 parallel ships succeeds", okShips === 1, `got ${okShips}`);
+   check("E.02 packed drained to 0", (await bal("packed_or_staging")) === 0);
+@@ -281,7 +281,7 @@
+     .eq("company_id", comp!.id)
+     .eq("sku_id", sku!.id)
+     .eq("warehouse_id", wh!.id);
+-  const totalOnHand = bals!.reduce((n: number, b: any) => n + b.quantity, 0);
++  const totalOnHand = bals!.reduce((n: number, b: unknown) => n + b.quantity, 0);
+   check("F.01 total on-hand = 100 - 16 shipped = 84", totalOnHand === 84, `got ${totalOnHand}`);
+ 
+   // ── D. Cannot ship on cancelled reservation ───────────────────
+@@ -379,11 +379,11 @@
+     .eq("listing_id", listingId)
+     .order("to_version", { ascending: true });
+   check("H.01 audit rows count = 3", audit!.length === 3, JSON.stringify(audit));
+-  const monotone = audit!.every((r: any, i: number) => r.to_version === i + 1);
++  const monotone = audit!.every((r: unknown, i: number) => r.to_version === i + 1);
+   check(
+     "H.02 versions are monotonic 1..3",
+     monotone,
+-    audit!.map((r: any) => r.to_version).join(","),
++    audit!.map((r: unknown) => r.to_version).join(","),
+   );
+   check(
+     "H.03 first audit: 0 -> 42 reason initial-push",
+--- a/scripts/phase3-m1-tests.ts
++++ b/scripts/phase3-m1-tests.ts
+@@ -460,7 +460,7 @@
+       listing_id: listingId,
+       event_type: "hijack",
+       listing_version: 999,
+-    } as any);
++    } as unknown);
+     check("R.06 direct INSERT into outbox_events rejected", !!error, error?.message);
+   }
+ 
+--- a/scripts/phase4-m4-adapter-tests.ts
++++ b/scripts/phase4-m4-adapter-tests.ts
+@@ -55,7 +55,7 @@
+ 
+ function fakeResponse(
+   status: number,
+-  body: any,
++  body: unknown,
+   headers: Record<string, string> = {},
+ ): HttpResponseLike {
+   return {
+@@ -106,7 +106,7 @@
+ const TOKEN_URL = "https://login.bol.com/token";
+ const OFFER_ID = "abc-offer-1";
+ 
+-function makeAdapter(t: FakeTransport, overrides: any = {}) {
++function makeAdapter(t: FakeTransport, overrides: unknown = {}) {
+   return new BolChannelAdapter({
+     baseUrl: BASE,
+     tokenUrl: TOKEN_URL,
+@@ -149,8 +149,8 @@
+       "U.01 stock plan url+body",
+       stock.method === "PUT" &&
+         stock.url === `${BASE}/offers/${OFFER_ID}/stock` &&
+-        (stock.body as any).amount === 42 &&
+-        (stock.body as any).managedByRetailer === true &&
++        (stock.body as unknown).amount === 42 &&
++        (stock.body as unknown).managedByRetailer === true &&
+         stock.contentType === "application/vnd.retailer.v11+json",
+       JSON.stringify(stock.body),
+     );
+@@ -165,7 +165,7 @@
+       payload: { price_cents: 1999, currency: "EUR" },
+       listing_version: 1,
+     });
+-    const unit = (price.body as any).pricing?.bundlePrices?.[0]?.unitPrice;
++    const unit = (price.body as unknown).pricing?.bundlePrices?.[0]?.unitPrice;
+     check(
+       "U.02 price plan unitPrice = cents/100",
+       unit === 19.99 && price.url.endsWith("/price"),
+@@ -237,7 +237,7 @@
+       "U.05a fulfilment plan is PATCH /offers/{id} with partial body",
+       fulf.method === "PATCH" &&
+         fulf.url === `${BASE}/offers/${OFFER_ID}` &&
+-        (fulf.body as any).fulfilment?.method === "FBR" &&
++        (fulf.body as unknown).fulfilment?.method === "FBR" &&
+         Object.keys(fulf.body).length === 1,
+       JSON.stringify(fulf.body),
+     );
+@@ -254,7 +254,7 @@
+     check(
+       "U.05b delivery_promise plan is PATCH /offers/{id} with partial body",
+       dp.method === "PATCH" &&
+-        (dp.body as any).fulfilment?.deliveryCode === "24uurs-23" &&
++        (dp.body as unknown).fulfilment?.deliveryCode === "24uurs-23" &&
+         Object.keys(dp.body).length === 1,
+       JSON.stringify(dp.body),
+     );
+@@ -737,7 +737,7 @@
+       _reason: reason,
+     });
+     if (error) throw error;
+-    return (data as any).event_id as string;
++    return (data as unknown).event_id as string;
+   };
+ 
+   const resolver = makeExternalListingIdResolver(admin);
+--- a/scripts/phase4-m4-bol-demo-smoke.ts
++++ b/scripts/phase4-m4-bol-demo-smoke.ts
+@@ -85,7 +85,7 @@
+   const method = (init?.method ?? "GET").toUpperCase();
+   const reqHeaders = (init?.headers as Record<string, string>) ?? {};
+   const reqBody = init?.body as string | undefined;
+-  const r = await globalThis.fetch(url, init as any);
++  const r = await globalThis.fetch(url, init as unknown);
+   const text = await r.text();
+   const ended = Date.now();
+   const resHeaders: Record<string, string> = {};
+@@ -143,7 +143,7 @@
+ };
+ const steps: StepReport[] = [];
+ 
+-async function step(name: string, event_type: string, payload: Record<string, any>) {
++async function step(name: string, event_type: string, payload: Record<string, unknown>) {
+   const before = adapter.httpCallCount;
+   const planned = adapter.plan({
+     id: `smoke-${name}`,
+@@ -167,10 +167,10 @@
+       url: planned.url,
+       ok: true,
+       bol_process_status_id: res.bol_process_status_id,
+-      final_status: String((res.external_ref as any).finalStatus ?? "SUCCESS"),
++      final_status: String((res.external_ref as unknown).finalStatus ?? "SUCCESS"),
+       http_calls: adapter.httpCallCount - before,
+     });
+-  } catch (e: any) {
++  } catch (e: unknown) {
+     // Bol Demo returns mocked process-status stuck on PENDING forever, so
+     // dispatchLive throws "poll timeout". That is expected in this environment
+     // — treat it as PASS if the transport layer produced at least one
+--- a/scripts/phase4-m4-post-m5-compat-tests.ts
++++ b/scripts/phase4-m4-post-m5-compat-tests.ts
+@@ -195,7 +195,7 @@
+     );
+ 
+     await c.query("ROLLBACK TO SAVEPOINT s1");
+-  } catch (e: any) {
++  } catch (e: unknown) {
+     record("suite: unexpected error", false, String(e?.message ?? e));
+   } finally {
+     await c.query("ROLLBACK");
+--- a/scripts/phase4-m5-tests.ts
++++ b/scripts/phase4-m5-tests.ts
+@@ -160,7 +160,7 @@
+     _lines: [{ sku_id: ctx.sku.id, allocations: [{ warehouse_id: ctx.wh.id, quantity: qty }] }],
+   });
+   if (eR || !r) throw new Error(`create_reservation failed: ${errMsg(eR)}`);
+-  const resvId = (r as any).reservation_id as string;
++  const resvId = (r as unknown).reservation_id as string;
+   const { data: lines, error: eL } = await admin
+     .from("inventory_reservation_lines")
+     .select("id")
+@@ -389,7 +389,7 @@
+       .eq("company_id", A.comp.id)
+       .eq("sku_id", A.sku.id)
+       .eq("warehouse_id", A.wh.id);
+-    const beforeMap = new Map((balBefore ?? []).map((b: any) => [b.disposition, b.quantity]));
++    const beforeMap = new Map((balBefore ?? []).map((b: unknown) => [b.disposition, b.quantity]));
+ 
+     const { data: shipRes, error: shipErr } = await admin.rpc(
+       "record_internal_ship_and_enqueue_confirmation",
+@@ -404,12 +404,12 @@
+     );
+     check(
+       "M1.01 record_internal_ship_and_enqueue_confirmation ok",
+-      !shipErr && (shipRes as any).ok === true,
++      !shipErr && (shipRes as unknown).ok === true,
+       errMsg(shipErr),
+     );
+-    M1_shipmentId = (shipRes as any).shipment_id;
+-    M1_outboxId = (shipRes as any).outbox_event_id;
+-    M1_txId = (shipRes as any).inventory_transaction_id;
++    M1_shipmentId = (shipRes as unknown).shipment_id;
++    M1_outboxId = (shipRes as unknown).outbox_event_id;
++    M1_txId = (shipRes as unknown).inventory_transaction_id;
+     check(
+       "M1.02 returns shipment_id + outbox_event_id + inventory_transaction_id",
+       !!M1_shipmentId && !!M1_outboxId && !!M1_txId,
+@@ -448,7 +448,7 @@
+     });
+     check(
+       "M1.07 claim returns our event",
+-      Array.isArray(claimed) && (claimed as any[]).some((e) => e.id === M1_outboxId),
++      Array.isArray(claimed) && (claimed as unknown[]).some((e) => e.id === M1_outboxId),
+     );
+ 
+     const { data: failRes } = await admin.rpc("fail_shipment_outbox_event", {
+@@ -458,7 +458,7 @@
+     });
+     check(
+       "M1.08 fail (transient) reschedules with backoff",
+-      (failRes as any).dead_lettered === false,
++      (failRes as unknown).dead_lettered === false,
+     );
+ 
+     await admin.rpc("record_channel_shipment_bol_failure", {
+@@ -501,7 +501,7 @@
+       .eq("company_id", A.comp.id)
+       .eq("sku_id", A.sku.id)
+       .eq("warehouse_id", A.wh.id);
+-    const afterMap = new Map((balAfter ?? []).map((b: any) => [b.disposition, b.quantity]));
++    const afterMap = new Map((balAfter ?? []).map((b: unknown) => [b.disposition, b.quantity]));
+     // At minimum: no reversal txn was posted → no new positive entry on 'packed_or_staging'
+     const packedAfter = (afterMap.get("packed_or_staging") ?? 0) as number;
+     check(
+@@ -524,7 +524,7 @@
+     });
+     check(
+       "M1.14 retry claim succeeds",
+-      (claimed2 as any[]).some((e) => e.id === M1_outboxId),
++      (claimed2 as unknown[]).some((e) => e.id === M1_outboxId),
+     );
+     await admin.rpc("complete_shipment_outbox_event", {
+       _event_id: M1_outboxId,
+@@ -539,7 +539,7 @@
+     );
+     check(
+       "M1.15 record_channel_shipment_bol_confirmed ok",
+-      !eConf && (confRes as any).ok,
++      !eConf && (confRes as unknown).ok,
+       errMsg(eConf),
+     );
+     const { data: ship3 } = await admin
+@@ -555,7 +555,7 @@
+       _shipment_id: M1_shipmentId,
+       _external_ref: {},
+     });
+-    check("M1.18 confirm replay idempotent", (replayRes as any).idempotent_replay === true);
++    check("M1.18 confirm replay idempotent", (replayRes as unknown).idempotent_replay === true);
+   }
+ 
+   // ==========================================================================
+@@ -593,12 +593,15 @@
+     });
+     check(
+       "M2.01 two shipments created independently",
+-      !!(s1 as any).shipment_id && !!(s2 as any).shipment_id,
+-    );
+-    check("M2.02 different shipment ids", (s1 as any).shipment_id !== (s2 as any).shipment_id);
++      !!(s1 as unknown).shipment_id && !!(s2 as unknown).shipment_id,
++    );
++    check(
++      "M2.02 different shipment ids",
++      (s1 as unknown).shipment_id !== (s2 as unknown).shipment_id,
++    );
+     check(
+       "M2.03 different outbox event ids",
+-      (s1 as any).outbox_event_id !== (s2 as any).outbox_event_id,
++      (s1 as unknown).outbox_event_id !== (s2 as unknown).outbox_event_id,
+     );
+ 
+     // Both can be claimed in the same batch (in_flight together — different shipment ids)
+@@ -607,31 +610,32 @@
+       _lease_ttl_seconds: 60,
+       _batch_size: 20,
+     });
+-    const claimedIds = new Set((claimed as any[]).map((e) => e.id));
++    const claimedIds = new Set((claimed as unknown[]).map((e) => e.id));
+     check(
+       "M2.04 both events in a single claim (independent tuples)",
+-      claimedIds.has((s1 as any).outbox_event_id) && claimedIds.has((s2 as any).outbox_event_id),
++      claimedIds.has((s1 as unknown).outbox_event_id) &&
++        claimedIds.has((s2 as unknown).outbox_event_id),
+     );
+ 
+     // Complete A, fail B — the other side is unaffected
+     await admin.rpc("complete_shipment_outbox_event", {
+-      _event_id: (s1 as any).outbox_event_id,
++      _event_id: (s1 as unknown).outbox_event_id,
+       _external_ref: {},
+     });
+     await admin.rpc("fail_shipment_outbox_event", {
+-      _event_id: (s2 as any).outbox_event_id,
++      _event_id: (s2 as unknown).outbox_event_id,
+       _error: "boom",
+       _transient: true,
+     });
+     const { data: eA } = await admin
+       .from("shipment_outbox_events")
+       .select("status")
+-      .eq("id", (s1 as any).outbox_event_id)
++      .eq("id", (s1 as unknown).outbox_event_id)
+       .single();
+     const { data: eB } = await admin
+       .from("shipment_outbox_events")
+       .select("status")
+-      .eq("id", (s2 as any).outbox_event_id)
++      .eq("id", (s2 as unknown).outbox_event_id)
+       .single();
+     check(
+       "M2.05 completing A does not affect B",
+@@ -665,7 +669,7 @@
+       _transporter_code: "TNT",
+       _track_and_trace: "TRK-M3",
+     };
+-    const results5: any[] = [];
++    const results5: unknown[] = [];
+     for (let i = 0; i < 5; i++) {
+       const { data, error } = await admin.rpc(
+         "record_internal_ship_and_enqueue_confirmation",
+@@ -755,7 +759,7 @@
+ 
+     // Confirm the closure-report branch: only bol.shipment.confirm survives.
+     const { data: distinct } = await admin.from("shipment_outbox_events").select("event_kind");
+-    const kinds = new Set((distinct ?? []).map((r: any) => r.event_kind));
++    const kinds = new Set((distinct ?? []).map((r: unknown) => r.event_kind));
+     check(
+       "M4.04 only bol.shipment.confirm kinds present in outbox",
+       kinds.size === 1 && kinds.has("bol.shipment.confirm"),
+@@ -826,7 +830,7 @@
+       _allocation_id: allocationId,
+       _transporter_code: "TNT",
+     });
+-    const outboxId = (shipRes as any).outbox_event_id as string;
++    const outboxId = (shipRes as unknown).outbox_event_id as string;
+ 
+     // Force max_attempts = 1 so next failure → DLQ
+     await admin.from("shipment_outbox_events").update({ max_attempts: 1 }).eq("id", outboxId);
+@@ -843,7 +847,7 @@
+     });
+     check(
+       "O.01 non-transient fail dead-letters immediately",
+-      (failRes as any).dead_lettered === true,
++      (failRes as unknown).dead_lettered === true,
+     );
+     const { data: ob } = await admin
+       .from("shipment_outbox_events")
+@@ -868,7 +872,7 @@
+       _allocation_id: a2,
+       _transporter_code: "TNT",
+     });
+-    const outbox2 = (sh2 as any).outbox_event_id as string;
++    const outbox2 = (sh2 as unknown).outbox_event_id as string;
+     // Claim (moves to in_flight with lease)
+     await admin.rpc("claim_shipment_outbox_batch", {
+       _worker_id: "wO2",
+@@ -906,7 +910,7 @@
+     const { error: eDup } = await admin.from("shipment_outbox_events").insert({
+       company_id: A.comp.id,
+       channel_account_id: A.acct.id,
+-      channel_shipment_id: (sh2 as any).shipment_id,
++      channel_shipment_id: (sh2 as unknown).shipment_id,
+       event_kind: "bol.shipment.confirm",
+       status: "in_flight",
+       lease_owner: "x",
+@@ -923,7 +927,7 @@
+     const { error: eIdem } = await admin.from("shipment_outbox_events").insert({
+       company_id: A.comp.id,
+       channel_account_id: A.acct.id,
+-      channel_shipment_id: (sh2 as any).shipment_id,
++      channel_shipment_id: (sh2 as unknown).shipment_id,
+       event_kind: "bol.shipment.confirm",
+       status: "pending",
+     });
+@@ -951,7 +955,7 @@
+       _status: "delivered",
+       _event_time: t1,
+     });
+-    check("I.01 delivered ingested", !eI && (iRes as any).ok === true, errMsg(eI));
++    check("I.01 delivered ingested", !eI && (iRes as unknown).ok === true, errMsg(eI));
+     const { data: s1 } = await admin
+       .from("channel_shipments")
+       .select("status,terminal_at")
+@@ -968,7 +972,7 @@
+       _status: "delivered",
+       _event_time: t1,
+     });
+-    check("I.04 identical replay idempotent", (iRep as any).idempotent_replay === true);
++    check("I.04 identical replay idempotent", (iRep as unknown).idempotent_replay === true);
+ 
+     // Invalid status rejected
+     const { error: eBad } = await admin.rpc("ingest_bol_shipment_status", {
+@@ -1006,7 +1010,7 @@
+         headers: { get: () => null },
+         json: async () => ({}),
+         text: async () => "",
+-      })) as any,
++      })) as unknown,
+     });
+ 
+     // Confirm plan works
+@@ -1023,14 +1027,14 @@
+     );
+     check(
+       "X.02 body carries orderItems + transport",
+-      Array.isArray((p.body as any).orderItems) &&
+-        (p.body as any).orderItems[0].orderItemId === "ITM-1" &&
+-        (p.body as any).transport.transporterCode === "TNT" &&
+-        (p.body as any).transport.trackAndTrace === "TRK",
++      Array.isArray((p.body as unknown).orderItems) &&
++        (p.body as unknown).orderItems[0].orderItemId === "ITM-1" &&
++        (p.body as unknown).transport.transporterCode === "TNT" &&
++        (p.body as unknown).transport.trackAndTrace === "TRK",
+     );
+ 
+     // Cancel deferred
+-    let cancelErr: any = null;
++    let cancelErr: unknown = null;
+     try {
+       adapter.plan({
+         id: "e2",
+@@ -1049,7 +1053,7 @@
+     );
+ 
+     // Payload validation on confirm
+-    let missErr: any = null;
++    let missErr: unknown = null;
+     try {
+       adapter.plan({
+         id: "e3",
+--- a/scripts/phase5-m0/generate-gate-report.ts
++++ b/scripts/phase5-m0/generate-gate-report.ts
+@@ -42,15 +42,18 @@
+   return existsSync(p);
+ }
+ 
+-const runMetadata = readJson<any>("artifacts/run-metadata.json", null);
+-const preHotfix = readJson<any>("artifacts/phase5-m0-pre-hotfix/migration-results.json", null);
+-const preIntegrity = readJson<any>("artifacts/phase5-m0-pre-hotfix/manifest-integrity.json", null);
+-const current = readJson<any>("artifacts/phase5-m0-current/migration-results.json", null);
+-const curIntegrity = readJson<any>("artifacts/phase5-m0-current/manifest-integrity.json", null);
+-const suites = readJson<any>("artifacts/phase5-m0-suites/results.json", null);
+-const m4checkpoint = readJson<any>("artifacts/phase5-m0-m4-checkpoint/results.json", null);
+-const diff = readJson<any>("artifacts/diff/structural-diff.json", null);
+-const secretScan = readJson<any>("artifacts/secret-scan.json", null);
++const runMetadata = readJson<unknown>("artifacts/run-metadata.json", null);
++const preHotfix = readJson<unknown>("artifacts/phase5-m0-pre-hotfix/migration-results.json", null);
++const preIntegrity = readJson<unknown>(
++  "artifacts/phase5-m0-pre-hotfix/manifest-integrity.json",
++  null,
++);
++const current = readJson<unknown>("artifacts/phase5-m0-current/migration-results.json", null);
++const curIntegrity = readJson<unknown>("artifacts/phase5-m0-current/manifest-integrity.json", null);
++const suites = readJson<unknown>("artifacts/phase5-m0-suites/results.json", null);
++const m4checkpoint = readJson<unknown>("artifacts/phase5-m0-m4-checkpoint/results.json", null);
++const diff = readJson<unknown>("artifacts/diff/structural-diff.json", null);
++const secretScan = readJson<unknown>("artifacts/secret-scan.json", null);
+ 
+ const requiredArtifacts = {
+   "run-metadata.json": !!runMetadata,
+@@ -69,36 +72,38 @@
+ 
+ // -- Post-M5 compat suite must not be a scaffold. --------------------------
+ const compatEntry = (suites ?? []).find(
+-  (s: any) => s.script === "phase4-m4-post-m5-compat-tests.ts",
++  (s: unknown) => s.script === "phase4-m4-post-m5-compat-tests.ts",
+ );
+ const compatOk =
+   compatEntry && compatEntry.status === "PASS" && Number(compatEntry.assertions_total) >= 10;
+ 
+ // -- M4 checkpoint must include historical suites passing. -----------------
+-const m4Names = new Set((m4checkpoint ?? []).map((r: any) => r.script));
++const m4Names = new Set((m4checkpoint ?? []).map((r: unknown) => r.script));
+ const m4Complete =
+   m4Names.has("phase4-m4-checkpoint-tests.ts") &&
+   m4Names.has("phase4-m4-tests.ts") &&
+   m4Names.has("phase4-m4-adapter-tests.ts") &&
+-  (m4checkpoint ?? []).every((r: any) => r.status === "PASS");
++  (m4checkpoint ?? []).every((r: unknown) => r.status === "PASS");
+ 
+ // -- Replay outcomes -------------------------------------------------------
+-function replayFailed(rows: any[] | null) {
+-  return !rows || rows.length === 0 || rows.some((r: any) => r.status !== "APPLIED");
++function replayFailed(rows: unknown[] | null) {
++  return !rows || rows.length === 0 || rows.some((r: unknown) => r.status !== "APPLIED");
+ }
+ const preFailed = replayFailed(preHotfix);
+ const curFailed = replayFailed(current);
+ 
+ // -- Suite outcomes --------------------------------------------------------
+-const suiteFails = (suites ?? []).filter((s: any) => s.status !== "PASS");
++const suiteFails = (suites ?? []).filter((s: unknown) => s.status !== "PASS");
+ 
+ // -- Drift -----------------------------------------------------------------
+-const dangerous = (diff?.rows ?? []).filter((r: any) => r.classification === "DANGEROUS").length;
++const dangerous = (diff?.rows ?? []).filter(
++  (r: unknown) => r.classification === "DANGEROUS",
++).length;
+ const undocumented = (diff?.rows ?? []).filter(
+-  (r: any) => r.classification === "UNDOCUMENTED",
++  (r: unknown) => r.classification === "UNDOCUMENTED",
+ ).length;
+ const undocumentedWithRuling = (diff?.rows ?? []).filter(
+-  (r: any) => r.classification === "UNDOCUMENTED" && r.owner_ruling_ref,
++  (r: unknown) => r.classification === "UNDOCUMENTED" && r.owner_ruling_ref,
+ ).length;
+ const liveMissing = diff?.status !== "OK";
+ 
+@@ -169,8 +174,8 @@
+ 
+ | Set | Migrations applied | Failures | Overall |
+ |---|---|---|---|
+-| pre_hotfix (36 expected) | ${preHotfix?.length ?? 0} | ${(preHotfix ?? []).filter((r: any) => r.status !== "APPLIED").length} | ${preFailed ? "FAIL" : "OK"} |
+-| current (37 expected) | ${current?.length ?? 0} | ${(current ?? []).filter((r: any) => r.status !== "APPLIED").length} | ${curFailed ? "FAIL" : "OK"} |
++| pre_hotfix (36 expected) | ${preHotfix?.length ?? 0} | ${(preHotfix ?? []).filter((r: unknown) => r.status !== "APPLIED").length} | ${preFailed ? "FAIL" : "OK"} |
++| current (37 expected) | ${current?.length ?? 0} | ${(current ?? []).filter((r: unknown) => r.status !== "APPLIED").length} | ${curFailed ? "FAIL" : "OK"} |
+ 
+ ## M4 checkpoint & post-M5 supersedence
+ 
+@@ -183,10 +188,10 @@
+ | Metric | Value |
+ |---|---|
+ | Suites total | ${suites?.length ?? 0} |
+-| PASS | ${(suites ?? []).filter((s: any) => s.status === "PASS").length} |
++| PASS | ${(suites ?? []).filter((s: unknown) => s.status === "PASS").length} |
+ | FAIL | ${suiteFails.length} |
+-| Assertions passed | ${(suites ?? []).reduce((n: number, s: any) => n + Number(s.assertions_passed ?? 0), 0)} |
+-| Assertions total | ${(suites ?? []).reduce((n: number, s: any) => n + Number(s.assertions_total ?? 0), 0)} |
++| Assertions passed | ${(suites ?? []).reduce((n: number, s: unknown) => n + Number(s.assertions_passed ?? 0), 0)} |
++| Assertions total | ${(suites ?? []).reduce((n: number, s: unknown) => n + Number(s.assertions_total ?? 0), 0)} |
+ 
+ ## Drift
+ 
+--- a/src/hooks/useSellerApplication.ts
++++ b/src/hooks/useSellerApplication.ts
+@@ -73,15 +73,27 @@
+   | "reinstate";
+ 
+ async function rpcOne<T>(fn: string, args: Record<string, unknown>): Promise<T | null> {
+-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+-  const { data, error } = await (supabase as any).rpc(fn, args);
++  const { data, error } = await (
++    supabase as unknown as {
++      rpc(
++        name: string,
++        args?: Record<string, unknown>,
++      ): PromiseLike<{ data: unknown; error: { message: string } | null }>;
++    }
++  ).rpc(fn, args);
+   if (error) throw new Error(error.message);
+   return (data ?? null) as T | null;
+ }
+ 
+ async function rpcMany<T>(fn: string, args: Record<string, unknown>): Promise<T[]> {
+-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+-  const { data, error } = await (supabase as any).rpc(fn, args);
++  const { data, error } = await (
++    supabase as unknown as {
++      rpc(
++        name: string,
++        args?: Record<string, unknown>,
++      ): PromiseLike<{ data: unknown; error: { message: string } | null }>;
++    }
++  ).rpc(fn, args);
+   if (error) throw new Error(error.message);
+   return (data ?? []) as T[];
+ }
+--- a/src/hooks/useSellerData.ts
++++ b/src/hooks/useSellerData.ts
+@@ -85,8 +85,14 @@
+ const ACTIVE_KEY = "borvat.seller.activeWorkspace";
+ 
+ async function rpc<T>(fn: string, args?: Record<string, unknown>): Promise<T[]> {
+-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+-  const { data, error } = await (supabase as any).rpc(fn, args ?? {});
++  const { data, error } = await (
++    supabase as unknown as {
++      rpc(
++        name: string,
++        args?: Record<string, unknown>,
++      ): PromiseLike<{ data: unknown; error: { message: string } | null }>;
++    }
++  ).rpc(fn, args ?? {});
+   if (error) throw new Error(error.message);
+   return (data ?? []) as T[];
+ }
+--- a/src/integrations/supabase/previewAuthStorage.ts
++++ b/src/integrations/supabase/previewAuthStorage.ts
+@@ -51,7 +51,6 @@
+     new Promise((resolve) => {
+       const requestId = newId();
+       let done = false;
+-      let timer: ReturnType<typeof setTimeout>;
+       const finish = (r: { ok: boolean; value?: string | null } | null) => {
+         if (done) return;
+         done = true;
+@@ -69,7 +68,7 @@
+       if (value !== undefined) msg["value"] = value;
+       // targetOrigin per trusted editor origin, so a session token never reaches an arbitrary embedder.
+       for (const origin of editorOrigins) window.parent.postMessage(msg, origin);
+-      timer = setTimeout(() => finish(null), TIMEOUT);
++      const timer = setTimeout(() => finish(null), TIMEOUT);
+     });
+ 
+   // The editor may not be listening yet at the first getItem, so retry once.
+--- a/src/lib/email-templates/order-delivered.tsx
++++ b/src/lib/email-templates/order-delivered.tsx
+@@ -62,7 +62,8 @@
+ 
+ export const template = {
+   component: Email,
+-  subject: (data: Record<string, any>) => `Borvat — Je bestelling ${data.orderNumber} is geleverd`,
++  subject: (data: Record<string, unknown>) =>
++    `Borvat — Je bestelling ${data.orderNumber} is geleverd`,
+ 
+   displayName: "Orderstatus: geleverd",
+   previewData: {
+--- a/src/lib/email-templates/order-processing.tsx
++++ b/src/lib/email-templates/order-processing.tsx
+@@ -63,7 +63,7 @@
+ 
+ export const template = {
+   component: Email,
+-  subject: (data: Record<string, any>) =>
++  subject: (data: Record<string, unknown>) =>
+     `Borvat — Je bestelling ${data.orderNumber} is in verwerking`,
+ 
+   displayName: "Orderstatus: in verwerking",
+--- a/src/lib/email-templates/order-shipped.tsx
++++ b/src/lib/email-templates/order-shipped.tsx
+@@ -90,7 +90,8 @@
+ 
+ export const template = {
+   component: Email,
+-  subject: (data: Record<string, any>) => `Borvat — Je bestelling ${data.orderNumber} is verzonden`,
++  subject: (data: Record<string, unknown>) =>
++    `Borvat — Je bestelling ${data.orderNumber} is verzonden`,
+ 
+   displayName: "Orderstatus: verzonden",
+   previewData: {
+--- a/src/lib/email-templates/send-email.ts
++++ b/src/lib/email-templates/send-email.ts
+@@ -19,7 +19,7 @@
+   | { sent: false; reason: "recipient_suppressed" };
+ 
+ export interface SendTemplateEmailOptions {
+-  templateData?: Record<string, any>;
++  templateData?: Record<string, unknown>;
+   /** Dedupes retries of the same logical send; defaults to a random UUID (no dedupe). */
+   idempotencyKey?: string;
+   replyTo?: string;
+--- a/src/lib/order-status.functions.ts
++++ b/src/lib/order-status.functions.ts
+@@ -54,7 +54,18 @@
+     const templateName = TEMPLATE_BY_STATUS[data.status];
+     if (!templateName) return { ok: true, emailed: false };
+ 
+-    const order = (item as any).orders as { user_id: string; total_cents: number } | null;
++    const itemView = item as unknown as {
++      id: string;
++      order_id: string;
++      title: string;
++      quantity: number;
++      price_cents: number;
++      tracking_carrier: string | null;
++      tracking_code: string | null;
++      tracking_url: string | null;
++      orders: { user_id: string; total_cents: number } | null;
++    };
++    const order = itemView.orders as { user_id: string; total_cents: number } | null;
+     if (!order) return { ok: true, emailed: false };
+ 
+     // Buyer profile for email + name
+@@ -68,27 +79,25 @@
+ 
+     const siteUrl = process.env.SITE_URL || process.env.PUBLIC_SITE_URL || "https://borvatshop.com";
+ 
+-    const orderNumber = `ORD-${String((item as any).order_id)
+-      .slice(0, 8)
+-      .toUpperCase()}`;
+-    const templateData: Record<string, any> = {
++    const orderNumber = `ORD-${String(itemView.order_id).slice(0, 8).toUpperCase()}`;
++    const templateData: Record<string, unknown> = {
+       siteUrl,
+       orderNumber,
+       customerName: profile.full_name || "klant",
+-      items: [{ title: (item as any).title, quantity: (item as any).quantity }],
+-      orderTotal: formatEur((item as any).price_cents * (item as any).quantity),
++      items: [{ title: itemView.title, quantity: itemView.quantity }],
++      orderTotal: formatEur(itemView.price_cents * itemView.quantity),
+     };
+ 
+     if (data.status === "shipped") {
+-      templateData.trackingCarrier = (item as any).tracking_carrier ?? "";
+-      templateData.trackingCode = (item as any).tracking_code ?? "";
+-      templateData.trackingUrl = (item as any).tracking_url ?? undefined;
++      templateData.trackingCarrier = itemView.tracking_carrier ?? "";
++      templateData.trackingCode = itemView.tracking_code ?? "";
++      templateData.trackingUrl = itemView.tracking_url ?? undefined;
+     }
+ 
+     try {
+       await sendTemplateEmail(templateName, profile.email, {
+         templateData,
+-        idempotencyKey: `order-item-${(item as any).id}-${data.status}`,
++        idempotencyKey: `order-item-${itemView.id}-${data.status}`,
+       });
+       return { ok: true, emailed: true };
+     } catch (e) {
+--- a/src/lib/outbox/bol-adapter.ts
++++ b/src/lib/outbox/bol-adapter.ts
+@@ -1,3 +1,11 @@
++type ProcessStatus = {
++  processStatusId?: string;
++  status?: string;
++  errorMessage?: string;
++  description?: string;
++  entityId?: string;
++  eventType?: string;
++};
+ /**
+  * BolChannelAdapter — Phase 4 M4 real outbound adapter (Bol Retailer API v11).
+  *
+@@ -34,10 +42,10 @@
+   status: number;
+   ok: boolean;
+   headers: { get(name: string): string | null };
+-  json(): Promise<any>;
++  json(): Promise<unknown>;
+   text(): Promise<string>;
+ }
+-export type HttpTransport = (input: string, init: any) => Promise<HttpResponseLike>;
++export type HttpTransport = (input: string, init: RequestInit) => Promise<HttpResponseLike>;
+ 
+ export type BolApiVersion = "v10" | "v11";
+ 
+@@ -67,7 +75,7 @@
+   event_type: string;
+   /** Bol offer id — resolved from channel_listings.external_listing_id */
+   external_listing_id: string;
+-  payload: Record<string, any>;
++  payload: Record<string, unknown>;
+   listing_version: number | string;
+ }
+ 
+@@ -204,7 +212,7 @@
+         };
+       }
+       case "bol.offer.delivery_promise.set": {
+-        const promise = (p.promise ?? {}) as Record<string, any>;
++        const promise = (p.promise ?? {}) as Record<string, unknown>;
+         const deliveryCode = String(promise.deliveryCode ?? "");
+         if (!deliveryCode) {
+           throw new BolAdapterError("delivery promise missing deliveryCode", "permanent");
+@@ -311,7 +319,7 @@
+         r.status >= 500 ? "transient" : "permanent",
+       );
+     }
+-    const j = await r.json();
++    const j = (await r.json()) as { access_token?: string; expires_in?: number };
+     const token = String(j?.access_token ?? "");
+     if (!token) throw new BolAdapterError("token endpoint missing access_token", "permanent");
+     const ttlSec = Number(j?.expires_in ?? 300);
+@@ -345,7 +353,11 @@
+       throw new BolAdapterError(`unexpected accept status ${r.status}`, "transient");
+     }
+ 
+-    const accepted = await r.json();
++    const accepted = (await r.json()) as {
++      processStatusId?: string;
++      id?: string;
++      links?: Array<{ rel?: string; href?: string }>;
++    };
+     const psid = String(accepted?.processStatusId ?? accepted?.id ?? "");
+     if (!psid)
+       throw new BolAdapterError(
+@@ -361,7 +373,9 @@
+     // api.bol.com hosts to prevent host redirection abuse.
+     const selfLink = String(
+       (Array.isArray(accepted?.links) &&
+-        accepted.links.find((l: any) => l?.rel === "self" && typeof l?.href === "string")?.href) ||
++        accepted.links.find(
++          (l: { rel?: string; href?: string }) => l?.rel === "self" && typeof l?.href === "string",
++        )?.href) ||
+         "",
+     );
+     let psUrl = `${this.opts.baseUrl}/process-status/${encodeURIComponent(psid)}`;
+@@ -376,7 +390,7 @@
+     const interval = this.opts.pollIntervalMs ?? 500;
+     const deadline = this.now() + (this.opts.pollTimeoutMs ?? 60_000);
+ 
+-    let final: any = accepted;
++    let final: ProcessStatus = accepted;
+     // Terminal-state polling loop.
+     while (true) {
+       if (this.now() > deadline) {
+@@ -406,7 +420,7 @@
+       if (!s.ok) {
+         throw new BolAdapterError(`process-status http ${s.status}`, "transient");
+       }
+-      const body = await s.json();
++      const body = (await s.json()) as ProcessStatus;
+       final = body;
+       const st = String(body?.status ?? "").toUpperCase();
+       if (st === "SUCCESS") break;
+--- a/src/lib/outbox/bol-worker.ts
++++ b/src/lib/outbox/bol-worker.ts
+@@ -82,7 +82,14 @@
+     _lease_seconds: opts.lease_seconds ?? 60,
+   });
+   if (claimErr) throw new Error(`claim_outbox_batch: ${claimErr.message}`);
+-  const events = (claimed ?? []) as any[];
++  const events = (claimed ?? []) as Array<{
++    id: string;
++    claim_token: string;
++    listing_id: string;
++    event_type: string;
++    payload: Record<string, unknown>;
++    listing_version: number;
++  }>;
+   out.claimed = events.length;
+ 
+   for (const e of events) {
+@@ -145,7 +152,7 @@
+           _event_id: e.id,
+           _claim_token: e.claim_token,
+           _http_status: res.http_status,
+-          _external_ref: res.external_ref as any,
++          _external_ref: res.external_ref as unknown,
+           _bol_process_status_id: res.bol_process_status_id,
+           _request_started_at: res.request_started_at,
+           _request_ended_at: res.request_ended_at,
+--- a/src/routes/[.mcp]/invoke-tool/$tool.ts
++++ b/src/routes/[.mcp]/invoke-tool/$tool.ts
+@@ -13,7 +13,11 @@
+   server: {
+     handlers: {
+       // ANY: TanStack returns SPA HTML for methods not in `handlers`; the SDK 405s instead.
+-      ANY: createTanStackInvokeToolHandler(mcp, { resourcePath: "/mcp", metadataPath: "/.well-known/oauth-protected-resource", trustForwardedHost: true }),
++      ANY: createTanStackInvokeToolHandler(mcp, {
++        resourcePath: "/mcp",
++        metadataPath: "/.well-known/oauth-protected-resource",
++        trustForwardedHost: true,
++      }),
+     },
+   },
+ });
+--- a/src/routes/[.mcp]/list-tools.ts
++++ b/src/routes/[.mcp]/list-tools.ts
+@@ -13,7 +13,11 @@
+   server: {
+     handlers: {
+       // ANY: TanStack returns SPA HTML for methods not in `handlers`; the SDK 405s instead.
+-      ANY: createTanStackListToolsHandler(mcp, { resourcePath: "/mcp", metadataPath: "/.well-known/oauth-protected-resource", trustForwardedHost: true }),
++      ANY: createTanStackListToolsHandler(mcp, {
++        resourcePath: "/mcp",
++        metadataPath: "/.well-known/oauth-protected-resource",
++        trustForwardedHost: true,
++      }),
+     },
+   },
+ });
+--- a/src/routes/[.well-known]/oauth-protected-resource.ts
++++ b/src/routes/[.well-known]/oauth-protected-resource.ts
+@@ -12,7 +12,11 @@
+ export const Route = createFileRoute("/.well-known/oauth-protected-resource")({
+   server: {
+     handlers: {
+-      ANY: createTanStackOAuthProtectedResourceMetadataHandler(mcp, { resourcePath: "/mcp", metadataPath: "/.well-known/oauth-protected-resource", trustForwardedHost: true }),
++      ANY: createTanStackOAuthProtectedResourceMetadataHandler(mcp, {
++        resourcePath: "/mcp",
++        metadataPath: "/.well-known/oauth-protected-resource",
++        trustForwardedHost: true,
++      }),
+     },
+   },
+ });
+--- a/src/routes/_authenticated/seller.orders.tsx
++++ b/src/routes/_authenticated/seller.orders.tsx
+@@ -77,7 +77,8 @@
+         toast.success(`Status: ${STATUS_LABEL[status]}`);
+         load();
+         return;
+-      } catch (e: any) {
++      } catch (caught) {
++        const e = caught as Error;
+         return toast.error(e.message ?? "Could not update status");
+       }
+     }
+@@ -113,7 +114,8 @@
+       toast.success("Verzonden — e-mail met track & trace verstuurd");
+       setEditing(null);
+       load();
+-    } catch (e: any) {
++    } catch (caught) {
++      const e = caught as Error;
+       toast.error(e.message ?? "Could not send");
+     }
+   }
+--- a/src/routes/_authenticated/wishlist.tsx
++++ b/src/routes/_authenticated/wishlist.tsx
+@@ -33,7 +33,7 @@
+         .eq("user_id", sess.session.user.id)
+         .order("created_at", { ascending: false });
+       const mapped = (data ?? [])
+-        .map((d: any) => d.products as ProductCardData | null)
++        .map((d) => (d as unknown as { products: ProductCardData | null }).products)
+         .filter(Boolean) as ProductCardData[];
+       setItems(mapped);
+       setLoading(false);
+--- a/src/routes/mcp.ts
++++ b/src/routes/mcp.ts
+@@ -12,7 +12,11 @@
+ export const Route = createFileRoute("/mcp")({
+   server: {
+     handlers: {
+-      ANY: createTanStackMcpHandler(mcp, { resourcePath: "/mcp", metadataPath: "/.well-known/oauth-protected-resource", trustForwardedHost: true }),
++      ANY: createTanStackMcpHandler(mcp, {
++        resourcePath: "/mcp",
++        metadataPath: "/.well-known/oauth-protected-resource",
++        trustForwardedHost: true,
++      }),
+     },
+   },
+ });
+--- a/src/routes/product.$id.tsx
++++ b/src/routes/product.$id.tsx
+@@ -67,7 +67,7 @@
+                 .maybeSingle()
+             : Promise.resolve({ data: null }),
+         ]);
+-        setP({ ...(prod as any), profiles: profRes.data, categories: catRes.data } as Product);
++        setP({ ...prod, profiles: profRes.data, categories: catRes.data } as Product);
+         if (prod.category_id) {
+           supabase
+             .from("products")
+--- a/src/routes/seller.tsx
++++ b/src/routes/seller.tsx
+@@ -77,7 +77,14 @@
+       const uid = data.user!.id;
+       // P0-2: the seller role can only be granted from an approved seller
+       // application. There is no client-side INSERT path to user_roles.
+-      const { error } = await (supabase as any).rpc("grant_seller_role_from_approved_application");
++      const { error } = await (
++        supabase as unknown as {
++          rpc(
++            name: string,
++            args?: Record<string, unknown>,
++          ): PromiseLike<{ data: unknown; error: { message: string } | null }>;
++        }
++      ).rpc("grant_seller_role_from_approved_application");
+       if (error) {
+         toast.error("Je hebt nog geen goedgekeurde verkopersaanvraag. Dien eerst je aanvraag in.");
+         navigate({ to: "/seller/onboarding" });

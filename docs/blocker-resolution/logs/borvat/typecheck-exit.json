@@ -1,0 +1,1 @@
+{"command": ["node", "node_modules/typescript/bin/tsc", "--noEmit"], "exit_code": 0, "scope": "isolated previously formatted sandbox; original source unchanged"}

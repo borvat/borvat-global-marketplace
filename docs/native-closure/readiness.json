@@ -1,0 +1,36 @@
+{
+  "basis_commit": "2b1358cfde15f998624f818dd62ec53d2e3b0404",
+  "hosted_ci": "HOSTED_CI_BLOCKED \u2014 ALTERNATIVE_VERIFICATION_REQUIRED",
+  "alternative_verification": "IMPLEMENTED_AND_EXECUTED",
+  "C0": "HOLD",
+  "C1_ready": false,
+  "foundation_owner_approval": false,
+  "codex_authorized": false,
+  "blockers": [
+    {
+      "id": "BR1",
+      "status": "PARTIAL",
+      "detail": "Six fault/reconcile cases pass through native methods with test registration; permanent full native financial lifecycle, restart and least privilege remain open"
+    },
+    {
+      "id": "BR2",
+      "status": "OPEN",
+      "detail": "0 critical / 9 high unique workspace advisories; two affected backend dependency instances; license/image/provider/UI compatibility work remains"
+    },
+    {
+      "id": "BR3",
+      "status": "REJECTED",
+      "detail": "Consumer-only native event guard caused ten business regressions; persisted producer/native ownership and nine discovered Medusa entrypoints remain unproven"
+    },
+    {
+      "id": "BR4",
+      "status": "BLOCKED",
+      "detail": "499 original text files preserved, 69 assets unavailable; stable candidate project types pass, four strict lint errors, build and generated-source drift remain"
+    },
+    {
+      "id": "BR5",
+      "status": "PARTIAL",
+      "detail": "Native 200-table logical restore and additive migration pass; restarted application, ACL/roles, PITR/version upgrade and actual adapters not proven"
+    }
+  ]
+}

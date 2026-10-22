@@ -1,0 +1,23 @@
+(node:236) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:236) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+
+Test Suites: 3 passed, 3 total
+Tests:       28 passed, 28 total
+Snapshots:   0 total
+Time:        95.977 s, estimated 102 s
+Ran all test suites within paths "http/borvat/hardening.spec.ts", "http/payment/split-order-payments.spec.ts", "http/borvat/payout-durability-gap.spec.ts".
+Test results written to: ../../resolution/native/results.json
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?
+FULL LOG ARCHIVED AS test.full.log.gz
+(node:236) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:236) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+
+Test Suites: 3 passed, 3 total
+Tests:       28 passed, 28 total
+Snapshots:   0 total
+Time:        95.977 s, estimated 102 s
+Ran all test suites within paths "http/borvat/hardening.spec.ts", "http/payment/split-order-payments.spec.ts", "http/borvat/payout-durability-gap.spec.ts".
+Test results written to: ../../resolution/native/results.json
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

@@ -1,0 +1,16 @@
+{
+  "attempts": [
+    {
+      "url": "https://id-preview--092a5ea2-1dc1-4ffd-a4b4-efe2d3237298.lovable.app/images/hero.jpg",
+      "error": "HTTP Error 401: Unauthorized"
+    },
+    {
+      "url": "https://borvatshop.com/images/hero.jpg",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ],
+  "connector_retry": "hero.jpg text contains U+FFFD, unusable original binary; not saved as image",
+  "lovable_source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+  "recovered": 0,
+  "remaining": 69
+}
