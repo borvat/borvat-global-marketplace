@@ -1,0 +1,13 @@
+{
+  "numPassedTests": 35,
+  "numFailedTests": 1,
+  "numPendingTests": 0,
+  "numPassedTestSuites": 0,
+  "numFailedTestSuites": 1,
+  "failed_cases": [
+    {
+      "name": " NA2 order-edit-confirmed accepts a matching persisted authority then enters native body",
+      "message": "Error: expect(received).resolves.toBeUndefined()\n\nReceived promise rejected instead of resolved\nRejected to value: {\"__isMedusaError\": true, \"code\": undefined, \"date\": 2026-10-22T00:10:20.812Z, \"message\": \"Order id not found: order-a\", \"name\": \"Error\", \"stack\": \"Error: Order id not found: order-a\n    at checkIfKeysExist (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+query@2.21.2+42fb6b7559e0f174/node_modules/@medusajs/query/src/joiner/execute.ts:379:11)\n    at fetchData (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+query@2.21.2+42fb6b7559e0f174/node_modules/@medusajs/query/src/joiner/execute.ts:317:3)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at executePlan (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+query@2.21.2+42fb6b7559e0f174/node_modules/@medusajs/query/src/joiner/execute.ts:70:20)\n    at RemoteJoiner.query (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+query@2.21.2+42fb6b7559e0f174/node_modules/@medusajs/query/src/joiner/remote-joiner.ts:93:59)\n    at Query.internalQuery (/workspace/scratch/ece77f5f97ff/oss-evaluation/mercur/node_modules/.bun/@medusajs+query@2.21.2+42fb6b7559e0f174/node_modules/@medusajs/query/src/query/query.ts:406:12)\n    at Query.graph (/workspace/scratch/ece77f5f97ff/os"
+    }
+  ]
+}

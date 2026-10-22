@@ -1,0 +1,36 @@
+{
+  "mercur_subscribers": [
+    {
+      "file": "mercur/packages/core/src/subscribers/link-order-line-items-to-offers.ts",
+      "entrypoint": "link-order-line-items-to-offers",
+      "policy": "mandatory persisted authority hook; no default bypass"
+    },
+    {
+      "file": "mercur/packages/core/src/subscribers/order-edit-confirmed.ts",
+      "entrypoint": "order-edit-confirmed",
+      "policy": "mandatory persisted authority hook; no default bypass"
+    },
+    {
+      "file": "mercur/packages/core/src/subscribers/payment-webhook.ts",
+      "entrypoint": "payment-webhook",
+      "policy": "mandatory persisted authority hook; no default bypass"
+    },
+    {
+      "file": "mercur/packages/core/src/subscribers/payout-webhook.ts",
+      "entrypoint": "payout-webhook",
+      "policy": "mandatory persisted authority hook; no default bypass"
+    },
+    {
+      "file": "mercur/packages/core/src/subscribers/split-order-canceled.ts",
+      "entrypoint": "split-order-canceled",
+      "policy": "mandatory persisted authority hook; no default bypass"
+    },
+    {
+      "file": "mercur/packages/core/src/subscribers/split-order-payment-captured.ts",
+      "entrypoint": "split-order-payment-captured",
+      "policy": "mandatory persisted authority hook; no default bypass"
+    }
+  ],
+  "mercur_scheduled_jobs_directory_present": false,
+  "scope": "Mercur core pinned source only; Medusa internal subscriber/job inventory remains separate"
+}

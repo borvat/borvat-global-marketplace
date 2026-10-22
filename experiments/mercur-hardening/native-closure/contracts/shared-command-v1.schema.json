@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Surooh shared command v1 (design only; no endpoint deployed)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "command_id",
+    "company_id",
+    "source",
+    "operation",
+    "external_key",
+    "payload",
+    "policy_version"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "command_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "company_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "operation": {
+      "enum": [
+        "reserve_bundle",
+        "release_reservation",
+        "receive_stock",
+        "dispatch_stock",
+        "receive_return",
+        "inspect_return",
+        "transfer_stock",
+        "create_invoice_draft",
+        "create_credit_draft"
+      ]
+    },
+    "external_key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "payload": {
+      "type": "object"
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bom_version": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
+

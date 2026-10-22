@@ -1,0 +1,19 @@
+{
+  "accounting": {
+    "repository": "borvat/surooh-accounting",
+    "commit": "c2254e85fb708fbdb53a91522213ec29dd255e67",
+    "pr": 29
+  },
+  "wms": {
+    "repository": "borvat/surooh-commerce",
+    "commit": "a158106e61241e66a4148638b59bfd50e28f023e",
+    "pr": 17
+  },
+  "shared_schema_byte_identical": true,
+  "reviewed_paths": [
+    "contracts/shared-command-v1.schema.json",
+    "contracts/shared-core-authority.json",
+    "contracts/event-envelope.schema.json"
+  ],
+  "actual_endpoints_connected": false
+}

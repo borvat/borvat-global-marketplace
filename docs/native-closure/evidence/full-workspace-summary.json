@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "schema_errors": [],
+  "components": 2270,
+  "affected_instances": 8,
+  "required_unresolved": 0,
+  "optional_missing": 243
+}

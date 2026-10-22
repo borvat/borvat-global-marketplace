@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "reservation command shape",
+      "status": "PASS",
+      "schema_valid": true
+    },
+    {
+      "case": "create_invoice_draft",
+      "status": "PASS",
+      "schema_valid": true
+    },
+    {
+      "case": "create_credit_draft",
+      "status": "PASS",
+      "schema_valid": true
+    },
+    {
+      "case": "release_reservation",
+      "status": "PASS",
+      "schema_valid": true
+    },
+    {
+      "case": "dispatch_stock",
+      "status": "PASS",
+      "schema_valid": true
+    },
+    {
+      "case": "reject direct financial submit",
+      "status": "PASS",
+      "schema_valid": false
+    },
+    {
+      "case": "reject direct payment",
+      "status": "PASS",
+      "schema_valid": false
+    },
+    {
+      "case": "reject undeclared company override",
+      "status": "PASS",
+      "schema_valid": false
+    },
+    {
+      "case": "reject version drift",
+      "status": "PASS",
+      "schema_valid": false
+    },
+    {
+      "case": "company required",
+      "status": "PASS",
+      "schema_valid": false
+    }
+  ],
+  "authority_invariants": "PASS",
+  "scope": "Real pinned schemas, synthetic fixtures; no deployed ERPNext/WMS endpoint contacted"
+}

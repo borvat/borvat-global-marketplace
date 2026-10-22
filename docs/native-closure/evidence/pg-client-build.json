@@ -1,0 +1,10 @@
+{
+  "source": "https://ftp.postgresql.org/pub/source/v17.6/postgresql-17.6.tar.bz2",
+  "source_sha256": "e0630a3600aea27511715563259ec2111cd5f4353a4b040e0be827f94cd7a8b0",
+  "pg_dump_version": "17.6",
+  "pg_restore_version": "17.6",
+  "client_binaries_uploaded": false,
+  "build_scope": "Locally compiled official source; apt bison/flex/m4 extracted to scratch only, no system install",
+  "configure": "--without-readline --without-zlib --without-icu --without-openssl; --disable-shared was unrecognized and did not disable libpq shared linking",
+  "runtime": "Client-only LD_LIBRARY_PATH points at matching locally built libpq; no shim in Node/business SQL"
+}

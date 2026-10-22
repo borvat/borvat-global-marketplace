@@ -1,0 +1,82 @@
+{
+  "compression@1.8.2": {
+    "exit": 0,
+    "version": "1.8.2"
+  },
+  "axios@1.20.0": {
+    "exit": 0,
+    "version": "1.20.0"
+  },
+  "tar@7.5.22": {
+    "exit": 0,
+    "version": "7.5.22"
+  },
+  "postcss@^8": {
+    "exit": 0,
+    "version": "8.5.31"
+  },
+  "browserslist@^4": {
+    "exit": 0,
+    "version": "4.29.4"
+  },
+  "nanoid@^3": {
+    "exit": 0,
+    "version": "3.3.20"
+  },
+  "source-map-js@^1": {
+    "exit": 0,
+    "version": "1.2.2"
+  },
+  "follow-redirects@^1": {
+    "exit": 0,
+    "version": "1.16.1"
+  },
+  "form-data@^4": {
+    "exit": 0,
+    "version": "4.0.6"
+  },
+  "immutable@^5": {
+    "exit": 0,
+    "version": "5.1.9"
+  },
+  "figlet@^1": {
+    "exit": 0,
+    "version": "1.12.0"
+  },
+  "@grpc/grpc-js@^1": {
+    "exit": 0,
+    "version": "1.14.6"
+  },
+  "joi@^18": {
+    "exit": 0,
+    "version": "18.3.0"
+  },
+  "js-yaml@^4": {
+    "exit": 0,
+    "version": "4.3.2"
+  },
+  "storybook@8.6.19": {
+    "exit": 0,
+    "version": "8.6.19"
+  },
+  "@storybook/core@8.6.19": {
+    "exit": 0,
+    "version": "8.6.19"
+  },
+  "brace-expansion@^1": {
+    "exit": 0,
+    "version": "1.1.21"
+  },
+  "brace-expansion@^2": {
+    "exit": 0,
+    "version": "2.1.7"
+  },
+  "brace-expansion@^5": {
+    "exit": 0,
+    "version": "5.0.12"
+  },
+  "braces@^3": {
+    "exit": 0,
+    "version": "3.0.3"
+  }
+}

@@ -1,0 +1,421 @@
+{
+  "source_commit": "42fcde8cf1b2a11422c32301b6b423d3b5d39942",
+  "preview": "Prior original preview requires authorization; no bypass attempted",
+  "original_hash_verification_available": false,
+  "records": [
+    {
+      "source": "docs/owner-review/m1v0b/account_support.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/account_support.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/admin_dashboard.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/admin_dashboard.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/admin_orders.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/admin_orders.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/admin_security.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/admin_security.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/borvat-m1v0b-navigation.webm",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/borvat-m1v0b-navigation.webm",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_admin_dashboard.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/m_admin_dashboard.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_owner-review.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/m_owner-review.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_seller_manager.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/m_seller_manager.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_seller_order-desk.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/m_seller_order-desk.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/m_support_queue.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/m_support_queue.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/owner-review.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/owner-review.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_analysis.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/seller_analysis.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_finances.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/seller_finances.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_manager.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/seller_manager.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_messages.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/seller_messages.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_order-desk.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/seller_order-desk.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/seller_shipping.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/seller_shipping.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_cases_case_1001.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/support_cases_case_1001.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_inbox_customers.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/support_inbox_customers.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_inbox_merchants.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/support_inbox_merchants.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "docs/owner-review/m1v0b/support_queue.png",
+      "url": "https://borvatshop.com/docs/owner-review/m1v0b/support_queue.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/favicon.png",
+      "url": "https://borvatshop.com/favicon.png",
+      "http_status": 402,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/categories/beauty.jpg",
+      "url": "https://borvatshop.com/images/categories/beauty.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/categories/boeken.jpg",
+      "url": "https://borvatshop.com/images/categories/boeken.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/categories/elektronica.jpg",
+      "url": "https://borvatshop.com/images/categories/elektronica.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/categories/games.jpg",
+      "url": "https://borvatshop.com/images/categories/games.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/categories/mode.jpg",
+      "url": "https://borvatshop.com/images/categories/mode.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/categories/speelgoed.jpg",
+      "url": "https://borvatshop.com/images/categories/speelgoed.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/categories/sport.jpg",
+      "url": "https://borvatshop.com/images/categories/sport.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/categories/wonen.jpg",
+      "url": "https://borvatshop.com/images/categories/wonen.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/hero.jpg",
+      "url": "https://borvatshop.com/images/hero.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/air-purifier.jpg",
+      "url": "https://borvatshop.com/images/products/air-purifier.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/book-coding-robot.jpg",
+      "url": "https://borvatshop.com/images/products/book-coding-robot.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/book-smart-living.jpg",
+      "url": "https://borvatshop.com/images/products/book-smart-living.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/book-sustainable-home.jpg",
+      "url": "https://borvatshop.com/images/products/book-sustainable-home.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/cooler-box.jpg",
+      "url": "https://borvatshop.com/images/products/cooler-box.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/doorbell.jpg",
+      "url": "https://borvatshop.com/images/products/doorbell.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/drone.jpg",
+      "url": "https://borvatshop.com/images/products/drone.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/e-bike.jpg",
+      "url": "https://borvatshop.com/images/products/e-bike.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/earbuds.jpg",
+      "url": "https://borvatshop.com/images/products/earbuds.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/espresso-maker.jpg",
+      "url": "https://borvatshop.com/images/products/espresso-maker.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/fitness-tracker.jpg",
+      "url": "https://borvatshop.com/images/products/fitness-tracker.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/game-controller.jpg",
+      "url": "https://borvatshop.com/images/products/game-controller.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/gaming-headset.jpg",
+      "url": "https://borvatshop.com/images/products/gaming-headset.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/indoor-cam.jpg",
+      "url": "https://borvatshop.com/images/products/indoor-cam.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/ipl-device.jpg",
+      "url": "https://borvatshop.com/images/products/ipl-device.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/led-strip.jpg",
+      "url": "https://borvatshop.com/images/products/led-strip.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/mesh-router.jpg",
+      "url": "https://borvatshop.com/images/products/mesh-router.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/projector.jpg",
+      "url": "https://borvatshop.com/images/products/projector.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/robot-dino.jpg",
+      "url": "https://borvatshop.com/images/products/robot-dino.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/robot-vacuum.jpg",
+      "url": "https://borvatshop.com/images/products/robot-vacuum.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/skin-camera.jpg",
+      "url": "https://borvatshop.com/images/products/skin-camera.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smart-hub.jpg",
+      "url": "https://borvatshop.com/images/products/smart-hub.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smart-jumprope.jpg",
+      "url": "https://borvatshop.com/images/products/smart-jumprope.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smart-kettle.jpg",
+      "url": "https://borvatshop.com/images/products/smart-kettle.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smart-lock.jpg",
+      "url": "https://borvatshop.com/images/products/smart-lock.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smart-plug.jpg",
+      "url": "https://borvatshop.com/images/products/smart-plug.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smart-ring.jpg",
+      "url": "https://borvatshop.com/images/products/smart-ring.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smart-scale.jpg",
+      "url": "https://borvatshop.com/images/products/smart-scale.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smart-teddy.jpg",
+      "url": "https://borvatshop.com/images/products/smart-teddy.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smart-toothbrush.jpg",
+      "url": "https://borvatshop.com/images/products/smart-toothbrush.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smartwatch.jpg",
+      "url": "https://borvatshop.com/images/products/smartwatch.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/smoke-detector.jpg",
+      "url": "https://borvatshop.com/images/products/smoke-detector.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/sous-vide.jpg",
+      "url": "https://borvatshop.com/images/products/sous-vide.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/stem-kit.jpg",
+      "url": "https://borvatshop.com/images/products/stem-kit.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/streaming-stick.jpg",
+      "url": "https://borvatshop.com/images/products/streaming-stick.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/thermostat.jpg",
+      "url": "https://borvatshop.com/images/products/thermostat.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/uv-band.jpg",
+      "url": "https://borvatshop.com/images/products/uv-band.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    },
+    {
+      "source": "public/images/products/wireless-charger.jpg",
+      "url": "https://borvatshop.com/images/products/wireless-charger.jpg",
+      "http_status": 404,
+      "status": "UNAVAILABLE"
+    }
+  ]
+}

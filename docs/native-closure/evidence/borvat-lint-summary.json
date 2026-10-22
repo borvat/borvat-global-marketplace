@@ -1,0 +1,7 @@
+{
+  "errors": 4,
+  "warnings": 25,
+  "failing_rules": [
+    "@typescript-eslint/no-explicit-any"
+  ]
+}

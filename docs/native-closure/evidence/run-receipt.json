@@ -1,0 +1,98 @@
+{
+  "basis_commit": "2b1358cfde15f998624f818dd62ec53d2e3b0404",
+  "upstream_mercur_commit": "57fa9cf7de35829ce493a3ace29deb4f36d0838b",
+  "mercur": "2.3.7",
+  "medusa": "2.21.2",
+  "node": "24.19.0",
+  "bun": "1.3.8",
+  "postgres_server_and_clients": "17.6",
+  "package_json_sha256": "49258e64912d7db6e1304e2512b96440b56fae250519752970e736605f979528",
+  "bun_lock_sha256": "ff7a25129d9996421a1ce5d88c35901aa0a24f3a1ea4e800450add2aa0e0429c",
+  "profiles": {
+    "native-guard-regression": {
+      "pass": 60,
+      "fail": 11,
+      "skip": 0,
+      "acceptance_use": false
+    },
+    "native-authority-only": {
+      "pass": 35,
+      "fail": 1,
+      "skip": 0,
+      "acceptance_use": false
+    },
+    "native-control": {
+      "pass": 35,
+      "fail": 0,
+      "skip": 0,
+      "acceptance_use": true
+    }
+  },
+  "native_test_source_sha256": {
+    "native-money.spec.ts": "cf785951b071139a71fb8c53842197e0262e33a71dde9023d860fcda9e9e2f7c",
+    "durable-native-harness.ts": "7f79e3d3299a93562819480406b59fe09e45c77196409081f2b59069e42d6596",
+    "native-restore.ts": "16bb184285ff5a7dd94d3142731abdbfa0cc520849db44ba732e1db0a297e6ce"
+  },
+  "hosted_ci": "HOSTED_CI_BLOCKED \u2014 ALTERNATIVE_VERIFICATION_REQUIRED",
+  "codex_launched": false,
+  "production_actions": false,
+  "journal_and_authority_registration": "Test fixture only; no deployable permanent module installed",
+  "guard_profiles": "Rejected experimental profiles; different fixtures/install snapshots, not acceptance proof for final control source",
+  "borvat_final_checks": {
+    "typecheck": {
+      "exit": 0,
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ]
+    },
+    "lint": {
+      "exit": 1,
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--format",
+        "json"
+      ]
+    },
+    "source_drift_during_checks": []
+  },
+  "borvat_candidate_delta_sha256": "bcb7fe2e8f2153a6e6293e959a2cac0f0c1a613a6ba39bc0dbff9be799d4f358",
+  "control_subscribers": [
+    {
+      "path": "packages/core/src/subscribers/link-order-line-items-to-offers.ts",
+      "sha256": "538e379e89d09d98b93a4331411be9930bf4b8162f6a1341a8dcb0684d8ccf8e",
+      "matches_pinned_native_source": true
+    },
+    {
+      "path": "packages/core/src/subscribers/order-edit-confirmed.ts",
+      "sha256": "1ed2468ea6ee919272e309176f45e1738dd8ffd6c1f2915e99e086f7b0a9ae9d",
+      "matches_pinned_native_source": true
+    },
+    {
+      "path": "packages/core/src/subscribers/payment-webhook.ts",
+      "sha256": "ee561299e6556783b6320831385a17cf61e9ba315e16d34a924d882c0ab0e7db",
+      "matches_pinned_native_source": true
+    },
+    {
+      "path": "packages/core/src/subscribers/payout-webhook.ts",
+      "sha256": "cc8e2fa0d8f51337643b291422e9bfd858f34a59fc38d919abfc314b9663bf57",
+      "matches_pinned_native_source": true
+    },
+    {
+      "path": "packages/core/src/subscribers/split-order-canceled.ts",
+      "sha256": "e62685bb27e4f3eba754ba113eb9f31ce404fa92f403863bea99f7b64e24b96a",
+      "matches_pinned_native_source": true
+    },
+    {
+      "path": "packages/core/src/subscribers/split-order-payment-captured.ts",
+      "sha256": "2b17fb580beac6c093a580c75fdd578b672917017eb90936c921098b4137d460",
+      "matches_pinned_native_source": true
+    }
+  ],
+  "final_typescript_project": "PASS",
+  "final_lint_errors": 4,
+  "full_acceptance_35": "NOT_RUN"
+}
