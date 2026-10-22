@@ -4,6 +4,8 @@
     "main.tsx",
     "../../apps/marketplace/src/components/commercial/**/*.tsx",
     "../../apps/marketplace/src/lib/commercial/**/*.ts",
-    "tests/commercial.test.tsx"
+    "tests/commercial.test.tsx",
+    "buyer-states.tsx",
+    "tests/buyer-discovery.test.tsx"
   ]
 }
