@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> commerce:source-review
+> node scripts/commerce-integration/source-review.mjs
+
+{"status":"PASS","unchanged":487,"reviewedChanges":12,"total":499,"unresolvedOriginalAssets":69,"meaning":"bounded source evolution, not original parity or release approval"}

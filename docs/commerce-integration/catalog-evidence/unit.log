@@ -1,0 +1,28 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> commerce:test:unit
+> npm --prefix apps/marketplace run test:commerce
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test:commerce
+> node --import tsx --test scripts/commerce-integration.test.ts scripts/catalog-contract.test.ts
+
+✔ canonical fixture separates products, SKU, companies, stores and competing offers (5.225864ms)
+✔ atomic parser rejects duplicate identities, dangling relations and invalid commercial values (17.540255ms)
+✔ owned media requires HTTPS and a rights reference; missing media is allowed (6.818278ms)
+✔ seventh company, second store and multiple packs need no special-case identifiers (8.49639ms)
+✔ pagination is deterministic, complete, country-safe and bound to revision and filters (8.284243ms)
+✔ buyer projection preserves offer identity and follows seller edits without mutating request history (2.063441ms)
+✔ real router adapter rejects protocol, authority and browser-normalized authority escapes (5.016921ms)
+✔ isolated document surface permits buyer paths and rejects operational/API routes (0.332951ms)
+✔ isolated server never dispatches write methods, including email and server functions (0.192269ms)
+✔ narrow buyer reader preserves verified identity, limit and original result (0.227232ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 447.277873

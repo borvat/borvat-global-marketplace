@@ -1,0 +1,279 @@
+{
+  "baseCommit": "b3e8b71bdbad2b30f484c165f5bc641108bd1068",
+  "scope": "Synthetic canonical catalog continuation; no native or production acceptance",
+  "checks": [
+    {
+      "command": "npm run commerce:test:unit",
+      "cwd": ".",
+      "exit": 0,
+      "log": "unit.log"
+    },
+    {
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "cwd": "apps/marketplace",
+      "exit": 0,
+      "log": "types.log"
+    },
+    {
+      "command": "node node_modules/eslint/bin/eslint.js src/lib/commercial/catalog-contract.ts src/lib/commercial/catalog-rehearsal.ts src/lib/commercial/buyer-discovery.ts src/components/commercial/workspace.tsx scripts/catalog-contract.test.ts",
+      "cwd": "apps/marketplace",
+      "exit": 0,
+      "log": "lint.log"
+    },
+    {
+      "command": "node --import tsx --test tests/*.test.tsx",
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "log": "regression.log"
+    },
+    {
+      "command": "npm run commerce:build:isolated",
+      "cwd": ".",
+      "exit": 0,
+      "log": "build.log"
+    },
+    {
+      "command": "npm run commerce:test:browser",
+      "cwd": ".",
+      "exit": 0,
+      "log": "browser.log",
+      "environment": "Same Chromium/Playwright/lib/font paths as prior integration manifest; BROWSER_EVIDENCE_DIR=docs/commerce-integration/catalog-evidence/browser"
+    },
+    {
+      "command": "npm run commerce:source-review",
+      "cwd": ".",
+      "exit": 0,
+      "log": "source-review.log"
+    },
+    {
+      "command": "node --test tests/foundation/*.test.mjs",
+      "cwd": ".",
+      "exit": 0,
+      "log": "foundation.log"
+    }
+  ],
+  "files": [
+    {
+      "path": "apps/marketplace/src/lib/commercial/catalog-contract.ts",
+      "bytes": 6902,
+      "sha256": "600f2d9ab81f6859c7eecc0e3d37a8201efa0d3969e7ab902537997e2f67c821",
+      "gitBlob": "463d01be54e4ef9bfcb9c1652dba3a24d848f3aa"
+    },
+    {
+      "path": "apps/marketplace/src/lib/commercial/catalog-rehearsal.ts",
+      "bytes": 2657,
+      "sha256": "d723a477cea7cc59821fed1bc6d8120ea4654786df306acdc5c2149fc31b8b2b",
+      "gitBlob": "73785a3a9a59cd0b8179cce2eaf87a150adf8542"
+    },
+    {
+      "path": "apps/marketplace/src/lib/commercial/buyer-discovery.ts",
+      "bytes": 1946,
+      "sha256": "03a9e149f84811caafdb3ed38e3cbb4f21e68e2554f4b5a1f79447ddf55b2f2c",
+      "gitBlob": "3ea0026077b11c4ec2d5d74345c14f828f51e728"
+    },
+    {
+      "path": "apps/marketplace/src/components/commercial/workspace.tsx",
+      "bytes": 24385,
+      "sha256": "17fb07bfec8b2c5fd71c2a89ed0c96bbceacb5d984afe88d7e9ea341a60e2988",
+      "gitBlob": "77f6ddb4512ed60f0ed90db46ab0e1516f32a379"
+    },
+    {
+      "path": "apps/marketplace/scripts/catalog-contract.test.ts",
+      "bytes": 6464,
+      "sha256": "4262d6495f2be219717b13c01edd171e0d64c0422fee8d623f64a1a4e990c4ed",
+      "gitBlob": "7eb3af06b4dad8ac4cded7bbd3a2fc93fe1080f3"
+    },
+    {
+      "path": "apps/marketplace/package.json",
+      "bytes": 3417,
+      "sha256": "8e36378b3ccb2113780af2e204b658b4d7871e464a6239b7f9904e39ca687318",
+      "gitBlob": "d37ef07ff4c0c1907ed7455ee46576bea69ba6a6"
+    },
+    {
+      "path": "experiments/commercial-application/tests/buyer-discovery.test.tsx",
+      "bytes": 2453,
+      "sha256": "61aaf70b39abcfe76f875156c4fe414bec1a9ca125119abd2995f7336d14eb74",
+      "gitBlob": "388eb59bdd56e2235a5fa7aae25269d3655fe840"
+    },
+    {
+      "path": "docs/commerce-integration/source-changes.json",
+      "bytes": 4279,
+      "sha256": "1d0e9631a1a4de8a3edb96980ec6395c9f22c606dcacdedb4fd016fe27ab2e52",
+      "gitBlob": "44369a60d3db4429c9077e49428468256af7446e"
+    },
+    {
+      "path": "docs/commerce-integration/DELIVERY-PLAN.md",
+      "bytes": 5599,
+      "sha256": "fda565e180eb5ca527acce69bc2f33890187f2b050887580b4683abe146e8f89",
+      "gitBlob": "6001ce7f6015ada748017638590be6afa961be7d"
+    },
+    {
+      "path": "docs/commerce-integration/CATALOG.md",
+      "bytes": 5389,
+      "sha256": "1fa41f821eaf8e0c21e2235dd5364ae4f3d5d45784f47718696011c2d17e256a",
+      "gitBlob": "f215005ee46f32b36a8327533bd4dbfd6929fc98"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser.log",
+      "bytes": 173,
+      "sha256": "55e94431e05e6324c2a4119fc4055f38f369f2cf9afd723da584b4c524a7284d",
+      "gitBlob": "a31c23e5625fb8d73203ffbc668bc96e3f576f13"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/1440-cart.png",
+      "bytes": 118707,
+      "sha256": "e58d0cf9787cb22895dc7102026705367baafe0d3435b2a136bdc378e8b87134",
+      "gitBlob": "2b5e5d028481865470a0ce847b4a290f8e19c979"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/1440-detail.png",
+      "bytes": 136553,
+      "sha256": "17ffcdc6a646dd3e0a1a0b6ee9156899f0556f54740458522252df8340da790c",
+      "gitBlob": "38168e13fdb3b28bd075562e4223d76fb4b9fa7a"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/1440-discovery.png",
+      "bytes": 111495,
+      "sha256": "6e4ac453746559f0bce83177b00599ca801adbccc486e3ca18af31ffe190fa31",
+      "gitBlob": "5e95cd68c291812fc0e842ccc5f24288956f4b07"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/1440-stale-cart.png",
+      "bytes": 123179,
+      "sha256": "c0e93eac0e498c4dadb7f7bdea8ecd9e43a85f220bb12a5fadd37eab0de95310",
+      "gitBlob": "11b0d963f2df0868d8901219af8954bc13245723"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/1440-unknown.png",
+      "bytes": 61725,
+      "sha256": "5fecfdde89eef1a0e5d557d8995fc4f36dbed54245a1ddc3baeb649dc279f3c9",
+      "gitBlob": "8bf0532059ccc64f350a769d73958f5e19e9d2c0"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/320-cart.png",
+      "bytes": 114155,
+      "sha256": "2a485a0ee1fd4822d7878b71fb44db0a1c2f42399506c3f9c10271b06836a463",
+      "gitBlob": "c0357ffd672d2a81b43be833c32106f261f45fc0"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/320-detail.png",
+      "bytes": 131957,
+      "sha256": "492c1fbe0e6d7796994f74d7a9b5e77d745fba3c11a5a29bdd5692b70263c023",
+      "gitBlob": "d9f95fa01d9e9b2512133c38d063bb7dc8f77505"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/320-discovery.png",
+      "bytes": 106967,
+      "sha256": "76b955dbcc3c5a29f5ebf6b803d9cd7ba5f0b7c311bf6f3f371b0a0d3bfd6763",
+      "gitBlob": "abd6538a7063ba74347b48d1c621a30699f667f2"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/320-stale-cart.png",
+      "bytes": 120311,
+      "sha256": "dce52714fa7e2b7894051c5ee8ecee5ed10a7914c68a065717c373feaf5c315c",
+      "gitBlob": "1cb6e0c3e5ca19927afbb7fd403cc08cff5ca2a2"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/320-unknown.png",
+      "bytes": 57514,
+      "sha256": "2e61f264cfc75f5fe7db480cea0b14b497c2391c9ce407a053e7269857544ae6",
+      "gitBlob": "8a396d6025d9f78983d3d1b61ccc8c8549c0648c"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/390-cart.png",
+      "bytes": 113228,
+      "sha256": "9a01a56059f80442517d8c62dc5a2a73001009b0954b2439ad1cf4c9820cf4d5",
+      "gitBlob": "e614cd48a9bffcccc0743d4a7ba25e085b8bf4b9"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/390-detail.png",
+      "bytes": 130316,
+      "sha256": "3a998d38413209ef68c6da4d72a52d06bdfa334e2e1fd304ecdef19c504e5ba7",
+      "gitBlob": "60e34f8f484ec85f24bc648e934d09a5f95937ff"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/390-discovery.png",
+      "bytes": 106521,
+      "sha256": "981864e81ab714275a65ed603b2eb9503e82c485fe4cb178c9b8205955fd38eb",
+      "gitBlob": "69acc8914861f75db765f76c89495b888bace9a1"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/390-stale-cart.png",
+      "bytes": 119286,
+      "sha256": "165e1878832f2bf838a2d0bb0108b25640409b070ae8983586f869953f578ce1",
+      "gitBlob": "64be7f5ea589d6a9cb45d47ccc003b6b80bebb81"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/390-unknown.png",
+      "bytes": 57137,
+      "sha256": "2a8c5664da020eb62897bf8a323be178adf2addd4533a193548576490ce24d8e",
+      "gitBlob": "11fcc80a45324292eff6d988d81b6188ab4958ae"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/results.json",
+      "bytes": 1322,
+      "sha256": "e6fa5ac8054c7fa2ca448b629e2ea0752c16a27b436872031e638d64b3915284",
+      "gitBlob": "329bb049e91f818c0fcc389c43a137fafa3d02c5"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/server.log",
+      "bytes": 41,
+      "sha256": "559fa4fb9d14017cd9cd5ea00ef82d67964518a1973c5ce4abc0b719360f7708",
+      "gitBlob": "25dee48e8e374126a4752d13760341b8d6ee4572"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/ssr-discover.html",
+      "bytes": 8501,
+      "sha256": "f9ee33b98f55d2c5d86ec9d9a1851120c8e235a00d491dce167f9b3db123659d",
+      "gitBlob": "05de81186e7084cca6544f2fbfbdfc3091928854"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/browser/ssr-no-javascript.png",
+      "bytes": 81273,
+      "sha256": "66a3ecd517ea0861382a45beaad6cc86931a4f1a1802ff6a3a27bc5291cd8486",
+      "gitBlob": "00d5bf05bd66952418a5b12cac2cb41387d7b471"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/build.log",
+      "bytes": 46636,
+      "sha256": "4443540f10a39ebae3b970c944d5342d3f7f7c95327ea6788ed583c140b97eca",
+      "gitBlob": "0987277a4492d51f454bcb3d1f1c33e331f59a74"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/foundation.log",
+      "bytes": 791,
+      "sha256": "486c4c383a611a96885c4716c2fceab25a0463e11e5a5554016ac5ca5f2e7085",
+      "gitBlob": "8fe60ccf90d5d0025c38ad04037a865d29b06051"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/regression.log",
+      "bytes": 3337,
+      "sha256": "82fc60b0bc595a2163e74b682389378b8da9345d9e4d3c4ea3e2f4ac184bc3b5",
+      "gitBlob": "6e4ba7f733ce8176af9f0690927aaeaa827f3863"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/source-review.log",
+      "bytes": 355,
+      "sha256": "9ffb04ca4aefe079733f474478b2ae88f209df1ecd5ea52966c798d8f87f178d",
+      "gitBlob": "a9ff872368fdbceee006d449068f39101f41c878"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/types.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "docs/commerce-integration/catalog-evidence/unit.log",
+      "bytes": 1522,
+      "sha256": "e88913af1366ba724af1b0f0d8de21353cd4acb976101bdf7e1d16fc53f3d65f",
+      "gitBlob": "808037217ad0b46585a052633c048bd753b10f7c"
+    }
+  ]
+}

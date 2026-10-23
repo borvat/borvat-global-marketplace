@@ -18,8 +18,8 @@
     {
       "path": "apps/marketplace/package.json",
       "before": "26ab38aca5af47aa3156dfd9f01c8dc0f64ddbf35832866ddacd2b027acc22ef",
-      "after": "4449a2e777afd445a4a2c05c0598a52bd23192e7bed6bb12d2ebd61d2b9421a7",
-      "reason": "Isolated test command only; dependency declarations unchanged"
+      "after": "8e36378b3ccb2113780af2e204b658b4d7871e464a6239b7f9904e39ca687318",
+      "reason": "Isolated integration and canonical-catalog test commands; dependencies unchanged"
     },
     {
       "path": "apps/marketplace/src/lib/buyer-account.ts",
