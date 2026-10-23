@@ -204,7 +204,30 @@ test("canonical JSON export validates, round-trips and ignores source row order"
   const serialized = serializeCanonicalCatalog(source);
   assert.ok(serialized.endsWith("\n"));
   assert.equal(serialized, serializeCanonicalCatalog(reordered));
-  assert.deepEqual(parseCatalog(JSON.parse(serialized)), parseCatalog(source));
+  const compareId = (a: { id: string }, b: { id: string }) =>
+    a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+  const compareText = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
+  const normalized: CanonicalCatalog = {
+    ...source,
+    products: source.products
+      .map((product) => ({ ...product, media: [...product.media].sort(compareId) }))
+      .sort(compareId),
+    skus: source.skus
+      .map((sku) => ({
+        ...sku,
+        references: [...sku.references].sort((a, b) => compareText(a.authority, b.authority)),
+      }))
+      .sort(compareId),
+    companies: [...source.companies].sort(compareId),
+    stores: [...source.stores].sort(compareId),
+    offers: source.offers
+      .map((offer) => ({
+        ...offer,
+        countries: [...offer.countries].sort(compareText),
+      }))
+      .sort(compareId),
+  };
+  assert.deepEqual(parseCatalog(JSON.parse(serialized)), parseCatalog(normalized));
   assert.equal(JSON.stringify(source), original);
   assert.throws(() => serializeCanonicalCatalog({ ...source, mode: "production" }));
 });
