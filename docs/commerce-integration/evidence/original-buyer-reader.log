@@ -1,0 +1,11 @@
+bun test v1.3.13 (bf2e2cec)
+
+scripts/buyer-account.test.ts:
+(pass) recent buyer order privacy and limit > filters on the supplied authenticated user_id, newest first, and requests exactly three [0.20ms]
+(pass) recent buyer order privacy and limit > never starts a query without an authenticated identity [0.14ms]
+(pass) recent buyer order privacy and limit > does not claim an unrecognized order state is paid or delivered [0.08ms]
+
+ 3 pass
+ 0 fail
+ 5 expect() calls
+Ran 3 tests across 1 file. [27.00ms]

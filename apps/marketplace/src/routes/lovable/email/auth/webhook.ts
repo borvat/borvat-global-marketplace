@@ -7,6 +7,7 @@ import { MagicLinkEmail } from '@/lib/email-templates/magic-link'
 import { RecoveryEmail } from '@/lib/email-templates/recovery'
 import { EmailChangeEmail } from '@/lib/email-templates/email-change'
 import { ReauthenticationEmail } from '@/lib/email-templates/reauthentication'
+import { ISOLATED_COMMERCE } from '@/lib/commercial/runtime-mode'
 
 // Configuration
 const SITE_NAME = "Borvat"
@@ -17,7 +18,9 @@ const SITE_URL = `https://${ROOT_DOMAIN}`
 
 // The SDK handler owns verification, dispatch, and retry semantics; this file
 // owns only the email decisions: subjects, templates, and per-type props.
-const handler = createAuthEmailHandler({
+// Route-tree imports must not require an email secret just to render the storefront.
+// The SDK still owns verification and dispatch when this endpoint is actually invoked.
+const createHandler = () => createAuthEmailHandler({
   apiKey: process.env.LOVABLE_API_KEY!,
   from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
   senderDomain: SENDER_DOMAIN,
@@ -87,7 +90,12 @@ const handler = createAuthEmailHandler({
 export const Route = createFileRoute("/lovable/email/auth/webhook")({
   server: {
     handlers: {
-      POST: ({ request }) => handler(request),
+      POST: ({ request }) => {
+        if (ISOLATED_COMMERCE || !process.env.LOVABLE_API_KEY) {
+          return Response.json({ error: 'Email service unavailable' }, { status: 503 })
+        }
+        return createHandler()(request)
+      },
     },
   },
 })

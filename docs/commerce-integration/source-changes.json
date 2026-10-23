@@ -1,0 +1,79 @@
+{
+  "baseCommit": "bd08f17eede382d4cd7e997d1a5b52a0573918b2",
+  "ownerMandateDate": "2026-10-23",
+  "meaning": "Explicit original-text evolution. Immutable recovery manifest and asset gate are unchanged.",
+  "changes": [
+    {
+      "path": "apps/marketplace/docs/BORVAT_CURRENT_STATE_V1.md",
+      "before": "b8c87fffedc85d6880b6131f1196dafddfdb0965ccd436c6cd9a2943a22743fd",
+      "after": "16cfecda1c3a3073f43b634f5c694fe03ed2ef8f77458ae22b8042a43333d72e",
+      "reason": "Current engineering mandate and integration evidence reference"
+    },
+    {
+      "path": "apps/marketplace/docs/BORVAT_DECISION_LOG_V1.md",
+      "before": "e6d9680e2a5bfe166342a2f49f09e30eaf81658c4a723ebdba9fb433310ee621",
+      "after": "95e9216c64e27ae70ed9998e272f831a73bc4289efcd123b40963774dbeb5017",
+      "reason": "Append-only owner implementation decision BOR-DEC-161"
+    },
+    {
+      "path": "apps/marketplace/package.json",
+      "before": "26ab38aca5af47aa3156dfd9f01c8dc0f64ddbf35832866ddacd2b027acc22ef",
+      "after": "4449a2e777afd445a4a2c05c0598a52bd23192e7bed6bb12d2ebd61d2b9421a7",
+      "reason": "Isolated test command only; dependency declarations unchanged"
+    },
+    {
+      "path": "apps/marketplace/src/lib/buyer-account.ts",
+      "before": "3a02d8715388b5303fa327ce0496bb71c611e31b9e1b4ce96767934f3f64e360",
+      "after": "0f6971c884806d2120c95321458c466266d2caaafc29579b7d82d9f7222d915e",
+      "reason": "Narrow query adapter avoids generated-client type recursion while preserving verified-user scope and result limit"
+    },
+    {
+      "path": "apps/marketplace/src/routeTree.gen.ts",
+      "before": "76cbbde0c2f4ac2f5b3706a69296e81aa8a653e3ae10357f19a03d9a0c94fc33",
+      "after": "96b097c9da1b080a61d9647c8b43a073de40cafa4c80c610bb1601f57c0656c4",
+      "reason": "Actual TanStack route generator registers discover, requests and workbench routes"
+    },
+    {
+      "path": "apps/marketplace/src/routes/__root.tsx",
+      "before": "0c765c21fb55c5bf5aead9e492e1544d5577cfb82ee9054eda27a514f264e7ff",
+      "after": "3dc3f4afa1c6402cfa815b2086e04700396f6b7ef78f8816bff1f4c096463334",
+      "reason": "Explicit isolated shell, original router/provider and country metadata; default backend flow retained"
+    },
+    {
+      "path": "apps/marketplace/src/routes/account.tsx",
+      "before": "a7934bc72968e790c8cc242c6d6cfea822b90dc6e324233ac2a9e4c8c323dc87",
+      "after": "5859548285689c68486d8aef7fdd90bc28a70d7e930cb468de0b4232d3b4a7d0",
+      "reason": "Adapt existing typed RLS order query through the narrow reader"
+    },
+    {
+      "path": "apps/marketplace/src/routes/cart.tsx",
+      "before": "2f2a646143ae566177c6e926265bfeb1a0e7c44b833cbf19307e045f5cd294c8",
+      "after": "526ed0e8da09174fafb1f3e7e6bbe3a9c270c62740b0f4304c40a8a9f0ce58d7",
+      "reason": "Use shared isolated buyer application only in explicit isolated mode"
+    },
+    {
+      "path": "apps/marketplace/src/routes/index.tsx",
+      "before": "20d7987ea72b27716b041159a944031ac5a37c211955e998fab467942a561622",
+      "after": "9ede5d4876aa41b4e8da87a607098b2c2aa3d3ed9ad6363b57c5c173a877762a",
+      "reason": "Explicit isolated buyer application; original missing public hero URL is a runtime URL, not a substituted image"
+    },
+    {
+      "path": "apps/marketplace/src/routes/lovable/email/auth/webhook.ts",
+      "before": "97cf5c5607a8fb04b8cfde93099caeb8a167631dc86365afe6b2ff54d724de2f",
+      "after": "88d3904d74dea5bbd4240bd6a6d8f5f608ea5aac69134a48078244f2be746a76",
+      "reason": "Defer email SDK construction until an actual configured request; retain SDK verification and dispatch"
+    },
+    {
+      "path": "apps/marketplace/src/routes/product.$id.tsx",
+      "before": "0df360e8b49be6133742186afa2fc38f096bde1638a700947e21fa41697e4cb7",
+      "after": "85aab7f7e22ca79a86c6c40068f53d79dd7b1bf091b0dbcf60fd586d7f30e48b",
+      "reason": "Explicit isolated buyer application; remove redundant any assertion"
+    },
+    {
+      "path": "apps/marketplace/src/server.ts",
+      "before": "f0ee683067afee145f81a63a3af76b3d3767e2a1f61f0e82582f8da184ad3ef6",
+      "after": "30f744788a136283339dcf7b2a1d8448b998ce58a864538421f5483eadb1d940",
+      "reason": "Reject isolated write/API dispatch before loading framework handlers"
+    }
+  ]
+}

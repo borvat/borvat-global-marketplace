@@ -2,6 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import { ISOLATED_COMMERCE, isolatedCommerceRequestStatus } from "./lib/commercial/runtime-mode";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -46,6 +47,13 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    if (ISOLATED_COMMERCE) {
+      const status = isolatedCommerceRequestStatus(request.method, new URL(request.url).pathname);
+      if (status !== 200) return new Response(status === 405 ? "Method not allowed" : "Not found", {
+        status,
+        headers: status === 405 ? { Allow: "GET, HEAD" } : undefined,
+      });
+    }
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);

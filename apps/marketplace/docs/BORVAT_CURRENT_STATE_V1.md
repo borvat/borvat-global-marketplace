@@ -1,5 +1,7 @@
 # BORVAT CURRENT STATE V1
 
+**Current engineering update — 2026-10-23:** The owner delegated implementation of marketplace completion. The original application now has an explicit isolated commerce runtime and real TanStack routing boundary; its full build, SSR/browser and regression evidence are recorded in [the current integration report](../../../docs/commerce-integration/REPORT.md). This update does not certify native checkout, payments, WMS/Accounting integration, original media, seller verification or release readiness. The historical entries below remain evidence for their original dates.
+
 **آخر تحديث:** 26 يوليو 2026 (بعد M1B-2B — BOR-DEC-046 + BOR-DEC-047)
 **الغرض:** سجل تنفيذي حي. يُحدّث بعد كل مرحلة أو Hotfix أو قرار إطلاق.
 **المرجع الأعلى:** `BORVAT_MASTER_BLUEPRINT_V1.md`

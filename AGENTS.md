@@ -1,5 +1,15 @@
 # Repository instructions
 
+## Current owner mandate — 2026-10-23
+
+The owner explicitly delegated professional completion of the existing marketplace: «طيب استلم هاد الهدف بتفويض كامل بشغل احترافي مهني عالمي». This supersedes the earlier preparation-only prohibition **for normal implementation, isolated verification and reviewable branch/PR work**. Continue the existing project rather than restarting it; do not request confirmation for routine technical choices. Current plan: `docs/commerce-integration/DELIVERY-PLAN.md`.
+
+This mandate does not certify the unresolved financial foundation, review evidence, legal seller verification, source-media parity or production readiness. Retain release gates and keep real payments, seller payouts, production data, paid services, main merge and deployment outside this isolated milestone. Do not weaken a test or relabel synthetic results as native acceptance. Imported source may now evolve in a bounded reviewed diff, tracked separately from the immutable recovery manifest. No delegation was requested.
+
+## Historical preparation envelope
+
+The implementation restrictions below describe the earlier mandate and are superseded to the limited extent stated above; the production, evidence and preservation constraints remain applicable.
+
 The owner authorized engineering preparation only. **Do not start, assign or trigger Codex implementation.** All C1–C6 work is ON HOLD until explicit final owner approval. No production access, database migrations, live PSP, real sellers, external messages, paid services, deployment, main merge or auto-merge.
 
 Preserve imported source under apps/marketplace. Read its AGENTS.md and original governance files before any future modification. Do not rewrite pushed history or alter Lovable-connected branches. apps/marketplace .env was intentionally excluded. Never populate examples with real secrets or connect existing cloud databases.

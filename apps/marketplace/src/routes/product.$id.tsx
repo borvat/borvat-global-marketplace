@@ -5,6 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { formatEur, productImage } from "@/lib/format";
 import { toast } from "sonner";
 import { ProductCard, type ProductCardData } from "@/components/product-card";
+import { IsolatedBuyerApplication } from "../components/commercial/application-provider";
+import { ISOLATED_COMMERCE } from "../lib/commercial/runtime-mode";
 
 type Product = {
   id: string;
@@ -38,6 +40,10 @@ export const Route = createFileRoute("/product/$id")({
 });
 
 function ProductPage() {
+  return ISOLATED_COMMERCE ? <IsolatedBuyerApplication /> : <LegacyProductPage />;
+}
+
+function LegacyProductPage() {
   const { id } = Route.useParams();
   const [p, setP] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -71,7 +77,7 @@ function ProductPage() {
                 .maybeSingle()
             : Promise.resolve({ data: null }),
         ]);
-        setP({ ...(prod as any), profiles: profRes.data, categories: catRes.data } as Product);
+        setP({ ...prod, profiles: profRes.data, categories: catRes.data } as Product);
         if (prod.category_id) {
           supabase
             .from("products")

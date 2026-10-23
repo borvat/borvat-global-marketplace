@@ -1,0 +1,210 @@
+{
+  "codeCommit": "15fe1c65e37a936922cea831fbddaad24c380069",
+  "records": [
+    {
+      "path": "docs/commerce-integration/evidence/asset-gate.log",
+      "bytes": 1175,
+      "sha256": "b888233c5b5b6c3b91020f4375d226be76b40ad0778ed205ec649e931c73af7c"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/1440-cart.png",
+      "bytes": 118707,
+      "sha256": "e58d0cf9787cb22895dc7102026705367baafe0d3435b2a136bdc378e8b87134"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/1440-detail.png",
+      "bytes": 136553,
+      "sha256": "17ffcdc6a646dd3e0a1a0b6ee9156899f0556f54740458522252df8340da790c"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/1440-discovery.png",
+      "bytes": 111495,
+      "sha256": "6e4ac453746559f0bce83177b00599ca801adbccc486e3ca18af31ffe190fa31"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/1440-stale-cart.png",
+      "bytes": 123179,
+      "sha256": "c0e93eac0e498c4dadb7f7bdea8ecd9e43a85f220bb12a5fadd37eab0de95310"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/1440-unknown.png",
+      "bytes": 61725,
+      "sha256": "5fecfdde89eef1a0e5d557d8995fc4f36dbed54245a1ddc3baeb649dc279f3c9"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/320-cart.png",
+      "bytes": 114155,
+      "sha256": "2a485a0ee1fd4822d7878b71fb44db0a1c2f42399506c3f9c10271b06836a463"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/320-detail.png",
+      "bytes": 131957,
+      "sha256": "492c1fbe0e6d7796994f74d7a9b5e77d745fba3c11a5a29bdd5692b70263c023"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/320-discovery.png",
+      "bytes": 106967,
+      "sha256": "76b955dbcc3c5a29f5ebf6b803d9cd7ba5f0b7c311bf6f3f371b0a0d3bfd6763"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/320-stale-cart.png",
+      "bytes": 120317,
+      "sha256": "fe8833e885237066328d5984dbcdf7ddfa1de7f7b6e9b7e73de0bc98f9dd4651"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/320-unknown.png",
+      "bytes": 57514,
+      "sha256": "2e61f264cfc75f5fe7db480cea0b14b497c2391c9ce407a053e7269857544ae6"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/390-cart.png",
+      "bytes": 113228,
+      "sha256": "9a01a56059f80442517d8c62dc5a2a73001009b0954b2439ad1cf4c9820cf4d5"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/390-detail.png",
+      "bytes": 130316,
+      "sha256": "3a998d38413209ef68c6da4d72a52d06bdfa334e2e1fd304ecdef19c504e5ba7"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/390-discovery.png",
+      "bytes": 106521,
+      "sha256": "981864e81ab714275a65ed603b2eb9503e82c485fe4cb178c9b8205955fd38eb"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/390-stale-cart.png",
+      "bytes": 119279,
+      "sha256": "7c5e08afc1ed6f3bf40093a7ad53c5d867ff6995f762b145f8e71f2a3df2894e"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/390-unknown.png",
+      "bytes": 57137,
+      "sha256": "2a8c5664da020eb62897bf8a323be178adf2addd4533a193548576490ce24d8e"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/overflow.json",
+      "bytes": 1446,
+      "sha256": "1cc55b5ec3900a2ea04d326b2de14aab9cd8b0e2ab9672e31e057cca8120ba09"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/results.json",
+      "bytes": 1322,
+      "sha256": "e6fa5ac8054c7fa2ca448b629e2ea0752c16a27b436872031e638d64b3915284"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/server.log",
+      "bytes": 41,
+      "sha256": "559fa4fb9d14017cd9cd5ea00ef82d67964518a1973c5ce4abc0b719360f7708"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/ssr-discover.html",
+      "bytes": 8501,
+      "sha256": "c4663acb423e5d828fc6c1aca49405504b2167f08a3e80244b59e72eaea27efc"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/browser/ssr-no-javascript.png",
+      "bytes": 81328,
+      "sha256": "3259ba505bb436b63107bc3c9788a82a992dc7bd3a63467dfcb3fb9f1ef67b27"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/canonical-cloudflare-build.log",
+      "bytes": 46623,
+      "sha256": "f5428ac6f635609ac0562455e9c23c3ef207b170456623f1beb3c054005424ea"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/commands.json",
+      "bytes": 12630,
+      "sha256": "2610021906161c27b8dbd7ba9372aeec0d6f5639fb4c6c104ccdea34ba9a71e8"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/commercial-regression.log",
+      "bytes": 3339,
+      "sha256": "14c7bccc1d0205ac302529402014696ba6f19ca0634ee708db8fc7401088ca7f"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/default-http.log",
+      "bytes": 153,
+      "sha256": "5ff704ffa537b71d2c198eae8cc3fa0a42b45f5af7006df5c153d2b4631d2df1"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/default-node-build.log",
+      "bytes": 46634,
+      "sha256": "cdfc9702388e8abb53f4b18d7616913677ed8cc06c5f26c3456449ef75377a08"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/failures/development-mobile-overflow.json",
+      "bytes": 1446,
+      "sha256": "1cc55b5ec3900a2ea04d326b2de14aab9cd8b0e2ab9672e31e057cca8120ba09"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/foundation-tests.log",
+      "bytes": 794,
+      "sha256": "d810d2175b320fc145598bbd6167356616215d7f340821419154f08e0bc16513"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/foundation.log",
+      "bytes": 229,
+      "sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/frozen-install.log",
+      "bytes": 2240,
+      "sha256": "1211cb2f8646d7aad5d3450ed6d3c20550f987f5500d98bcb4d273363a0a56be"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/full-types.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/integration-unit.log",
+      "bytes": 509,
+      "sha256": "eae07e822a4421eef53325847e97cfa7434ecd6603cdb763f38d25007369e08a"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/isolated-full-build.log",
+      "bytes": 46454,
+      "sha256": "0a2caa010be6d8f0ccea986d33a3306b52456d7e3f5809a8317e1d0b4c5d3310"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/isolated-http.log",
+      "bytes": 154,
+      "sha256": "c54de680631db5dec5ed4ba7862f693929ca586c7b9c8125110d21453baaddc7"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/original-app-browser.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/original-build-failure.log",
+      "bytes": 4453,
+      "sha256": "910059ac58ee341e5911e13c0dca4cdcb622595367550fb075456eab72d01abf"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/original-buyer-reader.log",
+      "bytes": 504,
+      "sha256": "750349910d32a4c829ff38bb11ce410a3572cdfe475e8b6dec3e1a08504956cf"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/recovery-parity.log",
+      "bytes": 1175,
+      "sha256": "b888233c5b5b6c3b91020f4375d226be76b40ad0778ed205ec649e931c73af7c"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/release-gate.log",
+      "bytes": 150,
+      "sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/scoped-lint.log",
+      "bytes": 2180,
+      "sha256": "6341b106a0c733ff167189ad9d57e4d3698f3e84f5ea6f8058c982c28a62f525"
+    },
+    {
+      "path": "docs/commerce-integration/evidence/source-review.log",
+      "bytes": 175,
+      "sha256": "25359701c61a2f80a9743dad95af25436c1bce28d27aabb39a2f5b36dfc49d2d"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+✔ owner hold denies even otherwise complete evidence (0.993968ms)
+✔ changed SHA invalidates approval and acceptance evidence (0.184536ms)
+✔ failed or not-run evidence cannot unlock next stage (0.151294ms)
+✔ missing prerequisite and open critical finding block (0.140358ms)
+✔ forbidden merge/deploy/money policy always denied (0.26509ms)
+✔ missing and malformed evidence fail closed (0.118814ms)
+✔ offline complete proposal is inspection only and does not mutate policy (0.680974ms)
+✔ Codex authorization alone cannot bypass an unapproved foundation decision (0.133817ms)
+✔ preferred candidate and research acceptance do not authorize implementation (0.217787ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 99.703608

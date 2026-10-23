@@ -1,0 +1,56 @@
+{
+  "verified_text": 487,
+  "total_text": 499,
+  "unresolved_binary": 69,
+  "excluded_secret_configs": 1,
+  "mismatches": [
+    {
+      "source": "docs/BORVAT_CURRENT_STATE_V1.md",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "docs/BORVAT_DECISION_LOG_V1.md",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "package.json",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "src/lib/buyer-account.ts",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "src/routeTree.gen.ts",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "src/routes/__root.tsx",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "src/routes/account.tsx",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "src/routes/cart.tsx",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "src/routes/index.tsx",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "src/routes/lovable/email/auth/webhook.ts",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "src/routes/product.$id.tsx",
+      "error": "hash mismatch"
+    },
+    {
+      "source": "src/server.ts",
+      "error": "hash mismatch"
+    }
+  ]
+}

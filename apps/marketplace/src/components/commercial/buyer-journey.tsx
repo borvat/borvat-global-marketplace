@@ -65,11 +65,14 @@ function MissingMedia() {
 }
 
 type LoadState =
-  { status: "loading" } | { status: "error" } | { status: "ready"; catalog: Catalog };
+  | { status: "loading" }
+  | { status: "error" }
+  | { status: "ready"; catalog: Catalog };
 type BuyerJourneyProps = {
   adapter: CommercialDemoAdapter;
   readCatalog?: CatalogReader;
   navigation?: BuyerNavigation;
+  manageDocument?: boolean;
 };
 export function BuyerJourney({ navigation = browserBuyerNavigation, ...props }: BuyerJourneyProps) {
   return (
@@ -78,7 +81,11 @@ export function BuyerJourney({ navigation = browserBuyerNavigation, ...props }: 
     </NavigationContext.Provider>
   );
 }
-function BuyerJourneyView({ adapter, readCatalog = readDemoCatalog }: BuyerJourneyProps) {
+function BuyerJourneyView({
+  adapter,
+  readCatalog = readDemoCatalog,
+  manageDocument = true,
+}: BuyerJourneyProps) {
   const navigation = useContext(NavigationContext);
   const { navigate } = navigation;
   const href = useSyncExternalStore(
@@ -130,9 +137,10 @@ function BuyerJourneyView({ adapter, readCatalog = readDemoCatalog }: BuyerJourn
   const discovery = route.path === "/" || route.path === "/discover";
   const detail = route.path.startsWith("/product/");
   useEffect(() => {
+    if (!manageDocument) return;
     document.title = `${detail ? (product?.title ?? "Product") : discovery ? "Ontdek onze collectie" : route.path === "/cart" ? "Voorbeeldmandje" : "Lokale demo"} · BORVAT`;
     document.documentElement.lang = route.locale;
-  }, [detail, discovery, product?.title, route.path, route.locale]);
+  }, [detail, discovery, product?.title, route.path, route.locale, manageDocument]);
   const filter = (changes: Record<string, string | null>) =>
     navigate(link("/discover", changes), true);
   const loadingPanel =
@@ -340,7 +348,7 @@ function BuyerJourneyView({ adapter, readCatalog = readDemoCatalog }: BuyerJourn
                   <LocalLink href={link("/discover")}>Bekijk de collectie</LocalLink>
                 </div>
               ) : (
-                <div className="grid items-start gap-8 lg:grid-cols-2">
+                <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
                   <div className="space-y-4">
                     <MissingMedia />
                     <h2 className="text-xl font-semibold">Over dit voorbeeldproduct</h2>
@@ -353,12 +361,12 @@ function BuyerJourneyView({ adapter, readCatalog = readDemoCatalog }: BuyerJourn
                       fictieve productpresentatie.
                     </p>
                   </div>
-                  <Card>
+                  <Card className="min-w-0">
                     <CardHeader>
-                      <CardTitle>Kies een voorbeeldaanbieding</CardTitle>
+                      <CardTitle className="break-words">Kies een voorbeeldaanbieding</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-5">
-                      <fieldset className="space-y-3">
+                      <fieldset className="min-w-0 space-y-3">
                         <legend className="mb-3 font-semibold">Voorbeeldwinkels</legend>
                         {offers.map((offer) => (
                           <label
@@ -373,7 +381,7 @@ function BuyerJourneyView({ adapter, readCatalog = readDemoCatalog }: BuyerJourn
                               onChange={() => navigate(link(route.path, { offer: offer.id }), true)}
                               className="mt-1"
                             />
-                            <span>
+                            <span className="min-w-0 break-words">
                               <span className="block font-semibold">{offer.sellerName}</span>
                               <span className="block text-xl font-bold text-price">
                                 {formatEur(offer.priceCents)}

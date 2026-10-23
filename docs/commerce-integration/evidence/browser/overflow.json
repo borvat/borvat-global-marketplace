@@ -1,0 +1,50 @@
+[
+  {
+    "tag": "DIV",
+    "cls": "space-y-4",
+    "text": "Originele afbeelding niet beschikbaarOver dit voorbeeldproductCategorie: Wonen. ",
+    "right": 321.53125
+  },
+  {
+    "tag": "DIV",
+    "cls": "flex min-h-40 items-center justify-center rounded-lg border border-dashed border-border bg-muted/30 p-6 text-center text-sm text-muted-foreground",
+    "text": "Originele afbeelding niet beschikbaar",
+    "right": 321.53125
+  },
+  {
+    "tag": "H2",
+    "cls": "text-xl font-semibold",
+    "text": "Over dit voorbeeldproduct",
+    "right": 321.53125
+  },
+  {
+    "tag": "P",
+    "cls": "",
+    "text": "Categorie: Wonen. Aanvullende productspecificaties en originele media zijn nog n",
+    "right": 321.53125
+  },
+  {
+    "tag": "P",
+    "cls": "text-sm text-muted-foreground",
+    "text": "Geen beoordelingen, bezorgdatum of retourvoorwaarden vastgesteld. Dit is een fic",
+    "right": 321.53125
+  },
+  {
+    "tag": "DIV",
+    "cls": "rounded-xl border bg-card text-card-foreground shadow",
+    "text": "Kies een voorbeeldaanbiedingVoorbeeldwinkelsVoorbeeldwinkel A€ 749,00Fictieve aa",
+    "right": 321.53125
+  },
+  {
+    "tag": "DIV",
+    "cls": "flex flex-col space-y-1.5 p-6",
+    "text": "Kies een voorbeeldaanbieding",
+    "right": 320.53125
+  },
+  {
+    "tag": "DIV",
+    "cls": "p-6 pt-0 space-y-5",
+    "text": "VoorbeeldwinkelsVoorbeeldwinkel A€ 749,00Fictieve aanbieding · beschikbaarheidsv",
+    "right": 320.53125
+  }
+]

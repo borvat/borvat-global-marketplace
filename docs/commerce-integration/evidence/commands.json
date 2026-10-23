@@ -1,0 +1,414 @@
+{
+  "codeCommit": "15fe1c65e37a936922cea831fbddaad24c380069",
+  "baseCommit": "bd08f17eede382d4cd7e997d1a5b52a0573918b2",
+  "sourceFiles": [
+    {
+      "path": "AGENTS.md",
+      "sha": "e8dd695f4921827f61188a16d38e1c1cf47b9219",
+      "chars": 2979
+    },
+    {
+      "path": "README.md",
+      "sha": "5bba932bf6f6e53b26add2e1bfb0bab4a1dfb477",
+      "chars": 3663
+    },
+    {
+      "path": "apps/marketplace/docs/BORVAT_CURRENT_STATE_V1.md",
+      "sha": "d3b2572757e4112789b9aec1277d04e633b77a7c",
+      "chars": 37947
+    },
+    {
+      "path": "apps/marketplace/docs/BORVAT_DECISION_LOG_V1.md",
+      "sha": "c7c6ddf0138b9184b758c40015bfc686b30f51b1",
+      "chars": 169038
+    },
+    {
+      "path": "apps/marketplace/package.json",
+      "sha": "172740b9300a327d3024808f416c17cea06ca0f4",
+      "chars": 3384
+    },
+    {
+      "path": "apps/marketplace/scripts/commerce-integration.test.ts",
+      "sha": "eb0f983abaa7f823f1a2923502b7733946677841",
+      "chars": 2542
+    },
+    {
+      "path": "apps/marketplace/src/components/commercial/application-provider.tsx",
+      "sha": "65ff2eb87eab3e216e12ce28901c2fdd8d4bca3d",
+      "chars": 1172
+    },
+    {
+      "path": "apps/marketplace/src/components/commercial/buyer-journey.tsx",
+      "sha": "7b08936c76ca622caff94d88e3d7aaea376efa24",
+      "chars": 19269
+    },
+    {
+      "path": "apps/marketplace/src/lib/buyer-account.ts",
+      "sha": "aa7122088ba6165a72900e76a6043e44f7e5c27e",
+      "chars": 2026
+    },
+    {
+      "path": "apps/marketplace/src/lib/commercial/runtime-mode.ts",
+      "sha": "9029cd69a90a554806df9d05ce28ef23f2fadb64",
+      "chars": 667
+    },
+    {
+      "path": "apps/marketplace/src/lib/commercial/tanstack-navigation.ts",
+      "sha": "545e8032cbc832e8781fb79d27bbb79a3b68d540",
+      "chars": 869
+    },
+    {
+      "path": "apps/marketplace/src/routeTree.gen.ts",
+      "sha": "60374e0d1a476dcff1dd0a8c8824a47279b88121",
+      "chars": 80557
+    },
+    {
+      "path": "apps/marketplace/src/routes/__root.tsx",
+      "sha": "5f6662564a5cd360d5de7157898d98ce08f89e5b",
+      "chars": 6547
+    },
+    {
+      "path": "apps/marketplace/src/routes/account.tsx",
+      "sha": "2653168ff911eb0ae2fcf440c5fc4cd6f71af5b4",
+      "chars": 17529
+    },
+    {
+      "path": "apps/marketplace/src/routes/cart.tsx",
+      "sha": "309d72d9c37a28d934485c52cca4dd36e0c12090",
+      "chars": 7687
+    },
+    {
+      "path": "apps/marketplace/src/routes/discover.tsx",
+      "sha": "b795e255439fe77ec721f20ba4391c9eefa2944c",
+      "chars": 543
+    },
+    {
+      "path": "apps/marketplace/src/routes/index.tsx",
+      "sha": "27e4c35778a1d5a1638ac31d44e7ddc7dc909357",
+      "chars": 6981
+    },
+    {
+      "path": "apps/marketplace/src/routes/lovable/email/auth/webhook.ts",
+      "sha": "fe6ad8037ba6fc80a5c6845134793adc5f0f9e46",
+      "chars": 3397
+    },
+    {
+      "path": "apps/marketplace/src/routes/product.$id.tsx",
+      "sha": "8f81509f2acc796c973a612ccf0496c2f2ac48a7",
+      "chars": 12193
+    },
+    {
+      "path": "apps/marketplace/src/routes/requests.tsx",
+      "sha": "39776126101fc9b93fa615231c0558be4b12ffd2",
+      "chars": 540
+    },
+    {
+      "path": "apps/marketplace/src/routes/workbench.tsx",
+      "sha": "e4191c4becf22dcb08ae75581b21b528d25047a2",
+      "chars": 542
+    },
+    {
+      "path": "apps/marketplace/src/server.ts",
+      "sha": "235a4e87ddd2d24d056fa1a640d6c2ef9769790f",
+      "chars": 2475
+    },
+    {
+      "path": "docs/commerce-integration/DELIVERY-PLAN.md",
+      "sha": "a0f14aea1501ce9d868737bf8f36efd6cb902433",
+      "chars": 5384
+    },
+    {
+      "path": "docs/commerce-integration/source-changes.json",
+      "sha": "a1be3f788fdb51de38a8ebc4957f3cff0ac3a418",
+      "chars": 4260
+    },
+    {
+      "path": "package.json",
+      "sha": "cbff45e0b0b0df6f87cc8478d0d93c1f4a57fe8f",
+      "chars": 1138
+    },
+    {
+      "path": "scripts/commerce-integration/browser.mjs",
+      "sha": "8628ea3f8197ab3e0ac21ea0fc5aba0a60e9d3c4",
+      "chars": 15071
+    },
+    {
+      "path": "scripts/commerce-integration/build.mjs",
+      "sha": "e4f9b993c6fd3932790318c468b2b90cb6b41a0c",
+      "chars": 1263
+    },
+    {
+      "path": "scripts/commerce-integration/http.mjs",
+      "sha": "13fabbd898dc46f1d3a9a5f2a9f1da2be3ab9d95",
+      "chars": 2017
+    },
+    {
+      "path": "scripts/commerce-integration/source-review.mjs",
+      "sha": "ed15dc9d4ee42ae525ef7d9c0c2bcba957e0bfee",
+      "chars": 1948
+    }
+  ],
+  "sourceUnchangedDuringVerification": true,
+  "commands": [
+    {
+      "name": "foundation",
+      "argv": [
+        "node",
+        "scripts/foundation/check.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 0.071,
+      "log": "docs/commerce-integration/evidence/foundation.log",
+      "sha256": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8"
+    },
+    {
+      "name": "foundation-tests",
+      "argv": [
+        "node",
+        "--test",
+        "tests/foundation/gate.test.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 0.136,
+      "log": "docs/commerce-integration/evidence/foundation-tests.log",
+      "sha256": "d810d2175b320fc145598bbd6167356616215d7f340821419154f08e0bc16513"
+    },
+    {
+      "name": "source-review",
+      "argv": [
+        "node",
+        "scripts/commerce-integration/source-review.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 0.068,
+      "log": "docs/commerce-integration/evidence/source-review.log",
+      "sha256": "25359701c61a2f80a9743dad95af25436c1bce28d27aabb39a2f5b36dfc49d2d"
+    },
+    {
+      "name": "recovery-parity",
+      "argv": [
+        "node",
+        "scripts/foundation/source-parity.mjs"
+      ],
+      "cwd": ".",
+      "exit": 1,
+      "expectedExit": 1,
+      "status": "EVOLVED_SOURCE",
+      "seconds": 0.102,
+      "log": "docs/commerce-integration/evidence/recovery-parity.log",
+      "sha256": "b888233c5b5b6c3b91020f4375d226be76b40ad0778ed205ec649e931c73af7c"
+    },
+    {
+      "name": "asset-gate",
+      "argv": [
+        "node",
+        "scripts/foundation/source-parity.mjs",
+        "--require-assets"
+      ],
+      "cwd": ".",
+      "exit": 1,
+      "expectedExit": 1,
+      "status": "OPEN",
+      "seconds": 0.079,
+      "log": "docs/commerce-integration/evidence/asset-gate.log",
+      "sha256": "b888233c5b5b6c3b91020f4375d226be76b40ad0778ed205ec649e931c73af7c"
+    },
+    {
+      "name": "release-gate",
+      "argv": [
+        "node",
+        "scripts/foundation/gate.mjs",
+        "C1"
+      ],
+      "cwd": ".",
+      "exit": 1,
+      "expectedExit": 1,
+      "status": "HOLD",
+      "seconds": 0.056,
+      "log": "docs/commerce-integration/evidence/release-gate.log",
+      "sha256": "5c8157c3f6a98dd0b1e639555950880cb2fecef42c161d1263d1f2c13ca93b24"
+    },
+    {
+      "name": "full-types",
+      "argv": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "cwd": "apps/marketplace",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 8.548,
+      "log": "docs/commerce-integration/evidence/full-types.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scoped-lint",
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/lib/commercial/runtime-mode.ts",
+        "src/lib/commercial/tanstack-navigation.ts",
+        "src/components/commercial/application-provider.tsx",
+        "src/components/commercial/buyer-journey.tsx",
+        "src/routes/discover.tsx",
+        "src/routes/workbench.tsx",
+        "src/routes/requests.tsx",
+        "scripts/commerce-integration.test.ts",
+        "-f",
+        "json"
+      ],
+      "cwd": "apps/marketplace",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 1.378,
+      "log": "docs/commerce-integration/evidence/scoped-lint.log",
+      "sha256": "6341b106a0c733ff167189ad9d57e4d3698f3e84f5ea6f8058c982c28a62f525"
+    },
+    {
+      "name": "integration-unit",
+      "argv": [
+        "node",
+        "--import",
+        "tsx",
+        "--test",
+        "scripts/commerce-integration.test.ts"
+      ],
+      "cwd": "apps/marketplace",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 0.428,
+      "log": "docs/commerce-integration/evidence/integration-unit.log",
+      "sha256": "eae07e822a4421eef53325847e97cfa7434ecd6603cdb763f38d25007369e08a"
+    },
+    {
+      "name": "commercial-regression",
+      "argv": [
+        "node",
+        "--import",
+        "tsx",
+        "--test",
+        "tests/buyer-discovery.test.tsx",
+        "tests/buyer-navigation.test.tsx",
+        "tests/commercial.test.tsx",
+        "tests/email-render.test.tsx"
+      ],
+      "cwd": "experiments/commercial-application",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 0.872,
+      "log": "docs/commerce-integration/evidence/commercial-regression.log",
+      "sha256": "14c7bccc1d0205ac302529402014696ba6f19ca0634ee708db8fc7401088ca7f"
+    },
+    {
+      "name": "original-buyer-reader",
+      "argv": [
+        "/workspace/scratch/dcd0b3f94db0/tool-runtime/node_modules/@oven/bun-linux-x64/bin/bun",
+        "test",
+        "scripts/buyer-account.test.ts"
+      ],
+      "cwd": "apps/marketplace",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 0.033,
+      "log": "docs/commerce-integration/evidence/original-buyer-reader.log",
+      "sha256": "750349910d32a4c829ff38bb11ce410a3572cdfe475e8b6dec3e1a08504956cf"
+    },
+    {
+      "name": "isolated-full-build",
+      "argv": [
+        "node",
+        "scripts/commerce-integration/build.mjs",
+        "isolated"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 6.742,
+      "log": "docs/commerce-integration/evidence/isolated-full-build.log",
+      "sha256": "0a2caa010be6d8f0ccea986d33a3306b52456d7e3f5809a8317e1d0b4c5d3310"
+    },
+    {
+      "name": "isolated-http",
+      "argv": [
+        "node",
+        "scripts/commerce-integration/http.mjs",
+        "isolated"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 1.38,
+      "log": "docs/commerce-integration/evidence/isolated-http.log",
+      "sha256": "c54de680631db5dec5ed4ba7862f693929ca586c7b9c8125110d21453baaddc7"
+    },
+    {
+      "name": "original-app-browser",
+      "argv": [
+        "node",
+        "scripts/commerce-integration/browser.mjs"
+      ],
+      "cwd": ".",
+      "exit": 0,
+      "expectedExit": 0,
+      "status": "PASS",
+      "seconds": 10.744,
+      "log": "docs/commerce-integration/evidence/original-app-browser.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "runtime": {
+    "node": "v24.19.0",
+    "bun": "1.3.13",
+    "browser": "Chromium 138.0.7204.0",
+    "source": "original frozen Bun lock; 567 installed packages; no registry/version substitution"
+  },
+  "supplementalEvidence": [
+    {
+      "name": "frozen-install.log",
+      "log": "docs/commerce-integration/evidence/frozen-install.log",
+      "sha256": "1211cb2f8646d7aad5d3450ed6d3c20550f987f5500d98bcb4d273363a0a56be",
+      "scope": "567 packages from original frozen Bun lock"
+    },
+    {
+      "name": "default-node-build.log",
+      "log": "docs/commerce-integration/evidence/default-node-build.log",
+      "sha256": "cdfc9702388e8abb53f4b18d7616913677ed8cc06c5f26c3456449ef75377a08",
+      "scope": "same application source, default mode Node target, exit 0"
+    },
+    {
+      "name": "default-http.log",
+      "log": "docs/commerce-integration/evidence/default-http.log",
+      "sha256": "5ff704ffa537b71d2c198eae8cc3fa0a42b45f5af7006df5c153d2b4631d2df1",
+      "scope": "default mode discover 404 / unconfigured mail 503"
+    },
+    {
+      "name": "canonical-cloudflare-build.log",
+      "log": "docs/commerce-integration/evidence/canonical-cloudflare-build.log",
+      "sha256": "f5428ac6f635609ac0562455e9c23c3ef207b170456623f1beb3c054005424ea",
+      "scope": "same application source, original config canonical target, exit 0"
+    },
+    {
+      "name": "original-build-failure.log",
+      "log": "docs/commerce-integration/evidence/original-build-failure.log",
+      "sha256": "910059ac58ee341e5911e13c0dca4cdcb622595367550fb075456eab72d01abf",
+      "scope": "development baseline failure on missing original hero import"
+    }
+  ]
+}

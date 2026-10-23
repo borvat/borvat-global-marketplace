@@ -1,40 +1,34 @@
-# BORVAT Global Marketplace — Engineering Foundation
+# BORVAT Global Marketplace
 
-**State: DRAFT / OWNER REVIEW. Codex execution NOT AUTHORIZED. No deployment or automatic main merge.**
+Development is authorized under the owner's 2026-10-23 mandate. The application is **not ready for production sales**. Work continues from PR #26, preserving the existing product, source history and authoritative WMS/Accounting boundaries.
 
-This preparation branch preserves recoverable BORVAT STORE source and earlier experiments. It is not a launch-ready marketplace. `main` and the published Lovable application/database are untouched.
+Current implementation and evidence: [integration report](docs/commerce-integration/REPORT.md), [delivery plan](docs/commerce-integration/DELIVERY-PLAN.md) and [reviewed original-source changes](docs/commerce-integration/source-changes.json). Earlier foundation reports remain historical evidence for their exact snapshots, not the current implementation mandate.
+
+## Application and verification
+
+Use Node 24 and Bun 1.3.13. Install `apps/marketplace` using `bun install --frozen-lockfile --ignore-scripts`. Its original Bun lock and dependency declarations are retained; do not silently adopt the archived stale/regenerated npm locks.
+
+- `npm run commerce:build:isolated`: full original TanStack Start/Vite/Nitro application, explicit isolated mode, disposable Node server profile, no credential files or outbound network.
+- `npm run commerce:build:default`: same application with isolated mode off, Node verification target. This is a build profile check, not a release.
+- `npm run commerce:test:unit`: isolated route/dispatch, real router URL-boundary and buyer-reader regressions.
+- `npm run commerce:test:browser`: original built app SSR and real browser journey. Requires `PLAYWRIGHT_MODULE`, `CHROMIUM_PATH`, `BROWSER_EVIDENCE_DIR`; optional browser library/font paths are documented in the report. The harness starts and stops its own loopback server.
+- `npm run commerce:source-review`: verifies every recovered original text against either its immutable recovery hash or an explicitly recorded changed hash.
+- `npm run foundation:check` and `npm run test:foundation`: historical reference/policy checks. They do not approve a release.
+
+The original `source:check` remains an exact recovery-parity check and fails on intentional source evolution; it has not been weakened or rewritten. `source:require-complete` additionally fails on the 69 missing original binaries. A successful full app build does not satisfy asset parity. No replacement image is represented as an original.
+
+The default application retains its original backend/authentication flows and disabled checkout. The isolated build uses synthetic products and disposable memory only; it creates no real orders, stock movements, payments, invoices or financial entries. Do not point legacy migration/test scripts at a hosted database.
 
 ## Repository map
 
 | Path | Purpose |
 |---|---|
-| `apps/marketplace` | 499 unchanged text files from Lovable commit 42fcde8; UI, server functions, MCP tools, SQL migrations, tests and governance |
-| `experiments/product-completion` | 58 preserved files from development branch, including demo commerce and test services |
-| `experiments/core-engine-v1` | 45 preserved PostgreSQL commerce-core files, not selected as replacement |
-| `docs/mission03` | Original audit/design: logical data model, OpenAPI, events, 35 acceptance scenarios, EU/payment and integration study |
-| `docs/architecture` | Module ownership, ADRs and integration boundaries |
-| `docs/execution` | Sequential stages, dependencies, evidence and owner gate |
-| `docs/source-recovery` | Provenance, hash manifest, unresolved assets and lockfile investigation |
-| `tests/foundation` | Isolated preparation/gate regression tests |
-| `tests/fixtures` | Synthetic test-only records |
-| `.github` | Read-only CI, PR and issue templates; no deploy workflows |
+| `apps/marketplace` | Recovered original BORVAT application plus bounded reviewed implementation |
+| `scripts/commerce-integration` | Full-app build, HTTP/browser and source-evolution verification |
+| `docs/commerce-integration` | Current mandate, delivery plan, acceptance limits and evidence |
+| `experiments/commercial-application` | Earlier standalone commercial preview and retained regression tests |
+| `experiments/core-engine-v1`, `experiments/product-completion` | Preserved prototypes; not production APIs |
+| `docs/mission03`, `docs/architecture` | Requirements, original acceptance specifications and architectural contracts |
+| `docs/source-recovery`, `docs/execution` | Immutable recovery provenance and retained release/financial foundation gates |
 
-## Verification
-
-Use Node 24 and Python 3. Run `npm run foundation:check`, `npm run test:foundation`, `npm run test:core-money`, and `npm run source:check`. Full recovery is a separate blocking check: `npm run source:require-complete` intentionally fails while 69 binary assets are unavailable. No dummy image replaces a missing original.
-
-App: `cd apps/marketplace; npm exec --yes --package=bun@1.3.0 -- bun install --frozen-lockfile --ignore-scripts; npm exec --yes --package=bun@1.3.0 -- bun test scripts/buyer-account.test.ts; npm run build`. This sequence is local-only and may fail on unresolved assets or baseline dependencies; see the evidence report. Do not run legacy tenancy scripts against a hosted database.
-
-The original npm lock is stale. An unapproved regenerated npm lock is archived for comparison, not silently adopted. Bun's existing frozen lock is the reproducibility candidate. Runtime examples point only to localhost and contain no real credentials.
-
-**Known blockers:** binary source parity; app clean build; failing prototype tests; pending isolated PostgreSQL/Supabase replay and E2E; ACL/legacy order and payment display findings; final legal operator/PSP decisions; manual owner review. The 35 acceptance scenarios are specifications, not 35 passing tests.
-
-Start with [current evidence](docs/readiness/REPORT.md), [module map](docs/architecture/MODULES.md), [stages](docs/execution/STAGES.md) and [transition policy](docs/execution/GATES.md). Future implementation stays ON HOLD until the owner explicitly authorizes Codex. Do not use the old baseline's start prompt as authorization.
-
-## Independent OSS evaluation
-
-See [evaluation and test evidence](docs/oss-evaluation/README.md), [proposed ADR-005](docs/architecture/ADR-005-oss-foundation-selection.md) and [conditional phase plan](docs/execution/OSS-REVISED-PLAN.md). Option 1 (Mercur + Surooh extensions) is recommended, not adopted. Independent PostgreSQL verification of the archived core now passes 37 tests, while a separate injected post-capture failure exposes a durability gap. Original source and production remain unchanged. Foundation decision and Codex authorization are separate, both pending.
-
-## Mercur hardening — review pending
-
-[Hardening results and blockers](docs/hardening/REPORT.md), [security and licenses](docs/hardening/SECURITY-LICENSE.md), [35 scenario statuses](docs/hardening/ACCEPTANCE-35.md), and [C0–C6 execution instructions](docs/hardening/CODEX-STAGES.md). Mercur is the accepted design candidate only. Native payment recovery and installed dependency tests fail; no final foundation acceptance, Codex execution, merge or deployment is authorized.
+Final financial-engine adoption, complete native acceptance, original media, actual provider contracts, security/professional review and operational launch remain open. No main merge, deployment, paid service or live financial activation is performed by this milestone.
