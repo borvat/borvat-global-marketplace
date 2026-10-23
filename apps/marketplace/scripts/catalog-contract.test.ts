@@ -202,7 +202,7 @@ test("canonical JSON export validates, round-trips and ignores source row order"
       .map((offer) => ({ ...offer, countries: [...offer.countries].reverse() })),
   };
   const serialized = serializeCanonicalCatalog(source);
-  assert.ok(serialized.endsWith("\\n"));
+  assert.ok(serialized.endsWith("\n"));
   assert.equal(serialized, serializeCanonicalCatalog(reordered));
   assert.deepEqual(parseCatalog(JSON.parse(serialized)), parseCatalog(source));
   assert.equal(JSON.stringify(source), original);
