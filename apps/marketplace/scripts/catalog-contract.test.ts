@@ -4,6 +4,7 @@ import {
   catalogPage,
   parseCatalog,
   parseCanonicalCatalogJson,
+  previewCanonicalCatalogImport,
   serializeCanonicalCatalog,
   type CanonicalCatalog,
 } from "../src/lib/commercial/catalog-contract";
@@ -233,4 +234,45 @@ test("canonical JSON export validates, round-trips and ignores source row order"
   assert.throws(() => parseCanonicalCatalogJson(JSON.stringify({ ...source, mode: "production" })));
   assert.equal(JSON.stringify(source), original);
   assert.throws(() => serializeCanonicalCatalog({ ...source, mode: "production" }));
+});
+
+test("catalog import preview is deterministic, validates both snapshots and reports entity changes without mutation", () => {
+  const previous = fixture();
+  const previousJson = JSON.stringify(previous);
+  const incoming = JSON.parse(previousJson) as CanonicalCatalog;
+  const removedProductId = incoming.products[0].id;
+  const removedSkuIds = incoming.skus
+    .filter((sku) => sku.productId === removedProductId)
+    .map((sku) => sku.id)
+    .sort();
+  const removedOffers = incoming.offers.filter((offer) => removedSkuIds.includes(offer.skuId));
+  const removedOfferIds = removedOffers.map((offer) => offer.id).sort();
+  const changedProductId = incoming.products.find((product) => product.id !== removedProductId)!.id;
+  const changedCompanyId = incoming.companies[0].id;
+  const changedOfferId = incoming.offers.find((offer) => !removedOfferIds.includes(offer.id))!.id;
+  incoming.products = incoming.products.filter((product) => product.id !== removedProductId);
+  incoming.skus = incoming.skus.filter((sku) => sku.productId !== removedProductId);
+  incoming.offers = incoming.offers.filter((offer) => !removedOfferIds.includes(offer.id));
+  incoming.products.find((product) => product.id === changedProductId)!.title += " updated";
+  incoming.companies.find((company) => company.id === changedCompanyId)!.name += " updated";
+  incoming.offers.find((offer) => offer.id === changedOfferId)!.priceCents += 100;
+  incoming.revision = "reviewed-import";
+
+  const preview = previewCanonicalCatalogImport(previous, incoming);
+  assert.equal(preview.previousRevision, previous.revision);
+  assert.equal(preview.incomingRevision, "reviewed-import");
+  assert.equal(preview.hasChanges, true);
+  assert.deepEqual(preview.collections.products.removed, [removedProductId]);
+  assert.deepEqual(preview.collections.products.changed, [changedProductId]);
+  assert.deepEqual(preview.collections.skus.removed, removedSkuIds);
+  assert.deepEqual(preview.collections.offers.removed, removedOfferIds);
+  assert.deepEqual(preview.collections.offers.changed, [changedOfferId]);
+  assert.deepEqual(preview.collections.companies.changed, [changedCompanyId]);
+  assert.equal(JSON.stringify(previous), previousJson);
+
+  const sameContent = { ...previous, revision: "different-revision" };
+  assert.equal(previewCanonicalCatalogImport(previous, sameContent).hasChanges, false);
+  assert.throws(() =>
+    previewCanonicalCatalogImport(previous, { ...incoming, mode: "production" }),
+  );
 });
