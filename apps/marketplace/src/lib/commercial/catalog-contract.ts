@@ -112,6 +112,18 @@ export function parseCatalog(input: unknown): CanonicalCatalog {
   return schema.parse(input);
 }
 
+/** Parses canonical JSON as one atomic, validated catalog snapshot. */
+export function parseCanonicalCatalogJson(source: string): CanonicalCatalog {
+  if (typeof source !== "string") throw new TypeError("Catalog JSON must be a string");
+  let input: unknown;
+  try {
+    input = JSON.parse(source);
+  } catch {
+    throw new Error("Invalid canonical catalog JSON");
+  }
+  return parseCatalog(input);
+}
+
 /** Stable JSON interchange for validated catalog snapshots; it does not imply source-system export. */
 export function serializeCanonicalCatalog(input: unknown): string {
   const catalog = parseCatalog(input);
