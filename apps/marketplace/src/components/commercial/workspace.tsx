@@ -81,7 +81,7 @@ function OrderSummary({
         <ul>
           {lines.map((line) => (
             <li key={line.offerId} className="py-1">
-              {line.quantity} verpakkingen × {line.title} · {line.variant} · {line.packQuantity} per verpakking · {formatEur(line.unitPriceCents)} per verpakking
+              {line.quantity} {line.quantity === 1 ? "verpakking" : "verpakkingen"} × {line.title} · {line.variant} · {line.packQuantity} per verpakking · {formatEur(line.unitPriceCents)} per verpakking
               <p className="text-sm text-muted-foreground">
                 {line.sellerName} ·{" "}
                 {order.preparedSellerIds.includes(line.sellerId)
@@ -91,7 +91,7 @@ function OrderSummary({
             </li>
           ))}
         </ul>
-        <p className="font-semibold">Artikelen: {formatEur(total)}</p>
+        <p className="font-semibold">Verpakkingen totaal: {formatEur(total)}</p>
         <p className="text-sm text-muted-foreground">
           Alleen lokaal. Geen betaling, voorraadreservering, factuur of verzending. Status geldt per
           voorbeeldwinkel.
