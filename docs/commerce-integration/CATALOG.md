@@ -1,4 +1,4 @@
-# Canonical catalog continuation — 2026-10-23
+# Canonical catalog continuation — 2026-10-23/24
 
 This advances M1 in the original application; it does not close M1 or the marketplace goal.
 
@@ -10,7 +10,14 @@ The contract is deliberately **synthetic-memory-only**. It is not a production P
 
 The pure paged read projection selects only published destination-eligible offers; product visibility and minimum-price sorting follow those eligible offers. Paging is deterministic with an ID tie-breaker and a bounded page size. Cursors bind revision, destination, query, category, sort and limit; mismatched/stale cursors reject. Cursors are offsets, not signed security credentials. Authentication, authorization, freshness and upstream revision assignment remain the responsibility of a future server adapter. Paging is tested at the read boundary; the current nine-item UI retains its existing discovery controls rather than claiming a remote paginated catalog.
 
-`readDemoCatalog` now validates and maps the canonical rehearsal projection before delivering detached products/offers to the original buyer screen. Abort is honored. Existing offer IDs, routes, cart commands and immutable request price snapshots remain stable. Seller store choices now come from the validated store collection instead of two hardcoded option IDs. The role selector remains an explicitly labelled demo, not authenticated seller authorization. Multiple SKU/pack relationships are contract-tested; the fixture UI still uses one example SKU per product. Revisions are process-local identities for immutable fixture arrays, not durable native catalog revisions.
+`readDemoCatalog` now validates and maps the canonical rehearsal projection before delivering detached products/offers to the original buyer screen. Abort is honored. Existing offer IDs, routes, cart commands and immutable request price snapshots remain stable. Seller store choices now come from the validated store collection instead of two hardcoded option IDs. The role selector remains an explicitly labelled demo, not authenticated seller authorization. Multiple SKU/pack relationships are contract-tested. PR #31 adds buyer selection across available SKUs with a clearly synthetic two-item pack fixture; revisions remain process-local identities for immutable fixture arrays, not durable native catalog revisions.
+
+
+## PR #31 buyer SKU/pack follow-on
+
+The original buyer detail flow now selects a canonical SKU/variant/pack, then displays only published offers attached to that SKU. The selected SKU travels with the detail route and clears when leaving the product. Cart quantity is explicitly a number of packs; the local demo request snapshots SKU ID, variant, pack quantity and price. State survives buyer SPA route transitions in one browser tab and resets on full reload. A synthetic two-item pack makes the path visible in the preview; its price and availability are demonstration values, not source-system claims.
+
+Validation on PR #31: 11 marketplace commerce/catalog tests and the isolated original-app build pass on the free Render preview. Browser verification selected the two-item pack, added it to cart, navigated to cart with state intact, and saved DEMO-0001 with the pack identity and price. No payment, stock reservation, WMS/Accounting write, or durable order is involved. See [PR #31](https://github.com/borvat/borvat-global-marketplace/pull/31) for the preview and exact tested commit. This does not claim remote pagination, full regression certification for this follow-on, or production acceptance.
 
 ## Verification on this continuation
 
@@ -31,4 +38,4 @@ Read-only inspection of Accounting PR32 at `db8c3b91c16f34b4c8f9e207d76b7c953358
 
 The next native slice needs an owned catalog export with explicit SKU/company/store mappings and an isolated authenticated WMS/Accounting endpoint contract/runtime. No configured endpoint, owned export or credentials was introduced or inferred from fixture IDs. Server-side seller authorization, durable orders, provider sandbox lifecycle, media recovery and full native/release acceptance remain open. Financial foundation acceptance remains separate.
 
-Rollback: discard/revert this unmerged continuation. No migration, deployment, production data or paid/provider action exists.
+Rollback: discard/revert this unmerged continuation. No migration, production data or provider action was made; PR #31 uses a separate free Render preview and does not target production.
