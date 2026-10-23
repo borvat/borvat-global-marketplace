@@ -15,7 +15,8 @@ function fixture() {
 test("canonical fixture separates products, SKU, companies, stores and competing offers", () => {
   const c = fixture();
   assert.equal(c.products.length, 9);
-  assert.equal(c.skus.length, 9);
+  assert.equal(c.skus.length, 10);
+  assert.ok(c.skus.some((sku) => sku.packQuantity === 2));
   assert.equal(c.companies.length, 2);
   const competitors = c.offers.filter((o) => o.skuId === c.skus[0].id);
   assert.equal(competitors.length, 2);
@@ -148,11 +149,12 @@ test("buyer projection preserves offer identity and follows seller edits without
   const adapter = createCommercialDemoAdapter();
   const before = rehearsalCatalog(adapter.getSnapshot());
   const projected = buyerCatalog(before);
-  assert.deepEqual(projected, {
-    products: adapter.getSnapshot().products,
-    offers: adapter.getSnapshot().offers,
-  });
-  adapter.setQuantity("demo-offer-1", 1);
+  assert.deepEqual(projected.products, adapter.getSnapshot().products);
+  assert.ok(projected.skus.some((sku) => sku.packQuantity === 2));
+  const packOffer = projected.offers.find((offer) => offer.id === "demo-offer-pack-2");
+  assert.equal(packOffer?.packQuantity, 2);
+  assert.ok(packOffer?.skuId.startsWith("sku-pack-2-"));
+  adapter.setQuantity("demo-offer-pack-2", 1);
   assert.equal(rehearsalCatalog(adapter.getSnapshot()).revision, before.revision);
   adapter.submitDemoRequest();
   const oldPrice = adapter.getSnapshot().orders[0].lines[0].unitPriceCents;
@@ -161,6 +163,8 @@ test("buyer projection preserves offer identity and follows seller edits without
   assert.notEqual(after.revision, before.revision);
   assert.ok(!catalogPage(after, { country: "BE" }).offers.some((o) => o.id === "demo-offer-1"));
   assert.equal(adapter.getSnapshot().orders[0].lines[0].unitPriceCents, oldPrice);
+  assert.equal(adapter.getSnapshot().orders[0].lines[0].packQuantity, 2);
+  assert.match(adapter.getSnapshot().orders[0].lines[0].skuId, /^sku-pack-2-/);
   const controller = new AbortController();
   controller.abort();
   await assert.rejects(readDemoCatalog(adapter.getSnapshot(), controller.signal));
