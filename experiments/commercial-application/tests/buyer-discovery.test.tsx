@@ -20,16 +20,21 @@ test("product navigation retains search/category/sort/country and separates offe
   const href = buyerHref(
     "/product/prd_001",
     "/discover?q=tafel&category=Wonen&sort=price&country=BE",
-    { offer: "demo-offer-alternative" },
+    { offer: "demo-offer-alternative", sku: "sku-prd_001" },
   );
   const route = buyerLocation(href);
   assert.equal(route.productId, "prd_001");
   assert.equal(route.offerId, "demo-offer-alternative");
+  assert.equal(route.skuId, "sku-prd_001");
   assert.equal(route.query, "tafel");
   assert.equal(route.sort, "price");
   assert.equal(route.country, "BE");
   assert.equal(
     new URL(buyerHref("/cart", href), "http://local").searchParams.has("offer"),
+    false,
+  );
+  assert.equal(
+    new URL(buyerHref("/cart", href), "http://local").searchParams.has("sku"),
     false,
   );
 });
@@ -43,6 +48,8 @@ test("validated read projection retains product, offer and seller distinctions a
   assert.deepEqual(catalog.products, snapshot.products);
   assert.notEqual(catalog.products, snapshot.products);
   assert.deepEqual(catalog.offers, snapshot.offers);
+  assert.equal(catalog.skus.length, 10);
+  assert.equal(catalog.offers.find((item) => item.id === "demo-offer-pack-2")?.packQuantity, 2);
   assert.notEqual(catalog.offers, snapshot.offers);
   const offer = catalog.offers.find(
     (item) => item.id === "demo-offer-alternative",
