@@ -81,7 +81,7 @@ function OrderSummary({
         <ul>
           {lines.map((line) => (
             <li key={line.offerId} className="py-1">
-              {line.quantity} × {line.title} · {line.variant} · {line.packQuantity} per verpakking · {formatEur(line.unitPriceCents)} per verpakking
+              {line.quantity} verpakkingen × {line.title} · {line.variant} · {line.packQuantity} per verpakking · {formatEur(line.unitPriceCents)} per verpakking
               <p className="text-sm text-muted-foreground">
                 {line.sellerName} ·{" "}
                 {order.preparedSellerIds.includes(line.sellerId)
@@ -306,7 +306,7 @@ export function CommercialWorkspace({
                       onChange={(event) => setSort(event.target.value)}
                     >
                       <option value="title">Naam</option>
-                      <option value="price">Laagste artikelprijs</option>
+                      <option value="price">Laagste verpakkingsprijs</option>
                     </select>
                   </div>
                 </section>
@@ -443,7 +443,7 @@ export function CommercialWorkspace({
                 })}
                 {!data.cart.length && <p>Je mandje is leeg.</p>}
                 <p className="text-xl font-bold">
-                  Artikeltotaal: {quote ? formatEur(quote.totalCents) : "Niet beschikbaar"}
+                  Verpakkingen totaal: {quote ? formatEur(quote.totalCents) : "Niet beschikbaar"}
                 </p>
                 <p>
                   Verzendkosten niet berekend. Betaling uitgeschakeld. Er wordt geen voorraad
