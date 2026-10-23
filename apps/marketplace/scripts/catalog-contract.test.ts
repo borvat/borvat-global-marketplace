@@ -7,10 +7,23 @@ import {
 } from "../src/lib/commercial/catalog-contract";
 import { buyerCatalog, rehearsalCatalog } from "../src/lib/commercial/catalog-rehearsal";
 import { createCommercialDemoAdapter } from "../src/lib/commercial/demo-adapter";
-import { readDemoCatalog } from "../src/lib/commercial/buyer-discovery";
+import { buyerHref, buyerLocation, readDemoCatalog } from "../src/lib/commercial/buyer-discovery";
 function fixture() {
   return rehearsalCatalog(createCommercialDemoAdapter().getSnapshot());
 }
+
+test("buyer SKU selection stays on product routes and clears outside detail", () => {
+  const detail = buyerHref("/product/prd_001", "/discover?q=eiken&country=BE", {
+    sku: "sku-pack-2-prd_001",
+    offer: "demo-offer-pack-2",
+  });
+  assert.equal(buyerLocation(detail).skuId, "sku-pack-2-prd_001");
+  assert.equal(buyerLocation(detail).offerId, "demo-offer-pack-2");
+  assert.equal(buyerLocation(detail).country, "BE");
+  const cart = buyerHref("/cart", detail);
+  assert.equal(new URL(cart, "http://local").searchParams.has("sku"), false);
+  assert.equal(new URL(cart, "http://local").searchParams.has("offer"), false);
+});
 
 test("canonical fixture separates products, SKU, companies, stores and competing offers", () => {
   const c = fixture();
