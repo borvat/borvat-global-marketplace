@@ -43,7 +43,10 @@ export function buyerHref(
   const url = new URL(current, "http://127.0.0.1");
   url.pathname = path;
   url.hash = "";
-  if (!path.startsWith("/product/")) url.searchParams.delete("offer");
+  if (!path.startsWith("/product/")) {
+    url.searchParams.delete("offer");
+    url.searchParams.delete("sku");
+  }
   for (const [key, value] of Object.entries(changes)) {
     if (!value) url.searchParams.delete(key);
     else url.searchParams.set(key, value);
