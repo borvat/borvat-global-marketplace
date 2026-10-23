@@ -503,6 +503,9 @@ export function CommercialWorkspace({
                     <Badge className="w-fit" variant="outline">
                       {stateLabel[offer.state]}
                     </Badge>
+                    <p className="text-sm text-muted-foreground">
+                      {offer.variant} · SKU {offer.skuId} · {offer.packQuantity} per verpakking
+                    </p>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p>
@@ -561,6 +564,9 @@ export function CommercialWorkspace({
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
+                    <p className="text-sm text-muted-foreground">
+                      {offer.variant} · SKU {offer.skuId} · {offer.packQuantity} per verpakking
+                    </p>
                     <p>
                       {offer.sellerName} · {formatEur(offer.priceCents)}
                     </p>
