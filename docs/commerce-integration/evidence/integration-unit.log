@@ -1,0 +1,12 @@
+✔ real router adapter rejects protocol, authority and browser-normalized authority escapes (3.77469ms)
+✔ isolated document surface permits buyer paths and rejects operational/API routes (0.283278ms)
+✔ isolated server never dispatches write methods, including email and server functions (0.22541ms)
+✔ narrow buyer reader preserves verified identity, limit and original result (0.190618ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 386.9941

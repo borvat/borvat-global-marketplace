@@ -1,0 +1,59 @@
+{
+  "browser": "138.0.7204.0",
+  "scope": "original TanStack Start application, SSR hydration and real route navigation; synthetic commerce state, no native WMS/accounting/payment",
+  "results": [
+    {
+      "case": "SSR without JavaScript and isolated HTTP dispatch",
+      "status": "PASS",
+      "protocol": [
+        {
+          "method": "HEAD",
+          "path": "/discover",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/account",
+          "status": 404
+        },
+        {
+          "method": "GET",
+          "path": "/.mcp/list-tools",
+          "status": 404
+        },
+        {
+          "method": "POST",
+          "path": "/lovable/email/auth/webhook",
+          "status": 405
+        },
+        {
+          "method": "POST",
+          "path": "/discover",
+          "status": 405
+        }
+      ],
+      "externalRequests": []
+    },
+    {
+      "width": 1440,
+      "status": "PASS",
+      "pageErrors": [],
+      "externalRequests": [],
+      "hydrationErrors": []
+    },
+    {
+      "width": 390,
+      "status": "PASS",
+      "pageErrors": [],
+      "externalRequests": [],
+      "hydrationErrors": []
+    },
+    {
+      "width": 320,
+      "status": "PASS",
+      "pageErrors": [],
+      "externalRequests": [],
+      "hydrationErrors": []
+    }
+  ]
+}
