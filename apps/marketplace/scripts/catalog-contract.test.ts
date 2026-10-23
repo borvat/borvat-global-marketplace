@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   catalogPage,
   parseCatalog,
+  serializeCanonicalCatalog,
   type CanonicalCatalog,
 } from "../src/lib/commercial/catalog-contract";
 import { buyerCatalog, rehearsalCatalog } from "../src/lib/commercial/catalog-rehearsal";
@@ -181,4 +182,29 @@ test("buyer projection preserves offer identity and follows seller edits without
   const controller = new AbortController();
   controller.abort();
   await assert.rejects(readDemoCatalog(adapter.getSnapshot(), controller.signal));
+});
+
+test("canonical JSON export validates, round-trips and ignores source row order", () => {
+  const source = fixture();
+  const original = JSON.stringify(source);
+  const reordered: CanonicalCatalog = {
+    ...source,
+    products: [...source.products]
+      .reverse()
+      .map((product) => ({ ...product, media: [...product.media].reverse() })),
+    skus: [...source.skus]
+      .reverse()
+      .map((sku) => ({ ...sku, references: [...sku.references].reverse() })),
+    companies: [...source.companies].reverse(),
+    stores: [...source.stores].reverse(),
+    offers: [...source.offers]
+      .reverse()
+      .map((offer) => ({ ...offer, countries: [...offer.countries].reverse() })),
+  };
+  const serialized = serializeCanonicalCatalog(source);
+  assert.ok(serialized.endsWith("\\n"));
+  assert.equal(serialized, serializeCanonicalCatalog(reordered));
+  assert.deepEqual(parseCatalog(JSON.parse(serialized)), parseCatalog(source));
+  assert.equal(JSON.stringify(source), original);
+  assert.throws(() => serializeCanonicalCatalog({ ...source, mode: "production" }));
 });
