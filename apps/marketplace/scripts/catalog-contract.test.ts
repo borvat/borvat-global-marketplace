@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   catalogPage,
   parseCatalog,
+  parseCanonicalCatalogJson,
   serializeCanonicalCatalog,
   type CanonicalCatalog,
 } from "../src/lib/commercial/catalog-contract";
@@ -227,7 +228,9 @@ test("canonical JSON export validates, round-trips and ignores source row order"
       }))
       .sort(compareId),
   };
-  assert.deepEqual(parseCatalog(JSON.parse(serialized)), parseCatalog(normalized));
+  assert.deepEqual(parseCanonicalCatalogJson(serialized), parseCatalog(normalized));
+  assert.throws(() => parseCanonicalCatalogJson("{"), /Invalid canonical catalog JSON/);
+  assert.throws(() => parseCanonicalCatalogJson(JSON.stringify({ ...source, mode: "production" })));
   assert.equal(JSON.stringify(source), original);
   assert.throws(() => serializeCanonicalCatalog({ ...source, mode: "production" }));
 });
