@@ -2,7 +2,7 @@ import type { DemoSnapshot } from "./demo-adapter";
 import { buyerCatalog, rehearsalCatalog } from "./catalog-rehearsal";
 
 export type BuyerCountry = "NL" | "BE";
-export type Catalog = Pick<DemoSnapshot, "products" | "offers">;
+export type Catalog = ReturnType<typeof buyerCatalog>;
 // Read-only projection seam. The demo adapter remains the sole local command store.
 export type CatalogReader = (snapshot: DemoSnapshot, signal: AbortSignal) => Promise<Catalog>;
 export const readDemoCatalog: CatalogReader = async (snapshot, signal) => {
@@ -32,6 +32,7 @@ export function buyerLocation(href: string) {
     category,
     sort: url.searchParams.get("sort") === "price" ? ("price" as const) : ("title" as const),
     offerId: url.searchParams.get("offer"),
+    skuId: url.searchParams.get("sku"),
   };
 }
 export function buyerHref(
