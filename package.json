@@ -6,6 +6,11 @@
     "node": ">=24 <25"
   },
   "scripts": {
+    "commerce:build:isolated": "node scripts/commerce-integration/build.mjs isolated",
+    "commerce:build:default": "node scripts/commerce-integration/build.mjs default",
+    "commerce:test:unit": "npm --prefix apps/marketplace run test:commerce",
+    "commerce:test:browser": "node scripts/commerce-integration/browser.mjs",
+    "commerce:source-review": "node scripts/commerce-integration/source-review.mjs",
     "foundation:check": "node scripts/foundation/check.mjs",
     "test:foundation": "node --test tests/foundation/*.test.mjs",
     "source:check": "node scripts/foundation/source-parity.mjs",

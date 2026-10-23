@@ -871,3 +871,16 @@ Decision: the 188 pre-existing `user_roles` rows with `role = 'seller'` flagged 
 all fixture-owned and were removed as part of the P0-3 closure; the count is now 0. The only
 lawful path to the seller role remains `public.grant_seller_role_from_approved_application()`
 backed by an approved `seller_applications` row. No grandfathering exception was created.
+
+
+## BOR-DEC-161 — DELEGATED IMPLEMENTATION AND ORIGINAL-APPLICATION ISOLATED INTEGRATION (2026-10-23)
+
+- Type: Engineering governance and bounded application integration.
+- Owner instruction: «طيب استلم هاد الهدف بتفويض كامل بشغل احترافي مهني عالمي» after reviewing BORVAT's gap to an operational marketplace.
+- Decision: normal implementation, isolated tests and reviewable GitHub branch/PR work are authorized. Earlier preparation-only prohibitions on implementation are superseded for this work. This does not constitute exact-source acceptance of the unresolved financial foundation or a production release.
+- Implementation boundary: explicit build-time `VITE_BORVAT_RUNTIME=isolated`; original TanStack Start router/root/SSR; one per-application synthetic command store; no real credentials or orders. Default mode retains the original backend/authentication routes and hard-disabled checkout.
+- Source evolution: preserve the immutable recovery manifest and historical artifacts; record named original-file before/after hashes in `docs/commerce-integration/source-changes.json`. Do not relabel changed texts or runtime public-image paths as original media parity.
+- Operational authority: WMS remains the stock/movement authority; Accounting remains the invoice/credit/GL/value authority. This stage adds no parallel ledger or native adapter claim.
+- Other changes: request-scoped lazy email SDK construction to avoid import-time provider-secret failure; SDK verification/dispatch remains delegated to the same SDK when configured and invoked outside isolated mode. An isolated request is rejected before dispatching write/API handlers.
+- Validation and scope: see `docs/commerce-integration/REPORT.md` for exact commands/results and open limitations. No migration, production DB, real seller decision, main merge, deployment, live payment, payout, email or paid service is authorized by this bounded milestone.
+- Rollback: abandon the unmerged branch or revert the bounded implementation commit. No data migration exists.

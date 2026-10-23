@@ -70,7 +70,9 @@ function Account() {
           })(),
           (async () => {
             try {
-              const result = await readRecentBuyerOrders(supabase, uid);
+              const result = await readRecentBuyerOrders((userId, limit) =>
+                supabase.from("orders").select("id,created_at,status,total_cents")
+                  .eq("user_id", userId).order("created_at", { ascending: false }).limit(limit), uid);
               if (!cancelled) setOrders(result.error ? { kind: "error" } : { kind: "ready", orders: result.data ?? [] });
             } catch { if (!cancelled) setOrders({ kind: "error" }); }
           })(),

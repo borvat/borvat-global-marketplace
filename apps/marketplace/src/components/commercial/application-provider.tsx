@@ -1,0 +1,24 @@
+import { createContext, useContext, useState, type ReactNode } from "react";
+import { useRouter } from "@tanstack/react-router";
+import { BuyerJourney } from "./buyer-journey";
+import {
+  createCommercialDemoAdapter,
+  type CommercialDemoAdapter,
+} from "../../lib/commercial/demo-adapter";
+import { createTanStackBuyerNavigation } from "../../lib/commercial/tanstack-navigation";
+
+const ApplicationContext = createContext<CommercialDemoAdapter | null>(null);
+
+/** One command store per mounted application / SSR request, never a process singleton. */
+export function IsolatedCommerceProvider({ children }: { children: ReactNode }) {
+  const [adapter] = useState(() => createCommercialDemoAdapter());
+  return <ApplicationContext.Provider value={adapter}>{children}</ApplicationContext.Provider>;
+}
+
+export function IsolatedBuyerApplication() {
+  const adapter = useContext(ApplicationContext);
+  const router = useRouter();
+  const [navigation] = useState(() => createTanStackBuyerNavigation(router));
+  if (!adapter) throw new Error("Isolated commerce provider is missing.");
+  return <BuyerJourney adapter={adapter} navigation={navigation} manageDocument={false} />;
+}

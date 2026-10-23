@@ -4,6 +4,8 @@ import { Trash2, Minus, Plus, ShoppingBag, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { formatEur, productImage } from "@/lib/format";
 import { toast } from "sonner";
+import { IsolatedBuyerApplication } from "../components/commercial/application-provider";
+import { ISOLATED_COMMERCE } from "../lib/commercial/runtime-mode";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -30,6 +32,10 @@ type Row = {
 };
 
 function CartPage() {
+  return ISOLATED_COMMERCE ? <IsolatedBuyerApplication /> : <LegacyCartPage />;
+}
+
+function LegacyCartPage() {
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
   const [signedIn, setSignedIn] = useState(false);

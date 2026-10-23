@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { ProductCard, type ProductCardData } from "@/components/product-card";
 import { Truck, ShieldCheck, RotateCcw, Sparkles, ArrowRight } from "lucide-react";
-import heroImage from "../../public/images/hero.jpg";
+import { IsolatedBuyerApplication } from "../components/commercial/application-provider";
+import { ISOLATED_COMMERCE } from "../lib/commercial/runtime-mode";
+// Public media keeps its original URL. Missing media is tracked by the asset gate,
+// rather than being a compile-time module or silently replaced with another image.
+const heroImage = "/images/hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,6 +28,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  return ISOLATED_COMMERCE ? <IsolatedBuyerApplication /> : <LegacyHome />;
+}
+
+function LegacyHome() {
   const [products, setProducts] = useState<ProductCardData[]>([]);
   const [deals, setDeals] = useState<ProductCardData[]>([]);
   const [cats, setCats] = useState<{ slug: string; name: string }[]>([]);

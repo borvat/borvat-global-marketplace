@@ -9,9 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorkbenchRouteImport } from './routes/workbench'
 import { Route as SellerRouteImport } from './routes/seller'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as RequestsRouteImport } from './routes/requests'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AccountRouteImport } from './routes/account'
@@ -87,6 +90,11 @@ import { Route as AuthenticatedAccountSupportConversationIdRouteImport } from '.
 import { Route as AuthenticatedSellerStoresStoreIdListingsRouteImport } from './routes/_authenticated/seller.stores.$storeId.listings'
 import { Route as AuthenticatedSellerProductsIdEditRouteImport } from './routes/_authenticated/seller.products.$id.edit'
 
+const WorkbenchRoute = WorkbenchRouteImport.update({
+  id: '/workbench',
+  path: '/workbench',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SellerRoute = SellerRouteImport.update({
   id: '/seller',
   path: '/seller',
@@ -97,9 +105,19 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RequestsRoute = RequestsRouteImport.update({
+  id: '/requests',
+  path: '/requests',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -532,9 +550,12 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
+  '/discover': typeof DiscoverRoute
   '/mcp': typeof McpRoute
+  '/requests': typeof RequestsRoute
   '/search': typeof SearchRoute
   '/seller': typeof SellerRouteWithChildren
+  '/workbench': typeof WorkbenchRoute
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/review': typeof AuthenticatedReviewRouteRouteWithChildren
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -610,9 +631,12 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
+  '/discover': typeof DiscoverRoute
   '/mcp': typeof McpRoute
+  '/requests': typeof RequestsRoute
   '/search': typeof SearchRoute
   '/seller': typeof SellerRouteWithChildren
+  '/workbench': typeof WorkbenchRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/checkout': typeof AuthenticatedCheckoutRoute
@@ -687,9 +711,12 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
+  '/discover': typeof DiscoverRoute
   '/mcp': typeof McpRoute
+  '/requests': typeof RequestsRoute
   '/search': typeof SearchRoute
   '/seller': typeof SellerRouteWithChildren
+  '/workbench': typeof WorkbenchRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/review': typeof AuthenticatedReviewRouteRouteWithChildren
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -767,9 +794,12 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/cart'
+    | '/discover'
     | '/mcp'
+    | '/requests'
     | '/search'
     | '/seller'
+    | '/workbench'
     | '/admin'
     | '/review'
     | '/.mcp/list-tools'
@@ -845,9 +875,12 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/cart'
+    | '/discover'
     | '/mcp'
+    | '/requests'
     | '/search'
     | '/seller'
+    | '/workbench'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/checkout'
@@ -921,9 +954,12 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/cart'
+    | '/discover'
     | '/mcp'
+    | '/requests'
     | '/search'
     | '/seller'
+    | '/workbench'
     | '/_authenticated/admin'
     | '/_authenticated/review'
     | '/.mcp/list-tools'
@@ -1001,9 +1037,12 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
+  DiscoverRoute: typeof DiscoverRoute
   McpRoute: typeof McpRoute
+  RequestsRoute: typeof RequestsRoute
   SearchRoute: typeof SearchRoute
   SellerRoute: typeof SellerRouteWithChildren
+  WorkbenchRoute: typeof WorkbenchRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   CSlugRoute: typeof CSlugRoute
@@ -1018,6 +1057,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/workbench': {
+      id: '/workbench'
+      path: '/workbench'
+      fullPath: '/workbench'
+      preLoaderRoute: typeof WorkbenchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/seller': {
       id: '/seller'
       path: '/seller'
@@ -1032,11 +1078,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/requests': {
+      id: '/requests'
+      path: '/requests'
+      fullPath: '/requests'
+      preLoaderRoute: typeof RequestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mcp': {
       id: '/mcp'
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -1786,9 +1846,12 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
+  DiscoverRoute: DiscoverRoute,
   McpRoute: McpRoute,
+  RequestsRoute: RequestsRoute,
   SearchRoute: SearchRoute,
   SellerRoute: SellerRouteWithChildren,
+  WorkbenchRoute: WorkbenchRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,

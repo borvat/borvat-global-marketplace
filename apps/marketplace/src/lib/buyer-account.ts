@@ -15,8 +15,15 @@ type OrderReader = {
   };
 };
 
-export function readRecentBuyerOrders(client: OrderReader, userId: string) {
+// A narrow query function avoids recursively comparing every generated Supabase relationship
+// when adapting the real typed client. The original structural reader remains supported.
+type ReadOrders = (userId: string, limit: number) => PromiseLike<{
+  data: RecentBuyerOrder[] | null; error: { message: string } | null;
+}>;
+
+export function readRecentBuyerOrders(client: OrderReader | ReadOrders, userId: string) {
   if (!userId.trim()) throw new Error("Een aangemeld account is vereist.");
+  if (typeof client === "function") return client(userId, 3);
   return client.from("orders").select("id,created_at,status,total_cents")
     .eq("user_id", userId).order("created_at", { ascending: false }).limit(3);
 }

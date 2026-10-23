@@ -6,6 +6,7 @@ import {
   useRouterState,
   HeadContent,
   Scripts,
+  notFound,
 } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 
@@ -14,6 +15,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader, SiteFooter } from "@/components/site-header";
 import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "sonner";
+import { IsolatedCommerceProvider } from "../components/commercial/application-provider";
+import { ISOLATED_COMMERCE, isIsolatedCommercePath } from "../lib/commercial/runtime-mode";
 
 function NotFoundComponent() {
   return (
@@ -54,6 +57,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  beforeLoad: ({ location }) => {
+    if (ISOLATED_COMMERCE && !isIsolatedCommercePath(location.pathname)) throw notFound();
+    return {};
+  },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -78,13 +85,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      ...(ISOLATED_COMMERCE ? [] : [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" as const },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
       },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
+      ]),
     ],
   }),
   shellComponent: RootShell,
@@ -94,8 +103,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const country = useRouterState({ select: (s) => s.location.searchStr });
   return (
-    <html lang="nl">
+    <html lang={ISOLATED_COMMERCE ? (new URLSearchParams(country).get("country") === "BE" ? "nl-BE" : "nl-NL") : "nl"}>
       <head>
         <HeadContent />
       </head>
@@ -131,6 +141,7 @@ function RootComponent() {
     pathname.startsWith("/support/");
 
   useEffect(() => {
+    if (ISOLATED_COMMERCE) return;
     const { data: sub } = supabase.auth.onAuthStateChange((event) => {
       if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
       router.invalidate();
@@ -138,6 +149,11 @@ function RootComponent() {
     });
     return () => sub.subscription.unsubscribe();
   }, [queryClient, router]);
+  if (ISOLATED_COMMERCE) return (
+    <QueryClientProvider client={queryClient}>
+      <IsolatedCommerceProvider><Outlet /></IsolatedCommerceProvider>
+    </QueryClientProvider>
+  );
   return (
     <QueryClientProvider client={queryClient}>
       <div
