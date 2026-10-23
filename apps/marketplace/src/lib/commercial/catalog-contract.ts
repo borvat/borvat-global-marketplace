@@ -111,6 +111,35 @@ export type CanonicalCatalog = z.infer<typeof schema>;
 export function parseCatalog(input: unknown): CanonicalCatalog {
   return schema.parse(input);
 }
+
+/** Stable JSON interchange for validated catalog snapshots; it does not imply source-system export. */
+export function serializeCanonicalCatalog(input: unknown): string {
+  const catalog = parseCatalog(input);
+  const compareId = (a: { id: string }, b: { id: string }) =>
+    a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+  const compareText = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
+  const stable = {
+    ...catalog,
+    products: catalog.products
+      .map((product) => ({ ...product, media: [...product.media].sort(compareId) }))
+      .sort(compareId),
+    skus: catalog.skus
+      .map((sku) => ({
+        ...sku,
+        references: [...sku.references].sort((a, b) => compareText(a.authority, b.authority)),
+      }))
+      .sort(compareId),
+    companies: [...catalog.companies].sort(compareId),
+    stores: [...catalog.stores].sort(compareId),
+    offers: catalog.offers
+      .map((offer) => ({
+        ...offer,
+        countries: [...offer.countries].sort(compareText),
+      }))
+      .sort(compareId),
+  };
+  return `${JSON.stringify(stable, null, 2)}\n`;
+}
 const querySchema = z
   .object({
     country: z.enum(["NL", "BE"]),
