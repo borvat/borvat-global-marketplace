@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { formatEur } from "../../lib/format";
+import { rehearsalCatalog } from "../../lib/commercial/catalog-rehearsal";
 import {
   parseDemoPrice,
   selectDemoProducts,
@@ -119,13 +120,14 @@ export function CommercialWorkspace({
   buyerNavigation?: (tab: BuyerTab) => void;
 }) {
   const data = useSyncExternalStore(adapter.subscribe, adapter.getSnapshot, adapter.getSnapshot);
+  const catalog = rehearsalCatalog(data);
   const [view, setView] = useState<View>(initialView);
   const [buyerTab, setBuyerTab] = useState<BuyerTab>(initialBuyerTab);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Alles");
   const [sort, setSort] = useState("title");
   const [selected, setSelected] = useState(data.products[0].id);
-  const [sellerId, setSellerId] = useState("demo-a");
+  const [sellerId, setSellerId] = useState(catalog.stores[0]?.id ?? "");
   const [resetVersion, setResetVersion] = useState(0);
   const [clearedQuantity, setClearedQuantity] = useState<string | null>(null);
   const [notice, setNotice] = useState("");
@@ -477,8 +479,11 @@ export function CommercialWorkspace({
                 value={sellerId}
                 onChange={(event) => setSellerId(event.target.value)}
               >
-                <option value="demo-a">Voorbeeldwinkel A</option>
-                <option value="demo-b">Voorbeeldwinkel B</option>
+                {catalog.stores.map((store) => (
+                  <option key={store.id} value={store.id}>
+                    {store.name}
+                  </option>
+                ))}
               </select>
             </div>
             <section aria-label="Mijn aanbiedingen" className="space-y-4">

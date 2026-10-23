@@ -36,12 +36,14 @@ test("product navigation retains search/category/sort/country and separates offe
 test("malformed product route is an unknown product, not a crash", () => {
   assert.equal(buyerLocation("/product/%E0%A4%A").productId, null);
 });
-test("read projection retains canonical product, offer and seller distinctions without copying stock", async () => {
+test("validated read projection retains product, offer and seller distinctions as detached data", async () => {
   const adapter = createCommercialDemoAdapter();
   const snapshot = adapter.getSnapshot();
   const catalog = await readDemoCatalog(snapshot, new AbortController().signal);
-  assert.equal(catalog.products, snapshot.products);
-  assert.equal(catalog.offers, snapshot.offers);
+  assert.deepEqual(catalog.products, snapshot.products);
+  assert.notEqual(catalog.products, snapshot.products);
+  assert.deepEqual(catalog.offers, snapshot.offers);
+  assert.notEqual(catalog.offers, snapshot.offers);
   const offer = catalog.offers.find(
     (item) => item.id === "demo-offer-alternative",
   )!;
