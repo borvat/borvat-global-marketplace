@@ -124,13 +124,15 @@ export function parseCanonicalCatalogJson(source: string): CanonicalCatalog {
   return parseCatalog(input);
 }
 
-/** Stable JSON interchange for validated catalog snapshots; it does not imply source-system export. */
-export function serializeCanonicalCatalog(input: unknown): string {
+function compareId(a: { id: string }, b: { id: string }) {
+  return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+}
+function compareText(a: string, b: string) {
+  return a < b ? -1 : a > b ? 1 : 0;
+}
+function normalizeCatalog(input: unknown): CanonicalCatalog {
   const catalog = parseCatalog(input);
-  const compareId = (a: { id: string }, b: { id: string }) =>
-    a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
-  const compareText = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
-  const stable = {
+  return {
     ...catalog,
     products: catalog.products
       .map((product) => ({ ...product, media: [...product.media].sort(compareId) }))
@@ -144,13 +146,60 @@ export function serializeCanonicalCatalog(input: unknown): string {
     companies: [...catalog.companies].sort(compareId),
     stores: [...catalog.stores].sort(compareId),
     offers: catalog.offers
-      .map((offer) => ({
-        ...offer,
-        countries: [...offer.countries].sort(compareText),
-      }))
+      .map((offer) => ({ ...offer, countries: [...offer.countries].sort(compareText) }))
       .sort(compareId),
   };
-  return `${JSON.stringify(stable, null, 2)}\n`;
+}
+/** Stable JSON interchange for validated catalog snapshots; it does not imply source-system export. */
+export function serializeCanonicalCatalog(input: unknown): string {
+  return `${JSON.stringify(normalizeCatalog(input), null, 2)}\n`;
+}
+const entityCollections = ["products", "skus", "companies", "stores", "offers"] as const;
+type EntityCollection = (typeof entityCollections)[number];
+function diffById<T extends { id: string }>(previous: T[], incoming: T[]) {
+  const previousById = new Map(previous.map((entry) => [entry.id, JSON.stringify(entry)]));
+  const incomingById = new Map(incoming.map((entry) => [entry.id, JSON.stringify(entry)]));
+  return {
+    added: [...incomingById.keys()].filter((id) => !previousById.has(id)).sort(),
+    changed: [...incomingById.keys()]
+      .filter((id) => previousById.has(id) && previousById.get(id) !== incomingById.get(id))
+      .sort(),
+    removed: [...previousById.keys()].filter((id) => !incomingById.has(id)).sort(),
+    unchanged: [...incomingById.keys()].filter(
+      (id) => previousById.has(id) && previousById.get(id) === incomingById.get(id),
+    ).length,
+  };
+}
+export type CatalogImportPreview = {
+  previousRevision: string;
+  incomingRevision: string;
+  hasChanges: boolean;
+  collections: Record<EntityCollection, ReturnType<typeof diffById>>;
+};
+/** Read-only, validated diff for an import review; performs no persistence or upstream writes. */
+export function previewCanonicalCatalogImport(
+  previousInput: unknown,
+  incomingInput: unknown,
+): CatalogImportPreview {
+  const previous = normalizeCatalog(previousInput);
+  const incoming = normalizeCatalog(incomingInput);
+  const collections = {
+    products: diffById(previous.products, incoming.products),
+    skus: diffById(previous.skus, incoming.skus),
+    companies: diffById(previous.companies, incoming.companies),
+    stores: diffById(previous.stores, incoming.stores),
+    offers: diffById(previous.offers, incoming.offers),
+  };
+  const hasChanges = entityCollections.some((key) => {
+    const diff = collections[key];
+    return diff.added.length > 0 || diff.changed.length > 0 || diff.removed.length > 0;
+  });
+  return {
+    previousRevision: previous.revision,
+    incomingRevision: incoming.revision,
+    hasChanges,
+    collections,
+  };
 }
 const querySchema = z
   .object({
