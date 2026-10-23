@@ -7,6 +7,9 @@ export type DemoOffer = {
   sellerId: string;
   sellerName: string;
   priceCents: number;
+  skuId: string;
+  variant: string;
+  packQuantity: number;
   availabilityExample: number;
   delivery: string;
   state: "published" | "draft" | "review";
@@ -20,6 +23,9 @@ export type DemoOrder = {
     sellerId: string;
     sellerName: string;
     unitPriceCents: number;
+    skuId: string;
+    variant: string;
+    packQuantity: number;
   })[];
   totalCents: number;
   createdAt: string;
@@ -67,6 +73,9 @@ function initialSnapshot(): DemoSnapshot {
     sellerId: i % 2 === 0 ? "demo-a" : "demo-b",
     sellerName: i % 2 === 0 ? "Voorbeeldwinkel A" : "Voorbeeldwinkel B",
     priceCents: p.priceCents,
+    skuId: `sku-${p.id}`,
+    variant: "Voorbeeldvariant",
+    packQuantity: 1,
     availabilityExample: p.stockAvailable,
     delivery: p.deliveryPromise,
     state: i === 2 ? "review" : "published",
@@ -78,6 +87,17 @@ function initialSnapshot(): DemoSnapshot {
     sellerName: "Voorbeeldwinkel B",
     priceCents: offers[0].priceCents + 1000,
     delivery: "Voorbeeld: 5–7 werkdagen",
+  });
+  // Clearly synthetic pack fixture: one two-item pack for exercising SKU selection.
+  offers.push({
+    ...offers[0],
+    id: "demo-offer-pack-2",
+    skuId: `sku-pack-2-${selected[0].id}`,
+    variant: "Voorbeeldvariant",
+    packQuantity: 2,
+    priceCents: offers[0].priceCents * 2,
+    availabilityExample: Math.floor(offers[0].availabilityExample / 2),
+    delivery: "Voorbeeld: verpakking van 2",
   });
   return { mode: "synthetic-memory-only", products, offers, cart: [], orders: [] };
 }
@@ -164,6 +184,9 @@ export function createCommercialDemoAdapter(
           sellerId: offer.sellerId,
           sellerName: offer.sellerName,
           unitPriceCents: offer.priceCents,
+          skuId: offer.skuId,
+          variant: offer.variant,
+          packQuantity: offer.packQuantity,
         })),
       };
       // Local review request only: no stock mutation, reservation, invoice or financial entry.
