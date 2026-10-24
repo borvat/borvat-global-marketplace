@@ -70,6 +70,8 @@ export type DemoQuote = {
 };
 export interface CommercialDemoAdapter {
   getSnapshot(): DemoSnapshot;
+  /** Stable empty boot state used for SSR and client hydration, never persisted browser state. */
+  getServerSnapshot(): DemoSnapshot;
   subscribe(listener: () => void): () => void;
   quote(): DemoQuote;
   setQuantity(offerId: string, quantity: number): void;
@@ -292,7 +294,8 @@ export function createCommercialDemoAdapter(
   now: () => string = () => new Date().toISOString(),
   newTestId: () => string = randomTestId,
 ): CommercialDemoAdapter {
-  let snapshot = initialSnapshot();
+  const serverSnapshot = initialSnapshot();
+  let snapshot = serverSnapshot;
   let sequence = 0;
   let storage: ShopStorage | null = null;
   const listeners = new Set<() => void>();
@@ -352,6 +355,7 @@ export function createCommercialDemoAdapter(
     }));
   return {
     getSnapshot: () => snapshot,
+    getServerSnapshot: () => serverSnapshot,
     subscribe: (listener) => {
       listeners.add(listener);
       return () => {

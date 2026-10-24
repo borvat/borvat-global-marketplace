@@ -80,7 +80,7 @@ function BuyerJourneyView({
   const snapshot = useSyncExternalStore(
     adapter.subscribe,
     adapter.getSnapshot,
-    adapter.getSnapshot,
+    adapter.getServerSnapshot,
   );
   const [load, setLoad] = useState<LoadState>({ status: "loading" });
   const [attempt, setAttempt] = useState(0);

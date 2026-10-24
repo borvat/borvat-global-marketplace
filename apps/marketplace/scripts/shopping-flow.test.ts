@@ -270,3 +270,20 @@ test("order ID collision is bounded and never replaces a previous order", () => 
   assert.equal(a.getSnapshot().orders.length, 1);
   assert.equal(a.getSnapshot().cart.length, 1);
 });
+
+test("hydration boot snapshot remains empty and stable while browser storage is restored", () => {
+  const storage = memoryTestStorage();
+  const a = createCommercialDemoAdapter(undefined, ids());
+  a.restore(storage);
+  a.setQuantity("demo-offer-6-medium", 1);
+  a.placeTestOrder(valid, "ssr-replay");
+  const browser = createCommercialDemoAdapter();
+  const initial = browser.getServerSnapshot();
+  browser.restore(storage);
+  assert.equal(browser.getSnapshot().orders.length, 1);
+  assert.equal(browser.getSnapshot().restored, true);
+  assert.equal(browser.getServerSnapshot(), initial);
+  assert.equal(initial.orders.length, 0);
+  assert.equal(initial.restored, false);
+  assert.equal(createCommercialDemoAdapter().getServerSnapshot().restored, false);
+});

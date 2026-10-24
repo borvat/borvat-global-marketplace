@@ -81,7 +81,9 @@ function OrderSummary({
         <ul>
           {lines.map((line) => (
             <li key={line.offerId} className="py-1">
-              {line.quantity} {line.quantity === 1 ? "verpakking" : "verpakkingen"} × {line.title} · {line.variant} · {line.packQuantity} per verpakking · {formatEur(line.unitPriceCents)} per verpakking
+              {line.quantity} {line.quantity === 1 ? "verpakking" : "verpakkingen"} × {line.title} ·{" "}
+              {line.variant} · {line.packQuantity} per verpakking · {formatEur(line.unitPriceCents)}{" "}
+              per verpakking
               <p className="text-sm text-muted-foreground">
                 {line.sellerName} ·{" "}
                 {order.preparedSellerIds.includes(line.sellerId)
@@ -119,7 +121,11 @@ export function CommercialWorkspace({
   embeddedBuyer?: boolean;
   buyerNavigation?: (tab: BuyerTab) => void;
 }) {
-  const data = useSyncExternalStore(adapter.subscribe, adapter.getSnapshot, adapter.getSnapshot);
+  const data = useSyncExternalStore(
+    adapter.subscribe,
+    adapter.getSnapshot,
+    adapter.getServerSnapshot,
+  );
   const catalog = rehearsalCatalog(data);
   const [view, setView] = useState<View>(initialView);
   const [buyerTab, setBuyerTab] = useState<BuyerTab>(initialBuyerTab);
@@ -179,8 +185,8 @@ export function CommercialWorkspace({
       {!embeddedBuyer && (
         <>
           <div className="bg-accent px-4 py-3 text-center text-sm font-semibold text-accent-foreground">
-            LOKALE DEMO · fictieve gegevens · geen betaling of echte bestelling · wijzigingen
-            verdwijnen bij herladen
+            LOKALE DEMO · fictieve gegevens · geen betaling of echte bestelling · aanvragen in deze
+            browser; aanbodwijzigingen verdwijnen bij herladen
           </div>
           <header className="bg-ink text-ink-foreground">
             <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-6">
@@ -593,8 +599,8 @@ export function CommercialWorkspace({
           </>
         )}
         <footer className="border-t pt-6 text-sm text-muted-foreground">
-          BORVAT commerciële werkproef · oorspronkelijke componenten en kleuren · alleen geheugen ·
-          WMS/Accounting niet aangesloten · ontbrekende media worden niet vervangen
+          BORVAT commerciële werkproef · oorspronkelijke componenten en kleuren · lokale
+          testgegevens · WMS/Accounting niet aangesloten · ontbrekende media worden niet vervangen
         </footer>
       </Content>
     </div>

@@ -6,7 +6,11 @@ import { RestoringState } from "./cart-view";
 import { TestNotice, primaryButton } from "./shop-parts";
 import { nl } from "./nl";
 
-const dateFormat = new Intl.DateTimeFormat("nl-NL", { dateStyle: "long", timeStyle: "short" });
+const dateFormat = new Intl.DateTimeFormat("nl-NL", {
+  dateStyle: "long",
+  timeStyle: "short",
+  timeZone: "Europe/Amsterdam",
+});
 const itemCount = (o: DemoOrder) => o.lines.reduce((s, l) => s + l.quantity, 0);
 const paymentLabel = (p: DemoOrder["payment"]) =>
   p === "test-ideal"
