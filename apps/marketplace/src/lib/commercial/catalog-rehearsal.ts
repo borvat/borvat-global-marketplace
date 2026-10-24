@@ -34,18 +34,25 @@ export function rehearsalCatalog(snapshot: DemoSnapshot): CanonicalCatalog {
       category: p.category,
       media: [],
     })),
-    skus: snapshot.products.map((p) => ({
-      id: `sku-${p.id}`,
-      productId: p.id,
-      variant: "Voorbeeldvariant",
-      packQuantity: 1,
-      references: [],
-    })),
+    skus: [
+      ...new Map(
+        snapshot.offers.map((offer) => [
+          offer.skuId,
+          {
+            id: offer.skuId,
+            productId: offer.productId,
+            variant: offer.variant,
+            packQuantity: offer.packQuantity,
+            references: [],
+          },
+        ]),
+      ).values(),
+    ],
     companies: stores.map((s) => ({ id: s.companyId, name: `Voorbeeldbedrijf ${s.id}` })),
     stores,
     offers: snapshot.offers.map((o) => ({
       id: o.id,
-      skuId: `sku-${o.productId}`,
+      skuId: o.skuId,
       storeId: o.sellerId,
       priceCents: o.priceCents,
       currency: "EUR",
@@ -61,6 +68,12 @@ export function buyerCatalog(catalog: CanonicalCatalog) {
   const skus = new Map(catalog.skus.map((s) => [s.id, s]));
   const stores = new Map(catalog.stores.map((s) => [s.id, s]));
   return {
+    skus: catalog.skus.map(({ id, productId, variant, packQuantity }) => ({
+      id,
+      productId,
+      variant,
+      packQuantity,
+    })),
     products: catalog.products.map((p) => ({
       id: p.id,
       title: p.title,
@@ -73,6 +86,9 @@ export function buyerCatalog(catalog: CanonicalCatalog) {
       if (!sku || !store) throw Error("Invalid catalog relationship");
       return {
         id: o.id,
+        skuId: sku.id,
+        variant: sku.variant,
+        packQuantity: sku.packQuantity,
         productId: sku.productId,
         sellerId: store.id,
         sellerName: store.name,

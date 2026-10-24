@@ -124,10 +124,21 @@ function BuyerJourneyView({
     setError("");
     document.querySelector<HTMLElement>("#buyer-main h1")?.focus();
   }, [route.path]);
-  const catalog = load.status === "ready" ? load.catalog : { products: [], offers: [] };
+  const catalog = load.status === "ready" ? load.catalog : { products: [], offers: [], skus: [] };
   const product = catalog.products.find((item) => item.id === route.productId);
+  const productSkus = catalog.skus.filter((sku) => sku.productId === product?.id);
+  const requestedOffer = catalog.offers.find(
+    (offer) => offer.id === route.offerId && offer.productId === product?.id,
+  );
+  const selectedSku =
+    productSkus.find((sku) => sku.id === route.skuId) ??
+    productSkus.find((sku) => sku.id === requestedOffer?.skuId) ??
+    productSkus[0];
   const offers = catalog.offers.filter(
-    (offer) => offer.productId === product?.id && offer.state === "published",
+    (offer) =>
+      offer.productId === product?.id &&
+      offer.skuId === selectedSku?.id &&
+      offer.state === "published",
   );
   const selected = route.offerId ? offers.find((offer) => offer.id === route.offerId) : offers[0];
   const products = selectDemoProducts({ ...snapshot, ...catalog }, route);
@@ -310,6 +321,7 @@ function BuyerJourneyView({
                             <LocalLink
                               href={link(`/product/${encodeURIComponent(item.id)}`, {
                                 offer: null,
+                                sku: null,
                               })}
                             >
                               {item.title}
@@ -333,7 +345,7 @@ function BuyerJourneyView({
                           </p>
                           <p className="text-sm">Voorbeeldprijs · verzendkosten niet berekend</p>
                           <LocalLink
-                            href={link(`/product/${encodeURIComponent(item.id)}`, { offer: null })}
+                            href={link(`/product/${encodeURIComponent(item.id)}`, { offer: null, sku: null })}
                           >
                             Bekijk product en aanbiedingen
                           </LocalLink>
@@ -366,8 +378,32 @@ function BuyerJourneyView({
                       <CardTitle className="break-words">Kies een voorbeeldaanbieding</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-5">
+                      <div>
+                        <Label htmlFor="buyer-sku">Variant en verpakking</Label>
+                        <select
+                          id="buyer-sku"
+                          data-testid="buyer-sku-select"
+                          className="mt-2 block h-10 w-full rounded-md border bg-background px-3"
+                          value={selectedSku?.id ?? ""}
+                          disabled={!productSkus.length}
+                          onChange={(event) =>
+                            navigate(link(route.path, { sku: event.target.value, offer: null }), true)
+                          }
+                        >
+                          {productSkus.map((sku) => (
+                            <option key={sku.id} value={sku.id}>
+                              {sku.variant} · {sku.packQuantity} per verpakking
+                            </option>
+                          ))}
+                        </select>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          De prijs hieronder geldt per verpakking. Aantallen in het mandje zijn verpakkingen.
+                        </p>
+                      </div>
                       <fieldset className="min-w-0 space-y-3">
-                        <legend className="mb-3 font-semibold">Voorbeeldwinkels</legend>
+                        <legend className="mb-3 font-semibold">
+                          Voorbeeldwinkels · {selectedSku?.packQuantity ?? 1} per verpakking
+                        </legend>
                         {offers.map((offer) => (
                           <label
                             key={offer.id}
@@ -378,7 +414,7 @@ function BuyerJourneyView({
                               name="buyer-offer"
                               value={offer.id}
                               checked={selected?.id === offer.id}
-                              onChange={() => navigate(link(route.path, { offer: offer.id }), true)}
+                              onChange={() => navigate(link(route.path, { offer: offer.id, sku: offer.skuId }), true)}
                               className="mt-1"
                             />
                             <span className="min-w-0 break-words">
@@ -387,7 +423,7 @@ function BuyerJourneyView({
                                 {formatEur(offer.priceCents)}
                               </span>
                               <span className="block text-sm text-muted-foreground">
-                                Fictieve aanbieding · beschikbaarheidsvoorbeeld{" "}
+                                Fictieve aanbieding · voorbeeldverpakkingen beschikbaar{" "}
                                 {offer.availabilityExample}
                               </span>
                             </span>
@@ -423,10 +459,10 @@ function BuyerJourneyView({
                           }
                         }}
                       >
-                        Voeg gekozen aanbod toe
+                        Voeg gekozen verpakking toe
                       </Button>
                       <p className="text-sm text-muted-foreground">
-                        Artikelprijs inclusief voorbeeld-btw. Geen berekende verzending, betaling,
+                        Verpakkingsprijs inclusief voorbeeld-btw. Geen berekende verzending, betaling,
                         voorraadreservering of leveringsbelofte.
                       </p>
                     </CardContent>

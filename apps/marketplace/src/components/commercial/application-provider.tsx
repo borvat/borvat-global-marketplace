@@ -8,10 +8,19 @@ import {
 import { createTanStackBuyerNavigation } from "../../lib/commercial/tanstack-navigation";
 
 const ApplicationContext = createContext<CommercialDemoAdapter | null>(null);
+let browserTabAdapter: CommercialDemoAdapter | undefined;
 
-/** One command store per mounted application / SSR request, never a process singleton. */
+function createIsolatedAdapter() {
+  // Keep demo state through SPA route remounts in one tab. A document reload creates a new
+  // JavaScript context, and server rendering always gets an isolated request-scoped adapter.
+  if (typeof window === "undefined") return createCommercialDemoAdapter();
+  browserTabAdapter ??= createCommercialDemoAdapter();
+  return browserTabAdapter;
+}
+
+/** One command store per browser tab or SSR request, never a server process singleton. */
 export function IsolatedCommerceProvider({ children }: { children: ReactNode }) {
-  const [adapter] = useState(() => createCommercialDemoAdapter());
+  const [adapter] = useState(createIsolatedAdapter);
   return <ApplicationContext.Provider value={adapter}>{children}</ApplicationContext.Provider>;
 }
 

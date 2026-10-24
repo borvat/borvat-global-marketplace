@@ -81,7 +81,7 @@ function OrderSummary({
         <ul>
           {lines.map((line) => (
             <li key={line.offerId} className="py-1">
-              {line.quantity} × {line.title} · {formatEur(line.unitPriceCents)}
+              {line.quantity} {line.quantity === 1 ? "verpakking" : "verpakkingen"} × {line.title} · {line.variant} · {line.packQuantity} per verpakking · {formatEur(line.unitPriceCents)} per verpakking
               <p className="text-sm text-muted-foreground">
                 {line.sellerName} ·{" "}
                 {order.preparedSellerIds.includes(line.sellerId)
@@ -91,7 +91,7 @@ function OrderSummary({
             </li>
           ))}
         </ul>
-        <p className="font-semibold">Artikelen: {formatEur(total)}</p>
+        <p className="font-semibold">Verpakkingen totaal: {formatEur(total)}</p>
         <p className="text-sm text-muted-foreground">
           Alleen lokaal. Geen betaling, voorraadreservering, factuur of verzending. Status geldt per
           voorbeeldwinkel.
@@ -306,7 +306,7 @@ export function CommercialWorkspace({
                       onChange={(event) => setSort(event.target.value)}
                     >
                       <option value="title">Naam</option>
-                      <option value="price">Laagste artikelprijs</option>
+                      <option value="price">Laagste verpakkingsprijs</option>
                     </select>
                   </div>
                 </section>
@@ -357,7 +357,10 @@ export function CommercialWorkspace({
                             </p>
                             <p className="text-sm">{offer.delivery}</p>
                             <p className="text-sm text-muted-foreground">
-                              Beschikbaarheidsvoorbeeld: {offer.availabilityExample}
+                              {offer.variant} · {offer.packQuantity} per verpakking
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              Voorbeeldverpakkingen beschikbaar: {offer.availabilityExample}
                             </p>
                             <Button
                               disabled={!offer.availabilityExample}
@@ -371,7 +374,7 @@ export function CommercialWorkspace({
                                 )
                               }
                             >
-                              Voeg toe · {offer.sellerName}
+                              Voeg verpakking toe · {offer.sellerName}
                             </Button>
                           </div>
                         ))}
@@ -399,10 +402,13 @@ export function CommercialWorkspace({
                         <div>
                           <h3 className="font-semibold">{item?.title}</h3>
                           <p>{offer?.sellerName}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {offer?.variant} · {offer?.packQuantity} per verpakking
+                          </p>
                         </div>
                         <div>
                           <Label htmlFor={`qty-${line.offerId}`}>
-                            Aantal · {offer?.sellerName}
+                            Aantal verpakkingen · {offer?.sellerName}
                           </Label>
                           <Input
                             className="w-24"
@@ -437,7 +443,7 @@ export function CommercialWorkspace({
                 })}
                 {!data.cart.length && <p>Je mandje is leeg.</p>}
                 <p className="text-xl font-bold">
-                  Artikeltotaal: {quote ? formatEur(quote.totalCents) : "Niet beschikbaar"}
+                  Verpakkingen totaal: {quote ? formatEur(quote.totalCents) : "Niet beschikbaar"}
                 </p>
                 <p>
                   Verzendkosten niet berekend. Betaling uitgeschakeld. Er wordt geen voorraad
@@ -497,6 +503,9 @@ export function CommercialWorkspace({
                     <Badge className="w-fit" variant="outline">
                       {stateLabel[offer.state]}
                     </Badge>
+                    <p className="text-sm text-muted-foreground">
+                      {offer.variant} · SKU {offer.skuId} · {offer.packQuantity} per verpakking
+                    </p>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p>
@@ -555,6 +564,9 @@ export function CommercialWorkspace({
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
+                    <p className="text-sm text-muted-foreground">
+                      {offer.variant} · SKU {offer.skuId} · {offer.packQuantity} per verpakking
+                    </p>
                     <p>
                       {offer.sellerName} · {formatEur(offer.priceCents)}
                     </p>

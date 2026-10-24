@@ -46,9 +46,15 @@ const schema = z
             packQuantity: z.number().int().min(1).max(10000),
             references: z
               .array(
-                z.object({ authority: z.enum(["wms", "accounting"]), externalId: id }).strict(),
+                z
+                  .object({
+                    authority: z.enum(["wms", "accounting"]),
+                    companyId: id.optional(),
+                    externalId: id,
+                  })
+                  .strict(),
               )
-              .max(2),
+              .max(100),
           })
           .strict(),
       )
@@ -91,10 +97,27 @@ const schema = z
     const skus = new Set(c.skus.map((s) => s.id));
     const companies = new Set(c.companies.map((s) => s.id));
     const stores = new Set(c.stores.map((s) => s.id));
+    const nativeIdentityOwners = new Map<string, string>();
     c.skus.forEach((s, i) => {
       if (!products.has(s.productId)) fail(["skus", i, "productId"], "Unknown product");
-      if (new Set(s.references.map((r) => r.authority)).size !== s.references.length)
-        fail(["skus", i, "references"], "Duplicate authority");
+      const scopedAuthorities = new Set<string>();
+      s.references.forEach((reference, j) => {
+        if (reference.companyId && !companies.has(reference.companyId))
+          fail(["skus", i, "references", j, "companyId"], "Unknown reference company");
+        const scopeKey = JSON.stringify([reference.authority, reference.companyId ?? null]);
+        if (scopedAuthorities.has(scopeKey))
+          fail(["skus", i, "references", j], "Duplicate authority and company scope");
+        scopedAuthorities.add(scopeKey);
+        const identityKey = JSON.stringify([
+          reference.authority,
+          reference.companyId ?? null,
+          reference.externalId,
+        ]);
+        const owner = nativeIdentityOwners.get(identityKey);
+        if (owner && owner !== s.id)
+          fail(["skus", i, "references", j], "Native identity maps to multiple SKUs");
+        nativeIdentityOwners.set(identityKey, s.id);
+      });
     });
     c.stores.forEach((s, i) => {
       if (!companies.has(s.companyId)) fail(["stores", i, "companyId"], "Unknown company");
@@ -110,6 +133,101 @@ export type CanonicalCatalog = z.infer<typeof schema>;
 /** Atomic validation of the entire synthetic import; no stock or financial writes. */
 export function parseCatalog(input: unknown): CanonicalCatalog {
   return schema.parse(input);
+}
+
+/** Parses canonical JSON as one atomic, validated catalog snapshot. */
+export function parseCanonicalCatalogJson(source: string): CanonicalCatalog {
+  if (typeof source !== "string") throw new TypeError("Catalog JSON must be a string");
+  let input: unknown;
+  try {
+    input = JSON.parse(source);
+  } catch {
+    throw new Error("Invalid canonical catalog JSON");
+  }
+  return parseCatalog(input);
+}
+
+function compareId(a: { id: string }, b: { id: string }) {
+  return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+}
+function compareText(a: string, b: string) {
+  return a < b ? -1 : a > b ? 1 : 0;
+}
+function normalizeCatalog(input: unknown): CanonicalCatalog {
+  const catalog = parseCatalog(input);
+  return {
+    ...catalog,
+    products: catalog.products
+      .map((product) => ({ ...product, media: [...product.media].sort(compareId) }))
+      .sort(compareId),
+    skus: catalog.skus
+      .map((sku) => ({
+        ...sku,
+        references: [...sku.references].sort(
+          (a, b) =>
+            compareText(a.authority, b.authority) ||
+            compareText(a.companyId ?? "", b.companyId ?? "") ||
+            compareText(a.externalId, b.externalId),
+        ),
+      }))
+      .sort(compareId),
+    companies: [...catalog.companies].sort(compareId),
+    stores: [...catalog.stores].sort(compareId),
+    offers: catalog.offers
+      .map((offer) => ({ ...offer, countries: [...offer.countries].sort(compareText) }))
+      .sort(compareId),
+  };
+}
+/** Stable JSON interchange for validated catalog snapshots; it does not imply source-system export. */
+export function serializeCanonicalCatalog(input: unknown): string {
+  return `${JSON.stringify(normalizeCatalog(input), null, 2)}\n`;
+}
+const entityCollections = ["products", "skus", "companies", "stores", "offers"] as const;
+type EntityCollection = (typeof entityCollections)[number];
+function diffById<T extends { id: string }>(previous: T[], incoming: T[]) {
+  const previousById = new Map(previous.map((entry) => [entry.id, JSON.stringify(entry)]));
+  const incomingById = new Map(incoming.map((entry) => [entry.id, JSON.stringify(entry)]));
+  return {
+    added: [...incomingById.keys()].filter((id) => !previousById.has(id)).sort(),
+    changed: [...incomingById.keys()]
+      .filter((id) => previousById.has(id) && previousById.get(id) !== incomingById.get(id))
+      .sort(),
+    removed: [...previousById.keys()].filter((id) => !incomingById.has(id)).sort(),
+    unchanged: [...incomingById.keys()].filter(
+      (id) => previousById.has(id) && previousById.get(id) === incomingById.get(id),
+    ).length,
+  };
+}
+export type CatalogImportPreview = {
+  previousRevision: string;
+  incomingRevision: string;
+  hasChanges: boolean;
+  collections: Record<EntityCollection, ReturnType<typeof diffById>>;
+};
+/** Read-only, validated diff for an import review; performs no persistence or upstream writes. */
+export function previewCanonicalCatalogImport(
+  previousInput: unknown,
+  incomingInput: unknown,
+): CatalogImportPreview {
+  const previous = normalizeCatalog(previousInput);
+  const incoming = normalizeCatalog(incomingInput);
+  const collections = {
+    products: diffById(previous.products, incoming.products),
+    skus: diffById(previous.skus, incoming.skus),
+    companies: diffById(previous.companies, incoming.companies),
+    stores: diffById(previous.stores, incoming.stores),
+    offers: diffById(previous.offers, incoming.offers),
+  };
+  const hasChanges = entityCollections.some((key) => {
+    const diff = collections[key];
+    return diff.added.length > 0 || diff.changed.length > 0 || diff.removed.length > 0;
+  });
+  return {
+    previousRevision: previous.revision,
+    incomingRevision: incoming.revision,
+    hasChanges,
+    collections,
+  };
 }
 const querySchema = z
   .object({
