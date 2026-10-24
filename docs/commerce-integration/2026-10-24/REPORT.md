@@ -1,3 +1,5 @@
+> Owner-approved preview follow-up: the branch change and test deploy are now complete. See [latest preview acceptance](PREVIEW-ACCEPTANCE.md) and [new source-bound evidence](preview-evidence.json). The earlier checkpoint below is retained as history; its Render/browser blocker is superseded for desktop only. Full native commerce acceptance remains open.
+
 # BORVAT execution checkpoint — 2026-10-24
 
 **Requested end-to-end goal is NOT COMPLETE.** No native Marketplace→WMS→Accounting
