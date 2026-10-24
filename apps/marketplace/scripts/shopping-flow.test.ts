@@ -91,6 +91,13 @@ test("checkout validation flags missing and malformed fields", () => {
     acceptTest: false,
   });
   assert.ok(e.firstName && e.email && e.postalCode && e.phone && e.acceptTest);
+  const oversized = validateCheckout({
+    ...valid,
+    street: "x".repeat(201),
+    city: "x".repeat(201),
+    phone: "0" + " ".repeat(200) + "612345678",
+  });
+  assert.ok(oversized.street && oversized.city && oversized.phone);
   assert.ok(
     validateCheckout({ ...valid, country: "BE", postalCode: "1000" }).postalCode === undefined,
   );
@@ -153,4 +160,130 @@ test("isolated surface serves checkout and confirmation paths only via GET/HEAD"
   assert.equal(isolatedCommerceRequestStatus("GET", "/bestelling/TEST-ABC"), 200);
   assert.equal(isolatedCommerceRequestStatus("POST", "/afrekenen"), 405);
   assert.equal(isolatedCommerceRequestStatus("GET", "/checkout"), 404);
+});
+
+test("complete persisted order validation drops malformed rows but retains valid siblings", () => {
+  const a = createCommercialDemoAdapter(() => "2026-10-24T10:00:00.000Z", ids());
+  a.setQuantity("demo-offer-6-medium", 1);
+  a.placeTestOrder(valid, "schema-key");
+  const good = a.getSnapshot().orders[0];
+  for (const change of [
+    { lines: [null] },
+    { createdAt: "bad-date" },
+    { status: "paid" },
+    { lines: [{ ...good.lines[0], quantity: -1 }] },
+    { lines: [{ ...good.lines[0], packQuantity: 0 }] },
+    { preparedSellerIds: ["foreign-seller"] },
+    { preparedSellerIds: null },
+    { totalCents: good.totalCents + 1 },
+    { checkout: { ...good.checkout, email: null } },
+    { checkout: { ...good.checkout, subtotalCents: 0 } },
+    { payment: "real-card" },
+    { idempotencyKey: undefined },
+    { lines: [good.lines[0], good.lines[0]] },
+  ]) {
+    const b = createCommercialDemoAdapter();
+    b.restore(
+      memoryTestStorage(
+        JSON.stringify({
+          version: 1,
+          cart: [null],
+          orders: [{ ...good, id: "TEST-BAD", ...change }, good],
+        }),
+      ),
+    );
+    assert.equal(b.getSnapshot().orders.length, 1, JSON.stringify(change));
+    assert.equal(b.getSnapshot().orders[0].id, good.id);
+  }
+  const b = createCommercialDemoAdapter();
+  b.restore(
+    memoryTestStorage(
+      JSON.stringify({
+        version: 1,
+        cart: [
+          { offerId: "demo-offer-6", quantity: 1 },
+          { offerId: "demo-offer-6", quantity: 1 },
+        ],
+        orders: [good, good],
+      }),
+    ),
+  );
+  assert.equal(b.getSnapshot().cart.length, 1);
+  assert.equal(b.getSnapshot().orders.length, 1);
+});
+
+test("failed storage never confirms an order or clears the cart; same-key retry saves once", () => {
+  const a = createCommercialDemoAdapter(undefined, ids());
+  let fail = false;
+  const box = memoryTestStorage();
+  a.restore({
+    ...box,
+    write(value) {
+      if (fail) throw Error("quota");
+      box.write(value);
+    },
+  });
+  a.setQuantity("demo-offer-6-medium", 1);
+  fail = true;
+  assert.throws(() => a.placeTestOrder(valid, "retry-save"), /Opslaan is mislukt/);
+  assert.equal(a.getSnapshot().orders.length, 0);
+  assert.equal(a.getSnapshot().cart.length, 1);
+  assert.equal(a.getSnapshot().storageStatus, "unavailable");
+  fail = false;
+  a.placeTestOrder(valid, "retry-save");
+  a.placeTestOrder(valid, "retry-save");
+  assert.equal(a.getSnapshot().orders.length, 1);
+  assert.equal(a.getSnapshot().storageStatus, "saved");
+});
+
+test("unavailable storage and changed idempotent payload fail explicitly", () => {
+  const a = createCommercialDemoAdapter(undefined, ids());
+  a.restore(null);
+  a.setQuantity("demo-offer-6-medium", 1);
+  assert.throws(() => a.placeTestOrder(valid, "missing-storage"), /Browseropslag/);
+  const b = createCommercialDemoAdapter(undefined, ids());
+  b.setQuantity("demo-offer-6-medium", 1);
+  b.placeTestOrder(valid, "bound-key");
+  assert.throws(
+    () => b.placeTestOrder({ ...valid, city: "Amsterdam" }, "bound-key"),
+    /andere bestelgegevens/,
+  );
+  const throwing = createCommercialDemoAdapter();
+  assert.doesNotThrow(() =>
+    throwing.restore({
+      read() {
+        throw Error("privacy");
+      },
+      write() {},
+      clear() {},
+    }),
+  );
+  assert.equal(throwing.getSnapshot().storageStatus, "unavailable");
+});
+
+test("order ID collision is bounded and never replaces a previous order", () => {
+  const a = createCommercialDemoAdapter(undefined, () => "TEST-COLLISION");
+  a.setQuantity("demo-offer-6-medium", 1);
+  a.placeTestOrder(valid, "id-1");
+  a.setQuantity("demo-offer-6-medium", 1);
+  assert.throws(() => a.placeTestOrder(valid, "id-2"), /uniek testbestelnummer/);
+  assert.equal(a.getSnapshot().orders.length, 1);
+  assert.equal(a.getSnapshot().cart.length, 1);
+});
+
+test("hydration boot snapshot remains empty and stable while browser storage is restored", () => {
+  const storage = memoryTestStorage();
+  const a = createCommercialDemoAdapter(undefined, ids());
+  a.restore(storage);
+  a.setQuantity("demo-offer-6-medium", 1);
+  a.placeTestOrder(valid, "ssr-replay");
+  const browser = createCommercialDemoAdapter();
+  const initial = browser.getServerSnapshot();
+  browser.restore(storage);
+  assert.equal(browser.getSnapshot().orders.length, 1);
+  assert.equal(browser.getSnapshot().restored, true);
+  assert.equal(browser.getServerSnapshot(), initial);
+  assert.equal(initial.orders.length, 0);
+  assert.equal(initial.restored, false);
+  assert.equal(createCommercialDemoAdapter().getServerSnapshot().restored, false);
 });

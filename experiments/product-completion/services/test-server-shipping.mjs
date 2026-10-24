@@ -3,7 +3,7 @@
 export function createFixedSellerShippingProvider({tariffs,market="NL",currency="EUR"}={}){
  if(market!=="NL"||currency!=="EUR")throw new Error("UNSUPPORTED_SHIPPING_MARKET");
  if(!tariffs||typeof tariffs!=="object"||Array.isArray(tariffs))throw new Error("INVALID_TARIFFS");
- const uuid=x=>typeof x==="string"&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x);
+ const uuid=x=>typeof x==="string"&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x);
  const expectedCurrency=currency;
  const trusted=new Map();
  for(const [sellerId,rate] of Object.entries(tariffs)){

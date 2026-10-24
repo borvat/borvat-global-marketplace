@@ -42,8 +42,8 @@ try {
   );
   assert.equal(response.status, expected[0]);
   const body = await response.text();
-  if (mode === "isolated") assert.match(body, /LOKALE DEMO/);
-  else assert.doesNotMatch(body, /LOKALE DEMO/);
+  if (mode === "isolated") assert.match(body, /TESTOMGEVING/g);
+  else assert.doesNotMatch(body, /TESTOMGEVING/);
   const email = await fetch(
     "http://127.0.0.1:4180/lovable/email/auth/webhook",
     {

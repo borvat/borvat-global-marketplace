@@ -7,13 +7,7 @@ export function browserTestStorage(): ShopStorage | null {
     const store = window.localStorage;
     return {
       read: () => store.getItem(TEST_STORAGE_KEY),
-      write: (value) => {
-        try {
-          store.setItem(TEST_STORAGE_KEY, value);
-        } catch {
-          /* Quota or privacy mode: the session simply stays memory-only. */
-        }
-      },
+      write: (value) => store.setItem(TEST_STORAGE_KEY, value),
       clear: () => store.removeItem(TEST_STORAGE_KEY),
     };
   } catch {

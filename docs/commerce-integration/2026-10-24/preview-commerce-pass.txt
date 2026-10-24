@@ -1,0 +1,40 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test:commerce
+> tsc --noEmit && node --import tsx --test scripts/commerce-integration.test.ts scripts/catalog-contract.test.ts scripts/shopping-flow.test.ts
+
+✔ buyer SKU selection stays on product routes and clears outside detail (1.793582ms)
+✔ canonical fixture separates products, SKU, companies, stores and competing offers (8.442036ms)
+✔ atomic parser rejects duplicate identities, dangling relations and invalid commercial values (19.52694ms)
+✔ owned media requires HTTPS and a rights reference; missing media is allowed (8.749502ms)
+✔ seventh company, second store and multiple packs need no special-case identifiers (9.65735ms)
+✔ pagination is deterministic, complete, country-safe and bound to revision and filters (6.296803ms)
+✔ buyer projection preserves offer identity and follows seller edits without mutating request history (2.565547ms)
+✔ canonical JSON export validates, round-trips and ignores source row order (2.572557ms)
+✔ catalog import preview is deterministic, validates both snapshots and reports entity changes without mutation (2.211531ms)
+✔ WMS availability mapping requires explicit company and SKU identities and never converts UOM (6.139079ms)
+✔ real router adapter rejects protocol, authority and browser-normalized authority escapes (4.970244ms)
+✔ isolated document surface permits buyer paths and rejects operational/API routes (0.333004ms)
+✔ isolated server never dispatches write methods, including email and server functions (0.293275ms)
+✔ narrow buyer reader preserves verified identity, limit and original result (0.305383ms)
+✔ paid standard shipping below €50 and express are applied to TEST- orders (3.859857ms)
+✔ shipping rules: standard €4,95 free from €50, express €7,95, integer cents (0.976629ms)
+✔ search, price, availability filters and sorting (9.617491ms)
+✔ quantity limits reject unavailable stock, over-availability and over-maximum (0.593451ms)
+✔ checkout validation flags missing and malformed fields (0.351782ms)
+✔ TEST- order: idempotent, totals match cart, clears cart, survives reload via storage (4.91319ms)
+✔ corrupt or foreign storage is ignored safely (1.308331ms)
+✔ isolated surface serves checkout and confirmation paths only via GET/HEAD (0.243932ms)
+✔ complete persisted order validation drops malformed rows but retains valid siblings (7.73003ms)
+✔ failed storage never confirms an order or clears the cart; same-key retry saves once (0.514534ms)
+✔ unavailable storage and changed idempotent payload fail explicitly (0.479692ms)
+✔ order ID collision is bounded and never replaces a previous order (0.272415ms)
+✔ hydration boot snapshot remains empty and stable while browser storage is restored (0.325724ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 655.539844

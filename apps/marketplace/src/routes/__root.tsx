@@ -65,35 +65,54 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "marktje — koop en verkoop alles online" },
+      { title: "BORVAT — ontdek en vergelijk aanbiedingen" },
       {
         name: "description",
         content:
           "Ontdek deals op boeken, elektronica, mode en meer. Snelle bezorging, veilig betalen.",
       },
-      { property: "og:title", content: "marktje — koop en verkoop alles online" },
+      { property: "og:title", content: "BORVAT — ontdek en vergelijk aanbiedingen" },
       {
         property: "og:description",
-        content: "Ontdek deals op boeken, elektronica, mode en meer. Snelle bezorging, veilig betalen.",
+        content:
+          "Ontdek deals op boeken, elektronica, mode en meer. Snelle bezorging, veilig betalen.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "marktje — koop en verkoop alles online" },
-      { name: "twitter:description", content: "Ontdek deals op boeken, elektronica, mode en meer. Snelle bezorging, veilig betalen." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d98e7f7-6cfe-41bd-954a-eb88b64ad76b/id-preview-a3cb0167--092a5ea2-1dc1-4ffd-a4b4-efe2d3237298.lovable.app-1784817611933.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d98e7f7-6cfe-41bd-954a-eb88b64ad76b/id-preview-a3cb0167--092a5ea2-1dc1-4ffd-a4b4-efe2d3237298.lovable.app-1784817611933.png" },
+      { name: "twitter:title", content: "BORVAT — ontdek en vergelijk aanbiedingen" },
+      {
+        name: "twitter:description",
+        content:
+          "Ontdek deals op boeken, elektronica, mode en meer. Snelle bezorging, veilig betalen.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d98e7f7-6cfe-41bd-954a-eb88b64ad76b/id-preview-a3cb0167--092a5ea2-1dc1-4ffd-a4b4-efe2d3237298.lovable.app-1784817611933.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d98e7f7-6cfe-41bd-954a-eb88b64ad76b/id-preview-a3cb0167--092a5ea2-1dc1-4ffd-a4b4-efe2d3237298.lovable.app-1784817611933.png",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      ...(ISOLATED_COMMERCE ? [] : [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" as const },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
-      },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      ]),
+      ...(ISOLATED_COMMERCE
+        ? []
+        : [
+            { rel: "preconnect", href: "https://fonts.googleapis.com" },
+            {
+              rel: "preconnect",
+              href: "https://fonts.gstatic.com",
+              crossOrigin: "anonymous" as const,
+            },
+            {
+              rel: "stylesheet",
+              href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+            },
+            { rel: "icon", type: "image/png", href: "/favicon.png" },
+          ]),
     ],
   }),
   shellComponent: RootShell,
@@ -105,7 +124,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   const country = useRouterState({ select: (s) => s.location.searchStr });
   return (
-    <html lang={ISOLATED_COMMERCE ? (new URLSearchParams(country).get("country") === "BE" ? "nl-BE" : "nl-NL") : "nl"}>
+    <html
+      lang={
+        ISOLATED_COMMERCE
+          ? new URLSearchParams(country).get("country") === "BE"
+            ? "nl-BE"
+            : "nl-NL"
+          : "nl"
+      }
+    >
       <head>
         <HeadContent />
       </head>
@@ -149,11 +176,14 @@ function RootComponent() {
     });
     return () => sub.subscription.unsubscribe();
   }, [queryClient, router]);
-  if (ISOLATED_COMMERCE) return (
-    <QueryClientProvider client={queryClient}>
-      <IsolatedCommerceProvider><Outlet /></IsolatedCommerceProvider>
-    </QueryClientProvider>
-  );
+  if (ISOLATED_COMMERCE)
+    return (
+      <QueryClientProvider client={queryClient}>
+        <IsolatedCommerceProvider>
+          <Outlet />
+        </IsolatedCommerceProvider>
+      </QueryClientProvider>
+    );
   return (
     <QueryClientProvider client={queryClient}>
       <div
@@ -174,4 +204,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

@@ -1,0 +1,46 @@
+✔ country/locale seam supports Dutch NL and BE with safe defaults (1.111379ms)
+✔ product navigation retains search/category/sort/country and separates offer identity (0.443368ms)
+✔ malformed product route is an unknown product, not a crash (0.338753ms)
+✔ validated read projection retains product, offer and seller distinctions as detached data (6.095986ms)
+✔ host navigation owns push/replace and suppresses repeated same-location clicks (1.438444ms)
+✔ host back/forward updates are consumed without a second browser history writer (0.196421ms)
+✔ buyer compares two sellers for one original demo product (1.526756ms)
+✔ mixed seller cart has exact article totals and no shipping/payment estimate (0.477438ms)
+✔ quantity change and removal update totals without reserving example stock (0.157353ms)
+✔ local request clears cart, snapshots article prices and remains unpaid (0.264262ms)
+✔ buyer/seller/admin share request progress per seller without early whole-order completion (0.297701ms)
+✔ seller price edit requires draft/review/publish before buyer can request (0.340906ms)
+✔ admin can return review item to concept (0.147038ms)
+✔ price parser accepts comma and dot decimals without float rounding (0.346874ms)
+✔ malformed commercial prices leave state unchanged (0.377319ms)
+✔ out-of-range and fractional quantities do not corrupt cart (0.921408ms)
+✔ offer changed after cart entry surfaces review requirement and can be removed (0.409388ms)
+✔ empty request produces no demo order (0.259545ms)
+✔ two adapter instances and reset have disposable independent state (0.167649ms)
+✔ react subscriber sees consistent snapshot and unsubscribe works (0.188049ms)
+✔ initial UI renders original brand, comparison, missing-image disclosure and demo boundaries (37.116559ms)
+✔ cart UI renders seller quantities and a disabled payment control (2.984999ms)
+✔ seller UI renders editable offers and selected shop requests (6.769725ms)
+✔ admin UI renders moderation and shared request overview (2.841797ms)
+✔ buyer order UI shows completion without payment claims (5.224368ms)
+✔ empty UI panels explain missing cart and request data (3.452553ms)
+✔ catalog search trims whitespace, combines category and omits review-only product (0.219996ms)
+✔ catalog price order uses cheapest published offer rather than array position (0.298423ms)
+✔ real SSR boot does not render restored private browser requests before hydration (1.843685ms)
+✔ original processing template renders HTML and text from synthetic preview fixture (86.123602ms)
+✔ original shipped template renders HTML and text from synthetic preview fixture (14.616699ms)
+✔ original delivered template renders HTML and text from synthetic preview fixture (13.140879ms)
+✔ original signup component renders a synthetic preview without delivery (3.240208ms)
+✔ original invite component renders a synthetic preview without delivery (2.543424ms)
+✔ original magic link component renders a synthetic preview without delivery (2.848817ms)
+✔ original recovery component renders a synthetic preview without delivery (2.672976ms)
+✔ original email change component renders a synthetic preview without delivery (3.382299ms)
+✔ original reauthentication component renders a synthetic preview without delivery (2.995785ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1017.796737

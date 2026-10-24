@@ -15,5 +15,5 @@ test("reviewer cannot approve own application or own risk case",()=>{
 });
 test("role does not inherit all capabilities",()=>{
  assert.equal(can({role:"platform_admin",userId:"a"},"own_offer:write",{tenantId:"x"}),false);
- assert.equal(can({role:"ad_operator",userId:"a"},"own_campaign:write"),true);
+ assert.equal(can({role:"ad_operator",userId:"a",tenantId:"seller-A"},"own_campaign:write",{tenantId:"seller-A"}),true);
 });

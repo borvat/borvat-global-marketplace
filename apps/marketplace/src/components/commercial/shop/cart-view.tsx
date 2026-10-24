@@ -138,7 +138,7 @@ export function CartView() {
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <QuantityStepper
                     id={`cart-qty-${l.offerId}`}
-                    label={`${nl.quantity} · ${l.product?.title ?? ""}`}
+                    label={`${nl.quantity} · ${l.product?.title ?? ""} · ${l.offer?.variant ?? ""} · ${l.offer?.sellerName ?? ""}`}
                     value={l.quantity}
                     max={Math.max(l.max, 1)}
                     disabled={!l.offer || l.max < 1}
@@ -151,7 +151,10 @@ export function CartView() {
                     className="inline-flex items-center gap-1.5 rounded-md px-2 py-2 text-sm text-muted-foreground hover:text-destructive focus-visible:outline-2 focus-visible:outline-ring"
                   >
                     <Trash2 aria-hidden className="h-4 w-4" /> {nl.remove}
-                    <span className="sr-only"> {l.product?.title}</span>
+                    <span className="sr-only">
+                      {" "}
+                      {l.product?.title} · {l.offer?.variant} · {l.offer?.sellerName}
+                    </span>
                   </button>
                 </div>
                 {(errors[l.offerId] || l.issue) && (

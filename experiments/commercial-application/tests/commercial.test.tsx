@@ -8,6 +8,13 @@ import {
   selectDemoProducts,
 } from "../../../apps/marketplace/src/lib/commercial/demo-adapter";
 import { CommercialWorkspace } from "../../../apps/marketplace/src/components/commercial/workspace";
+// Static populated-state examples intentionally render a supplied UI fixture.
+// The application's real SSR/hydration boot contract is tested separately below.
+function workspaceFixture(
+  adapter: ReturnType<typeof createCommercialDemoAdapter>,
+) {
+  return { ...adapter, getServerSnapshot: adapter.getSnapshot };
+}
 const clock = () => "2026-10-22T12:00:00.000Z";
 
 test("buyer compares two sellers for one original demo product", () => {
@@ -16,7 +23,12 @@ test("buyer compares two sellers for one original demo product", () => {
   const offers = data.offers.filter(
     (offer) => offer.productId === data.products[0].id,
   );
-  assert.equal(offers.length, 2);
+  assert.equal(offers.length, 3);
+  assert.equal(offers.filter((offer) => offer.packQuantity === 1).length, 2);
+  assert.equal(
+    offers.find((offer) => offer.packQuantity === 2)?.id,
+    "demo-offer-pack-2",
+  );
   assert.notEqual(offers[0].sellerId, offers[1].sellerId);
   assert.equal(
     data.products[0].title,
@@ -169,7 +181,10 @@ test("cart UI renders seller quantities and a disabled payment control", () => {
   const adapter = createCommercialDemoAdapter(clock);
   adapter.setQuantity("demo-offer-1", 2);
   const html = renderToStaticMarkup(
-    <CommercialWorkspace adapter={adapter} initialBuyerTab="Mandje" />,
+    <CommercialWorkspace
+      adapter={workspaceFixture(adapter)}
+      initialBuyerTab="Mandje"
+    />,
   );
   assert.match(html, /Voorbeeldwinkel A/);
   assert.match(html, /value="2"/);
@@ -183,7 +198,10 @@ test("seller UI renders editable offers and selected shop requests", () => {
   adapter.setQuantity("demo-offer-alternative", 1);
   adapter.submitDemoRequest();
   const html = renderToStaticMarkup(
-    <CommercialWorkspace adapter={adapter} initialView="Verkoper" />,
+    <CommercialWorkspace
+      adapter={workspaceFixture(adapter)}
+      initialView="Verkoper"
+    />,
   );
   assert.match(html, /Verkoperscentrum/);
   assert.match(html, /Bewaar concept/);
@@ -196,7 +214,10 @@ test("admin UI renders moderation and shared request overview", () => {
   adapter.setQuantity("demo-offer-1", 1);
   adapter.submitDemoRequest();
   const html = renderToStaticMarkup(
-    <CommercialWorkspace adapter={adapter} initialView="Beheer" />,
+    <CommercialWorkspace
+      adapter={workspaceFixture(adapter)}
+      initialView="Beheer"
+    />,
   );
   assert.match(html, /Aanbodbeoordeling/);
   assert.match(html, /Publiceer in demo/);
@@ -210,7 +231,10 @@ test("buyer order UI shows completion without payment claims", () => {
   const id = adapter.submitDemoRequest();
   adapter.prepareOrder(id, "demo-a");
   const html = renderToStaticMarkup(
-    <CommercialWorkspace adapter={adapter} initialBuyerTab="Aanvragen" />,
+    <CommercialWorkspace
+      adapter={workspaceFixture(adapter)}
+      initialBuyerTab="Aanvragen"
+    />,
   );
   assert.match(html, /Demo voorbereid/);
   assert.match(html, /Geen betaling/);
@@ -220,10 +244,16 @@ test("buyer order UI shows completion without payment claims", () => {
 test("empty UI panels explain missing cart and request data", () => {
   const adapter = createCommercialDemoAdapter(clock);
   const cart = renderToStaticMarkup(
-    <CommercialWorkspace adapter={adapter} initialBuyerTab="Mandje" />,
+    <CommercialWorkspace
+      adapter={workspaceFixture(adapter)}
+      initialBuyerTab="Mandje"
+    />,
   );
   const orders = renderToStaticMarkup(
-    <CommercialWorkspace adapter={adapter} initialBuyerTab="Aanvragen" />,
+    <CommercialWorkspace
+      adapter={workspaceFixture(adapter)}
+      initialBuyerTab="Aanvragen"
+    />,
   );
   assert.match(cart, /Je mandje is leeg/);
   assert.match(orders, /Nog geen demo-aanvragen/);
@@ -272,4 +302,15 @@ test("catalog price order uses cheapest published offer rather than array positi
   assert.equal(result.length, 3);
   assert.ok(price(result[0].id) <= price(result[1].id));
   assert.ok(price(result[1].id) <= price(result[2].id));
+});
+
+test("real SSR boot does not render restored private browser requests before hydration", () => {
+  const adapter = createCommercialDemoAdapter(clock);
+  adapter.setQuantity("demo-offer-1", 1);
+  const id = adapter.submitDemoRequest();
+  const html = renderToStaticMarkup(
+    <CommercialWorkspace adapter={adapter} initialBuyerTab="Aanvragen" />,
+  );
+  assert.doesNotMatch(html, new RegExp(id));
+  assert.match(html, /Nog geen demo-aanvragen/);
 });

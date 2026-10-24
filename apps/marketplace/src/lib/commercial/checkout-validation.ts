@@ -36,9 +36,11 @@ export function validateCheckout(input: CheckoutInput): CheckoutErrors {
     e.email = "Vul een geldig e-mailadres in, bijvoorbeeld naam@voorbeeld.nl.";
   const digits = input.phone.replace(/[\s()-]/g, "");
   if (!digits) e.phone = "Vul je telefoonnummer in.";
-  else if (!/^(\+31|\+32|0031|0032|0)[1-9]\d{7,9}$/.test(digits))
+  else if (v(input.phone).length > 30 || !/^(\+31|\+32|0031|0032|0)[1-9]\d{7,9}$/.test(digits))
     e.phone = "Vul een geldig Nederlands of Belgisch telefoonnummer in.";
   if (!v(input.street)) e.street = "Vul je straatnaam in.";
+  else if (v(input.street).length > 200)
+    e.street = "Gebruik maximaal 200 tekens voor de straatnaam.";
   if (!v(input.houseNumber)) e.houseNumber = "Vul je huisnummer in.";
   else if (!/^\d{1,5}$/.test(v(input.houseNumber))) e.houseNumber = "Gebruik alleen cijfers.";
   if (input.addition && !/^[\p{L}\d-]{1,6}$/u.test(v(input.addition)))
@@ -51,6 +53,7 @@ export function validateCheckout(input: CheckoutInput): CheckoutErrors {
         ? "Gebruik het formaat 1234 AB."
         : "Gebruik een Belgische postcode van 4 cijfers.";
   if (!v(input.city)) e.city = "Vul je woonplaats in.";
+  else if (v(input.city).length > 200) e.city = "Gebruik maximaal 200 tekens voor de woonplaats.";
   if (input.country !== "NL" && input.country !== "BE") e.country = "Kies Nederland of België.";
   if (!isShippingMethod(input.shippingMethod)) e.shippingMethod = "Kies een verzendmethode.";
   if (!PAYMENT_METHODS.includes(input.paymentMethod))
