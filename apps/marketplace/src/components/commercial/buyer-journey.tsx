@@ -158,6 +158,11 @@ function BuyerJourneyView({
           tabIndex={-1}
           className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 outline-none sm:px-6 sm:py-8 [&_h1:focus]:outline-none"
         >
+          {snapshot.storageStatus === "unavailable" && (
+            <p role="alert" className="mb-4 rounded-lg border border-destructive p-3 text-sm">
+              Browseropslag is niet beschikbaar of opslaan is mislukt. Nieuwe testbestellingen worden niet bevestigd.
+            </p>
+          )}
           <ShopRoute path={route.path} />
         </main>
         <ShopFooter />
