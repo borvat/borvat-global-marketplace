@@ -7,12 +7,16 @@ export function nativeReceiver({
   company,
   actor,
   signingKey,
+  hosted = false,
   timeoutMs = 20000,
 }) {
   const endpoint = new URL(url);
   if (
-    endpoint.protocol !== "http:" ||
-    endpoint.hostname !== "127.0.0.1" ||
+    !(hosted
+      ? endpoint.protocol === "https:" &&
+        endpoint.hostname.endsWith(".onrender.com") &&
+        !endpoint.port
+      : endpoint.protocol === "http:" && endpoint.hostname === "127.0.0.1") ||
     endpoint.pathname !== "/" ||
     endpoint.search ||
     endpoint.hash ||
@@ -20,10 +24,13 @@ export function nativeReceiver({
     endpoint.password ||
     !/^wms-native-[ab][.]invalid$/.test(site) ||
     !/^TEST-[AB]$/.test(company) ||
+    site !== `wms-native-${company.slice(-1).toLowerCase()}.invalid` ||
+    typeof actor !== "string" ||
+    !/^[^@\s]+@example[.]invalid$/.test(actor) ||
     typeof signingKey !== "string" ||
     signingKey.length < 32
   )
-    throw Error("Only explicit fresh native loopback bindings are accepted");
+    throw Error("Explicit company-matched synthetic native binding required");
   const token = () => {
     const now = Math.floor(Date.now() / 1000);
     const head = Buffer.from(

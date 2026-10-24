@@ -2,6 +2,20 @@
 
 **Full project OPEN.** Continue existing code; do not treat native HTTP tests as full rendered acceptance.
 
+## Current continuation — hosted preparation and concurrent source assembly
+
+Read [HOSTED-CONTINUATION.md](2026-10-24/HOSTED-CONTINUATION.md) before relying on
+the historical checkpoints below. Existing public preview remains isolated at
+b771e309; no new connected deployment. This continuation adds actual-mount and
+private-config checks plus explicit hosted synthetic transport (28server/journal
+cases PASS;27frontend/typecheck PASS; both builds PASS). Accounting PR39/40 appeared
+during execution: combined non-destructively in Draft PR42 at41bcac76. PR41 was
+closed as superseded. Full cross-app acceptance remains BLOCKED/unperformed;
+shared app admission and native invoice/payment hook routing still conflict.
+The costed proposal is HOSTED-INFRASTRUCTURE.json ($52.75/month incremental,
+not provisioned). SAM/production resources untouched. No old native result certifies
+these new sources, and no continuing background task is implied.
+
 - Branch `implementation/server-orders-2026-10-24`, Draft [PR34](https://github.com/borvat/borvat-global-marketplace/pull/34), stacked on PR33. No main merge or history rewrite.
 - Last frozen native/compiled baseline `31e2db7c692dc0313c1cca7cebee17bbb6e2f923`:11 BORVAT native cases and3 compiled TanStack/Nitro HTTP cases PASS; upstream native55 PASS / browser1 BLOCKED. Source-qualified IDs and JSON are in [native acceptance](2026-10-24/NATIVE-ACCEPTANCE.md), [run06](2026-10-24/server-native/run06/MANIFEST.json).
 - Render existing paid test service `srv-dbdr7rl9fdbs738d1ekg`:b771e309 LIVE in deploy `dep-dbe427ss728c7393fhl0`, existing0.5c-512mb, auto-deploy OFF. Public profile remains isolated; durable backend/native engines are not hosted there. Do not use ephemeral storage for durable orders.

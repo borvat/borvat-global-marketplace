@@ -1,0 +1,28 @@
+{
+  "status": "PROPOSAL_NOT_PROVISIONED",
+  "workspace": "tea-db35rbflot8c739g8rhg",
+  "region": "frankfurt",
+  "pricing_checked": "2026-10-24",
+  "pricing_source": "https://render.com/pricing",
+  "resources": [
+    {"action": "reuse-existing-marketplace-add-disk", "id": "srv-dbdr7rl9fdbs738d1ekg", "keep_plan": "0.5c-512mb", "disk_gb": 1, "mount_path": "/var/data", "incremental_usd_month": 0.25},
+    {"action": "reuse-isolated-accounting-service-upgrade", "id": "srv-dbe286vb9u1s73bu9g5g", "company": "TEST-A", "plan": "1c-2g", "disk_gb": 5, "mount_path": "/var/data", "incremental_usd_month": 26.25},
+    {"action": "new-isolated-native-company-service", "proposed_name": "surooh-native-test-b", "company": "TEST-B", "plan": "1c-2g", "disk_gb": 5, "mount_path": "/var/data", "incremental_usd_month": 26.25}
+  ],
+  "incremental_usd_month": 52.75,
+  "existing_marketplace_usd_month": 7,
+  "estimated_test_stack_usd_month": 59.75,
+  "excluded": ["tax", "bandwidth overage", "workspace subscription", "provider charges"],
+  "capacity_note": "2GB native service is an initial test capacity proposal, not a measured ERPNext capacity guarantee; no automatic paid scaling",
+  "unchanged_services": ["surooh-wms-isolated-test frontend", "all SAM services and databases", "legacy Marketplace previews"],
+  "blocked_prerequisites": [
+    "explicit cost approval for the resources above",
+    "persistent native bootstrap must initialize once and preserve sites/database/files/keys on mounted storage; current Accounting test image resets data",
+    "full-company WMS/Accounting/Marketplace hook compatibility acceptance; PR39+40 compose source only",
+    "reviewed test identity provisioning and private configuration, distinct TEST-A/TEST-B credentials",
+    "approved provider sandbox configuration, if available; simulator stays explicitly separate"
+  ],
+  "activation_order": ["review and approve costs", "prepare/test persistent native bootstrap without overwriting existing test branches", "provision/attach approved isolated volumes", "verify mounts and one-time-only initialization", "provision test-only identities through their own runtime", "build exact connected candidate", "run full-app native and browser acceptance", "restart and redeploy; read back same order/native references", "publish connected preview only after acceptance"],
+  "rollback": "Keep current isolated preview deployed until connected acceptance; disable connected mode before rollback. Preserve/export synthetic order metadata and native backups separately. A code rollback does not revert database state. Never delete a volume as an application rollback.",
+  "approval_scope": "Test-only infrastructure; no main merge, production deployment, real provider payment/shipping/mail or production/SAM data access. Approval does not certify unfinished software."
+}
