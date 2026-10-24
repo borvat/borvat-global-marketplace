@@ -1,0 +1,1 @@
+{"status":"PASS","mode":"default","discoverStatus":404,"emailStatus":503,"providerCredentials":false,"log":"➜ Listening on: http://127.0.0.1:4180/\n"}

@@ -17,6 +17,7 @@
     "source:require-complete": "node scripts/foundation/source-parity.mjs --require-assets",
     "stage:status": "node scripts/foundation/gate.mjs C1",
     "test:core-money": "node --test experiments/core-engine-v1/tests/03-money-pricing.test.ts",
-    "test:prototype": "node --import ./scripts/foundation/no-external-network.mjs --test experiments/product-completion/tests/*.test.mjs"
+    "test:prototype": "node --import ./scripts/foundation/no-external-network.mjs --test experiments/product-completion/tests/*.test.mjs",
+    "test:integration-journal": "node --test tests/integration-contracts/*.test.mjs"
   }
 }

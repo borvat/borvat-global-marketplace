@@ -16,7 +16,9 @@ test("buyer compares two sellers for one original demo product", () => {
   const offers = data.offers.filter(
     (offer) => offer.productId === data.products[0].id,
   );
-  assert.equal(offers.length, 2);
+  assert.equal(offers.length, 3);
+  assert.equal(offers.filter((offer) => offer.packQuantity === 1).length, 2);
+  assert.equal(offers.find((offer) => offer.packQuantity === 2)?.id, "demo-offer-pack-2");
   assert.notEqual(offers[0].sellerId, offers[1].sellerId);
   assert.equal(
     data.products[0].title,

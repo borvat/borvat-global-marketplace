@@ -48,7 +48,9 @@ test("validated read projection retains product, offer and seller distinctions a
   assert.deepEqual(catalog.products, snapshot.products);
   assert.notEqual(catalog.products, snapshot.products);
   assert.deepEqual(catalog.offers, snapshot.offers);
-  assert.equal(catalog.skus.length, 10);
+  assert.equal(catalog.skus.length, new Set(snapshot.offers.map((o) => o.skuId)).size);
+  assert.ok(catalog.skus.some((sku) => sku.id === "sku-prd_002-zandbeige"));
+  assert.ok(catalog.skus.some((sku) => sku.id === "sku-prd_006-medium"));
   assert.equal(catalog.offers.find((item) => item.id === "demo-offer-pack-2")?.packQuantity, 2);
   assert.notEqual(catalog.offers, snapshot.offers);
   const offer = catalog.offers.find(

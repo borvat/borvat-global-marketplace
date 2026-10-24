@@ -24,6 +24,10 @@ M1 now includes a versioned canonical catalog contract, atomic JSON validation, 
 
 ## Current boundaries
 
-The isolated build runs the original application, but uses the existing disposable in-memory commercial adapter. Reload resets it. The default application still has its existing authentication/backend flows and disabled checkout. This stage neither installs Mercur into BORVAT nor changes WMS, Accounting, SAM, any production database or hosting. C0/C1 and professional/release reviews remain open; the new development mandate is not their acceptance.
+The isolated build runs the original application with a synthetic adapter. After PR32, carts and TEST-/DEMO- orders use browser-local storage; offer edits remain tab-local. PR33 validates the stored schema and refuses checkout confirmation when storage fails. This is not server durability, authenticated account ownership or an engine integration. The default application still has its existing authentication/backend flows and disabled checkout. This stage neither installs Mercur into BORVAT nor changes WMS, Accounting, SAM, any production database or hosting. C0/C1 and professional/release reviews remain open; the new development mandate is not their acceptance.
 
 The 69 original binaries remain missing. Removing a compile-time import of a public image does not recover that image. No new substitute picture or media-rights claim is introduced. Library search found historical design/test archives; no original media was recovered in this stage. Previous archive inspection and failed asset recovery evidence remain authoritative for their stated snapshots.
+
+## 2026-10-24 continuation
+
+See [current execution and blockers](2026-10-24/REPORT.md). The current owner mandate authorizes isolated implementation/verification, not release or foundation approval. Native engine/provider acceptance and the requested complete operational cycle remain open.

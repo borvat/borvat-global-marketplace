@@ -18,8 +18,9 @@
     {
       "path": "apps/marketplace/package.json",
       "before": "26ab38aca5af47aa3156dfd9f01c8dc0f64ddbf35832866ddacd2b027acc22ef",
-      "after": "8e36378b3ccb2113780af2e204b658b4d7871e464a6239b7f9904e39ca687318",
-      "reason": "Isolated integration and canonical-catalog test commands; dependencies unchanged"
+      "after": "589e7c83ccebc228b5316829df935ad72cc2d5dff53e0d3e59027f40c777ea46",
+      "reason": "Isolated integration and canonical-catalog test commands; dependencies unchanged; refreshed 2026-10-24 after explicit review of inherited PR32 test command and generated checkout/confirmation routes",
+      "previousReviewedAfter": "8e36378b3ccb2113780af2e204b658b4d7871e464a6239b7f9904e39ca687318"
     },
     {
       "path": "apps/marketplace/src/lib/buyer-account.ts",
@@ -30,14 +31,16 @@
     {
       "path": "apps/marketplace/src/routeTree.gen.ts",
       "before": "76cbbde0c2f4ac2f5b3706a69296e81aa8a653e3ae10357f19a03d9a0c94fc33",
-      "after": "96b097c9da1b080a61d9647c8b43a073de40cafa4c80c610bb1601f57c0656c4",
-      "reason": "Actual TanStack route generator registers discover, requests and workbench routes"
+      "after": "374ac07fbedbc306c5fa5ef68c79baad11d077de70c90dfc25d793b5fc859663",
+      "reason": "Actual TanStack route generator registers discover, requests and workbench routes; refreshed 2026-10-24 after explicit review of inherited PR32 test command and generated checkout/confirmation routes",
+      "previousReviewedAfter": "96b097c9da1b080a61d9647c8b43a073de40cafa4c80c610bb1601f57c0656c4"
     },
     {
       "path": "apps/marketplace/src/routes/__root.tsx",
       "before": "0c765c21fb55c5bf5aead9e492e1544d5577cfb82ee9054eda27a514f264e7ff",
-      "after": "3dc3f4afa1c6402cfa815b2086e04700396f6b7ef78f8816bff1f4c096463334",
-      "reason": "Explicit isolated shell, original router/provider and country metadata; default backend flow retained"
+      "after": "70c05a450e326411105be4dc7288c4ab5e1380a349614594c41b615b49f0838c",
+      "reason": "Explicit isolated shell, original router/provider and country metadata; default backend flow retained; Correct inherited marketplace metadata to the BORVAT identity; repository Prettier formatting",
+      "previousReviewedAfter": "3dc3f4afa1c6402cfa815b2086e04700396f6b7ef78f8816bff1f4c096463334"
     },
     {
       "path": "apps/marketplace/src/routes/account.tsx",
@@ -74,6 +77,12 @@
       "before": "f0ee683067afee145f81a63a3af76b3d3767e2a1f61f0e82582f8da184ad3ef6",
       "after": "30f744788a136283339dcf7b2a1d8448b998ce58a864538421f5483eadb1d940",
       "reason": "Reject isolated write/API dispatch before loading framework handlers"
+    },
+    {
+      "path": "apps/marketplace/src/components/site-header.tsx",
+      "before": "008e516633cb073d521555bc1013cdb889b3c5c4c8117d635d0cf10350c60384",
+      "after": "329c62fbae160d36164a3bee48eabdf98d45b87336c37a35cdda579fb252faa2",
+      "reason": "Correct original footer company label to BORVAT; preserve existing components/layout; repository Prettier formatting"
     }
   ]
 }

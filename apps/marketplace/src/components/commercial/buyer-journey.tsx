@@ -160,7 +160,8 @@ function BuyerJourneyView({
         >
           {snapshot.storageStatus === "unavailable" && (
             <p role="alert" className="mb-4 rounded-lg border border-destructive p-3 text-sm">
-              Browseropslag is niet beschikbaar of opslaan is mislukt. Nieuwe testbestellingen worden niet bevestigd.
+              Browseropslag is niet beschikbaar of opslaan is mislukt. Nieuwe testbestellingen
+              worden niet bevestigd.
             </p>
           )}
           <ShopRoute path={route.path} />

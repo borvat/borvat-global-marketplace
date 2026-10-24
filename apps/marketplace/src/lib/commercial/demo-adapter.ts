@@ -180,45 +180,80 @@ const cartLineSchema = z.object({
   quantity: z.number().int().min(1).max(MAX_LINE_QUANTITY),
 });
 const lineSchema = cartLineSchema.extend({
-  title: textValue, sellerId: textValue, sellerName: textValue,
-  unitPriceCents: centsValue, skuId: textValue, variant: textValue,
+  title: textValue,
+  sellerId: textValue,
+  sellerName: textValue,
+  unitPriceCents: centsValue,
+  skuId: textValue,
+  variant: textValue,
   packQuantity: z.number().int().min(1).max(10000),
 });
 const checkoutSchema = z.object({
-  firstName: textValue, lastName: textValue, email: textValue, phone: textValue,
-  street: textValue, houseNumber: textValue, addition: z.string().max(6),
-  postalCode: textValue, city: textValue, country: z.enum(["NL", "BE"]),
+  firstName: textValue,
+  lastName: textValue,
+  email: textValue,
+  phone: textValue,
+  street: textValue,
+  houseNumber: textValue,
+  addition: z.string().max(6),
+  postalCode: textValue,
+  city: textValue,
+  country: z.enum(["NL", "BE"]),
   shippingMethod: z.enum(["standaard", "express"]),
   paymentMethod: z.enum(["test-ideal", "test-card"]),
-  subtotalCents: centsValue, shippingCents: centsValue, vatIncludedCents: centsValue,
+  subtotalCents: centsValue,
+  shippingCents: centsValue,
+  vatIncludedCents: centsValue,
 });
-const orderSchema = z.object({
-  id: z.string().regex(/^(TEST|DEMO)-[A-Z0-9]+$/),
-  status: z.enum(["aanvraag", "voorbereid"]),
-  lines: z.array(lineSchema).min(1).max(100),
-  totalCents: centsValue,
-  createdAt: z.iso.datetime(),
-  payment: z.enum(["disabled", "test-ideal", "test-card"]),
-  preparedSellerIds: z.array(textValue).max(100),
-  checkout: checkoutSchema.optional(), idempotencyKey: textValue.optional(),
-}).superRefine((order, ctx) => {
-  const fail = () => ctx.addIssue({ code: "custom", message: "Invalid persisted order" });
-  const unique = (values: string[]) => new Set(values).size === values.length;
-  if (!unique(order.lines.map((l) => l.offerId)) || !unique(order.preparedSellerIds)) fail();
-  if (order.preparedSellerIds.some((id) => !order.lines.some((l) => l.sellerId === id))) fail();
-  const prepared = order.lines.every((l) => order.preparedSellerIds.includes(l.sellerId));
-  if ((order.status === "voorbereid") !== prepared) fail();
-  if (order.checkout) {
-    const c = order.checkout;
-    if (!order.id.startsWith("TEST-") || !order.idempotencyKey || order.payment !== c.paymentMethod) fail();
-    if (Object.keys(validateCheckout({ ...c, acceptTest: true })).length) fail();
-    let totals;
-    try { totals = orderTotals(order.lines, c.shippingMethod); } catch { fail(); return; }
-    if (totals.totalCents !== order.totalCents || totals.subtotalCents !== c.subtotalCents ||
-        totals.shippingCents !== c.shippingCents || totals.vatIncludedCents !== c.vatIncludedCents) fail();
-  } else if (!order.id.startsWith("DEMO-") || order.payment !== "disabled" ||
-    order.lines.reduce((sum, l) => sum + l.quantity * l.unitPriceCents, 0) !== order.totalCents) fail();
-});
+const orderSchema = z
+  .object({
+    id: z.string().regex(/^(TEST|DEMO)-[A-Z0-9]+$/),
+    status: z.enum(["aanvraag", "voorbereid"]),
+    lines: z.array(lineSchema).min(1).max(100),
+    totalCents: centsValue,
+    createdAt: z.iso.datetime(),
+    payment: z.enum(["disabled", "test-ideal", "test-card"]),
+    preparedSellerIds: z.array(textValue).max(100),
+    checkout: checkoutSchema.optional(),
+    idempotencyKey: textValue.optional(),
+  })
+  .superRefine((order, ctx) => {
+    const fail = () => ctx.addIssue({ code: "custom", message: "Invalid persisted order" });
+    const unique = (values: string[]) => new Set(values).size === values.length;
+    if (!unique(order.lines.map((l) => l.offerId)) || !unique(order.preparedSellerIds)) fail();
+    if (order.preparedSellerIds.some((id) => !order.lines.some((l) => l.sellerId === id))) fail();
+    const prepared = order.lines.every((l) => order.preparedSellerIds.includes(l.sellerId));
+    if ((order.status === "voorbereid") !== prepared) fail();
+    if (order.checkout) {
+      const c = order.checkout;
+      if (
+        !order.id.startsWith("TEST-") ||
+        !order.idempotencyKey ||
+        order.payment !== c.paymentMethod
+      )
+        fail();
+      if (Object.keys(validateCheckout({ ...c, acceptTest: true })).length) fail();
+      let totals;
+      try {
+        totals = orderTotals(order.lines, c.shippingMethod);
+      } catch {
+        fail();
+        return;
+      }
+      if (
+        totals.totalCents !== order.totalCents ||
+        totals.subtotalCents !== c.subtotalCents ||
+        totals.shippingCents !== c.shippingCents ||
+        totals.vatIncludedCents !== c.vatIncludedCents
+      )
+        fail();
+    } else if (
+      !order.id.startsWith("DEMO-") ||
+      order.payment !== "disabled" ||
+      order.lines.reduce((sum, l) => sum + l.quantity * l.unitPriceCents, 0) !== order.totalCents
+    )
+      fail();
+  });
 function readPersisted(raw: string | null, offers: DemoOffer[]): Persisted | null {
   if (!raw || raw.length > 2_000_000) return null;
   try {
@@ -230,22 +265,27 @@ function readPersisted(raw: string | null, offers: DemoOffer[]): Persisted | nul
       if (!parsed.success) return [];
       const line = parsed.data;
       const offer = offers.find((o) => o.id === line.offerId);
-      if (!offer || line.quantity > offer.availabilityExample || seenOffers.has(line.offerId)) return [];
+      if (!offer || line.quantity > offer.availabilityExample || seenOffers.has(line.offerId))
+        return [];
       seenOffers.add(line.offerId);
       return [line];
     });
-    const seenIds = new Set<string>(), seenKeys = new Set<string>();
+    const seenIds = new Set<string>(),
+      seenKeys = new Set<string>();
     const orders = (Array.isArray(data.orders) ? data.orders : []).flatMap((item: unknown) => {
       const parsed = orderSchema.safeParse(item);
       if (!parsed.success) return [];
       const order = parsed.data;
-      if (seenIds.has(order.id) || (order.idempotencyKey && seenKeys.has(order.idempotencyKey))) return [];
+      if (seenIds.has(order.id) || (order.idempotencyKey && seenKeys.has(order.idempotencyKey)))
+        return [];
       seenIds.add(order.id);
       if (order.idempotencyKey) seenKeys.add(order.idempotencyKey);
       return [order];
     });
     return { version: 1, cart, orders };
-  } catch { return null; }
+  } catch {
+    return null;
+  }
 }
 
 export function createCommercialDemoAdapter(
@@ -258,11 +298,15 @@ export function createCommercialDemoAdapter(
   const listeners = new Set<() => void>();
   const commit = (next: DemoSnapshot) => {
     try {
-      storage?.write(JSON.stringify({ version: 1, cart: next.cart, orders: next.orders } satisfies Persisted));
+      storage?.write(
+        JSON.stringify({ version: 1, cart: next.cart, orders: next.orders } satisfies Persisted),
+      );
     } catch {
       snapshot = { ...snapshot, storageStatus: "unavailable" };
       listeners.forEach((listener) => listener());
-      throw new Error("Opslaan is mislukt. Er is geen testbestelling bevestigd. Maak browseropslag vrij en probeer opnieuw.");
+      throw new Error(
+        "Opslaan is mislukt. Er is geen testbestelling bevestigd. Maak browseropslag vrij en probeer opnieuw.",
+      );
     }
     snapshot = { ...next, storageStatus: storage ? "saved" : (snapshot.storageStatus ?? "memory") };
     listeners.forEach((listener) => listener());
@@ -351,13 +395,18 @@ export function createCommercialDemoAdapter(
       return id;
     },
     placeTestOrder(input, idempotencyKey) {
-      if (!idempotencyKey || idempotencyKey.length > 200) throw new Error("Ontbrekende bestelsleutel.");
-      if (snapshot.restored && !storage) throw new Error("Browseropslag is niet beschikbaar. Er is geen testbestelling bevestigd.");
+      if (!idempotencyKey || idempotencyKey.length > 200)
+        throw new Error("Ontbrekende bestelsleutel.");
+      if (snapshot.restored && !storage)
+        throw new Error("Browseropslag is niet beschikbaar. Er is geen testbestelling bevestigd.");
       const previous = snapshot.orders.find((order) => order.idempotencyKey === idempotencyKey);
       if (previous) {
         const { acceptTest: _accepted, ...customer } = normalizeCheckout(input);
         const stored = previous.checkout;
-        if (!stored || Object.entries(customer).some(([k, v]) => stored[k as keyof TestCheckoutDetails] !== v))
+        if (
+          !stored ||
+          Object.entries(customer).some(([k, v]) => stored[k as keyof TestCheckoutDetails] !== v)
+        )
           throw new Error("Deze bestelsleutel hoort bij andere bestelgegevens.");
         return previous.id;
       }
@@ -369,7 +418,8 @@ export function createCommercialDemoAdapter(
       const totals = orderTotals(lines, input.shippingMethod as ShippingMethodId);
       const { acceptTest: _accepted, ...customer } = normalizeCheckout(input);
       let id = newTestId();
-      for (let retry = 0; snapshot.orders.some((order) => order.id === id) && retry < 8; retry++) id = newTestId();
+      for (let retry = 0; snapshot.orders.some((order) => order.id === id) && retry < 8; retry++)
+        id = newTestId();
       if (!/^TEST-[A-Z0-9]+$/.test(id) || snapshot.orders.some((order) => order.id === id))
         throw new Error("Geen uniek testbestelnummer beschikbaar. Probeer opnieuw.");
       const order: DemoOrder = {
@@ -391,8 +441,11 @@ export function createCommercialDemoAdapter(
       if (snapshot.restored) return;
       let persisted: Persisted | null = null;
       let available = next;
-      try { persisted = readPersisted(next?.read() ?? null, snapshot.offers); }
-      catch { available = null; }
+      try {
+        persisted = readPersisted(next?.read() ?? null, snapshot.offers);
+      } catch {
+        available = null;
+      }
       if (persisted)
         sequence = Math.max(
           0,
@@ -404,7 +457,12 @@ export function createCommercialDemoAdapter(
       const merged = persisted
         ? { cart: persisted.cart, orders: persisted.orders }
         : { cart: snapshot.cart, orders: snapshot.orders };
-      snapshot = { ...snapshot, ...merged, restored: true, storageStatus: available ? "saved" : "unavailable" };
+      snapshot = {
+        ...snapshot,
+        ...merged,
+        restored: true,
+        storageStatus: available ? "saved" : "unavailable",
+      };
       listeners.forEach((listener) => listener());
     },
     setOfferPrice(id, cents) {

@@ -46,9 +46,13 @@ test("no buyer payment actions exposed",()=>{
 });
 
 test("canonical shipping seller UUID accepts upper-case key",()=>{
- const x=q(req(1),[offer(1)],{[id(11).toUpperCase()]:0});
- assert.equal(x.sellers[0].sellerId,id(11));
+ const seller="abcdefab-cdef-4abc-8abc-abcdefabcdef";
+ const row={...offer(1),sellerId:seller};
+ const x=q(req(1),[row],{[seller.toUpperCase()]:0});
+ assert.equal(x.sellers[0].sellerId,seller);
 });
 test("duplicate shipping seller UUID with alternate casing is rejected",()=>{
- assert.throws(()=>q(req(1),[offer(1)],{[id(11)]:0,[id(11).toUpperCase()]:0}),/DUPLICATE_SHIPPING_SELLER/);
+ const seller="abcdefab-cdef-4abc-8abc-abcdefabcdef";
+ const row={...offer(1),sellerId:seller};
+ assert.throws(()=>q(req(1),[row],{[seller]:0,[seller.toUpperCase()]:0}),/DUPLICATE_SHIPPING_SELLER/);
 });

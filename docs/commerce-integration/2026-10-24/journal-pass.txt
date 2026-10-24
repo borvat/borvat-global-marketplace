@@ -1,0 +1,15 @@
+✔ real SQLite journal survives close/reopen; canonical same-key dedup and conflict (8.502736ms)
+✔ two actual SQLite connections serialize claims; one external dispatch (11.828179ms)
+✔ committed-but-lost remote response is recovered after restart without second effect (10.412654ms)
+✔ ambiguous lookup, invalid evidence and production receivers never confirm success (7.653085ms)
+✔ current authorization and company lookup prevent foreign reads/dispatch (4.76335ms)
+✔ bounded unchanged-key retries remain unknown and visible rather than disappearing (12.163845ms)
+✔ actual SIGKILL after remote commit leaves a recoverable durable lease (86.855689ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 244.720199

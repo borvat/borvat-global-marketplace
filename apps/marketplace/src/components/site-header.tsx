@@ -40,7 +40,11 @@ export function SiteHeader() {
   return (
     <header className="bg-brand text-brand-foreground sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-3 py-2 flex items-center gap-3">
-        <Link to="/" className="flex items-center shrink-0 bg-white rounded-lg px-3 py-1.5" aria-label="Borvat home">
+        <Link
+          to="/"
+          className="flex items-center shrink-0 bg-white rounded-lg px-3 py-1.5"
+          aria-label="Borvat home"
+        >
           <img src={borvatLogo.url} alt="Borvat" className="h-8 w-auto" />
         </Link>
 
@@ -110,11 +114,21 @@ export function SiteHeader() {
 
       {mobileMenu && (
         <div className="md:hidden border-t border-white/10 bg-brand/95 px-3 py-2 space-y-2 text-sm">
-          <Link to="/" className="block py-1 hover:underline">Home</Link>
-          <Link to="/cart" className="block py-1 hover:underline">Winkelmandje ({cartCount})</Link>
-          <Link to="/wishlist" className="block py-1 hover:underline">Verlanglijstje ({wishlistCount})</Link>
-          <Link to="/account" className="block py-1 hover:underline">Account</Link>
-          <Link to="/seller" className="block py-1 hover:underline">Verkopen</Link>
+          <Link to="/" className="block py-1 hover:underline">
+            Home
+          </Link>
+          <Link to="/cart" className="block py-1 hover:underline">
+            Winkelmandje ({cartCount})
+          </Link>
+          <Link to="/wishlist" className="block py-1 hover:underline">
+            Verlanglijstje ({wishlistCount})
+          </Link>
+          <Link to="/account" className="block py-1 hover:underline">
+            Account
+          </Link>
+          <Link to="/seller" className="block py-1 hover:underline">
+            Verkopen
+          </Link>
         </div>
       )}
 
@@ -164,7 +178,7 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <h4 className="font-bold mb-2">Over marktje</h4>
+          <h4 className="font-bold mb-2">Over BORVAT</h4>
           <ul className="space-y-1 opacity-90">
             <li>Over ons</li>
             <li>Werken bij</li>
