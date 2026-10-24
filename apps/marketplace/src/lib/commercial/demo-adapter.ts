@@ -53,7 +53,7 @@ export type DemoOrder = {
   idempotencyKey?: string;
 };
 export type DemoSnapshot = {
-  mode: "synthetic-memory-only";
+  mode: "synthetic-memory-only" | "connected-test";
   products: DemoProduct[];
   offers: DemoOffer[];
   cart: DemoCartLine[];
@@ -61,6 +61,7 @@ export type DemoSnapshot = {
   /** False until browser test storage has been read (always false during SSR). */
   restored?: boolean;
   storageStatus?: "memory" | "saved" | "unavailable";
+  connectionError?: string;
 };
 export type DemoQuote = {
   lines: (DemoCartLine & { offer: DemoOffer; product: DemoProduct; lineTotalCents: number })[];
@@ -77,6 +78,8 @@ export interface CommercialDemoAdapter {
   setQuantity(offerId: string, quantity: number): void;
   submitDemoRequest(): string;
   placeTestOrder(input: CheckoutInput, idempotencyKey: string): string;
+  placeServerOrder?(input: CheckoutInput, idempotencyKey: string): Promise<string>;
+  refresh?(): Promise<void>;
   restore(storage: ShopStorage | null): void;
   setOfferPrice(offerId: string, cents: number): void;
   requestReview(offerId: string): void;

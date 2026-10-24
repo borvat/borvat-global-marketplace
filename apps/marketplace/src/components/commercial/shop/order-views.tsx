@@ -1,3 +1,5 @@
+import { useShopCopy, useShopMoney } from "./i18n";
+import { useShopText } from "./i18n";
 import { CheckCircle2, Package } from "lucide-react";
 import { formatEur } from "../../../lib/format";
 import type { DemoOrder } from "../../../lib/commercial/demo-adapter";
@@ -20,11 +22,14 @@ const paymentLabel = (p: DemoOrder["payment"]) =>
       : "Geen betaling (demo-aanvraag)";
 
 function OrderDetails({ order }: { order: DemoOrder }) {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const c = order.checkout;
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_22rem]">
       <section aria-label="Artikelen" className="rounded-xl border border-border bg-card p-5">
-        <h2 className="mb-3 text-lg font-bold">Artikelen</h2>
+        <h2 className="mb-3 text-lg font-bold">{copy("Artikelen")}</h2>
         <ul className="divide-y divide-border" data-testid="order-lines">
           {order.lines.map((l) => (
             <li key={l.offerId} className="flex justify-between gap-3 py-3 text-sm">
@@ -73,7 +78,7 @@ function OrderDetails({ order }: { order: DemoOrder }) {
           )}
         </dl>
         <p className="text-sm">
-          <span className="font-semibold">Betaalmethode:</span>{" "}
+          <span className="font-semibold">{copy("Betaalmethode:")}</span>{" "}
           <span data-testid="order-payment">{paymentLabel(order.payment)}</span> — niet uitgevoerd
         </p>
         {c && (
@@ -98,6 +103,8 @@ function OrderDetails({ order }: { order: DemoOrder }) {
 }
 
 export function ConfirmationView() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { snapshot, route, link } = useShop();
   if (!snapshot.restored) return <RestoringState />;
   const order = snapshot.orders.find((o) => o.id === route.orderId);
@@ -143,6 +150,9 @@ export function ConfirmationView() {
 }
 
 export function OrdersView() {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const { snapshot, link } = useShop();
   if (!snapshot.restored) return <RestoringState />;
   const orders = [...snapshot.orders].reverse();

@@ -1,5 +1,7 @@
 /** Explicit build-time isolation; never inferred from missing credentials or a URL. */
-export const ISOLATED_COMMERCE = import.meta.env?.VITE_BORVAT_RUNTIME === "isolated";
+export const CONNECTED_TEST_COMMERCE = import.meta.env?.VITE_BORVAT_RUNTIME === "connected-test";
+export const ISOLATED_COMMERCE =
+  CONNECTED_TEST_COMMERCE || import.meta.env?.VITE_BORVAT_RUNTIME === "isolated";
 
 export function isIsolatedCommercePath(pathname: string) {
   return (

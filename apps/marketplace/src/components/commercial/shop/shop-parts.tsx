@@ -1,3 +1,5 @@
+import { useShopCopy, useShopMoney } from "./i18n";
+import { useShopText } from "./i18n";
 import { Minus, Plus, ImageOff, FlaskConical } from "lucide-react";
 import { formatEur, productImage } from "../../../lib/format";
 import { orderTotals, type ShippingMethodId } from "../../../lib/commercial/shop-pricing";
@@ -12,6 +14,8 @@ export function ProductMedia({
   title: string;
   size?: "sm" | "md" | "lg";
 }) {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const box =
     size === "sm"
       ? "h-20 w-20"
@@ -33,6 +37,8 @@ export function ProductMedia({
 }
 
 export function AvailabilityBadge({ available, testId }: { available: number; testId?: string }) {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const [label, tone] =
     available < 1
       ? [nl.outOfStock, "text-destructive"]
@@ -61,6 +67,8 @@ export function QuantityStepper({
   label: string;
   disabled?: boolean;
 }) {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const btn =
     "flex h-10 w-10 items-center justify-center rounded-md border border-border bg-background hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
   return (
@@ -108,6 +116,8 @@ export function QuantityStepper({
 }
 
 export function TestNotice({ testId = "test-notice" }: { testId?: string }) {
+  const copy = useShopCopy();
+  const nl = useShopText();
   return (
     <div
       role="note"
@@ -129,6 +139,9 @@ export function TotalsBlock({
   method: ShippingMethodId;
   prefix: string;
 }) {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const t = orderTotals(lines, method);
   return (
     <dl className="space-y-2 text-sm">

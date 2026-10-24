@@ -1,3 +1,5 @@
+import { useShopCopy, useShopMoney } from "./i18n";
+import { useShopText } from "./i18n";
 import { useEffect, useState } from "react";
 import { ChevronRight, Store, Truck, Zap, MessageSquareOff } from "lucide-react";
 import { formatEur } from "../../../lib/format";
@@ -9,6 +11,9 @@ import { AvailabilityBadge, ProductMedia, QuantityStepper, primaryButton } from 
 import { nl } from "./nl";
 
 function ShippingInfo() {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const s = SHIPPING_METHODS;
   return (
     <div
@@ -33,6 +38,9 @@ function ShippingInfo() {
 }
 
 export function ProductView() {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const { adapter, snapshot, catalog, load, route, link, navigate } = useShop();
   const product = catalog.products.find((p) => p.id === route.productId);
   const skus = catalog.skus.filter((s) => s.productId === product?.id);

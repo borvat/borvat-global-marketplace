@@ -1,3 +1,5 @@
+import { useShopCopy, useShopMoney } from "./i18n";
+import { useShopText } from "./i18n";
 import { useState } from "react";
 import { ShoppingBag, Trash2, ArrowRight } from "lucide-react";
 import { formatEur } from "../../../lib/format";
@@ -39,6 +41,7 @@ export function cartLines(snapshot: DemoSnapshot) {
 }
 
 export function RestoringState() {
+  const copy = useShopCopy();
   return (
     <p role="status" data-testid="restoring" className="py-10 text-center text-muted-foreground">
       Je gegevens worden geladen…
@@ -47,6 +50,9 @@ export function RestoringState() {
 }
 
 export function CartView() {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const { adapter, snapshot, link, navigate } = useShop();
   const [errors, setErrors] = useState<Record<string, string>>({});
   if (!snapshot.restored) return <RestoringState />;

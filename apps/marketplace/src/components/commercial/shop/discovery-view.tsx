@@ -1,3 +1,5 @@
+import { useShopCopy, useShopMoney } from "./i18n";
+import { useShopText } from "./i18n";
 import { useEffect, useState, type FormEvent } from "react";
 import { SlidersHorizontal, X, SearchX, Sofa, Trees, LayoutGrid } from "lucide-react";
 import { formatEur } from "../../../lib/format";
@@ -10,6 +12,8 @@ const CATEGORIES = ["Wonen", "Tuin"] as const;
 const categoryIcon = { Alles: LayoutGrid, Wonen: Sofa, Tuin: Trees };
 
 function PriceFilter() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { route, link, navigate } = useShop();
   const [min, setMin] = useState(route.minPrice?.toString() ?? "");
   const [max, setMax] = useState(route.maxPrice?.toString() ?? "");
@@ -82,6 +86,8 @@ function PriceFilter() {
 
 /** One filter panel instance: collapsible on mobile, always open from the lg breakpoint. */
 function FilterDisclosure() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const [open, setOpen] = useState(false);
   const [desktop, setDesktop] = useState(false);
   useEffect(() => {
@@ -111,6 +117,8 @@ function FilterDisclosure() {
 }
 
 function FilterPanel() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { route, link, navigate } = useShop();
   const set = (changes: Record<string, string | null>) =>
     navigate(link("/discover", changes), true);
@@ -148,6 +156,9 @@ function FilterPanel() {
 }
 
 function ActiveFilters({ clearAll }: { clearAll: () => void }) {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const { route, link, navigate } = useShop();
   const chips: [string, Record<string, null>][] = [];
   if (route.query) chips.push([`“${route.query}”`, { q: null }]);
@@ -188,6 +199,9 @@ function ActiveFilters({ clearAll }: { clearAll: () => void }) {
 }
 
 function ProductGrid({ ids }: { ids: string[] }) {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const { catalog, link } = useShop();
   return (
     <ul aria-label="Productresultaten" className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
@@ -234,6 +248,8 @@ function ProductGrid({ ids }: { ids: string[] }) {
 }
 
 function SkeletonGrid() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   return (
     <div role="status" aria-live="polite" data-testid="catalog-loading" className="space-y-3">
       <span className="sr-only">{nl.loading}</span>
@@ -251,6 +267,8 @@ function SkeletonGrid() {
 }
 
 export function LoadError() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { retry } = useShop();
   return (
     <div
@@ -267,6 +285,8 @@ export function LoadError() {
 }
 
 export function DiscoveryView() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { route, catalog, load, link, navigate } = useShop();
   const filtered =
     !!route.query ||

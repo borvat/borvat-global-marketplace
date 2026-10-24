@@ -63,3 +63,22 @@ returned redeemed goods after expiry; account/company/program isolation; reports
 all points to source movements and every financial discount to native Accounting evidence.
 A named authoritative service, versioned policies, authenticated integrations in BOTH
 repositories, actual persistent transactions and native invoice/credit acceptance are needed.
+
+## Isolated implementation follow-up — 2026-10-24
+
+`packages/loyalty-authority/journal.mjs` now implements one SQLite authority for the
+explicit `test-eur-v1` rule:1 point per eligible net EUR,365-day lots,10-minute redemption
+holds, cumulative credit rounding and explicit debt for spent earnings reversed by a
+credit. Future earnings offset debt once. Expired unspent points are not reversed again.
+Canonical company/invoice/line/rule identities deduplicate across channel labels.
+Native evidence verification and current program/customer authorization are required
+callbacks; their presence alone does not establish a deployed trusted integration.
+
+Tests use real transactions/connections/reopen, with fake document verification explicitly
+labelled. The composed native acceptance separately reads submitted native invoice/credit
+and payment evidence for earn/reversal, using one explicit synthetic customer binding.
+No browser checkout awards points. This is not yet a deployed shared service consumed by
+the two complete applications: buyer identity linking, transport authentication, managed
+rule administration, native discounted redemption and returned-redemption policy remain
+open. `commit` refuses redemption without Accounting-confirmed discount evidence; the
+native harness does not fabricate that evidence to certify redemption integration.

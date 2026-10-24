@@ -1,3 +1,4 @@
+import { useShopCopy } from "./i18n";
 import { createContext, useContext, type MouseEvent, type ReactNode } from "react";
 import {
   browserBuyerNavigation,
@@ -42,6 +43,7 @@ export function LocalLink({
   "aria-label"?: string;
   "aria-current"?: "page";
 }) {
+  const copy = useShopCopy();
   const { navigate } = useContext(NavigationContext);
   return (
     <a

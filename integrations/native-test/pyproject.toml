@@ -1,0 +1,13 @@
+[project]
+name = "borvat-native-test"
+version = "0.1.0"
+description = "Synthetic-only BORVAT native integration receiver"
+requires-python = ">=3.14,<3.15"
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=78"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+borvat_native_test = ["modules.txt"]

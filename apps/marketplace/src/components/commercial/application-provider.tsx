@@ -7,6 +7,8 @@ import {
 } from "../../lib/commercial/demo-adapter";
 import { createTanStackBuyerNavigation } from "../../lib/commercial/tanstack-navigation";
 import { browserTestStorage } from "../../lib/commercial/test-storage";
+import { CONNECTED_TEST_COMMERCE } from "../../lib/commercial/runtime-mode";
+import { createServerCommerceAdapter } from "../../lib/commercial/server-adapter";
 
 const ApplicationContext = createContext<CommercialDemoAdapter | null>(null);
 let browserTabAdapter: CommercialDemoAdapter | undefined;
@@ -14,8 +16,11 @@ let browserTabAdapter: CommercialDemoAdapter | undefined;
 function createIsolatedAdapter() {
   // Keep demo state through SPA route remounts in one tab. A document reload creates a new
   // JavaScript context, and server rendering always gets an isolated request-scoped adapter.
-  if (typeof window === "undefined") return createCommercialDemoAdapter();
-  browserTabAdapter ??= createCommercialDemoAdapter();
+  const create = CONNECTED_TEST_COMMERCE
+    ? createServerCommerceAdapter
+    : createCommercialDemoAdapter;
+  if (typeof window === "undefined") return create();
+  browserTabAdapter ??= create();
   return browserTabAdapter;
 }
 

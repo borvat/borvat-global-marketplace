@@ -1,3 +1,5 @@
+import { useShopCopy } from "./i18n";
+import { useShopText } from "./i18n";
 import { useEffect, useId, useState, type FormEvent, type KeyboardEvent } from "react";
 import { Search, ShoppingCart, Package } from "lucide-react";
 import { normalizeSearch } from "../../../lib/commercial/demo-adapter";
@@ -5,6 +7,8 @@ import { LocalLink, useShop } from "./shop-context";
 import { nl } from "./nl";
 
 function SearchBox() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { route, catalog, link, navigate } = useShop();
   const [value, setValue] = useState(route.query);
   const [open, setOpen] = useState(false);
@@ -119,11 +123,13 @@ function SearchBox() {
 }
 
 export function ShopHeader() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { snapshot, route, link, navigate } = useShop();
   const count = snapshot.cart.reduce((sum, line) => sum + line.quantity, 0);
   return (
     <header className="sticky top-0 z-40 bg-brand text-brand-foreground shadow-sm">
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-x-4 gap-y-3 px-4 py-3 sm:px-6">
+      <div className="mx-auto grid max-w-7xl grid-cols-[auto_minmax(0,1fr)] items-center gap-x-2 md:grid-cols-[auto_minmax(0,1fr)_auto] md:gap-x-4 gap-y-3 px-4 py-3 sm:px-6">
         <LocalLink
           href={link("/discover", {
             q: null,
@@ -139,12 +145,12 @@ export function ShopHeader() {
         >
           BOR<span className="text-red-400">V</span>AT
         </LocalLink>
-        <div className="col-span-3 col-start-1 row-start-2 md:col-span-1 md:col-start-2 md:row-start-1">
+        <div className="col-span-2 col-start-1 row-start-2 md:col-span-1 md:col-start-2 md:row-start-1">
           <SearchBox />
         </div>
         <nav
           aria-label="Hoofdnavigatie"
-          className="col-start-3 row-start-1 flex items-center gap-1 text-sm sm:gap-3"
+          className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center justify-end gap-0 text-xs sm:gap-1 sm:text-sm md:col-start-3 lg:gap-3"
         >
           <LocalLink
             href={link("/requests")}
@@ -183,6 +189,25 @@ export function ShopHeader() {
             <option value="NL">NL</option>
             <option value="BE">BE</option>
           </select>
+          <label htmlFor="buyer-language" className="sr-only">
+            Language · اللغة · Taal
+          </label>
+          <select
+            id="buyer-language"
+            data-testid="language-select"
+            value={route.language}
+            onChange={(e) =>
+              navigate(
+                link(route.path, { lang: e.target.value === "nl" ? null : e.target.value }),
+                true,
+              )
+            }
+            className="h-9 max-w-20 rounded-md border border-white/20 bg-transparent px-1 text-sm [&>option]:text-foreground"
+          >
+            <option value="nl">NL</option>
+            <option value="en">EN</option>
+            <option value="ar">العربية</option>
+          </select>
         </nav>
       </div>
     </header>
@@ -190,6 +215,8 @@ export function ShopHeader() {
 }
 
 export function ShopFooter() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { link } = useShop();
   return (
     <footer className="mt-16 bg-brand text-brand-foreground">

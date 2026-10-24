@@ -1,4 +1,5 @@
 /** Test-only shipping and money rules. All amounts are integer euro cents (VAT included). */
+import { CONNECTED_TEST_COMMERCE } from "./runtime-mode";
 export const SHIPPING_METHODS = {
   standaard: {
     id: "standaard",
@@ -45,7 +46,9 @@ export function orderTotals(
     shippingCents: shipping,
     totalCents,
     // Prices include VAT; the included share is rounded once on the total.
-    vatIncludedCents: Math.round((totalCents * VAT_RATE_PERCENT) / (100 + VAT_RATE_PERCENT)),
+    vatIncludedCents: CONNECTED_TEST_COMMERCE
+      ? 0
+      : Math.round((totalCents * VAT_RATE_PERCENT) / (100 + VAT_RATE_PERCENT)),
   };
 }
 

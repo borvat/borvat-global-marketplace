@@ -25,6 +25,9 @@ import { CartView } from "./shop/cart-view";
 import { CheckoutView } from "./shop/checkout-view";
 import { ConfirmationView, OrdersView } from "./shop/order-views";
 import { nl } from "./shop/nl";
+import { CONNECTED_TEST_COMMERCE } from "../../lib/commercial/runtime-mode";
+import { ServerOrders, ServerWorkspace } from "./server-workspace";
+import { ShopLanguageContext, useShopText, type ShopLanguage } from "./shop/i18n";
 
 type BuyerJourneyProps = {
   adapter: CommercialDemoAdapter;
@@ -35,10 +38,18 @@ type BuyerJourneyProps = {
 const failingReader: CatalogReader = () => Promise.reject(new Error("Simulated catalog error"));
 
 export function BuyerJourney({ navigation = browserBuyerNavigation, ...props }: BuyerJourneyProps) {
+  const href = useSyncExternalStore(
+    navigation.subscribe,
+    navigation.getSnapshot,
+    navigation.getServerSnapshot,
+  );
+  const language = buyerLocation(href).language as ShopLanguage;
   return (
-    <NavigationContext.Provider value={navigation}>
-      <BuyerJourneyView navigation={navigation} {...props} />
-    </NavigationContext.Provider>
+    <ShopLanguageContext.Provider value={language}>
+      <NavigationContext.Provider value={navigation}>
+        <BuyerJourneyView navigation={navigation} {...props} />
+      </NavigationContext.Provider>
+    </ShopLanguageContext.Provider>
   );
 }
 
@@ -52,12 +63,18 @@ function pageTitle(path: string) {
 }
 
 function ShopRoute({ path }: { path: string }) {
+  const nl = useShopText();
   if (path === "/" || path === "/discover") return <DiscoveryView />;
   if (path.startsWith("/product/")) return <ProductView />;
   if (path === "/cart") return <CartView />;
   if (path === "/afrekenen") return <CheckoutView />;
-  if (path.startsWith("/bestelling/")) return <ConfirmationView />;
-  if (path === "/requests") return <OrdersView />;
+  if (path.startsWith("/bestelling/"))
+    return CONNECTED_TEST_COMMERCE ? (
+      <ServerOrders orderId={path.slice(12)} />
+    ) : (
+      <ConfirmationView />
+    );
+  if (path === "/requests") return CONNECTED_TEST_COMMERCE ? <ServerOrders /> : <OrdersView />;
   return (
     <h1 tabIndex={-1} className="text-2xl font-bold">
       {nl.pageNotFound}
@@ -71,6 +88,7 @@ function BuyerJourneyView({
   readCatalog = readDemoCatalog,
   manageDocument = true,
 }: BuyerJourneyProps) {
+  const nl = useShopText();
   const href = useSyncExternalStore(
     navigation.subscribe,
     navigation.getSnapshot,
@@ -115,13 +133,14 @@ function BuyerJourneyView({
     if (!manageDocument) return;
     document.title = `${pageTitle(route.path)} · BORVAT`;
     document.documentElement.lang = route.locale;
-  }, [route.path, route.locale, manageDocument]);
+    document.documentElement.dir = route.language === "ar" ? "rtl" : "ltr";
+  }, [route.path, route.locale, route.language, manageDocument]);
   const link = (path: string, changes: Record<string, string | null> = {}) =>
     buyerHref(path, href, changes);
   if (route.path === "/workbench")
     return (
       <>
-        <CommercialWorkspace adapter={adapter} />
+        {CONNECTED_TEST_COMMERCE ? <ServerWorkspace /> : <CommercialWorkspace adapter={adapter} />}
         <div className="mx-auto max-w-7xl px-5 pb-8">
           <LocalLink href={link("/discover")}>Terug naar ontdekken</LocalLink>
         </div>
@@ -139,7 +158,11 @@ function BuyerJourneyView({
   };
   return (
     <ShopContext.Provider value={value}>
-      <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <div
+        lang={route.locale}
+        dir={route.language === "ar" ? "rtl" : "ltr"}
+        className="flex min-h-screen min-w-0 flex-col bg-background text-foreground"
+      >
         <a
           href="#buyer-main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[60] focus:rounded focus:bg-background focus:p-3"
@@ -150,7 +173,9 @@ function BuyerJourneyView({
           data-testid="test-environment-banner"
           className="bg-accent px-4 py-1.5 text-center text-xs font-semibold text-accent-foreground sm:text-sm"
         >
-          {nl.testBanner}
+          {CONNECTED_TEST_COMMERCE
+            ? "NATIVE TEST · Synthetische gegevens · Betaling gesimuleerd · Geen vervoerder"
+            : nl.testBanner}
         </div>
         <ShopHeader />
         <main
@@ -158,6 +183,14 @@ function BuyerJourneyView({
           tabIndex={-1}
           className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 outline-none sm:px-6 sm:py-8 [&_h1:focus]:outline-none"
         >
+          {snapshot.connectionError && (
+            <div role="alert" className="mb-4 rounded-lg border border-destructive p-4 text-sm">
+              De testserver of het WMS is niet bereikbaar. Er is geen bestelling bevestigd.{" "}
+              <button className="underline" onClick={() => void adapter.refresh?.()}>
+                Opnieuw proberen
+              </button>
+            </div>
+          )}
           {snapshot.storageStatus === "unavailable" && (
             <p role="alert" className="mb-4 rounded-lg border border-destructive p-3 text-sm">
               Browseropslag is niet beschikbaar of opslaan is mislukt. Nieuwe testbestellingen
