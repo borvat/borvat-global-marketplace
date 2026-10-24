@@ -10,6 +10,7 @@ import {
 } from "../src/lib/commercial/catalog-contract";
 import { buyerCatalog, rehearsalCatalog } from "../src/lib/commercial/catalog-rehearsal";
 import { createCommercialDemoAdapter } from "../src/lib/commercial/demo-adapter";
+import { projectWmsAvailability } from "../src/lib/commercial/wms-availability-adapter";
 import { buyerHref, buyerLocation, readDemoCatalog } from "../src/lib/commercial/buyer-discovery";
 function fixture() {
   return rehearsalCatalog(createCommercialDemoAdapter().getSnapshot());
@@ -275,4 +276,84 @@ test("catalog import preview is deterministic, validates both snapshots and repo
   assert.throws(() =>
     previewCanonicalCatalogImport(previous, { ...incoming, mode: "production" }),
   );
+});
+
+test("WMS availability mapping requires explicit company and SKU identities and never converts UOM", () => {
+  const catalog = fixture();
+  const company = catalog.companies[0];
+  const otherCompany = catalog.companies.find((entry) => entry.id !== company.id)!;
+  const companyStores = new Set(
+    catalog.stores.filter((store) => store.companyId === company.id).map((store) => store.id),
+  );
+  const companySkuIds = new Set(
+    catalog.offers
+      .filter((offer) => companyStores.has(offer.storeId))
+      .map((offer) => offer.skuId),
+  );
+  const sku = catalog.skus.find((entry) => companySkuIds.has(entry.id))!;
+  const otherSku = catalog.skus.find(
+    (entry) => entry.id !== sku.id && catalog.offers.some((offer) => {
+      const store = catalog.stores.find((candidate) => candidate.id === offer.storeId);
+      return store?.companyId === otherCompany.id && offer.skuId === entry.id;
+    }),
+  )!;
+  sku.references.push({
+    authority: "wms",
+    companyId: company.id,
+    externalId: "native-item-shared",
+  });
+  otherSku.references.push({
+    authority: "wms",
+    companyId: otherCompany.id,
+    externalId: "native-item-shared",
+  });
+  assert.doesNotThrow(() => parseCatalog(catalog));
+
+  const projection = {
+    company: "TEST-A",
+    products: [
+      { id: "native-item-shared", organization_id: "TEST-A", available_qty: 4 },
+    ],
+  };
+  const result = projectWmsAvailability(
+    catalog,
+    { catalogCompanyId: company.id, wmsCompanyId: "TEST-A" },
+    projection,
+  );
+  assert.deepEqual(result.availability, [
+    { skuId: sku.id, wmsItemId: "native-item-shared", availableQuantity: 4 },
+  ]);
+  assert.ok(result.unmappedSkuIds.length > 0);
+  assert.deepEqual(result.missingProjectionSkuIds, []);
+  assert.throws(
+    () =>
+      projectWmsAvailability(
+        catalog,
+        { catalogCompanyId: company.id, wmsCompanyId: "TEST-B" },
+        projection,
+      ),
+    /WMS company scope mismatch/,
+  );
+  assert.throws(() =>
+    projectWmsAvailability(catalog, { catalogCompanyId: "absent", wmsCompanyId: "TEST-A" }, projection),
+  );
+  assert.throws(() =>
+    projectWmsAvailability(catalog, { catalogCompanyId: company.id, wmsCompanyId: "TEST-A" }, {
+      ...projection,
+      products: [{ ...projection.products[0], organization_id: "TEST-B" }],
+    }),
+  );
+  assert.throws(() =>
+    projectWmsAvailability(catalog, { catalogCompanyId: company.id, wmsCompanyId: "TEST-A" }, {
+      ...projection,
+      products: [projection.products[0], projection.products[0]],
+    }),
+    /Duplicate WMS product identity/,
+  );
+  const missing = projectWmsAvailability(
+    catalog,
+    { catalogCompanyId: company.id, wmsCompanyId: "TEST-A" },
+    { company: "TEST-A", products: [] },
+  );
+  assert.deepEqual(missing.missingProjectionSkuIds, [sku.id]);
 });
