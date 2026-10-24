@@ -1,0 +1,70 @@
+{
+  "canonicalCommit": "a2ba7f813561147ef6ea61c4cf3dc93e70ce0714",
+  "meaning": "Exact authorized native subset only; not a complete Accounting checkout",
+  "files": [
+    {
+      "path": "pyproject.toml",
+      "gitBlob": "37cf8ce7b6f480b56f73612d1544e03d84f9fc76"
+    },
+    {
+      "path": "surooh_accounting/__init__.py",
+      "gitBlob": "6653866b837e42a3be2723b9270b953e21952218"
+    },
+    {
+      "path": "surooh_accounting/hooks.py",
+      "gitBlob": "c312c977ff6e70ad4fd0221811e9b6d22337f6e0"
+    },
+    {
+      "path": "surooh_accounting/modules.txt",
+      "gitBlob": "ca7f8119c05bed3ff9a8f3ecae1b3f48a769874e"
+    },
+    {
+      "path": "surooh_accounting/native_lab/__init__.py",
+      "gitBlob": "b553388d92639caab7afb73e7961a36c4d0b853c"
+    },
+    {
+      "path": "surooh_accounting/native_lab/api.py",
+      "gitBlob": "ade67342c4d917a7c732ec9a84df420fcc9a5965"
+    },
+    {
+      "path": "surooh_accounting/native_lab/closing.py",
+      "gitBlob": "10c8e511c793ce53ff4d12ce16b57e5ae276d94d"
+    },
+    {
+      "path": "surooh_accounting/native_lab/scanner.py",
+      "gitBlob": "e072856d29145f523cf2728e8f83fb78d2b8c56c"
+    },
+    {
+      "path": "surooh_accounting/native_lab/shipping.py",
+      "gitBlob": "a2dfb74463d0b891a20000fafb1695af1e9a3223"
+    },
+    {
+      "path": "surooh_accounting/native_lab/stock_ops.py",
+      "gitBlob": "91cc7b978718d233795832d3e0c72e4683777d87"
+    },
+    {
+      "path": "surooh_accounting/patches.txt",
+      "gitBlob": "0908a1987fee75f59e482e1edaf27c9bf2309a4d"
+    },
+    {
+      "path": "surooh_accounting/surooh_accounting/__init__.py",
+      "gitBlob": "fd52ca4eb9c7c6faa36d96a130b5384f1dbce507"
+    },
+    {
+      "path": "validation/native_guard/surooh_native_guard/__init__.py",
+      "gitBlob": "883eaae82e54378a5ad9b877647524acc9c3f69a"
+    },
+    {
+      "path": "validation/native_guard/surooh_native_guard/hooks.py",
+      "gitBlob": "6fa575c7a37418d4d0176d48e0b785fab4c3b55b"
+    },
+    {
+      "path": "validation/native_guard/surooh_native_guard/modules.txt",
+      "gitBlob": "425bf1d24b1164bb3f42e7440ce5b87cb181b035"
+    },
+    {
+      "path": "validation/native_guard/surooh_native_guard/surooh_native_guard/__init__.py",
+      "gitBlob": "1901c16d2008f0394696b324706ca9ce19a7dd93"
+    }
+  ]
+}

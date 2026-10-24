@@ -62,6 +62,12 @@ function OrderCard({
       <p className="my-3 rounded-md bg-muted px-3 py-2 text-sm">
         Betaling: <strong>{order.payment.status}</strong> · Simulator, geen betaalprovider
       </p>
+      {order.cancellationRequested && (
+        <p role="status" className="mb-3 rounded-md border border-amber-300 p-3 text-sm">
+          Annulering aangevraagd. Alleen deelorders met status ‘cancelled’ zijn door het WMS
+          vrijgegeven; een onbekende uitkomst blijft in behandeling.
+        </p>
+      )}
       <ul className="divide-y divide-border">
         {order.lines.map((l) => (
           <li key={l.offerId} className="flex justify-between gap-3 py-3 text-sm">
@@ -169,6 +175,23 @@ function OrderCard({
             }
           >
             Betaling simuleren · geen provider
+          </button>
+        )}
+      {(!operator || operator.role === "admin") &&
+        ["not_started", "failed", "cancelled"].includes(order.payment.status) &&
+        order.portions.some((p) => ["reserved", "pending_reservation"].includes(p.state)) && (
+          <button
+            className="mt-4 rounded-md border px-4 py-2 text-sm"
+            onClick={() =>
+              void run(async () => {
+                await commerceApi(`orders/${order.id}/cancel`, { reason: "buyer-request" });
+                await reload();
+              })
+            }
+          >
+            {order.cancellationRequested
+              ? "Annulering opnieuw controleren"
+              : "Onbetaalde testorder annuleren"}
           </button>
         )}
     </article>
@@ -374,6 +397,18 @@ export function ServerWorkspace() {
           {session.role === "admin" && (
             <section className="space-y-3 rounded-xl border bg-card p-5">
               <h2 className="text-lg font-bold">Verkopers beoordelen</h2>
+              <button
+                disabled={busy}
+                className="rounded-md border px-3 py-2 text-sm"
+                onClick={() =>
+                  void run(async () => {
+                    await commerceApi("admin/expire-reservations", {});
+                    await reload();
+                  })
+                }
+              >
+                Verlopen onbetaalde testreserveringen vrijgeven
+              </button>
               {sellers.map((s) => (
                 <div
                   key={s.id}

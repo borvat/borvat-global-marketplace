@@ -44,7 +44,7 @@ export function RestoringState() {
   const copy = useShopCopy();
   return (
     <p role="status" data-testid="restoring" className="py-10 text-center text-muted-foreground">
-      Je gegevens worden geladen…
+      {copy("Je gegevens worden geladen…")}{" "}
     </p>
   );
 }
@@ -127,14 +127,14 @@ export function CartView() {
                         {l.product.title}
                       </LocalLink>
                     ) : (
-                      <span className="font-semibold">Onbekend artikel</span>
+                      <span className="font-semibold">{copy("Onbekend artikel")}</span>
                     )}
                     <p className="text-xs text-muted-foreground">
                       {l.offer?.variant} · {nl.perPack(l.offer?.packQuantity ?? 1)} ·{" "}
                       {l.offer?.sellerName}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {formatEur(l.unitPriceCents)} per stuk
+                      {formatEur(l.unitPriceCents)} {copy("per stuk")}{" "}
                     </p>
                   </div>
                   <p className="font-bold" data-testid={`cart-line-total-${l.offerId}`}>
@@ -188,7 +188,9 @@ export function CartView() {
               : nl.freeShippingLeft(formatEur(free - totals.subtotalCents))}
           </p>
           <p className="text-xs text-muted-foreground">
-            Express ({formatEur(SHIPPING_METHODS.express.priceCents)}) kies je bij het bestellen.
+            {copy("Express (")}
+            {formatEur(SHIPPING_METHODS.express.priceCents)}
+            {copy(") kies je bij het bestellen.")}{" "}
           </p>
           <button
             type="button"
@@ -201,7 +203,7 @@ export function CartView() {
           </button>
           {blocked && (
             <p className="text-sm text-destructive" data-testid="cart-blocked">
-              Los eerst de meldingen bij je artikelen op.
+              {copy("Los eerst de meldingen bij je artikelen op.")}{" "}
             </p>
           )}
           <LocalLink

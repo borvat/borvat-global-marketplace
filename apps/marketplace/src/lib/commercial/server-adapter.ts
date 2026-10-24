@@ -13,6 +13,8 @@ export type ServerOrder = {
   subtotalCents: number;
   shippingCents: number | null;
   payment: { status: string; mode: string; reference?: string };
+  cancellationRequested?: boolean;
+  reservationExpiresAt?: string;
   lines: {
     offerId: string;
     skuId: string;
@@ -52,6 +54,10 @@ export async function commerceApi<T>(path: string, body?: unknown): Promise<T> {
       IDEMPOTENCY_CONFLICT:
         "Deze poging bevat gewijzigde gegevens. Controleer eerst je bestaande bestelling.",
       PAYMENT_NOT_CONFIRMED: "De betaling is nog niet bevestigd.",
+      PAYMENT_RECONCILIATION_REQUIRED:
+        "Controleer eerst de betaaluitkomst; de reservering is nog niet vrijgegeven.",
+      ORDER_CANCELLATION_PENDING:
+        "De annulering wordt nog gecontroleerd. Er is geen nieuwe betaling toegestaan.",
       RESERVATION_NOT_CONFIRMED: "De voorraadreservering is nog niet bevestigd.",
       INVALID_TRANSITION:
         "Deze actie is niet toegestaan in de huidige status. Vernieuw de bestelling.",

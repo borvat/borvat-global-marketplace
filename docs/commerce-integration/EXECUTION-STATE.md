@@ -1,13 +1,13 @@
-# BORVAT continuation state
+# BORVAT execution state — 2026-10-24
 
-Updated 2026-10-24. Full project: **OPEN**. No background continuation is implied.
+**Full project OPEN.** Continue existing code; do not treat native HTTP tests as full rendered acceptance.
 
-- Starting Marketplace: PR33 / `ce391de13deed69aa48106ae3e76e06348c3792c`.
-- Render readback: `dep-dbe2hsjrjlhs738qkkl0`, LIVE application `6f6b4ed079042cfc314095952073a7e0835a0ff4`; auto-deploy remains off. Existing preview remains the browser-storage demonstration, not the new backend.
-- Current isolated branch: `implementation/server-orders-2026-10-24`, continuing PR33 without rewriting it.
-- New upstream discovery: WMS PR30 `582469d37d4ff3f920e009bdd9cfe9ce5a5fe2f0`, paired native Accounting `a2ba7f813561147ef6ea61c4cf3dc93e70ce0714`; independent Accounting invoice PR38 `05747ceb1fb5d8146082e81d4ad133a12b115c82`. Their descriptions explicitly retain in-progress acceptance. Do not inherit PASS from them.
-- Local work: installing a new marked synthetic Frappe/ERPNext16.52.0/MariaDB11.8.9 runtime from hash-verified official archives; exact native Accounting subset read through the authorized GitHub connector. No existing SAM/WMS/production database or credentials reused.
-- Next: durable server orders/quotes and current server authorization; real native receiver/recovery proof; one shared loyalty authority; retained UI binding and desktop/390/320 tests.
-- Dependencies still open: approved PSP/carrier sandbox configuration, persistent hosted test DB/storage, final commercial company/SKU/tax mappings, original69 media, full language and visual acceptance. SAM receives scoped facts/proposals only; no financial or stock writer.
-
-Current predecessor evidence: [preview](2026-10-24/PREVIEW-ACCEPTANCE.md), [report](2026-10-24/REPORT.md). These do not prove this continuation.
+- Branch `implementation/server-orders-2026-10-24`, Draft [PR34](https://github.com/borvat/borvat-global-marketplace/pull/34), stacked on PR33. No main merge or history rewrite.
+- Last frozen native/compiled baseline `2d2c221a2df56db40bc349e5dbb11d1fcf5f4896`:9 BORVAT native cases and3 compiled TanStack/Nitro HTTP cases PASS; upstream native55 PASS / browser1 BLOCKED. Source-qualified IDs and JSON are in [native acceptance](2026-10-24/NATIVE-ACCEPTANCE.md), [run05](2026-10-24/server-native/run05/MANIFEST.json).
+- Render existing paid test service `srv-dbdr7rl9fdbs738d1ekg`:2d2c221 LIVE in deploy `dep-dbe3fafb9u1s73c20u90`, existing0.5c-512mb, auto-deploy OFF. Public profile remains isolated; durable backend/native engines are not hosted there. Do not use ephemeral storage for durable orders.
+- Working continuation: cancellation intent and native release on failed simulated payment, controlled expiry sweep for unpaid holds, stricter normalized server addresses, broader buyer text/date localization.17 SQLite service/loyalty cases,27 frontend cases and39 component cases pass; fresh native replay is required before accepting these new paths. Expiry is a manual isolated sweep, not a hosted scheduler.
+- Sources: WMS PR30 `582469d37d4ff3f920e009bdd9cfe9ce5a5fe2f0`; paired native Accounting `a2ba7f813561147ef6ea61c4cf3dc93e70ce0714`, exact16-file materialization (manifest retained). Separate Accounting invoice workbench PR38 was inspected, not merged or certified by this bridge. SAM remains scoped facts/proposals, no stock/financial writer.
+- New test runtime is independently provisioned from hash-verified official Frappe/ERPNext16.52.0 and MariaDB11.8.9 archives with fresh sites/databases/keys. No production/SAM/WMS cloud DB or existing secrets reused. Keep tests explicitly synthetic and stop/delete their owned runtime after each run.
+- Real blockers: no hosted durable order/native test environment; no configured approved PSP/carrier sandbox; local Chromium IPC denied and cloud viewport emulation unavailable (390/320 NOT_RUN); original69 binaries listed by Lovable but lossless export requires authorized access (preview401/editor access wall, connector binary-as-text is lossy).
+- Open implementation: shared deployed loyalty service/consumer identity/rules/native discounted redemption; Marketplace partial shipment orchestration, commercial company/SKU/pack/tax/shipping/fee mapping; onboarding beyond preconfigured test companies; full admin/catalog/content/reports; complete EN/AR/RTL/device/accessibility acceptance. Do not relabel these as external blockers or completed features.
+- Rollback: retain2d2c221/95603f5/6f6b4ed on the same isolated preview. No production/main/provider/customer-mail actions authorized. No background development after session end is implied.

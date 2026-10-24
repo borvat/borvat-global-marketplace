@@ -1,3 +1,4 @@
+import { useShopDate } from "./i18n";
 import { useShopCopy, useShopMoney } from "./i18n";
 import { useShopText } from "./i18n";
 import { CheckCircle2, Package } from "lucide-react";
@@ -38,7 +39,8 @@ function OrderDetails({ order }: { order: DemoOrder }) {
                   {l.quantity} × {l.title}
                 </span>
                 <span className="block text-xs text-muted-foreground">
-                  {l.variant} · {l.sellerName} · {formatEur(l.unitPriceCents)} per stuk
+                  {l.variant} · {l.sellerName} · {formatEur(l.unitPriceCents)}{" "}
+                  {copy("per stuk")}{" "}
                 </span>
               </span>
               <span className="shrink-0 font-semibold">
@@ -79,7 +81,8 @@ function OrderDetails({ order }: { order: DemoOrder }) {
         </dl>
         <p className="text-sm">
           <span className="font-semibold">{copy("Betaalmethode:")}</span>{" "}
-          <span data-testid="order-payment">{paymentLabel(order.payment)}</span> — niet uitgevoerd
+          <span data-testid="order-payment">{paymentLabel(order.payment)}</span>{" "}
+          {copy("— niet uitgevoerd")}{" "}
         </p>
         {c && (
           <div className="text-sm" data-testid="order-address">
@@ -103,6 +106,7 @@ function OrderDetails({ order }: { order: DemoOrder }) {
 }
 
 export function ConfirmationView() {
+  const dateFormat = useShopDate();
   const copy = useShopCopy();
   const nl = useShopText();
   const { snapshot, route, link } = useShop();
@@ -132,7 +136,7 @@ export function ConfirmationView() {
             </strong>
           </p>
           <p className="text-sm opacity-80">
-            Geplaatst op {dateFormat.format(new Date(order.createdAt))}
+            {copy("Geplaatst op")} {dateFormat.format(new Date(order.createdAt))}
           </p>
         </div>
       </div>
@@ -150,6 +154,7 @@ export function ConfirmationView() {
 }
 
 export function OrdersView() {
+  const dateFormat = useShopDate();
   const copy = useShopCopy();
   const formatEur = useShopMoney();
   const nl = useShopText();
@@ -162,7 +167,7 @@ export function OrdersView() {
         {nl.orders}
       </h1>
       <p className="text-sm text-muted-foreground">
-        Alleen opgeslagen in deze browser. Er is niets betaald of verzonden.
+        {copy("Alleen opgeslagen in deze browser. Er is niets betaald of verzonden.")}{" "}
       </p>
       {!orders.length && (
         <div

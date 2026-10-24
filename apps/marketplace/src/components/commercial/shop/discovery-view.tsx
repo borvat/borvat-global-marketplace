@@ -216,7 +216,7 @@ function ProductGrid({ ids }: { ids: string[] }) {
           >
             <ProductMedia seed={id} title={p.title} />
             <p className="mt-3 text-xs uppercase tracking-wide text-muted-foreground">
-              {p.category}
+              {copy(p.category)}
             </p>
             <h2 className="mt-1 line-clamp-2 text-sm font-semibold leading-snug sm:text-base">
               <LocalLink

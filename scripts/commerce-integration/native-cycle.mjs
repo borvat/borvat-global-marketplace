@@ -446,6 +446,97 @@ try {
       return reports;
     },
   );
+  await step(
+    "failed-payment-releases-native-hold-once-with-no-invoice-or-points",
+    async () => {
+      const before = await receivers["TEST-A"].availability();
+      const q = (
+        await ok(
+          "quote",
+          { lines: [{ offerId: "native-a", quantity: 3 }] },
+          guest,
+        )
+      ).value;
+      const saved = (
+        await ok(
+          "orders",
+          { quoteId: q.id, checkout, idempotencyKey: "native-failed-payment" },
+          guest,
+        )
+      ).value;
+      const event = {
+        eventId: "native-failure-1",
+        reference: "SIMULATED-FAILED",
+        status: "failed",
+      };
+      let failed;
+      for (let i = 0; i < 2; i++)
+        failed = (
+          await ok("orders/" + saved.id + "/payment-simulator", event, admin)
+        ).value;
+      assert.equal(failed.portions[0].state, "cancelled");
+      const native = await receivers["TEST-A"].inspect(
+        failed.portions[0].references.reserve.sales_order,
+      );
+      assert.equal(native.reservations.length, 0);
+      assert.equal(native.invoices.length, 0);
+      const after = await receivers["TEST-A"].availability();
+      assert.equal(after["TEST-C1"], before["TEST-C1"]);
+      assert.equal(
+        loyalty.balance(
+          "trusted-native-worker",
+          loyaltyScope.program,
+          loyaltyScope.customer,
+        ).available,
+        40,
+      );
+      return {
+        order: saved.id,
+        payment: "SIMULATOR FAILED, no provider",
+        native,
+        availableBefore: before["TEST-C1"],
+        availableAfter: after["TEST-C1"],
+        points: 40,
+      };
+    },
+  );
+  await step(
+    "expiry-sweep-releases-real-native-hold-using-controlled-channel-clock",
+    async () => {
+      const q = (
+        await ok(
+          "quote",
+          { lines: [{ offerId: "native-a", quantity: 3 }] },
+          guest,
+        )
+      ).value;
+      const saved = (
+        await ok(
+          "orders",
+          { quoteId: q.id, checkout, idempotencyKey: "native-expiry" },
+          guest,
+        )
+      ).value;
+      clock = Date.now() + 900001;
+      const sweep = (await ok("admin/expire-reservations", {}, admin)).value;
+      const expired = (await ok("orders/" + saved.id, undefined, guest)).value;
+      assert.equal(expired.portions[0].state, "cancelled");
+      const native = await receivers["TEST-A"].inspect(
+        expired.portions[0].references.reserve.sales_order,
+      );
+      assert.equal(native.reservations.length, 0);
+      const again = (await ok("admin/expire-reservations", {}, admin)).value;
+      assert.equal(again.results.length, 0);
+      clock = Date.now();
+      return {
+        order: saved.id,
+        sweep,
+        native,
+        clock:
+          "explicit channel clock advanced15 minutes; actual native cancellation, no hosted scheduler",
+      };
+    },
+  );
   await step("distinct-buyer-orders-compete-for-last-native-unit", async () => {
     const orders = [];
     for (let i = 0; i < 2; i++) {

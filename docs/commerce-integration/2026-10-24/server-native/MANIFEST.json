@@ -1,0 +1,22 @@
+{
+  "codeCommit": "95603f5ca496f75fd0ad36747fea4a947b9acfad",
+  "codeTree": "1af3da0dbfa54af47a1b17f411461fdbe70f4a90",
+  "nativeWms": "582469d37d4ff3f920e009bdd9cfe9ce5a5fe2f0",
+  "nativeAccountingCanonical": "a2ba7f813561147ef6ea61c4cf3dc93e70ce0714",
+  "scope": "actual local fresh native engine; simulated payment; no carrier; browser blocked",
+  "files": {
+    "connected-build-final.txt": "7a36301c6064031b6d27735fd380eda5d60565f2a398886bbcb55dbf716d4e78",
+    "server-components.txt": "2c6d0ae323fa7d443b57b052461a66f81c62bd486a4f5c989896f83e12475a6a",
+    "server-commerce-final.txt": "ee3de9f40f29e7b609c15dcb8ac0e1b99e04b8cb2033ef2a5027bb43719559fa",
+    "bootstrap-results.json": "e6a2cafadac1c5c04aee7b7d577a2ed78e53f4d94c6cc449ec8e0d56abfd50cc",
+    "isolated-build-final.txt": "5a0435aa85d3e177023ee20f00dd16b18b4a48ec935a43ca08a0dad46f9db9ad",
+    "predecessor-03.json": "f6bb9c48a8d2d456abd3ec169c7c125d93bce6ee02c4b243bd7346ddb66a3692",
+    "borvat-native-cycle.json": "5e51bbace52da3be45481377902c481fa4ef0794d0a93d0370f4e8b9cd42618a",
+    "predecessor-02.json": "f68ea8d416b7b951bcee773d34a3a1d4edd0365ca7852385e53808c7271dd578",
+    "server-edited-lint.txt": "11b4db7d3ad3291de8d8d2fac10f4f5ed4899216518efb84c1d1591efb55d9ec",
+    "isolated-http-final.txt": "c54de680631db5dec5ed4ba7862f693929ca586c7b9c8125110d21453baaddc7",
+    "native-tests.json": "133aa8de26dd92bd258cbcb5f78308446a1aa9a2a0116ebccc2275ea34c29832",
+    "server-tests-final.txt": "ace716306f940c88895c1992413b52fb3739d08bda966be1a9433693d7ab43bf",
+    "predecessor-01.json": "808e16c9efb6b8f6708c952705f955463ffb84fe77dbead1790dbefbc606ecc6"
+  }
+}

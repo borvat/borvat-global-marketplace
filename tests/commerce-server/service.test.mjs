@@ -482,3 +482,178 @@ test("current seller approval is checked after remote I/O and journal completion
   assert.equal(recovered.command.state, "completed");
   assert.equal(recovered.command.dispatches, 1);
 });
+
+test("failed simulated payment releases all confirmed WMS holds once and never permits late success", async (t) => {
+  const h = harness(t),
+    q = await h.store.quote(h.guest, cart),
+    order = h.store.place(h.guest, {
+      quoteId: q.id,
+      checkout,
+      idempotencyKey: "fail-and-release",
+    });
+  await h.store.reserveOrder(h.guest, order.id);
+  const body = {
+    eventId: "failure-event",
+    reference: "SIM-FAILURE",
+    status: "failed",
+  };
+  const request = () =>
+    new Request(
+      "http://127.0.0.1:19090/api/commerce/orders/" +
+        order.id +
+        "/payment-simulator",
+      {
+        method: "POST",
+        headers: {
+          origin: "http://127.0.0.1:19090",
+          "content-type": "application/json",
+          cookie: "borvat-test=" + h.admin,
+        },
+        body: JSON.stringify(body),
+      },
+    );
+  for (let i = 0; i < 2; i++) {
+    const r = await h.handler(request());
+    assert.equal(r.status, 200);
+    const value = await r.json();
+    assert.ok(value.cancellationRequested);
+    assert.ok(value.portions.every((p) => p.state === "cancelled"));
+  }
+  assert.equal(
+    h.store.db
+      .prepare(
+        "SELECT count(*) n FROM channel_commands WHERE operation='cancel'",
+      )
+      .get().n,
+    2,
+  );
+  assert.throws(
+    () =>
+      h.store.simulatePayment(h.admin, order.id, {
+        eventId: "late",
+        reference: "SIM-LATE",
+        status: "succeeded",
+      }),
+    /INVALID_PAYMENT_TRANSITION/,
+  );
+});
+
+test("cancellation before dispatch creates no stock operation and an authenticated expiry sweep excludes pending money", async (t) => {
+  const h = harness(t),
+    q = await h.store.quote(h.guest, cart),
+    order = h.store.place(h.guest, {
+      quoteId: q.id,
+      checkout,
+      idempotencyKey: "before-dispatch",
+    });
+  await h.store.cancelUnpaid(h.guest, order.id);
+  await h.store.reserveOrder(h.guest, order.id);
+  assert.equal(
+    h.store.db.prepare("SELECT count(*) n FROM channel_commands").get().n,
+    0,
+  );
+  const ids = [];
+  for (const key of ["expiry", "payment-unknown"]) {
+    const q = await h.store.quote(h.guest, cart);
+    const o = h.store.place(h.guest, {
+      quoteId: q.id,
+      checkout,
+      idempotencyKey: key,
+    });
+    await h.store.reserveOrder(h.guest, o.id);
+    ids.push(o.id);
+  }
+  h.store.simulatePayment(h.admin, ids[1], {
+    eventId: "still-pending",
+    reference: "SIM-PENDING",
+    status: "pending",
+  });
+  h.tick(900001);
+  await assert.rejects(h.store.expireUnpaid(h.a), /FORBIDDEN/);
+  const sweep = await h.store.expireUnpaid(h.admin);
+  assert.equal(sweep.results.length, 1);
+  assert.equal(sweep.results[0].order, ids[0]);
+  assert.ok(sweep.results[0].states.every((s) => s === "cancelled"));
+  assert.ok(
+    h.store
+      .order(h.admin, ids[1])
+      .portions.every((p) => p.state === "reserved"),
+  );
+  assert.equal((await h.store.expireUnpaid(h.admin)).results.length, 0);
+});
+
+test("inflight reserve versus guest cancellation compensates the native result before either can be paid", async (t) => {
+  const receiver = fake("TEST-A"),
+    execute = receiver.execute;
+  let allow, started;
+  const waiting = new Promise((r) => (allow = r)),
+    hasStarted = new Promise((r) => (started = r));
+  receiver.execute = async (e) => {
+    if (e.operation === "reserve") {
+      started();
+      await waiting;
+    }
+    return execute(e);
+  };
+  const h = harness(t, { "TEST-A": receiver, "TEST-B": fake("TEST-B") });
+  const q = await h.store.quote(h.guest, {
+    lines: [{ offerId: "demo-offer-1", quantity: 1 }],
+  });
+  const order = h.store.place(h.guest, {
+    quoteId: q.id,
+    checkout,
+    idempotencyKey: "cancel-race",
+  });
+  const reservation = h.store.reserveOrder(h.guest, order.id);
+  await hasStarted;
+  const cancel = await h.store.cancelUnpaid(h.guest, order.id);
+  assert.equal(cancel.portions[0].state, "pending_reservation");
+  assert.equal(cancel.cancellationRequested, true);
+  allow();
+  const resolved = await reservation;
+  assert.equal(resolved.portions[0].state, "cancelled");
+  assert.equal(resolved.payment.status, "not_started");
+  assert.equal(
+    h.store.db
+      .prepare(
+        "SELECT count(*) n FROM channel_commands WHERE operation='reserve'",
+      )
+      .get().n,
+    1,
+  );
+  assert.equal(
+    h.store.db
+      .prepare(
+        "SELECT count(*) n FROM channel_commands WHERE operation='cancel'",
+      )
+      .get().n,
+    1,
+  );
+});
+
+test("server checkout rejects malformed address fields independently of browser validation and normalizes safe retries", async (t) => {
+  const h = harness(t),
+    q = await h.store.quote(h.guest, cart),
+    body = { quoteId: q.id, checkout, idempotencyKey: "address" };
+  for (const bad of [
+    { firstName: "<script>" },
+    { houseNumber: "12 OR 1=1" },
+    { phone: "invalid" },
+    { postalCode: "0000 XX" },
+    { street: "Line\nInjected" },
+    { addition: "1234567" },
+  ])
+    assert.throws(
+      () =>
+        h.store.place(h.guest, { ...body, checkout: { ...checkout, ...bad } }),
+      /INVALID_ADDRESS/,
+    );
+  assert.equal(h.store.list(h.guest).length, 0);
+  const saved = h.store.place(h.guest, {
+    ...body,
+    checkout: { ...checkout, firstName: " Test ", email: "BUYER@EXAMPLE.TEST" },
+  });
+  assert.equal(saved.checkout.firstName, "Test");
+  assert.equal(saved.checkout.email, "buyer@example.test");
+  assert.equal(h.store.place(h.guest, body).id, saved.id);
+});

@@ -1,0 +1,21 @@
+✔ one native invoice source earns once across Marketplace/invoice channels and actual reopen (17.304313ms)
+✔ two actual connections cannot spend the last points twice; held funds need native discount proof (13.046433ms)
+✔ cumulative credits avoid partial rounding gains; expiry and repeated credits cannot double reverse (18.17745ms)
+✔ return of spent earnings records explicit debt; later earnings clear debt once without expiry reviving it (20.156934ms)
+✔ expired redemption releases and expires unspent lots only once; expired earn is not reversed into debt (16.509023ms)
+✔ server quote ignores no client monetary values, stale prices fail, same-key retry survives reopen (268.43737ms)
+✔ actual server sessions enforce guest, seller and administrator projections and immediate revocation (209.538553ms)
+✔ HTTP denies CSRF, invalid JSON, oversized requests, forged identity and cross-site reads (215.266285ms)
+✔ state transitions, duplicate simulation and durable journal are separate from payment provider proof (283.804731ms)
+✔ unknown stock outcome cannot masquerade as reserved or paid; suspension/expiry prevent checkout (204.333299ms)
+✔ authentication rejects wrong password, rates attempts, rotates and revokes sessions (490.920016ms)
+✔ saved guest checkout orchestrates WMS holds and compensates another seller rejection (214.357443ms)
+✔ current seller approval is checked after remote I/O and journal completion remains recoverable (223.342587ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2198.318186

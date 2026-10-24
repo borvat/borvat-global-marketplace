@@ -129,6 +129,11 @@ export function createCommerceHandler({ store, origin }) {
         return response({ orders: store.list(token) });
       if (path === "/api/commerce/admin" && request.method === "GET")
         return response(store.admin(token));
+      if (
+        path === "/api/commerce/admin/expire-reservations" &&
+        request.method === "POST"
+      )
+        return response(await store.expireUnpaid(token));
       if (path === "/api/commerce/admin/sellers" && request.method === "POST")
         return response(store.approve(token, body.seller, body.state));
       if (path === "/api/commerce/admin/users" && request.method === "POST") {
@@ -140,7 +145,7 @@ export function createCommerceHandler({ store, origin }) {
           store.setPrice(token, body.offerId, body.price, body.version),
         );
       const match = path.match(
-        /^\/api\/commerce\/orders\/([A-Za-z0-9._:-]+)(?:\/(action|payment-simulator))?$/,
+        /^\/api\/commerce\/orders\/([A-Za-z0-9._:-]+)(?:\/(action|payment-simulator|cancel))?$/,
       );
       if (match && request.method === "GET" && !match[2])
         return response(store.order(token, match[1]));
@@ -155,12 +160,24 @@ export function createCommerceHandler({ store, origin }) {
             body.key,
           ),
         );
+      if (match && request.method === "POST" && match[2] === "cancel")
+        return response(await store.cancelUnpaid(token, match[1], body.reason));
       if (
         match &&
         request.method === "POST" &&
         match[2] === "payment-simulator"
-      )
-        return response(store.simulatePayment(token, match[1], body));
+      ) {
+        const saved = store.simulatePayment(token, match[1], body);
+        return response(
+          ["failed", "cancelled"].includes(saved.payment.status)
+            ? await store.cancelUnpaid(
+                token,
+                match[1],
+                "simulated-payment-" + saved.payment.status,
+              )
+            : saved,
+        );
+      }
       return response({ error: "NOT_FOUND" }, 404);
     } catch (e) {
       // No SQL, tokens, upstream tracebacks, passwords or PII in browser responses.

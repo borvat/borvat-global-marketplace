@@ -201,7 +201,100 @@ export function useShopMoney() {
   );
   return (cents: number) => formatter.format(cents / 100);
 }
+export function useShopDate() {
+  const language = useShopLanguage();
+  return new Intl.DateTimeFormat(
+    language === "ar" ? "ar-NL" : language === "en" ? "en-NL" : "nl-NL",
+    { dateStyle: "long", timeStyle: "short", timeZone: "Europe/Amsterdam" },
+  );
+}
 const phrases: Record<string, [string, string]> = {
+  "Onbekend artikel": ["Unknown item", "منتج غير معروف"],
+  "Express (": ["Express (", "شحن سريع ("],
+  ") kies je bij het bestellen.": [") can be selected at checkout.", ") متاح عند إتمام الطلب."],
+  "Los eerst de meldingen bij je artikelen op.": [
+    "Resolve the item alerts first.",
+    "عالج التنبيهات بجانب المنتجات أولاً.",
+  ],
+  "(optioneel)": ["(optional)", "(اختياري)"],
+  "(test)": ["(test)", "(تجريبي)"],
+  "Levering binnen": ["Delivery within", "التوصيل خلال"],
+  "Een artikel in je mandje is niet meer beschikbaar.": [
+    "An item in your basket is no longer available.",
+    "أحد منتجات السلة لم يعد متاحاً.",
+  ],
+  "— niet uitgevoerd": ["— not executed", "— لم يُنفّذ"],
+  "Geplaatst op": ["Placed on", "تاريخ الطلب"],
+  "Alleen opgeslagen in deze browser. Er is niets betaald of verzonden.": [
+    "Stored only in this browser. Nothing has been paid or shipped.",
+    "محفوظ في هذا المتصفح فقط. لم يُدفع أو يُشحن شيء.",
+  ],
+  Home: ["Home", "الرئيسية"],
+  "Voorbeeldomschrijving voor de testomgeving.": [
+    "Example description for this test environment.",
+    "وصف توضيحي لبيئة الاختبار.",
+  ],
+  "Gekozen variant:": ["Selected variant:", "الخيار المحدد:"],
+  "Inclusief btw ·": ["Including VAT ·", "شامل الضريبة ·"],
+  "Kies een verkoper": ["Choose a seller", "اختر بائعاً"],
+  "Geen beschikbaar aanbod voor deze variant.": [
+    "No offer is available for this variant.",
+    "لا يوجد عرض متاح لهذا الخيار.",
+  ],
+  "De gekozen aanbieding is niet beschikbaar. Kies opnieuw.": [
+    "The selected offer is unavailable. Choose another.",
+    "العرض المحدد غير متاح. اختر عرضاً آخر.",
+  ],
+  Al: ["Already", "يوجد بالفعل"],
+  "in je mandje": ["in your basket", "في سلتك"],
+  in: ["in", "في"],
+  "1 werkdag": ["1 working day", "يوم عمل واحد"],
+  "2–3 werkdagen": ["2–3 working days", "يومان إلى ثلاثة أيام عمل"],
+  "Vul je voornaam in.": ["Enter your first name.", "أدخل الاسم الأول."],
+  "Vul je achternaam in.": ["Enter your last name.", "أدخل اسم العائلة."],
+  "Gebruik alleen letters (max. 60 tekens).": [
+    "Use letters only, up to 60 characters.",
+    "استخدم حروفاً فقط، بحد أقصى 60 حرفاً.",
+  ],
+  "Vul je e-mailadres in.": ["Enter your email address.", "أدخل البريد الإلكتروني."],
+  "Vul een geldig e-mailadres in, bijvoorbeeld naam@voorbeeld.nl.": [
+    "Enter a valid email address.",
+    "أدخل بريداً إلكترونياً صالحاً.",
+  ],
+  "Vul je telefoonnummer in.": ["Enter your phone number.", "أدخل رقم الهاتف."],
+  "Vul een geldig Nederlands of Belgisch telefoonnummer in.": [
+    "Enter a valid Dutch or Belgian phone number.",
+    "أدخل رقم هاتف هولندياً أو بلجيكياً صالحاً.",
+  ],
+  "Vul je straatnaam in.": ["Enter your street name.", "أدخل اسم الشارع."],
+  "Gebruik maximaal 200 tekens voor de straatnaam.": [
+    "Use up to 200 characters for the street.",
+    "الحد الأقصى لاسم الشارع 200 حرف.",
+  ],
+  "Vul je huisnummer in.": ["Enter your house number.", "أدخل رقم المبنى."],
+  "Gebruik alleen cijfers.": ["Use digits only.", "استخدم الأرقام فقط."],
+  "Maximaal 6 letters of cijfers.": [
+    "Use up to 6 letters or digits.",
+    "استخدم 6 حروف أو أرقام بحد أقصى.",
+  ],
+  "Vul je postcode in.": ["Enter your postal code.", "أدخل الرمز البريدي."],
+  "Gebruik het formaat 1234 AB.": ["Use the format 1234 AB.", "استخدم الصيغة 1234 AB."],
+  "Gebruik een Belgische postcode van 4 cijfers.": [
+    "Use a four-digit Belgian postal code.",
+    "استخدم رمزاً بريدياً بلجيكياً من أربعة أرقام.",
+  ],
+  "Vul je woonplaats in.": ["Enter your city.", "أدخل اسم المدينة."],
+  "Gebruik maximaal 200 tekens voor de woonplaats.": [
+    "Use up to 200 characters for the city.",
+    "الحد الأقصى لاسم المدينة 200 حرف.",
+  ],
+  "Kies Nederland of België.": ["Choose the Netherlands or Belgium.", "اختر هولندا أو بلجيكا."],
+  "Kies een verzendmethode.": ["Choose a shipping method.", "اختر طريقة الشحن."],
+  "Kies een testbetaalmethode.": ["Choose a test payment method.", "اختر طريقة دفع تجريبية."],
+  "Bevestig dat je begrijpt dat dit een testbestelling is.": [
+    "Confirm that you understand this is a test order.",
+    "أكّد أنك تدرك أن هذا طلب اختبار.",
+  ],
   Voornaam: ["First name", "الاسم الأول"],
   Achternaam: ["Last name", "اسم العائلة"],
   "E-mailadres": ["Email address", "البريد الإلكتروني"],

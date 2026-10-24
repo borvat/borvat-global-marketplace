@@ -76,6 +76,8 @@ export class CommerceStore {
       CREATE TABLE IF NOT EXISTS portions(order_id TEXT NOT NULL REFERENCES orders(id),seller TEXT NOT NULL REFERENCES sellers(id),company TEXT NOT NULL,state TEXT NOT NULL,refs TEXT NOT NULL,PRIMARY KEY(order_id,seller));
       CREATE TABLE IF NOT EXISTS payment_events(event_id TEXT PRIMARY KEY,order_id TEXT NOT NULL REFERENCES orders(id),body_hash TEXT NOT NULL,status TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS payments(order_id TEXT PRIMARY KEY REFERENCES orders(id),status TEXT NOT NULL CHECK(status IN ('not_started','pending','failed','cancelled','succeeded','refund_pending','refunded')),reference TEXT);
+      CREATE TABLE IF NOT EXISTS order_lifecycle(order_id TEXT PRIMARY KEY REFERENCES orders(id),cancel_requested INTEGER NOT NULL DEFAULT 0,expires INTEGER NOT NULL,reason TEXT);
+      INSERT OR IGNORE INTO order_lifecycle(order_id,expires) SELECT id,created+900000 FROM orders;
       CREATE TABLE IF NOT EXISTS audit(seq INTEGER PRIMARY KEY AUTOINCREMENT,actor TEXT NOT NULL,action TEXT NOT NULL,resource TEXT NOT NULL,at INTEGER NOT NULL,change TEXT NOT NULL);
     `);
     this.journal = new CommandJournal({
@@ -391,6 +393,37 @@ export class CommerceStore {
         (!["addition"].includes(field) && !checkout[field].trim())
       )
         fail("INVALID_ADDRESS");
+    checkout = Object.fromEntries(
+      fields.map((field) => [field, checkout[field].trim()]),
+    );
+    if (
+      Object.values(checkout).some((value) =>
+        /[\u0000-\u001f\u007f]/.test(value),
+      )
+    )
+      fail("INVALID_ADDRESS");
+    checkout.email = checkout.email.toLowerCase();
+    checkout.country = checkout.country.toUpperCase();
+    checkout.postalCode = checkout.postalCode.toUpperCase();
+    const person = /^[\p{L}][\p{L}\s'.-]{0,59}$/u;
+    if (
+      !person.test(checkout.firstName) ||
+      !person.test(checkout.lastName) ||
+      checkout.email.length > 120 ||
+      checkout.phone.length > 30 ||
+      !/^\d{1,5}$/.test(checkout.houseNumber) ||
+      (checkout.addition && !/^[\p{L}\d-]{1,6}$/u.test(checkout.addition)) ||
+      !/^(\+31|\+32|0031|0032|0)[1-9]\d{7,9}$/.test(
+        checkout.phone.replace(/[\s()-]/g, ""),
+      )
+    )
+      fail("INVALID_ADDRESS");
+    if (
+      checkout.country === "NL"
+        ? !/^[1-9]\d{3}\s?[A-Z]{2}$/.test(checkout.postalCode)
+        : !/^[1-9]\d{3}$/.test(checkout.postalCode)
+    )
+      fail("INVALID_ADDRESS");
     if (
       !/^[^\s@]+@[^\s@]+[.]test$/.test(checkout.email) ||
       !["NL", "BE"].includes(checkout.country)
@@ -452,6 +485,9 @@ export class CommerceStore {
       this.db
         .prepare("INSERT INTO payments VALUES (?,'not_started',NULL)")
         .run(orderId);
+      this.db
+        .prepare("INSERT INTO order_lifecycle(order_id,expires) VALUES (?,?)")
+        .run(orderId, this.now() + 900000);
       this.audit(p.user ?? p.owner, "order-created", orderId, {
         quote: quoteId,
       });
@@ -491,8 +527,13 @@ export class CommerceStore {
     const payment = this.db
       .prepare("SELECT status,reference FROM payments WHERE order_id=?")
       .get(orderId);
+    const lifecycle = this.db
+      .prepare("SELECT * FROM order_lifecycle WHERE order_id=?")
+      .get(orderId);
     return {
       id: orderId,
+      cancellationRequested: !!lifecycle.cancel_requested,
+      reservationExpiresAt: new Date(lifecycle.expires).toISOString(),
       createdAt: new Date(row.created).toISOString(),
       lines,
       portions,
@@ -545,6 +586,14 @@ export class CommerceStore {
         ?.owner !== principal.owner
     )
       fail("FORBIDDEN", 403);
+    if (
+      this.db
+        .prepare(
+          "SELECT cancel_requested FROM order_lifecycle WHERE order_id=?",
+        )
+        .get(orderId).cancel_requested
+    )
+      return this.cancelUnpaid(token, orderId, "retry-cancellation");
     const body = JSON.parse(
       this.db.prepare("SELECT body FROM orders WHERE id=?").get(orderId).body,
     );
@@ -564,6 +613,14 @@ export class CommerceStore {
           references: {},
         },
       });
+      if (
+        this.db
+          .prepare(
+            "SELECT cancel_requested FROM order_lifecycle WHERE order_id=?",
+          )
+          .get(orderId).cancel_requested
+      )
+        continue;
       const result = await this.journal.run(
         this.worker,
         portion.company,
@@ -643,7 +700,164 @@ export class CommerceStore {
           });
       }
     }
+    if (
+      this.db
+        .prepare(
+          "SELECT cancel_requested FROM order_lifecycle WHERE order_id=?",
+        )
+        .get(orderId).cancel_requested
+    )
+      return this.cancelUnpaid(token, orderId, "retry-cancellation");
     return this.order(token, orderId);
+  }
+  async cancelUnpaid(token, orderId, reason = "buyer-cancellation") {
+    const principal = this.require(token);
+    this.order(token, orderId);
+    if (
+      principal.role !== "admin" &&
+      this.db.prepare("SELECT owner FROM orders WHERE id=?").get(orderId)
+        ?.owner !== principal.owner
+    )
+      fail("FORBIDDEN", 403);
+    if (typeof reason !== "string" || !reason.trim() || reason.length > 200)
+      fail("INVALID_REASON");
+    this.tx(() => {
+      const payment = this.db
+        .prepare("SELECT status FROM payments WHERE order_id=?")
+        .get(orderId);
+      if (!["not_started", "failed", "cancelled"].includes(payment.status))
+        fail("PAYMENT_RECONCILIATION_REQUIRED", 409);
+      const changed = this.db
+        .prepare(
+          "UPDATE order_lifecycle SET cancel_requested=1,reason=? WHERE order_id=? AND cancel_requested=0",
+        )
+        .run(reason.trim(), orderId);
+      if (changed.changes)
+        this.audit(
+          principal.user ?? principal.owner,
+          "cancellation-requested",
+          orderId,
+          { reason: reason.trim() },
+        );
+    });
+    const body = JSON.parse(
+      this.db.prepare("SELECT body FROM orders WHERE id=?").get(orderId).body,
+    );
+    for (let portion of this.db
+      .prepare("SELECT * FROM portions WHERE order_id=?")
+      .all(orderId)) {
+      const receiver = this.receivers[portion.company];
+      if (portion.state === "pending_reservation") {
+        const reserve = this.db
+          .prepare(
+            "SELECT id FROM channel_commands WHERE company=? AND source='borvat-test' AND operation='reserve' AND external_key=?",
+          )
+          .get(portion.company, orderId + ":" + portion.seller + ":reserve");
+        if (!reserve) {
+          this.db
+            .prepare(
+              "UPDATE portions SET state='cancelled' WHERE order_id=? AND seller=? AND state='pending_reservation'",
+            )
+            .run(orderId, portion.seller);
+          continue;
+        }
+        if (!receiver) continue;
+        const known = await this.journal.run(
+          this.worker,
+          portion.company,
+          reserve.id,
+          receiver,
+        );
+        if (known.state === "rejected") {
+          this.db
+            .prepare(
+              "UPDATE portions SET state='cancelled' WHERE order_id=? AND seller=? AND state='pending_reservation'",
+            )
+            .run(orderId, portion.seller);
+          continue;
+        }
+        if (known.state !== "completed" || !known.result?.native) continue;
+        this.db
+          .prepare(
+            "UPDATE portions SET state='reserved',refs=? WHERE order_id=? AND seller=? AND state='pending_reservation'",
+          )
+          .run(
+            canonical({ reserve: known.result.native }),
+            orderId,
+            portion.seller,
+          );
+        portion = this.db
+          .prepare("SELECT * FROM portions WHERE order_id=? AND seller=?")
+          .get(orderId, portion.seller);
+      }
+      if (portion.state !== "reserved" || !receiver) continue;
+      const intent = this.journal.enqueue(this.worker, {
+        company: portion.company,
+        source: "borvat-test",
+        operation: "cancel",
+        externalKey: orderId + ":" + portion.seller + ":cancel",
+        payload: {
+          orderId,
+          sellerId: portion.seller,
+          lines: body.lines.filter((l) => l.sellerId === portion.seller),
+          references: JSON.parse(portion.refs),
+        },
+      });
+      const result = await this.journal.run(
+        this.worker,
+        portion.company,
+        intent.id,
+        receiver,
+      );
+      if (result.state === "completed" && result.result?.native)
+        this.tx(() => {
+          const changed = this.db
+            .prepare(
+              "UPDATE portions SET state='cancelled',refs=? WHERE order_id=? AND seller=? AND state='reserved'",
+            )
+            .run(
+              canonical({
+                ...JSON.parse(portion.refs),
+                cancel: result.result.native,
+              }),
+              orderId,
+              portion.seller,
+            );
+          if (changed.changes)
+            this.audit(
+              "reservation-worker",
+              "native-reservation-released",
+              orderId,
+              {
+                seller: portion.seller,
+                command: intent.id,
+                references: result.result.references,
+              },
+            );
+        });
+    }
+    return this.order(token, orderId);
+  }
+  async expireUnpaid(token) {
+    this.require(token, "admin");
+    const rows = this.db
+      .prepare(
+        "SELECT l.order_id FROM order_lifecycle l JOIN payments p ON p.order_id=l.order_id WHERE l.expires<=? AND p.status IN ('not_started','failed','cancelled') AND EXISTS(SELECT 1 FROM portions s WHERE s.order_id=l.order_id AND s.state IN ('reserved','pending_reservation')) ORDER BY l.expires LIMIT 100",
+      )
+      .all(this.now());
+    const results = [];
+    for (const row of rows) {
+      const order = await this.cancelUnpaid(
+        token,
+        row.order_id,
+        "reservation-expired",
+      );
+      results.push({
+        order: order.id,
+        states: order.portions.map((p) => p.state),
+      });
+    }
+    return { mode: "manual-test-sweep; not a hosted scheduler", results };
   }
   async executePortion(
     token,
@@ -673,6 +887,20 @@ export class CommerceStore {
       body = parse(
         this.db.prepare("SELECT body FROM orders WHERE id=?").get(orderId).body,
       );
+    const lifecycle = this.db
+      .prepare("SELECT cancel_requested FROM order_lifecycle WHERE order_id=?")
+      .get(orderId);
+    if (lifecycle.cancel_requested && action !== "cancel")
+      fail("ORDER_CANCELLATION_PENDING", 409);
+    if (
+      action === "cancel" &&
+      !["not_started", "failed", "cancelled"].includes(
+        this.db
+          .prepare("SELECT status FROM payments WHERE order_id=?")
+          .get(orderId).status,
+      )
+    )
+      fail("PAYMENT_RECONCILIATION_REQUIRED", 409);
     const transitions = {
       reserve: ["pending_reservation", "reserved"],
       pick: ["reserved", "picked"],
@@ -828,6 +1056,15 @@ export class CommerceStore {
         .all(orderId);
       if (status === "succeeded" && parts.some((x) => x.state !== "reserved"))
         fail("RESERVATION_NOT_CONFIRMED", 409);
+      if (
+        status === "succeeded" &&
+        this.db
+          .prepare(
+            "SELECT cancel_requested FROM order_lifecycle WHERE order_id=?",
+          )
+          .get(orderId).cancel_requested
+      )
+        fail("ORDER_CANCELLATION_PENDING", 409);
       if (
         ["refund_pending", "refunded"].includes(status) &&
         parts.some((x) => x.state !== "credited")
