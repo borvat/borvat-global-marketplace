@@ -46,9 +46,15 @@ const schema = z
             packQuantity: z.number().int().min(1).max(10000),
             references: z
               .array(
-                z.object({ authority: z.enum(["wms", "accounting"]), externalId: id }).strict(),
+                z
+                  .object({
+                    authority: z.enum(["wms", "accounting"]),
+                    companyId: id.optional(),
+                    externalId: id,
+                  })
+                  .strict(),
               )
-              .max(2),
+              .max(100),
           })
           .strict(),
       )
@@ -91,10 +97,27 @@ const schema = z
     const skus = new Set(c.skus.map((s) => s.id));
     const companies = new Set(c.companies.map((s) => s.id));
     const stores = new Set(c.stores.map((s) => s.id));
+    const nativeIdentityOwners = new Map<string, string>();
     c.skus.forEach((s, i) => {
       if (!products.has(s.productId)) fail(["skus", i, "productId"], "Unknown product");
-      if (new Set(s.references.map((r) => r.authority)).size !== s.references.length)
-        fail(["skus", i, "references"], "Duplicate authority");
+      const scopedAuthorities = new Set<string>();
+      s.references.forEach((reference, j) => {
+        if (reference.companyId && !companies.has(reference.companyId))
+          fail(["skus", i, "references", j, "companyId"], "Unknown reference company");
+        const scopeKey = JSON.stringify([reference.authority, reference.companyId ?? null]);
+        if (scopedAuthorities.has(scopeKey))
+          fail(["skus", i, "references", j], "Duplicate authority and company scope");
+        scopedAuthorities.add(scopeKey);
+        const identityKey = JSON.stringify([
+          reference.authority,
+          reference.companyId ?? null,
+          reference.externalId,
+        ]);
+        const owner = nativeIdentityOwners.get(identityKey);
+        if (owner && owner !== s.id)
+          fail(["skus", i, "references", j], "Native identity maps to multiple SKUs");
+        nativeIdentityOwners.set(identityKey, s.id);
+      });
     });
     c.stores.forEach((s, i) => {
       if (!companies.has(s.companyId)) fail(["stores", i, "companyId"], "Unknown company");
@@ -140,7 +163,12 @@ function normalizeCatalog(input: unknown): CanonicalCatalog {
     skus: catalog.skus
       .map((sku) => ({
         ...sku,
-        references: [...sku.references].sort((a, b) => compareText(a.authority, b.authority)),
+        references: [...sku.references].sort(
+          (a, b) =>
+            compareText(a.authority, b.authority) ||
+            compareText(a.companyId ?? "", b.companyId ?? "") ||
+            compareText(a.externalId, b.externalId),
+        ),
       }))
       .sort(compareId),
     companies: [...catalog.companies].sort(compareId),
