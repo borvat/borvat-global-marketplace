@@ -146,3 +146,36 @@ Rollback: retain6f6b4ed or95603f5 as previous public preview commits; do not mer
 For the new service, disable the connected-test profile/private configuration. No original
 migration or deployed production data was modified. No continued background development
 is implied when this session ends.
+
+## Final incremental checkpoint — b771e309
+
+Application source `b771e309191b9616007b6d83969202ff77629feb` adds only buyer catalogue
+error-state/search/accessibility copy and its regression test after the f98 baseline.
+Observed local results before execution-host loss: TypeScript/frontend27 PASS;
+component/client-recovery45 PASS; isolated build and HTTP200/email405 PASS; edited lint
+0 errors. The catalogue failure injector on the actual f98 desktop had recovered via Retry
+but incorrectly continued announcing loading; b771 corrects that. Its rendered post-deploy
+retest is **NOT_RUN** because the execution environment and browser became unavailable.
+The two retained desktop screenshots are explicitly f98, not b771. Native/backend files
+remain unchanged from the31e2db7/run06 proof.
+
+Additional local CI equivalents observed at f98: foundation9PASS, core-money10PASS,
+prototype124PASS. Original-parity completeness remains FAIL:69missing binaries plus
+13bounded source evolutions, separately reviewed. These are not a green hosted CI result.
+GitHub run [40066144087](https://github.com/borvat/borvat-global-marketplace/actions/runs/40066144087)
+on b771 concluded failure with all four jobs NOT_STARTED due to an external account/runner
+restriction, verified in the authenticated run UI. No steps or downloadable job logs exist.
+No account/payment settings were changed, retries purchased or completeness gate weakened.
+
+The final host disconnection happened before raw b771 logs and this supplemental local
+CI output could be archived. Counts above are session observations, not invented log files.
+Earlier run04/run05/run06/client-f98 artifacts and exact raw hashes are committed and
+verified (13/4/4/12files respectively, zero hash mismatches). Code and tests are recoverable
+from this branch; no uncommitted implementation is required to reproduce them.
+
+Render attempt `dep-dbe427ss728c7393fhl0` targets b771 on the SAME isolated service/plan,
+auto-deploy OFF. Deployment status is recorded separately after querying Render; never
+infer native backend hosting from a successful frontend deploy. Full project remains OPEN.
+
+Final Render query: **LIVE**, source `b771e309191b9616007b6d83969202ff77629feb`, deploy
+`dep-dbe427ss728c7393fhl0`, finished `2026-10-24T05:25:55.049944Z`. Rendered retest remains NOT_RUN.
