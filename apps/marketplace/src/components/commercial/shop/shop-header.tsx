@@ -142,7 +142,7 @@ export function ShopHeader() {
             sort: null,
           })}
           data-testid="header-logo"
-          aria-label="BORVAT – naar de startpagina"
+          aria-label={copy("BORVAT – naar de startpagina")}
           className="col-start-1 row-start-1 rounded text-2xl font-extrabold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4 sm:text-3xl"
         >
           BOR<span className="text-red-400">V</span>AT

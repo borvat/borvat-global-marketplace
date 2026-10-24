@@ -171,7 +171,7 @@ function ActiveFilters({ clearAll }: { clearAll: () => void }) {
   return (
     <div
       className="flex flex-wrap items-center gap-2"
-      aria-label="Actieve filters"
+      aria-label={copy("Actieve filters")}
       data-testid="active-filters"
     >
       {chips.map(([label, change]) => (
@@ -181,7 +181,7 @@ function ActiveFilters({ clearAll }: { clearAll: () => void }) {
           data-testid="active-filter-chip"
           onClick={() => navigate(link("/discover", change), true)}
           className="inline-flex items-center gap-1 rounded-full border border-border bg-muted px-3 py-1 text-sm hover:bg-muted/70 focus-visible:outline-2 focus-visible:outline-ring"
-          aria-label={`Verwijder filter ${label}`}
+          aria-label={`${copy("Verwijder filter")} ${label}`}
         >
           {label} <X aria-hidden className="h-3.5 w-3.5" />
         </button>
@@ -204,7 +204,10 @@ function ProductGrid({ ids }: { ids: string[] }) {
   const nl = useShopText();
   const { catalog, link } = useShop();
   return (
-    <ul aria-label="Productresultaten" className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+    <ul
+      aria-label={copy("Productresultaten")}
+      className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3"
+    >
       {ids.map((id) => {
         const p = catalog.products.find((x) => x.id === id)!;
         const href = link(`/product/${encodeURIComponent(id)}`, { offer: null, sku: null });

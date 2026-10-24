@@ -209,6 +209,108 @@ export function useShopDate() {
   );
 }
 const phrases: Record<string, [string, string]> = {
+  artikel: ["item", "منتج"],
+  artikelen: ["items", "منتجات"],
+  "Artikelen in je mandje": ["Basket items", "منتجات السلة"],
+  "BORVAT – naar de startpagina": ["BORVAT – home", "BORVAT – الرئيسية"],
+  "Actieve filters": ["Active filters", "عوامل التصفية المحددة"],
+  "Verwijder filter": ["Remove filter", "إزالة عامل التصفية"],
+  Productresultaten: ["Product results", "نتائج المنتجات"],
+  Materiaal: ["Material", "المادة"],
+  Hoogte: ["Height", "الارتفاع"],
+  Waterafvoer: ["Drainage", "تصريف الماء"],
+  Inhoud: ["Pack size", "حجم الباقة"],
+  Ja: ["Yes", "نعم"],
+  "maximum bereikt": ["maximum reached", "تم بلوغ الحد الأقصى"],
+  "Toevoegen is niet gelukt.": ["Could not add this item.", "تعذّرت إضافة المنتج."],
+  "Betaling:": ["Payment:", "الدفع:"],
+  "Status:": ["Status:", "الحالة:"],
+  "Simulator, geen betaalprovider": ["Simulator, no payment provider", "محاكاة فقط، دون مزود دفع"],
+  "Annulering aangevraagd. Alleen bevestigde annuleringen zijn door het WMS vrijgegeven; een onbekende uitkomst blijft in behandeling.":
+    [
+      "Cancellation requested. Only confirmed cancellations have been released by WMS; unknown outcomes remain pending.",
+      "طُلب الإلغاء. يُحرر WMS الحجوزات التي تأكد إلغاؤها فقط؛ تبقى النتائج غير المعروفة قيد المتابعة.",
+    ],
+  "Aantal retour": ["Return quantity", "كمية المرتجع"],
+  "Betaling simuleren · geen provider": [
+    "Simulate payment · no provider",
+    "محاكاة الدفع · دون مزود",
+  ],
+  "Annulering opnieuw controleren": ["Check cancellation again", "إعادة التحقق من الإلغاء"],
+  "Onbetaalde testorder annuleren": ["Cancel unpaid test order", "إلغاء طلب الاختبار غير المدفوع"],
+  "Laden…": ["Loading…", "جارٍ التحميل…"],
+  "Laden mislukt": ["Could not load data", "تعذّر تحميل البيانات"],
+  "Actie mislukt": ["The action failed", "تعذّر تنفيذ الإجراء"],
+  "Nog geen bestellingen voor deze sessie.": [
+    "No orders for this session yet.",
+    "لا توجد طلبات لهذه الجلسة بعد.",
+  ],
+  "Deze order is op de testserver opgeslagen. Alleen bevestigde native referenties verschijnen hieronder. Een opgeslagen order bevestigt nog geen voorraad, betaling of verzending.":
+    [
+      "This order is saved on the test server. Only confirmed native references appear below. Saving an order does not confirm stock, payment or shipment.",
+      "حُفظ الطلب في خادم الاختبار. تظهر أدناه مراجع المحركات المؤكدة فقط. حفظ الطلب لا يؤكد المخزون أو الدفع أو الشحن.",
+    ],
+  "Beveiligde serverwerkruimte · voorraad en documenten via Surooh. Betaling is een afzonderlijke simulator; er is geen vervoerder aangesloten.":
+    [
+      "Secure server workspace · stock and documents through Surooh. Payment uses a separate simulator; no carrier is connected.",
+      "مساحة عمل محمية من الخادم · المخزون والمستندات عبر Surooh. الدفع محاكاة منفصلة؛ لا يوجد ناقل شحن متصل.",
+    ],
+  "Alleen afzonderlijk aangemaakte testaccounts. De browser kan geen rol of bedrijf kiezen.": [
+    "Only separately provisioned test accounts. The browser cannot choose a role or company.",
+    "لحسابات الاختبار المُنشأة مسبقاً فقط. لا يختار المتصفح الصلاحية أو الشركة.",
+  ],
+  "Aangemeld als": ["Signed in as", "تم الدخول بصفة"],
+  "Verlopen onbetaalde testreserveringen vrijgeven": [
+    "Release expired unpaid test reservations",
+    "تحرير حجوزات الاختبار غير المدفوعة المنتهية",
+  ],
+  "Nog geen orders binnen je bevoegdheid.": [
+    "No orders within your access scope yet.",
+    "لا توجد طلبات ضمن صلاحياتك بعد.",
+  ],
+  "Audit · laatste 100 acties": ["Audit · latest 100 actions", "سجل التدقيق · آخر 100 إجراء"],
+  "Uitkomst nog onbekend. Controleer opnieuw met dezelfde actie; niet opnieuw bestellen.": [
+    "Outcome is still unknown. Retry the same action to reconcile; do not place another order.",
+    "النتيجة غير معروفة بعد. أعد التحقق بالإجراء نفسه للمطابقة؛ لا تنشئ طلباً آخر.",
+  ],
+  "De gekoppelde dienst heeft de actie geweigerd.": [
+    "The connected service rejected this action.",
+    "رفضت الخدمة المتصلة الإجراء.",
+  ],
+  "NATIVE TEST · Synthetische gegevens · Betaling gesimuleerd · Geen vervoerder": [
+    "NATIVE TEST · Synthetic data · Simulated payment · No carrier",
+    "اختبار المحركات · بيانات مصطنعة · دفع محاكى · دون ناقل",
+  ],
+  "De testserver of het WMS is niet bereikbaar. Er is geen bestelling bevestigd.": [
+    "The test server or WMS is unreachable. No order has been confirmed.",
+    "تعذّر الاتصال بخادم الاختبار أو WMS. لم يُؤكَّد أي طلب.",
+  ],
+  "Browseropslag is niet beschikbaar of opslaan is mislukt. Nieuwe testbestellingen worden niet bevestigd.":
+    [
+      "Browser storage is unavailable or saving failed. New test orders will not be confirmed.",
+      "تخزين المتصفح غير متاح أو تعذّر الحفظ. لن تُؤكَّد طلبات اختبار جديدة.",
+    ],
+  guest: ["Guest", "ضيف"],
+  seller: ["Seller", "بائع"],
+  admin: ["Administrator", "مدير"],
+  approved: ["Approved", "معتمد"],
+  suspended: ["Suspended", "معلق"],
+  pending: ["Pending", "قيد الانتظار"],
+  not_started: ["Not started", "لم يبدأ"],
+  succeeded: ["Succeeded", "نجح"],
+  failed: ["Failed", "فشل"],
+  cancelled: ["Cancelled", "ملغى"],
+  pending_reservation: ["Awaiting reservation", "بانتظار الحجز"],
+  reserved: ["Reserved", "محجوز"],
+  picked: ["Picked", "تم التجهيز"],
+  packed: ["Packed", "تمت التعبئة"],
+  shipped: ["Delivery note posted", "رُحّل مستند التسليم"],
+  invoiced: ["Invoiced", "صدرت الفاتورة"],
+  receipted: ["Test receipt recorded", "سُجل تحصيل الاختبار"],
+  returned: ["Return received", "استُلم المرتجع"],
+  credited: ["Credit note posted", "صدر الإشعار الدائن"],
+  refund_recorded: ["Test refund recorded", "سُجل استرداد الاختبار"],
+
   "Onbekend artikel": ["Unknown item", "منتج غير معروف"],
   "Express (": ["Express (", "شحن سريع ("],
   ") kies je bij het bestellen.": [") can be selected at checkout.", ") متاح عند إتمام الطلب."],

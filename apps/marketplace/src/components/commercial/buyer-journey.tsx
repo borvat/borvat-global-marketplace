@@ -27,7 +27,7 @@ import { ConfirmationView, OrdersView } from "./shop/order-views";
 import { nl } from "./shop/nl";
 import { CONNECTED_TEST_COMMERCE } from "../../lib/commercial/runtime-mode";
 import { ServerOrders, ServerWorkspace } from "./server-workspace";
-import { ShopLanguageContext, useShopText, type ShopLanguage } from "./shop/i18n";
+import { ShopLanguageContext, useShopCopy, useShopText, type ShopLanguage } from "./shop/i18n";
 
 type BuyerJourneyProps = {
   adapter: CommercialDemoAdapter;
@@ -88,7 +88,8 @@ function BuyerJourneyView({
   readCatalog = readDemoCatalog,
   manageDocument = true,
 }: BuyerJourneyProps) {
-  const nl = useShopText();
+  const nl = useShopText(),
+    copy = useShopCopy();
   const href = useSyncExternalStore(
     navigation.subscribe,
     navigation.getSnapshot,
@@ -138,12 +139,12 @@ function BuyerJourneyView({
     buyerHref(path, href, changes);
   if (route.path === "/workbench")
     return (
-      <>
+      <div lang={route.locale} dir={route.language === "ar" ? "rtl" : "ltr"}>
         {CONNECTED_TEST_COMMERCE ? <ServerWorkspace /> : <CommercialWorkspace adapter={adapter} />}
         <div className="mx-auto max-w-7xl px-5 pb-8">
-          <LocalLink href={link("/discover")}>Terug naar ontdekken</LocalLink>
+          <LocalLink href={link("/discover")}>{nl.backToShop}</LocalLink>
         </div>
-      </>
+      </div>
     );
   const value: ShopValue = {
     adapter,
@@ -173,7 +174,7 @@ function BuyerJourneyView({
           className="bg-accent px-4 py-1.5 text-center text-xs font-semibold text-accent-foreground sm:text-sm"
         >
           {CONNECTED_TEST_COMMERCE
-            ? "NATIVE TEST · Synthetische gegevens · Betaling gesimuleerd · Geen vervoerder"
+            ? copy("NATIVE TEST · Synthetische gegevens · Betaling gesimuleerd · Geen vervoerder")
             : nl.testBanner}
         </div>
         <ShopHeader />
@@ -184,16 +185,19 @@ function BuyerJourneyView({
         >
           {snapshot.connectionError && (
             <div role="alert" className="mb-4 rounded-lg border border-destructive p-4 text-sm">
-              De testserver of het WMS is niet bereikbaar. Er is geen bestelling bevestigd.{" "}
+              {copy(
+                "De testserver of het WMS is niet bereikbaar. Er is geen bestelling bevestigd.",
+              )}{" "}
               <button className="underline" onClick={() => void adapter.refresh?.()}>
-                Opnieuw proberen
+                {nl.retry}
               </button>
             </div>
           )}
           {snapshot.storageStatus === "unavailable" && (
             <p role="alert" className="mb-4 rounded-lg border border-destructive p-3 text-sm">
-              Browseropslag is niet beschikbaar of opslaan is mislukt. Nieuwe testbestellingen
-              worden niet bevestigd.
+              {copy(
+                "Browseropslag is niet beschikbaar of opslaan is mislukt. Nieuwe testbestellingen worden niet bevestigd.",
+              )}
             </p>
           )}
           <ShopRoute path={route.path} />

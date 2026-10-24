@@ -269,7 +269,7 @@ export function CheckoutView() {
                     <span className="block text-sm text-muted-foreground">
                       {copy("Levering binnen")} {copy(SHIPPING_METHODS[m].deliveryDays)}
                       {m === "standaard"
-                        ? ` · gratis vanaf ${formatEur(SHIPPING_METHODS.standaard.freeFromCents)}`
+                        ? ` · ${nl.freeFrom} ${formatEur(SHIPPING_METHODS.standaard.freeFromCents)}`
                         : ""}
                     </span>
                   </span>

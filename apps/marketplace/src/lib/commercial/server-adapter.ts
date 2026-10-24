@@ -31,6 +31,13 @@ export type ServerOrder = {
     references: Record<string, Record<string, string | number>>;
   }[];
 };
+export class CommerceApiError extends Error {
+  code: string;
+  constructor(code: string, message: string) {
+    super(message);
+    this.code = code;
+  }
+}
 export async function commerceApi<T>(path: string, body?: unknown): Promise<T> {
   const r = await fetch(`/api/commerce/${path}`, {
     method: body === undefined ? "GET" : "POST",
@@ -67,7 +74,8 @@ export async function commerceApi<T>(path: string, body?: unknown): Promise<T> {
       SYNTHETIC_ADDRESS_REQUIRED:
         "Gebruik een fictief adres met een e-mailadres dat eindigt op .test.",
     };
-    throw new Error(
+    throw new CommerceApiError(
+      typeof value.error === "string" ? value.error : "UNKNOWN",
       errors[value.error] ??
         "De testdienst is tijdelijk niet beschikbaar. Er is geen nieuwe bevestiging ontvangen. Controleer je bestelling voordat je opnieuw probeert.",
     );
@@ -207,18 +215,19 @@ export function createServerCommerceAdapter(): CommercialDemoAdapter {
         .map((b) => b.toString(16).padStart(2, "0"))
         .join("");
       const attemptKey = "borvat-connected-checkout-v1";
-      let attempt: { key: string; fingerprint: string; quoteId: string } | undefined;
+      let attempt: { key: string; fingerprint: string; quoteId: string | null } | undefined;
       try {
         attempt = JSON.parse(sessionStorage.getItem(attemptKey) ?? "null") ?? undefined;
       } catch {
         /* Same running form still carries the key. */
       }
-      if (!attempt || attempt.fingerprint !== fingerprint) {
+      if (!attempt || attempt.fingerprint !== fingerprint || !attempt.quoteId) {
         const quote = await commerceApi<{ id: string }>("quote", {
           lines: snapshot.cart,
           shippingMethod: input.shippingMethod,
         });
-        attempt = { key, fingerprint, quoteId: quote.id };
+        // A document reload or address edit must NOT discard an unresolved order's key.
+        attempt = { key: attempt?.key ?? key, fingerprint, quoteId: quote.id };
         sessionStorage.setItem(attemptKey, JSON.stringify(attempt));
       }
       const {
@@ -227,11 +236,41 @@ export function createServerCommerceAdapter(): CommercialDemoAdapter {
         acceptTest: _accept,
         ...checkout
       } = input;
-      const order = await commerceApi<ServerOrder>("orders", {
-        quoteId: attempt.quoteId,
-        checkout,
-        idempotencyKey: attempt.key,
-      });
+      let order: ServerOrder;
+      try {
+        order = await commerceApi<ServerOrder>("orders", {
+          quoteId: attempt.quoteId,
+          checkout,
+          idempotencyKey: attempt.key,
+        });
+      } catch (cause) {
+        if (
+          cause instanceof CommerceApiError &&
+          ["QUOTE_EXPIRED", "QUOTE_CHANGED"].includes(cause.code)
+        ) {
+          // Refresh the displayed cart; the buyer must confirm the new quote with another click.
+          // Keep the original key even if an earlier request is still resolving.
+          attempt.quoteId = null;
+          sessionStorage.setItem(attemptKey, JSON.stringify(attempt));
+          await refresh();
+        }
+        throw cause;
+      }
+      if (
+        !order ||
+        typeof order.id !== "string" ||
+        !/^BVT-TEST-[0-9a-f-]{36}$/i.test(order.id) ||
+        !Array.isArray(order.lines) ||
+        order.lines.length === 0 ||
+        !Array.isArray(order.portions) ||
+        order.portions.length === 0 ||
+        !Number.isSafeInteger(order.totalCents) ||
+        order.totalCents < 0
+      ) {
+        throw new Error(
+          "Het antwoord van de testserver is onvolledig. Controleer je bestaande bestellingen; er is geen nieuwe bevestiging ontvangen.",
+        );
+      }
       snapshot = { ...snapshot, cart: [] };
       persistCart();
       emit();

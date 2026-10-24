@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { commerceApi, type ServerOrder } from "../../lib/commercial/server-adapter";
-import { formatEur } from "../../lib/format";
+import { useShopCopy, useShopDate, useShopMoney } from "./shop/i18n";
 import { primaryButton } from "./shop/shop-parts";
 
 type Session = { role: "guest" | "seller" | "admin"; seller: string | null };
@@ -38,6 +38,9 @@ function OrderCard({
   reload: () => Promise<void>;
   run: (fn: () => Promise<unknown>) => Promise<void>;
 }) {
+  const copy = useShopCopy(),
+    formatEur = useShopMoney(),
+    date = useShopDate();
   const [quantity, setQuantity] = useState(1);
   return (
     <article
@@ -50,22 +53,20 @@ function OrderCard({
             {order.id}
           </h2>
           <p className="mt-1 text-xs text-muted-foreground">
-            {new Intl.DateTimeFormat("nl-NL", {
-              dateStyle: "medium",
-              timeStyle: "short",
-              timeZone: "Europe/Amsterdam",
-            }).format(new Date(order.createdAt))}
+            {date.format(new Date(order.createdAt))}
           </p>
         </div>
         <strong>{formatEur(order.totalCents)}</strong>
       </div>
       <p className="my-3 rounded-md bg-muted px-3 py-2 text-sm">
-        Betaling: <strong>{order.payment.status}</strong> · Simulator, geen betaalprovider
+        {copy("Betaling:")} <strong>{copy(order.payment.status)}</strong> ·{" "}
+        {copy("Simulator, geen betaalprovider")}
       </p>
       {order.cancellationRequested && (
         <p role="status" className="mb-3 rounded-md border border-amber-300 p-3 text-sm">
-          Annulering aangevraagd. Alleen deelorders met status ‘cancelled’ zijn door het WMS
-          vrijgegeven; een onbekende uitkomst blijft in behandeling.
+          {copy(
+            "Annulering aangevraagd. Alleen bevestigde annuleringen zijn door het WMS vrijgegeven; een onbekende uitkomst blijft in behandeling.",
+          )}
         </p>
       )}
       <ul className="divide-y divide-border">
@@ -92,7 +93,7 @@ function OrderCard({
               <span className="text-sm font-normal text-muted-foreground">· {p.company}</span>
             </h3>
             <p className="text-sm" data-testid="server-portion-state">
-              Status: <strong>{p.state}</strong>
+              {copy("Status:")} <strong>{copy(p.state)}</strong>
             </p>
             <dl className="space-y-2 text-xs">
               {Object.entries(p.references).flatMap(([action, refs]) =>
@@ -110,9 +111,9 @@ function OrderCard({
               <div className="space-y-3 border-t border-border pt-3">
                 {p.state === "receipted" && (
                   <label className="block text-sm">
-                    Aantal retour
+                    {copy("Aantal retour")}
                     <input
-                      aria-label={`Aantal retour ${p.sellerId}`}
+                      aria-label={`${copy("Aantal retour")} ${p.sellerId}`}
                       className="mt-1 block h-10 w-24 rounded-md border bg-background px-3"
                       type="number"
                       min={1}
@@ -143,15 +144,17 @@ function OrderCard({
                       );
                       if (result.command.state !== "completed")
                         throw new Error(
-                          result.command.state === "unknown"
-                            ? "Uitkomst nog onbekend. Controleer opnieuw met dezelfde actie; niet opnieuw bestellen."
-                            : "De gekoppelde dienst heeft de actie geweigerd.",
+                          copy(
+                            result.command.state === "unknown"
+                              ? "Uitkomst nog onbekend. Controleer opnieuw met dezelfde actie; niet opnieuw bestellen."
+                              : "De gekoppelde dienst heeft de actie geweigerd.",
+                          ),
                         );
                       await reload();
                     })
                   }
                 >
-                  {labels[nextAction[p.state]]}
+                  {copy(labels[nextAction[p.state]])}
                 </button>
               </div>
             )}
@@ -174,7 +177,7 @@ function OrderCard({
               })
             }
           >
-            Betaling simuleren · geen provider
+            {copy("Betaling simuleren · geen provider")}
           </button>
         )}
       {(!operator || operator.role === "admin") &&
@@ -189,9 +192,11 @@ function OrderCard({
               })
             }
           >
-            {order.cancellationRequested
-              ? "Annulering opnieuw controleren"
-              : "Onbetaalde testorder annuleren"}
+            {copy(
+              order.cancellationRequested
+                ? "Annulering opnieuw controleren"
+                : "Onbetaalde testorder annuleren",
+            )}
           </button>
         )}
     </article>
@@ -199,6 +204,7 @@ function OrderCard({
 }
 
 export function ServerOrders({ orderId }: { orderId?: string | null }) {
+  const copy = useShopCopy();
   const [orders, setOrders] = useState<ServerOrder[]>([]),
     [error, setError] = useState(""),
     [loading, setLoading] = useState(true);
@@ -241,24 +247,25 @@ export function ServerOrders({ orderId }: { orderId?: string | null }) {
   return (
     <div className="space-y-5">
       <h1 tabIndex={-1} className="text-2xl font-bold">
-        {orderId ? "Opgeslagen testorder" : "Mijn bestellingen"}
+        {copy(orderId ? "Opgeslagen testorder" : "Mijn bestellingen")}
       </h1>
       <p className="max-w-2xl text-sm text-muted-foreground">
-        Deze order is op de testserver opgeslagen. Alleen bevestigde native referenties verschijnen
-        hieronder. Een opgeslagen order bevestigt nog geen voorraad, betaling of verzending.
+        {copy(
+          "Deze order is op de testserver opgeslagen. Alleen bevestigde native referenties verschijnen hieronder. Een opgeslagen order bevestigt nog geen voorraad, betaling of verzending.",
+        )}
       </p>
       <button className="rounded-md border px-4 py-2 text-sm" onClick={() => void run(reload)}>
-        Status vernieuwen
+        {copy("Status vernieuwen")}
       </button>
-      {loading && <p role="status">Laden…</p>}
+      {loading && <p role="status">{copy("Laden…")}</p>}
       {error && (
         <p role="alert" className="rounded-lg border border-destructive p-3">
-          {error}
+          {copy(error)}
         </p>
       )}
       {!loading && !error && orders.length === 0 && (
         <p className="rounded-xl border border-dashed p-8">
-          Nog geen bestellingen voor deze sessie.
+          {copy("Nog geen bestellingen voor deze sessie.")}
         </p>
       )}
       {orders.map((order) => (
@@ -269,6 +276,8 @@ export function ServerOrders({ orderId }: { orderId?: string | null }) {
 }
 
 export function ServerWorkspace() {
+  const copy = useShopCopy(),
+    date = useShopDate();
   const [session, setSession] = useState<Session | null>(null),
     [orders, setOrders] = useState<ServerOrder[]>([]);
   const [sellers, setSellers] = useState<{ id: string; name: string; state: string }[]>([]),
@@ -318,11 +327,12 @@ export function ServerWorkspace() {
         <div>
           <p className="text-sm font-semibold text-accent-foreground">BORVAT · native test</p>
           <h1 tabIndex={-1} className="mt-1 text-2xl font-bold sm:text-3xl">
-            Verkoper & beheer
+            {copy("Verkoper & beheer")}
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            Beveiligde serverwerkruimte · voorraad en documenten via Surooh. Betaling is een
-            afzonderlijke simulator; er is geen vervoerder aangesloten.
+            {copy(
+              "Beveiligde serverwerkruimte · voorraad en documenten via Surooh. Betaling is een afzonderlijke simulator; er is geen vervoerder aangesloten.",
+            )}
           </p>
         </div>
         {session && session.role !== "guest" && (
@@ -338,13 +348,13 @@ export function ServerWorkspace() {
               })
             }
           >
-            Uitloggen
+            {copy("Uitloggen")}
           </button>
         )}
       </header>
       {error && (
         <p role="alert" className="rounded-lg border border-destructive p-4 text-sm">
-          {error}
+          {copy(error)}
         </p>
       )}
       {!session || session.role === "guest" ? (
@@ -352,9 +362,9 @@ export function ServerWorkspace() {
           onSubmit={login}
           className="mx-auto max-w-md space-y-4 rounded-xl border border-border bg-card p-6"
         >
-          <h2 className="text-lg font-bold">Inloggen</h2>
+          <h2 className="text-lg font-bold">{copy("Inloggen")}</h2>
           <label className="block text-sm">
-            E-mailadres
+            {copy("E-mailadres")}
             <input
               name="email"
               type="email"
@@ -364,7 +374,7 @@ export function ServerWorkspace() {
             />
           </label>
           <label className="block text-sm">
-            Wachtwoord
+            {copy("Wachtwoord")}
             <input
               name="password"
               type="password"
@@ -374,17 +384,19 @@ export function ServerWorkspace() {
             />
           </label>
           <button disabled={busy} className={primaryButton + " w-full"}>
-            Inloggen
+            {copy("Inloggen")}
           </button>
           <p className="text-xs text-muted-foreground">
-            Alleen afzonderlijk aangemaakte testaccounts. De browser kan geen rol of bedrijf kiezen.
+            {copy(
+              "Alleen afzonderlijk aangemaakte testaccounts. De browser kan geen rol of bedrijf kiezen.",
+            )}
           </p>
         </form>
       ) : (
         <>
           <div className="flex flex-wrap justify-between gap-3">
             <p className="text-sm">
-              Aangemeld als <strong>{session.role}</strong>
+              {copy("Aangemeld als")} <strong>{copy(session.role)}</strong>
               {session.seller ? ` · ${session.seller}` : ""}
             </p>
             <button
@@ -396,7 +408,7 @@ export function ServerWorkspace() {
           </div>
           {session.role === "admin" && (
             <section className="space-y-3 rounded-xl border bg-card p-5">
-              <h2 className="text-lg font-bold">Verkopers beoordelen</h2>
+              <h2 className="text-lg font-bold">{copy("Verkopers beoordelen")}</h2>
               <button
                 disabled={busy}
                 className="rounded-md border px-3 py-2 text-sm"
@@ -407,7 +419,7 @@ export function ServerWorkspace() {
                   })
                 }
               >
-                Verlopen onbetaalde testreserveringen vrijgeven
+                {copy("Verlopen onbetaalde testreserveringen vrijgeven")}
               </button>
               {sellers.map((s) => (
                 <div
@@ -415,7 +427,7 @@ export function ServerWorkspace() {
                   className="flex flex-wrap items-center justify-between gap-3 border-t py-3"
                 >
                   <span className="text-sm">
-                    {s.name} · {s.state}
+                    {s.name} · {copy(s.state)}
                   </span>
                   <button
                     disabled={busy}
@@ -430,17 +442,19 @@ export function ServerWorkspace() {
                       })
                     }
                   >
-                    {s.state === "approved" ? "Opschorten" : "Goedkeuren"}
+                    {copy(s.state === "approved" ? "Opschorten" : "Goedkeuren")}
                   </button>
                 </div>
               ))}
             </section>
           )}
           <section className="space-y-4">
-            <h2 className="text-xl font-bold">Orders · {orders.length}</h2>
+            <h2 className="text-xl font-bold">
+              {copy("Mijn bestellingen")} · {orders.length}
+            </h2>
             {!orders.length && (
               <p className="rounded-xl border border-dashed p-8 text-sm text-muted-foreground">
-                Nog geen orders binnen je bevoegdheid.
+                {copy("Nog geen orders binnen je bevoegdheid.")}
               </p>
             )}
             {orders.map((order) => (
@@ -455,11 +469,14 @@ export function ServerWorkspace() {
           </section>
           {session.role === "admin" && (
             <section className="rounded-xl border bg-card p-5">
-              <h2 className="mb-3 text-lg font-bold">Audit · laatste 100 acties</h2>
+              <h2 className="mb-3 text-lg font-bold">{copy("Audit · laatste 100 acties")}</h2>
               <ul className="divide-y">
                 {audit.map((event) => (
                   <li key={event.seq} className="break-words py-2 text-xs">
-                    <strong>{event.action}</strong> · {event.actor}
+                    <time dateTime={new Date(event.at).toISOString()}>
+                      {date.format(new Date(event.at))}
+                    </time>{" "}
+                    · <strong>{event.action}</strong> · {event.actor}
                     <span className="block break-all text-muted-foreground">{event.resource}</span>
                   </li>
                 ))}

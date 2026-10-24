@@ -88,19 +88,19 @@ export function ProductView() {
     setNotice("");
     setError("");
     if (!selected) return;
-    if (!Number.isInteger(qty) || qty < 1) return setError("Kies een aantal van 1 of meer.");
+    if (!Number.isInteger(qty) || qty < 1) return setError(copy("Kies een aantal van 1 of meer."));
     try {
       adapter.setQuantity(selected.id, inCart + qty);
       const variant = skus.length > 1 ? ` (${selected.variant})` : "";
       setNotice(`${qty} × ${product.title}${variant} ${nl.added.toLowerCase()}`);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Toevoegen is niet gelukt.");
+      setError(copy(cause instanceof Error ? cause.message : "Toevoegen is niet gelukt."));
     }
   };
   return (
     <article className="space-y-6">
       <nav
-        aria-label="Kruimelpad"
+        aria-label={copy("Kruimelpad")}
         className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground"
       >
         <LocalLink
@@ -146,8 +146,8 @@ export function ProductView() {
                   ["Inhoud", nl.perPack(sku?.packQuantity ?? 1)],
                 ].map(([k, v]) => (
                   <div key={k} className="grid grid-cols-2 gap-4 px-4 py-2.5 text-sm">
-                    <dt className="text-muted-foreground">{k}</dt>
-                    <dd className="font-medium">{v}</dd>
+                    <dt className="text-muted-foreground">{copy(k)}</dt>
+                    <dd className="font-medium">{copy(v)}</dd>
                   </div>
                 ))}
               </dl>
@@ -261,7 +261,7 @@ export function ProductView() {
                   {inCart > 0 && (
                     <span className="text-xs text-muted-foreground" data-testid="product-in-cart">
                       {copy("Al")} {inCart} {copy("in je mandje")}
-                      {remaining < 1 ? " · maximum bereikt" : ""}
+                      {remaining < 1 ? ` · ${copy("maximum bereikt")}` : ""}
                     </span>
                   )}
                 </div>

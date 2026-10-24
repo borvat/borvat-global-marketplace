@@ -97,11 +97,11 @@ export function CartView() {
       <h1 tabIndex={-1} className="text-2xl font-bold sm:text-3xl">
         {nl.cart}{" "}
         <span className="text-base font-normal text-muted-foreground">
-          ({count} {count === 1 ? "artikel" : "artikelen"})
+          ({count} {copy(count === 1 ? "artikel" : "artikelen")})
         </span>
       </h1>
       <div className="grid items-start gap-6 lg:grid-cols-[1fr_22rem]">
-        <ul className="space-y-3" aria-label="Artikelen in je mandje">
+        <ul className="space-y-3" aria-label={copy("Artikelen in je mandje")}>
           {lines.map((l) => (
             <li
               key={l.offerId}
