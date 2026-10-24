@@ -8,7 +8,7 @@ const label = z.string().trim().min(1).max(500);
 const schema = z
   .object({
     version: z.literal("borvat.catalog.v1"),
-    mode: z.literal("synthetic-memory-only"),
+    mode: z.enum(["synthetic-memory-only", "connected-test"]),
     revision: id,
     products: z
       .array(

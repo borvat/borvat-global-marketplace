@@ -1,3 +1,5 @@
+import { useShopCopy, useShopMoney } from "./i18n";
+import { useShopText } from "./i18n";
 import { useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Loader2, Lock } from "lucide-react";
 import { formatEur } from "../../../lib/format";
@@ -49,15 +51,19 @@ function Field({
   children: ReactNode;
   optional?: boolean;
 }) {
+  const copy = useShopCopy();
   return (
     <div className="min-w-0">
       <label htmlFor={id} className="mb-1 block text-sm font-medium">
-        {label} {optional && <span className="font-normal text-muted-foreground">(optioneel)</span>}
+        {label}{" "}
+        {optional && (
+          <span className="font-normal text-muted-foreground">{copy("(optioneel)")}</span>
+        )}
       </label>
       {children}
       {error && (
         <p id={`${id}-error`} data-testid={`${id}-error`} className="mt-1 text-sm text-destructive">
-          {error}
+          {copy(error)}
         </p>
       )}
     </div>
@@ -67,6 +73,9 @@ const inputClass = (error?: string) =>
   `h-11 w-full rounded-md border bg-background px-3 focus-visible:outline-2 focus-visible:outline-ring ${error ? "border-destructive" : "border-border"}`;
 
 export function CheckoutView() {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const { adapter, snapshot, route, link, navigate } = useShop();
   const [form, setForm] = useState<CheckoutInput>({
     firstName: "",
@@ -151,9 +160,11 @@ export function CheckoutView() {
     busy.current = true;
     key.current ??= globalThis.crypto.randomUUID();
     setSubmitting(true);
-    setTimeout(() => {
+    setTimeout(async () => {
       try {
-        const id = adapter.placeTestOrder(form, key.current!);
+        const id = adapter.placeServerOrder
+          ? await adapter.placeServerOrder(form, key.current!)
+          : adapter.placeTestOrder(form, key.current!);
         setPlacedId(id);
         navigate(link(`/bestelling/${encodeURIComponent(id)}`));
       } catch (cause) {
@@ -185,26 +196,28 @@ export function CheckoutView() {
           <fieldset className="space-y-4 rounded-xl border border-border bg-card p-5">
             <legend className="px-1 text-lg font-bold">{nl.yourDetails}</legend>
             <div className="grid gap-4 sm:grid-cols-2">
-              {text("firstName", "Voornaam", { autoComplete: "given-name" })}
-              {text("lastName", "Achternaam", { autoComplete: "family-name" })}
-              {text("email", "E-mailadres", {
+              {text("firstName", copy("Voornaam"), { autoComplete: "given-name" })}
+              {text("lastName", copy("Achternaam"), { autoComplete: "family-name" })}
+              {text("email", copy("E-mailadres"), {
                 type: "email",
                 autoComplete: "email",
                 inputMode: "email",
               })}
-              {text("phone", "Telefoonnummer", {
+              {text("phone", copy("Telefoonnummer"), {
                 type: "tel",
                 autoComplete: "tel",
                 inputMode: "tel",
               })}
             </div>
             <p className="text-xs text-muted-foreground">
-              Vul gerust fictieve gegevens in. Er wordt geen e-mail of bericht verstuurd.
+              {copy(
+                "Vul gerust fictieve gegevens in. Er wordt geen e-mail of bericht verstuurd.",
+              )}{" "}
             </p>
           </fieldset>
           <fieldset className="space-y-4 rounded-xl border border-border bg-card p-5">
             <legend className="px-1 text-lg font-bold">{nl.address}</legend>
-            <Field id="checkout-country" label="Land" error={errors.country}>
+            <Field id="checkout-country" label={copy("Land")} error={errors.country}>
               <select
                 id="checkout-country"
                 data-testid="checkout-country"
@@ -217,16 +230,16 @@ export function CheckoutView() {
               </select>
             </Field>
             <div className="grid gap-4 sm:grid-cols-[1fr_7rem_10.5rem]">
-              {text("street", "Straat", { autoComplete: "address-line1" })}
-              {text("houseNumber", "Huisnummer", { inputMode: "numeric" })}
-              {text("addition", "Toevoeging", {}, true)}
+              {text("street", copy("Straat"), { autoComplete: "address-line1" })}
+              {text("houseNumber", copy("Huisnummer"), { inputMode: "numeric" })}
+              {text("addition", copy("Toevoeging"), {}, true)}
             </div>
             <div className="grid gap-4 sm:grid-cols-[10rem_1fr]">
-              {text("postalCode", "Postcode", {
+              {text("postalCode", copy("Postcode"), {
                 autoComplete: "postal-code",
                 placeholder: form.country === "NL" ? "1234 AB" : "1000",
               })}
-              {text("city", "Plaats", { autoComplete: "address-level2" })}
+              {text("city", copy("Plaats"), { autoComplete: "address-level2" })}
             </div>
           </fieldset>
           <fieldset
@@ -248,13 +261,15 @@ export function CheckoutView() {
                   />
                   <span className="flex-1">
                     <span className="flex justify-between font-semibold">
-                      <span>{m === "express" ? nl.express : nl.standard} (test)</span>
+                      <span>
+                        {m === "express" ? nl.express : nl.standard} {copy("(test)")}
+                      </span>
                       <span>{cost === 0 ? nl.free : formatEur(cost)}</span>
                     </span>
                     <span className="block text-sm text-muted-foreground">
-                      Levering binnen {SHIPPING_METHODS[m].deliveryDays}
+                      {copy("Levering binnen")} {copy(SHIPPING_METHODS[m].deliveryDays)}
                       {m === "standaard"
-                        ? ` · gratis vanaf ${formatEur(SHIPPING_METHODS.standaard.freeFromCents)}`
+                        ? ` · ${nl.freeFrom} ${formatEur(SHIPPING_METHODS.standaard.freeFromCents)}`
                         : ""}
                     </span>
                   </span>
@@ -327,7 +342,7 @@ export function CheckoutView() {
               data-testid="checkout-acceptTest-error"
               className="text-sm text-destructive"
             >
-              {errors.acceptTest}
+              {copy(errors.acceptTest)}
             </p>
           )}
           {submitError && (
@@ -336,13 +351,13 @@ export function CheckoutView() {
               data-testid="checkout-submit-error"
               className="rounded-lg border border-destructive p-3 text-sm text-destructive"
             >
-              {submitError}
+              {copy(submitError)}
             </p>
           )}
           {blocked && (
             <p role="alert" className="text-sm text-destructive">
-              Een artikel in je mandje is niet meer beschikbaar.{" "}
-              <LocalLink href={link("/cart")}>Naar mandje</LocalLink>
+              {copy("Een artikel in je mandje is niet meer beschikbaar.")}{" "}
+              <LocalLink href={link("/cart")}>{copy("Naar mandje")}</LocalLink>
             </p>
           )}
           <button
@@ -362,7 +377,9 @@ export function CheckoutView() {
               </>
             )}
           </button>
-          <p className="text-center text-xs text-muted-foreground">Er wordt niets afgeschreven.</p>
+          <p className="text-center text-xs text-muted-foreground">
+            {copy("Er wordt niets afgeschreven.")}
+          </p>
         </aside>
       </div>
     </form>

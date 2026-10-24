@@ -1,3 +1,5 @@
+import { useShopCopy, useShopMoney } from "./i18n";
+import { useShopText } from "./i18n";
 import { useEffect, useState } from "react";
 import { ChevronRight, Store, Truck, Zap, MessageSquareOff } from "lucide-react";
 import { formatEur } from "../../../lib/format";
@@ -9,6 +11,9 @@ import { AvailabilityBadge, ProductMedia, QuantityStepper, primaryButton } from 
 import { nl } from "./nl";
 
 function ShippingInfo() {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const s = SHIPPING_METHODS;
   return (
     <div
@@ -19,20 +24,23 @@ function ShippingInfo() {
       <p className="flex gap-2">
         <Truck aria-hidden className="h-4 w-4 shrink-0" />
         {nl.standard}: {formatEur(s.standaard.priceCents)}, {nl.freeFrom}{" "}
-        {formatEur(s.standaard.freeFromCents)} · {s.standaard.deliveryDays}
+        {formatEur(s.standaard.freeFromCents)} · {copy(s.standaard.deliveryDays)}
       </p>
       <p className="flex gap-2">
         <Zap aria-hidden className="h-4 w-4 shrink-0" />
-        {nl.express}: {formatEur(s.express.priceCents)} · {s.express.deliveryDays}
+        {nl.express}: {formatEur(s.express.priceCents)} · {copy(s.express.deliveryDays)}
       </p>
       <p className="text-xs text-muted-foreground">
-        Indicatieve testlevertijden; er wordt geen zending aangemaakt.
+        {copy("Indicatieve testlevertijden; er wordt geen zending aangemaakt.")}{" "}
       </p>
     </div>
   );
 }
 
 export function ProductView() {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const { adapter, snapshot, catalog, load, route, link, navigate } = useShop();
   const product = catalog.products.find((p) => p.id === route.productId);
   const skus = catalog.skus.filter((s) => s.productId === product?.id);
@@ -80,33 +88,33 @@ export function ProductView() {
     setNotice("");
     setError("");
     if (!selected) return;
-    if (!Number.isInteger(qty) || qty < 1) return setError("Kies een aantal van 1 of meer.");
+    if (!Number.isInteger(qty) || qty < 1) return setError(copy("Kies een aantal van 1 of meer."));
     try {
       adapter.setQuantity(selected.id, inCart + qty);
       const variant = skus.length > 1 ? ` (${selected.variant})` : "";
       setNotice(`${qty} × ${product.title}${variant} ${nl.added.toLowerCase()}`);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Toevoegen is niet gelukt.");
+      setError(copy(cause instanceof Error ? cause.message : "Toevoegen is niet gelukt."));
     }
   };
   return (
     <article className="space-y-6">
       <nav
-        aria-label="Kruimelpad"
+        aria-label={copy("Kruimelpad")}
         className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground"
       >
         <LocalLink
           href={link("/discover", { q: null, category: null })}
           className="hover:underline"
         >
-          Home
+          {copy("Home")}{" "}
         </LocalLink>
         <ChevronRight aria-hidden className="h-3.5 w-3.5" />
         <LocalLink
           href={link("/discover", { category: product.category })}
           className="hover:underline"
         >
-          {product.category}
+          {copy(product.category)}
         </LocalLink>
       </nav>
       <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
@@ -120,7 +128,7 @@ export function ProductView() {
               {details.description}
             </p>
             <p className="mt-1 text-xs text-muted-foreground">
-              Voorbeeldomschrijving voor de testomgeving.
+              {copy("Voorbeeldomschrijving voor de testomgeving.")}{" "}
             </p>
           </section>
           {!!details.specs.length && (
@@ -138,8 +146,8 @@ export function ProductView() {
                   ["Inhoud", nl.perPack(sku?.packQuantity ?? 1)],
                 ].map(([k, v]) => (
                   <div key={k} className="grid grid-cols-2 gap-4 px-4 py-2.5 text-sm">
-                    <dt className="text-muted-foreground">{k}</dt>
-                    <dd className="font-medium">{v}</dd>
+                    <dt className="text-muted-foreground">{copy(k)}</dt>
+                    <dd className="font-medium">{copy(v)}</dd>
                   </div>
                 ))}
               </dl>
@@ -159,7 +167,7 @@ export function ProductView() {
           </h1>
           {skus.length > 1 && sku && (
             <p className="text-sm" data-testid="product-selected-variant">
-              Gekozen variant: <strong>{sku.variant}</strong>
+              {copy("Gekozen variant:")} <strong>{sku.variant}</strong>
             </p>
           )}
           {skus.length > 1 && (
@@ -190,7 +198,7 @@ export function ProductView() {
                 {formatEur(selected.priceCents)}
               </p>
               <p className="text-xs text-muted-foreground">
-                Inclusief btw · {nl.perPack(selected.packQuantity)}
+                {copy("Inclusief btw ·")} {nl.perPack(selected.packQuantity)}
               </p>
               <AvailabilityBadge
                 available={selected.availabilityExample}
@@ -200,7 +208,7 @@ export function ProductView() {
           )}
           {offers.length > 1 && (
             <fieldset className="min-w-0 space-y-2">
-              <legend className="mb-1 text-sm font-semibold">Kies een verkoper</legend>
+              <legend className="mb-1 text-sm font-semibold">{copy("Kies een verkoper")}</legend>
               {offers.map((o) => (
                 <label
                   key={o.id}
@@ -227,11 +235,11 @@ export function ProductView() {
           )}
           {!offers.length && (
             <p role="status" data-testid="no-offer">
-              Geen beschikbaar aanbod voor deze variant.
+              {copy("Geen beschikbaar aanbod voor deze variant.")}{" "}
             </p>
           )}
           {!!offers.length && !selected && (
-            <p role="alert">De gekozen aanbieding is niet beschikbaar. Kies opnieuw.</p>
+            <p role="alert">{copy("De gekozen aanbieding is niet beschikbaar. Kies opnieuw.")}</p>
           )}
           {selected && (
             <>
@@ -252,7 +260,8 @@ export function ProductView() {
                   />
                   {inCart > 0 && (
                     <span className="text-xs text-muted-foreground" data-testid="product-in-cart">
-                      Al {inCart} in je mandje{remaining < 1 ? " · maximum bereikt" : ""}
+                      {copy("Al")} {inCart} {copy("in je mandje")}
+                      {remaining < 1 ? ` · ${copy("maximum bereikt")}` : ""}
                     </span>
                   )}
                 </div>

@@ -75,8 +75,9 @@
     {
       "path": "apps/marketplace/src/server.ts",
       "before": "f0ee683067afee145f81a63a3af76b3d3767e2a1f61f0e82582f8da184ad3ef6",
-      "after": "30f744788a136283339dcf7b2a1d8448b998ce58a864538421f5483eadb1d940",
-      "reason": "Reject isolated write/API dispatch before loading framework handlers"
+      "after": "91b7dda42fbc75893d80b831ffa42889a7bedb0914cdc0b378ee4493b3b49f6f",
+      "reason": "Reject isolated write/API dispatch before loading framework handlers; 2026-10-24 explicit connected-test API dispatch only, isolated/default guards preserved; server-only private SQLite/native binding bootstrap",
+      "previousReviewedAfter": "30f744788a136283339dcf7b2a1d8448b998ce58a864538421f5483eadb1d940"
     },
     {
       "path": "apps/marketplace/src/components/site-header.tsx",

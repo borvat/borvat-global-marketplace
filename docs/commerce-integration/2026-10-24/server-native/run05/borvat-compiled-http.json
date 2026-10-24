@@ -1,0 +1,27 @@
+{
+  "sourceCommit": "2d2c221a2df56db40bc349e5dbb11d1fcf5f4896",
+  "compiledEntrySHA256": "4ccb47ce35dcfc11ee24c778b6ee0c4f380255fb0d6f2a09deee117a00aecee1",
+  "scope": "actual compiled HTTP/SSR and native reservation; no rendered browser; no provider",
+  "cases": [
+    {
+      "name": "compiled-server-guest-checkout-native-reservation-and-privacy",
+      "status": "PASS",
+      "order": "BVT-TEST-5903ee22-4fa7-44bb-8071-33bf9ad197e7",
+      "native": {
+        "reservation": "MAT-SRE-2026-00176",
+        "sales_order": "SAL-ORD-2026-00037"
+      },
+      "totalCents": 6000
+    },
+    {
+      "name": "compiled-server-process-restart-keeps-order-cookie-and-native-reference",
+      "status": "PASS"
+    },
+    {
+      "name": "compiled-Arabic-SSR-and-operational-route-denial",
+      "status": "PASS",
+      "browser": "NOT_RUN"
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "2d2c221a2df56db40bc349e5dbb11d1fcf5f4896",
+  "nativeCore": "9 PASS",
+  "compiledHTTP": "3 PASS",
+  "upstreamNative": "55 PASS / browser1 BLOCKED",
+  "files": {
+    "bootstrap-results.json": "374c3d52634a0d10729b7101e782e1924cbaf30a2ebde4fd64a444ff7f8f7062",
+    "borvat-compiled-http.json": "3ed823316974ec4645accca269da0fea6e87cbbb5da96f1d9ca05a48880a1839",
+    "borvat-native-cycle.json": "3fc0958303af556c1155e94a5c219a7e6a6550bea2e37efc6de94f2b2e2abe88",
+    "native-tests.json": "15450131a1ce31420090e2ce3939808be500b61b097ca1c71f4c22ab46556f5f"
+  }
+}

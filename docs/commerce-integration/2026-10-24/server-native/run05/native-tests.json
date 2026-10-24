@@ -1,0 +1,959 @@
+{
+  "cases": [
+    {
+      "id": "N01_native_company_items_bundle_and_app_setup",
+      "status": "PASS",
+      "evidence": {
+        "native_items": 3,
+        "Product_Bundle": "TEST-KIT",
+        "company": "TEST-A",
+        "warehouse": "Goods In Transit - TA",
+        "independent_site_DB": true,
+        "perpetual_inventory": true
+      }
+    },
+    {
+      "id": "N01b_second_native_site_company_and_credentials",
+      "status": "PASS",
+      "evidence": {
+        "site": "wms-native-b.invalid",
+        "independent_company": "TEST-B"
+      }
+    },
+    {
+      "id": "N02_HTTP_native_receipt_quantity_and_valuation",
+      "status": "PASS",
+      "evidence": {
+        "native_voucher": {
+          "stock_entry": "MAT-STE-2026-00001"
+        },
+        "bins": {
+          "TEST-C1": [
+            10.0,
+            0.0,
+            100.0
+          ],
+          "TEST-C2": [
+            10.0,
+            0.0,
+            200.0
+          ]
+        }
+      }
+    },
+    {
+      "id": "N03_existing_WMS_order_service_bundle_reservations_and_replay",
+      "status": "PASS",
+      "evidence": {
+        "WMS_placeOrder_to_real_Frappe": {
+          "order_id": "SAL-ORD-2026-00001",
+          "same_result": true
+        },
+        "bins": {
+          "TEST-C1": [
+            10.0,
+            1.0,
+            100.0
+          ],
+          "TEST-C2": [
+            10.0,
+            2.0,
+            200.0
+          ]
+        }
+      }
+    },
+    {
+      "id": "N04_native_durable_payload_conflict",
+      "status": "PASS",
+      "evidence": {
+        "HTTP_status": 417,
+        "stock_unchanged": true
+      }
+    },
+    {
+      "id": "N05_full_pick_pack_handoff",
+      "status": "PASS",
+      "evidence": {
+        "pick": {
+          "order_id": "SAL-ORD-2026-00001",
+          "pick_list": "STO-PICK-2026-00001"
+        },
+        "pack": {
+          "delivery_note": "MAT-DN-2026-00001",
+          "order_id": "SAL-ORD-2026-00001",
+          "packing_slip": "MAT-PAC-2026-00001"
+        },
+        "one_reservation_per_component": true,
+        "physical_and_value_unchanged": true
+      }
+    },
+    {
+      "id": "N05a_native_pick_handoff_guard",
+      "status": "PASS",
+      "evidence": {
+        "native_atomic_handoff": true,
+        "replay": {
+          "order_id": "SAL-ORD-2026-00001",
+          "pick_list": "STO-PICK-2026-00001"
+        }
+      }
+    },
+    {
+      "id": "N06_WMS_ship_native_DeliveryNote_COGS_GL",
+      "status": "PASS",
+      "evidence": {
+        "WMS_fulfillOrder": {
+          "shipped": "SAL-ORD-2026-00001"
+        },
+        "Delivery_Note": "MAT-DN-2026-00001",
+        "GL": [
+          {
+            "account": "Cost of Goods Sold - TA",
+            "debit": 50.0,
+            "credit": 0.0
+          },
+          {
+            "account": "Stock In Hand - TA",
+            "debit": 0.0,
+            "credit": 50.0
+          }
+        ],
+        "bins": {
+          "TEST-C1": [
+            9.0,
+            0.0,
+            90.0
+          ],
+          "TEST-C2": [
+            8.0,
+            0.0,
+            160.0
+          ]
+        }
+      }
+    },
+    {
+      "id": "N07_native_return_replay_value_and_GL_reversal",
+      "status": "PASS",
+      "evidence": {
+        "native_return_and_replay": {
+          "against": "MAT-DN-2026-00001",
+          "return_note": "MAT-DN-2026-00002"
+        },
+        "GL": [
+          {
+            "account": "Cost of Goods Sold - TA",
+            "debit": 0.0,
+            "credit": 50.0
+          },
+          {
+            "account": "Stock In Hand - TA",
+            "debit": 50.0,
+            "credit": 0.0
+          }
+        ],
+        "bins": {
+          "TEST-C1": [
+            10.0,
+            0.0,
+            100.0
+          ],
+          "TEST-C2": [
+            10.0,
+            0.0,
+            200.0
+          ]
+        }
+      }
+    },
+    {
+      "id": "N08_WMS_cancel_and_duplicate_event",
+      "status": "PASS",
+      "evidence": {
+        "WMS_cancelOrder": {
+          "cancelled": "SAL-ORD-2026-00002"
+        },
+        "bins": {
+          "TEST-C1": [
+            10.0,
+            0.0,
+            100.0
+          ],
+          "TEST-C2": [
+            10.0,
+            0.0,
+            200.0
+          ]
+        }
+      }
+    },
+    {
+      "id": "N09_native_HTTP_verified_identity_company_and_role",
+      "status": "PASS",
+      "evidence": {
+        "expired_foreign_outsider_forged_statuses": [
+          401,
+          403,
+          403,
+          401
+        ]
+      }
+    },
+    {
+      "id": "N10_durable_token_revocation_before_replay",
+      "status": "PASS",
+      "evidence": {
+        "revoked_JWT_replay_status": 403
+      }
+    },
+    {
+      "id": "N11_raw_RPC_API_and_legacy_writer_denial",
+      "status": "PASS",
+      "evidence": {
+        "real_native_HTTP_bypass_denials": [
+          {
+            "path": "/api/resource/Stock%20Entry",
+            "status": 403
+          },
+          {
+            "path": "/api/method/surooh_accounting.native_lab.api._native",
+            "status": 403
+          },
+          {
+            "path": "/api/method/frappe.client.insert",
+            "status": 403
+          },
+          {
+            "native_Stock_Manager_API_credentials": "denied_by_guard",
+            "status": 403
+          },
+          {
+            "doctype": "Pick List",
+            "raw_native_API_denied": 403
+          },
+          {
+            "doctype": "Packing Slip",
+            "raw_native_API_denied": 403
+          }
+        ],
+        "WMS_legacy_fallback": {
+          "legacy_disabled": true
+        }
+      }
+    },
+    {
+      "id": "N12_fresh_DB_role_revocation_and_claim_escalation",
+      "status": "PASS",
+      "evidence": {
+        "revoked_role_replay_status": 403,
+        "token_role_escalation_denied": true
+      }
+    },
+    {
+      "id": "N13_native_HTTP_concurrent_command_replay",
+      "status": "PASS",
+      "evidence": {
+        "two_real_HTTP_clients": true,
+        "same_native_result": {
+          "bundle_lines": [
+            {
+              "product_id": "TEST-KIT",
+              "quantity": 1
+            }
+          ],
+          "order_id": "SAL-ORD-2026-00003"
+        },
+        "one_reservation_effect_per_component": true
+      }
+    },
+    {
+      "id": "N14_real_RQ_job_and_execution_time_revocation",
+      "status": "PASS",
+      "evidence": {
+        "real_RQ_allowed_job": "finished",
+        "revoked_before_execution_job": "failed_as_required",
+        "no_stock_effect": true
+      }
+    },
+    {
+      "id": "N15_inflight_HTTP_permission_revocation_current_locking_reads",
+      "status": "PASS",
+      "evidence": {
+        "independent_MariaDB_lock_wait_observed": true,
+        "role_revoked_while_HTTP_in_flight": true,
+        "HTTP_status": 403,
+        "no_stock_effect": true,
+        "policy": "Permission locks linearize execution; revocation before acquisition denies, after acquisition waits for accepted command commit"
+      }
+    },
+    {
+      "id": "N16_HTTP_private_file_boundary",
+      "status": "PASS",
+      "evidence": {
+        "private_file_HTTP_status": 403,
+        "canary_not_exposed": true,
+        "OS_file_identity_isolation": "BLOCKED"
+      }
+    },
+    {
+      "id": "N17_native_lost_response_process_kill_restart_and_replay",
+      "status": "PASS",
+      "evidence": {
+        "lost_HTTP_response_after_commit": true,
+        "old_HTTP_pid": 121,
+        "new_HTTP_pid": 275,
+        "same_durable_order_id": "SAL-ORD-2026-00004",
+        "no_second_reservation": true
+      }
+    },
+    {
+      "id": "N18_two_fresh_sites_DB_credentials_and_HTTP_identity",
+      "status": "PASS",
+      "evidence": {
+        "real_restricted_SQL_cross_DB_read_write_errors": [
+          1142,
+          1142,
+          1142,
+          1142
+        ],
+        "B_own_HTTP": 200,
+        "A_JWT_on_B_denied": 401,
+        "independent_DB_credentials_and_encryption_keys": true,
+        "separate_site_paths": true,
+        "separate_OS_service_storage_boundary": "BLOCKED"
+      }
+    },
+    {
+      "id": "A01_atomic_handoff_replay_and_native_links",
+      "status": "PASS",
+      "evidence": {
+        "native_pick": {
+          "order_id": "SAL-ORD-2026-00005",
+          "pick_list": "STO-PICK-2026-00002"
+        },
+        "native_SRE": [
+          [
+            "TEST-C1",
+            1.0,
+            0.0,
+            "Pick List"
+          ],
+          [
+            "TEST-C2",
+            2.0,
+            0.0,
+            "Pick List"
+          ]
+        ],
+        "same_bins_and_value": true
+      }
+    },
+    {
+      "id": "A02_concurrent_pick_same_command",
+      "status": "PASS",
+      "evidence": {
+        "different_authorized_actors": true,
+        "separate_HTTP_DB_sessions": true,
+        "outcomes": [
+          {
+            "success": true,
+            "result": {
+              "order_id": "SAL-ORD-2026-00006",
+              "pick_list": "STO-PICK-2026-00003"
+            }
+          },
+          {
+            "success": true,
+            "result": {
+              "order_id": "SAL-ORD-2026-00006",
+              "pick_list": "STO-PICK-2026-00003"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "A03_pick_cancel_race",
+      "status": "PASS",
+      "evidence": {
+        "outcomes": [
+          {
+            "success": false,
+            "denied": "(417, {'exc_type': 'ValidationError'})"
+          },
+          {
+            "success": true,
+            "result": {
+              "cancelled": "SAL-ORD-2026-00007"
+            }
+          }
+        ],
+        "final_order_cancelled_no_active_reservation": true
+      }
+    },
+    {
+      "id": "A04_packed_ship_cancel_retry_race",
+      "status": "PASS",
+      "evidence": {
+        "outcomes": [
+          {
+            "success": true,
+            "result": {
+              "delivery_note": "MAT-DN-2026-00003",
+              "order_id": "SAL-ORD-2026-00008"
+            }
+          },
+          {
+            "success": false,
+            "denied": "(417, {'exc_type': 'ValidationError'})"
+          }
+        ],
+        "exactly_one_terminal_action": true,
+        "returned_if_shipped": true
+      }
+    },
+    {
+      "id": "A05_process_death_rolls_back_handoff",
+      "status": "PASS",
+      "evidence": {
+        "child_exit": -9,
+        "injection": "SIGKILL after native SO unreserve before native pick mapping",
+        "rollback_preserved_original_SRE": true,
+        "new_process_retry": {
+          "order_id": "SAL-ORD-2026-00009",
+          "pick_list": "STO-PICK-2026-00005"
+        }
+      }
+    },
+    {
+      "id": "A06_handoff_vs_competing_shared_bundle",
+      "status": "PASS",
+      "evidence": {
+        "outcomes": [
+          {
+            "success": true,
+            "result": {
+              "order_id": "SAL-ORD-2026-00010",
+              "pick_list": "STO-PICK-2026-00006"
+            }
+          },
+          {
+            "success": false,
+            "denied": "(417, {'exc_type': 'ValidationError'})"
+          }
+        ],
+        "all_C2_stock_reserved": true,
+        "no_transient_availability_or_oversell": true
+      }
+    },
+    {
+      "id": "A07_actual_WMS_projection_service_over_HTTP",
+      "status": "PASS",
+      "evidence": {
+        "company": "TEST-A",
+        "warehouse": "Goods In Transit - TA",
+        "stock_rows": 2,
+        "products": 3,
+        "bom": 4,
+        "orders": 10,
+        "movements": 10
+      }
+    },
+    {
+      "id": "A08_packed_cancel_and_pack_replay",
+      "status": "PASS",
+      "evidence": {
+        "native_packed_order_cancelled": "SAL-ORD-2026-00011",
+        "native_pack": {
+          "delivery_note": "MAT-DN-2026-00005",
+          "order_id": "SAL-ORD-2026-00011",
+          "packing_slip": "MAT-PAC-2026-00003"
+        },
+        "value_unchanged": true
+      }
+    },
+    {
+      "id": "A09_actual_screen_mutation_services_native_full_cycle",
+      "status": "PASS",
+      "evidence": {
+        "actual_screen_services": true,
+        "rendered_browser": false,
+        "native_order": "SAL-ORD-2026-00012",
+        "delivery_note": "MAT-DN-2026-00005",
+        "COGS": 50,
+        "balanced_GL": true,
+        "before_value": 300,
+        "after_value": 320,
+        "receipt_replay_once": true,
+        "bundle_A_B_A": true,
+        "concurrent_screen_pick_dispatches": 1,
+        "interrupted_screen_callers": 2,
+        "lost_response_after_actual_commit": true,
+        "retry_recovered_same_native_pick": true
+      }
+    },
+    {
+      "id": "O01_native_locations_and_WMS_projection",
+      "status": "PASS",
+      "evidence": {
+        "locations": {
+          "base": "Goods In Transit - TA",
+          "storage": "TEST-STORAGE - TA",
+          "quarantine": "TEST-QUARANTINE - TA"
+        },
+        "WMS_service": {
+          "company": "TEST-A",
+          "locations": 6,
+          "bins": 2
+        }
+      }
+    },
+    {
+      "id": "O02_native_transfer_replay_quantity_and_value_conservation",
+      "status": "PASS",
+      "evidence": {
+        "voucher": {
+          "source": "Goods In Transit - TA",
+          "stock_entry": "MAT-STE-2026-00003",
+          "target": "TEST-STORAGE - TA"
+        },
+        "before": [
+          12.0,
+          120.0
+        ],
+        "after": [
+          10.0,
+          100.0
+        ],
+        "storage": [
+          2.0,
+          20.0
+        ],
+        "value_conserved": true
+      }
+    },
+    {
+      "id": "O03_warehouse_boundaries_and_quantity_validation",
+      "status": "PASS",
+      "evidence": {
+        "foreign_company_same_location_negative_boolean_denied": true,
+        "unchanged_native_bins": true
+      }
+    },
+    {
+      "id": "O04_reserved_stock_protected_from_transfer_and_count",
+      "status": "PASS",
+      "evidence": {
+        "reserved_order": "SAL-ORD-2026-00013",
+        "transfer_and_count_denied": true
+      }
+    },
+    {
+      "id": "O05_native_count_value_GL_replay_and_stale_count",
+      "status": "PASS",
+      "evidence": {
+        "native_reconciliation": "MAT-RECO-2026-00001",
+        "before": [
+          2.0,
+          20.0
+        ],
+        "after": [
+          1.0,
+          10.0
+        ],
+        "balanced_native_GL": [
+          10.0,
+          10.0,
+          2
+        ],
+        "stale_count_denied": true
+      }
+    },
+    {
+      "id": "O06_concurrent_last_unit_transfer_and_quarantine",
+      "status": "PASS",
+      "evidence": {
+        "different_actor_concurrent_HTTP": [
+          {
+            "success": false,
+            "stock_shortage": true
+          },
+          {
+            "success": true,
+            "result": {
+              "source": "TEST-STORAGE - TA",
+              "stock_entry": "MAT-STE-2026-00004",
+              "target": "TEST-QUARANTINE - TA"
+            }
+          }
+        ],
+        "value_conserved": true,
+        "quarantine_stock_separate": {
+          "company": "TEST-A",
+          "locations": 6,
+          "bins": 4
+        }
+      }
+    },
+    {
+      "id": "O07_native_quarantine_return_replay_GL_and_inspection_release",
+      "status": "PASS",
+      "evidence": {
+        "return": {
+          "against": "MAT-DN-2026-00007",
+          "return_note": "MAT-DN-2026-00008",
+          "warehouse": "TEST-QUARANTINE - TA"
+        },
+        "same_delivery_deduplicated": true,
+        "balanced_native_return_GL": [
+          50.0,
+          50.0,
+          2
+        ],
+        "sellable_stock_increased_only_after_native_release": true
+      }
+    },
+    {
+      "id": "O08_return_and_count_boundary_validation",
+      "status": "PASS",
+      "evidence": {
+        "direct_restock_negative_count_missing_reason_denied": true,
+        "native_bins_unchanged": true
+      }
+    },
+    {
+      "id": "O09_equal_quantity_does_not_hide_movements_during_count",
+      "status": "PASS",
+      "evidence": {
+        "equal_quantity_after_in_and_out": true,
+        "old_native_ledger_version_rejected": true,
+        "no_reconciliation_or_quantity_change": true
+      }
+    },
+    {
+      "id": "S01_invalid_scans_do_not_create_pick_or_change_reservations",
+      "status": "PASS",
+      "evidence": {
+        "unknown_ambiguous_foreign_excess_incomplete_negative_denied": true,
+        "native_pick_not_created": true,
+        "stock_value_reservations_unchanged": true
+      }
+    },
+    {
+      "id": "S02_actual_WMS_scanner_service_native_pick_audit_and_replay",
+      "status": "PASS",
+      "evidence": {
+        "WMS_scanner_service_replay": {
+          "order_id": "SAL-ORD-2026-00016",
+          "pick_list": "STO-PICK-2026-00010",
+          "scan_verified": true
+        },
+        "native_comment": "cf6pnmrpeo",
+        "native_reservations": [
+          [
+            1.0,
+            "Pick List"
+          ],
+          [
+            2.0,
+            "Pick List"
+          ]
+        ],
+        "unchanged_quantity_and_value": true,
+        "no_hardware_attestation": true,
+        "different_actor_concurrent_command_replay": [
+          {
+            "order_id": "SAL-ORD-2026-00016",
+            "pick_list": "STO-PICK-2026-00010",
+            "scan_verified": true
+          },
+          {
+            "order_id": "SAL-ORD-2026-00016",
+            "pick_list": "STO-PICK-2026-00010",
+            "scan_verified": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "S03_manual_pick_evidence_and_cancelled_order_are_not_rewritten",
+      "status": "PASS",
+      "evidence": {
+        "manual_pick_not_relabelled_as_scanner_evidence": true,
+        "cancelled_order_denied": true
+      }
+    },
+    {
+      "id": "P01_three_WMS_batches_preserve_remainder_and_native_SLE_GL",
+      "status": "PASS",
+      "evidence": {
+        "order": "SAL-ORD-2026-00018",
+        "native_picks": [
+          "STO-PICK-2026-00012",
+          "STO-PICK-2026-00013",
+          "STO-PICK-2026-00014"
+        ],
+        "native_deliveries": [
+          "MAT-DN-2026-00009",
+          "MAT-DN-2026-00010",
+          "MAT-DN-2026-00011"
+        ],
+        "per_batch_native_SLE_value": -50,
+        "per_batch_native_GL_debit_credit": [
+          50,
+          50
+        ],
+        "remaining_reservation_after_each_batch": [
+          6,
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "id": "P02_concurrent_batch_replay_conflict_and_stale_history",
+      "status": "PASS",
+      "evidence": {
+        "different_actor_business_replay": [
+          {
+            "batch_id": "P02:batch",
+            "order_id": "SAL-ORD-2026-00019",
+            "pick_list": "STO-PICK-2026-00015",
+            "plan_hash": "03a1dc8a0e59987a7c810215ba3485e21bc49ba6fed7c65c16a2a6b7eb74e71a",
+            "shipment_batch": true
+          },
+          {
+            "batch_id": "P02:batch",
+            "order_id": "SAL-ORD-2026-00019",
+            "pick_list": "STO-PICK-2026-00015",
+            "plan_hash": "03a1dc8a0e59987a7c810215ba3485e21bc49ba6fed7c65c16a2a6b7eb74e71a",
+            "shipment_batch": true
+          }
+        ],
+        "same_batch_changed_payload_denied": true,
+        "stale_history_denied_before_and_after_ship": true,
+        "one_active_batch": true
+      }
+    },
+    {
+      "id": "P03_batch_scope_guards_and_per_delivery_quarantine_return",
+      "status": "PASS",
+      "evidence": {
+        "legacy_and_unpacked_and_foreign_order_commands_denied": true,
+        "quarantine_return_for_one_delivery": {
+          "against": "MAT-DN-2026-00014",
+          "return_note": "MAT-DN-2026-00015",
+          "warehouse": "P03 quarantine - TA"
+        },
+        "remaining_order_stays_reserved": true,
+        "native_SO_returned_qty_observed_not_assumed": [
+          0.0,
+          0.0
+        ],
+        "gross_fulfillment_from_submitted_outgoing_DN_rows": true
+      }
+    },
+    {
+      "id": "P04_competing_new_batches_and_concurrent_ship_have_one_effect",
+      "status": "PASS",
+      "evidence": {
+        "competing_new_batch_winners": 1,
+        "concurrent_ship_same_delivery": [
+          {
+            "delivery_note": "MAT-DN-2026-00017",
+            "order_id": "SAL-ORD-2026-00022",
+            "pick_list": "STO-PICK-2026-00019"
+          },
+          {
+            "delivery_note": "MAT-DN-2026-00017",
+            "order_id": "SAL-ORD-2026-00022",
+            "pick_list": "STO-PICK-2026-00019"
+          }
+        ],
+        "single_native_SLE_effect": [
+          -3.0,
+          -50.0
+        ]
+      }
+    },
+    {
+      "id": "P05_SIGKILL_after_first_batch_reservation_rolls_back_and_recovers",
+      "status": "PASS",
+      "evidence": {
+        "child_exit": -9,
+        "rollback_after_native_pick_and_first_SRE": true,
+        "original_order_reservations_preserved": true,
+        "new_process_replay": {
+          "batch_id": "P05:batch",
+          "order_id": "SAL-ORD-2026-00023",
+          "pick_list": "STO-PICK-2026-00021",
+          "plan_hash": "4df914d4d0d134b18f08e211722eb755cbfdfc00f9fb185aa59ac71c4895e57b",
+          "shipment_batch": true
+        }
+      }
+    },
+    {
+      "id": "P06_packed_batch_cancel_restores_reservation_and_keeps_history",
+      "status": "PASS",
+      "evidence": {
+        "native_cancelled_pick": "STO-PICK-2026-00023",
+        "deleted_draft_delivery": "MAT-DN-2026-00021",
+        "all_remaining_reservations_restored": true,
+        "replacement": {
+          "batch_id": "P06:replacement",
+          "order_id": "SAL-ORD-2026-00024",
+          "pick_list": "STO-PICK-2026-00024",
+          "plan_hash": "8064ac692c8688c16ced451adbbdd14b54e93c0d01b8702640d5915b52551c76",
+          "shipment_batch": true
+        },
+        "cancelled_history_prevents_ABA_stale_request": true
+      }
+    },
+    {
+      "id": "P07_old_DB_snapshot_cannot_hide_committed_batch_history",
+      "status": "PASS",
+      "evidence": {
+        "forced_old_REPEATABLE_READ_view": true,
+        "different_HTTP_actor_committed_first": true,
+        "current_native_history_rejected_stale_new_batch": {
+          "rejected": "Shipment history changed; refresh before creating a batch"
+        },
+        "one_native_pick_and_unchanged_reservations_before_ship": true
+      }
+    },
+    {
+      "id": "P08_old_DB_snapshot_pack_ship_cancel_keep_one_native_effect",
+      "status": "PASS",
+      "evidence": {
+        "forced_old_REPEATABLE_READ_views": 3,
+        "packed_cancel_saw_current_slip_and_restored_reservations": true,
+        "same_native_delivery_and_slip": {
+          "delivery_note": "MAT-DN-2026-00024",
+          "order_id": "SAL-ORD-2026-00026",
+          "packing_slip": "MAT-PAC-2026-00019",
+          "pick_list": "STO-PICK-2026-00027"
+        },
+        "same_native_shipment": {
+          "delivery_note": "MAT-DN-2026-00024",
+          "order_id": "SAL-ORD-2026-00026",
+          "pick_list": "STO-PICK-2026-00027"
+        },
+        "one_SLE_effect": [
+          -3.0,
+          -50.0
+        ]
+      }
+    },
+    {
+      "id": "P09_close_remainder_releases_only_unused_native_reservations",
+      "status": "PASS",
+      "evidence": {
+        "close": {
+          "close_hash": "e692a07f8846d18a539b0ad61a4db519eb919671902ea58864c34429cdb4c331",
+          "order_id": "SAL-ORD-2026-00028",
+          "remainder_closed": true,
+          "unshipped_units": 2
+        },
+        "submitted_order_and_original_quantities_preserved": true,
+        "only_unconsumed_SRE_cancelled": true,
+        "stock_value_SLE_GL_unchanged": true,
+        "replay_across_four_distinct_command_keys": true
+      }
+    },
+    {
+      "id": "P10_close_refuses_active_batch_and_stale_intent",
+      "status": "PASS",
+      "evidence": {
+        "close_after_explicit_cancel": {
+          "close_hash": "fde0ee2815868993938feca3cb12ca0cce5f6e4071a6cd22eb821f9f760ee8cc",
+          "order_id": "SAL-ORD-2026-00029",
+          "remainder_closed": true,
+          "unshipped_units": 2
+        },
+        "active_packed_batch_bad_reason_stale_history_and_quantity_rejected": true,
+        "cancelled_pick_retained_in_close_compare": true
+      }
+    },
+    {
+      "id": "P11_old_snapshot_and_concurrent_close_keep_one_native_effect",
+      "status": "PASS",
+      "evidence": {
+        "old_REPEATABLE_READ_close_rejected_current_batch_history": {
+          "rejected": "Shipment history changed; refresh before closing remainder"
+        },
+        "different_actor_close_results": [
+          {
+            "close_hash": "15db7632539e62990494b4e0520915c4d95d0268e0c5d9f1856b122ad69f9dee",
+            "order_id": "SAL-ORD-2026-00030",
+            "remainder_closed": true,
+            "unshipped_units": 2
+          },
+          {
+            "close_hash": "15db7632539e62990494b4e0520915c4d95d0268e0c5d9f1856b122ad69f9dee",
+            "order_id": "SAL-ORD-2026-00030",
+            "remainder_closed": true,
+            "unshipped_units": 2
+          }
+        ],
+        "one_release_and_native_close": true
+      }
+    },
+    {
+      "id": "P12_SIGKILL_between_reservation_release_and_close_rolls_back",
+      "status": "PASS",
+      "evidence": {
+        "owned_child_exit": -9,
+        "crash_after_all_unused_reservations_cancelled_before_close": true,
+        "rollback_restored_reservations_and_open_order": true,
+        "same_request_new_process_recovered": {
+          "close_hash": "8a20fbd494defd1a6b1b62b0a5ddcea7ea10be2f48a8e0278aad383797234e93",
+          "order_id": "SAL-ORD-2026-00031",
+          "remainder_closed": true,
+          "unshipped_units": 2
+        }
+      }
+    },
+    {
+      "id": "C01_distinct_orders_compete_for_one_last_native_unit",
+      "status": "PASS",
+      "evidence": {
+        "two_distinct_HTTP_actors_and_request_keys": true,
+        "physical_quantity": 1,
+        "one_success_one_validation_rejection_not_auth_failure": true,
+        "losing_order_not_persisted_and_receipt_only_SLE": true,
+        "one_native_SRE_for_winning_SO": true,
+        "winning_product": "TEST-LAST-UNIT",
+        "cancellation_released_exactly_one_unit": true,
+        "native_stock_value_unchanged": 10
+      }
+    },
+    {
+      "id": "C02_bundle_and_single_compete_for_the_same_last_component",
+      "status": "PASS",
+      "evidence": {
+        "two_distinct_HTTP_actors_and_request_keys": true,
+        "physical_quantity": 1,
+        "one_success_one_validation_rejection_not_auth_failure": true,
+        "losing_order_not_persisted_and_receipt_only_SLE": true,
+        "one_native_SRE_for_winning_SO": true,
+        "winning_product": "TEST-LAST-UNIT",
+        "cancellation_released_exactly_one_unit": true,
+        "native_stock_value_unchanged": 10
+      }
+    },
+    {
+      "id": "B01_rendered_existing_React_full_native_cycle",
+      "status": "BLOCKED",
+      "phase_complete": false,
+      "codex_start_authorized": false,
+      "exit_code": 2,
+      "scenarios": [],
+      "reason": "browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> /workspace/scratch/3592524597b3/browser-fresh/opt/google/chrome/chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-SZ6vkV --remote-debugging-pipe --no-startup-window\n<launched> pid=954\n[pid=954][err] [1024/074807.441852:WARNING:chrome/app/chrome_main_linux.cc:84] Read channel stable from /workspace/scratch/3592524597b3/browser-fresh/opt/google/chrome/CHROME_VERSION_EXTRA\n[pid=954][err] [954:954:1024/074807.447075:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)\n[pid=954][err] [1024/074807.447267:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)\n[pid=954][err] [1024/074807.447330:ERROR:third_party/crashpad/crashpad/util/file/directory_reader_posix.cc:43] opendir /proc/954/task: No such file or directory (2)\nCall log:\n  - <launching> /workspace/scratch/3592524597b3/browser-fresh/opt/google/chrome/chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-SZ6vkV --remote-debugging-pipe --no-startup-window\n  - <launched> pid=954\n  - [pid=954][err] [1024/074807.441852:WARNING:chrome/app/chrome_main_linux.cc:84] Read channel stable from /workspace/scratch/3592524597b3/browser-fresh/opt/google/chrome/CHROME_VERSION_EXTRA\n  - [pid=954][err] [954:954:1024/074807.447075:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)\n  - [pid=954][err] [1024/074807.447267:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)\n  - [pid=954][err] [1024/074807.447330:ERROR:third_party/crashpad/crashpad/util/file/directory_reader_posix.cc:43] opendir /proc/954/task: No such file or directory (2)\n  - [pid=954] <gracefully close start>\n  - [pid=954] <kill>\n  - [pid=954] <will force kill>\n  - [pid=954] <process did exit: exitCode=null, signal=SIGABRT>\n  - [pid=954] starting temporary directories cleanup\n  - [pid=954] finished temporary directories cleanup\n  - [pid=954] <gracefully close end>\n"
+    }
+  ],
+  "site": "wms-native-a.invalid",
+  "full_rendered_UI_proven": false,
+  "os_isolation_proven": false,
+  "fresh_site": true
+}

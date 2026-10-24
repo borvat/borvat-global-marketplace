@@ -1,0 +1,50 @@
+{
+  "sourceCommit": "b771e309191b9616007b6d83969202ff77629feb",
+  "nativeBaseline": "31e2db7c692dc0313c1cca7cebee17bbb6e2f923",
+  "scope": "session-observed local test/build outputs; raw final logs unavailable after execution-host disconnection",
+  "frontend": {
+    "pass": 27,
+    "fail": 0,
+    "typecheck": "PASS"
+  },
+  "components": {
+    "pass": 45,
+    "fail": 0,
+    "newCase": "catalogue failure stops announcing loading and shows translated retry instead"
+  },
+  "isolatedBuild": "PASS",
+  "isolatedHTTP": {
+    "status": "PASS",
+    "discoverStatus": 200,
+    "emailStatus": 405,
+    "providerCredentials": false
+  },
+  "editedLint": {
+    "errors": 0
+  },
+  "unchangedRootTestsAtF98": {
+    "foundation": 9,
+    "coreMoney": 10,
+    "prototype": 124,
+    "pass": true
+  },
+  "hostedCI": {
+    "run": 40066144087,
+    "status": "failure",
+    "jobs": "4 NOT_STARTED; external account/runner restriction",
+    "logs": "unavailable"
+  },
+  "render": {
+    "deploy": "dep-dbe427ss728c7393fhl0",
+    "status": "live",
+    "source": "b771e309191b9616007b6d83969202ff77629feb",
+    "finishedAt": "2026-10-24T05:25:55.049944Z",
+    "profile": "isolated browser demonstration; no hosted native backend"
+  },
+  "renderedRetestB771": "NOT_RUN",
+  "desktopScreenshots": "client-f98 actual screenshots; do not relabel source",
+  "mobile390": "NOT_RUN",
+  "mobile320": "NOT_RUN",
+  "fullProject": "OPEN",
+  "environment": "unavailable; connectors used only to preserve handoff and verify deployment"
+}

@@ -31,11 +31,25 @@ export function buyerLocation(href: string) {
     return raw && /^\d{1,7}$/.test(raw) ? Number(raw) : null;
   };
   const sort = url.searchParams.get("sort");
+  const language =
+    url.searchParams.get("lang") === "ar"
+      ? "ar"
+      : url.searchParams.get("lang") === "en"
+        ? "en"
+        : "nl";
   return {
     path: url.pathname,
     productId,
     country,
-    locale: country === "BE" ? "nl-BE" : "nl-NL",
+    language,
+    locale:
+      language === "ar"
+        ? "ar-NL"
+        : language === "en"
+          ? "en-NL"
+          : country === "BE"
+            ? "nl-BE"
+            : "nl-NL",
     query: url.searchParams.get("q") ?? "",
     category,
     sort: (sort === "price" || sort === "price-desc" ? sort : "title") as ProductSort,

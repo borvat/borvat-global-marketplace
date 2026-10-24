@@ -1,0 +1,261 @@
+{
+  "mode": "actual-local-native; payment simulator only; no carrier",
+  "cases": [
+    {
+      "name": "server-auth-seller-approval-native-quote-order",
+      "status": "PASS",
+      "evidence": {
+        "order": "BVT-TEST-31bfdf06-8201-4830-821d-a7bce6202d26",
+        "totalCents": 8000
+      }
+    },
+    {
+      "name": "real-native-reservation-and-seller-isolation",
+      "status": "PASS",
+      "evidence": {
+        "portions": [
+          {
+            "sellerId": "seller-a",
+            "company": "TEST-A",
+            "state": "reserved",
+            "references": {
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00172",
+                "sales_order": "SAL-ORD-2026-00034"
+              }
+            }
+          },
+          {
+            "sellerId": "seller-b",
+            "company": "TEST-B",
+            "state": "reserved",
+            "references": {
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00001",
+                "sales_order": "SAL-ORD-2026-00001"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "simulated-payment-separate-native-pick-pack-delivery-invoice",
+      "status": "PASS",
+      "evidence": {
+        "payment": "SIMULATOR, no provider",
+        "portions": [
+          {
+            "sellerId": "seller-a",
+            "company": "TEST-A",
+            "state": "receipted",
+            "references": {
+              "invoice": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "gross_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001"
+              },
+              "pack": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "order_id": "SAL-ORD-2026-00034",
+                "packing_slip": "MAT-PAC-2026-00025"
+              },
+              "pick": {
+                "order_id": "SAL-ORD-2026-00034",
+                "pick_list": "STO-PICK-2026-00036"
+              },
+              "receipt": {
+                "amount_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001",
+                "payment_entry": "ACC-PAY-2026-00001",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00172",
+                "sales_order": "SAL-ORD-2026-00034"
+              },
+              "ship": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "order_id": "SAL-ORD-2026-00034"
+              }
+            }
+          },
+          {
+            "sellerId": "seller-b",
+            "company": "TEST-B",
+            "state": "receipted",
+            "references": {
+              "invoice": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "gross_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001"
+              },
+              "pack": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "order_id": "SAL-ORD-2026-00001",
+                "packing_slip": "MAT-PAC-2026-00001"
+              },
+              "pick": {
+                "order_id": "SAL-ORD-2026-00001",
+                "pick_list": "STO-PICK-2026-00001"
+              },
+              "receipt": {
+                "amount_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001",
+                "payment_entry": "ACC-PAY-2026-00001",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00001",
+                "sales_order": "SAL-ORD-2026-00001"
+              },
+              "ship": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "order_id": "SAL-ORD-2026-00001"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "native-partial-return-credit-invoice-replay",
+      "status": "PASS",
+      "evidence": {
+        "portions": [
+          {
+            "sellerId": "seller-a",
+            "company": "TEST-A",
+            "state": "refund_recorded",
+            "references": {
+              "credit": {
+                "credit_note": "ACC-SINV-2026-00002",
+                "gross_minor": 2000,
+                "invoice": "ACC-SINV-2026-00001",
+                "return_note": "MAT-DN-2026-00031"
+              },
+              "invoice": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "gross_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001"
+              },
+              "pack": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "order_id": "SAL-ORD-2026-00034",
+                "packing_slip": "MAT-PAC-2026-00025"
+              },
+              "pick": {
+                "order_id": "SAL-ORD-2026-00034",
+                "pick_list": "STO-PICK-2026-00036"
+              },
+              "receipt": {
+                "amount_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001",
+                "payment_entry": "ACC-PAY-2026-00001",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "refund": {
+                "amount_minor": 2000,
+                "invoice": "ACC-SINV-2026-00002",
+                "payment_entry": "ACC-PAY-2026-00002",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00172",
+                "sales_order": "SAL-ORD-2026-00034"
+              },
+              "return": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "return_note": "MAT-DN-2026-00031"
+              },
+              "ship": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "order_id": "SAL-ORD-2026-00034"
+              }
+            }
+          },
+          {
+            "sellerId": "seller-b",
+            "company": "TEST-B",
+            "state": "refund_recorded",
+            "references": {
+              "credit": {
+                "credit_note": "ACC-SINV-2026-00002",
+                "gross_minor": 2000,
+                "invoice": "ACC-SINV-2026-00001",
+                "return_note": "MAT-DN-2026-00002"
+              },
+              "invoice": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "gross_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001"
+              },
+              "pack": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "order_id": "SAL-ORD-2026-00001",
+                "packing_slip": "MAT-PAC-2026-00001"
+              },
+              "pick": {
+                "order_id": "SAL-ORD-2026-00001",
+                "pick_list": "STO-PICK-2026-00001"
+              },
+              "receipt": {
+                "amount_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001",
+                "payment_entry": "ACC-PAY-2026-00001",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "refund": {
+                "amount_minor": 2000,
+                "invoice": "ACC-SINV-2026-00002",
+                "payment_entry": "ACC-PAY-2026-00002",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00001",
+                "sales_order": "SAL-ORD-2026-00001"
+              },
+              "return": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "return_note": "MAT-DN-2026-00002"
+              },
+              "ship": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "order_id": "SAL-ORD-2026-00001"
+              }
+            }
+          }
+        ],
+        "refund": "NOT_EXECUTED; provider unavailable"
+      }
+    },
+    {
+      "name": "distinct-buyer-orders-compete-for-last-native-unit",
+      "status": "PASS",
+      "evidence": [
+        {
+          "order": "BVT-TEST-72ec8de2-7351-4d1f-b7d7-8ffddbbb5fd8",
+          "command": "completed",
+          "native": {
+            "reservation": "MAT-SRE-2026-00174",
+            "sales_order": "SAL-ORD-2026-00035"
+          }
+        },
+        {
+          "order": "BVT-TEST-fc7df658-e8b6-44cf-8ea3-ab7cc468b4e7",
+          "command": "rejected",
+          "native": {
+            "reason": "NATIVE_VALIDATION_REJECTED",
+            "rejected": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "SIGKILL-after-real-remote-commit-and-local-service-restart",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'dispatching'\n- 'completed'\n"
+    }
+  ],
+  "status": "FAIL"
+}

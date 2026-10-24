@@ -3,7 +3,7 @@ import { readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const mode = process.argv[2];
-if (!["isolated", "default"].includes(mode))
+if (!["isolated", "default", "connected-test"].includes(mode))
   throw Error("Expected isolated or default build profile");
 const app = fileURLToPath(new URL("../../apps/marketplace/", import.meta.url));
 const guard = fileURLToPath(

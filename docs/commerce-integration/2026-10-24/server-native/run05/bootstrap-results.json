@@ -1,0 +1,152 @@
+{
+  "source_sha": "582469d37d4ff3f920e009bdd9cfe9ce5a5fe2f0",
+  "dirty_tracked": false,
+  "started_at_utc": "2026-10-24T04:44:17.801449+00:00",
+  "os_identity_isolation": "BLOCKED",
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/3592524597b3/native-runtime/src/mariadb-11.8.9-linux-systemd-x86_64/scripts/mariadb-install-db",
+        "--no-defaults",
+        "--basedir=/workspace/scratch/3592524597b3/native-runtime/src/mariadb-11.8.9-linux-systemd-x86_64",
+        "--datadir=/workspace/scratch/3592524597b3/surooh-new-native-vp4l2oh3/database",
+        "--auth-root-authentication-method=normal",
+        "--skip-test-db"
+      ],
+      "cwd": "/workspace/scratch/3592524597b3/wms-current",
+      "exit_code": 0,
+      "log": "database-init.log",
+      "sha256": "eb47688cbdf875de388f40bba014af42ab807303b009e133a43443671324c6ae"
+    },
+    {
+      "command": [
+        "/workspace/scratch/3592524597b3/native-runtime/src/mariadb-11.8.9-linux-systemd-x86_64/bin/mariadbd",
+        "--no-defaults",
+        "--user=root",
+        "--basedir=/workspace/scratch/3592524597b3/native-runtime/src/mariadb-11.8.9-linux-systemd-x86_64",
+        "--datadir=/workspace/scratch/3592524597b3/surooh-new-native-vp4l2oh3/database",
+        "--socket=",
+        "--pid-file=/workspace/scratch/3592524597b3/surooh-new-native-vp4l2oh3/maria.pid",
+        "--bind-address=127.0.0.1",
+        "--port=14306",
+        "--skip-log-bin",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+        "--innodb-buffer-pool-size=64M",
+        "--innodb-log-file-size=16M",
+        "--init-file=/workspace/scratch/3592524597b3/surooh-new-native-vp4l2oh3/private-init.sql"
+      ],
+      "pid": 52,
+      "kind": "owned service",
+      "log": "mariadb.log"
+    },
+    {
+      "command": [
+        "/workspace/scratch/3592524597b3/native-runtime/native/usr/bin/redis-server",
+        "--bind",
+        "127.0.0.1",
+        "--port",
+        "17379",
+        "--save",
+        "",
+        "--appendonly",
+        "no"
+      ],
+      "pid": 53,
+      "kind": "owned service",
+      "log": "redis.log"
+    },
+    {
+      "command": [
+        "/workspace/scratch/3592524597b3/native-runtime/erpnext-venv/bin/python",
+        "-c",
+        "import sys,json,importlib.metadata as m,frappe,erpnext,surooh_accounting,jwt;print(json.dumps({'python':sys.version,'frappe':frappe.__version__,'erpnext':erpnext.__version__,'pyjwt':jwt.__version__,'app_source':surooh_accounting.__file__,'packages':{x:m.version(x) for x in ['rq','redis','PyMySQL','Werkzeug']}}))"
+      ],
+      "cwd": "/workspace/scratch/3592524597b3/surooh-new-native-vp4l2oh3/bench/sites",
+      "exit_code": 0,
+      "log": "native-runtime.log",
+      "sha256": "bffe8273c649eecd9ac8673b25a152e7540b781132031297f10180e57bd1afc4"
+    },
+    {
+      "command": [
+        "/workspace/scratch/3592524597b3/native-runtime/erpnext-venv/bin/python",
+        "/workspace/scratch/3592524597b3/borvat-global-marketplace/scripts/commerce-integration/native-installer.py",
+        "--config",
+        "/workspace/scratch/3592524597b3/surooh-new-native-vp4l2oh3/private-bootstrap.json"
+      ],
+      "cwd": "/workspace/scratch/3592524597b3/surooh-new-native-vp4l2oh3/bench/sites",
+      "exit_code": 0,
+      "log": "site-install.log",
+      "sha256": "d67fc1a062ac7e4b8a2d0078a2a914201bd28ff932e13ea9790ca479217f0e0a"
+    }
+  ],
+  "source_archives": {
+    "frappe.tar.gz": "34087f9c8ea018ac79011ee95863c6b57bce6bc19e923b1545723b3ab994268e",
+    "frappe-16.52.0_files_verified": 4141,
+    "erpnext.tar.gz": "cfd1e3d4495a4e70e333a42aec1689552143dc6fc57faac5329cadef08dbc810",
+    "erpnext-16.52.0_files_verified": 5518
+  },
+  "accounting_sha": "dd0827be2634d8f0e59266a86da105b917586cdc",
+  "accounting_dirty": false,
+  "fresh_database": true,
+  "seed_restore_used": false,
+  "upstream_patched": false,
+  "status": "PARTIAL_NATIVE_EXECUTED",
+  "phase_complete": false,
+  "codex_start_authorized": false,
+  "merge_authorized": false,
+  "deploy_authorized": false,
+  "free_bytes_before": 5453168640,
+  "native_runtime": {
+    "python": "3.14.8 (main, Oct 14 2026, 01:04:34) [Clang 23.1.3 ]",
+    "frappe": "16.52.0",
+    "erpnext": "16.52.0",
+    "pyjwt": "2.13.0",
+    "app_source": "/workspace/scratch/3592524597b3/accounting-native/surooh_accounting/__init__.py",
+    "packages": {
+      "rq": "2.6.1",
+      "redis": "7.1.1",
+      "PyMySQL": "1.1.2",
+      "Werkzeug": "3.1.6"
+    }
+  },
+  "native_summary": {
+    "PASS": 55,
+    "FAIL": 0,
+    "BLOCKED": 1
+  },
+  "fresh_two_sites_installed": true,
+  "installed_site": "wms-native-a.invalid",
+  "service_shutdown": [
+    {
+      "name": "redis",
+      "exit_code": 0
+    },
+    {
+      "name": "mariadb",
+      "exit_code": 0
+    }
+  ],
+  "private_runtime_removed": true,
+  "fresh_install_succeeded": true,
+  "finished_at_utc": "2026-10-24T04:48:13.514549+00:00",
+  "log_hashes": {
+    "site-install.log": "d67fc1a062ac7e4b8a2d0078a2a914201bd28ff932e13ea9790ca479217f0e0a",
+    "redis.log": "645c0c47c20d208b9acf2d9c42858d273661b6cfda8603ae2528d87b37a68333",
+    "mariadb.log": "fa34a6c40578b96366a09e8140212f1de4330a74d93d46e0d6e67d93fcdf39c1",
+    "frappe-http.log": "6af29aac290c42789833fdd55952b5424ae87dc09bcac5486a4fa276a35da731",
+    "browser-cycle.log": "ffb5da97cdab996a62cd13e85ec5ef709e48ce178dd852593bf88fc32b57eefa",
+    "native-worker.log": "002ff4899a6347c93f147435d84fa5f170afad17710879579f69137178a10167",
+    "native-runtime.log": "bffe8273c649eecd9ac8673b25a152e7540b781132031297f10180e57bd1afc4",
+    "database-init.log": "eb47688cbdf875de388f40bba014af42ab807303b009e133a43443671324c6ae"
+  },
+  "source_after": {
+    "wms_sha": "582469d37d4ff3f920e009bdd9cfe9ce5a5fe2f0",
+    "accounting_sha": "dd0827be2634d8f0e59266a86da105b917586cdc",
+    "wms_dirty": false,
+    "accounting_dirty": false
+  },
+  "artifact_hashes": {
+    "native-tests.json": "15450131a1ce31420090e2ce3939808be500b61b097ca1c71f4c22ab46556f5f"
+  }
+}

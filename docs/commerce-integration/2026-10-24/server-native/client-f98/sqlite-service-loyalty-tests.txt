@@ -1,0 +1,25 @@
+✔ one native invoice source earns once across Marketplace/invoice channels and actual reopen (9.987165ms)
+✔ two actual connections cannot spend the last points twice; held funds need native discount proof (8.823932ms)
+✔ cumulative credits avoid partial rounding gains; expiry and repeated credits cannot double reverse (8.976543ms)
+✔ return of spent earnings records explicit debt; later earnings clear debt once without expiry reviving it (8.303733ms)
+✔ expired redemption releases and expires unspent lots only once; expired earn is not reversed into debt (7.064883ms)
+✔ server quote ignores no client monetary values, stale prices fail, same-key retry survives reopen (251.983974ms)
+✔ actual server sessions enforce guest, seller and administrator projections and immediate revocation (222.555075ms)
+✔ HTTP denies CSRF, invalid JSON, oversized requests, forged identity and cross-site reads (214.291519ms)
+✔ state transitions, duplicate simulation and durable journal are separate from payment provider proof (291.162064ms)
+✔ unknown stock outcome cannot masquerade as reserved or paid; suspension/expiry prevent checkout (221.992604ms)
+✔ authentication rejects wrong password, rates attempts, rotates and revokes sessions (562.300919ms)
+✔ saved guest checkout orchestrates WMS holds and compensates another seller rejection (238.147025ms)
+✔ current seller approval is checked after remote I/O and journal completion remains recoverable (219.334412ms)
+✔ failed simulated payment releases all confirmed WMS holds once and never permits late success (232.138731ms)
+✔ cancellation before dispatch creates no stock operation and an authenticated expiry sweep excludes pending money (263.369628ms)
+✔ inflight reserve versus guest cancellation compensates the native result before either can be paid (217.151369ms)
+✔ server checkout rejects malformed address fields independently of browser validation and normalizes safe retries (219.614213ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3257.374668

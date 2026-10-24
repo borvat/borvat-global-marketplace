@@ -1,3 +1,5 @@
+import { useShopCopy, useShopMoney } from "./i18n";
+import { useShopText } from "./i18n";
 import { useEffect, useState, type FormEvent } from "react";
 import { SlidersHorizontal, X, SearchX, Sofa, Trees, LayoutGrid } from "lucide-react";
 import { formatEur } from "../../../lib/format";
@@ -10,6 +12,8 @@ const CATEGORIES = ["Wonen", "Tuin"] as const;
 const categoryIcon = { Alles: LayoutGrid, Wonen: Sofa, Tuin: Trees };
 
 function PriceFilter() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { route, link, navigate } = useShop();
   const [min, setMin] = useState(route.minPrice?.toString() ?? "");
   const [max, setMax] = useState(route.maxPrice?.toString() ?? "");
@@ -82,6 +86,8 @@ function PriceFilter() {
 
 /** One filter panel instance: collapsible on mobile, always open from the lg breakpoint. */
 function FilterDisclosure() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const [open, setOpen] = useState(false);
   const [desktop, setDesktop] = useState(false);
   useEffect(() => {
@@ -111,6 +117,8 @@ function FilterDisclosure() {
 }
 
 function FilterPanel() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { route, link, navigate } = useShop();
   const set = (changes: Record<string, string | null>) =>
     navigate(link("/discover", changes), true);
@@ -128,7 +136,7 @@ function FilterPanel() {
               onChange={() => set({ category: c === "Alles" ? null : c })}
               className="h-4 w-4 accent-[var(--accent)]"
             />
-            {c}
+            {copy(c)}
           </label>
         ))}
       </fieldset>
@@ -148,6 +156,9 @@ function FilterPanel() {
 }
 
 function ActiveFilters({ clearAll }: { clearAll: () => void }) {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const { route, link, navigate } = useShop();
   const chips: [string, Record<string, null>][] = [];
   if (route.query) chips.push([`“${route.query}”`, { q: null }]);
@@ -160,7 +171,7 @@ function ActiveFilters({ clearAll }: { clearAll: () => void }) {
   return (
     <div
       className="flex flex-wrap items-center gap-2"
-      aria-label="Actieve filters"
+      aria-label={copy("Actieve filters")}
       data-testid="active-filters"
     >
       {chips.map(([label, change]) => (
@@ -170,7 +181,7 @@ function ActiveFilters({ clearAll }: { clearAll: () => void }) {
           data-testid="active-filter-chip"
           onClick={() => navigate(link("/discover", change), true)}
           className="inline-flex items-center gap-1 rounded-full border border-border bg-muted px-3 py-1 text-sm hover:bg-muted/70 focus-visible:outline-2 focus-visible:outline-ring"
-          aria-label={`Verwijder filter ${label}`}
+          aria-label={`${copy("Verwijder filter")} ${label}`}
         >
           {label} <X aria-hidden className="h-3.5 w-3.5" />
         </button>
@@ -188,9 +199,15 @@ function ActiveFilters({ clearAll }: { clearAll: () => void }) {
 }
 
 function ProductGrid({ ids }: { ids: string[] }) {
+  const copy = useShopCopy();
+  const formatEur = useShopMoney();
+  const nl = useShopText();
   const { catalog, link } = useShop();
   return (
-    <ul aria-label="Productresultaten" className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+    <ul
+      aria-label={copy("Productresultaten")}
+      className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3"
+    >
       {ids.map((id) => {
         const p = catalog.products.find((x) => x.id === id)!;
         const href = link(`/product/${encodeURIComponent(id)}`, { offer: null, sku: null });
@@ -202,7 +219,7 @@ function ProductGrid({ ids }: { ids: string[] }) {
           >
             <ProductMedia seed={id} title={p.title} />
             <p className="mt-3 text-xs uppercase tracking-wide text-muted-foreground">
-              {p.category}
+              {copy(p.category)}
             </p>
             <h2 className="mt-1 line-clamp-2 text-sm font-semibold leading-snug sm:text-base">
               <LocalLink
@@ -234,6 +251,8 @@ function ProductGrid({ ids }: { ids: string[] }) {
 }
 
 function SkeletonGrid() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   return (
     <div role="status" aria-live="polite" data-testid="catalog-loading" className="space-y-3">
       <span className="sr-only">{nl.loading}</span>
@@ -251,6 +270,8 @@ function SkeletonGrid() {
 }
 
 export function LoadError() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { retry } = useShop();
   return (
     <div
@@ -267,6 +288,8 @@ export function LoadError() {
 }
 
 export function DiscoveryView() {
+  const copy = useShopCopy();
+  const nl = useShopText();
   const { route, catalog, load, link, navigate } = useShop();
   const filtered =
     !!route.query ||
@@ -292,17 +315,18 @@ export function DiscoveryView() {
       {!filtered && (
         <section className="overflow-hidden rounded-2xl bg-ink px-6 py-8 text-ink-foreground sm:px-10 sm:py-12">
           <p className="text-sm font-semibold uppercase tracking-widest text-red-300">
-            Testcollectie
+            {copy("Testcollectie")}
           </p>
           <h1
             tabIndex={-1}
             className="mt-2 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-5xl"
           >
-            Wonen en tuin, op jouw manier.
+            {copy("Wonen en tuin, op jouw manier.")}
           </h1>
           <p className="mt-3 max-w-xl text-sm opacity-85 sm:text-base">
-            Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te
-            betalen.
+            {copy(
+              "Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te betalen.",
+            )}
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {(["Wonen", "Tuin"] as const).map((c) => {
@@ -314,7 +338,7 @@ export function DiscoveryView() {
                   data-testid={`category-tile-${c.toLowerCase()}`}
                   className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 font-semibold hover:bg-white/20 focus-visible:outline-2"
                 >
-                  <Icon aria-hidden className="h-4 w-4" /> {c}
+                  <Icon aria-hidden className="h-4 w-4" /> {copy(c)}
                 </LocalLink>
               );
             })}
@@ -324,20 +348,24 @@ export function DiscoveryView() {
       {filtered && (
         <h1 tabIndex={-1} className="text-2xl font-bold sm:text-3xl">
           {route.query
-            ? `Zoekresultaten voor “${route.query}”`
+            ? `${copy("Zoekresultaten voor")} “${route.query}”`
             : route.category !== "Alles"
-              ? route.category
-              : "Alle producten"}
+              ? copy(route.category)
+              : copy("Alle producten")}
         </h1>
       )}
       <div className="grid gap-6 lg:grid-cols-[16rem_1fr]">
         <aside aria-label={nl.filters} className="lg:sticky lg:top-24 lg:self-start">
           <FilterDisclosure />
         </aside>
-        <section className="min-w-0 space-y-4" aria-label="Resultaten">
+        <section className="min-w-0 space-y-4" aria-label={copy("Resultaten")}>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p role="status" data-testid="results-count" className="font-semibold">
-              {load.status === "ready" ? nl.results(results.length) : nl.loading}
+              {load.status === "ready"
+                ? nl.results(results.length)
+                : load.status === "error"
+                  ? nl.loadError
+                  : nl.loading}
             </p>
             <div className="flex items-center gap-2">
               <label htmlFor="buyer-sort" className="text-sm">

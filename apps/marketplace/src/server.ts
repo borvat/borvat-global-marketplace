@@ -2,7 +2,11 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
-import { ISOLATED_COMMERCE, isolatedCommerceRequestStatus } from "./lib/commercial/runtime-mode";
+import {
+  CONNECTED_TEST_COMMERCE,
+  ISOLATED_COMMERCE,
+  isolatedCommerceRequestStatus,
+} from "./lib/commercial/runtime-mode";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -47,12 +51,22 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    if (CONNECTED_TEST_COMMERCE && new URL(request.url).pathname.startsWith("/api/commerce/")) {
+      try {
+        const { connectedTestHandler } =
+          await import("../../../packages/commerce-server/runtime.mjs");
+        return (await connectedTestHandler(request)) ?? new Response("Not found", { status: 404 });
+      } catch {
+        return Response.json({ error: "CONNECTED_TEST_UNAVAILABLE" }, { status: 503 });
+      }
+    }
     if (ISOLATED_COMMERCE) {
       const status = isolatedCommerceRequestStatus(request.method, new URL(request.url).pathname);
-      if (status !== 200) return new Response(status === 405 ? "Method not allowed" : "Not found", {
-        status,
-        headers: status === 405 ? { Allow: "GET, HEAD" } : undefined,
-      });
+      if (status !== 200)
+        return new Response(status === 405 ? "Method not allowed" : "Not found", {
+          status,
+          headers: status === 405 ? { Allow: "GET, HEAD" } : undefined,
+        });
     }
     try {
       const handler = await getServerEntry();
