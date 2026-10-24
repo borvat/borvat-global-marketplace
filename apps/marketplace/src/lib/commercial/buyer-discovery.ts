@@ -1,4 +1,4 @@
-import type { DemoSnapshot } from "./demo-adapter";
+import type { DemoSnapshot, ProductSort } from "./demo-adapter";
 import { buyerCatalog, rehearsalCatalog } from "./catalog-rehearsal";
 
 export type BuyerCountry = "NL" | "BE";
@@ -18,11 +18,19 @@ export function buyerLocation(href: string) {
     ? url.searchParams.get("category")!
     : "Alles";
   let productId: string | null = null;
+  let orderId: string | null = null;
   try {
     if (url.pathname.startsWith("/product/")) productId = decodeURIComponent(url.pathname.slice(9));
+    if (url.pathname.startsWith("/bestelling/"))
+      orderId = decodeURIComponent(url.pathname.slice(12));
   } catch {
     /* Malformed paths render the unknown-product state. */
   }
+  const euros = (key: string) => {
+    const raw = url.searchParams.get(key);
+    return raw && /^\d{1,7}$/.test(raw) ? Number(raw) : null;
+  };
+  const sort = url.searchParams.get("sort");
   return {
     path: url.pathname,
     productId,
@@ -30,7 +38,12 @@ export function buyerLocation(href: string) {
     locale: country === "BE" ? "nl-BE" : "nl-NL",
     query: url.searchParams.get("q") ?? "",
     category,
-    sort: url.searchParams.get("sort") === "price" ? ("price" as const) : ("title" as const),
+    sort: (sort === "price" || sort === "price-desc" ? sort : "title") as ProductSort,
+    minPrice: euros("min"),
+    maxPrice: euros("max"),
+    inStock: url.searchParams.get("stock") === "1",
+    orderId,
+    simulateCatalogError: url.searchParams.get("testfout") === "catalogus",
     offerId: url.searchParams.get("offer"),
     skuId: url.searchParams.get("sku"),
   };

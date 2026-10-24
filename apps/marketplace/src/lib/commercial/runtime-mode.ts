@@ -3,8 +3,9 @@ export const ISOLATED_COMMERCE = import.meta.env?.VITE_BORVAT_RUNTIME === "isola
 
 export function isIsolatedCommercePath(pathname: string) {
   return (
-    ["/", "/discover", "/cart", "/requests", "/workbench"].includes(pathname) ||
-    /^\/product\/[^/]+$/.test(pathname)
+    ["/", "/discover", "/cart", "/afrekenen", "/requests", "/workbench"].includes(pathname) ||
+    /^\/product\/[^/]+$/.test(pathname) ||
+    /^\/bestelling\/[^/]+$/.test(pathname)
   );
 }
 
