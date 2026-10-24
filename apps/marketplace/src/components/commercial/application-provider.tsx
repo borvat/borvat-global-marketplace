@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { useRouter } from "@tanstack/react-router";
 import { BuyerJourney } from "./buyer-journey";
 import {
@@ -6,6 +6,7 @@ import {
   type CommercialDemoAdapter,
 } from "../../lib/commercial/demo-adapter";
 import { createTanStackBuyerNavigation } from "../../lib/commercial/tanstack-navigation";
+import { browserTestStorage } from "../../lib/commercial/test-storage";
 
 const ApplicationContext = createContext<CommercialDemoAdapter | null>(null);
 let browserTabAdapter: CommercialDemoAdapter | undefined;
@@ -21,6 +22,10 @@ function createIsolatedAdapter() {
 /** One command store per browser tab or SSR request, never a server process singleton. */
 export function IsolatedCommerceProvider({ children }: { children: ReactNode }) {
   const [adapter] = useState(createIsolatedAdapter);
+  // Cart and TEST- orders are restored after hydration so SSR markup never depends on browser storage.
+  useEffect(() => {
+    adapter.restore(browserTestStorage());
+  }, [adapter]);
   return <ApplicationContext.Provider value={adapter}>{children}</ApplicationContext.Provider>;
 }
 

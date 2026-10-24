@@ -17,6 +17,7 @@ import { Route as McpRouteImport } from './routes/mcp'
 import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AfrekenenRouteImport } from './routes/afrekenen'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,6 +25,7 @@ import { Route as StoreSlugRouteImport } from './routes/store.$slug'
 import { Route as SellerIdRouteImport } from './routes/seller.$id'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
 import { Route as CSlugRouteImport } from './routes/c.$slug'
+import { Route as BestellingIdRouteImport } from './routes/bestelling.$id'
 import { Route as AuthenticatedWishlistRouteImport } from './routes/_authenticated/wishlist'
 import { Route as AuthenticatedOwnerReviewRouteImport } from './routes/_authenticated/owner-review'
 import { Route as AuthenticatedOrdersRouteImport } from './routes/_authenticated/orders'
@@ -130,6 +132,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AfrekenenRoute = AfrekenenRouteImport.update({
+  id: '/afrekenen',
+  path: '/afrekenen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccountRoute = AccountRouteImport.update({
   id: '/account',
   path: '/account',
@@ -162,6 +169,11 @@ const ProductIdRoute = ProductIdRouteImport.update({
 const CSlugRoute = CSlugRouteImport.update({
   id: '/c/$slug',
   path: '/c/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestellingIdRoute = BestellingIdRouteImport.update({
+  id: '/bestelling/$id',
+  path: '/bestelling/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedWishlistRoute = AuthenticatedWishlistRouteImport.update({
@@ -548,6 +560,7 @@ const AuthenticatedSellerProductsIdEditRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
+  '/afrekenen': typeof AfrekenenRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/discover': typeof DiscoverRoute
@@ -564,6 +577,7 @@ export interface FileRoutesByFullPath {
   '/orders': typeof AuthenticatedOrdersRoute
   '/owner-review': typeof AuthenticatedOwnerReviewRoute
   '/wishlist': typeof AuthenticatedWishlistRoute
+  '/bestelling/$id': typeof BestellingIdRoute
   '/c/$slug': typeof CSlugRoute
   '/product/$id': typeof ProductIdRoute
   '/seller/$id': typeof SellerIdRoute
@@ -629,6 +643,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
+  '/afrekenen': typeof AfrekenenRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/discover': typeof DiscoverRoute
@@ -643,6 +658,7 @@ export interface FileRoutesByTo {
   '/orders': typeof AuthenticatedOrdersRoute
   '/owner-review': typeof AuthenticatedOwnerReviewRoute
   '/wishlist': typeof AuthenticatedWishlistRoute
+  '/bestelling/$id': typeof BestellingIdRoute
   '/c/$slug': typeof CSlugRoute
   '/product/$id': typeof ProductIdRoute
   '/seller/$id': typeof SellerIdRoute
@@ -709,6 +725,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/account': typeof AccountRoute
+  '/afrekenen': typeof AfrekenenRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/discover': typeof DiscoverRoute
@@ -725,6 +742,7 @@ export interface FileRoutesById {
   '/_authenticated/orders': typeof AuthenticatedOrdersRoute
   '/_authenticated/owner-review': typeof AuthenticatedOwnerReviewRoute
   '/_authenticated/wishlist': typeof AuthenticatedWishlistRoute
+  '/bestelling/$id': typeof BestellingIdRoute
   '/c/$slug': typeof CSlugRoute
   '/product/$id': typeof ProductIdRoute
   '/seller/$id': typeof SellerIdRoute
@@ -792,6 +810,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/account'
+    | '/afrekenen'
     | '/auth'
     | '/cart'
     | '/discover'
@@ -808,6 +827,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/owner-review'
     | '/wishlist'
+    | '/bestelling/$id'
     | '/c/$slug'
     | '/product/$id'
     | '/seller/$id'
@@ -873,6 +893,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/account'
+    | '/afrekenen'
     | '/auth'
     | '/cart'
     | '/discover'
@@ -887,6 +908,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/owner-review'
     | '/wishlist'
+    | '/bestelling/$id'
     | '/c/$slug'
     | '/product/$id'
     | '/seller/$id'
@@ -952,6 +974,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/account'
+    | '/afrekenen'
     | '/auth'
     | '/cart'
     | '/discover'
@@ -968,6 +991,7 @@ export interface FileRouteTypes {
     | '/_authenticated/orders'
     | '/_authenticated/owner-review'
     | '/_authenticated/wishlist'
+    | '/bestelling/$id'
     | '/c/$slug'
     | '/product/$id'
     | '/seller/$id'
@@ -1035,6 +1059,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AccountRoute: typeof AccountRoute
+  AfrekenenRoute: typeof AfrekenenRoute
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   DiscoverRoute: typeof DiscoverRoute
@@ -1045,6 +1070,7 @@ export interface RootRouteChildren {
   WorkbenchRoute: typeof WorkbenchRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  BestellingIdRoute: typeof BestellingIdRoute
   CSlugRoute: typeof CSlugRoute
   ProductIdRoute: typeof ProductIdRoute
   StoreSlugRoute: typeof StoreSlugRoute
@@ -1113,6 +1139,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/afrekenen': {
+      id: '/afrekenen'
+      path: '/afrekenen'
+      fullPath: '/afrekenen'
+      preLoaderRoute: typeof AfrekenenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/account': {
       id: '/account'
       path: '/account'
@@ -1160,6 +1193,13 @@ declare module '@tanstack/react-router' {
       path: '/c/$slug'
       fullPath: '/c/$slug'
       preLoaderRoute: typeof CSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bestelling/$id': {
+      id: '/bestelling/$id'
+      path: '/bestelling/$id'
+      fullPath: '/bestelling/$id'
+      preLoaderRoute: typeof BestellingIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/wishlist': {
@@ -1844,6 +1884,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AccountRoute: AccountRoute,
+  AfrekenenRoute: AfrekenenRoute,
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   DiscoverRoute: DiscoverRoute,
@@ -1855,6 +1896,7 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  BestellingIdRoute: BestellingIdRoute,
   CSlugRoute: CSlugRoute,
   ProductIdRoute: ProductIdRoute,
   StoreSlugRoute: StoreSlugRoute,

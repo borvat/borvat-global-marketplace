@@ -1,4 +1,15 @@
 import { demoProducts } from "../../demo/products";
+import { productDetails } from "./demo-product-details";
+import { normalizeCheckout, validateCheckout, type CheckoutInput } from "./checkout-validation";
+import {
+  MAX_LINE_QUANTITY,
+  lineTotalCents,
+  maxOrderable,
+  orderTotals,
+  type ShippingMethodId,
+  type TestPaymentMethod,
+} from "./shop-pricing";
+import type { ShopStorage } from "./test-storage";
 
 export type DemoProduct = { id: string; title: string; category: string; image: null };
 export type DemoOffer = {
@@ -15,6 +26,11 @@ export type DemoOffer = {
   state: "published" | "draft" | "review";
 };
 export type DemoCartLine = { offerId: string; quantity: number };
+export type TestCheckoutDetails = Omit<CheckoutInput, "acceptTest"> & {
+  subtotalCents: number;
+  shippingCents: number;
+  vatIncludedCents: number;
+};
 export type DemoOrder = {
   id: string;
   status: "aanvraag" | "voorbereid";
@@ -29,8 +45,11 @@ export type DemoOrder = {
   })[];
   totalCents: number;
   createdAt: string;
-  payment: "disabled";
+  payment: "disabled" | TestPaymentMethod;
   preparedSellerIds: string[];
+  /** Present only on TEST- checkout orders: no payment, shipment or stock movement occurred. */
+  checkout?: TestCheckoutDetails;
+  idempotencyKey?: string;
 };
 export type DemoSnapshot = {
   mode: "synthetic-memory-only";
@@ -38,6 +57,8 @@ export type DemoSnapshot = {
   offers: DemoOffer[];
   cart: DemoCartLine[];
   orders: DemoOrder[];
+  /** False until browser test storage has been read (always false during SSR). */
+  restored?: boolean;
 };
 export type DemoQuote = {
   lines: (DemoCartLine & { offer: DemoOffer; product: DemoProduct; lineTotalCents: number })[];
@@ -51,6 +72,8 @@ export interface CommercialDemoAdapter {
   quote(): DemoQuote;
   setQuantity(offerId: string, quantity: number): void;
   submitDemoRequest(): string;
+  placeTestOrder(input: CheckoutInput, idempotencyKey: string): string;
+  restore(storage: ShopStorage | null): void;
   setOfferPrice(offerId: string, cents: number): void;
   requestReview(offerId: string): void;
   moderate(offerId: string, decision: "publish" | "draft"): void;
@@ -58,12 +81,18 @@ export interface CommercialDemoAdapter {
   reset(): void;
 }
 
+const neutralTitles: Record<string, string> = {
+  prd_002: "Linnen bankstel 3-zits",
+  prd_006: "Keramische plantenpot — off-white",
+};
+
 function initialSnapshot(): DemoSnapshot {
   // Reuse original, explicitly labelled Lovable demo fixtures. No real customer data.
   const selected = demoProducts.slice(0, 9);
   const products = selected.map((p, i) => ({
     id: p.id,
-    title: p.title,
+    // Variant-neutral titles where the test shop offers several colours/sizes.
+    title: neutralTitles[p.id] ?? p.title,
     category: i < 6 ? "Wonen" : "Tuin",
     image: null,
   }));
@@ -74,7 +103,8 @@ function initialSnapshot(): DemoSnapshot {
     sellerName: i % 2 === 0 ? "Voorbeeldwinkel A" : "Voorbeeldwinkel B",
     priceCents: p.priceCents,
     skuId: `sku-${p.id}`,
-    variant: "Voorbeeldvariant",
+    variant:
+      p.id === "prd_002" ? "Antraciet" : p.id === "prd_006" ? "XL (45 cm)" : "Voorbeeldvariant",
     packQuantity: 1,
     availabilityExample: p.stockAvailable,
     delivery: p.deliveryPromise,
@@ -99,7 +129,25 @@ function initialSnapshot(): DemoSnapshot {
     availabilityExample: Math.floor(offers[0].availabilityExample / 2),
     delivery: "Voorbeeld: verpakking van 2",
   });
-  return { mode: "synthetic-memory-only", products, offers, cart: [], orders: [] };
+  // Synthetic colour variant fixture for exercising variant selection.
+  offers.push({
+    ...offers[1],
+    id: "demo-offer-2-zandbeige",
+    skuId: `sku-${selected[1].id}-zandbeige`,
+    variant: "Zandbeige",
+    priceCents: offers[1].priceCents + 5000,
+    availabilityExample: 3,
+  });
+  // Synthetic low-priced size variant so paid standard shipping (< € 50) is reachable.
+  offers.push({
+    ...offers[5],
+    id: "demo-offer-6-medium",
+    skuId: `sku-${selected[5].id}-medium`,
+    variant: "Medium (30 cm)",
+    priceCents: 2995,
+    availabilityExample: 20,
+  });
+  return { mode: "synthetic-memory-only", products, offers, cart: [], orders: [], restored: false };
 }
 
 function money(cents: number) {
@@ -115,14 +163,52 @@ export function parseDemoPrice(value: string): number {
   return cents;
 }
 
+function randomTestId() {
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const bytes = new Uint8Array(8);
+  globalThis.crypto.getRandomValues(bytes);
+  return "TEST-" + Array.from(bytes, (b) => alphabet[b % alphabet.length]).join("");
+}
+
+type Persisted = { version: 1; cart: DemoCartLine[]; orders: DemoOrder[] };
+function readPersisted(raw: string | null, offers: DemoOffer[]): Persisted | null {
+  if (!raw) return null;
+  try {
+    const data = JSON.parse(raw) as Partial<Persisted>;
+    if (data.version !== 1) return null;
+    const cart = (Array.isArray(data.cart) ? data.cart : []).filter(
+      (line) =>
+        offers.some((offer) => offer.id === line?.offerId) &&
+        Number.isInteger(line.quantity) &&
+        line.quantity >= 1 &&
+        line.quantity <= MAX_LINE_QUANTITY,
+    );
+    const orders = (Array.isArray(data.orders) ? data.orders : []).filter(
+      (order) =>
+        typeof order?.id === "string" &&
+        /^(TEST|DEMO)-[A-Z0-9]+$/.test(order.id) &&
+        Array.isArray(order.lines) &&
+        Number.isSafeInteger(order.totalCents),
+    );
+    return { version: 1, cart, orders };
+  } catch {
+    return null;
+  }
+}
+
 export function createCommercialDemoAdapter(
   now: () => string = () => new Date().toISOString(),
+  newTestId: () => string = randomTestId,
 ): CommercialDemoAdapter {
   let snapshot = initialSnapshot();
   let sequence = 0;
+  let storage: ShopStorage | null = null;
   const listeners = new Set<() => void>();
   const commit = (next: DemoSnapshot) => {
     snapshot = next;
+    storage?.write(
+      JSON.stringify({ version: 1, cart: next.cart, orders: next.orders } satisfies Persisted),
+    );
     listeners.forEach((listener) => listener());
   };
   const findOffer = (id: string) => {
@@ -138,7 +224,12 @@ export function createCommercialDemoAdapter(
         throw new Error("Een aanbod is niet meer zichtbaar. Verwijder het uit je mandje.");
       if (line.quantity > offer.availabilityExample)
         throw new Error("Pas de hoeveelheid aan de voorbeeldbeschikbaarheid aan.");
-      return { ...line, offer, product, lineTotalCents: offer.priceCents * line.quantity };
+      return {
+        ...line,
+        offer,
+        product,
+        lineTotalCents: lineTotalCents(offer.priceCents, line.quantity),
+      };
     });
     return {
       lines,
@@ -147,6 +238,18 @@ export function createCommercialDemoAdapter(
       paymentEnabled: false,
     };
   }
+  const orderLines = (value: DemoQuote) =>
+    value.lines.map(({ offer, product, quantity, offerId }) => ({
+      offerId,
+      quantity,
+      title: product.title,
+      sellerId: offer.sellerId,
+      sellerName: offer.sellerName,
+      unitPriceCents: offer.priceCents,
+      skuId: offer.skuId,
+      variant: offer.variant,
+      packQuantity: offer.packQuantity,
+    }));
   return {
     getSnapshot: () => snapshot,
     subscribe: (listener) => {
@@ -158,12 +261,20 @@ export function createCommercialDemoAdapter(
     quote,
     setQuantity(offerId, quantity) {
       const offer = findOffer(offerId);
-      if (!Number.isInteger(quantity) || quantity < 0 || quantity > 99)
-        throw new Error("Kies een heel aantal tussen 0 en 99.");
-      if (quantity > 0 && (offer.state !== "published" || quantity > offer.availabilityExample))
-        throw new Error("Dit aantal is niet beschikbaar in het voorbeeld.");
+      if (!Number.isInteger(quantity) || quantity < 0)
+        throw new Error("Kies een heel aantal van 1 of meer.");
+      if (quantity > 0 && offer.state !== "published")
+        throw new Error("Dit artikel is niet meer beschikbaar.");
+      if (quantity > 0 && offer.availabilityExample < 1)
+        throw new Error("Dit artikel is momenteel niet leverbaar.");
+      if (quantity > MAX_LINE_QUANTITY)
+        throw new Error(`Je kunt maximaal ${MAX_LINE_QUANTITY} stuks per artikel bestellen.`);
+      if (quantity > offer.availabilityExample)
+        throw new Error(`Er zijn nog maar ${maxOrderable(offer.availabilityExample)} beschikbaar.`);
+      const existing = snapshot.cart.findIndex((line) => line.offerId === offerId);
       const cart = snapshot.cart.filter((line) => line.offerId !== offerId);
-      if (quantity > 0) cart.push({ offerId, quantity });
+      if (quantity > 0)
+        cart.splice(existing < 0 ? cart.length : existing, 0, { offerId, quantity });
       commit({ ...snapshot, cart });
     },
     submitDemoRequest() {
@@ -177,21 +288,55 @@ export function createCommercialDemoAdapter(
         payment: "disabled",
         preparedSellerIds: [],
         totalCents: value.totalCents,
-        lines: value.lines.map(({ offer, product, quantity, offerId }) => ({
-          offerId,
-          quantity,
-          title: product.title,
-          sellerId: offer.sellerId,
-          sellerName: offer.sellerName,
-          unitPriceCents: offer.priceCents,
-          skuId: offer.skuId,
-          variant: offer.variant,
-          packQuantity: offer.packQuantity,
-        })),
+        lines: orderLines(value),
       };
       // Local review request only: no stock mutation, reservation, invoice or financial entry.
       commit({ ...snapshot, cart: [], orders: [...snapshot.orders, order] });
       return id;
+    },
+    placeTestOrder(input, idempotencyKey) {
+      if (!idempotencyKey) throw new Error("Ontbrekende bestelsleutel.");
+      const previous = snapshot.orders.find((order) => order.idempotencyKey === idempotencyKey);
+      if (previous) return previous.id;
+      const errors = validateCheckout(input);
+      if (Object.keys(errors).length) throw new Error("Controleer de gemarkeerde velden.");
+      const value = quote();
+      if (!value.lines.length) throw new Error("Je mandje is leeg.");
+      const lines = orderLines(value);
+      const totals = orderTotals(lines, input.shippingMethod as ShippingMethodId);
+      const { acceptTest: _accepted, ...customer } = normalizeCheckout(input);
+      let id = newTestId();
+      while (snapshot.orders.some((order) => order.id === id)) id = newTestId();
+      const order: DemoOrder = {
+        id,
+        status: "aanvraag",
+        createdAt: now(),
+        payment: input.paymentMethod,
+        preparedSellerIds: [],
+        totalCents: totals.totalCents,
+        lines,
+        checkout: { ...customer, ...totals, shippingCents: totals.shippingCents },
+        idempotencyKey,
+      };
+      // Test order only: no payment, carrier booking, WMS reservation or Accounting entry.
+      commit({ ...snapshot, cart: [], orders: [...snapshot.orders, order] });
+      return id;
+    },
+    restore(next) {
+      if (snapshot.restored) return;
+      const persisted = readPersisted(next?.read() ?? null, snapshot.offers);
+      if (persisted)
+        sequence = Math.max(
+          0,
+          ...persisted.orders.map((o) =>
+            o.id.startsWith("DEMO-") ? Number(o.id.slice(5)) || 0 : 0,
+          ),
+        );
+      storage = next;
+      const merged = persisted
+        ? { cart: persisted.cart, orders: persisted.orders }
+        : { cart: snapshot.cart, orders: snapshot.orders };
+      commit({ ...snapshot, ...merged, restored: true });
     },
     setOfferPrice(id, cents) {
       money(cents);
@@ -245,15 +390,35 @@ export function createCommercialDemoAdapter(
     },
     reset() {
       sequence = 0;
-      commit(initialSnapshot());
+      commit({ ...initialSnapshot(), restored: snapshot.restored });
     },
   };
 }
 
-export function selectDemoProducts(
-  snapshot: DemoSnapshot,
-  options: { query: string; category: string; sort: "title" | "price" },
-) {
+type SelectableSnapshot = {
+  products: { id: string; title: string; category: string }[];
+  offers: { productId: string; state: string; priceCents: number; availabilityExample: number }[];
+};
+export type ProductSort = "title" | "price" | "price-desc";
+export function normalizeSearch(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLocaleLowerCase("nl")
+    .trim();
+}
+
+export function selectDemoProducts<T extends SelectableSnapshot>(
+  snapshot: T,
+  options: {
+    query: string;
+    category: string;
+    sort: ProductSort;
+    minCents?: number | null;
+    maxCents?: number | null;
+    inStockOnly?: boolean;
+  },
+): T["products"] {
   const published = snapshot.offers.filter((offer) => offer.state === "published");
   const price = (productId: string) =>
     Math.min(
@@ -261,16 +426,29 @@ export function selectDemoProducts(
         .filter((offer) => offer.productId === productId)
         .map((offer) => offer.priceCents),
     );
+  const available = (productId: string) =>
+    published.some((offer) => offer.productId === productId && offer.availabilityExample > 0);
+  const terms = normalizeSearch(options.query).split(/\s+/).filter(Boolean);
   return snapshot.products
-    .filter(
-      (product) =>
-        published.some((offer) => offer.productId === product.id) &&
-        product.title
-          .toLocaleLowerCase("nl")
-          .includes(options.query.trim().toLocaleLowerCase("nl")) &&
-        (options.category === "Alles" || product.category === options.category),
-    )
+    .filter((product) => {
+      if (!published.some((offer) => offer.productId === product.id)) return false;
+      const haystack = normalizeSearch(
+        `${product.title} ${product.category} ${productDetails(product.id).description}`,
+      );
+      const from = price(product.id);
+      return (
+        terms.every((term) => haystack.includes(term)) &&
+        (options.category === "Alles" || product.category === options.category) &&
+        (options.minCents == null || from >= options.minCents) &&
+        (options.maxCents == null || from <= options.maxCents) &&
+        (!options.inStockOnly || available(product.id))
+      );
+    })
     .sort((a, b) =>
-      options.sort === "price" ? price(a.id) - price(b.id) : a.title.localeCompare(b.title, "nl"),
+      options.sort === "price"
+        ? price(a.id) - price(b.id)
+        : options.sort === "price-desc"
+          ? price(b.id) - price(a.id)
+          : a.title.localeCompare(b.title, "nl"),
     );
 }

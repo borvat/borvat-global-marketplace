@@ -4,7 +4,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "test:commerce": "tsc --noEmit && node --import tsx --test scripts/commerce-integration.test.ts scripts/catalog-contract.test.ts",
+    "test:commerce": "tsc --noEmit && node --import tsx --test scripts/commerce-integration.test.ts scripts/catalog-contract.test.ts scripts/shopping-flow.test.ts",
     "dev": "vite dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",

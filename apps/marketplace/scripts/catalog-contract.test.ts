@@ -32,7 +32,8 @@ test("buyer SKU selection stays on product routes and clears outside detail", ()
 test("canonical fixture separates products, SKU, companies, stores and competing offers", () => {
   const c = fixture();
   assert.equal(c.products.length, 9);
-  assert.equal(c.skus.length, 10);
+  // 9 base SKUs + synthetic 2-pack + synthetic colour variant + synthetic size variant.
+  assert.equal(c.skus.length, 12);
   assert.ok(c.skus.some((sku) => sku.packQuantity === 2));
   assert.equal(c.companies.length, 2);
   const competitors = c.offers.filter((o) => o.skuId === c.skus[0].id);
@@ -273,9 +274,7 @@ test("catalog import preview is deterministic, validates both snapshots and repo
 
   const sameContent = { ...previous, revision: "different-revision" };
   assert.equal(previewCanonicalCatalogImport(previous, sameContent).hasChanges, false);
-  assert.throws(() =>
-    previewCanonicalCatalogImport(previous, { ...incoming, mode: "production" }),
-  );
+  assert.throws(() => previewCanonicalCatalogImport(previous, { ...incoming, mode: "production" }));
 });
 
 test("WMS availability mapping requires explicit company and SKU identities and never converts UOM", () => {
@@ -286,16 +285,16 @@ test("WMS availability mapping requires explicit company and SKU identities and 
     catalog.stores.filter((store) => store.companyId === company.id).map((store) => store.id),
   );
   const companySkuIds = new Set(
-    catalog.offers
-      .filter((offer) => companyStores.has(offer.storeId))
-      .map((offer) => offer.skuId),
+    catalog.offers.filter((offer) => companyStores.has(offer.storeId)).map((offer) => offer.skuId),
   );
   const sku = catalog.skus.find((entry) => companySkuIds.has(entry.id))!;
   const otherSku = catalog.skus.find(
-    (entry) => entry.id !== sku.id && catalog.offers.some((offer) => {
-      const store = catalog.stores.find((candidate) => candidate.id === offer.storeId);
-      return store?.companyId === otherCompany.id && offer.skuId === entry.id;
-    }),
+    (entry) =>
+      entry.id !== sku.id &&
+      catalog.offers.some((offer) => {
+        const store = catalog.stores.find((candidate) => candidate.id === offer.storeId);
+        return store?.companyId === otherCompany.id && offer.skuId === entry.id;
+      }),
   )!;
   sku.references.push({
     authority: "wms",
@@ -338,9 +337,7 @@ test("WMS availability mapping requires explicit company and SKU identities and 
 
   const projection = {
     company: "TEST-A",
-    products: [
-      { id: "native-item-shared", organization_id: "TEST-A", available_qty: 4 },
-    ],
+    products: [{ id: "native-item-shared", organization_id: "TEST-A", available_qty: 4 }],
   };
   const result = projectWmsAvailability(
     catalog,
@@ -362,19 +359,32 @@ test("WMS availability mapping requires explicit company and SKU identities and 
     /WMS company scope mismatch/,
   );
   assert.throws(() =>
-    projectWmsAvailability(catalog, { catalogCompanyId: "absent", wmsCompanyId: "TEST-A" }, projection),
+    projectWmsAvailability(
+      catalog,
+      { catalogCompanyId: "absent", wmsCompanyId: "TEST-A" },
+      projection,
+    ),
   );
   assert.throws(() =>
-    projectWmsAvailability(catalog, { catalogCompanyId: company.id, wmsCompanyId: "TEST-A" }, {
-      ...projection,
-      products: [{ ...projection.products[0], organization_id: "TEST-B" }],
-    }),
+    projectWmsAvailability(
+      catalog,
+      { catalogCompanyId: company.id, wmsCompanyId: "TEST-A" },
+      {
+        ...projection,
+        products: [{ ...projection.products[0], organization_id: "TEST-B" }],
+      },
+    ),
   );
-  assert.throws(() =>
-    projectWmsAvailability(catalog, { catalogCompanyId: company.id, wmsCompanyId: "TEST-A" }, {
-      ...projection,
-      products: [projection.products[0], projection.products[0]],
-    }),
+  assert.throws(
+    () =>
+      projectWmsAvailability(
+        catalog,
+        { catalogCompanyId: company.id, wmsCompanyId: "TEST-A" },
+        {
+          ...projection,
+          products: [projection.products[0], projection.products[0]],
+        },
+      ),
     /Duplicate WMS product identity/,
   );
   const missing = projectWmsAvailability(
