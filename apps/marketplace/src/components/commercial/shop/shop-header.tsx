@@ -149,7 +149,7 @@ export function ShopHeader() {
           <SearchBox />
         </div>
         <nav
-          aria-label="Hoofdnavigatie"
+          aria-label={copy("Hoofdnavigatie")}
           className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center justify-end gap-0 text-xs sm:gap-1 sm:text-sm md:col-start-3 lg:gap-3"
         >
           <LocalLink

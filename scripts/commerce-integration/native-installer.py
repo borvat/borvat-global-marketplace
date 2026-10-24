@@ -85,6 +85,13 @@ def commerce_then_browser(browser_config, output):
     if result.returncode:
         (output.parent/'borvat-native-process.txt').write_text('Node integration runner exit '+str(result.returncode)+'\n'+result.stdout[-3000:])
         raise RuntimeError('BORVAT native cycle failed; see borvat-native-cycle.json')
+    compiled = subprocess.run(
+        [str(Path(os.environ['SUROOH_BROWSER_NODE'])),str(ROOT/'scripts/commerce-integration/compiled-native-http.mjs')],
+        input=json.dumps({"bindings":bindings,"output":str(output.parent/'borvat-compiled-http.json')}),
+        text=True,capture_output=True,timeout=120,
+    )
+    if compiled.returncode:
+        raise RuntimeError('BORVAT compiled HTTP acceptance failed; see borvat-compiled-http.json')
     return original_browser(browser_config,output)
 
 

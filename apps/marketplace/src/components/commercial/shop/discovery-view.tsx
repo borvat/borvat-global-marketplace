@@ -136,7 +136,7 @@ function FilterPanel() {
               onChange={() => set({ category: c === "Alles" ? null : c })}
               className="h-4 w-4 accent-[var(--accent)]"
             />
-            {c}
+            {copy(c)}
           </label>
         ))}
       </fieldset>
@@ -312,17 +312,18 @@ export function DiscoveryView() {
       {!filtered && (
         <section className="overflow-hidden rounded-2xl bg-ink px-6 py-8 text-ink-foreground sm:px-10 sm:py-12">
           <p className="text-sm font-semibold uppercase tracking-widest text-red-300">
-            Testcollectie
+            {copy("Testcollectie")}
           </p>
           <h1
             tabIndex={-1}
             className="mt-2 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-5xl"
           >
-            Wonen en tuin, op jouw manier.
+            {copy("Wonen en tuin, op jouw manier.")}
           </h1>
           <p className="mt-3 max-w-xl text-sm opacity-85 sm:text-base">
-            Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te
-            betalen.
+            {copy(
+              "Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te betalen.",
+            )}
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {(["Wonen", "Tuin"] as const).map((c) => {
@@ -334,7 +335,7 @@ export function DiscoveryView() {
                   data-testid={`category-tile-${c.toLowerCase()}`}
                   className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 font-semibold hover:bg-white/20 focus-visible:outline-2"
                 >
-                  <Icon aria-hidden className="h-4 w-4" /> {c}
+                  <Icon aria-hidden className="h-4 w-4" /> {copy(c)}
                 </LocalLink>
               );
             })}
@@ -347,14 +348,14 @@ export function DiscoveryView() {
             ? `Zoekresultaten voor “${route.query}”`
             : route.category !== "Alles"
               ? route.category
-              : "Alle producten"}
+              : copy("Alle producten")}
         </h1>
       )}
       <div className="grid gap-6 lg:grid-cols-[16rem_1fr]">
         <aside aria-label={nl.filters} className="lg:sticky lg:top-24 lg:self-start">
           <FilterDisclosure />
         </aside>
-        <section className="min-w-0 space-y-4" aria-label="Resultaten">
+        <section className="min-w-0 space-y-4" aria-label={copy("Resultaten")}>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p role="status" data-testid="results-count" className="font-semibold">
               {load.status === "ready" ? nl.results(results.length) : nl.loading}

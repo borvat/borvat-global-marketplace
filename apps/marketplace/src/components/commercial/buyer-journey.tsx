@@ -130,8 +130,7 @@ function BuyerJourneyView({
     window.scrollTo({ top: 0 });
   }, [route.path]);
   useEffect(() => {
-    if (!manageDocument) return;
-    document.title = `${pageTitle(route.path)} · BORVAT`;
+    if (manageDocument) document.title = `${pageTitle(route.path)} · BORVAT`;
     document.documentElement.lang = route.locale;
     document.documentElement.dir = route.language === "ar" ? "rtl" : "ltr";
   }, [route.path, route.locale, route.language, manageDocument]);
