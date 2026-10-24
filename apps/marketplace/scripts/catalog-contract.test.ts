@@ -309,6 +309,33 @@ test("WMS availability mapping requires explicit company and SKU identities and 
   });
   assert.doesNotThrow(() => parseCatalog(catalog));
 
+  const duplicateIdentity = JSON.parse(JSON.stringify(catalog)) as CanonicalCatalog;
+  const duplicateSku = duplicateIdentity.skus.find(
+    (entry) => entry.id !== sku.id && companySkuIds.has(entry.id),
+  )!;
+  duplicateSku.references.push({
+    authority: "wms",
+    companyId: company.id,
+    externalId: "native-item-shared",
+  });
+  assert.throws(() => parseCatalog(duplicateIdentity), /Native identity maps to multiple SKUs/);
+  assert.throws(() =>
+    parseCatalog({
+      ...catalog,
+      skus: catalog.skus.map((entry) =>
+        entry.id === sku.id
+          ? {
+              ...entry,
+              references: [
+                ...entry.references,
+                { authority: "accounting", companyId: "unknown-company", externalId: "native-a" },
+              ],
+            }
+          : entry,
+      ),
+    }),
+  );
+
   const projection = {
     company: "TEST-A",
     products: [
