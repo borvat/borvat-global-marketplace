@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "f98fa386529694ca721211bce389f050e642adfc",
+  "nativeBaseline": "31e2db7c692dc0313c1cca7cebee17bbb6e2f923",
+  "renderDeploy": "dep-dbe3u6favr4c73a0l8o0",
+  "renderProfile": "isolated; connected backend disabled",
+  "scope": "44 component/client fake-transport +27 frontend/typecheck; both builds; isolated HTTP; actual desktop screenshots;17SQLite/7journal baseline retained",
+  "mobile390": "NOT_RUN",
+  "mobile320": "NOT_RUN",
+  "files": {
+    "command-journal-tests.txt": "160cdea0a14f93d49c0c1b07f5ce16780732e2ac93afa15e7142acb9dc8d9a00",
+    "components-recovery-tests.txt": "bdb602a2bd6100671e70b6d45fa941f29f016be8852eabf3d90f2f471e2bcfb6",
+    "connected-build.txt": "7d7444b89e45b3a1b82d7c4d18f3960959fb175bbe2b067c6f85dcc61925bc08",
+    "desktop-ar-confirmation.jpg": "b508f8700f681e31b21d05015e67236235aa744eafac4fba321eb4cded34f403",
+    "desktop-ar-product.jpg": "e321fa680f41393291e5de14aa17860300a58a4acfed7dc6af22be4f3c3224fe",
+    "edited-lint.txt": "e3a97e77f8f038c6c48a3b3ba5b83d191639cf3c1fed96ba1fa4db5e9747509d",
+    "foundation.json": "ee385856904eea4c592d6bafcca8738875e0097558861fd5c1d4f974d2db23a8",
+    "frontend-typecheck-tests.txt": "92854b6c380e869f19acf28a03fa1c21b9187b630a4a3a356db4572d089017ca",
+    "isolated-build.txt": "d361ab164d33c84f8ea8bc3374e2d49d306ad08b7d0a989c23d8330e8c56560e",
+    "isolated-http.json": "c54de680631db5dec5ed4ba7862f693929ca586c7b9c8125110d21453baaddc7",
+    "source-review.json": "d4eb0bb63a0327b22b9217d2df29f95482a3b335a20643f626e80ca2ef51ab11",
+    "sqlite-service-loyalty-tests.txt": "d2bbd4ea729257cf3b6e7cde44ea6a11ed0431bd86aca30972e1235e06eccd4d"
+  }
+}

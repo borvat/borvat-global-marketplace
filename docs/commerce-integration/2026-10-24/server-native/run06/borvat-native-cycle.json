@@ -1,0 +1,692 @@
+{
+  "mode": "actual-local-native; payment simulator only; no carrier",
+  "sourceCommit": "31e2db7c692dc0313c1cca7cebee17bbb6e2f923",
+  "sourceFiles": {
+    "packages/commerce-server/store.mjs": "bffa721a235b5110c0ed8c338188b86160345664e35bf88619601f495555854d",
+    "packages/commerce-server/http.mjs": "af2040476b44a154ebadeeab1623137d35cb67e4ce93e61d2d0117473213d447",
+    "packages/commerce-server/native-receiver.mjs": "c4b83cddec767885c360c8f6189c008cc0dbe95ec9bd3ed5762adc480d163a71",
+    "packages/loyalty-authority/journal.mjs": "d554d6dbda8da6644d9ae348138f1c33e46428a631f1218d7008799dc63306ad",
+    "integrations/native-test/borvat_native_test/api.py": "3bf0a731e45c06bcbc1f81eca5ebfcf7b4a67f89f06639637ee33fe83d793d1e",
+    "scripts/commerce-integration/native-cycle.mjs": "953e0c56261e6d538d26416e4a03f8cd40865f939f900c6c389c34ebfe70d56c",
+    "scripts/commerce-integration/native-installer.py": "9449ec735bb7279171bb5b8980a22cf7300d69e5b32f6eebcb96c03ea1605ea0"
+  },
+  "cases": [
+    {
+      "name": "server-auth-seller-approval-native-quote-order",
+      "status": "PASS",
+      "evidence": {
+        "order": "BVT-TEST-d8ff7a92-fb10-4514-a538-22b191f850b3",
+        "totalCents": 8000
+      }
+    },
+    {
+      "name": "real-native-reservation-and-seller-isolation",
+      "status": "PASS",
+      "evidence": {
+        "portions": [
+          {
+            "sellerId": "seller-a",
+            "company": "TEST-A",
+            "state": "reserved",
+            "references": {
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00174",
+                "sales_order": "SAL-ORD-2026-00034"
+              }
+            }
+          },
+          {
+            "sellerId": "seller-b",
+            "company": "TEST-B",
+            "state": "reserved",
+            "references": {
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00001",
+                "sales_order": "SAL-ORD-2026-00001"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "simulated-payment-separate-native-pick-pack-delivery-invoice",
+      "status": "PASS",
+      "evidence": {
+        "payment": "SIMULATOR, no provider",
+        "portions": [
+          {
+            "sellerId": "seller-a",
+            "company": "TEST-A",
+            "state": "receipted",
+            "references": {
+              "invoice": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "gross_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001"
+              },
+              "pack": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "order_id": "SAL-ORD-2026-00034",
+                "packing_slip": "MAT-PAC-2026-00025"
+              },
+              "pick": {
+                "order_id": "SAL-ORD-2026-00034",
+                "pick_list": "STO-PICK-2026-00037"
+              },
+              "receipt": {
+                "amount_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001",
+                "payment_entry": "ACC-PAY-2026-00001",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00174",
+                "sales_order": "SAL-ORD-2026-00034"
+              },
+              "ship": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "order_id": "SAL-ORD-2026-00034"
+              }
+            }
+          },
+          {
+            "sellerId": "seller-b",
+            "company": "TEST-B",
+            "state": "receipted",
+            "references": {
+              "invoice": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "gross_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001"
+              },
+              "pack": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "order_id": "SAL-ORD-2026-00001",
+                "packing_slip": "MAT-PAC-2026-00001"
+              },
+              "pick": {
+                "order_id": "SAL-ORD-2026-00001",
+                "pick_list": "STO-PICK-2026-00001"
+              },
+              "receipt": {
+                "amount_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001",
+                "payment_entry": "ACC-PAY-2026-00001",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00001",
+                "sales_order": "SAL-ORD-2026-00001"
+              },
+              "ship": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "order_id": "SAL-ORD-2026-00001"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "single-loyalty-authority-native-invoices-across-two-channel-replays",
+      "status": "PASS",
+      "evidence": {
+        "version": 2,
+        "available": 80,
+        "ledgerPoints": 80,
+        "debt": 0,
+        "movements": [
+          {
+            "kind": "earn",
+            "points": 40,
+            "reference": {
+              "company": "TEST-A",
+              "evidence": "verified-native",
+              "firstChannel": "marketplace",
+              "invoice": "ACC-SINV-2026-00001",
+              "line": "TEST-C1",
+              "rule": "test-eur-v1"
+            },
+            "at": 1792818267436
+          },
+          {
+            "kind": "earn",
+            "points": 40,
+            "reference": {
+              "company": "TEST-B",
+              "evidence": "verified-native",
+              "firstChannel": "marketplace",
+              "invoice": "ACC-SINV-2026-00001",
+              "line": "TEST-C1",
+              "rule": "test-eur-v1"
+            },
+            "at": 1792818267451
+          }
+        ]
+      }
+    },
+    {
+      "name": "native-partial-return-credit-invoice-replay",
+      "status": "PASS",
+      "evidence": {
+        "portions": [
+          {
+            "sellerId": "seller-a",
+            "company": "TEST-A",
+            "state": "refund_recorded",
+            "references": {
+              "credit": {
+                "credit_note": "ACC-SINV-2026-00002",
+                "gross_minor": 2000,
+                "invoice": "ACC-SINV-2026-00001",
+                "return_note": "MAT-DN-2026-00031"
+              },
+              "invoice": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "gross_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001"
+              },
+              "pack": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "order_id": "SAL-ORD-2026-00034",
+                "packing_slip": "MAT-PAC-2026-00025"
+              },
+              "pick": {
+                "order_id": "SAL-ORD-2026-00034",
+                "pick_list": "STO-PICK-2026-00037"
+              },
+              "receipt": {
+                "amount_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001",
+                "payment_entry": "ACC-PAY-2026-00001",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "refund": {
+                "amount_minor": 2000,
+                "invoice": "ACC-SINV-2026-00002",
+                "payment_entry": "ACC-PAY-2026-00002",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00174",
+                "sales_order": "SAL-ORD-2026-00034"
+              },
+              "return": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "return_note": "MAT-DN-2026-00031",
+                "warehouse": "BORVAT Return Quarantine - TA"
+              },
+              "ship": {
+                "delivery_note": "MAT-DN-2026-00030",
+                "order_id": "SAL-ORD-2026-00034"
+              }
+            }
+          },
+          {
+            "sellerId": "seller-b",
+            "company": "TEST-B",
+            "state": "refund_recorded",
+            "references": {
+              "credit": {
+                "credit_note": "ACC-SINV-2026-00002",
+                "gross_minor": 2000,
+                "invoice": "ACC-SINV-2026-00001",
+                "return_note": "MAT-DN-2026-00002"
+              },
+              "invoice": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "gross_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001"
+              },
+              "pack": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "order_id": "SAL-ORD-2026-00001",
+                "packing_slip": "MAT-PAC-2026-00001"
+              },
+              "pick": {
+                "order_id": "SAL-ORD-2026-00001",
+                "pick_list": "STO-PICK-2026-00001"
+              },
+              "receipt": {
+                "amount_minor": 4000,
+                "invoice": "ACC-SINV-2026-00001",
+                "payment_entry": "ACC-PAY-2026-00001",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "refund": {
+                "amount_minor": 2000,
+                "invoice": "ACC-SINV-2026-00002",
+                "payment_entry": "ACC-PAY-2026-00002",
+                "provider": "SIMULATOR-NO-PROVIDER"
+              },
+              "reserve": {
+                "reservation": "MAT-SRE-2026-00001",
+                "sales_order": "SAL-ORD-2026-00001"
+              },
+              "return": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "return_note": "MAT-DN-2026-00002",
+                "warehouse": "BORVAT Return Quarantine - TB"
+              },
+              "ship": {
+                "delivery_note": "MAT-DN-2026-00001",
+                "order_id": "SAL-ORD-2026-00001"
+              }
+            }
+          }
+        ],
+        "refund": "Native Payment Entry only; provider unavailable"
+      }
+    },
+    {
+      "name": "single-loyalty-authority-native-partial-credits-once",
+      "status": "PASS",
+      "evidence": {
+        "version": 4,
+        "available": 40,
+        "ledgerPoints": 40,
+        "debt": 0,
+        "movements": [
+          {
+            "kind": "earn",
+            "points": 40,
+            "reference": {
+              "company": "TEST-A",
+              "evidence": "verified-native",
+              "firstChannel": "marketplace",
+              "invoice": "ACC-SINV-2026-00001",
+              "line": "TEST-C1",
+              "rule": "test-eur-v1"
+            },
+            "at": 1792818267436
+          },
+          {
+            "kind": "earn",
+            "points": 40,
+            "reference": {
+              "company": "TEST-B",
+              "evidence": "verified-native",
+              "firstChannel": "marketplace",
+              "invoice": "ACC-SINV-2026-00001",
+              "line": "TEST-C1",
+              "rule": "test-eur-v1"
+            },
+            "at": 1792818267451
+          },
+          {
+            "kind": "credit",
+            "points": -20,
+            "reference": {
+              "company": "TEST-A",
+              "creditLine": "TEST-C1",
+              "creditNote": "ACC-SINV-2026-00002",
+              "invoice": "ACC-SINV-2026-00001",
+              "line": "TEST-C1"
+            },
+            "at": 1792818268432
+          },
+          {
+            "kind": "credit",
+            "points": -20,
+            "reference": {
+              "company": "TEST-B",
+              "creditLine": "TEST-C1",
+              "creditNote": "ACC-SINV-2026-00002",
+              "invoice": "ACC-SINV-2026-00001",
+              "line": "TEST-C1"
+            },
+            "at": 1792818268452
+          }
+        ]
+      }
+    },
+    {
+      "name": "native-documents-stock-GL-receipt-and-partial-refund-reconcile",
+      "status": "PASS",
+      "evidence": [
+        {
+          "company": "TEST-A",
+          "sales_order": "SAL-ORD-2026-00034",
+          "reservations": [
+            "MAT-SRE-2026-00175"
+          ],
+          "deliveries": [
+            {
+              "name": "MAT-DN-2026-00030",
+              "is_return": 0,
+              "return_against": null
+            },
+            {
+              "name": "MAT-DN-2026-00031",
+              "is_return": 1,
+              "return_against": "MAT-DN-2026-00030"
+            }
+          ],
+          "invoices": [
+            {
+              "name": "ACC-SINV-2026-00001",
+              "is_return": 0,
+              "return_against": null,
+              "grand_total": 40,
+              "outstanding_amount": 0
+            },
+            {
+              "name": "ACC-SINV-2026-00002",
+              "is_return": 1,
+              "return_against": "ACC-SINV-2026-00001",
+              "grand_total": -20,
+              "outstanding_amount": 0
+            }
+          ],
+          "payments": [
+            {
+              "name": "ACC-PAY-2026-00001",
+              "payment_type": "Receive",
+              "paid_amount": 40
+            },
+            {
+              "name": "ACC-PAY-2026-00002",
+              "payment_type": "Pay",
+              "paid_amount": 20
+            }
+          ],
+          "general_ledger": [
+            {
+              "voucher_no": "ACC-PAY-2026-00002",
+              "debit": 0,
+              "credit": 20
+            },
+            {
+              "voucher_no": "ACC-PAY-2026-00002",
+              "debit": 20,
+              "credit": 0
+            },
+            {
+              "voucher_no": "ACC-SINV-2026-00002",
+              "debit": 20,
+              "credit": 0
+            },
+            {
+              "voucher_no": "ACC-SINV-2026-00002",
+              "debit": 0,
+              "credit": 20
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00031",
+              "debit": 0,
+              "credit": 10
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00031",
+              "debit": 10,
+              "credit": 0
+            },
+            {
+              "voucher_no": "ACC-PAY-2026-00001",
+              "debit": 40,
+              "credit": 0
+            },
+            {
+              "voucher_no": "ACC-PAY-2026-00001",
+              "debit": 0,
+              "credit": 40
+            },
+            {
+              "voucher_no": "ACC-SINV-2026-00001",
+              "debit": 0,
+              "credit": 40
+            },
+            {
+              "voucher_no": "ACC-SINV-2026-00001",
+              "debit": 40,
+              "credit": 0
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00030",
+              "debit": 20,
+              "credit": 0
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00030",
+              "debit": 0,
+              "credit": 20
+            }
+          ],
+          "stock_ledger": [
+            {
+              "voucher_no": "MAT-DN-2026-00031",
+              "item_code": "TEST-C1",
+              "warehouse": "BORVAT Return Quarantine - TA",
+              "actual_qty": 1
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00030",
+              "item_code": "TEST-C1",
+              "warehouse": "Goods In Transit - TA",
+              "actual_qty": -2
+            }
+          ],
+          "source": "native ERPNext submitted documents, SRE, SLE, GL; no marketplace ledger"
+        },
+        {
+          "company": "TEST-B",
+          "sales_order": "SAL-ORD-2026-00001",
+          "reservations": [
+            "MAT-SRE-2026-00002"
+          ],
+          "deliveries": [
+            {
+              "name": "MAT-DN-2026-00001",
+              "is_return": 0,
+              "return_against": null
+            },
+            {
+              "name": "MAT-DN-2026-00002",
+              "is_return": 1,
+              "return_against": "MAT-DN-2026-00001"
+            }
+          ],
+          "invoices": [
+            {
+              "name": "ACC-SINV-2026-00001",
+              "is_return": 0,
+              "return_against": null,
+              "grand_total": 40,
+              "outstanding_amount": 0
+            },
+            {
+              "name": "ACC-SINV-2026-00002",
+              "is_return": 1,
+              "return_against": "ACC-SINV-2026-00001",
+              "grand_total": -20,
+              "outstanding_amount": 0
+            }
+          ],
+          "payments": [
+            {
+              "name": "ACC-PAY-2026-00001",
+              "payment_type": "Receive",
+              "paid_amount": 40
+            },
+            {
+              "name": "ACC-PAY-2026-00002",
+              "payment_type": "Pay",
+              "paid_amount": 20
+            }
+          ],
+          "general_ledger": [
+            {
+              "voucher_no": "ACC-PAY-2026-00002",
+              "debit": 0,
+              "credit": 20
+            },
+            {
+              "voucher_no": "ACC-PAY-2026-00002",
+              "debit": 20,
+              "credit": 0
+            },
+            {
+              "voucher_no": "ACC-SINV-2026-00002",
+              "debit": 20,
+              "credit": 0
+            },
+            {
+              "voucher_no": "ACC-SINV-2026-00002",
+              "debit": 0,
+              "credit": 20
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00002",
+              "debit": 0,
+              "credit": 10
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00002",
+              "debit": 10,
+              "credit": 0
+            },
+            {
+              "voucher_no": "ACC-PAY-2026-00001",
+              "debit": 40,
+              "credit": 0
+            },
+            {
+              "voucher_no": "ACC-PAY-2026-00001",
+              "debit": 0,
+              "credit": 40
+            },
+            {
+              "voucher_no": "ACC-SINV-2026-00001",
+              "debit": 0,
+              "credit": 40
+            },
+            {
+              "voucher_no": "ACC-SINV-2026-00001",
+              "debit": 40,
+              "credit": 0
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00001",
+              "debit": 20,
+              "credit": 0
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00001",
+              "debit": 0,
+              "credit": 20
+            }
+          ],
+          "stock_ledger": [
+            {
+              "voucher_no": "MAT-DN-2026-00002",
+              "item_code": "TEST-C1",
+              "warehouse": "BORVAT Return Quarantine - TB",
+              "actual_qty": 1
+            },
+            {
+              "voucher_no": "MAT-DN-2026-00001",
+              "item_code": "TEST-C1",
+              "warehouse": "Goods In Transit - TB",
+              "actual_qty": -2
+            }
+          ],
+          "source": "native ERPNext submitted documents, SRE, SLE, GL; no marketplace ledger"
+        }
+      ]
+    },
+    {
+      "name": "failed-payment-releases-native-hold-once-with-no-invoice-or-points",
+      "status": "PASS",
+      "evidence": {
+        "order": "BVT-TEST-fc833046-12aa-4257-92ec-f3dfe7a55c19",
+        "payment": "SIMULATOR FAILED, no provider",
+        "native": {
+          "company": "TEST-A",
+          "sales_order": "SAL-ORD-2026-00035",
+          "reservations": [],
+          "deliveries": [],
+          "invoices": [],
+          "payments": [],
+          "general_ledger": [],
+          "stock_ledger": [],
+          "source": "native ERPNext submitted documents, SRE, SLE, GL; no marketplace ledger"
+        },
+        "availableBefore": 66,
+        "availableAfter": 66,
+        "points": 40
+      }
+    },
+    {
+      "name": "expiry-sweep-releases-real-native-hold-using-controlled-channel-clock",
+      "status": "PASS",
+      "evidence": {
+        "order": "BVT-TEST-d5db0191-0537-476d-a50b-2fe2f8223fd1",
+        "sweep": {
+          "mode": "manual-test-sweep; not a hosted scheduler",
+          "results": [
+            {
+              "order": "BVT-TEST-d5db0191-0537-476d-a50b-2fe2f8223fd1",
+              "states": [
+                "cancelled"
+              ]
+            }
+          ]
+        },
+        "native": {
+          "company": "TEST-A",
+          "sales_order": "SAL-ORD-2026-00036",
+          "reservations": [],
+          "deliveries": [],
+          "invoices": [],
+          "payments": [],
+          "general_ledger": [],
+          "stock_ledger": [],
+          "source": "native ERPNext submitted documents, SRE, SLE, GL; no marketplace ledger"
+        },
+        "clock": "explicit channel clock advanced15 minutes; actual native cancellation, no hosted scheduler"
+      }
+    },
+    {
+      "name": "distinct-buyer-orders-compete-for-last-native-unit",
+      "status": "PASS",
+      "evidence": [
+        {
+          "order": "BVT-TEST-c3cf3410-636b-413d-88b4-8a2a22461c20",
+          "command": "completed",
+          "native": {
+            "reservation": "MAT-SRE-2026-00178",
+            "sales_order": "SAL-ORD-2026-00037"
+          }
+        },
+        {
+          "order": "BVT-TEST-11e2c6c1-a14f-453e-a477-1fa986c23e38",
+          "command": "rejected",
+          "native": {
+            "reason": "NATIVE_VALIDATION_REJECTED",
+            "rejected": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "SIGKILL-after-real-remote-commit-and-local-service-restart",
+      "status": "PASS",
+      "evidence": {
+        "order": "BVT-TEST-d81770af-ba73-4556-bbb9-703a1532811c",
+        "child": {
+          "code": null,
+          "signal": "SIGKILL"
+        },
+        "dispatches": 1,
+        "native": {
+          "reservation": "MAT-SRE-2026-00179",
+          "sales_order": "SAL-ORD-2026-00038"
+        },
+        "actualNativeReservationCount": 1,
+        "realLeaseWaitMilliseconds": 31000
+      }
+    }
+  ],
+  "status": "PASS"
+}

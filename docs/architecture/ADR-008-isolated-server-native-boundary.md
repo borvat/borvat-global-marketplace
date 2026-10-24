@@ -32,9 +32,10 @@ Native commands have their own payload-bound durable receipt under current Suroo
 Checkout requests reserve each company through native WMS; a definite rejection causes
 compensation through native cancellation of other confirmed holds. Across independent
 sites this is a saga, not a distributed atomic database transaction. No payment success
-is accepted until every seller reservation is confirmed. Automatic expiry scheduling,
-pending-release operations, late provider capture and full operational recovery need
-additional acceptance; uncertain outcomes are never displayed as success.
+is accepted until every seller reservation is confirmed. Run06 verifies durable cancellation intent, native release after failed simulated payment,
+manual unpaid expiry and post-commit crash recovery. Pending/unknown payment is excluded
+from expiry. Automatic hosted scheduling, late provider capture and broader operational
+recovery remain open; uncertain outcomes are never displayed as success.
 
 ## Contract0.1 scope and compatibility
 
