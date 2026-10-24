@@ -29,7 +29,10 @@ function OrderDetails({ order }: { order: DemoOrder }) {
   const c = order.checkout;
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_22rem]">
-      <section aria-label="Artikelen" className="rounded-xl border border-border bg-card p-5">
+      <section
+        aria-label={copy("Artikelen")}
+        className="rounded-xl border border-border bg-card p-5"
+      >
         <h2 className="mb-3 text-lg font-bold">{copy("Artikelen")}</h2>
         <ul className="divide-y divide-border" data-testid="order-lines">
           {order.lines.map((l) => (

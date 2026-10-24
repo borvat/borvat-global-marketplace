@@ -114,7 +114,7 @@ function SearchBox() {
             >
               <span className="font-medium">{p.title}</span>
               <span className="ml-2 text-xs text-muted-foreground">
-                {copy("in")} {p.category}
+                {copy("in")} {copy(p.category)}
               </span>
             </li>
           ))}

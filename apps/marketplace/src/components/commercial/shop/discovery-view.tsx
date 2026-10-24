@@ -348,9 +348,9 @@ export function DiscoveryView() {
       {filtered && (
         <h1 tabIndex={-1} className="text-2xl font-bold sm:text-3xl">
           {route.query
-            ? `Zoekresultaten voor “${route.query}”`
+            ? `${copy("Zoekresultaten voor")} “${route.query}”`
             : route.category !== "Alles"
-              ? route.category
+              ? copy(route.category)
               : copy("Alle producten")}
         </h1>
       )}
@@ -361,7 +361,11 @@ export function DiscoveryView() {
         <section className="min-w-0 space-y-4" aria-label={copy("Resultaten")}>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p role="status" data-testid="results-count" className="font-semibold">
-              {load.status === "ready" ? nl.results(results.length) : nl.loading}
+              {load.status === "ready"
+                ? nl.results(results.length)
+                : load.status === "error"
+                  ? nl.loadError
+                  : nl.loading}
             </p>
             <div className="flex items-center gap-2">
               <label htmlFor="buyer-sort" className="text-sm">

@@ -2,6 +2,9 @@ import React from "react";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
+import { DiscoveryView } from "../../../apps/marketplace/src/components/commercial/shop/discovery-view";
+import { ShopContext } from "../../../apps/marketplace/src/components/commercial/shop/shop-context";
+import { buyerLocation } from "../../../apps/marketplace/src/lib/commercial/buyer-discovery";
 import { ServerWorkspace } from "../../../apps/marketplace/src/components/commercial/server-workspace";
 import { ShopLanguageContext } from "../../../apps/marketplace/src/components/commercial/shop/i18n";
 import { BuyerJourney } from "../../../apps/marketplace/src/components/commercial/buyer-journey";
@@ -53,5 +56,35 @@ test("server workspace login and safety disclosure use the selected language", (
     assert.ok(html.includes(disclosure));
     assert.ok(!html.includes("Wachtwoord"));
     assert.ok(!html.includes("Verkoper &amp; beheer"));
+  }
+});
+
+test("catalogue failure stops announcing loading and shows translated retry instead", () => {
+  const adapter = createCommercialDemoAdapter();
+  for (const [language, error, loading] of [
+    ["en", "Products could not be loaded.", "Loading products…"],
+    ["ar", "تعذّر تحميل المنتجات.", "جارٍ تحميل المنتجات…"],
+  ] as const) {
+    const html = renderToStaticMarkup(
+      <ShopLanguageContext.Provider value={language}>
+        <ShopContext.Provider
+          value={{
+            adapter,
+            snapshot: adapter.getSnapshot(),
+            catalog: { products: [], offers: [], skus: [] },
+            load: { status: "error" },
+            retry: () => {},
+            route: buyerLocation("/discover?lang=" + language),
+            link: (path) => path,
+            navigate: () => {},
+          }}
+        >
+          <DiscoveryView />
+        </ShopContext.Provider>
+      </ShopLanguageContext.Provider>,
+    );
+    assert.ok(html.includes(error));
+    assert.ok(html.includes('role="alert"'));
+    assert.ok(!html.includes(loading));
   }
 });

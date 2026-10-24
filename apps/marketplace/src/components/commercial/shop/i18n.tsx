@@ -209,6 +209,7 @@ export function useShopDate() {
   );
 }
 const phrases: Record<string, [string, string]> = {
+  "Zoekresultaten voor": ["Search results for", "نتائج البحث عن"],
   artikel: ["item", "منتج"],
   artikelen: ["items", "منتجات"],
   "Artikelen in je mandje": ["Basket items", "منتجات السلة"],
