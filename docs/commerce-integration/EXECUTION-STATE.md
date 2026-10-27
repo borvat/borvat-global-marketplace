@@ -59,3 +59,39 @@ infer native backend hosting from a successful frontend deploy. Full project rem
 
 Final Render query: **LIVE**, source `b771e309191b9616007b6d83969202ff77629feb`, deploy
 `dep-dbe427ss728c7393fhl0`, finished `2026-10-24T05:25:55.049944Z`. Rendered retest remains NOT_RUN.
+
+<!-- project-memory-state-v1 -->
+```json
+{
+  "event": {
+    "blockers": [
+      "Automatic approval review rejected Accounting/SAM remote tree payloads; same-scope large uploads remain paused. Full task is PARTIAL despite completed local engineering acceptance."
+    ],
+    "deployment": {
+      "status": "unverified"
+    },
+    "evidence": [
+      "docs/engineering-memory/evidence/final-status.json",
+      "docs/engineering-memory/evidence/ordinary-acceptance.json",
+      "docs/engineering-memory/evidence/parent-ordinary-readback.json"
+    ],
+    "id": "borvat-global-marketplace-publication-blocked-20261028",
+    "next_steps": [
+      "Obtain explicit approval for the reviewed engineering payloads to the named owned GitHub repositories and isolated feature/bmad-unified-memory-20261028 branches.",
+      "Publish with expected-head lease, open/update Draft PRs, and verify remote head plus changed blob identities. No merge or deployment."
+    ],
+    "recorded_at": "2026-10-27T23:39:30Z",
+    "schema_version": 1,
+    "source": {
+      "content_sha256": "e2ec42bde284c1acc41da91d70d59a7ef311b47d3a2f1214c5947b7394eb61de",
+      "head": "fde0717fd898d60a53b354a0d4d60f9148a3a0f8"
+    },
+    "status": "blocked",
+    "summary": "BORVAT multi-vendor marketplace with retained original application, commerce server and native peer integration candidates. Architecture: Original app under apps/marketplace; bounded server-side checkout/order persistence under packages/commerce-server. Modules: apps/marketplace/, packages/commerce-server/runtime.mjs, packages/commerce-server/store.mjs. Selected PR35 integration/hosted-cycle-2026-10-24 atfde0717fd898d60a53b354a0d4d60f9148a3a0f8 (tree912e880d4c860e7e6765221fec619ffd2ea3d9f7). EXECUTION-STATE.md says full project OPEN; its public isolated b771e309 deployment observation and all test counts are historical, not current selected-head acceptance.",
+    "tests": []
+  },
+  "event_digest": "46e72c498dc7f558c243570e3acb3a54fae38c62ccab32799f99ec33f3624bf1",
+  "schema_version": 1
+}
+```
+<!-- /project-memory-state -->

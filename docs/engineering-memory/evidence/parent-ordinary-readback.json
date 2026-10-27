@@ -1,0 +1,13 @@
+{
+  "repository": "borvat-global-marketplace",
+  "pass": true,
+  "head": "3aa7be67f6b65fc3dce4b9cc954ddcc202b35e9b",
+  "freshness": "CURRENT",
+  "engineering_status": "complete",
+  "last_event_id": "ordinary-delivery-continuation-20261027",
+  "audit": "VALID lessons=1, verified=0",
+  "brief": "No verified lessons match. UNKNOWN is not PASS.",
+  "sentinel_sha256": "25ff9adc41da047ee0b37cf4c80cfb220cd13627178deb3918048741b16eec9d",
+  "note": "# Delivery checkpoint\n\nPassing source tests provide evidence for the exact tested source and covered scenarios. A Draft PR makes proposed changes available for review. Neither establishes deployment or delivery. Keep delivery OPEN until the deployed revision is proven and authenticated end-to-end acceptance on that exact revision is evidenced.\n",
+  "limits": "Disposable ordinary-task acceptance only; not deployed application or production readiness."
+}
