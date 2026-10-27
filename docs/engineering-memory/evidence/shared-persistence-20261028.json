@@ -1,0 +1,22 @@
+{
+  "name": "borvat-global-marketplace",
+  "repository": "borvat/borvat-global-marketplace",
+  "branch": "feature/bmad-unified-memory-20261028",
+  "head": "5c3015d6437b21b26c2878a960233ceedf3d4a43",
+  "expected_head": "5c3015d6437b21b26c2878a960233ceedf3d4a43",
+  "tree": "1c886a114ec8957f259864b99421a073ef3a11bc",
+  "pr": "https://github.com/borvat/borvat-global-marketplace/pull/36",
+  "pr_number": 36,
+  "draft": true,
+  "merged": false,
+  "state": "open",
+  "base_branch": "integration/hosted-cycle-2026-10-24",
+  "verified_paths": 22,
+  "failed_paths": [],
+  "pass": true,
+  "verified_utc": "2026-10-27T23:52:20.665363+00:00",
+  "authorization": "Owner explicitly approved reviewed payloads, isolated branch upload and Draft PRs; no merge/deployment.",
+  "scope": "Authenticated initial publication readback of all reviewed changed blobs and open Draft PR. This receipt precedes the following evidence/state-only commit.",
+  "code_helper_sha256": "ac42c9c53dbafc43ebefcb65a4b79c40421369527318e6e610140bd285796911",
+  "test_limits": "Existing independent frozen-helper and disposable ordinary-session evidence remains source/hash-bound and historical; no tests on a different commit or live application are inferred."
+}
