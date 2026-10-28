@@ -67,32 +67,35 @@ Final Render query: **LIVE**, source `b771e309191b9616007b6d83969202ff77629feb`,
     "blockers": [
       "Full cross-app acceptance remains BLOCKED/unperformed; shared app admission and native invoice/payment hook routing conflict.",
       "Original parity completeness remains FAIL for69 missing binaries and bounded evolutions; hosted CI failure is not a source pass.",
-      "Full native/browser/mobile/connected shipping/payment/loyalty acceptance remains open; costed hosted proposal was not provisioned."
+      "Full native/browser/mobile/connected shipping/payment/loyalty acceptance remains open; costed hosted proposal was not provisioned.",
+      "Development integration and post-merge readback pending"
     ],
     "deployment": {
       "status": "unverified"
     },
     "evidence": [
-      "docs/engineering-memory/evidence/shared-persistence-20261028.json",
-      "docs/engineering-memory/FINAL-ACCEPTANCE-20261028.md",
-      "docs/engineering-memory/evidence/ordinary-acceptance.json"
+      "docs/engineering-memory/evidence/adoption-review-20261028.json",
+      "docs/engineering-memory/evidence/ordinary-acceptance.json",
+      "docs/engineering-memory/evidence/adoption-quick-review-20261028.json"
     ],
-    "id": "borvat-global-marketplace-shared-persisted-20261028",
+    "id": "borvat-global-marketplace-adoption-continuity-20261028",
     "next_steps": [
       "Use original bmad setup/build in this reviewed branch; memory activation and material-result archiving need no per-task memory prompt.",
-      "For application continuation consult the existing source-bound product state and blockers; prior application tests keep their exact historical identity."
+      "For application continuation consult the existing source-bound product state and blockers; prior application tests keep their exact historical identity.",
+      "Integrate reviewed memory-only changes into integration/hosted-cycle-2026-10-24 after dependency and server-protection checks.",
+      "Preserve current project/application blockers and historical test identities; no operational delivery is implied."
     ],
-    "recorded_at": "2026-10-27T23:52:20Z",
+    "recorded_at": "2026-10-28T00:27:40Z",
     "schema_version": 1,
     "source": {
-      "content_sha256": "ddfe3d78bfeefdc2573043540015c61f4af978a6c600eb503a14b0f423fbd125",
-      "head": "5c3015d6437b21b26c2878a960233ceedf3d4a43"
+      "content_sha256": "8163f94f2bb0e9f78f38b8c546cefda7faecbc659bdda84ea94c54de9b8e77e1",
+      "head": "dbe6150eef15945679cb077df7d1f54b7264de0d"
     },
-    "status": "complete",
+    "status": "partial",
     "summary": "BORVAT multi-vendor marketplace with retained original application, commerce server and native peer integration candidates. Architecture: Original app under apps/marketplace; bounded server-side checkout/order persistence under packages/commerce-server. Modules: apps/marketplace/, packages/commerce-server/runtime.mjs, packages/commerce-server/store.mjs. Selected PR35 integration/hosted-cycle-2026-10-24 atfde0717fd898d60a53b354a0d4d60f9148a3a0f8 (tree912e880d4c860e7e6765221fec619ffd2ea3d9f7). EXECUTION-STATE.md says full project OPEN; its public isolated b771e309 deployment observation and all test counts are historical, not current selected-head acceptance.",
     "tests": []
   },
-  "event_digest": "b224c22233206c38ef3135932baafb43071de84200872bdd595627f587bb40a4",
+  "event_digest": "443b1eb2f2a2e84fbf108d48682898467c7e60e3eb78e29f81ee8242484fdd48",
   "schema_version": 1
 }
 ```
