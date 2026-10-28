@@ -67,35 +67,46 @@ Final Render query: **LIVE**, source `b771e309191b9616007b6d83969202ff77629feb`,
     "blockers": [
       "Full cross-app acceptance remains BLOCKED/unperformed; shared app admission and native invoice/payment hook routing conflict.",
       "Original parity completeness remains FAIL for69 missing binaries and bounded evolutions; hosted CI failure is not a source pass.",
-      "Full native/browser/mobile/connected shipping/payment/loyalty acceptance remains open; costed hosted proposal was not provisioned.",
-      "Development integration and post-merge readback pending"
+      "Full native/browser/mobile/connected shipping/payment/loyalty acceptance remains open; costed hosted proposal was not provisioned."
     ],
     "deployment": {
       "status": "unverified"
     },
     "evidence": [
-      "docs/engineering-memory/evidence/adoption-review-20261028.json",
-      "docs/engineering-memory/evidence/ordinary-acceptance.json",
-      "docs/engineering-memory/evidence/adoption-quick-review-20261028.json"
+      "docs/engineering-memory/evidence/normal-adoption-acceptance-20261028.json",
+      "docs/engineering-memory/evidence/ordinary-acceptance.json"
     ],
-    "id": "borvat-global-marketplace-adoption-continuity-20261028",
+    "id": "borvat-global-marketplace-normal-adoption-accepted-20261028",
     "next_steps": [
+      "Use original BMAD ordinary tasks on integration/hosted-cycle-2026-10-24; current Git outranks stored prose, candidates remain inactive, and source-bound historical suites are not a new runtime PASS.",
       "Use original bmad setup/build in this reviewed branch; memory activation and material-result archiving need no per-task memory prompt.",
       "For application continuation consult the existing source-bound product state and blockers; prior application tests keep their exact historical identity.",
-      "Integrate reviewed memory-only changes into integration/hosted-cycle-2026-10-24 after dependency and server-protection checks.",
       "Preserve current project/application blockers and historical test identities; no operational delivery is implied."
     ],
-    "recorded_at": "2026-10-28T00:27:40Z",
+    "recorded_at": "2026-10-28T00:52:40Z",
     "schema_version": 1,
     "source": {
-      "content_sha256": "8163f94f2bb0e9f78f38b8c546cefda7faecbc659bdda84ea94c54de9b8e77e1",
-      "head": "dbe6150eef15945679cb077df7d1f54b7264de0d"
+      "content_sha256": "286eb1ff54d2b4f60c557f53f0ae8cfdde3d20f8f45a5641ac8c3ff4dd18941e",
+      "head": "3208c407f71536fb168136c86d8e8b799229b04c"
     },
-    "status": "partial",
-    "summary": "BORVAT multi-vendor marketplace with retained original application, commerce server and native peer integration candidates. Architecture: Original app under apps/marketplace; bounded server-side checkout/order persistence under packages/commerce-server. Modules: apps/marketplace/, packages/commerce-server/runtime.mjs, packages/commerce-server/store.mjs. Selected PR35 integration/hosted-cycle-2026-10-24 atfde0717fd898d60a53b354a0d4d60f9148a3a0f8 (tree912e880d4c860e7e6765221fec619ffd2ea3d9f7). EXECUTION-STATE.md says full project OPEN; its public isolated b771e309 deployment observation and all test counts are historical, not current selected-head acceptance.",
-    "tests": []
+    "status": "complete",
+    "summary": "Development memory adoption is integrated and authenticated on integration/hosted-cycle-2026-10-24. Original BMAD clean setup/activation/retrieval and independent ordinary acceptance passed. Helper unchanged; tests keep historical identities; project/operational gates remain separate. BORVAT multi-vendor marketplace with retained original application, commerce server and native peer integration candidates. Architecture: Original app under apps/marketplace; bounded server-side checkout/order persistence under packages/commerce-server. Modules: apps/marketplace/, packages/commerce-server/runtime.mjs, packages/commerce-server/store.mjs. Selected PR35 integration/hosted-cycle-2026-10-24 atfde0717fd898d60a53b354a0d4d60f9148a3a0f8 (tree912e880d4c860e7e6765221fec619ffd2ea3d9f7). EXECUTION-STATE.md says full project OPEN; its public isolated b771e309 deployment observation and all test counts are historical, not current selected-head acceptance.",
+    "tests": [
+      {
+        "evidence": [
+          "docs/engineering-memory/evidence/normal-adoption-acceptance-20261028.json"
+        ],
+        "name": "Clean original BMAD setup activation audit brief and source-bound retrieval",
+        "scope": "historical",
+        "source": {
+          "content_sha256": "ce8bd16050bf2a58d132a41946b10e63867ae2fa1b57bcb3d34ac5425afaf9df",
+          "head": "3208c407f71536fb168136c86d8e8b799229b04c"
+        },
+        "status": "pass"
+      }
+    ]
   },
-  "event_digest": "443b1eb2f2a2e84fbf108d48682898467c7e60e3eb78e29f81ee8242484fdd48",
+  "event_digest": "054d9cd36485bf9ef89790acd04994b49cf3eb69be5473b3db6bd74906725895",
   "schema_version": 1
 }
 ```
