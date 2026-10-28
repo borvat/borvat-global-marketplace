@@ -1,0 +1,84 @@
+{
+  "observed_at": "2026-10-28",
+  "repository": "borvat/borvat-global-marketplace",
+  "base_branch": "integration/hosted-cycle-2026-10-24",
+  "base_head": "fde0717fd898d60a53b354a0d4d60f9148a3a0f8",
+  "base_tree": "912e880d4c860e7e6765221fec619ffd2ea3d9f7",
+  "type": "marketplace application development",
+  "adaptation": "full-engineering",
+  "context": {
+    "purpose": "BORVAT multi-vendor marketplace with retained original application, commerce server and native peer integration candidates.",
+    "architecture": [
+      "Original app under apps/marketplace; bounded server-side checkout/order persistence under packages/commerce-server.",
+      "Separate integration-command journal, loyalty authority candidate and local native-test adapter.",
+      "Marketplace owns commercial order/offer/buyer charge; WMS and Accounting own native stock/financial effects; shipping services remain independent."
+    ],
+    "modules": [
+      "apps/marketplace/",
+      "packages/commerce-server/runtime.mjs",
+      "packages/commerce-server/store.mjs",
+      "packages/commerce-server/native-receiver.mjs",
+      "packages/integration-contracts/command-journal.mjs",
+      "packages/loyalty-authority/journal.mjs",
+      "integrations/native-test/",
+      "docs/commerce-integration/EXECUTION-STATE.md"
+    ],
+    "current_state": "Selected PR35 integration/hosted-cycle-2026-10-24 atfde0717fd898d60a53b354a0d4d60f9148a3a0f8 (tree912e880d4c860e7e6765221fec619ffd2ea3d9f7). EXECUTION-STATE.md says full project OPEN; its public isolated b771e309 deployment observation and all test counts are historical, not current selected-head acceptance.",
+    "verified_features": [
+      "Historical state records hosted-preparation28 server/journal and27 frontend/typecheck checks plus builds, with connected/native full acceptance still unperformed.",
+      "Historical31e2db7c692dc0313c1cca7cebee17bbb6e2f923 native/compiled baseline:11 BORVAT native+3 compiled HTTP, upstream native55 PASS/browser1 BLOCKED; never transfer these results to a different head.",
+      "Source has mounted/private-storage checks and explicit isolated/connected build boundaries; no hosted durable native backend is inferred."
+    ],
+    "blockers": [
+      "Full cross-app acceptance remains BLOCKED/unperformed; shared app admission and native invoice/payment hook routing conflict.",
+      "Original parity completeness remains FAIL for69 missing binaries and bounded evolutions; hosted CI failure is not a source pass.",
+      "Full native/browser/mobile/connected shipping/payment/loyalty acceptance remains open; costed hosted proposal was not provisioned."
+    ],
+    "decisions": [
+      "Reuse docs/commerce-integration/EXECUTION-STATE.md as existing state; preserve historical source/test/deployment tiers.",
+      "No paid infrastructure, payment/provider activation, deployment or stock/financial authority change in this memory task.",
+      "Engineering state/history do not authorize any commercial execution."
+    ],
+    "unfinished": [
+      "Partial shipments, complete loyalty authority/consumers, commercial mappings, onboarding/admin/reporting and full language/device/accessibility acceptance remain implementation work."
+    ],
+    "next_step": "Continue exact PR35 source with engineering memory and source-aware resume; product completion requires accepted shared native admission plus the original outstanding acceptance gates.",
+    "evidence_paths": [
+      "AGENTS.md",
+      "docs/commerce-integration/EXECUTION-STATE.md",
+      "docs/commerce-integration/2026-10-24/HOSTED-CONTINUATION.md",
+      "docs/hardening/ACCEPTANCE-35.md",
+      "docs/commerce-integration/2026-10-24/NATIVE-ACCEPTANCE.md",
+      "package.json"
+    ],
+    "state_path": "docs/commerce-integration/EXECUTION-STATE.md",
+    "history_path": "docs/engineering-memory/HISTORY.md"
+  },
+  "inspected_sources": [
+    {
+      "path": "AGENTS.md",
+      "blob_sha": "e8dd695f4921827f61188a16d38e1c1cf47b9219",
+      "error": false,
+      "url": "https://github.com/borvat/borvat-global-marketplace/blob/fde0717fd898d60a53b354a0d4d60f9148a3a0f8/AGENTS.md"
+    },
+    {
+      "path": "docs/commerce-integration/EXECUTION-STATE.md",
+      "blob_sha": "e729b21e52ce2d11042690a34a06226ad6f53ff6",
+      "error": false,
+      "url": "https://github.com/borvat/borvat-global-marketplace/blob/fde0717fd898d60a53b354a0d4d60f9148a3a0f8/docs/commerce-integration/EXECUTION-STATE.md"
+    },
+    {
+      "path": "docs/hardening/ACCEPTANCE-35.md",
+      "blob_sha": "1da246d20692d4cfb32568e47aa473ded1e1d3e8",
+      "error": false,
+      "url": "https://github.com/borvat/borvat-global-marketplace/blob/fde0717fd898d60a53b354a0d4d60f9148a3a0f8/docs/hardening/ACCEPTANCE-35.md"
+    },
+    {
+      "path": "package.json",
+      "blob_sha": "3c072c260e3f3700a877b0aa36eff37426963074",
+      "error": false,
+      "url": "https://github.com/borvat/borvat-global-marketplace/blob/fde0717fd898d60a53b354a0d4d60f9148a3a0f8/package.json"
+    }
+  ],
+  "limits": "Source inspection and historical reports only; no new native tests or deployment observed."
+}
