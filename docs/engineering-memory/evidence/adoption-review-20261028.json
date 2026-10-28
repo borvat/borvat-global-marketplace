@@ -1,0 +1,13 @@
+{
+  "repository": "borvat/borvat-global-marketplace",
+  "reviewed_head": "dbe6150eef15945679cb077df7d1f54b7264de0d",
+  "desired_development_branch": "integration/hosted-cycle-2026-10-24",
+  "current_pr_base": "integration/hosted-cycle-2026-10-24",
+  "current_base_protected": false,
+  "integration_state": "READY FOR INTEGRATION after the reviewed corrections",
+  "independent_review": "Three proven narrow defects only: stale Accounting PR47 routing/summary and identical duplicate managed blocks. Existing helper/application behavior unchanged.",
+  "helper_identity": "ac42c9c53dbafc43ebefcb65a4b79c40421369527318e6e610140bd285796911",
+  "boundary": "No main/master/protected merge, production, service, financial/db, secret/privilege, paid resource or automatic lesson approval.",
+  "rollback": "Reviewed revert of scoped memory merge/transfer; preserve source branches and evidence, no force/reset.",
+  "test_policy": "Reuse exact valid helper/ordinary evidence; only instruction/target changes require focused checks."
+}

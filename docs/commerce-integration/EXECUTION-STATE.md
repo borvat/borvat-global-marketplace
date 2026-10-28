@@ -2,6 +2,20 @@
 
 **Full project OPEN.** Continue existing code; do not treat native HTTP tests as full rendered acceptance.
 
+## Current continuation — hosted preparation and concurrent source assembly
+
+Read [HOSTED-CONTINUATION.md](2026-10-24/HOSTED-CONTINUATION.md) before relying on
+the historical checkpoints below. Existing public preview remains isolated at
+b771e309; no new connected deployment. This continuation adds actual-mount and
+private-config checks plus explicit hosted synthetic transport (28server/journal
+cases PASS;27frontend/typecheck PASS; both builds PASS). Accounting PR39/40 appeared
+during execution: combined non-destructively in Draft PR42 at41bcac76. PR41 was
+closed as superseded. Full cross-app acceptance remains BLOCKED/unperformed;
+shared app admission and native invoice/payment hook routing still conflict.
+The costed proposal is HOSTED-INFRASTRUCTURE.json ($52.75/month incremental,
+not provisioned). SAM/production resources untouched. No old native result certifies
+these new sources, and no continuing background task is implied.
+
 - Branch `implementation/server-orders-2026-10-24`, Draft [PR34](https://github.com/borvat/borvat-global-marketplace/pull/34), stacked on PR33. No main merge or history rewrite.
 - Last frozen native/compiled baseline `31e2db7c692dc0313c1cca7cebee17bbb6e2f923`:11 BORVAT native cases and3 compiled TanStack/Nitro HTTP cases PASS; upstream native55 PASS / browser1 BLOCKED. Source-qualified IDs and JSON are in [native acceptance](2026-10-24/NATIVE-ACCEPTANCE.md), [run06](2026-10-24/server-native/run06/MANIFEST.json).
 - Render existing paid test service `srv-dbdr7rl9fdbs738d1ekg`:b771e309 LIVE in deploy `dep-dbe427ss728c7393fhl0`, existing0.5c-512mb, auto-deploy OFF. Public profile remains isolated; durable backend/native engines are not hosted there. Do not use ephemeral storage for durable orders.
@@ -45,3 +59,55 @@ infer native backend hosting from a successful frontend deploy. Full project rem
 
 Final Render query: **LIVE**, source `b771e309191b9616007b6d83969202ff77629feb`, deploy
 `dep-dbe427ss728c7393fhl0`, finished `2026-10-24T05:25:55.049944Z`. Rendered retest remains NOT_RUN.
+
+<!-- project-memory-state-v1 -->
+```json
+{
+  "event": {
+    "blockers": [
+      "Full cross-app acceptance remains BLOCKED/unperformed; shared app admission and native invoice/payment hook routing conflict.",
+      "Original parity completeness remains FAIL for69 missing binaries and bounded evolutions; hosted CI failure is not a source pass.",
+      "Full native/browser/mobile/connected shipping/payment/loyalty acceptance remains open; costed hosted proposal was not provisioned."
+    ],
+    "deployment": {
+      "status": "unverified"
+    },
+    "evidence": [
+      "docs/engineering-memory/evidence/normal-adoption-acceptance-20261028.json",
+      "docs/engineering-memory/evidence/ordinary-acceptance.json"
+    ],
+    "id": "borvat-global-marketplace-normal-adoption-accepted-20261028",
+    "next_steps": [
+      "Use original BMAD ordinary tasks on integration/hosted-cycle-2026-10-24; current Git outranks stored prose, candidates remain inactive, and source-bound historical suites are not a new runtime PASS.",
+      "Use original bmad setup/build in this reviewed branch; memory activation and material-result archiving need no per-task memory prompt.",
+      "For application continuation consult the existing source-bound product state and blockers; prior application tests keep their exact historical identity.",
+      "Preserve current project/application blockers and historical test identities; no operational delivery is implied."
+    ],
+    "recorded_at": "2026-10-28T00:52:40Z",
+    "schema_version": 1,
+    "source": {
+      "content_sha256": "286eb1ff54d2b4f60c557f53f0ae8cfdde3d20f8f45a5641ac8c3ff4dd18941e",
+      "head": "3208c407f71536fb168136c86d8e8b799229b04c"
+    },
+    "status": "complete",
+    "summary": "Development memory adoption is integrated and authenticated on integration/hosted-cycle-2026-10-24. Original BMAD clean setup/activation/retrieval and independent ordinary acceptance passed. Helper unchanged; tests keep historical identities; project/operational gates remain separate. BORVAT multi-vendor marketplace with retained original application, commerce server and native peer integration candidates. Architecture: Original app under apps/marketplace; bounded server-side checkout/order persistence under packages/commerce-server. Modules: apps/marketplace/, packages/commerce-server/runtime.mjs, packages/commerce-server/store.mjs. Selected PR35 integration/hosted-cycle-2026-10-24 atfde0717fd898d60a53b354a0d4d60f9148a3a0f8 (tree912e880d4c860e7e6765221fec619ffd2ea3d9f7). EXECUTION-STATE.md says full project OPEN; its public isolated b771e309 deployment observation and all test counts are historical, not current selected-head acceptance.",
+    "tests": [
+      {
+        "evidence": [
+          "docs/engineering-memory/evidence/normal-adoption-acceptance-20261028.json"
+        ],
+        "name": "Clean original BMAD setup activation audit brief and source-bound retrieval",
+        "scope": "historical",
+        "source": {
+          "content_sha256": "ce8bd16050bf2a58d132a41946b10e63867ae2fa1b57bcb3d34ac5425afaf9df",
+          "head": "3208c407f71536fb168136c86d8e8b799229b04c"
+        },
+        "status": "pass"
+      }
+    ]
+  },
+  "event_digest": "054d9cd36485bf9ef89790acd04994b49cf3eb69be5473b3db6bd74906725895",
+  "schema_version": 1
+}
+```
+<!-- /project-memory-state -->

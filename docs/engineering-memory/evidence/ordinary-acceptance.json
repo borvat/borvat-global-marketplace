@@ -1,0 +1,105 @@
+{
+  "repo": "borvat-global-marketplace",
+  "task": "Synthetic ordinary_probe documentation correction; not an observed application deployment failure",
+  "status": "locally complete",
+  "evidence_directory": "/workspace/scratch/2f03f7ab929e/verification/ordinary/borvat-global-marketplace-continuation",
+  "activation_before_edit": {
+    "observed": true,
+    "commands": [
+      {
+        "order": 5,
+        "command": [
+          "python3",
+          "tools/project_memory.py",
+          "resume"
+        ],
+        "exit_code": 0
+      },
+      {
+        "order": 6,
+        "command": [
+          "python3",
+          "tools/agent_learning.py",
+          "audit"
+        ],
+        "exit_code": 0
+      },
+      {
+        "order": 7,
+        "command": [
+          "python3",
+          "tools/agent_learning.py",
+          "brief",
+          "--tag",
+          "engineering"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "note": "All eight activation sequences completed before the retained shared continue_plan.py invocation; predecessor rendered workflows were resumed rather than rerun. Accounting also reread invoicing brief before completion."
+  },
+  "review": {
+    "lens": "quick",
+    "result": "no findings",
+    "deferred": []
+  },
+  "checks": {
+    "note_matches_reviewed_text": true,
+    "unfinished_work_byte_identical": true,
+    "unfinished_sha256": "25ff9adc41da047ee0b37cf4c80cfb220cd13627178deb3918048741b16eec9d",
+    "preexisting_files_changed": [
+      "verification/ordinary_probe/README.md"
+    ],
+    "unrelated_preexisting_files_unchanged": true,
+    "head_unchanged": true,
+    "git_diff_check_exit": 0,
+    "scope": "Documentation and preservation checks only; no application tests, runtime, deployment or delivery established"
+  },
+  "final_preservation": {
+    "final_preservation_pass": true,
+    "changed_preexisting_files": [
+      "docs/engineering-memory/lessons.jsonl",
+      "docs/engineering-memory/HISTORY.md",
+      "docs/commerce-integration/EXECUTION-STATE.md",
+      "verification/ordinary_probe/README.md"
+    ],
+    "sentinel_unchanged": true,
+    "head_and_branch_unchanged": true,
+    "only_task_and_completion_paths_changed": true
+  },
+  "candidate": {
+    "added": true,
+    "status": "inactive candidate only",
+    "excluded_from_verified_brief": true,
+    "brief_output": "No verified lessons match. UNKNOWN is not PASS.\n",
+    "synthetic_only": true,
+    "transfer_to_source_repository": false
+  },
+  "archive": {
+    "exit_code": 0,
+    "event_id": "ordinary-delivery-continuation-20261027",
+    "source": {
+      "content_sha256": "ab163c827ca384218a8d55481412039736f954bb5554b8985805a2f7d2404737",
+      "head": "3aa7be67f6b65fc3dce4b9cc954ddcc202b35e9b"
+    },
+    "status": "complete"
+  },
+  "resume": {
+    "freshness": "CURRENT",
+    "engineering_status": "complete",
+    "deployment": {
+      "status": "unverified"
+    },
+    "test_applicability": [
+      "HISTORICAL / NOT CURRENT PASS"
+    ]
+  },
+  "limitations": [
+    "Synthetic fixture and documentation acceptance only; no real application deployment failure observed.",
+    "No application tests, authenticated application acceptance, runtime identity, deployment or product delivery established.",
+    "Tests are historical because evidence/candidate writes changed content identity after the checks; final snapshot captured all before archive.",
+    "LOCAL_ONLY / shared persistence pending; explicit current instruction prohibits commits and remote operations.",
+    "Fixture candidates must stay in disposable copies and must not transfer to real source ledgers."
+  ],
+  "frozen_after_final_archive": true
+}

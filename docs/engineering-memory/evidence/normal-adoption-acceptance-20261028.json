@@ -1,0 +1,351 @@
+{
+  "repository": "borvat/borvat-global-marketplace",
+  "branch": "integration/hosted-cycle-2026-10-24",
+  "verified_head": "3208c407f71536fb168136c86d8e8b799229b04c",
+  "development_integration": "INTEGRATED",
+  "merge": {
+    "repository": "borvat/borvat-global-marketplace",
+    "name": "borvat-global-marketplace",
+    "pr": 36,
+    "target": "integration/hosted-cycle-2026-10-24",
+    "before": "fde0717fd898d60a53b354a0d4d60f9148a3a0f8",
+    "source": "324da0859e32558ff96c815cfdabcd935b55b936",
+    "result": {
+      "sha": "3208c407f71536fb168136c86d8e8b799229b04c",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "full": true,
+    "parallel_advance": null
+  },
+  "fresh_activation": {
+    "name": "borvat-global-marketplace",
+    "repository": "borvat/borvat-global-marketplace",
+    "head": "3208c407f71536fb168136c86d8e8b799229b04c",
+    "branch": "integration/hosted-cycle-2026-10-24",
+    "integrated": true,
+    "pass": true,
+    "source_before_activation": {
+      "content_sha256": "ce8bd16050bf2a58d132a41946b10e63867ae2fa1b57bcb3d34ac5425afaf9df",
+      "head": "3208c407f71536fb168136c86d8e8b799229b04c"
+    },
+    "freshness": "STALE / UNVERIFIED: current Git outranks stored state",
+    "unresolved_blockers": [
+      "Full cross-app acceptance remains BLOCKED/unperformed; shared app admission and native invoice/payment hook routing conflict.",
+      "Original parity completeness remains FAIL for69 missing binaries and bounded evolutions; hosted CI failure is not a source pass.",
+      "Full native/browser/mobile/connected shipping/payment/loyalty acceptance remains open; costed hosted proposal was not provisioned.",
+      "Development integration and post-merge readback pending"
+    ],
+    "next_steps": [
+      "Use original bmad setup/build in this reviewed branch; memory activation and material-result archiving need no per-task memory prompt.",
+      "For application continuation consult the existing source-bound product state and blockers; prior application tests keep their exact historical identity.",
+      "Integrate reviewed memory-only changes into integration/hosted-cycle-2026-10-24 after dependency and server-protection checks.",
+      "Preserve current project/application blockers and historical test identities; no operational delivery is implied."
+    ],
+    "helper_sha256": "ac42c9c53dbafc43ebefcb65a4b79c40421369527318e6e610140bd285796911",
+    "audit": "VALID lessons=0, verified=0",
+    "brief": "No verified lessons match. UNKNOWN is not PASS.",
+    "logs": [
+      {
+        "command": [
+          "git",
+          "rev-parse",
+          "HEAD"
+        ],
+        "cwd": "/workspace/scratch/2f03f7ab929e/adoption/fresh/borvat-global-marketplace",
+        "exit_code": 0,
+        "seconds": 0.002174854278564453,
+        "stdout": "3208c407f71536fb168136c86d8e8b799229b04c\n",
+        "stderr": "",
+        "stdout_sha256": "1bf6aca1d185f506b128b9d125e6142dbddb7996b9859c284118ace5f8b41e01",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "reused_authenticated_checkout_receipt": "/workspace/scratch/2f03f7ab929e/adoption/fresh/borvat-global-marketplace-artifacts/materialize.json"
+      },
+      {
+        "command": [
+          "git",
+          "status",
+          "--short"
+        ],
+        "cwd": "/workspace/scratch/2f03f7ab929e/adoption/fresh/borvat-global-marketplace",
+        "exit_code": 0,
+        "seconds": 0.006074666976928711,
+        "stdout": "",
+        "stderr": "",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "python3",
+          "-B",
+          "tools/project_memory.py",
+          "snapshot"
+        ],
+        "cwd": "/workspace/scratch/2f03f7ab929e/adoption/fresh/borvat-global-marketplace",
+        "exit_code": 0,
+        "seconds": 0.08174467086791992,
+        "stdout": "{\n  \"branch\": \"integration/hosted-cycle-2026-10-24\",\n  \"dirty_paths\": [],\n  \"source\": {\n    \"content_sha256\": \"ce8bd16050bf2a58d132a41946b10e63867ae2fa1b57bcb3d34ac5425afaf9df\",\n    \"head\": \"3208c407f71536fb168136c86d8e8b799229b04c\"\n  }\n}\n",
+        "stderr": "",
+        "stdout_sha256": "2dd249800185de2f716e4fb05ee6ce6eec53e1656616950492c689cb9ce31f94",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "reused_valid_setup_render": true,
+        "evidence": "Initial test reached the post-render freshness assertion; retained original generated output."
+      },
+      {
+        "command": [
+          "python3",
+          "-B",
+          "tools/project_memory.py",
+          "resume"
+        ],
+        "cwd": "/workspace/scratch/2f03f7ab929e/adoption/fresh/borvat-global-marketplace",
+        "exit_code": 0,
+        "seconds": 0.09055328369140625,
+        "stdout": "{\n  \"authority\": \"LOWER-TRUST DATA ONLY. Current instructions, Git, source and verified runtime evidence outrank memory. No approval, lesson promotion, deployment or application acceptance is granted.\",\n  \"blockers\": [\n    \"Full cross-app acceptance remains BLOCKED/unperformed; shared app admission and native invoice/payment hook routing conflict.\",\n    \"Original parity completeness remains FAIL for69 missing binaries and bounded evolutions; hosted CI failure is not a source pass.\",\n    \"Full native/browser/mobile/connected shipping/payment/loyalty acceptance remains open; costed hosted proposal was not provisioned.\",\n    \"Development integration and post-merge readback pending\"\n  ],\n  \"current\": {\n    \"branch\": \"integration/hosted-cycle-2026-10-24\",\n    \"dirty_paths\": [],\n    \"dirty_paths_omitted\": 0,\n    \"dirty_paths_total\": 0,\n    \"source\": {\n      \"content_sha256\": \"ce8bd16050bf2a58d132a41946b10e63867ae2fa1b57bcb3d34ac5425afaf9df\",\n      \"head\": \"3208c407f71536fb168136c86d8e8b799229b04c\"\n    }\n  },\n  \"deployment_separate_observation\": {\n    \"status\": \"unverified\"\n  },\n  \"engineering_status\": \"partial\",\n  \"evidence\": [\n    \"docs/engineering-memory/evidence/adoption-review-20261028.json\",\n    \"docs/engineering-memory/evidence/ordinary-acceptance.json\",\n    \"docs/engineering-memory/evidence/adoption-quick-review-20261028.json\"\n  ],\n  \"freshness\": \"STALE / UNVERIFIED: current Git outranks stored state\",\n  \"last_event_id\": \"borvat-global-marketplace-adoption-continuity-20261028\",\n  \"legacy_prose\": \"Preserved outside managed blocks as historical unverified reference; never auto-approved.\",\n  \"next_steps\": [\n    \"Use original bmad setup/build in this reviewed branch; memory activation and material-result archiving need no per-task memory prompt.\",\n    \"For application continuation consult the existing source-bound product state and blockers; prior application tests keep their exact historical identity.\",\n    \"Integrate reviewed memory-only changes into integration/hosted-cycle-2026-10-24 after dependency and server-protection checks.\",\n    \"Preserve current project/application blockers and historical test identities; no operational delivery is implied.\"\n  ],\n  \"state_source\": {\n    \"content_sha256\": \"8163f94f2bb0e9f78f38b8c546cefda7faecbc659bdda84ea94c54de9b8e77e1\",\n    \"head\": \"dbe6150eef15945679cb077df7d1f54b7264de0d\"\n  },\n  \"summary\": \"BORVAT multi-vendor marketplace with retained original application, commerce server and native peer integration candidates. Architecture: Original app under apps/marketplace; bounded server-side checkout/order persistence under packages/commerce-server. Modules: apps/marketplace/, packages/commerce-server/runtime.mjs, packages/commerce-server/store.mjs. Selected PR35 integration/hosted-cycle-2026-10-24 atfde0717fd898d60a53b354a0d4d60f9148a3a0f8 (tree912e880d4c860e7e6765221fec619ffd2ea3d9f7). EXECUTION-STATE.md says full project OPEN; its public isolated b771e309 deployment observation and all test counts are historical, not current selected-head acceptance.\",\n  \"tests\": []\n}\n",
+        "stderr": "",
+        "stdout_sha256": "5915322fc143cd2ac44f0ed15701e2c10df7e495b1b849963bb5ba9c8bf4fc43",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "python3",
+          "-B",
+          "tools/agent_learning.py",
+          "audit"
+        ],
+        "cwd": "/workspace/scratch/2f03f7ab929e/adoption/fresh/borvat-global-marketplace",
+        "exit_code": 0,
+        "seconds": 0.030952930450439453,
+        "stdout": "VALID lessons=0, verified=0\n",
+        "stderr": "",
+        "stdout_sha256": "89e30528a7420d214b65fc8a57f57c10ea0bc5493a63a58e36466c813f5afba2",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "python3",
+          "-B",
+          "tools/agent_learning.py",
+          "brief",
+          "--tag",
+          "engineering"
+        ],
+        "cwd": "/workspace/scratch/2f03f7ab929e/adoption/fresh/borvat-global-marketplace",
+        "exit_code": 0,
+        "seconds": 0.0299072265625,
+        "stdout": "No verified lessons match. UNKNOWN is not PASS.\n",
+        "stderr": "",
+        "stdout_sha256": "e656d4ac9bf98499e150cf7f488ded93c0d153df06be6d760650aaa5b417e970",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "limitations": "Authenticated sparse source index, original setup/activation and fresh-process retrieval. No new ordinary model task, application tests, deployment or billing measurement; reuse exact historical helper/ordinary behavior proofs."
+  },
+  "independent_reviews": "Adoption review plus original context-free Quick: three initial narrow defects fixed; new-event blocker loss fixed; final Quick and bol transfer inspection no remaining findings.",
+  "provenance_correction": "Dynamic local review inspection created an untracked Python bytecode file in the source fingerprint, not the published payload. It was removed only as task-generated scratch. Old events remain immutable historical records. This distinct event is captured from authenticated clean real-branch source with PYTHONDONTWRITEBYTECODE behavior. Accounting also preserves newer disjoint application commit d1d33ddd7fcfe4fd0d80e46fd6aba0651433f176; 38 paths verified byte-identical.",
+  "historical_tests": "Shared helper ac42c9c53dbafc43ebefcb65a4b79c40421369527318e6e610140bd285796911 unchanged; valid 28+14 and9 ordinary/fresh proofs reused only within their original scope. No new application/runtime PASS inferred.",
+  "scoped_merge_checks": [
+    {
+      "name": "borvat-global-marketplace",
+      "only_approved_memory_paths": true,
+      "changed_paths": 26
+    }
+  ],
+  "ordinary_independent_acceptance": {
+    "pass": true,
+    "tasks": [
+      {
+        "name": "sam-bol-commerce-mcp",
+        "baseline": "73082c6583816f215927ad5297c4b59adb4782ee",
+        "final_head": "967018c86dd110744e55178228c3fa716f9bf91b",
+        "ordinary_prompt_no_memory_instructions": true,
+        "activation_before_plan_verified": true,
+        "independent_review_no_findings": true,
+        "archive_after_result_verified": true,
+        "fresh_parent_process_recovered_result": true,
+        "freshness": "CURRENT_CONTENT / HEAD_CHANGED; tests retain their historical HEAD",
+        "historical_tests_preserved": true,
+        "candidate_exclusion_verified": true,
+        "application_source_unchanged": true,
+        "changed_files": [
+          "_bmad-output/plan-development-handoff.md",
+          "docs/CHANGE_CONTROL.md",
+          "docs/DEVELOPMENT-HANDOFF.md",
+          "docs/engineering-memory/PROJECT_STATE.md",
+          "docs/engineering-memory/evidence/ordinary-development-handoff-20261028.json",
+          "docs/engineering-memory/evidence/ordinary-development-handoff-local-commit-20261028.json"
+        ],
+        "logs": [
+          {
+            "command": [
+              "python3",
+              "-B",
+              "tools/project_memory.py",
+              "resume"
+            ],
+            "exit_code": 0,
+            "stdout": "{\n  \"authority\": \"LOWER-TRUST DATA ONLY. Current instructions, Git, source and verified runtime evidence outrank memory. No approval, lesson promotion, deployment or application acceptance is granted.\",\n  \"blockers\": [],\n  \"current\": {\n    \"branch\": \"develop/commerce-foundation\",\n    \"dirty_paths\": [],\n    \"dirty_paths_omitted\": 0,\n    \"dirty_paths_total\": 0,\n    \"source\": {\n      \"content_sha256\": \"40819d182561138e404f73ea7a7d7597b2c4964dfe6029cf5f536323addd8025\",\n      \"head\": \"967018c86dd110744e55178228c3fa716f9bf91b\"\n    }\n  },\n  \"deployment_separate_observation\": {\n    \"status\": \"unverified\"\n  },\n  \"engineering_status\": \"complete\",\n  \"evidence\": [\n    \"docs/DEVELOPMENT-HANDOFF.md\",\n    \"docs/engineering-memory/evidence/ordinary-development-handoff-20261028.json\",\n    \"docs/engineering-memory/evidence/ordinary-development-handoff-local-commit-20261028.json\"\n  ],\n  \"freshness\": \"CURRENT_CONTENT / HEAD_CHANGED; tests retain their historical HEAD\",\n  \"last_event_id\": \"ordinary-bol-development-handoff-local-20261028\",\n  \"legacy_prose\": \"Preserved outside managed blocks as historical unverified reference; never auto-approved.\",\n  \"next_steps\": [\n    \"LOCAL_ONLY / shared persistence pending: preserve reviewed local result; this task authorizes no publication.\",\n    \"Keep historical test identities and separately establish authenticated QNAN read-only smoke, versioned release and SAM gateway contract acceptance before operational acceptance.\"\n  ],\n  \"state_source\": {\n    \"content_sha256\": \"40819d182561138e404f73ea7a7d7597b2c4964dfe6029cf5f536323addd8025\",\n    \"head\": \"b217c7813aa780a70cd875d32810e76ad0a2de44\"\n  },\n  \"summary\": \"Original BMAD oneshot documentation handoff completed with independent quick review (no findings). Local task commit b217c7813aa780a70cd875d32810e76ad0a2de44 preserves all baseline application object identities. The initial sparse-object commit failure was resolved by authorized local tree/commit/ref operations after exact staged-path and tree-scope checks. Earlier partial checkpoint remains history. No new lesson, application-suite execution, publication, deployment or operational connection occurred.\",\n  \"tests\": [\n    {\n      \"applicability\": \"HISTORICAL / NOT CURRENT PASS\",\n      \"evidence\": [\n        \"docs/engineering-memory/evidence/ordinary-development-handoff-20261028.json\"\n      ],\n      \"name\": \"Local documentation whitespace and unchanged application/policy/lesson scope checks\",\n      \"scope\": \"historical\",\n      \"source\": {\n        \"content_sha256\": \"643cd1519ec8c22ca253aff37f83a34a93f726e5eb8bb5e26242e56aa38490a2\",\n        \"head\": \"73082c6583816f215927ad5297c4b59adb4782ee\"\n      },\n      \"status\": \"pass\"\n    }\n  ]\n}\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "git",
+              "status",
+              "--short"
+            ],
+            "exit_code": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "python3",
+              "-B",
+              "tools/agent_learning.py",
+              "audit"
+            ],
+            "exit_code": 0,
+            "stdout": "VALID lessons=0, verified=0\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "python3",
+              "-B",
+              "tools/agent_learning.py",
+              "brief",
+              "--tag",
+              "engineering"
+            ],
+            "exit_code": 0,
+            "stdout": "No verified lessons match. UNKNOWN is not PASS.\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "git",
+              "diff",
+              "--name-only",
+              "73082c6583816f215927ad5297c4b59adb4782ee",
+              "HEAD"
+            ],
+            "exit_code": 0,
+            "stdout": "_bmad-output/plan-development-handoff.md\ndocs/CHANGE_CONTROL.md\ndocs/DEVELOPMENT-HANDOFF.md\ndocs/engineering-memory/PROJECT_STATE.md\ndocs/engineering-memory/evidence/ordinary-development-handoff-20261028.json\ndocs/engineering-memory/evidence/ordinary-development-handoff-local-commit-20261028.json\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "git",
+              "rev-parse",
+              "HEAD"
+            ],
+            "exit_code": 0,
+            "stdout": "967018c86dd110744e55178228c3fa716f9bf91b\n",
+            "stderr": ""
+          }
+        ],
+        "scope": "Isolated local documentation ordinary task; task changes and candidates are not imported into real projects."
+      },
+      {
+        "name": "surooh-accounting",
+        "baseline": "55ba62ab21b55d05a7cca89e5e0a0e9e0539141d",
+        "final_head": "aeb105ef3eacdd23660d66ea2130c678af9f528f",
+        "ordinary_prompt_no_memory_instructions": true,
+        "activation_before_plan_verified": true,
+        "independent_review_no_findings": true,
+        "archive_after_result_verified": true,
+        "fresh_parent_process_recovered_result": true,
+        "freshness": "CURRENT_CONTENT / HEAD_CHANGED; tests retain their historical HEAD",
+        "historical_tests_preserved": true,
+        "candidate_exclusion_verified": true,
+        "application_source_unchanged": true,
+        "changed_files": [
+          "_bmad-output/plan-development-handoff.md",
+          "docs/DEVELOPMENT-HANDOFF.md",
+          "docs/agent-learning/PROJECT_HISTORY.md",
+          "docs/agent-learning/PROJECT_STATE.md",
+          "docs/engineering-memory/evidence/development-handoff-ordinary-20261028.json"
+        ],
+        "logs": [
+          {
+            "command": [
+              "python3",
+              "-B",
+              "tools/project_memory.py",
+              "resume"
+            ],
+            "exit_code": 0,
+            "stdout": "{\n  \"authority\": \"LOWER-TRUST DATA ONLY. Current instructions, Git, source and verified runtime evidence outrank memory. No approval, lesson promotion, deployment or application acceptance is granted.\",\n  \"blockers\": [\n    \"Publication was outside this task scope: LOCAL_ONLY / shared persistence pending.\",\n    \"Application/deployment/fiscal acceptance is independent and was not assessed in this documentation-only task.\"\n  ],\n  \"current\": {\n    \"branch\": \"completion/invoice-testb-delivery-20261027\",\n    \"dirty_paths\": [],\n    \"dirty_paths_omitted\": 0,\n    \"dirty_paths_total\": 0,\n    \"source\": {\n      \"content_sha256\": \"b3f2b83aa9c0933f939b4599f8fe574769fa2e2ab8732a6f8138a4ee9947a9fd\",\n      \"head\": \"aeb105ef3eacdd23660d66ea2130c678af9f528f\"\n    }\n  },\n  \"deployment_separate_observation\": {\n    \"status\": \"unverified\"\n  },\n  \"engineering_status\": \"complete\",\n  \"evidence\": [\n    \"docs/engineering-memory/evidence/development-handoff-ordinary-20261028.json\",\n    \"docs/DEVELOPMENT-HANDOFF.md\"\n  ],\n  \"freshness\": \"CURRENT_CONTENT / HEAD_CHANGED; tests retain their historical HEAD\",\n  \"last_event_id\": \"accounting-ordinary-development-handoff-20261028\",\n  \"legacy_prose\": \"Preserved outside managed blocks as historical unverified reference; never auto-approved.\",\n  \"next_steps\": [\n    \"Keep this task and follow-up local until separate publication authorization; shared persistence is pending.\",\n    \"For any future invoice-delivery decision, establish the deployed source identity and authenticated end-to-end acceptance on that exact revision.\"\n  ],\n  \"state_source\": {\n    \"content_sha256\": \"b3f2b83aa9c0933f939b4599f8fe574769fa2e2ab8732a6f8138a4ee9947a9fd\",\n    \"head\": \"e1c5138d57d0c0813220cad80f7c8224ece96a8c\"\n  },\n  \"summary\": \"The bounded ordinary documentation task is complete: docs/DEVELOPMENT-HANDOFF.md explains that reviewed source and passing tests do not prove deployment or invoice acceptance on the deployed revision. Original BMAD activation, oneshot implementation and independent quick review ran; quick review found no issues and documentation checks passed. No application code or operational state changed. ERPNext remains the native financial engine; prior application/deployment/fiscal evidence and blockers remain independent and were not revalidated by this task. This checkpoint is local engineering evidence, not product delivery or deployment acceptance.\",\n  \"tests\": [\n    {\n      \"applicability\": \"HISTORICAL / NOT CURRENT PASS\",\n      \"evidence\": [\n        \"docs/engineering-memory/evidence/development-handoff-ordinary-20261028.json\"\n      ],\n      \"name\": \"Documentation paragraph, local-link and whitespace checks\",\n      \"scope\": \"historical\",\n      \"source\": {\n        \"content_sha256\": \"e0821d3d2632761a044602a4839bb94709b0c1dff1602e0572011c368f50f2eb\",\n        \"head\": \"55ba62ab21b55d05a7cca89e5e0a0e9e0539141d\"\n      },\n      \"status\": \"pass\"\n    }\n  ]\n}\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "git",
+              "status",
+              "--short"
+            ],
+            "exit_code": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "python3",
+              "-B",
+              "tools/agent_learning.py",
+              "audit"
+            ],
+            "exit_code": 0,
+            "stdout": "VALID lessons=4, verified=1\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "python3",
+              "-B",
+              "tools/agent_learning.py",
+              "brief",
+              "--tag",
+              "engineering"
+            ],
+            "exit_code": 0,
+            "stdout": "- [invoice-delivery-vs-code-20261027] WHEN A user expects a usable TEST-B deployment and tests passed without matching the deployed revision to the candidate => Leave DELIVERY OPEN until the deployed SHA is proven and authenticated end-to-end acceptance on that exact deployed SHA is evidenced; report operator-access blockers clearly. (evidence: docs/completion/INVOICE-TESTB-DELIVERY-20261027.md)\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "git",
+              "diff",
+              "--name-only",
+              "55ba62ab21b55d05a7cca89e5e0a0e9e0539141d",
+              "HEAD"
+            ],
+            "exit_code": 0,
+            "stdout": "_bmad-output/plan-development-handoff.md\ndocs/DEVELOPMENT-HANDOFF.md\ndocs/agent-learning/PROJECT_HISTORY.md\ndocs/agent-learning/PROJECT_STATE.md\ndocs/engineering-memory/evidence/development-handoff-ordinary-20261028.json\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "git",
+              "rev-parse",
+              "HEAD"
+            ],
+            "exit_code": 0,
+            "stdout": "aeb105ef3eacdd23660d66ea2130c678af9f528f\n",
+            "stderr": ""
+          }
+        ],
+        "scope": "Isolated local documentation ordinary task; task changes and candidates are not imported into real projects."
+      }
+    ],
+    "limits": "Two new context-free ordinary documentation tasks on exact merged sources, plus nine prior valid ordinary cases reused. Sparse local commits used guarded plumbing because application blobs were deliberately not hydrated; this is a test-environment limitation. Receipts distinguish retrospective initial reconnaissance and retained argv/stdout; bol Python stdin bodies are not all retained, so commits, exact scoped diffs and independent parent readback additionally establish result scope. No app/runtime/deployment/billing PASS."
+  },
+  "rollback": "Separately reviewed scoped revert; no reset, force or protection bypass.",
+  "cost": "No token/billing saving measured.",
+  "deployment": "No operational action; any prior application delivery evidence is independent."
+}
