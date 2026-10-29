@@ -10,6 +10,7 @@ import {
 import { existsSync, realpathSync, statSync } from "node:fs";
 import { dirname, isAbsolute, join } from "node:path";
 import { CommandJournal } from "../integration-contracts/command-journal.mjs";
+import { PaymentProviderError } from "./payment-provider.mjs";
 
 export class CommerceError extends Error {
   constructor(code, status = 400) {
@@ -75,11 +76,19 @@ export class CommerceStore {
       CREATE TABLE IF NOT EXISTS orders(id TEXT PRIMARY KEY,owner TEXT NOT NULL,external_key TEXT NOT NULL,body_hash TEXT NOT NULL,quote_id TEXT NOT NULL UNIQUE REFERENCES quotes(id),body TEXT NOT NULL,created INTEGER NOT NULL,UNIQUE(owner,external_key));
       CREATE TABLE IF NOT EXISTS portions(order_id TEXT NOT NULL REFERENCES orders(id),seller TEXT NOT NULL REFERENCES sellers(id),company TEXT NOT NULL,state TEXT NOT NULL,refs TEXT NOT NULL,PRIMARY KEY(order_id,seller));
       CREATE TABLE IF NOT EXISTS payment_events(event_id TEXT PRIMARY KEY,order_id TEXT NOT NULL REFERENCES orders(id),body_hash TEXT NOT NULL,status TEXT NOT NULL);
-      CREATE TABLE IF NOT EXISTS payments(order_id TEXT PRIMARY KEY REFERENCES orders(id),status TEXT NOT NULL CHECK(status IN ('not_started','pending','failed','cancelled','succeeded','refund_pending','refunded')),reference TEXT);
+      CREATE TABLE IF NOT EXISTS payments(order_id TEXT PRIMARY KEY REFERENCES orders(id),status TEXT NOT NULL CHECK(status IN ('not_started','pending','failed','cancelled','succeeded','refund_pending','refunded')),reference TEXT,provider TEXT);
+      CREATE TABLE IF NOT EXISTS payment_exceptions(event_id TEXT PRIMARY KEY,order_id TEXT,kind TEXT NOT NULL,status TEXT,reference TEXT,amount INTEGER,provider TEXT,at INTEGER NOT NULL,resolved INTEGER NOT NULL DEFAULT 0 CHECK(resolved IN (0,1)));
       CREATE TABLE IF NOT EXISTS order_lifecycle(order_id TEXT PRIMARY KEY REFERENCES orders(id),cancel_requested INTEGER NOT NULL DEFAULT 0,expires INTEGER NOT NULL,reason TEXT);
       INSERT OR IGNORE INTO order_lifecycle(order_id,expires) SELECT id,created+900000 FROM orders;
       CREATE TABLE IF NOT EXISTS audit(seq INTEGER PRIMARY KEY AUTOINCREMENT,actor TEXT NOT NULL,action TEXT NOT NULL,resource TEXT NOT NULL,at INTEGER NOT NULL,change TEXT NOT NULL);
     `);
+    if (
+      !this.db
+        .prepare("PRAGMA table_info(payments)")
+        .all()
+        .some((column) => column.name === "provider")
+    )
+      this.db.exec("ALTER TABLE payments ADD COLUMN provider TEXT");
     this.journal = new CommandJournal({
       path,
       now,
@@ -483,7 +492,9 @@ export class CommerceStore {
             quote.lines.find((l) => l.sellerId === seller).company,
           );
       this.db
-        .prepare("INSERT INTO payments VALUES (?,'not_started',NULL)")
+        .prepare(
+          "INSERT INTO payments(order_id,status,reference) VALUES (?,'not_started',NULL)",
+        )
         .run(orderId);
       this.db
         .prepare("INSERT INTO order_lifecycle(order_id,expires) VALUES (?,?)")
@@ -524,8 +535,8 @@ export class CommerceStore {
       (s, l) => s + l.quantity * l.unitPriceCents,
       0,
     );
-    const payment = this.db
-      .prepare("SELECT status,reference FROM payments WHERE order_id=?")
+    const { provider: paymentProvider, ...payment } = this.db
+      .prepare("SELECT status,reference,provider FROM payments WHERE order_id=?")
       .get(orderId);
     const lifecycle = this.db
       .prepare("SELECT * FROM order_lifecycle WHERE order_id=?")
@@ -542,7 +553,10 @@ export class CommerceStore {
       totalCents: sellerView ? subtotal : body.totalCents,
       currency: "EUR",
       tax: body.tax,
-      payment: { ...payment, mode: "simulator-no-provider" },
+      payment: {
+        ...payment,
+        mode: paymentProvider ? "provider:" + paymentProvider : "simulator-no-provider",
+      },
       checkout: sellerView
         ? {
             firstName: body.checkout.firstName,
@@ -1011,6 +1025,89 @@ export class CommerceStore {
     });
     return { command: result, order: this.order(token, orderId) };
   }
+  /**
+   * Shared payment state machine. MUST run inside this.tx(). Every failure happens before
+   * the first write, so a caught failure leaves the transaction clean.
+   */
+  applyPaymentEvent(
+    orderId,
+    {
+      eventId,
+      status,
+      reference,
+      amountCents,
+      currency,
+      actor,
+      action,
+      provider = null,
+      strictReference = false,
+    },
+  ) {
+    const digest = hash(canonical({ orderId, status, reference }));
+    const old = this.db
+      .prepare("SELECT * FROM payment_events WHERE event_id=?")
+      .get(eventId);
+    if (old) {
+      if (old.body_hash !== digest) fail("IDEMPOTENCY_CONFLICT", 409);
+      return { duplicate: true };
+    }
+    const current = this.db
+      .prepare("SELECT * FROM payments WHERE order_id=?")
+      .get(orderId);
+    if (!current) fail("NOT_FOUND", 404);
+    if (amountCents !== undefined) {
+      const total = parse(
+        this.db.prepare("SELECT body FROM orders WHERE id=?").get(orderId).body,
+      ).totalCents;
+      if (amountCents !== total || currency !== "EUR")
+        fail("PAYMENT_AMOUNT_MISMATCH", 409);
+    }
+    if (strictReference && current.reference && current.reference !== reference)
+      fail("PAYMENT_REFERENCE_MISMATCH", 409);
+    const allowed = {
+      not_started: ["pending", "failed", "cancelled", "succeeded"],
+      pending: ["failed", "cancelled", "succeeded"],
+      succeeded: ["refund_pending"],
+      refund_pending: ["refunded"],
+      failed: [],
+      cancelled: [],
+      refunded: [],
+    };
+    if (!allowed[current.status].includes(status))
+      fail("INVALID_PAYMENT_TRANSITION", 409);
+    const parts = this.db
+      .prepare("SELECT state FROM portions WHERE order_id=?")
+      .all(orderId);
+    if (status === "succeeded" && parts.some((x) => x.state !== "reserved"))
+      fail("RESERVATION_NOT_CONFIRMED", 409);
+    if (
+      status === "succeeded" &&
+      this.db
+        .prepare("SELECT cancel_requested FROM order_lifecycle WHERE order_id=?")
+        .get(orderId).cancel_requested
+    )
+      fail("ORDER_CANCELLATION_PENDING", 409);
+    if (
+      ["refund_pending", "refunded"].includes(status) &&
+      parts.some((x) => x.state !== "credited")
+    )
+      fail("CREDIT_NOT_CONFIRMED", 409);
+    this.db
+      .prepare("INSERT INTO payment_events VALUES (?,?,?,?)")
+      .run(eventId, orderId, digest, status);
+    this.db
+      .prepare(
+        "UPDATE payments SET status=?,reference=?,provider=COALESCE(?,provider) WHERE order_id=?",
+      )
+      .run(status, reference, provider, orderId);
+    this.audit(actor, action, orderId, {
+      status,
+      eventId,
+      reference,
+      provider: provider ?? false,
+    });
+    return { duplicate: false };
+  }
   /** Named simulation only. No browser webhook can mark native/provider money received. */
   simulatePayment(token, orderId, { eventId, status, reference }) {
     const p = this.require(token, "admin");
@@ -1028,67 +1125,256 @@ export class CommerceStore {
       ].includes(status)
     )
       fail("INVALID_PAYMENT_STATE");
-    const digest = hash(canonical({ orderId, status, reference }));
     return this.tx(() => {
-      const old = this.db
-        .prepare("SELECT * FROM payment_events WHERE event_id=?")
-        .get(eventId);
-      if (old) {
-        if (old.body_hash !== digest) fail("IDEMPOTENCY_CONFLICT", 409);
-        return this.order(token, orderId);
-      }
-      const current = this.db
-        .prepare("SELECT * FROM payments WHERE order_id=?")
-        .get(orderId);
-      const allowed = {
-        not_started: ["pending", "failed", "cancelled", "succeeded"],
-        pending: ["failed", "cancelled", "succeeded"],
-        succeeded: ["refund_pending"],
-        refund_pending: ["refunded"],
-        failed: [],
-        cancelled: [],
-        refunded: [],
-      };
-      if (!allowed[current.status].includes(status))
-        fail("INVALID_PAYMENT_TRANSITION", 409);
-      const parts = this.db
-        .prepare("SELECT state FROM portions WHERE order_id=?")
-        .all(orderId);
-      if (status === "succeeded" && parts.some((x) => x.state !== "reserved"))
-        fail("RESERVATION_NOT_CONFIRMED", 409);
-      if (
-        status === "succeeded" &&
-        this.db
-          .prepare(
-            "SELECT cancel_requested FROM order_lifecycle WHERE order_id=?",
-          )
-          .get(orderId).cancel_requested
-      )
-        fail("ORDER_CANCELLATION_PENDING", 409);
-      if (
-        ["refund_pending", "refunded"].includes(status) &&
-        parts.some((x) => x.state !== "credited")
-      )
-        fail("CREDIT_NOT_CONFIRMED", 409);
-      this.db
-        .prepare("INSERT INTO payment_events VALUES (?,?,?,?)")
-        .run(eventId, orderId, digest, status);
-      this.db
-        .prepare("UPDATE payments SET status=?,reference=? WHERE order_id=?")
-        .run(status, reference, orderId);
-      this.audit(p.user, "simulator-payment", orderId, {
-        status,
+      this.applyPaymentEvent(orderId, {
         eventId,
+        status,
         reference,
-        provider: false,
+        actor: p.user,
+        action: "simulator-payment",
       });
       return this.order(token, orderId);
     });
+  }
+  /**
+   * Starts a payment with a provider. The provider call happens outside the DB transaction
+   * (it is remote I/O); the intent is idempotent on the order, so a retry after a crash
+   * between the provider call and the local write converges on the same reference.
+   */
+  async startPayment(token, orderId, provider) {
+    const p = this.require(token);
+    if (p.role === "seller") fail("FORBIDDEN", 403);
+    this.order(token, orderId);
+    const read = () => {
+      const row = this.db
+        .prepare("SELECT body FROM orders WHERE id=?")
+        .get(orderId);
+      return {
+        total: parse(row.body).totalCents,
+        payment: this.db
+          .prepare("SELECT * FROM payments WHERE order_id=?")
+          .get(orderId),
+        life: this.db
+          .prepare("SELECT * FROM order_lifecycle WHERE order_id=?")
+          .get(orderId),
+        parts: this.db
+          .prepare("SELECT state FROM portions WHERE order_id=?")
+          .all(orderId),
+      };
+    };
+    const guard = (x) => {
+      if (x.life.cancel_requested) fail("ORDER_CANCELLATION_PENDING", 409);
+      if (x.life.expires <= this.now()) fail("RESERVATION_EXPIRED", 409);
+      if (x.parts.some((part) => part.state !== "reserved"))
+        fail("RESERVATION_NOT_CONFIRMED", 409);
+    };
+    const before = read();
+    if (before.payment.status === "pending" && before.payment.reference)
+      return this.order(token, orderId);
+    if (before.payment.status !== "not_started")
+      fail("INVALID_PAYMENT_TRANSITION", 409);
+    guard(before);
+    let intent;
+    try {
+      intent = await provider.createIntent({
+        orderId,
+        amountCents: before.total,
+        currency: "EUR",
+        idempotencyKey: "order:" + orderId,
+      });
+    } catch (e) {
+      if (e instanceof PaymentProviderError)
+        fail("PAYMENT_PROVIDER_UNAVAILABLE", 503);
+      throw e;
+    }
+    return this.tx(() => {
+      const now = read();
+      if (now.payment.status === "pending") {
+        if (now.payment.reference !== intent.reference)
+          fail("PAYMENT_REFERENCE_MISMATCH", 409);
+        return this.order(token, orderId);
+      }
+      guard(now);
+      this.applyPaymentEvent(orderId, {
+        eventId: "intent:" + orderId,
+        status: "pending",
+        reference: intent.reference,
+        actor: p.user ?? "guest:" + p.owner,
+        action: "payment-intent",
+        provider: provider.name,
+      });
+      return this.order(token, orderId);
+    });
+  }
+  /**
+   * Applies one authenticated provider event. Failures that cannot be applied cleanly
+   * (late success after cancellation, wrong amount, unknown order...) are NEVER dropped:
+   * they are stored as payment exceptions for an operator, and the provider gets a 2xx so
+   * it stops retrying. Same event id with a different body is a hard conflict, not an exception.
+   */
+  ingestProviderEvent(event, providerName) {
+    const recoverable = new Set([
+      "INVALID_PAYMENT_TRANSITION",
+      "RESERVATION_NOT_CONFIRMED",
+      "ORDER_CANCELLATION_PENDING",
+      "PAYMENT_AMOUNT_MISMATCH",
+      "PAYMENT_REFERENCE_MISMATCH",
+      "CREDIT_NOT_CONFIRMED",
+    ]);
+    const record = (kind) => {
+      this.db
+        .prepare(
+          "INSERT OR IGNORE INTO payment_exceptions(event_id,order_id,kind,status,reference,amount,provider,at) VALUES (?,?,?,?,?,?,?,?)",
+        )
+        .run(
+          event.eventId,
+          event.orderId,
+          kind,
+          event.status,
+          event.reference,
+          event.amountCents,
+          providerName,
+          this.now(),
+        );
+      this.audit("provider:" + providerName, "payment-exception", event.orderId, {
+        kind,
+        eventId: event.eventId,
+        status: event.status,
+        reference: event.reference,
+      });
+      return { outcome: "exception", kind };
+    };
+    return this.tx(() => {
+      if (
+        this.db
+          .prepare("SELECT 1 FROM payment_exceptions WHERE event_id=?")
+          .get(event.eventId)
+      )
+        return { outcome: "duplicate" };
+      if (!this.db.prepare("SELECT 1 FROM orders WHERE id=?").get(event.orderId))
+        return record("UNKNOWN_ORDER");
+      try {
+        const out = this.applyPaymentEvent(event.orderId, {
+          ...event,
+          actor: "provider:" + providerName,
+          action: "provider-payment",
+          provider: providerName,
+          strictReference: true,
+        });
+        return { outcome: out.duplicate ? "duplicate" : "applied" };
+      } catch (e) {
+        if (e instanceof CommerceError && recoverable.has(e.message))
+          return record(e.message);
+        throw e;
+      }
+    });
+  }
+  /** Public webhook entry: authenticate, normalize, ingest. Never trusts the browser session. */
+  applyProviderWebhook(provider, rawBody, headers) {
+    let event;
+    try {
+      provider.verifyWebhook({ rawBody, headers });
+      event = provider.parseWebhook(rawBody);
+    } catch (e) {
+      if (!(e instanceof PaymentProviderError)) throw e;
+      if (e.code === "WEBHOOK_SECRET_NOT_CONFIGURED") fail(e.code, 503);
+      if (e.code.startsWith("WEBHOOK_SIGNATURE") || e.code.includes("TIMESTAMP"))
+        fail(e.code, 401);
+      fail(e.code, 400);
+    }
+    return this.ingestProviderEvent(event, provider.name);
+  }
+  /**
+   * Compares stuck pending payments with the provider's own view and converges them.
+   * It never throws because of one bad order or a provider outage; it reports instead.
+   * `release` lists orders whose payment ended failed/cancelled, so the caller can free the
+   * WMS reservations through the normal cancelUnpaid path.
+   */
+  async reconcilePayments(
+    token,
+    provider,
+    { olderThanMs = 15 * 60 * 1000, limit = 50 } = {},
+  ) {
+    this.require(token, "admin");
+    integer(olderThanMs, 0, 7 * 24 * 3600 * 1000);
+    integer(limit, 1, 200);
+    const report = {
+      checked: 0,
+      applied: [],
+      unchanged: [],
+      exceptions: [],
+      mismatches: [],
+      errors: [],
+      release: [],
+    };
+    const pending = this.db
+      .prepare(
+        "SELECT p.order_id,p.reference FROM payments p JOIN orders o ON o.id=p.order_id WHERE p.status='pending' AND p.reference IS NOT NULL AND o.created<=? ORDER BY o.created LIMIT ?",
+      )
+      .all(this.now() - olderThanMs, limit);
+    for (const row of pending) {
+      report.checked++;
+      let view;
+      try {
+        view = await provider.fetchStatus(row.reference);
+      } catch (e) {
+        if (!(e instanceof PaymentProviderError)) throw e;
+        report.errors.push({ orderId: row.order_id, code: e.code });
+        continue;
+      }
+      if (view.reference !== row.reference) {
+        report.mismatches.push({ orderId: row.order_id, kind: "REFERENCE" });
+        continue;
+      }
+      if (view.status === "pending") {
+        report.unchanged.push(row.order_id);
+        continue;
+      }
+      const out = this.ingestProviderEvent(
+        {
+          eventId: `recon:${row.order_id}:${view.status}`,
+          orderId: row.order_id,
+          reference: view.reference,
+          status: view.status,
+          amountCents: view.amountCents,
+          currency: view.currency,
+        },
+        provider.name,
+      );
+      if (out.outcome === "exception")
+        report.exceptions.push({ orderId: row.order_id, kind: out.kind });
+      else report.applied.push({ orderId: row.order_id, status: view.status });
+      if (out.outcome === "applied" && ["failed", "cancelled"].includes(view.status))
+        report.release.push(row.order_id);
+    }
+    // Paid orders the provider no longer reports as paid are surfaced, never auto-changed.
+    const paid = this.db
+      .prepare(
+        "SELECT order_id,reference FROM payments WHERE status='succeeded' AND reference IS NOT NULL AND provider=? LIMIT ?",
+      )
+      .all(provider.name, limit);
+    for (const row of paid) {
+      try {
+        const view = await provider.fetchStatus(row.reference);
+        if (!["succeeded", "refund_pending", "refunded"].includes(view.status))
+          report.mismatches.push({
+            orderId: row.order_id,
+            kind: "PAID_LOCALLY_NOT_AT_PROVIDER",
+          });
+      } catch (e) {
+        if (!(e instanceof PaymentProviderError)) throw e;
+        report.errors.push({ orderId: row.order_id, code: e.code });
+      }
+    }
+    return report;
   }
   admin(token) {
     this.require(token, "admin");
     return {
       sellers: this.db.prepare("SELECT * FROM sellers ORDER BY id").all(),
+      paymentExceptions: this.db
+        .prepare("SELECT * FROM payment_exceptions ORDER BY at DESC LIMIT 100")
+        .all(),
       audit: this.db
         .prepare("SELECT * FROM audit ORDER BY seq DESC LIMIT 100")
         .all()

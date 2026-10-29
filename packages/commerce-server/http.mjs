@@ -1,6 +1,27 @@
 import { CommerceError } from "./store.mjs";
 
-export function createCommerceHandler({ store, origin }) {
+async function readLimited(request, max = 16384) {
+  if (Number(request.headers.get("content-length")) > max)
+    throw new CommerceError("BODY_TOO_LARGE", 413);
+  const reader = request.body?.getReader();
+  const chunks = [];
+  let length = 0;
+  if (reader)
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      length += value.length;
+      if (length > max) {
+        await reader.cancel();
+        throw new CommerceError("BODY_TOO_LARGE", 413);
+      }
+      chunks.push(value);
+    }
+  return Buffer.concat(chunks).toString("utf8");
+}
+
+/** `payments` is optional: { provider } implementing the Payment Provider Port. */
+export function createCommerceHandler({ store, origin, payments = null }) {
   const url = new URL(origin);
   if (
     url.origin !== origin ||
@@ -41,6 +62,17 @@ export function createCommerceHandler({ store, origin }) {
       .find((c) => c.startsWith(cookieName + "="))
       ?.slice(cookieName.length + 1);
     try {
+      // Provider webhook: authenticated by signature over the raw body, never by cookie or Origin.
+      if (path === "/api/commerce/payments/webhook") {
+        if (request.method !== "POST")
+          throw new CommerceError("METHOD_NOT_ALLOWED", 405);
+        if (!payments?.provider)
+          throw new CommerceError("PAYMENT_PROVIDER_NOT_CONFIGURED", 503);
+        const raw = await readLimited(request);
+        return response(
+          store.applyProviderWebhook(payments.provider, raw, request.headers),
+        );
+      }
       // No CORS and no proxy/Host-derived authority. Even the loopback harness uses this exact origin.
       if (
         request.method !== "GET" &&
@@ -134,6 +166,30 @@ export function createCommerceHandler({ store, origin }) {
         request.method === "POST"
       )
         return response(await store.expireUnpaid(token));
+      if (
+        path === "/api/commerce/admin/reconcile-payments" &&
+        request.method === "POST"
+      ) {
+        if (!payments?.provider)
+          throw new CommerceError("PAYMENT_PROVIDER_NOT_CONFIGURED", 503);
+        const report = await store.reconcilePayments(
+          token,
+          payments.provider,
+          body,
+        );
+        report.releaseErrors = [];
+        for (const orderId of report.release) {
+          try {
+            await store.cancelUnpaid(token, orderId, "payment-reconciled-failed");
+          } catch (e) {
+            report.releaseErrors.push({
+              orderId,
+              code: e instanceof CommerceError ? e.message : "SERVICE_UNAVAILABLE",
+            });
+          }
+        }
+        return response(report);
+      }
       if (path === "/api/commerce/admin/sellers" && request.method === "POST")
         return response(store.approve(token, body.seller, body.state));
       if (path === "/api/commerce/admin/users" && request.method === "POST") {
@@ -145,7 +201,7 @@ export function createCommerceHandler({ store, origin }) {
           store.setPrice(token, body.offerId, body.price, body.version),
         );
       const match = path.match(
-        /^\/api\/commerce\/orders\/([A-Za-z0-9._:-]+)(?:\/(action|payment-simulator|cancel))?$/,
+        /^\/api\/commerce\/orders\/([A-Za-z0-9._:-]+)(?:\/(action|payment-simulator|cancel|pay))?$/,
       );
       if (match && request.method === "GET" && !match[2])
         return response(store.order(token, match[1]));
@@ -160,6 +216,13 @@ export function createCommerceHandler({ store, origin }) {
             body.key,
           ),
         );
+      if (match && request.method === "POST" && match[2] === "pay") {
+        if (!payments?.provider)
+          throw new CommerceError("PAYMENT_PROVIDER_NOT_CONFIGURED", 503);
+        return response(
+          await store.startPayment(token, match[1], payments.provider),
+        );
+      }
       if (match && request.method === "POST" && match[2] === "cancel")
         return response(await store.cancelUnpaid(token, match[1], body.reason));
       if (
