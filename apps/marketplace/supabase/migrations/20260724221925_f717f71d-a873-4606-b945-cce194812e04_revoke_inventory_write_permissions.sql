@@ -16,6 +16,11 @@
 --        post_inventory_transaction, reverse_inventory_transaction,
 --        rebuild_inventory_balances, create_reservation,
 --        pick_reservation_allocation, release_reservation, cancel_reservation
+--      NOTE (correction): post_inventory_transaction / reverse_inventory_transaction /
+--        rebuild_inventory_balances are SECURITY DEFINER owner-only and were never
+--        GRANTed to `authenticated` (only REVOKE ... FROM PUBLIC exists upstream).
+--        Their REVOKEs here are defensive no-ops; the effective revokes are the
+--        four reservation RPCs + the two BOL RPCs + the two table writes.
 --   2. REVOKE EXECUTE on BOL reservation write routines from `service_role`:
 --        reserve_bol_order_line, cancel_bol_order_line
 --   3. REVOKE INSERT, UPDATE on the two locally-writable inventory tables:

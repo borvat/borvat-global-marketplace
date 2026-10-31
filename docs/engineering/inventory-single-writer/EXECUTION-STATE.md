@@ -41,21 +41,21 @@ REVOKE INSERT, UPDATE ON public.inventory_serials FROM authenticated;
 
 ### سجل كل `REVOKE` (إما في ملف التنفيذ أو هذا الملف)
 
-| SR | الدالة | الدور | السطر فيmigration |
-|---|---|---|---|
-| 412 | `post_inventory_transaction` | `authenticated` | `20260723210329_...c6066fad.sql` |
-| 455 | `reverse_inventory_transaction` | `authenticated` | `20260723210329_...c6066fad.sql` |
-| 481 | `rebuild_inventory_balances` | `authenticated` | `20260723210329_...c6066fad.sql` |
-| 272 | `create_reservation` | `authenticated` | `20260723211217_...bdbee695.sql` |
-| 352 | `pick_reservation_allocation` | `authenticated` | `20260723211217_...bdbee695.sql` |
-| 442 | `release_reservation` | `authenticated` | `20260723211217_...bdbee695.sql` |
-| 451 | `cancel_reservation` | `authenticated` | `20260723211217_...bdbee695.sql` |
-| 315 | `reserve_bol_order_line` | `service_role` | `20260723230949_...0df12683.sql` |
-| 354 | `cancel_bol_order_line` | `service_role` | `20260723230949_...0df12683.sql` |
-| — | `INSERT, UPDATE` على `inventory_lots` | `authenticated` | سحب كتابي من جدول |
-| — | `INSERT, UPDATE` على `inventory_serials` | `authenticated` | سحب كتابي من جدول |
+| SR | الدالة | الدور | السطر فيmigration | ملاحظة |
+|---|---|---|---|---|
+| 411 | `post_inventory_transaction` | — (owner-only) | `20260723210329_...c6066fad.sql` | `REVOKE ... FROM PUBLIC` موجود؛ **لا GRANT صريح لـauthenticated**. سحب Phase A دفاعي no-op |
+| 454 | `reverse_inventory_transaction` | — (owner-only) | `20260723210329_...c6066fad.sql` | كما أعلاه |
+| 480 | `rebuild_inventory_balances` | — (owner-only) | `20260723210329_...c6066fad.sql` | كما أعلاه |
+| 272 | `create_reservation` | `authenticated` | `20260723211217_...bdbee695.sql` | سحب فعلي (كانت ممنوحة) |
+| 352 | `pick_reservation_allocation` | `authenticated` | `20260723211217_...bdbee695.sql` | سحب فعلي |
+| 442 | `release_reservation` | `authenticated` | `20260723211217_...bdbee695.sql` | سحب فعلي |
+| 451 | `cancel_reservation` | `authenticated` | `20260723211217_...bdbee695.sql` | سحب فعلي |
+| 315 | `reserve_bol_order_line` | `service_role` | `20260723230949_...0df12683.sql` | سحب فعلي (كانت ممنوحة لـservice_role) |
+| 354 | `cancel_bol_order_line` | `service_role` | `20260723230949_...0df12683.sql` | سحب فعلي |
+| — | `INSERT, UPDATE` على `inventory_lots` | `authenticated` | سحب كتابي من جدول | سحب فعلي |
+| — | `INSERT, UPDATE` على `inventory_serials` | `authenticated` | سحب كتابي من جدول | سحب فعلي |
 
-> ملاحظة SR في الملف: الأرقام المرجعية أَخِذت من `SPEC.md` §2.1 (السطور المذكورة فيmigration). هذه قائمة لسجل التنفيذ; الأرقام هي للمتابعة، والمصدر هو SPEC.md نفسه.
+> **تصحيح:** الدوال الثلاث `post_inventory_transaction`/`reverse_inventory_transaction`/`rebuild_inventory_balances` لم تكن ممنوحة لـ`authenticated` أصلاً. الأرقام 411/454/480 في الـmigration الأصلي هي سطور `REVOKE ... FROM PUBLIC` (لا GRANT). سحبها في Phase A دفاعي ولا يغيّر حالة الامتياز (تحققت ديناميكياً على PostgreSQL 18: `has_function_privilege('authenticated', ...) = false` قبل وبعد السحب).
 
 ### نتيجة التنفيذ الفوري
 - `authenticated` لم يَعُد له `EXECUTE` على أي دالة كتابة للمخزون.
