@@ -1,0 +1,9 @@
+{
+  "note": "Migrations that cannot run on a clean rebuild because they are production-data-only (hard-coded production row counts, destructive purge). They are SKIPPED by apply.cjs, never edited, and every skip is recorded in the result JSON so the gap is visible instead of hidden.",
+  "skips": [
+    {
+      "prefix": "20260801002900_e4713db2",
+      "reason": "P0-3 is a DESTRUCTIVE production data purge (BOR-DEC-109): it disables append-only guards, keeps exactly one company named 'Qnan B.V.' and asserts purge-set = 162 companies. 162 is real production data, and fabricating it to satisfy the assertion would produce fake evidence. Contains no schema DDL, so skipping it leaves no schema gap."
+    }
+  ]
+}

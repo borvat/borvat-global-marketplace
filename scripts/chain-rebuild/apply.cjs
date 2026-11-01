@@ -38,9 +38,34 @@ const RESET = process.argv.includes('--reset');
   const files = fs.readdirSync(DIR).filter((f) => f.endsWith('.sql')).sort();
   console.log(`CHAIN: ${files.length} migration files`);
 
+  // Optional synthetic fixtures, applied immediately before a named migration.
+  // Needed because eight historical migrations assert on pre-existing tenant rows.
+  const seedIdx = process.argv.indexOf('--seed-before');
+  const seedBefore = seedIdx > -1 ? process.argv[seedIdx + 1] : null;
+
+  const skipFile = path.join(__dirname, 'data-only-skips.json');
+  const skips = fs.existsSync(skipFile) ? JSON.parse(fs.readFileSync(skipFile, 'utf8')).skips : [];
+  const skipped = [];
+  const isSkipped = (file) => skips.find((s) => file.startsWith(s.prefix));
+
   let ok = 0;
   const failures = [];
   for (const file of files) {
+    const skip = isSkipped(file);
+    if (skip) {
+      skipped.push({ file, reason: skip.reason });
+      console.log(`SKIP ${file} :: production-data-only (${skip.reason.slice(0, 80)}...)`);
+      continue;
+    }
+    if (seedBefore && file.startsWith(seedBefore)) {
+      const seed = fs.readFileSync(path.join(__dirname, 'preflight.sql'), 'utf8');
+      try {
+        await client.query(seed);
+        console.log(`SEED: preflight fixtures applied before ${file}`);
+      } catch (e) {
+        console.log(`SEED FAILED :: ${e.code || ''} ${String(e.message).replace(/\s+/g, ' ').slice(0, 200)}`);
+      }
+    }
     try {
       await client.query(fs.readFileSync(path.join(DIR, file), 'utf8'));
       ok += 1;
@@ -54,9 +79,17 @@ const RESET = process.argv.includes('--reset');
     }
   }
 
-  const summary = { ranAt: new Date().toISOString(), total: files.length, ok, failed: failures.length, failures };
+  const summary = {
+    ranAt: new Date().toISOString(),
+    total: files.length,
+    ok,
+    failed: failures.length,
+    skipped: skipped.length,
+    skippedMigrations: skipped,
+    failures,
+  };
   fs.writeFileSync(OUT, JSON.stringify(summary, null, 2));
-  console.log(`RESULT ok=${ok} failed=${failures.length} total=${files.length}`);
+  console.log(`RESULT ok=${ok} failed=${failures.length} skipped=${skipped.length} total=${files.length}`);
 
   const inv = await client.query(
     `SELECT to_regclass('public.inventory_lots') AS lots,

@@ -1,43 +1,25 @@
 {
-  "ranAt": "2026-11-01T22:30:37.577Z",
-  "total": 128,
-  "ok": 107,
-  "failed": 21,
+  "ranAt": "2026-11-01T22:57:54.984Z",
+  "total": 129,
+  "ok": 113,
+  "failed": 15,
+  "skipped": 1,
+  "skippedMigrations": [
+    {
+      "file": "20260801002900_e4713db2-62c8-471b-b069-bf4dabb3f676.sql",
+      "reason": "P0-3 is a DESTRUCTIVE production data purge (BOR-DEC-109): it disables append-only guards, keeps exactly one company named 'Qnan B.V.' and asserts purge-set = 162 companies. 162 is real production data, and fabricating it to satisfy the assertion would produce fake evidence. Contains no schema DDL, so skipping it leaves no schema gap."
+    }
+  ],
   "failures": [
-    {
-      "file": "20260725220916_681aeeb2-13a2-42c6-8b2e-0902e1ce457f.sql",
-      "code": "42704",
-      "message": "bootstrap aborted: target user 368d803e-d06b-485c-9e3c-e58b168d0419 not found in auth.users"
-    },
-    {
-      "file": "20260726094140_2dfdf99b-f8ba-4294-befc-9d9b2bb7005d.sql",
-      "code": "23503",
-      "message": "insert or update on table \"tax_rate_versions\" violates foreign key constraint \"tax_rate_versions_approved_by_fkey\""
-    },
-    {
-      "file": "20260726130022_ab7d900e-b47c-4793-9747-771e0d894154.sql",
-      "code": "P0001",
-      "message": "M1C-1B VERIFICATION FAILED: M1C-1B: no user available for fixtures"
-    },
-    {
-      "file": "20260726135308_14788f4e-1eb7-4901-a847-46b3522e8032.sql",
-      "code": "P0001",
-      "message": "M1C-1C harness: need two companies"
-    },
     {
       "file": "20260726142346_d67bcd9b-293c-444d-bd9a-f2a6b1916964.sql",
       "code": "P0001",
-      "message": "M1C-1D-B HARNESS FAILURE: null value in column \"owner_user_id\" of relation \"companies\" violates not-null constraint"
+      "message": "M1C-1D-B VERIFICATION FAILED: FAILURES=1 TOTAL=54 FAILED_TESTS=[T54]"
     },
     {
       "file": "20260726145235_3f228759-0ea6-4096-add6-0fc7592c05e4.sql",
       "code": "P0001",
-      "message": "HARNESS: insufficient fixture tenants"
-    },
-    {
-      "file": "20260726151219_6c863dac-c016-4652-939b-18c0a78285b6.sql",
-      "code": "P0001",
-      "message": "M1C1DD harness: two companies required"
+      "message": "M1C-1D-C VERIFICATION FAILED (60 assertions passed). FAILED: live channel connections = 9"
     },
     {
       "file": "20260726153323_26526402-fd88-4f89-82c6-64ed9393a726.sql",
@@ -103,11 +85,6 @@
       "file": "20260726192842_2fc07a0b-6184-43d4-a95e-571396ffa413.sql",
       "code": "3F000",
       "message": "schema \"internal_shipping\" does not exist"
-    },
-    {
-      "file": "20260801002900_e4713db2-62c8-471b-b069-bf4dabb3f676.sql",
-      "code": "P0001",
-      "message": "P0-3 ABORT: keep-set is 0 companies, expected exactly 1 (Qnan B.V.)."
     }
   ]
 }

@@ -1,0 +1,62 @@
+{
+  "ranAt": "2026-11-01T22:58:39.264Z",
+  "server": "PostgreSQL 18.6",
+  "summary": "9/9",
+  "fixtures": "synthetic two-tenant set, created and removed by this script",
+  "results": [
+    {
+      "id": "R1",
+      "name": "member of A reads its own lots",
+      "pass": true,
+      "detail": "rows=2"
+    },
+    {
+      "id": "R2",
+      "name": "member of B reads its own lots",
+      "pass": true,
+      "detail": "rows=1"
+    },
+    {
+      "id": "R3",
+      "name": "cross-tenant isolation on lots and serials",
+      "pass": true,
+      "detail": "A->B lots=0 serials=0 B->A lots=0"
+    },
+    {
+      "id": "R4",
+      "name": "balances follow inventory.read permission and stay tenant-scoped",
+      "pass": true,
+      "detail": "viewerA sees=1 seesB=0"
+    },
+    {
+      "id": "R5",
+      "name": "non-member gets an empty set instead of a permission error",
+      "pass": true,
+      "detail": "rows=0"
+    },
+    {
+      "id": "R6",
+      "name": "helper rejects asking about another user (42501)",
+      "pass": true,
+      "detail": "42501 access denied"
+    },
+    {
+      "id": "R7",
+      "name": "unauthorised writes denied even for a member (42501)",
+      "pass": true,
+      "detail": "insert=42501 update=42501"
+    },
+    {
+      "id": "R8",
+      "name": "legacy place_order still closed",
+      "pass": true,
+      "detail": "{\"anon\":false,\"authenticated\":false,\"service_role\":false,\"sandbox_exec\":false}"
+    },
+    {
+      "id": "R9",
+      "name": "the fix introduces no unapproved EXECUTE grant",
+      "pass": true,
+      "detail": "new=none | pre-existing drift kept out of scope=2 (authenticated:m1v1da_require_reviewer(), authenticated:grant_seller_role_from_approved_application())"
+    }
+  ]
+}
