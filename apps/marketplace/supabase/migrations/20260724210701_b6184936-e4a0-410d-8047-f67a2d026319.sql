@@ -1,7 +1,7 @@
 -- P5-HF-001: Lock down legacy place_order RPC (authorised 2026-07-24 by owner)
 -- Evidence: docs/PHASE5_LEGACY_PLACE_ORDER_EXPOSURE_REPORT.md
-|-- Live ACL before: {postgres=X/postgres, anon=X/postgres, authenticated=X/postgres, service_role=X/postgres, sandbox_exec=X/postgres}
-|
+-- Live ACL before: {postgres=X/postgres, anon=X/postgres, authenticated=X/postgres, service_role=X/postgres, sandbox_exec=X/postgres}
+
 -- Bootstrap: BORVAT custom roles. `sandbox_exec` is an ACL-drift role present in the
 -- production project but never defined in the base migrations (roles.sql carries the
 -- declaration for the local/project setup). Guarded so a clean rebuild does not abort.
