@@ -1,0 +1,113 @@
+{
+  "ranAt": "2026-11-01T22:30:37.577Z",
+  "total": 128,
+  "ok": 107,
+  "failed": 21,
+  "failures": [
+    {
+      "file": "20260725220916_681aeeb2-13a2-42c6-8b2e-0902e1ce457f.sql",
+      "code": "42704",
+      "message": "bootstrap aborted: target user 368d803e-d06b-485c-9e3c-e58b168d0419 not found in auth.users"
+    },
+    {
+      "file": "20260726094140_2dfdf99b-f8ba-4294-befc-9d9b2bb7005d.sql",
+      "code": "23503",
+      "message": "insert or update on table \"tax_rate_versions\" violates foreign key constraint \"tax_rate_versions_approved_by_fkey\""
+    },
+    {
+      "file": "20260726130022_ab7d900e-b47c-4793-9747-771e0d894154.sql",
+      "code": "P0001",
+      "message": "M1C-1B VERIFICATION FAILED: M1C-1B: no user available for fixtures"
+    },
+    {
+      "file": "20260726135308_14788f4e-1eb7-4901-a847-46b3522e8032.sql",
+      "code": "P0001",
+      "message": "M1C-1C harness: need two companies"
+    },
+    {
+      "file": "20260726142346_d67bcd9b-293c-444d-bd9a-f2a6b1916964.sql",
+      "code": "P0001",
+      "message": "M1C-1D-B HARNESS FAILURE: null value in column \"owner_user_id\" of relation \"companies\" violates not-null constraint"
+    },
+    {
+      "file": "20260726145235_3f228759-0ea6-4096-add6-0fc7592c05e4.sql",
+      "code": "P0001",
+      "message": "HARNESS: insufficient fixture tenants"
+    },
+    {
+      "file": "20260726151219_6c863dac-c016-4652-939b-18c0a78285b6.sql",
+      "code": "P0001",
+      "message": "M1C1DD harness: two companies required"
+    },
+    {
+      "file": "20260726153323_26526402-fd88-4f89-82c6-64ed9393a726.sql",
+      "code": "P0001",
+      "message": "M1B-0C ABORT: expected 23 protected tables, normalized 22"
+    },
+    {
+      "file": "20260726162558_35b31159-1fb7-4617-9bc1-a0228707d217.sql",
+      "code": "42P01",
+      "message": "relation \"public.merchant_store_sku_delivery_promise_assignments\" does not exist"
+    },
+    {
+      "file": "20260726163821_21fc8e1b-ee79-4fa7-8465-01ed9050240d.sql",
+      "code": "P0001",
+      "message": "M1C1DG HARNESS ABORTED after 0 assertions (0 failed): relation \"public.merchant_store_sku_delivery_promise_assignments\" does not exist | log: "
+    },
+    {
+      "file": "20260726164218_beb8aae5-51a5-4e7e-a56d-d21c650516b6.sql",
+      "code": "42P01",
+      "message": "relation \"public.merchant_store_sku_delivery_promise_assignments\" does not exist"
+    },
+    {
+      "file": "20260726170407_b000671d-950d-4d7f-a7a7-d71ba828e3de.sql",
+      "code": "3F000",
+      "message": "schema \"internal_shipping\" does not exist"
+    },
+    {
+      "file": "20260726171748_bee85150-ef33-454f-a3bf-012e042ac78d.sql",
+      "code": "3F000",
+      "message": "schema \"internal_shipping\" does not exist"
+    },
+    {
+      "file": "20260726173300_fd917dbd-1537-432f-883a-db4878791cdd.sql",
+      "code": "3F000",
+      "message": "schema \"internal_shipping\" does not exist"
+    },
+    {
+      "file": "20260726174310_bbe55081-d718-4cde-bba8-af80c94d22b9.sql",
+      "code": "3F000",
+      "message": "schema \"internal_shipping\" does not exist"
+    },
+    {
+      "file": "20260726175606_6b3976ac-e756-48a1-af05-b8013c5699c7.sql",
+      "code": "3F000",
+      "message": "schema \"internal_shipping\" does not exist"
+    },
+    {
+      "file": "20260726182333_33be8782-0015-410d-a90f-af902c8f2d28.sql",
+      "code": "3F000",
+      "message": "schema \"internal_shipping\" does not exist"
+    },
+    {
+      "file": "20260726184803_644eabeb-ea8e-4619-b256-485c73905219.sql",
+      "code": "3F000",
+      "message": "schema \"internal_shipping\" does not exist"
+    },
+    {
+      "file": "20260726192627_8df542fc-beba-4242-b8bf-e2e6afc35cf5.sql",
+      "code": "3F000",
+      "message": "schema \"internal_shipping\" does not exist"
+    },
+    {
+      "file": "20260726192842_2fc07a0b-6184-43d4-a95e-571396ffa413.sql",
+      "code": "3F000",
+      "message": "schema \"internal_shipping\" does not exist"
+    },
+    {
+      "file": "20260801002900_e4713db2-62c8-471b-b069-bf4dabb3f676.sql",
+      "code": "P0001",
+      "message": "P0-3 ABORT: keep-set is 0 companies, expected exactly 1 (Qnan B.V.)."
+    }
+  ]
+}

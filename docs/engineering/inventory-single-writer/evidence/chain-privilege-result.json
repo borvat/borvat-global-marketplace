@@ -1,0 +1,73 @@
+{
+  "ranAt": "2026-11-01T22:30:40.939Z",
+  "server": "PostgreSQL 18.6",
+  "summary": "10/11",
+  "results": [
+    {
+      "id": "A1",
+      "name": "create_reservation revoked from authenticated",
+      "pass": true,
+      "detail": "has_function_privilege=false"
+    },
+    {
+      "id": "A2",
+      "name": "reserve_bol_order_line revoked from service_role",
+      "pass": true,
+      "detail": "has_function_privilege=false"
+    },
+    {
+      "id": "A3",
+      "name": "post_inventory_transaction denied to authenticated (owner-only)",
+      "pass": true,
+      "detail": "has_function_privilege=false"
+    },
+    {
+      "id": "A4",
+      "name": "cancel_reservation revoked from authenticated",
+      "pass": true,
+      "detail": "has_function_privilege=false"
+    },
+    {
+      "id": "A9",
+      "name": "legacy place_order closed to every client role",
+      "pass": true,
+      "detail": "{\"anon\":false,\"authenticated\":false,\"service_role\":false,\"sandbox_exec\":false,\"public\":false}"
+    },
+    {
+      "id": "A5",
+      "name": "authenticated can read inventory tables under RLS",
+      "pass": false,
+      "detail": "{\"inventory_lots\":\"42501: permission denied for function is_company_member\",\"inventory_serials\":\"42501: permission denied for function is_company_member\",\"inventory_balances\":\"42501: permission denied for function company_member_has_permission\",\"inventory_transactions\":\"42501: permission denied for function company_member_has_permission\"}"
+    },
+    {
+      "id": "A5b",
+      "name": "root cause of the denied read identified",
+      "pass": true,
+      "detail": "helpers without EXECUTE for authenticated: company_member_has_permission(_company_id uuid, _user_id uuid, _permission text), is_company_member(_company_id uuid, _user_id uuid), is_company_owner(_company_id uuid, _user_id uuid); policies depending on them: inventory_serials.serials_read, inventory_serials.serials_update, inventory_lots.lots_read, inventory_lots.lots_update, inventory_transactions.inv_tx_read, inventory_reservation_allocations.inv_resv_alloc_read, inventory_balances.inv_balances_read, inventory_reservation_headers.inv_resv_headers_read, inventory_reservation_lines.inv_resv_lines_read, inventory_transaction_entries.inv_entries_read"
+    },
+    {
+      "id": "A6",
+      "name": "authenticated INSERT into inventory_lots denied",
+      "pass": true,
+      "detail": "42501 permission denied for table inventory_lots"
+    },
+    {
+      "id": "A7",
+      "name": "authenticated UPDATE on inventory_serials denied",
+      "pass": true,
+      "detail": "42501 permission denied for table inventory_serials"
+    },
+    {
+      "id": "A8",
+      "name": "rollback file restores every revoked write privilege",
+      "pass": true,
+      "detail": "{\"create_res\":true,\"reserve_bol\":true,\"cancel\":true}"
+    },
+    {
+      "id": "A8b",
+      "name": "Phase A re-application closes the round trip",
+      "pass": true,
+      "detail": "{\"create_res\":false,\"reserve_bol\":false,\"cancel\":false,\"place\":false}"
+    }
+  ]
+}
