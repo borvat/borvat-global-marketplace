@@ -1,7 +1,7 @@
 {
-  "ranAt": "2026-11-01T22:57:54.984Z",
-  "total": 129,
-  "ok": 113,
+  "ranAt": "2026-11-01T23:24:27.451Z",
+  "total": 131,
+  "ok": 115,
   "failed": 15,
   "skipped": 1,
   "skippedMigrations": [

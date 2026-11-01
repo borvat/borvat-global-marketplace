@@ -1,0 +1,158 @@
+{
+  "source": "apply6.json",
+  "total": 131,
+  "ok": 115,
+  "failed": 15,
+  "skipped": 1,
+  "failures": [
+    {
+      "file": "20260726142346_d67bcd9b-293c-444d-bd9a-f2a6b1916964.sql",
+      "code": "P0001",
+      "category": "production-snapshot-assertion",
+      "message": "M1C-1D-B VERIFICATION FAILED: FAILURES=1 TOTAL=54 FAILED_TESTS=[T54]",
+      "assertionAt": "20260726142346:592",
+      "assertionText": "RAISE EXCEPTION 'M1C1DB_ROLLBACK::%', v_summary;",
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726145235_3f228759-0ea6-4096-add6-0fc7592c05e4.sql",
+      "code": "P0001",
+      "category": "production-snapshot-assertion",
+      "message": "M1C-1D-C VERIFICATION FAILED (60 assertions passed). FAILED: live channel connections = 9",
+      "assertionAt": "20260726145235:120",
+      "assertionText": "RAISE EXCEPTION 'M1C-1D-C: supersedes_assignment_id % not found', NEW.supersedes_assignment_id",
+      "ddlThatRolledBack": [
+        "TABLE public.merchant_store_sku_delivery_promise_assignments",
+        "INDEX mssdpa_company_ix",
+        "INDEX mssdpa_store_ix",
+        "INDEX mssdpa_promise_ix",
+        "INDEX mssdpa_supersedes_ix"
+      ]
+    },
+    {
+      "file": "20260726153323_26526402-fd88-4f89-82c6-64ed9393a726.sql",
+      "code": "P0001",
+      "category": "production-snapshot-assertion",
+      "message": "M1B-0C ABORT: expected 23 protected tables, normalized 22",
+      "assertionAt": "20260726153323:45",
+      "assertionText": "RAISE EXCEPTION 'M1B-0C ABORT: no place_order signature found';",
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726162558_35b31159-1fb7-4617-9bc1-a0228707d217.sql",
+      "code": "42P01",
+      "category": "cascade-missing-object",
+      "message": "relation \"public.merchant_store_sku_delivery_promise_assignments\" does not exist",
+      "assertionAt": "20260726162558:98",
+      "assertionText": "RAISE EXCEPTION USING ERRCODE='P0001', MESSAGE='invalid_configuration', DETAIL='null_input_reference';",
+      "ddlThatRolledBack": [
+        "SCHEMA internal_shipping"
+      ]
+    },
+    {
+      "file": "20260726163821_21fc8e1b-ee79-4fa7-8465-01ed9050240d.sql",
+      "code": "P0001",
+      "category": "cascade-missing-object",
+      "message": "M1C1DG HARNESS ABORTED after 0 assertions (0 failed): relation \"public.merchant_store_sku_delivery_promise_assignments\" does not exist | log: ",
+      "assertionAt": "20260726163821:415",
+      "assertionText": "RAISE EXCEPTION 'M1C1DG_ROLLBACK';",
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726164218_beb8aae5-51a5-4e7e-a56d-d21c650516b6.sql",
+      "code": "42P01",
+      "category": "cascade-missing-object",
+      "message": "relation \"public.merchant_store_sku_delivery_promise_assignments\" does not exist",
+      "assertionAt": "20260726164218:101",
+      "assertionText": "IF bad <> '' THEN RAISE EXCEPTION 'M1B-0D NORMALIZATION FAILED: %', bad; END IF;",
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726170407_b000671d-950d-4d7f-a7a7-d71ba828e3de.sql",
+      "code": "3F000",
+      "category": "cascade-missing-object",
+      "message": "schema \"internal_shipping\" does not exist",
+      "assertionAt": "20260726170407:95",
+      "assertionText": "IF v <> 0 THEN RAISE EXCEPTION 'M1B-0E: place_order still executable (%).', v; END IF;",
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726171748_bee85150-ef33-454f-a3bf-012e042ac78d.sql",
+      "code": "3F000",
+      "category": "cascade-missing-object",
+      "message": "schema \"internal_shipping\" does not exist",
+      "assertionAt": "20260726171748:88",
+      "assertionText": "IF v <> 0 THEN RAISE EXCEPTION 'M1B-0F: place_order still executable (%).', v; END IF;",
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726173300_fd917dbd-1537-432f-883a-db4878791cdd.sql",
+      "code": "3F000",
+      "category": "cascade-missing-object",
+      "message": "schema \"internal_shipping\" does not exist",
+      "assertionAt": null,
+      "assertionText": null,
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726174310_bbe55081-d718-4cde-bba8-af80c94d22b9.sql",
+      "code": "3F000",
+      "category": "cascade-missing-object",
+      "message": "schema \"internal_shipping\" does not exist",
+      "assertionAt": null,
+      "assertionText": null,
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726175606_6b3976ac-e756-48a1-af05-b8013c5699c7.sql",
+      "code": "3F000",
+      "category": "cascade-missing-object",
+      "message": "schema \"internal_shipping\" does not exist",
+      "assertionAt": null,
+      "assertionText": null,
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726182333_33be8782-0015-410d-a90f-af902c8f2d28.sql",
+      "code": "3F000",
+      "category": "cascade-missing-object",
+      "message": "schema \"internal_shipping\" does not exist",
+      "assertionAt": null,
+      "assertionText": null,
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726184803_644eabeb-ea8e-4619-b256-485c73905219.sql",
+      "code": "3F000",
+      "category": "cascade-missing-object",
+      "message": "schema \"internal_shipping\" does not exist",
+      "assertionAt": null,
+      "assertionText": null,
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726192627_8df542fc-beba-4242-b8bf-e2e6afc35cf5.sql",
+      "code": "3F000",
+      "category": "cascade-missing-object",
+      "message": "schema \"internal_shipping\" does not exist",
+      "assertionAt": null,
+      "assertionText": null,
+      "ddlThatRolledBack": []
+    },
+    {
+      "file": "20260726192842_2fc07a0b-6184-43d4-a95e-571396ffa413.sql",
+      "code": "3F000",
+      "category": "cascade-missing-object",
+      "message": "schema \"internal_shipping\" does not exist",
+      "assertionAt": null,
+      "assertionText": null,
+      "ddlThatRolledBack": []
+    }
+  ],
+  "countsByCategory": {
+    "production-snapshot-assertion": 3,
+    "cascade-missing-object": 12
+  },
+  "ddlLostObjectCount": 6,
+  "fingerprint": "8d7563f2172562be"
+}

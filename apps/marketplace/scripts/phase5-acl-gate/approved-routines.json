@@ -2,7 +2,7 @@
   "version": 1,
   "stage": "M1V-1D",
   "decision": "BOR-DEC-142",
-  "note": "Deny-by-default allowlist. Any public routine executable by anon is a violation. Any non-trigger routine executable by authenticated/service_role that is not listed here is a violation. Trigger/guard routines must never be executable by application roles. Anon EXECUTE is forbidden except for routines explicitly allowlisted with the anon role (M1V-1C public storefront read, BOR-DEC-135).",
+  "note": "Deny-by-default allowlist. Any public routine executable by anon is a violation. Any non-trigger routine executable by authenticated/service_role that is not listed here is a violation. Trigger/guard routines must never be executable by application roles. Anon EXECUTE is forbidden except for routines explicitly allowlisted with the anon role (M1V-1C public storefront read, BOR-DEC-135). 2026-11-02 security review: grant_seller_role_from_approved_application() added at the signature its shipped app call requires (src/routes/seller.tsx uses it as an RPC); the reviewer gate m1v1da_require_reviewer() stays out and its client EXECUTE was revoked.",
   "routines": [
     {
       "signature": "_merchant_store_can_manage(uuid,uuid)",
@@ -229,6 +229,12 @@
       "signature": "fail_shipment_outbox_event(uuid,text,boolean)",
       "roles": [
         "service_role"
+      ]
+    },
+    {
+      "signature": "grant_seller_role_from_approved_application()",
+      "roles": [
+        "authenticated"
       ]
     },
     {

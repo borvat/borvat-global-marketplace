@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-01T22:58:39.264Z",
+  "ranAt": "2026-11-01T23:18:39.808Z",
   "server": "PostgreSQL 18.6",
   "summary": "9/9",
   "fixtures": "synthetic two-tenant set, created and removed by this script",
@@ -56,7 +56,7 @@
       "id": "R9",
       "name": "the fix introduces no unapproved EXECUTE grant",
       "pass": true,
-      "detail": "new=none | pre-existing drift kept out of scope=2 (authenticated:m1v1da_require_reviewer(), authenticated:grant_seller_role_from_approved_application())"
+      "detail": "new=none | pre-existing drift kept out of scope=0"
     }
   ]
 }
