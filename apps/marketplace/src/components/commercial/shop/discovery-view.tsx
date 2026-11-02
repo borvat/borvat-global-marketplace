@@ -273,6 +273,24 @@ function CardRow({ ids }: { ids: string[] }) {
   );
 }
 
+function CardRowSkeleton({ count = 4 }: { count?: number }) {
+  return (
+    <ul aria-hidden className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+      {Array.from({ length: count }, (_, i) => (
+        <li key={i} className="brv-card overflow-hidden">
+          <div className="aspect-square w-full animate-pulse bg-muted" />
+          <div className="space-y-2 p-3">
+            <div className="h-3.5 w-4/5 animate-pulse rounded bg-muted" />
+            <div className="h-3 w-1/2 animate-pulse rounded bg-muted" />
+            <div className="h-4 w-1/3 animate-pulse rounded bg-muted" />
+            <div className="h-3 w-2/3 animate-pulse rounded bg-muted" />
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function SkeletonGrid() {
   const nl = useShopText();
   return (
@@ -409,7 +427,7 @@ function MarketplaceHome() {
             {nl.seeAll}
           </LocalLink>
         </header>
-        {all.length ? <CardRow ids={all.slice(0, 4)} /> : <SkeletonGrid />}
+        {all.length ? <CardRow ids={all.slice(0, 4)} /> : <CardRowSkeleton />}
       </section>
 
       {deals.length > 0 && (
