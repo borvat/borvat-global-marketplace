@@ -1,6 +1,6 @@
 /**
  * Unit tests for audit-log secret redaction in summarize().
- * Run: bunx tsx scripts/redaction-tests.ts
+ * Run: bunx tsx tests/redaction.test.ts
  */
 import { summarize, redactSensitive } from "../src/lib/mcp/context";
 

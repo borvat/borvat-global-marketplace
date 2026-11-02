@@ -7,7 +7,9 @@ BASE="${BASE:-http://127.0.0.1:8080}"
 DIR="$(cd "$(dirname "$0")" && pwd)"
 PRETTY="python3 $DIR/pretty.py"
 BUYER_EMAIL="buyer-$(date +%s)@borvat.test"
-PASSWORD="borvat-demo-password"
+# shellcheck source=../tests/fixtures/demo-credentials.sh
+source "$DIR/../tests/fixtures/demo-credentials.sh"
+PASSWORD="${DEMO_BUYER_PASSWORD:?fixture password missing}"
 ADMIN_EMAIL="admin@borvat.test"
 ALPHA_EMAIL="alpha@borvat.test"
 
