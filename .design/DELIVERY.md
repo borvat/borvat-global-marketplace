@@ -16,7 +16,8 @@
 | After home 1440 / 390 | `.design/after/home-1440.png`, `home-390.png` |
 | After discover 1440 / 390 | `.design/after/discover-1440.png`, `discover-390.png` |
 | After product 1440 / 390 | `.design/after/pdp-1440.png`, `pdp-390.png` |
-| After cart 1440 / 390 | `.design/after/cart-1440.png`, `cart-390.png` |
+| After cart 1440 / 390 (empty) | `.design/after/cart-1440.png`, `cart-390.png` |
+| After cart with a line 1440 / 390 | `.design/after/cart-filled-1440.png`, `cart-filled-390.png` |
 
 What changed in the first screen: gradient hero with a yellow "NIEUW" pill replaced by a paper hero with a serif display headline, a small-caps eyebrow, hairline rules and a featured object; marketplace-style cards replaced by image-led 4:5 crops; a dark rounded filter card replaced by hairline filters; the dark header bar replaced by a paper header with an underlined search field and one oxblood accent.
 
@@ -51,6 +52,7 @@ No route, hook, handler, query, data shape, copy meaning, migration or Supabase 
 | Build (`build.mjs isolated`, Linux) | success, `.output` generated |
 | HTTP `/`, `/discover`, `/product/prd_001`, `/cart` | 200 |
 | Horizontal overflow at 1440 and 390 | none on all four pages |
+| Add to cart, PDP → cart (browser) | button `IN WINKELWAGEN` clicked, header badge `1`, cart reads `Mandje (1 artikel)`, `Totaal € 749,00`, `Verzendkosten Gratis`, `waarvan btw € 129,99` |
 | One `h1` per page, heading order | preserved |
 | Focus ring, tap targets ≥44px on buttons/steppers | implemented in the shared primitives |
 
@@ -58,6 +60,6 @@ No route, hook, handler, query, data shape, copy meaning, migration or Supabase 
 
 1. **Product imagery is the existing placeholder.** The isolated catalogue has no real product photos; the design treats the placeholder honestly (labelled "voorbeeldafbeelding"). It cannot look like a photographed catalogue until real media exists.
 2. **The PDP buy box is still a rounded, shadowed card** — the one surface that did not get the hairline treatment. Left as-is after two fix cycles rather than opening a third.
-3. **Add-to-cart was not clicked end-to-end in this session**: the browser daemon timed out twice during the interaction. Cart and pricing behaviour is covered by the 27 passing commerce tests and the PDP screenshot shows the enabled "IN WINKELWAGEN" control, but the click itself is not proven here.
+3. **Cart, buy box and line item surfaces keep the rounded white card** used before the redesign, while the rest of the storefront is hairline-flat. Deliberate stop after two fix cycles; a third pass would flatten them too.
 4. No Safari/Firefox pass, no screen-reader pass, no RTL exercise (the storefront ships Dutch only; the Arabic/RTL rules in DESIGN.md apply if enabled).
 5. Not deployed: staging still serves the old design until you approve a deploy.
