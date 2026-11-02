@@ -346,14 +346,9 @@ export function DiscoveryView() {
           {results.length > 0 && (
             <figure className="hidden lg:block">
               <ProductMedia seed={results[0]} title="Uitgelicht object" size="lg" />
-              <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-[12px] text-muted-foreground">
-                <span className="truncate">
-                  {catalog.products.find((p) => p.id === results[0])?.title}
-                </span>
-                <span className="brv-price shrink-0 text-foreground">
-                  {Number.isFinite(fromPrice(catalog, results[0]))
-                    ? formatEur(fromPrice(catalog, results[0]))
-                    : copy("Prijs op aanvraag")}
+              <figcaption className="mt-3 text-[12px] text-muted-foreground">
+                <span className="line-clamp-1">
+                  {catalog.products.find((p) => p.id === results[0])?.title ?? ""}
                 </span>
               </figcaption>
             </figure>
