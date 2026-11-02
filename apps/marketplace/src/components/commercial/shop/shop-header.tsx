@@ -141,7 +141,7 @@ export function ShopHeader() {
       </div>
 
       <div className="brv-topbar">
-        <div className="brv-shell flex items-center gap-4 py-2.5 lg:gap-8">
+        <div className="brv-shell flex flex-wrap items-center gap-x-3 gap-y-2 py-2.5 lg:flex-nowrap lg:gap-8">
           <LocalLink
             href={link("/discover", reset)}
             data-testid="header-logo"
@@ -158,7 +158,7 @@ export function ShopHeader() {
             <SearchBar />
           </div>
 
-          <div className="ml-auto flex items-center gap-1">
+          <div className="ml-auto flex shrink-0 items-center gap-1">
             <LocalLink
               href={link("/account")}
               className="hidden items-center gap-2 rounded px-2.5 py-2 text-[13px] hover:bg-muted sm:flex"
