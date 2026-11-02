@@ -1,0 +1,2 @@
+PASS P1 pre-fix body lets a SUSPENDED member self-activate :: call=succeeded sellerRows=1
+PASS P2 shipped body denies the same caller :: 42501 no approved seller application for this user sellerRows=0

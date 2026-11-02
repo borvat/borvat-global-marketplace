@@ -4,10 +4,10 @@
 -- Append-only guards are disabled for the duration of this transaction only.
 -- ============================================================================
 
-CREATE TEMP TABLE _p0_3_keep ON COMMIT DROP AS
+CREATE TEMP TABLE _p0_3_keep AS
   SELECT id FROM public.companies WHERE name = 'Qnan B.V.';
 
-CREATE TEMP TABLE _p0_3_purge ON COMMIT DROP AS
+CREATE TEMP TABLE _p0_3_purge AS
   SELECT id FROM public.companies WHERE id NOT IN (SELECT id FROM _p0_3_keep);
 
 DO $$

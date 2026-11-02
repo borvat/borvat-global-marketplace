@@ -1,0 +1,55 @@
+{
+  "ranAt": "2026-11-02T00:08:15.566Z",
+  "server": "PostgreSQL 18.6",
+  "summary": "8/8",
+  "results": [
+    {
+      "id": "S1",
+      "name": "reviewer gate not executable by client roles, but still executable by its owner",
+      "pass": true,
+      "detail": "{\"authenticated\":false,\"service_role\":false,\"postgres\":true}"
+    },
+    {
+      "id": "S2",
+      "name": "direct call to the reviewer gate by authenticated is denied",
+      "pass": true,
+      "detail": "42501 permission denied for function m1v1da_require_reviewer"
+    },
+    {
+      "id": "S3",
+      "name": "reviewer RPC still works through the internal gate",
+      "pass": true,
+      "detail": "returned ok"
+    },
+    {
+      "id": "S4",
+      "name": "non-reviewer is rejected by the same RPC",
+      "pass": true,
+      "detail": "42501 not_verification_reviewer"
+    },
+    {
+      "id": "S5",
+      "name": "active member with an approved application activates as seller",
+      "pass": true,
+      "detail": "seller rows=1"
+    },
+    {
+      "id": "S6",
+      "name": "SUSPENDED member cannot self-activate (finding F2 fixed)",
+      "pass": true,
+      "detail": "42501 no approved seller application for this user"
+    },
+    {
+      "id": "S7",
+      "name": "non-member cannot self-activate",
+      "pass": true,
+      "detail": "42501 no approved seller application for this user"
+    },
+    {
+      "id": "S8",
+      "name": "allowlist and granted surface agree in both directions",
+      "pass": true,
+      "detail": "granted=23 allowlist=23 excess=0 mismatch=0 stale=0"
+    }
+  ]
+}
