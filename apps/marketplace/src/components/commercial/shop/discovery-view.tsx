@@ -251,7 +251,7 @@ function ProductGrid({ ids }: { ids: string[] }) {
       className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-3 xl:grid-cols-4"
     >
       {ids.map((id) => (
-        <li key={id}>
+        <li key={id} className="h-full">
           <ProductCard p={toCard(id, catalog, link)} />
         </li>
       ))}
@@ -265,7 +265,7 @@ function CardRow({ ids }: { ids: string[] }) {
   return (
     <ul className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
       {ids.map((id) => (
-        <li key={id}>
+        <li key={id} className="h-full">
           <ProductCard p={toCard(id, catalog, link)} />
         </li>
       ))}
