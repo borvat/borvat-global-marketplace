@@ -72,7 +72,7 @@ export function CartView() {
     return (
       <div
         data-testid="empty-cart"
-        className="mx-auto flex max-w-md flex-col items-center py-12 text-center"
+        className="brv-shell flex flex-col items-center py-14 text-center"
       >
         <ShoppingBag aria-hidden className="h-14 w-14 text-muted-foreground" />
         <h1 tabIndex={-1} className="mt-4 text-2xl font-bold">
@@ -93,20 +93,20 @@ export function CartView() {
   const free = SHIPPING_METHODS.standaard.freeFromCents;
   const count = lines.reduce((s, l) => s + l.quantity, 0);
   return (
-    <div className="space-y-6">
-      <h1 tabIndex={-1} className="text-2xl font-bold sm:text-3xl">
+    <div className="brv-shell space-y-4 py-4">
+      <h1 tabIndex={-1} className="text-[24px] font-black leading-tight">
         {nl.cart}{" "}
         <span className="text-base font-normal text-muted-foreground">
           ({count} {copy(count === 1 ? "artikel" : "artikelen")})
         </span>
       </h1>
-      <div className="grid items-start gap-6 lg:grid-cols-[1fr_22rem]">
+      <div className="grid items-start gap-5 lg:grid-cols-[1fr_20rem]">
         <ul className="space-y-3" aria-label={copy("Artikelen in je mandje")}>
           {lines.map((l) => (
             <li
               key={l.offerId}
               data-testid={`cart-line-${l.offerId}`}
-              className="flex gap-3 rounded-xl border border-border bg-card p-3 sm:gap-4 sm:p-4"
+              className="flex gap-3 rounded-md border border-border bg-card p-3"
             >
               <ProductMedia
                 seed={l.product?.id ?? l.offerId}
@@ -122,7 +122,7 @@ export function CartView() {
                           offer: l.offerId,
                           sku: l.offer?.skuId ?? null,
                         })}
-                        className="font-semibold hover:underline"
+                        className="text-[14px] font-semibold leading-snug hover:text-primary hover:underline"
                       >
                         {l.product.title}
                       </LocalLink>
@@ -178,11 +178,11 @@ export function CartView() {
         </ul>
         <aside
           aria-label={nl.overview}
-          className="space-y-4 rounded-xl border border-border bg-card p-5 lg:sticky lg:top-24"
+          className="space-y-3 rounded-md border border-border bg-card p-4 lg:sticky lg:top-[152px]"
         >
-          <h2 className="text-lg font-bold">{nl.overview}</h2>
+          <h2 className="text-[16px] font-bold">{nl.overview}</h2>
           <TotalsBlock lines={lines} method="standaard" prefix="cart" />
-          <p className="text-sm" data-testid="free-shipping-hint">
+          <p className="border-t border-border pt-3 text-[12.5px]" data-testid="free-shipping-hint">
             {totals.subtotalCents >= free
               ? nl.freeShippingReached
               : nl.freeShippingLeft(formatEur(free - totals.subtotalCents))}

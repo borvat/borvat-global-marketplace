@@ -1,18 +1,33 @@
 import { useShopCopy, useShopMoney } from "./i18n";
 import { useShopText } from "./i18n";
 import { useEffect, useState, type FormEvent } from "react";
-import { SlidersHorizontal, X, SearchX, Sofa, Trees, LayoutGrid } from "lucide-react";
-import { formatEur } from "../../../lib/format";
+import {
+  SlidersHorizontal,
+  X,
+  SearchX,
+  Sofa,
+  Trees,
+  LayoutGrid,
+  Truck,
+  RotateCcw,
+  ShieldCheck,
+  Store,
+  ChevronRight,
+} from "lucide-react";
 import { selectDemoProducts } from "../../../lib/commercial/demo-adapter";
-import { fromPrice, LocalLink, productAvailability, useShop } from "./shop-context";
-import { AvailabilityBadge, ProductMedia, secondaryButton } from "./shop-parts";
+import { fromPrice, LocalLink, productAvailability, publishedOffers, useShop } from "./shop-context";
+import {
+  ProductCard,
+  ProductMedia,
+  secondaryButton,
+  type CardProduct,
+} from "./shop-parts";
 import { nl } from "./nl";
 
 const CATEGORIES = ["Wonen", "Tuin"] as const;
-const categoryIcon = { Alles: LayoutGrid, Wonen: Sofa, Tuin: Trees };
+const categoryIcon = { Wonen: Sofa, Tuin: Trees };
 
 function PriceFilter() {
-  const copy = useShopCopy();
   const nl = useShopText();
   const { route, link, navigate } = useShop();
   const [min, setMin] = useState(route.minPrice?.toString() ?? "");
@@ -32,51 +47,44 @@ function PriceFilter() {
     navigate(link("/discover", { min: min || null, max: max || null }), true);
   };
   return (
-    <form
-      onSubmit={apply}
-      className="space-y-2"
-      aria-describedby={error ? "price-error" : undefined}
-    >
-      <fieldset>
-        <legend className="mb-2 font-semibold">{nl.price}</legend>
-        <div className="grid grid-cols-2 gap-2">
-          <div className="min-w-0 flex-1">
-            <label htmlFor="price-min" className="text-xs text-muted-foreground">
-              {nl.min}
-            </label>
-            <input
-              id="price-min"
-              data-testid="filter-price-min"
-              inputMode="numeric"
-              value={min}
-              onChange={(e) => setMin(e.target.value)}
-              className="h-10 w-full rounded-md border border-border bg-background px-2"
-            />
-          </div>
-          <div className="min-w-0 flex-1">
-            <label htmlFor="price-max" className="text-xs text-muted-foreground">
-              {nl.max}
-            </label>
-            <input
-              id="price-max"
-              data-testid="filter-price-max"
-              inputMode="numeric"
-              value={max}
-              onChange={(e) => setMax(e.target.value)}
-              className="h-10 w-full rounded-md border border-border bg-background px-2"
-            />
-          </div>
-          <button
-            type="submit"
-            data-testid="filter-price-apply"
-            className={`${secondaryButton} col-span-2 h-10 px-3 py-0`}
-          >
-            {nl.apply}
-          </button>
+    <form onSubmit={apply} aria-describedby={error ? "price-error" : undefined}>
+      <div className="mt-2 grid grid-cols-2 gap-2">
+        <div>
+          <label htmlFor="price-min" className="text-[11.5px] text-muted-foreground">
+            {nl.min}
+          </label>
+          <input
+            id="price-min"
+            data-testid="filter-price-min"
+            inputMode="numeric"
+            value={min}
+            onChange={(e) => setMin(e.target.value)}
+            className="h-9 w-full rounded border border-border bg-white px-2 text-[13px]"
+          />
         </div>
-      </fieldset>
+        <div>
+          <label htmlFor="price-max" className="text-[11.5px] text-muted-foreground">
+            {nl.max}
+          </label>
+          <input
+            id="price-max"
+            data-testid="filter-price-max"
+            inputMode="numeric"
+            value={max}
+            onChange={(e) => setMax(e.target.value)}
+            className="h-9 w-full rounded border border-border bg-white px-2 text-[13px]"
+          />
+        </div>
+        <button
+          type="submit"
+          data-testid="filter-price-apply"
+          className="col-span-2 h-9 rounded border border-border bg-surface text-[12.5px] font-semibold hover:border-ink"
+        >
+          {nl.apply}
+        </button>
+      </div>
       {error && (
-        <p id="price-error" role="alert" className="text-sm text-destructive">
+        <p id="price-error" role="alert" className="mt-2 text-[12.5px] text-destructive">
           {error}
         </p>
       )}
@@ -84,9 +92,68 @@ function PriceFilter() {
   );
 }
 
-/** One filter panel instance: collapsible on mobile, always open from the lg breakpoint. */
-function FilterDisclosure() {
+function FilterPanel() {
   const copy = useShopCopy();
+  const nl = useShopText();
+  const { route, catalog, link, navigate } = useShop();
+  const set = (changes: Record<string, string | null>) => navigate(link("/discover", changes), true);
+  const counts = CATEGORIES.map((c) => ({
+    name: c,
+    count: catalog.products.filter((p) => p.category === c).length,
+  }));
+  return (
+    <div>
+      <details className="brv-facet" open>
+        <summary>
+          {nl.category} <ChevronRight aria-hidden className="h-3.5 w-3.5 rotate-90" />
+        </summary>
+        <div className="mt-1">
+          {["Alles", ...CATEGORIES].map((c) => (
+            <label key={c} className="brv-check">
+              <input
+                type="radio"
+                name="category"
+                data-testid={`filter-category-${c.toLowerCase()}`}
+                checked={route.category === c}
+                onChange={() => set({ category: c === "Alles" ? null : c })}
+              />
+              <span>{copy(c)}</span>
+              <span className="count">
+                {c === "Alles"
+                  ? catalog.products.length
+                  : counts.find((x) => x.name === c)?.count ?? 0}
+              </span>
+            </label>
+          ))}
+        </div>
+      </details>
+
+      <details className="brv-facet" open>
+        <summary>
+          {nl.price} <ChevronRight aria-hidden className="h-3.5 w-3.5 rotate-90" />
+        </summary>
+        <PriceFilter />
+      </details>
+
+      <details className="brv-facet" open>
+        <summary>
+          Beschikbaarheid <ChevronRight aria-hidden className="h-3.5 w-3.5 rotate-90" />
+        </summary>
+        <label className="brv-check mt-1">
+          <input
+            type="checkbox"
+            data-testid="filter-in-stock"
+            checked={route.inStock}
+            onChange={(e) => set({ stock: e.target.checked ? "1" : null })}
+          />
+          <span>{nl.inStock}</span>
+        </label>
+      </details>
+    </div>
+  );
+}
+
+function FilterDisclosure() {
   const nl = useShopText();
   const [open, setOpen] = useState(false);
   const [desktop, setDesktop] = useState(false);
@@ -101,57 +168,19 @@ function FilterDisclosure() {
     <details
       open={open || desktop}
       onToggle={(e) => !desktop && setOpen(e.currentTarget.open)}
-      className="group rounded-xl border border-border bg-card p-4 lg:p-5"
+      className="rounded-md border border-border bg-card lg:border-0 lg:bg-transparent"
     >
       <summary
-        className="flex cursor-pointer items-center gap-2 font-semibold lg:hidden"
+        className="flex cursor-pointer items-center gap-2 px-3 py-3 text-[13.5px] font-semibold lg:hidden"
         data-testid="mobile-filters-toggle"
       >
         <SlidersHorizontal aria-hidden className="h-4 w-4" /> {nl.filters}
       </summary>
-      <div className="pt-4 lg:pt-0">
+      <div className="px-3 pb-3 lg:px-0 lg:pb-0">
+        <p className="hidden text-[13.5px] font-bold lg:block">{nl.filters}</p>
         <FilterPanel />
       </div>
     </details>
-  );
-}
-
-function FilterPanel() {
-  const copy = useShopCopy();
-  const nl = useShopText();
-  const { route, link, navigate } = useShop();
-  const set = (changes: Record<string, string | null>) =>
-    navigate(link("/discover", changes), true);
-  return (
-    <div className="space-y-6">
-      <fieldset>
-        <legend className="mb-2 font-semibold">{nl.category}</legend>
-        {["Alles", ...CATEGORIES].map((c) => (
-          <label key={c} className="flex cursor-pointer items-center gap-2 py-1.5">
-            <input
-              type="radio"
-              name="category"
-              data-testid={`filter-category-${c.toLowerCase()}`}
-              checked={route.category === c}
-              onChange={() => set({ category: c === "Alles" ? null : c })}
-              className="h-4 w-4 accent-[var(--accent)]"
-            />
-            {copy(c)}
-          </label>
-        ))}
-      </fieldset>
-      <PriceFilter />
-      <label className="flex cursor-pointer items-center gap-2">
-        <input
-          type="checkbox"
-          data-testid="filter-in-stock"
-          checked={route.inStock}
-          onChange={(e) => set({ stock: e.target.checked ? "1" : null })}
-          className="h-4 w-4 accent-[var(--accent)]"
-        />
-        {nl.inStock}
-      </label>
-    </div>
   );
 }
 
@@ -163,105 +192,98 @@ function ActiveFilters({ clearAll }: { clearAll: () => void }) {
   const chips: [string, Record<string, null>][] = [];
   if (route.query) chips.push([`“${route.query}”`, { q: null }]);
   if (route.category !== "Alles") chips.push([route.category, { category: null }]);
-  if (route.minPrice != null)
-    chips.push([`Vanaf ${formatEur(route.minPrice * 100)}`, { min: null }]);
+  if (route.minPrice != null) chips.push([`Vanaf ${formatEur(route.minPrice * 100)}`, { min: null }]);
   if (route.maxPrice != null) chips.push([`Tot ${formatEur(route.maxPrice * 100)}`, { max: null }]);
   if (route.inStock) chips.push([nl.inStock, { stock: null }]);
   if (!chips.length) return null;
   return (
-    <div
-      className="flex flex-wrap items-center gap-2"
-      aria-label={copy("Actieve filters")}
-      data-testid="active-filters"
-    >
+    <div className="flex flex-wrap items-center gap-2" data-testid="active-filters" aria-label={copy("Actieve filters")}>
       {chips.map(([label, change]) => (
         <button
           key={label}
           type="button"
           data-testid="active-filter-chip"
           onClick={() => navigate(link("/discover", change), true)}
-          className="inline-flex items-center gap-1 rounded-full border border-border bg-muted px-3 py-1 text-sm hover:bg-muted/70 focus-visible:outline-2 focus-visible:outline-ring"
+          className="brv-chip"
           aria-label={`${copy("Verwijder filter")} ${label}`}
         >
           {label} <X aria-hidden className="h-3.5 w-3.5" />
         </button>
       ))}
-      <button
-        type="button"
-        data-testid="clear-filters"
-        onClick={clearAll}
-        className="text-sm font-semibold underline underline-offset-4"
-      >
+      <button type="button" data-testid="clear-filters" onClick={clearAll} className="text-[12.5px] font-semibold underline">
         {nl.clearFilters}
       </button>
     </div>
   );
 }
 
+function toCard(
+  id: string,
+  catalog: ReturnType<typeof useShop>["catalog"],
+  link: ReturnType<typeof useShop>["link"],
+): CardProduct {
+  const product = catalog.products.find((p) => p.id === id)!;
+  const offers = publishedOffers(catalog, id);
+  const lowest = offers.length ? Math.min(...offers.map((o) => o.priceCents)) : 0;
+  const highest = offers.length ? Math.max(...offers.map((o) => o.priceCents)) : 0;
+  const seller = (offers[0] as { sellerName?: string } | undefined)?.sellerName ?? null;
+  return {
+    id,
+    title: product.title,
+    category: product.category,
+    priceCents: Number.isFinite(fromPrice(catalog, id)) ? fromPrice(catalog, id) : lowest,
+    fromCents: highest > lowest ? highest : lowest,
+    available: productAvailability(catalog, id),
+    rating: null,
+    reviewCount: null,
+    seller,
+    variantLabel: null,
+    href: link(`/product/${encodeURIComponent(id)}`, { offer: null, sku: null }),
+  };
+}
+
 function ProductGrid({ ids }: { ids: string[] }) {
   const copy = useShopCopy();
-  const formatEur = useShopMoney();
-  const nl = useShopText();
   const { catalog, link } = useShop();
   return (
     <ul
       aria-label={copy("Productresultaten")}
-      className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3"
+      className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-3 xl:grid-cols-4"
     >
-      {ids.map((id) => {
-        const p = catalog.products.find((x) => x.id === id)!;
-        const href = link(`/product/${encodeURIComponent(id)}`, { offer: null, sku: null });
-        return (
-          <li
-            key={id}
-            data-testid="discovery-product"
-            className="group flex flex-col rounded-xl border border-border bg-card p-3 transition-shadow hover:shadow-md sm:p-4"
-          >
-            <ProductMedia seed={id} title={p.title} />
-            <p className="mt-3 text-xs uppercase tracking-wide text-muted-foreground">
-              {copy(p.category)}
-            </p>
-            <h2 className="mt-1 line-clamp-2 text-sm font-semibold leading-snug sm:text-base">
-              <LocalLink
-                href={href}
-                data-testid={`product-link-${id}`}
-                className="focus-visible:outline-2 focus-visible:outline-offset-2 group-hover:underline"
-              >
-                {p.title}
-              </LocalLink>
-            </h2>
-            <div className="mt-auto space-y-1 pt-3">
-              <p
-                className="text-lg font-extrabold text-price sm:text-xl"
-                data-testid={`product-price-${id}`}
-              >
-                <span className="text-xs font-normal text-muted-foreground">{nl.from} </span>
-                {formatEur(fromPrice(catalog, id))}
-              </p>
-              <AvailabilityBadge
-                available={productAvailability(catalog, id)}
-                testId={`product-stock-${id}`}
-              />
-            </div>
-          </li>
-        );
-      })}
+      {ids.map((id) => (
+        <li key={id}>
+          <ProductCard p={toCard(id, catalog, link)} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function CardRow({ ids }: { ids: string[] }) {
+  const { catalog, link } = useShop();
+  if (!ids.length) return null;
+  return (
+    <ul className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+      {ids.map((id) => (
+        <li key={id}>
+          <ProductCard p={toCard(id, catalog, link)} />
+        </li>
+      ))}
     </ul>
   );
 }
 
 function SkeletonGrid() {
-  const copy = useShopCopy();
   const nl = useShopText();
   return (
     <div role="status" aria-live="polite" data-testid="catalog-loading" className="space-y-3">
       <span className="sr-only">{nl.loading}</span>
-      <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3" aria-hidden>
-        {Array.from({ length: 6 }, (_, i) => (
-          <div key={i} className="space-y-3 rounded-xl border border-border p-4">
-            <div className="aspect-[4/3] animate-pulse rounded-lg bg-muted" />
-            <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
-            <div className="h-5 w-1/3 animate-pulse rounded bg-muted" />
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4" aria-hidden>
+        {Array.from({ length: 8 }, (_, i) => (
+          <div key={i} className="brv-card space-y-2 p-2.5">
+            <div className="aspect-square animate-pulse rounded bg-muted" />
+            <div className="h-3.5 w-4/5 animate-pulse rounded bg-muted" />
+            <div className="h-4 w-1/3 animate-pulse rounded bg-muted" />
           </div>
         ))}
       </div>
@@ -270,19 +292,181 @@ function SkeletonGrid() {
 }
 
 export function LoadError() {
-  const copy = useShopCopy();
   const nl = useShopText();
   const { retry } = useShop();
   return (
-    <div
-      role="alert"
-      data-testid="catalog-error"
-      className="space-y-3 rounded-xl border border-destructive/40 bg-destructive/5 p-6"
-    >
+    <div role="alert" data-testid="catalog-error" className="space-y-3 rounded-md border border-destructive/40 bg-destructive/5 p-5">
       <p className="font-semibold">{nl.loadError}</p>
       <button type="button" data-testid="catalog-retry" className={secondaryButton} onClick={retry}>
         {nl.retry}
       </button>
+    </div>
+  );
+}
+
+function UspStrip() {
+  const nl = useShopText();
+  const items = [
+    { icon: Truck, label: nl.uspDelivery },
+    { icon: RotateCcw, label: nl.uspReturns },
+    { icon: ShieldCheck, label: nl.uspSecure },
+    { icon: Store, label: nl.uspSellers },
+  ];
+  return (
+    <section aria-label={nl.whyBorvat} className="border-y border-border bg-card">
+      <ul className="brv-shell grid grid-cols-2 gap-x-4 gap-y-2 py-3 lg:grid-cols-4">
+        {items.map(({ icon: Icon, label }) => (
+          <li key={label} className="brv-usp">
+            <Icon aria-hidden className="h-4 w-4 text-primary" />
+            <span className="truncate">{label}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function MarketplaceHome() {
+  const copy = useShopCopy();
+  const nl = useShopText();
+  const { catalog, route, link } = useShop();
+  const all = catalog.products.map((p) => p.id);
+  const deals = all.filter((id) => {
+    const offers = publishedOffers(catalog, id);
+    if (offers.length < 2) return false;
+    const prices = offers.map((o) => o.priceCents);
+    return Math.min(...prices) < Math.max(...prices);
+  });
+  const reset = { q: null, category: null, min: null, max: null, stock: null, sort: null };
+  return (
+    <div className="space-y-5">
+      <UspStrip />
+
+      <section className="brv-shell grid gap-3 lg:grid-cols-[1.55fr_1fr]">
+        <div className="flex flex-col justify-between rounded-md bg-primary p-6 text-primary-foreground sm:p-8">
+          <div>
+            <p className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-white/80">
+              {copy("Testcollectie")}
+            </p>
+            <h1 tabIndex={-1} className="mt-2 max-w-[22ch] text-[26px] font-black leading-[1.15] sm:text-[34px]">
+              Wonen en tuin, van verkopers die je kunt vergelijken
+            </h1>
+            <p className="mt-3 max-w-[46ch] text-[13.5px] leading-relaxed text-white/85">
+              {copy(
+                "Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te betalen.",
+              )}
+            </p>
+          </div>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <LocalLink href={link("/discover", reset)} className="brv-cta bg-white text-primary hover:bg-white/90">
+              {nl.allProducts}
+            </LocalLink>
+            <span className="text-[12.5px] text-white/75">{nl.deliveryFree}</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          {CATEGORIES.map((c) => {
+            const Icon = categoryIcon[c];
+            return (
+              <LocalLink
+                key={c}
+                href={link("/discover", { ...reset, category: c })}
+                data-testid={`category-tile-${c.toLowerCase()}`}
+                className="brv-card flex flex-col justify-between p-4 hover:border-primary"
+              >
+                <Icon aria-hidden className="h-6 w-6 text-primary" />
+                <div>
+                  <p className="mt-6 text-[15px] font-bold">{copy(c)}</p>
+                  <p className="brv-num text-[12px] text-muted-foreground">
+                    {catalog.products.filter((p) => p.category === c).length} producten
+                  </p>
+                </div>
+              </LocalLink>
+            );
+          })}
+          <LocalLink href={link("/discover", { ...reset, stock: "1" })} className="brv-card flex flex-col justify-between p-4 hover:border-primary">
+            <Truck aria-hidden className="h-6 w-6 text-primary" />
+            <div>
+              <p className="mt-6 text-[15px] font-bold">Direct leverbaar</p>
+              <p className="text-[12px] text-muted-foreground">Vandaag besteld, morgen in huis</p>
+            </div>
+          </LocalLink>
+          <LocalLink href={link("/workbench")} className="brv-card flex flex-col justify-between p-4 hover:border-primary">
+            <Store aria-hidden className="h-6 w-6 text-primary" />
+            <div>
+              <p className="mt-6 text-[15px] font-bold">Verkoop op BORVAT</p>
+              <p className="text-[12px] text-muted-foreground">Beheer je aanbod in de werkbank</p>
+            </div>
+          </LocalLink>
+        </div>
+      </section>
+
+      <section className="brv-shell space-y-3">
+        <header className="flex items-baseline justify-between">
+          <h2 className="text-[19px] font-bold">{nl.popular}</h2>
+          <LocalLink href={link("/discover", reset)} className="text-[12.5px] font-semibold text-primary hover:underline">
+            {nl.seeAll}
+          </LocalLink>
+        </header>
+        {all.length ? <CardRow ids={all.slice(0, 4)} /> : <SkeletonGrid />}
+      </section>
+
+      {deals.length > 0 && (
+        <section className="brv-shell space-y-3">
+          <header className="flex items-baseline justify-between">
+            <h2 className="text-[19px] font-bold">{nl.deals}</h2>
+            <LocalLink
+              href={link("/discover", { ...reset, sort: "price" })}
+              className="text-[12.5px] font-semibold text-primary hover:underline"
+            >
+              {nl.seeAll}
+            </LocalLink>
+          </header>
+          <CardRow ids={deals.slice(0, 4)} />
+        </section>
+      )}
+
+      <section className="brv-shell">
+        <h2 className="mb-3 text-[19px] font-bold">{nl.shopByCategory}</h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {CATEGORIES.map((c) => {
+            const Icon = categoryIcon[c];
+            const ids = catalog.products.filter((p) => p.category === c).map((p) => p.id);
+            return (
+              <div key={c} className="brv-card p-4">
+                <div className="flex items-center justify-between">
+                  <p className="flex items-center gap-2 text-[15px] font-bold">
+                    <Icon aria-hidden className="h-4 w-4 text-primary" /> {copy(c)}
+                  </p>
+                  <span className="brv-num text-[12px] text-muted-foreground">{ids.length}</span>
+                </div>
+                <div className="mt-3 flex gap-2">
+                  {ids.slice(0, 3).map((id) => {
+                    const p = catalog.products.find((x) => x.id === id)!;
+                    return (
+                      <LocalLink
+                        key={id}
+                        href={link(`/product/${encodeURIComponent(id)}`, { offer: null, sku: null })}
+                        className="w-20 overflow-hidden rounded border border-border"
+                        aria-label={p.title}
+                      >
+                        <ProductMedia seed={id} title={p.title} size="sm" />
+                      </LocalLink>
+                    );
+                  })}
+                </div>
+                <LocalLink
+                  href={link("/discover", { ...reset, category: c })}
+                  className="mt-3 inline-flex items-center gap-1 text-[12.5px] font-semibold text-primary hover:underline"
+                >
+                  {nl.seeAll} <ChevronRight aria-hidden className="h-3.5 w-3.5" />
+                </LocalLink>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 }
@@ -305,62 +489,55 @@ export function DiscoveryView() {
     maxCents: route.maxPrice == null ? null : route.maxPrice * 100,
     inStockOnly: route.inStock,
   });
+  const isHome = route.path === "/" && !filtered;
   const clearAll = () =>
-    navigate(
-      link("/discover", { q: null, category: null, min: null, max: null, stock: null }),
-      true,
+    navigate(link("/discover", { q: null, category: null, min: null, max: null, stock: null }), true);
+
+  if (isHome) {
+    return (
+      <div className="space-y-6 py-3">
+        <MarketplaceHome />
+      </div>
     );
+  }
+
+  const heading = route.query
+    ? `${copy("Resultaten voor")} “${route.query}”`
+    : route.category !== "Alles"
+      ? copy(route.category)
+      : copy("Alle producten");
+
   return (
-    <div className="space-y-6">
-      {!filtered && (
-        <section className="overflow-hidden rounded-2xl bg-ink px-6 py-8 text-ink-foreground sm:px-10 sm:py-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-red-300">
-            {copy("Testcollectie")}
-          </p>
-          <h1
-            tabIndex={-1}
-            className="mt-2 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-5xl"
-          >
-            {copy("Wonen en tuin, op jouw manier.")}
-          </h1>
-          <p className="mt-3 max-w-xl text-sm opacity-85 sm:text-base">
-            {copy(
-              "Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te betalen.",
-            )}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {(["Wonen", "Tuin"] as const).map((c) => {
-              const Icon = categoryIcon[c];
-              return (
-                <LocalLink
-                  key={c}
-                  href={link("/discover", { category: c })}
-                  data-testid={`category-tile-${c.toLowerCase()}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 font-semibold hover:bg-white/20 focus-visible:outline-2"
-                >
-                  <Icon aria-hidden className="h-4 w-4" /> {copy(c)}
-                </LocalLink>
-              );
-            })}
-          </div>
-        </section>
-      )}
-      {filtered && (
-        <h1 tabIndex={-1} className="text-2xl font-bold sm:text-3xl">
-          {route.query
-            ? `${copy("Zoekresultaten voor")} “${route.query}”`
-            : route.category !== "Alles"
-              ? copy(route.category)
-              : copy("Alle producten")}
+    <div className="brv-shell space-y-4 py-4">
+      <nav aria-label="Kruimelpad" className="flex items-center gap-1.5 text-[12px] text-muted-foreground">
+        <LocalLink
+          href={link("/", { q: null, category: null, min: null, max: null, stock: null, sort: null })}
+          className="hover:text-primary hover:underline"
+        >
+          {nl.home}
+        </LocalLink>
+        <ChevronRight aria-hidden className="h-3 w-3" />
+        <span className="text-foreground">{heading}</span>
+      </nav>
+
+      <header className="space-y-1">
+        <h1 tabIndex={-1} className="text-[26px] font-black leading-tight sm:text-[30px]">
+          {heading}
         </h1>
-      )}
-      <div className="grid gap-6 lg:grid-cols-[16rem_1fr]">
-        <aside aria-label={nl.filters} className="lg:sticky lg:top-24 lg:self-start">
+        <p className="max-w-[70ch] text-[13px] text-muted-foreground">
+          Vergelijk aanbieders, prijzen en levertijden. Alle producten in deze omgeving zijn
+          testproducten zonder echte betaling.
+        </p>
+      </header>
+
+      <div className="grid gap-5 lg:grid-cols-[248px_1fr]">
+        <aside aria-label={nl.filters} className="lg:sticky lg:top-[150px] lg:self-start">
           <FilterDisclosure />
         </aside>
-        <section className="min-w-0 space-y-4" aria-label={copy("Resultaten")}>
+
+        <section className="min-w-0 space-y-3" aria-label={copy("Resultaten")}>
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <p role="status" data-testid="results-count" className="font-semibold">
+            <p role="status" data-testid="results-count" className="brv-num text-[13.5px] font-semibold">
               {load.status === "ready"
                 ? nl.results(results.length)
                 : load.status === "error"
@@ -368,7 +545,7 @@ export function DiscoveryView() {
                   : nl.loading}
             </p>
             <div className="flex items-center gap-2">
-              <label htmlFor="buyer-sort" className="text-sm">
+              <label htmlFor="buyer-sort" className="text-[12.5px] text-muted-foreground">
                 {nl.sort}
               </label>
               <select
@@ -376,12 +553,9 @@ export function DiscoveryView() {
                 data-testid="sort-select"
                 value={route.sort}
                 onChange={(e) =>
-                  navigate(
-                    link("/discover", { sort: e.target.value === "title" ? null : e.target.value }),
-                    true,
-                  )
+                  navigate(link("/discover", { sort: e.target.value === "title" ? null : e.target.value }), true)
                 }
-                className="h-10 rounded-md border border-border bg-background px-3 text-sm"
+                className="h-9 rounded border border-border bg-white px-2 text-[13px]"
               >
                 <option value="title">{nl.sortTitle}</option>
                 <option value="price">{nl.sortPrice}</option>
@@ -389,30 +563,22 @@ export function DiscoveryView() {
               </select>
             </div>
           </div>
+
           <ActiveFilters clearAll={clearAll} />
+
           {load.status === "loading" && <SkeletonGrid />}
           {load.status === "error" && <LoadError />}
           {load.status === "ready" && !results.length && (
-            <div
-              data-testid="no-results"
-              className="flex flex-col items-center rounded-xl border border-dashed border-border p-10 text-center"
-            >
-              <SearchX aria-hidden className="h-10 w-10 text-muted-foreground" />
-              <h2 className="mt-3 text-lg font-bold">{nl.noResults}</h2>
-              <p className="mt-1 max-w-sm text-sm text-muted-foreground">{nl.noResultsHint}</p>
-              <button
-                type="button"
-                data-testid="no-results-clear"
-                className={`${secondaryButton} mt-4`}
-                onClick={clearAll}
-              >
+            <div data-testid="no-results" className="flex flex-col items-center rounded-md border border-dashed border-border bg-card p-10 text-center">
+              <SearchX aria-hidden className="h-9 w-9 text-muted-foreground" />
+              <h2 className="mt-3 text-[17px] font-bold">{nl.noResults}</h2>
+              <p className="mt-1 max-w-sm text-[13px] text-muted-foreground">{nl.noResultsHint}</p>
+              <button type="button" data-testid="no-results-clear" className={`${secondaryButton} mt-4`} onClick={clearAll}>
                 {nl.clearFilters}
               </button>
             </div>
           )}
-          {load.status === "ready" && !!results.length && (
-            <ProductGrid ids={results.map((p) => p.id)} />
-          )}
+          {load.status === "ready" && !!results.length && <ProductGrid ids={results.map((p) => p.id)} />}
         </section>
       </div>
     </div>

@@ -7,7 +7,7 @@ import { productDetails } from "../../../lib/commercial/demo-product-details";
 import { SHIPPING_METHODS, maxOrderable } from "../../../lib/commercial/shop-pricing";
 import { LocalLink, publishedOffers, useShop } from "./shop-context";
 import { LoadError } from "./discovery-view";
-import { AvailabilityBadge, ProductMedia, QuantityStepper, primaryButton } from "./shop-parts";
+import { AvailabilityBadge, DeliveryLine, ProductMedia, QuantityStepper, primaryButton } from "./shop-parts";
 import { nl } from "./nl";
 
 function ShippingInfo() {
@@ -17,7 +17,7 @@ function ShippingInfo() {
   const s = SHIPPING_METHODS;
   return (
     <div
-      className="space-y-2 rounded-lg bg-muted/60 p-4 text-sm"
+      className="space-y-1.5 rounded-md border border-border bg-surface p-3 text-[12.5px]"
       data-testid="product-shipping-info"
     >
       <p className="font-semibold">{nl.shippingTitle}</p>
@@ -98,26 +98,25 @@ export function ProductView() {
     }
   };
   return (
-    <article className="space-y-6">
+    <article className="brv-shell space-y-4 py-4">
       <nav
         aria-label={copy("Kruimelpad")}
-        className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground"
+        className="flex flex-wrap items-center gap-1.5 text-[12px] text-muted-foreground"
       >
-        <LocalLink
-          href={link("/discover", { q: null, category: null })}
-          className="hover:underline"
-        >
-          {copy("Home")}{" "}
+        <LocalLink href={link("/", { q: null, category: null })} className="hover:text-primary hover:underline">
+          {copy("Home")}
         </LocalLink>
-        <ChevronRight aria-hidden className="h-3.5 w-3.5" />
+        <ChevronRight aria-hidden className="h-3 w-3" />
         <LocalLink
           href={link("/discover", { category: product.category })}
-          className="hover:underline"
+          className="hover:text-primary hover:underline"
         >
           {copy(product.category)}
         </LocalLink>
+        <ChevronRight aria-hidden className="h-3 w-3" />
+        <span className="max-w-[45ch] truncate text-foreground">{product.title}</span>
       </nav>
-      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
+      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,25rem)]">
         <div className="space-y-6">
           <ProductMedia seed={product.id} title={product.title} size="lg" />
           <section aria-labelledby="desc-h">
@@ -137,7 +136,7 @@ export function ProductView() {
                 {nl.specs}
               </h2>
               <dl
-                className="mt-2 divide-y divide-border rounded-lg border border-border"
+                className="brv-spec mt-2 rounded-md border border-border"
                 data-testid="product-specs"
               >
                 {[
@@ -145,22 +144,22 @@ export function ProductView() {
                   ["Variant", sku?.variant ?? "—"],
                   ["Inhoud", nl.perPack(sku?.packQuantity ?? 1)],
                 ].map(([k, v]) => (
-                  <div key={k} className="grid grid-cols-2 gap-4 px-4 py-2.5 text-sm">
-                    <dt className="text-muted-foreground">{copy(k)}</dt>
+                  <div key={k} className="contents">
+                    <dt>{copy(k)}</dt>
                     <dd className="font-medium">{copy(v)}</dd>
                   </div>
                 ))}
               </dl>
             </section>
           )}
-          <p className="flex gap-2 text-sm text-muted-foreground" data-testid="product-no-reviews">
+          <p className="flex gap-2 border-t border-border pt-3 text-[13px] text-muted-foreground" data-testid="product-no-reviews">
             <MessageSquareOff aria-hidden className="h-4 w-4 shrink-0" /> {nl.noReviews}
           </p>
         </div>
-        <div className="order-first min-w-0 space-y-5 rounded-xl border border-border bg-card p-5 lg:sticky lg:top-24 lg:order-none">
+        <div className="order-first min-w-0 space-y-4 rounded-md border border-border bg-card p-4 lg:sticky lg:top-[152px] lg:order-none">
           <h1
             tabIndex={-1}
-            className="break-words text-2xl font-bold leading-tight"
+            className="break-words text-[22px] font-bold leading-snug"
             data-testid="product-title"
           >
             {product.title}
@@ -194,7 +193,7 @@ export function ProductView() {
           )}
           {selected && (
             <div className="space-y-1">
-              <p className="text-3xl font-extrabold text-price" data-testid="product-price">
+              <p className="brv-price text-[30px] leading-none" data-testid="product-price">
                 {formatEur(selected.priceCents)}
               </p>
               <p className="text-xs text-muted-foreground">
@@ -204,6 +203,8 @@ export function ProductView() {
                 available={selected.availabilityExample}
                 testId="product-availability"
               />
+              <DeliveryLine available={selected.availabilityExample} />
+              <p className="text-[12.5px] text-muted-foreground">{copy("Gratis retourneren binnen 30 dagen.")}</p>
             </div>
           )}
           {offers.length > 1 && (
@@ -212,7 +213,7 @@ export function ProductView() {
               {offers.map((o) => (
                 <label
                   key={o.id}
-                  className="flex cursor-pointer items-center justify-between gap-3 rounded-lg border border-border p-3 has-[:checked]:border-accent has-[:checked]:ring-1 has-[:checked]:ring-accent"
+                  className="flex cursor-pointer items-center justify-between gap-3 rounded border border-border p-2.5 has-[:checked]:border-primary has-[:checked]:bg-accent/50"
                 >
                   <span className="flex items-center gap-3">
                     <input
@@ -302,6 +303,10 @@ export function ProductView() {
               {error}
             </p>
           )}
+          <ul className="space-y-1.5 border-t border-border pt-3 text-[12.5px]">
+            <li className="flex items-center gap-2"><Truck aria-hidden className="h-4 w-4 text-primary" /> {nl.deliveryLong}</li>
+            <li className="flex items-center gap-2"><Store aria-hidden className="h-4 w-4 text-primary" /> {copy("Verkocht en verzonden door de verkoper")}</li>
+          </ul>
           <ShippingInfo />
         </div>
       </div>
