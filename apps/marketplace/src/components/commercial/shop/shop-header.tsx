@@ -207,7 +207,7 @@ export function ShopHeader() {
         <div className="brv-shell flex items-center justify-between gap-4">
           <nav aria-label={copy("Hoofdnavigatie")} className="-mx-2 flex min-w-0 items-center overflow-x-auto">
             <LocalLink href={link("/discover", reset)} className="brv-catlink font-medium">
-              <ChevronDown aria-hidden className="h-3.5 w-3.5" aria-hidden />
+              <ChevronDown aria-hidden className="h-3.5 w-3.5" />
               Alle categorieën
             </LocalLink>
             <span aria-hidden className="mx-1 h-4 w-px bg-border" />

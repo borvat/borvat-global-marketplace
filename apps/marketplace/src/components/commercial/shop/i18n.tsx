@@ -3,7 +3,10 @@ import { nl, type ShopText } from "./nl";
 import { CONNECTED_TEST_COMMERCE } from "../../../lib/commercial/runtime-mode";
 export type ShopLanguage = "nl" | "en" | "ar";
 export const ShopLanguageContext = createContext<ShopLanguage>("nl");
+// Dutch is the source language: secondary dictionaries inherit every key and
+// only override the strings they translate.
 export const en: ShopText = {
+  ...nl,
   testBanner: "TEST ENVIRONMENT · Synthetic products · No real payment or delivery",
   skipLink: "Skip to content",
   tagline: "Discover together. Sell independently.",
@@ -97,6 +100,7 @@ export const en: ShopText = {
   pageNotFound: "Page not found",
 };
 export const ar: ShopText = {
+  ...nl,
   testBanner: "بيئة اختبار · منتجات مصطنعة · لا دفع حقيقي ولا توصيل فعلي",
   skipLink: "انتقل إلى المحتوى",
   tagline: "نكتشف معاً. ونبيع باستقلالية.",
