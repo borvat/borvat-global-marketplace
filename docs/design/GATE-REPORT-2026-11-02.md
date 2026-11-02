@@ -33,9 +33,9 @@ files scanned.
 | File | Line | What it is |
 |---|---|---|
 | `apps/marketplace/scripts/phase5-m0/scan-artifacts-for-secrets.sh` | 40 | the scanner's own detector pattern `'private-key-block\|-----BEGIN [A-Z ]*PRIVATE KEY-----'` — a regex, not a key |
-| `apps/marketplace/scripts/redaction-tests.ts` | 14 | `const SECRET = "super-sensitive-value-shouldnt-leak-1234567890"` — the fixture that proves redaction works |
-| `experiments/core-engine-v1/scripts/e2e-http.sh` | 10 | `PASSWORD="borvat-demo-password"` — local demo script credential |
-| `experiments/oss-evaluation/vendure/evaluate.ts` | 22 | `password:'Synthetic-password-2026!'` — synthetic seller registration in an OSS evaluation harness |
+| `apps/marketplace/scripts/redaction-tests.ts` | 14 | a `SECRET` constant holding a synthetic 41-character string — the fixture that proves redaction works (value masked here: the report must not reproduce it) |
+| `experiments/core-engine-v1/scripts/e2e-http.sh` | 10 | a `PASSWORD` assignment for the local demo buyer account (value masked) |
+| `experiments/oss-evaluation/vendure/evaluate.ts` | 22 | an inline synthetic seller password in the evaluation harness (value masked) |
 
 `git log -1` for all four paths: `c417d7e` / `b277aff`, both 2026-10-22, before this branch.
 `git log origin/work/inventory-single-writer..HEAD -- apps/marketplace/scripts experiments` is empty:
