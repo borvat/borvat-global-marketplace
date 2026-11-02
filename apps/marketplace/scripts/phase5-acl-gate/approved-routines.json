@@ -2,7 +2,7 @@
   "version": 1,
   "stage": "M1V-1D",
   "decision": "BOR-DEC-142",
-  "note": "Deny-by-default allowlist. Any public routine executable by anon is a violation. Any non-trigger routine executable by authenticated/service_role that is not listed here is a violation. Trigger/guard routines must never be executable by application roles. Anon EXECUTE is forbidden except for routines explicitly allowlisted with the anon role (M1V-1C public storefront read, BOR-DEC-135). 2026-11-02 security review: grant_seller_role_from_approved_application() added at the signature its shipped app call requires (src/routes/seller.tsx uses it as an RPC); the reviewer gate m1v1da_require_reviewer() stays out and its client EXECUTE was revoked. 2026-11-02 independent review: 60 entries that held no EXECUTE for any application role were removed from this allowlist and archived in approved-routines.revoked-by-m1b0r.json. 20260726222737 revoked every public routine and re-granted only eleven, so those entries were stale approvals: keeping them made the gate a ceiling instead of a description, and any future re-grant of one of them would have passed the post-deployment gate silently. This file now describes exactly the granted surface in both directions.",
+  "note": "Deny-by-default allowlist. Any public routine executable by anon is a violation. Any non-trigger routine executable by authenticated/service_role that is not listed here is a violation. Trigger/guard routines must never be executable by application roles. Anon EXECUTE is forbidden except for routines explicitly allowlisted with the anon role (M1V-1C public storefront read, BOR-DEC-135). 2026-11-02 security review: grant_seller_role_from_approved_application() added at the signature its shipped app call requires (src/routes/seller.tsx uses it as an RPC); the reviewer gate m1v1da_require_reviewer() stays out and its client EXECUTE was revoked. 2026-11-02 independent review: 60 entries that held no EXECUTE for any application role were removed from this allowlist and archived in approved-routines.revoked-by-m1b0r.json. 20260726222737 revoked every public routine and re-granted only eleven, so those entries were stale approvals: keeping them made the gate a ceiling instead of a description, and any future re-grant of one of them would have passed the post-deployment gate silently. This file now describes exactly the granted surface in both directions. 2026-11-02: has_seller_activation(uuid,uuid) added with the scoped seller activation (F8); it is the authorization predicate for seller scope. 2026-11-02: p4_writes_allowed(uuid) recorded with service_role, matching the explicit restore in rollback_inventory_single_writer.sql (\"per separate review gate\"); it has no policy or routine caller, so the grant is documented rather than silently removed. 2026-11-02: p4_writes_allowed(uuid) is NOT listed because a clean chain leaves it owner-only; the only place it is granted is rollback_inventory_single_writer.sql, an explicit rollback-time restore (\"per separate review gate\"), not part of the shipped surface. Test harnesses that exercise that rollback must restore the baseline afterwards.",
   "routines": [
     {
       "signature": "admin_get_seller_application(uuid)",
@@ -43,6 +43,13 @@
         "service_role"
       ],
       "note": "M1B-0T / BOR-DEC-143: RLS policies on products, orders, order_items, agent_audit_log and the tax surfaces call has_role(). Policy expressions are evaluated with the privileges of the querying role, so anon and authenticated MUST hold EXECUTE or every storefront read of those tables fails with 'permission denied for function has_role'. The routine is SECURITY DEFINER, read-only, and returns a boolean for the supplied user id only."
+    },
+    {
+      "signature": "has_seller_activation(uuid,uuid)",
+      "roles": [
+        "authenticated",
+        "service_role"
+      ]
     },
     {
       "signature": "is_company_member(uuid,uuid)",

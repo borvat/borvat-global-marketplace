@@ -142,6 +142,17 @@ const rec = (id, name, pass, detail) => {
     rec('A8b', 'Phase A re-application closes the round trip', false, String(e.message).slice(0, 140));
   }
 
+  // A8c — the rollback artifact deliberately re-grants p4_writes_allowed to
+  // service_role. A clean chain leaves it owner-only, so restore that baseline;
+  // otherwise a later suite sees drift that the test itself created.
+  try {
+    await c.query(`REVOKE EXECUTE ON FUNCTION public.p4_writes_allowed(uuid) FROM service_role`);
+    const p4 = (await c.query(`SELECT has_function_privilege('service_role','public.p4_writes_allowed(uuid)','EXECUTE') AS x`)).rows[0].x;
+    rec('A8c', 'ACL baseline restored after the rollback round trip', p4 === false, `service_role EXECUTE=${p4}`);
+  } catch (e) {
+    rec('A8c', 'ACL baseline restored after the rollback round trip', false, String(e.message).slice(0, 100));
+  }
+
   const passed = results.filter((r) => r.pass).length;
   console.log(`\nSUMMARY ${passed}/${results.length}`);
   fs.writeFileSync(OUT, JSON.stringify({

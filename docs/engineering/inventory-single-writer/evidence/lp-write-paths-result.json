@@ -1,0 +1,37 @@
+{
+  "ranAt": "2026-11-02T01:12:48.401Z",
+  "scope": "sample of 2 of 19 tables carrying authenticated write policies",
+  "summary": "5/5",
+  "results": [
+    {
+      "id": "W1",
+      "name": "owner with catalog.manage inserts a catalog product",
+      "pass": true,
+      "detail": "row created"
+    },
+    {
+      "id": "W2",
+      "name": "member without catalog.manage is refused by the policy",
+      "pass": true,
+      "detail": "42501 new row violates row-level security policy for table \"catalog_products\""
+    },
+    {
+      "id": "W3",
+      "name": "non-member write on the same table is refused",
+      "pass": true,
+      "detail": "42501 new row violates row-level security policy for table \"catalog_products\""
+    },
+    {
+      "id": "W4",
+      "name": "warehouse writes follow warehouses.manage (owner yes, viewer no)",
+      "pass": true,
+      "detail": "owner=allowed viewer=42501"
+    },
+    {
+      "id": "W5",
+      "name": "catalog reads stay tenant-scoped",
+      "pass": true,
+      "detail": "B sees 0 of A's products"
+    }
+  ]
+}

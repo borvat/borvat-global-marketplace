@@ -1,0 +1,61 @@
+{
+  "ranAt": "2026-11-02T01:12:50.977Z",
+  "scope": "F5 owner status, F6 fail-closed guard, F8 scoped seller activation",
+  "summary": "9/9",
+  "results": [
+    {
+      "id": "L1",
+      "name": "active owner keeps owner rights",
+      "pass": true,
+      "detail": "x=true"
+    },
+    {
+      "id": "L2",
+      "name": "SUSPENDED owner loses owner rights and the update policy follows (F5)",
+      "pass": true,
+      "detail": "is_owner=false policy_update=rows=0"
+    },
+    {
+      "id": "L3",
+      "name": "authenticated with no role claim fails closed (F6)",
+      "pass": true,
+      "detail": "42501 access denied"
+    },
+    {
+      "id": "L4",
+      "name": "impersonation still rejected",
+      "pass": true,
+      "detail": "42501"
+    },
+    {
+      "id": "L5",
+      "name": "activation carries company + store and the scoped predicate agrees (F8)",
+      "pass": true,
+      "detail": "company=true store=true predicate=true"
+    },
+    {
+      "id": "L6",
+      "name": "predicate is false for another store and another company",
+      "pass": true,
+      "detail": "other_store=false other_company=false"
+    },
+    {
+      "id": "L7",
+      "name": "application store outside the company is refused",
+      "pass": true,
+      "detail": "42501 application store does not belong to the company"
+    },
+    {
+      "id": "L8",
+      "name": "suspended member cannot activate (F2 regression)",
+      "pass": true,
+      "detail": "42501"
+    },
+    {
+      "id": "L9",
+      "name": "authenticated cannot insert activations directly",
+      "pass": true,
+      "detail": "42501 permission denied for table seller_activations"
+    }
+  ]
+}
