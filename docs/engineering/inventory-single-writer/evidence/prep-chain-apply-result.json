@@ -1,0 +1,14 @@
+{
+  "ranAt": "2026-11-02T00:25:34.515Z",
+  "total": 132,
+  "ok": 131,
+  "failed": 0,
+  "skipped": 1,
+  "skippedMigrations": [
+    {
+      "file": "20260801002900_e4713db2-62c8-471b-b069-bf4dabb3f676.sql",
+      "reason": "P0-3 is a DESTRUCTIVE production data purge (BOR-DEC-109): it disables append-only guards, keeps exactly one company named 'Qnan B.V.' and asserts purge-set = 162 companies. 162 is real production data, and fabricating it to satisfy the assertion would produce fake evidence. Contains no schema DDL, so skipping it leaves no schema gap."
+    }
+  ],
+  "failures": []
+}

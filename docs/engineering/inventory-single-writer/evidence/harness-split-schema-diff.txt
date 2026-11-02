@@ -1,0 +1,52 @@
+A=chain_current overall=f02ca6d05b5f6607
+B=chain_prep overall=344d42053a96f2c3
+
+[schemas] onlyA=0 onlyB=1 changed=0
+  + only in B: internal_shipping
+
+[tables] onlyA=0 onlyB=15 changed=0
+  + only in B: public.merchant_store_sku_delivery_promise_assignments.company_id
+  + only in B: public.merchant_store_sku_delivery_promise_assignments.created_at
+  + only in B: public.merchant_store_sku_delivery_promise_assignments.delivery_promise_profile_id
+  + only in B: public.merchant_store_sku_delivery_promise_assignments.fulfillment_mode
+  + only in B: public.merchant_store_sku_delivery_promise_assignments.fulfillment_origin_id
+  + only in B: public.merchant_store_sku_delivery_promise_assignments.id
+  + only in B: public.merchant_store_sku_delivery_promise_assignments.merchant_store_id
+  + only in B: public.merchant_store_sku_delivery_promise_assignments.promise_company_id
+
+[indexes] onlyA=0 onlyB=9 changed=0
+  + only in B: public.dpp_id_scope_uk
+  + only in B: public.dpp_id_tenant_uk
+  + only in B: public.merchant_store_sku_delivery_promise_assignments_pkey
+  + only in B: public.mssdpa_company_ix
+  + only in B: public.mssdpa_group_version_uk
+  + only in B: public.mssdpa_one_active_per_group_uk
+  + only in B: public.mssdpa_promise_ix
+  + only in B: public.mssdpa_store_ix
+
+[constraints] onlyA=0 onlyB=24 changed=0
+  + only in B: delivery_promise_profiles.dpp_id_scope_uk
+  + only in B: delivery_promise_profiles.dpp_id_tenant_uk
+  + only in B: merchant_store_sku_delivery_promise_assignments.merchant_store_sku_delivery_delivery_promise_profile_i_not_null
+  + only in B: merchant_store_sku_delivery_promise_assignments.merchant_store_sku_delivery_prom_fulfillment_origin_id_not_null
+  + only in B: merchant_store_sku_delivery_promise_assignments.merchant_store_sku_delivery_promis_shipping_profile_id_not_null
+  + only in B: merchant_store_sku_delivery_promise_assignments.merchant_store_sku_delivery_promise__merchant_store_id_not_null
+  + only in B: merchant_store_sku_delivery_promise_assignments.merchant_store_sku_delivery_promise_a_fulfillment_mode_not_null
+  + only in B: merchant_store_sku_delivery_promise_assignments.merchant_store_sku_delivery_promise_ass_version_number_not_null
+
+[functions] onlyA=0 onlyB=4 changed=0
+  + only in B: m1c1dc_guard_activation_integrity()
+  + only in B: m1c1dc_guard_immutability()
+  + only in B: m1c1dc_guard_supersedes_integrity()
+  + only in B: m1c1dc_guard_touch_updated_at()
+
+[tableAcls] onlyA=0 onlyB=1 changed=0
+  + only in B: merchant_store_sku_delivery_promise_assignments
+
+[triggers] onlyA=0 onlyB=4 changed=0
+  + only in B: merchant_store_sku_delivery_promise_assignments.trg_mssdpa_activation
+  + only in B: merchant_store_sku_delivery_promise_assignments.trg_mssdpa_immutability
+  + only in B: merchant_store_sku_delivery_promise_assignments.trg_mssdpa_supersedes
+  + only in B: merchant_store_sku_delivery_promise_assignments.trg_mssdpa_touch
+
+TOTAL DIFFERENCES: 58

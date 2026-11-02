@@ -22,7 +22,7 @@ const RESET = process.argv.includes('--reset');
     user: process.env.PGUSER || 'postgres',
     database: process.env.PGDATABASE || 'postgres',
     connectionTimeoutMillis: 8000,
-    statement_timeout: 180000,
+    statement_timeout: Number(process.env.STATEMENT_TIMEOUT_MS || 180000),
   });
   await client.connect();
 
