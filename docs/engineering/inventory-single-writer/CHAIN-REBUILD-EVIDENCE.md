@@ -26,8 +26,8 @@
 
 | المقياس | القيمة |
 |---|---|
-| ملفات الترحيل | 129 |
-| تُطبَّق بنجاح | 113 |
+| ملفات الترحيل | 132 |
+| تُطبَّق بنجاح | 116 |
 | تفشل | 15 |
 | متخطّاة (موثّقة) | 1 (`20260801002900` P0-3) |
 
@@ -96,4 +96,4 @@ node scripts/chain-rebuild/verify.cjs acl.json
 node scripts/chain-rebuild/verify-read-paths.cjs read.json
 ```
 
-النتائج الخام: `evidence/chain-apply-result.json` (113/15/1)، `evidence/chain-privilege-result.json` (10/10)، `evidence/chain-read-paths-result.json` (9/9).
+النتائج الخام: `evidence/chain-apply-result.json` (116/15/1)، `evidence/chain-privilege-result.json` (10/10)، `evidence/chain-read-paths-result.json` (9/9).

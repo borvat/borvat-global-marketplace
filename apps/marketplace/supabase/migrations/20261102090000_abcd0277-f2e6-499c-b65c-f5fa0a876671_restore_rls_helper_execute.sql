@@ -31,9 +31,17 @@
 --      (BOR-DEC-142) already lists all three with roles
 --      ["authenticated","service_role"]. Their absence is drift against the
 --      approved surface, not a deliberate deny.
---   3. This restores only EXECUTE on read helpers. Table-level INSERT/UPDATE
---      privileges stay revoked (20261101000000 Phase A), so the single-writer
---      guard is unchanged.
+--   3. This restores EXECUTE on three helpers. The blast radius is wider than the
+--      inventory surface and is stated here rather than understated: 75 policies on
+--      44 tables call these helpers (44 SELECT, 12 INSERT, 11 UPDATE, 8 DELETE).
+--      Before this migration those policies failed closed with 42501; after it they
+--      evaluate. Phase A revoked write privileges only on inventory tables, so
+--      authenticated still holds INSERT/UPDATE/DELETE on 19 tables (catalog_*,
+--      channel_*, companies, company_members, warehouses, ...). Those write paths
+--      are gated by their own policies (company_member_has_permission), and the
+--      sample test scripts/chain-rebuild/verify-write-paths.cjs exercises the
+--      catalog_products and warehouses shapes. It is a sample, not an exhaustive
+--      proof of all 44 tables.
 --
 -- REVERSAL
 --   apps/marketplace/supabase/scripts/rollback_rls_helper_execute.sql

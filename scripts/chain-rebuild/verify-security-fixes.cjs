@@ -157,7 +157,10 @@ const rec = (id, name, pass, detail) => {
   rec('S7', 'non-member cannot self-activate', !s7.ok && s7.code === '42501',
     s7.ok ? 'unexpectedly allowed' : `${s7.code} ${s7.message}`);
 
-  // S8 allowlist conformance, no exceptions
+  // S8 allowlist conformance, BOTH directions (independent-review finding F3):
+  //   granted but unlisted   -> excess grant
+  //   listed but not granted -> stale approval that would pre-approve a future re-grant
+  //   role mismatch          -> a role holds EXECUTE the entry does not approve
   if (fs.existsSync(ALLOWLIST)) {
     const list = JSON.parse(fs.readFileSync(ALLOWLIST, 'utf8'));
     const approved = new Map(list.routines.map((x) => [x.signature, x.roles || []]));
@@ -165,21 +168,32 @@ const rec = (id, name, pass, detail) => {
       SELECT p.oid::regprocedure::text AS sig,
              has_function_privilege('anon', p.oid, 'EXECUTE') AS anon,
              has_function_privilege('authenticated', p.oid, 'EXECUTE') AS authed,
-             has_function_privilege('service_role', p.oid, 'EXECUTE') AS svc
+             has_function_privilege('service_role', p.oid, 'EXECUTE') AS svc,
+             has_function_privilege('sandbox_exec', p.oid, 'EXECUTE') AS sbx
       FROM pg_proc p JOIN pg_namespace n ON n.oid = p.pronamespace
       WHERE n.nspname='public'`);
-    const bad = [];
-    for (const row of current.rows) {
-      const sig = row.sig.replace(/^public\./, '');
-      const roles = approved.get(sig) || [];
-      if (row.anon && !roles.includes('anon')) bad.push(`anon:${sig}`);
-      if (row.authed && !roles.includes('authenticated')) bad.push(`authenticated:${sig}`);
-      if (row.svc && !roles.includes('service_role') && !row.authed) bad.push(`service_role:${sig}`);
+    const rows = current.rows.map((r) => ({ ...r, sig: r.sig.replace(/^public[.]/, '') }));
+    const granted = rows.filter((r) => r.anon || r.authed || r.svc || r.sbx);
+    const excess = [];
+    const mismatch = [];
+    for (const g of granted) {
+      const roles = approved.get(g.sig);
+      if (!roles) { excess.push(g.sig); continue; }
+      if (g.anon && !roles.includes('anon')) mismatch.push('anon:' + g.sig);
+      if (g.authed && !roles.includes('authenticated')) mismatch.push('authenticated:' + g.sig);
+      if (g.svc && !roles.includes('service_role')) mismatch.push('service_role:' + g.sig);
+      if (g.sbx) mismatch.push('sandbox_exec:' + g.sig);
     }
-    rec('S8', 'no unexplained EXECUTE drift against approved-routines.json', bad.length === 0,
-      bad.length ? bad.slice(0, 10).join(', ') : 'zero violations');
+    const stale = list.routines
+      .filter((x) => { const cur = rows.find((r) => r.sig === x.signature); return !cur || !(cur.anon || cur.authed || cur.svc || cur.sbx); })
+      .map((x) => x.signature);
+    const clean = excess.length === 0 && mismatch.length === 0 && stale.length === 0;
+    rec('S8', 'allowlist and granted surface agree in both directions', clean,
+      'granted=' + granted.length + ' allowlist=' + list.routines.length + ' excess=' + excess.length +
+      ' mismatch=' + mismatch.length + ' stale=' + stale.length +
+      (clean ? '' : ' | ' + [...excess, ...mismatch, ...stale].slice(0, 8).join(', ')));
   } else {
-    rec('S8', 'no unexplained EXECUTE drift against approved-routines.json', false, 'allowlist missing');
+    rec('S8', 'allowlist and granted surface agree in both directions', false, 'allowlist missing');
   }
 
   await teardown();

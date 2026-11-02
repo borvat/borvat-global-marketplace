@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-01T23:18:39.808Z",
+  "ranAt": "2026-11-02T00:08:29.074Z",
   "server": "PostgreSQL 18.6",
   "summary": "9/9",
   "fixtures": "synthetic two-tenant set, created and removed by this script",

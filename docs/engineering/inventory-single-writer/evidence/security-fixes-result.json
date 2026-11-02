@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-01T23:20:25.045Z",
+  "ranAt": "2026-11-02T00:08:15.566Z",
   "server": "PostgreSQL 18.6",
   "summary": "8/8",
   "results": [
@@ -47,9 +47,9 @@
     },
     {
       "id": "S8",
-      "name": "no unexplained EXECUTE drift against approved-routines.json",
+      "name": "allowlist and granted surface agree in both directions",
       "pass": true,
-      "detail": "zero violations"
+      "detail": "granted=23 allowlist=23 excess=0 mismatch=0 stale=0"
     }
   ]
 }
