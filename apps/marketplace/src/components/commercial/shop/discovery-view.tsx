@@ -343,14 +343,24 @@ export function DiscoveryView() {
               })}
             </div>
           </div>
-          {results.length > 0 && (
-            <figure className="hidden lg:block">
+          {/* The slot is always rendered at its final height: mounting it only
+              after the catalogue resolves pushed the whole page down and cost
+              0.11 CLS on the storefront. */}
+          <figure className="hidden lg:block">
+            {results.length > 0 ? (
               <ProductMedia seed={results[0].id} title={results[0].title} size="lg" />
-              <figcaption className="mt-3 text-[12px] text-muted-foreground">
+            ) : (
+              <div
+                aria-hidden
+                className="brv-media aspect-[4/5] max-h-[36rem] w-full bg-surface"
+              />
+            )}
+            <figcaption className="mt-3 h-[18px] text-[12px] text-muted-foreground">
+              {results.length > 0 ? (
                 <span className="line-clamp-1">{results[0].title}</span>
-              </figcaption>
-            </figure>
-          )}
+              ) : null}
+            </figcaption>
+          </figure>
         </section>
       )}
       {filtered && (
