@@ -101,7 +101,7 @@ function FilterDisclosure() {
     <details
       open={open || desktop}
       onToggle={(e) => !desktop && setOpen(e.currentTarget.open)}
-      className="group rounded-xl border border-border bg-card p-4 lg:p-5"
+      className="group border-t border-border pt-4 lg:pt-5"
     >
       <summary
         className="flex cursor-pointer items-center gap-2 font-semibold lg:hidden"
@@ -206,7 +206,7 @@ function ProductGrid({ ids }: { ids: string[] }) {
   return (
     <ul
       aria-label={copy("Productresultaten")}
-      className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3"
+      className="grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-6 lg:grid-cols-3"
     >
       {ids.map((id) => {
         const p = catalog.products.find((x) => x.id === id)!;
@@ -256,7 +256,7 @@ function SkeletonGrid() {
   return (
     <div role="status" aria-live="polite" data-testid="catalog-loading" className="space-y-3">
       <span className="sr-only">{nl.loading}</span>
-      <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3" aria-hidden>
+      <div className="grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-6 lg:grid-cols-3" aria-hidden>
         {Array.from({ length: 6 }, (_, i) => (
           <div key={i} className="space-y-3 rounded-xl border border-border p-4">
             <div className="aspect-[4/3] animate-pulse rounded-lg bg-muted" />
@@ -313,34 +313,49 @@ export function DiscoveryView() {
   return (
     <div className="space-y-6">
       {!filtered && (
-        <section className="border-b border-border pb-10 sm:pb-14">
-          <p className="brv-eyebrow">{copy("Testcollectie")}</p>
-          <h1
-            tabIndex={-1}
-            className="brv-display mt-3 max-w-3xl text-[clamp(2rem,1.2rem+3vw,3.5rem)] text-foreground"
-          >
-            {copy("Wonen en tuin, op jouw manier.")}
-          </h1>
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-            {copy(
-              "Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te betalen.",
-            )}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
-            {(["Wonen", "Tuin"] as const).map((c) => {
-              const Icon = categoryIcon[c];
-              return (
-                <LocalLink
-                  key={c}
-                  href={link("/discover", { category: c })}
-                  data-testid={`category-tile-${c.toLowerCase()}`}
-                  className="brv-link inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.14em] text-foreground"
-                >
-                  <Icon aria-hidden className="h-4 w-4" /> {copy(c)}
-                </LocalLink>
-              );
-            })}
+        <section className="grid gap-10 border-b border-border pb-10 sm:pb-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
+          <div>
+            <p className="brv-eyebrow">{copy("Testcollectie")}</p>
+            <h1
+              tabIndex={-1}
+              className="brv-display mt-3 max-w-3xl text-[clamp(2rem,1.2rem+3vw,3.5rem)] text-foreground"
+            >
+              {copy("Wonen en tuin, op jouw manier.")}
+            </h1>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+              {copy(
+                "Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te betalen.",
+              )}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+              {(["Wonen", "Tuin"] as const).map((c) => {
+                const Icon = categoryIcon[c];
+                return (
+                  <LocalLink
+                    key={c}
+                    href={link("/discover", { category: c })}
+                    data-testid={`category-tile-${c.toLowerCase()}`}
+                    className="brv-link inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.14em] text-foreground"
+                  >
+                    <Icon aria-hidden className="h-4 w-4" /> {copy(c)}
+                  </LocalLink>
+                );
+              })}
+            </div>
           </div>
+          {results.length > 0 && (
+            <figure className="hidden lg:block">
+              <ProductMedia seed={results[0]} title="Uitgelicht object" size="lg" />
+              <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-[12px] text-muted-foreground">
+                <span className="truncate">
+                  {catalog.products.find((p) => p.id === results[0])?.title}
+                </span>
+                <span className="brv-price shrink-0 text-foreground">
+                  {formatEur(fromPrice(catalog, results[0]))}
+                </span>
+              </figcaption>
+            </figure>
+          )}
         </section>
       )}
       {filtered && (
