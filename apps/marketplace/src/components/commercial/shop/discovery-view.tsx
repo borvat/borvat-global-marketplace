@@ -313,7 +313,7 @@ export function DiscoveryView() {
   return (
     <div className="space-y-6">
       {!filtered && (
-        <section className="grid gap-10 border-b border-border pb-10 sm:pb-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
+        <section className="grid gap-10 border-b border-border pb-10 sm:pb-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-center">
           <div>
             <p className="brv-eyebrow">{copy("Testcollectie")}</p>
             <h1
@@ -351,7 +351,9 @@ export function DiscoveryView() {
                   {catalog.products.find((p) => p.id === results[0])?.title}
                 </span>
                 <span className="brv-price shrink-0 text-foreground">
-                  {formatEur(fromPrice(catalog, results[0]))}
+                  {Number.isFinite(fromPrice(catalog, results[0]))
+                    ? formatEur(fromPrice(catalog, results[0]))
+                    : copy("Prijs op aanvraag")}
                 </span>
               </figcaption>
             </figure>
