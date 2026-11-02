@@ -345,11 +345,9 @@ export function DiscoveryView() {
           </div>
           {results.length > 0 && (
             <figure className="hidden lg:block">
-              <ProductMedia seed={results[0]} title="Uitgelicht object" size="lg" />
+              <ProductMedia seed={results[0].id} title={results[0].title} size="lg" />
               <figcaption className="mt-3 text-[12px] text-muted-foreground">
-                <span className="line-clamp-1">
-                  {catalog.products.find((p) => p.id === results[0])?.title ?? ""}
-                </span>
+                <span className="line-clamp-1">{results[0].title}</span>
               </figcaption>
             </figure>
           )}
