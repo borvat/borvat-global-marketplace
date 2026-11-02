@@ -33,20 +33,29 @@ export function ProductMedia({
   const nl = useShopText();
   const box =
     size === "sm" ? "aspect-square" : size === "md" ? "aspect-square" : "aspect-[4/5] max-h-[560px]";
+  // No genuine product photography exists for this catalogue. Rather than dressing
+  // a generated pattern up as a product, the slot shows a neutral field and says so.
   return (
     <figure className={`brv-card-media relative ${box} w-full`}>
-      <img
-        src={productImage(null, seed)}
-        alt=""
+      <div
         aria-hidden
-        className="h-full w-full object-cover opacity-90"
-        loading="lazy"
-      />
-      <figcaption className="absolute inset-x-0 bottom-0 flex items-center gap-1.5 bg-white/85 px-2 py-1 text-[10px] leading-tight text-muted-foreground backdrop-blur-sm">
-        <ImageOff aria-hidden className="h-3 w-3 shrink-0" />
-        <span className="truncate">{nl.mediaMissing}</span>
-      </figcaption>
+        className="flex h-full w-full flex-col items-center justify-center gap-2 bg-surface-muted text-muted-foreground"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(135deg, rgba(20,22,26,0.035) 0 2px, transparent 2px 9px)",
+        }}
+      >
+        <ImageOff className={size === "sm" ? "h-4 w-4" : "h-7 w-7"} />
+        {size !== "sm" && <span className="text-[11px] font-medium">Geen productfoto</span>}
+      </div>
+      {size !== "sm" && (
+        <figcaption className="absolute inset-x-0 bottom-0 flex items-center gap-1.5 bg-white/85 px-2 py-1 text-[10px] leading-tight text-muted-foreground">
+          <ImageOff aria-hidden className="h-3 w-3 shrink-0" />
+          <span className="truncate">{nl.mediaMissing}</span>
+        </figcaption>
+      )}
       <span className="sr-only">{`${title} — ${nl.mediaMissing}`}</span>
+      <span hidden>{seed}</span>
     </figure>
   );
 }
@@ -82,7 +91,8 @@ export function DeliveryLine({ available, compact }: { available: number; compac
 
 export function Rating({ rating, count }: { rating: number | null; count: number | null }) {
   const nl = useShopText();
-  if (rating == null) return <p className="text-[12px] text-muted-foreground">{nl.noReviews}</p>;
+  if (rating == null)
+    return <p className="truncate text-[12px] text-muted-foreground">Nog geen beoordelingen</p>;
   return (
     <p className="brv-stars">
       <Star aria-hidden className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
@@ -119,7 +129,7 @@ export function ProductCard({ p }: { p: CardProduct }) {
         </LocalLink>
         <Rating rating={p.rating} count={p.reviewCount} />
         <div className="mt-auto space-y-1 pt-1">
-          <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+          <p className="flex items-baseline gap-2 whitespace-nowrap">
             <span className="brv-price text-[17px]">{formatEur(p.priceCents)}</span>
             {hasDeal && <span className="brv-strike">{formatEur(p.fromCents)}</span>}
           </p>
