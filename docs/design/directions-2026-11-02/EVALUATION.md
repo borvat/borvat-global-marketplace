@@ -10,8 +10,12 @@ deployment. The mockups are standalone HTML under `docs/design/directions-2026-1
 
 1. **References, multi-category.** bol.com was studied first (homepage + listing), live access
    blocked by an IP block and worked around with public archive snapshots — see
-   `docs/design/BOL-ANALYSIS-2026-11-02.md`. Additional captures of Amazon.nl and Coolblue.nl
-   are in `borvat-mockups/ref/` as structural comparison for density and header behaviour.
+   `docs/design/BOL-ANALYSIS-2026-11-02.md`. Four more multi-category shops were captured the same
+   way and are stored in `references/`: **Amazon.nl** (delivery bar, `All` scope select, promo
+   tiles with mini product grids), **Zalando.nl**, **MediaMarkt.nl** and **Otto.nl**. Coolblue.nl
+   answered 403 to the capture and is recorded as blocked rather than described. All of these are
+   archive snapshots with partially missing styles, so they are used for structure and density
+   only, never for colour or type decisions.
 2. **Real, licensed imagery.** Fourteen product photos are downloaded from Wikimedia Commons
    (CC BY, CC BY-SA, public domain) with per-file credit in
    `docs/design/directions-2026-11-02/assets/ATTRIBUTION.md`. No competitor asset is reused.
@@ -62,6 +66,16 @@ Oxblood and warm paper, serif for product names, Inter for utility, curated row 
 **My recommendation:** C as the brand spine, with A's listing density and facet behaviour inside it.
 If the owner wants one direction only, C is the one that can carry a premium price without hiding
 the marketplace mechanics.
+
+## Reference captures
+
+| Shop | File | What it contributed |
+|---|---|---|
+| Amazon.nl | `references/amazon-nl.png` | delivery/location bar above the logo, `All` category scope inside the search field, promo tiles holding four mini product cards with `-10%` tags |
+| Zalando.nl | `references/zalando-nl.png` | fashion grid rhythm and filter placement |
+| MediaMarkt.nl | `references/mediamarkt-nl.png` | category strip density and product badges |
+| Otto.nl | `references/otto-nl.png` | dense listing with price and delivery in one line |
+| Coolblue.nl | — | blocked: 403 on capture, nothing claimed from it |
 
 ## Content gaps that no design can close
 
