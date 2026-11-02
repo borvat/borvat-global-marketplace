@@ -49,8 +49,40 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
-export default {
-  async fetch(request: Request, env: unknown, ctx: unknown) {
+// Baseline security headers for every response the storefront serves. Values stay
+// permissive on inline script/style because TanStack Start hydrates through inline
+// tags; frame-ancestors and nosniff are the parts that actually matter here.
+const SECURITY_HEADERS: Record<string, string> = {
+  "content-security-policy":
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+  "x-content-type-options": "nosniff",
+  "x-frame-options": "DENY",
+  "referrer-policy": "strict-origin-when-cross-origin",
+  "permissions-policy": "camera=(), microphone=(), geolocation=()",
+};
+
+function withSecurityHeaders(response: Response): Response {
+  // Mutate the headers in place. Re-building the Response from `response.body`
+  // breaks the static-asset handler: assets answered 500 and nothing hydrated.
+  try {
+    for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+      if (!response.headers.has(name)) response.headers.set(name, value);
+    }
+    return response;
+  } catch {
+    const headers = new Headers(response.headers);
+    for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+      if (!headers.has(name)) headers.set(name, value);
+    }
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    });
+  }
+}
+
+async function handle(request: Request, env: unknown, ctx: unknown): Promise<Response> {
     if (CONNECTED_TEST_COMMERCE && new URL(request.url).pathname.startsWith("/api/commerce/")) {
       try {
         const { connectedTestHandler } =
@@ -79,5 +111,10 @@ export default {
         headers: { "content-type": "text/html; charset=utf-8" },
       });
     }
+}
+
+export default {
+  async fetch(request: Request, env: unknown, ctx: unknown) {
+    return withSecurityHeaders(await handle(request, env, ctx));
   },
 };
