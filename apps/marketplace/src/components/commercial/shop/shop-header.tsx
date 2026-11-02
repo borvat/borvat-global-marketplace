@@ -58,7 +58,8 @@ function SearchBox() {
       <label htmlFor="buyer-search" className="sr-only">
         {nl.searchLabel}
       </label>
-      <div className="flex overflow-hidden rounded-lg bg-background text-foreground ring-1 ring-white/20 focus-within:ring-2 focus-within:ring-accent-yellow">
+      <div className="flex items-center gap-2 border-b border-border text-foreground transition-colors focus-within:border-foreground">
+        <Search aria-hidden className="h-4 w-4 shrink-0 text-muted-foreground" />
         <input
           id="buyer-search"
           data-testid="search-input"
@@ -79,15 +80,15 @@ function SearchBox() {
           onFocus={() => setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 150)}
           onKeyDown={onKey}
-          className="h-11 min-w-0 flex-1 bg-transparent px-4 outline-none placeholder:text-muted-foreground"
+          className="h-11 min-w-0 flex-1 bg-transparent text-[13px] outline-none placeholder:text-muted-foreground"
         />
         <button
           type="submit"
           data-testid="search-submit"
-          className="flex items-center gap-2 bg-accent-yellow px-4 font-bold text-ink hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-ink"
+          className="flex h-11 items-center px-2 text-[11px] font-medium uppercase tracking-[0.14em] text-foreground"
         >
-          <Search aria-hidden className="h-5 w-5" />
           <span className="sr-only sm:not-sr-only">{nl.searchButton}</span>
+          <Search aria-hidden className="ml-2 h-4 w-4 sm:hidden" />
         </button>
       </div>
       {show && (
@@ -96,7 +97,7 @@ function SearchBox() {
           role="listbox"
           aria-label={nl.suggestions}
           data-testid="search-suggestions"
-          className="absolute inset-x-0 top-full z-50 mt-1 overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground shadow-lg"
+          className="absolute inset-x-0 top-full z-50 mt-2 overflow-hidden border border-border bg-popover text-popover-foreground shadow-[0_1px_2px_rgb(23_22_26_/_0.06)]"
         >
           {suggestions.map((p, i) => (
             <li
@@ -130,8 +131,8 @@ export function ShopHeader() {
   const { snapshot, route, link, navigate } = useShop();
   const count = snapshot.cart.reduce((sum, line) => sum + line.quantity, 0);
   return (
-    <header className="sticky top-0 z-40 bg-brand text-brand-foreground shadow-sm">
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_minmax(0,1fr)] items-center gap-x-2 md:grid-cols-[auto_minmax(0,1fr)_auto] md:gap-x-4 gap-y-3 px-4 py-3 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-[2px]">
+      <div className="mx-auto flex max-w-[1240px] flex-col gap-3 px-5 py-3 sm:px-8 md:h-20 md:flex-row md:items-center md:gap-8 md:py-0">
         <LocalLink
           href={link("/discover", {
             q: null,
@@ -143,48 +144,51 @@ export function ShopHeader() {
           })}
           data-testid="header-logo"
           aria-label={copy("BORVAT – naar de startpagina")}
-          className="col-start-1 row-start-1 rounded text-2xl font-extrabold tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4 sm:text-3xl"
+          className="font-display shrink-0 text-[22px] tracking-[0.18em] text-foreground md:text-[26px]"
         >
-          BOR<span className="text-red-400">V</span>AT
+          BOR<span className="text-accent">V</span>AT
         </LocalLink>
-        <div className="col-span-2 col-start-1 row-start-2 md:col-span-1 md:col-start-2 md:row-start-1">
+
+        <div className="order-3 w-full md:order-none md:max-w-[300px] md:flex-1">
           <SearchBox />
         </div>
+
         <nav
           aria-label={copy("Hoofdnavigatie")}
-          className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center justify-end gap-0 text-xs sm:gap-1 sm:text-sm md:col-start-3 lg:gap-3"
+          className="order-2 flex min-w-0 flex-wrap items-center justify-end gap-1 text-[12px] md:order-none md:ml-auto md:gap-5 md:text-[13px]"
         >
           <LocalLink
             href={link("/requests")}
             data-testid="nav-orders"
-            className="flex items-center gap-1.5 rounded-md px-2 py-2 hover:bg-white/10 focus-visible:outline-2"
+            className="brv-link flex items-center gap-1.5 px-2 py-2 md:px-0"
             aria-label={nl.orders}
           >
-            <Package aria-hidden className="h-5 w-5" />
+            <Package aria-hidden className="h-4 w-4" />
             <span className="hidden lg:inline">{nl.orders}</span>
           </LocalLink>
           <LocalLink
             href={link("/cart")}
             data-testid="nav-cart"
             aria-label={`${nl.cart} (${count})`}
-            className="relative flex items-center gap-1.5 rounded-md px-2 py-2 hover:bg-white/10 focus-visible:outline-2"
+            className="flex items-center gap-1.5 px-2 py-2 md:px-0"
           >
             <ShoppingCart aria-hidden className="h-5 w-5" />
-            <span className="hidden sm:inline">{nl.cart}</span>
+            <span className="brv-link hidden sm:inline">{nl.cart}</span>
             <span
               data-testid="cart-count"
-              className="min-w-5 rounded-full bg-accent-yellow px-1.5 text-center text-xs font-bold leading-5 text-ink"
+              className="brv-price ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 text-[11px] font-medium text-accent-foreground"
             >
               {count}
             </span>
           </LocalLink>
+          <span aria-hidden className="hidden h-4 w-px bg-border md:block" />
           <label htmlFor="buyer-country" className="sr-only">
             {nl.country}
           </label>
           <select
             id="buyer-country"
             data-testid="country-select"
-            className="h-9 rounded-md border border-white/20 bg-transparent px-2 text-sm text-brand-foreground [&>option]:text-foreground"
+            className="h-8 border-0 bg-transparent text-[12px] uppercase tracking-[0.08em] text-muted-foreground outline-none [&>option]:text-foreground"
             value={route.country}
             onChange={(event) => navigate(link(route.path, { country: event.target.value }), true)}
           >
@@ -204,7 +208,7 @@ export function ShopHeader() {
                 true,
               )
             }
-            className="h-9 max-w-20 rounded-md border border-white/20 bg-transparent px-1 text-sm [&>option]:text-foreground"
+            className="h-8 max-w-20 border-0 bg-transparent text-[12px] uppercase tracking-[0.08em] text-muted-foreground outline-none [&>option]:text-foreground"
           >
             <option value="nl">NL</option>
             <option value="en">EN</option>
@@ -221,15 +225,15 @@ export function ShopFooter() {
   const nl = useShopText();
   const { link } = useShop();
   return (
-    <footer className="mt-16 bg-brand text-brand-foreground">
-      <div className="mx-auto max-w-7xl space-y-2 px-4 py-10 text-sm sm:px-6">
-        <p className="text-xl font-extrabold">
-          BOR<span className="text-red-400">V</span>AT
+    <footer className="mt-24 border-t border-border bg-ink text-ink-foreground">
+      <div className="mx-auto max-w-[1240px] space-y-3 px-5 py-16 text-sm sm:px-8">
+        <p className="font-display text-xl tracking-[0.18em]">
+          BOR<span className="text-accent">V</span>AT
         </p>
         <p className="opacity-80">{nl.tagline}</p>
-        <p className="opacity-80">{nl.footer}</p>
-        <p className="opacity-70">{nl.footerNote}</p>
-        <LocalLink href={link("/workbench")} data-testid="footer-workbench">
+        <p className="max-w-xl opacity-70">{nl.footer}</p>
+        <p className="text-[12px] opacity-60">{nl.footerNote}</p>
+        <LocalLink href={link("/workbench")} data-testid="footer-workbench" className="brv-link inline-block">
           {nl.workbench}
         </LocalLink>
       </div>

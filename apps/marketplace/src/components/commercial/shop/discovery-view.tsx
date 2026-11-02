@@ -313,22 +313,20 @@ export function DiscoveryView() {
   return (
     <div className="space-y-6">
       {!filtered && (
-        <section className="overflow-hidden rounded-2xl bg-ink px-6 py-8 text-ink-foreground sm:px-10 sm:py-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-red-300">
-            {copy("Testcollectie")}
-          </p>
+        <section className="border-b border-border pb-10 sm:pb-14">
+          <p className="brv-eyebrow">{copy("Testcollectie")}</p>
           <h1
             tabIndex={-1}
-            className="mt-2 max-w-2xl text-3xl font-extrabold tracking-tight sm:text-5xl"
+            className="brv-display mt-3 max-w-3xl text-[clamp(2rem,1.2rem+3vw,3.5rem)] text-foreground"
           >
             {copy("Wonen en tuin, op jouw manier.")}
           </h1>
-          <p className="mt-3 max-w-xl text-sm opacity-85 sm:text-base">
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
             {copy(
               "Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te betalen.",
             )}
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
             {(["Wonen", "Tuin"] as const).map((c) => {
               const Icon = categoryIcon[c];
               return (
@@ -336,7 +334,7 @@ export function DiscoveryView() {
                   key={c}
                   href={link("/discover", { category: c })}
                   data-testid={`category-tile-${c.toLowerCase()}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 font-semibold hover:bg-white/20 focus-visible:outline-2"
+                  className="brv-link inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.14em] text-foreground"
                 >
                   <Icon aria-hidden className="h-4 w-4" /> {copy(c)}
                 </LocalLink>
