@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BORVAT — Richting B · Signaal</title>
+<style>
+  :root{
+    --bg:#0b0c0e; --panel:#141619; --panel-2:#1b1e22; --line:#2b2f35;
+    --fg:#f4f5f7; --dim:#9ba1ab; --lime:#d9ff4b; --lime-ink:#111;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --shell:1360px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font:14px/1.45 Inter,"Segoe UI",system-ui,sans-serif}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .shell{max-width:var(--shell);margin-inline:auto;padding-inline:18px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  /* top strip */
+  .strip{border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  .strip .shell{display:flex;justify-content:space-between;height:30px;align-items:center;gap:12px}
+  .strip b{color:var(--lime)}
+
+  /* header */
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,12,14,.92);backdrop-filter:blur(6px);z-index:20}
+  header .shell{display:flex;align-items:center;gap:16px;height:72px}
+  .logo{font-size:22px;font-weight:900;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
+  .logo span{background:var(--lime);color:var(--lime-ink);padding:2px 6px;border-radius:2px}
+  .search{flex:1;display:flex;align-items:center;height:46px;background:var(--panel-2);border:1px solid var(--line);border-radius:2px}
+  .search input{flex:1;background:transparent;border:0;color:var(--fg);padding-inline:14px;font-size:14px;outline:none}
+  .search input::placeholder{color:#6f757f}
+  .search button{border:0;background:var(--lime);color:var(--lime-ink);height:100%;padding-inline:20px;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+  .tools{display:flex;gap:14px;font-size:12px;color:var(--dim);align-items:center}
+  .tools .cart{color:var(--fg);display:flex;align-items:center;gap:6px}
+  .tools .cart em{background:var(--lime);color:var(--lime-ink);font-style:normal;font-weight:800;font-size:11px;padding:1px 6px;border-radius:2px}
+
+  /* category rail */
+  .rail{border-bottom:1px solid var(--line);overflow-x:auto}
+  .rail .shell{display:flex;gap:22px;height:44px;align-items:center;font-size:13px;white-space:nowrap}
+  .rail a{color:var(--dim)}
+  .rail a.on{color:var(--fg);position:relative}
+  .rail a.on::after{content:"";position:absolute;left:0;right:0;bottom:-13px;height:2px;background:var(--lime)}
+  .rail a:hover{color:var(--fg)}
+
+  /* hero */
+  .hero .shell{display:grid;grid-template-columns:1.35fr .65fr;gap:14px;padding-block:18px}
+  @media(max-width:900px){.hero .shell{grid-template-columns:1fr}}
+  .hero .stage{position:relative;min-height:330px;background:var(--panel);border:1px solid var(--line);overflow:hidden;display:flex;align-items:center}
+  .hero .stage img{position:absolute;right:-4%;top:0;height:112%;object-fit:contain;opacity:.95;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
+  .hero .stage .txt{position:relative;padding:34px;max-width:56%}
+  .hero .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--lime)}
+  .hero h1{font-size:clamp(30px,4vw,54px);line-height:.98;font-weight:900;letter-spacing:-.035em;margin-top:10px}
+  .hero p{color:var(--dim);margin-top:12px;max-width:30ch;font-size:13.5px}
+  .hero .cta{display:inline-flex;align-items:center;gap:10px;margin-top:20px;background:var(--lime);color:var(--lime-ink);font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:13px 18px}
+  .hero .side{display:grid;gap:14px}
+  .hero .promo{border:1px solid var(--line);background:linear-gradient(135deg,#191c20,#101215);padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+  .hero .promo .big{font-family:var(--mono);font-size:34px;font-weight:700;color:var(--lime)}
+  .hero .promo small{color:var(--dim);font-size:12px}
+  .hero .promo b{font-size:15px}
+  .tickers{border-block:1px solid var(--line);overflow:hidden}
+  .tickers .shell{display:flex;gap:34px;height:36px;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+  .tickers b{color:var(--fg)}
+
+  /* listing */
+  .listing .shell{padding-block:20px}
+  .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px}
+  .head h2{font-size:clamp(24px,3vw,40px);font-weight:900;letter-spacing:-.03em;line-height:1}
+  .head .meta{font-family:var(--mono);font-size:12px;color:var(--dim)}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .f{border:1px solid var(--line);padding:8px 12px;font-size:12.5px;color:var(--dim);display:inline-flex;align-items:center;gap:8px;background:var(--panel)}
+  .f.on{border-color:var(--lime);color:var(--fg)}
+  .f.on i{width:6px;height:6px;background:var(--lime);display:inline-block}
+  .sort{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--dim)}
+  .sort select{background:var(--panel);color:var(--fg);border:1px solid var(--line);height:34px;padding-inline:8px;font-size:12.5px}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:1080px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;position:relative;transition:border-color .15s,transform .15s}
+  .card:hover{border-color:#454b54;transform:translateY(-2px)}
+  .card .ph{aspect-ratio:4/3;background:#0f1113;display:grid;place-items:center;overflow:hidden}
+  .card .ph img{width:78%;height:86%;object-fit:contain;mix-blend-mode:normal}
+  .card .tag{position:absolute;left:12px;top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--lime);color:var(--lime-ink);padding:3px 7px;font-weight:700}
+  .card .body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .card .brandline{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .card .title{font-size:15px;font-weight:600;line-height:1.3}
+  .card .price{font-family:var(--mono);font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:auto}
+  .card .price s{font-size:12px;color:#71767f;margin-left:6px}
+  .card .foot{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--dim);border-top:1px solid var(--line);padding-top:8px}
+  .card .foot .d{color:var(--fg)}
+  .card .add{position:absolute;right:12px;bottom:58px;width:34px;height:34px;background:var(--lime);color:var(--lime-ink);display:grid;place-items:center;font-weight:900;font-size:16px;border:0}
+  .stars{color:var(--lime);font-size:11px;letter-spacing:1px}
+
+  /* pdp */
+  .pdp{border-top:1px solid var(--line);margin-top:8px}
+  .pdp .shell{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;padding-block:26px}
+  @media(max-width:900px){.pdp .shell{grid-template-columns:1fr}}
+  .pdp .big{background:var(--panel);border:1px solid var(--line);aspect-ratio:4/3;max-height:460px;overflow:hidden;display:grid;place-items:center}
+  .pdp .big img{max-height:78%;width:auto;max-width:80%;object-fit:contain}
+  .pdp h3{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-.03em;line-height:1.05}
+  .pdp .sub{color:var(--dim);margin-top:8px;font-size:13px}
+  .pdp .price{font-family:var(--mono);font-size:34px;font-weight:700;margin-top:14px;white-space:nowrap}
+  .pdp .price span{font-size:14px;color:var(--dim);font-weight:400;margin-left:8px}
+  .pdp .row{display:flex;gap:10px;margin-top:14px}
+  .pdp .chip{border:1px solid var(--line);padding:7px 11px;font-size:12px;color:var(--dim)}
+  .pdp .chip b{color:var(--fg)}
+  .pdp .actions{display:flex;gap:10px;margin-top:20px}
+  .pdp .add{background:var(--lime);color:var(--lime-ink);border:0;height:52px;padding-inline:28px;font-weight:900;font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+  .pdp .alt{border:1px solid var(--line);background:transparent;color:var(--fg);height:52px;padding-inline:20px;font-size:13px}
+  .pdp ul{margin-top:20px;list-style:none;display:grid;gap:8px;font-size:12.5px;color:var(--dim)}
+  .pdp ul b{color:var(--fg)}
+
+  footer{border-top:1px solid var(--line);margin-top:30px}
+  footer .shell{display:flex;justify-content:space-between;gap:20px;padding-block:20px;font-size:11.5px;color:var(--dim);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;flex-wrap:wrap}
+  .mock-tag{position:fixed;right:12px;bottom:12px;background:var(--lime);color:var(--lime-ink);font-family:var(--mono);font-size:11px;padding:6px 10px;font-weight:700}
+
+@media(max-width:760px){
+  .strip .shell span:nth-child(2){display:none}
+  header .shell{flex-wrap:wrap;height:auto;padding-block:10px}
+  header .search{order:3;flex-basis:100%}
+  .tools{gap:10px;font-size:11px}
+  .hero .stage img{right:-18%;opacity:.45}
+  .hero .stage .txt{max-width:100%}
+  .grid{grid-template-columns:1fr}
+  .pdp .shell{grid-template-columns:1fr}
+}
+
+@media(max-width:760px){
+  .pdp .shell>*{min-width:0}
+  .pdp .specs{grid-template-columns:110px 1fr}
+  .sellers{overflow:hidden}
+  .sellers .row{grid-template-columns:minmax(0,1fr) auto}
+  .sellers .row>*{min-width:0}
+  .card .title,.p h3{overflow-wrap:anywhere}
+}
+</style>
+</head>
+<body>
+<div class="strip"><div class="shell"><span><b>Voor 23:59</b> besteld · morgen in huis</span><span>Gratis retour · 30 dagen</span><span>Gecontroleerde verkopers</span></div></div>
+
+<header><div class="shell">
+  <div class="logo">BOR<span>V</span>AT</div>
+  <form class="search"><input placeholder="Zoek in 3.400+ producten"><button>Zoek</button></form>
+  <div class="tools"><span>Inloggen</span><span>Lijst</span><span class="cart">Mandje <em>2</em></span></div>
+</div></header>
+
+<div class="rail"><div class="shell">
+  <a class="on">Alles</a><a>Wonen</a><a>Keuken</a><a>Elektronica</a><a>Tuin</a><a>Mode</a><a>Sport</a><a>Outlet</a>
+</div></div>
+
+<section class="hero"><div class="shell">
+  <div class="stage">
+    <img src="assets/headphones.jpg" alt="">
+    <div class="txt">
+      <span class="kicker">Weekactie · audio</span>
+      <h1>Geluid zonder ruis, prijzen zonder ruis</h1>
+      <p>Vergelijk 12 verkopers op één productpagina. Morgen in huis.</p>
+      <a class="cta">Shop audio →</a>
+    </div>
+  </div>
+  <div class="side">
+    <div class="promo"><div><small>Deal van de dag</small><div class="big">-38%</div></div><b>Bureaustoel ergonomisch</b><small>Nu € 189,00 · nog 6 uur</small></div>
+    <div class="promo"><div><small>Nieuw bij BORVAT</small><b style="font-size:18px;display:block;margin-top:6px">Keukenlijn</b></div><small>Waterkokers, pannen, messen</small></div>
+  </div>
+</div></section>
+
+<div class="tickers"><div class="shell"><span><b>1.204</b> woonproducten</span><span><b>3</b> verkopers vergeleken per artikel</span><span><b>4,6</b> gemiddelde score</span><span><b>24u</b> levering</span></div></div>
+
+<section class="listing"><div class="shell">
+  <div class="head">
+    <div><h2>WONEN</h2><div class="meta">1.204 artikelen · 3 verkopers · bijgewerkt 2 min geleden</div></div>
+  </div>
+  <div class="filters">
+    <span class="f on"><i></i>Wonen</span><span class="f on"><i></i>Morgen in huis</span>
+    <span class="f">Prijs € 25 – € 250</span><span class="f">Verkoper</span><span class="f">Kleur</span><span class="f">Materiaal</span>
+    <span class="sort">Sorteer <select><option>Populariteit</option><option>Prijs ↑</option><option>Nieuw</option></select></span>
+  </div>
+
+  <div class="grid">
+    <article class="card"><div class="ph"><img src="assets/chair.jpg" alt=""></div><span class="tag">-24%</span>
+      <div class="body"><span class="brandline">BORVAT · Wonen</span><a class="title">Bureaustoel ergonomisch met lendensteun</a>
+        <div class="stars">★★★★★ <span style="color:var(--dim)">4,6 (128)</span></div>
+        <div class="price">€ 189,00 <s>€ 249,00</s></div>
+        <div class="foot"><span class="d">Morgen in huis</span><span>BORVAT</span></div></div>
+      <button class="add">+</button></article>
+
+    <article class="card"><div class="ph"><img src="assets/lamp.jpg" alt=""></div><span class="tag">-15%</span>
+      <div class="body"><span class="brandline">Nordic Home · Wonen</span><a class="title">Wandlamp messing, vintage</a>
+        <div class="stars">★★★★☆ <span style="color:var(--dim)">4,4 (64)</span></div>
+        <div class="price">€ 64,95 <s>€ 76,00</s></div>
+        <div class="foot"><span class="d">Morgen in huis</span><span>Nordic</span></div></div>
+      <button class="add">+</button></article>
+
+    <article class="card"><div class="ph"><img src="assets/speaker.jpg" alt=""></div>
+      <div class="body"><span class="brandline">Audiohuis · Elektronica</span><a class="title">Draadloze speaker, 20 uur accu</a>
+        <div class="stars">★★★★☆ <span style="color:var(--dim)">4,5 (87)</span></div>
+        <div class="price">€ 79,00</div>
+        <div class="foot"><span class="d">Morgen in huis</span><span>Audiohuis</span></div></div>
+      <button class="add">+</button></article>
+
+    <article class="card"><div class="ph"><img src="assets/pan.jpg" alt=""></div><span class="tag">-30%</span>
+      <div class="body"><span class="brandline">BORVAT · Keuken</span><a class="title">Koekenpan 24 cm, inductie</a>
+        <div class="stars">★★★★★ <span style="color:var(--dim)">4,8 (512)</span></div>
+        <div class="price">€ 34,95 <s>€ 49,95</s></div>
+        <div class="foot"><span class="d">Morgen in huis</span><span>BORVAT</span></div></div>
+      <button class="add">+</button></article>
+
+    <article class="card"><div class="ph"><img src="assets/towel.jpg" alt=""></div>
+      <div class="body"><span class="brandline">Weba Wonen · Bad</span><a class="title">Handdoekset katoen 4-delig</a>
+        <div class="stars">★★★★★ <span style="color:var(--dim)">4,7 (203)</span></div>
+        <div class="price">€ 39,95</div>
+        <div class="foot"><span class="d">Morgen in huis</span><span>Weba</span></div></div>
+      <button class="add">+</button></article>
+
+    <article class="card"><div class="ph"><img src="assets/flowers.jpg" alt=""></div>
+      <div class="body"><span class="brandline">Groenloods · Tuin</span><a class="title">Boeket amaryllis, 10 stelen</a>
+        <div class="stars">★★★★☆ <span style="color:var(--dim)">4,3 (41)</span></div>
+        <div class="price">€ 24,50</div>
+        <div class="foot"><span class="d">Over 2 dagen</span><span>Groenloods</span></div></div>
+      <button class="add">+</button></article>
+  </div>
+</div></section>
+
+<section class="pdp"><div class="shell">
+  <div class="big"><img src="assets/chair.jpg" alt=""></div>
+  <div>
+    <span class="kicker" style="color:var(--dim)">BORVAT · Wonen · Bureaustoelen</span>
+    <h3>Bureaustoel ergonomisch met lendensteun</h3>
+    <p class="sub">3 verkopers · vanaf € 179,00 · artikel BVR-4412</p>
+    <div class="price">€ 189,00 <span>incl. btw</span></div>
+    <div class="row"><span class="chip"><b>Op voorraad</b></span><span class="chip">Morgen in huis</span><span class="chip">30 dagen retour</span></div>
+    <div class="actions"><button class="add">In winkelwagen</button><button class="alt">Alle verkopers</button></div>
+    <ul><li><b>Verkoper</b> BORVAT · 4,8 / 5 over 2.140 bestellingen</li><li><b>Bezorging</b> gratis vanaf € 29 · avondlevering mogelijk</li><li><b>Retour</b> gratis binnen 30 dagen</li></ul>
+  </div>
+</div></section>
+
+<footer><div class="shell"><span>BORVAT — voorbeeldontwerp richting B</span><span>Foto's: Wikimedia Commons (CC)</span><span>Mockup · geen echte producten</span></div></footer>
+<div class="mock-tag">RICHTING B · SIGNAAL</div>
+</body>
+</html>
