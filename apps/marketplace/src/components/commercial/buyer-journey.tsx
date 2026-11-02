@@ -171,7 +171,7 @@ function BuyerJourneyView({
         </a>
         <div
           data-testid="test-environment-banner"
-          className="bg-accent px-4 py-1.5 text-center text-xs font-semibold text-accent-foreground sm:text-sm"
+          className="border-b border-border bg-surface-muted px-4 py-1.5 text-center text-[11.5px] font-medium tracking-[0.01em] text-muted-foreground"
         >
           {CONNECTED_TEST_COMMERCE
             ? copy("NATIVE TEST · Synthetische gegevens · Betaling gesimuleerd · Geen vervoerder")

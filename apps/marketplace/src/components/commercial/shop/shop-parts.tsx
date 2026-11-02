@@ -129,10 +129,14 @@ export function ProductCard({ p }: { p: CardProduct }) {
         </LocalLink>
         <Rating rating={p.rating} count={p.reviewCount} />
         <div className="mt-auto space-y-1 pt-1">
-          <p className="flex items-baseline gap-2 whitespace-nowrap">
-            <span className="brv-price text-[17px]">{formatEur(p.priceCents)}</span>
-            {hasDeal && <span className="brv-strike">{formatEur(p.fromCents)}</span>}
-          </p>
+          {p.priceCents > 0 ? (
+            <p className="flex items-baseline gap-2 whitespace-nowrap">
+              <span className="brv-price text-[17px]">{formatEur(p.priceCents)}</span>
+              {hasDeal && <span className="brv-strike">{formatEur(p.fromCents)}</span>}
+            </p>
+          ) : (
+            <p className="text-[13px] font-semibold text-muted-foreground">Prijs op aanvraag</p>
+          )}
           <p className="text-[11.5px] text-muted-foreground">
             {p.variantLabel ? `${p.variantLabel} · ` : ""}
             {nl.perPack(1)}
