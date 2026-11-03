@@ -59,10 +59,15 @@ test("search, price, availability filters and sorting", () => {
   assert.ok(selectDemoProducts(s, { ...base, query: "eettafel" }).some((p) => p.id === "prd_001"));
   assert.equal(selectDemoProducts(s, { ...base, query: "xyz-bestaat-niet" }).length, 0);
   assert.ok(selectDemoProducts(s, { ...base, query: "Gietijzer" }).some((p) => p.id === "prd_009"));
+  // Dataset-independent invariants: the filters must agree with the offer set, not with
+  // a frozen list of ids that changes whenever the demo catalogue grows.
+  const publishedOffers = s.offers.filter((o) => o.state === "published");
   const cheap = selectDemoProducts(s, { ...base, maxCents: 10_000 });
-  assert.ok(cheap.length > 0 && cheap.every((p) => ["prd_004", "prd_006"].includes(p.id)));
-  const all = selectDemoProducts(s, base).length;
-  assert.equal(selectDemoProducts(s, { ...base, inStockOnly: true }).length, all - 1);
+  const cheapExpected = new Set(publishedOffers.filter((o) => o.priceCents <= 10_000).map((o) => o.productId));
+  assert.ok(cheap.length > 0);
+  assert.deepEqual(new Set(cheap.map((p) => p.id)), cheapExpected);
+  const inStockExpected = new Set(publishedOffers.filter((o) => o.availabilityExample > 0).map((o) => o.productId));
+  assert.equal(selectDemoProducts(s, { ...base, inStockOnly: true }).length, inStockExpected.size);
   const asc = selectDemoProducts(s, { ...base, sort: "price" }).map((p) => p.id);
   const desc = selectDemoProducts(s, { ...base, sort: "price-desc" }).map((p) => p.id);
   assert.deepEqual([...asc].reverse(), desc);
