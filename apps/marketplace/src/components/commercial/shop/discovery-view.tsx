@@ -399,7 +399,7 @@ function MarketplaceHome() {
   ];
 
   return (
-    <div>
+    <div className="brv-shell">
       <h1 className="sr-only">BORVAT — wonen en tuin van gecontroleerde verkopers</h1>
 
       <section className="brv-band">
