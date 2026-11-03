@@ -66,9 +66,18 @@ test("search, price, availability filters and sorting", () => {
   assert.ok(cheap.length > 0 && cheap.length < all.length);
   const byPrice = selectDemoProducts(s, { ...base, sort: "price" });
   assert.ok(cheap.some((p) => p.id === byPrice[0].id));
+  const priceOf = (id: string) =>
+    Math.min(
+      ...s.offers.filter((o) => o.productId === id && o.state === "published").map((o) => o.priceCents),
+    );
   const asc = selectDemoProducts(s, { ...base, sort: "price" }).map((p) => p.id);
   const desc = selectDemoProducts(s, { ...base, sort: "price-desc" }).map((p) => p.id);
-  assert.deepEqual([...asc].reverse(), desc);
+  // Ties make a strict reversal wrong; the ordering itself is what has to hold.
+  const ascPrices = asc.map(priceOf);
+  const descPrices = desc.map(priceOf);
+  assert.ok(ascPrices.every((p, i) => i === 0 || p >= ascPrices[i - 1]), "ascending prices");
+  assert.ok(descPrices.every((p, i) => i === 0 || p <= descPrices[i - 1]), "descending prices");
+  assert.deepEqual([...asc].sort(), [...desc].sort(), "same articles in both orders");
   assert.equal(buyerLocation("/discover?min=10&max=abc&stock=1&sort=price-desc").maxPrice, null);
 });
 
