@@ -269,13 +269,16 @@ function CardRowSkeleton() {
   return (
     <ul aria-hidden className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
       {Array.from({ length: 4 }, (_, i) => (
-        <li key={i} className="brv-card overflow-hidden">
+        <li key={i} className="brv-card">
           <div className="aspect-square w-full animate-pulse bg-muted" />
           <div className="space-y-2 p-3">
-            <div className="h-3.5 w-4/5 animate-pulse rounded bg-muted" />
+            <div className="h-2.5 w-1/3 animate-pulse rounded bg-muted" />
+            <div className="h-3.5 w-full animate-pulse rounded bg-muted" />
+            <div className="h-3.5 w-3/4 animate-pulse rounded bg-muted" />
             <div className="h-3 w-1/2 animate-pulse rounded bg-muted" />
             <div className="h-4 w-1/3 animate-pulse rounded bg-muted" />
             <div className="h-3 w-2/3 animate-pulse rounded bg-muted" />
+            <div className="h-3 w-1/2 animate-pulse rounded bg-muted" />
           </div>
         </li>
       ))}
@@ -347,13 +350,14 @@ function MarketplaceHome() {
   const hero = sellable[0];
   return (
     <div className="space-y-4 py-3">
+      <h1 className="sr-only">BORVAT — wonen en tuin van gecontroleerde verkopers</h1>
       <section className="brv-shell grid gap-3 lg:grid-cols-[1.55fr_1fr]">
         <LocalLink
           href={hero ? link(`/product/${encodeURIComponent(hero.id)}`, { offer: null, sku: null }) : link("/discover", reset)}
           className="brv-tile min-h-[300px] lg:min-h-[340px]"
         >
           {hero && demoMedia(hero.id) ? (
-            <img src={demoMedia(hero.id) as string} alt={hero.title} className="h-full w-full object-cover" />
+            <img src={demoMedia(hero.id) as string} alt={hero.title} fetchPriority="high" className="h-full w-full object-cover" />
           ) : null}
           <div className="cap">
             <b>{hero ? hero.title : "Alle producten"}</b>
