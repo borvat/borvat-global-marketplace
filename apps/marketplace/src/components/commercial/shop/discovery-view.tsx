@@ -341,7 +341,6 @@ function TrustBand() {
 
 function MarketplaceHome() {
   const copy = useShopCopy();
-  const nl = useShopText();
   const { catalog, link } = useShop();
   const reset = { q: null, category: null, min: null, max: null, stock: null, sort: null };
   const sellable = catalog.products.filter((p) => publishedOffers(catalog, p.id).length > 0);
