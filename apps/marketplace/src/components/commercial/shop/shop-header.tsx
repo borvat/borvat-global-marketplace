@@ -1,6 +1,6 @@
 import { useShopCopy, useShopText, useShopMoney } from "./i18n";
 import { useEffect, useId, useState, type FormEvent, type KeyboardEvent } from "react";
-import { Search, ShoppingCart, Heart, User, Truck, RotateCcw, Package, ChevronDown } from "lucide-react";
+import { Search, ShoppingCart, Heart, User, Truck, RotateCcw, Package, ChevronDown, Menu } from "lucide-react";
 import { normalizeSearch } from "../../../lib/commercial/demo-adapter";
 import { SHIPPING_METHODS } from "../../../lib/commercial/shop-pricing";
 import { LocalLink, useShop } from "./shop-context";
@@ -127,69 +127,78 @@ export function ShopHeader() {
   const freeFrom = formatEur(SHIPPING_METHODS.standaard.freeFromCents);
   return (
     <header className="sticky top-0 z-40">
+      {/* 32px white utility strip */}
       <div className="brv-util">
-        <div className="brv-shell flex h-9 items-center justify-between gap-4">
-          <div className="flex min-w-0 items-center gap-5 overflow-hidden">
-            <span className="hidden items-center gap-1.5 sm:flex">
+        <div className="brv-shell flex h-8 items-center justify-between gap-4">
+          <nav aria-label="Service" className="flex min-w-0 items-center gap-4 overflow-hidden">
+            <LocalLink href={link("/discover", reset)}>Cadeau &amp; Inspiratie</LocalLink>
+            <LocalLink href={link("/workbench")} className="hidden sm:inline">
+              Zakelijk
+            </LocalLink>
+            <span className="hidden items-center gap-1.5 md:inline-flex">
               <Truck aria-hidden className="h-3.5 w-3.5" /> Gratis bezorgd vanaf {freeFrom}
             </span>
-            <span className="hidden items-center gap-1.5 md:flex">
-              {nl.deliveryLong}
-            </span>
-            <span className="flex items-center gap-1.5">
+          </nav>
+          <nav aria-label="Hulp" className="flex shrink-0 items-center gap-4">
+            <span className="hidden items-center gap-1.5 lg:inline-flex">
               <RotateCcw aria-hidden className="h-3.5 w-3.5" /> Gratis retourneren
             </span>
-          </div>
-          <LocalLink href={link("/requests")} className="shrink-0">
-            Klantenservice
-          </LocalLink>
+            <LocalLink href={link("/requests")}>Klantenservice</LocalLink>
+          </nav>
         </div>
       </div>
 
+      {/* 72px brand bar */}
       <div className="brv-top">
-        <div className="brv-shell flex flex-wrap items-center gap-x-4 gap-y-2 py-2.5 lg:flex-nowrap lg:gap-7">
+        <div className="brv-shell flex flex-wrap items-center gap-x-4 gap-y-2 py-2.5 lg:h-[72px] lg:flex-nowrap lg:gap-6 lg:py-0">
           <LocalLink
             href={link("/discover", reset)}
             data-testid="header-logo"
             aria-label="BORVAT — naar de startpagina"
-            className="shrink-0 text-[25px] font-black tracking-[-0.03em]"
+            className="shrink-0 text-[26px] font-black leading-none tracking-[-0.03em] text-white"
           >
-            BOR<span className="text-primary">V</span>AT
+            BORVAT
           </LocalLink>
 
           <div className="order-last w-full lg:order-none lg:max-w-[620px] lg:flex-1">
             <SearchBar />
           </div>
 
-          <div className="ml-auto flex shrink-0 items-center gap-0.5">
-            <LocalLink href={link("/account")} className="hidden items-center gap-2 rounded px-2.5 py-2 text-[12.5px] hover:bg-muted sm:flex">
-              <User aria-hidden className="h-[18px] w-[18px]" />
+          <div className="ml-auto flex shrink-0 items-center gap-1">
+            <LocalLink
+              href={link("/account")}
+              className="flex items-center gap-2 rounded px-2.5 py-2 text-[12.5px] text-white hover:bg-white/10"
+            >
+              <User aria-hidden className="h-[19px] w-[19px]" />
               <span className="hidden xl:inline">Inloggen</span>
+            </LocalLink>
+            <LocalLink
+              href={link("/account")}
+              className="hidden items-center gap-2 rounded px-2.5 py-2 text-[12.5px] text-white hover:bg-white/10 md:flex"
+            >
+              <Heart aria-hidden className="h-[19px] w-[19px]" />
+              <span className="hidden xl:inline">Verlanglijst</span>
             </LocalLink>
             <LocalLink
               href={link("/requests")}
               data-testid="nav-orders"
               aria-label={nl.orders}
-              className="flex items-center gap-2 rounded px-2.5 py-2 text-[12.5px] hover:bg-muted"
+              className="flex items-center gap-2 rounded px-2.5 py-2 text-[12.5px] text-white hover:bg-white/10"
             >
-              <Package aria-hidden className="h-[18px] w-[18px]" />
+              <Package aria-hidden className="h-[19px] w-[19px]" />
               <span className="hidden xl:inline">Bestellingen</span>
-            </LocalLink>
-            <LocalLink href={link("/account")} className="hidden items-center gap-2 rounded px-2.5 py-2 text-[12.5px] hover:bg-muted md:flex">
-              <Heart aria-hidden className="h-[18px] w-[18px]" />
-              <span className="hidden xl:inline">Verlanglijst</span>
             </LocalLink>
             <LocalLink
               href={link("/cart")}
               data-testid="nav-cart"
               aria-label={`${nl.cart} (${count})`}
-              className="flex items-center gap-2 rounded px-2.5 py-2 text-[12.5px] font-semibold hover:bg-muted"
+              className="flex items-center gap-2 rounded px-2.5 py-2 text-[12.5px] font-semibold text-white hover:bg-white/10"
             >
               <span className="relative">
-                <ShoppingCart aria-hidden className="h-[19px] w-[19px]" />
+                <ShoppingCart aria-hidden className="h-[20px] w-[20px]" />
                 <span
                   data-testid="cart-count"
-                  className="brv-num absolute -right-2 -top-2 inline-flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-primary-foreground"
+                  className="brv-num absolute -right-2 -top-2 inline-flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-white px-1 text-[10px] font-bold text-brand"
                 >
                   {count}
                 </span>
@@ -200,14 +209,14 @@ export function ShopHeader() {
         </div>
       </div>
 
+      {/* 57px nav row */}
       <div className="brv-cats">
-        <div className="brv-shell flex items-center justify-between gap-3">
+        <div className="brv-shell flex h-[57px] items-center justify-between gap-3">
           <nav aria-label={copy("Hoofdnavigatie")} className="-mx-2 flex min-w-0 items-center overflow-x-auto">
             <LocalLink href={link("/discover", reset)} className="brv-catlink font-semibold">
-              <ChevronDown aria-hidden className="h-3.5 w-3.5" />
+              <Menu aria-hidden className="h-4 w-4" />
               Alle categorieën
             </LocalLink>
-            <span aria-hidden className="mx-1 h-4 w-px bg-border" />
             {(["Wonen", "Tuin"] as const).map((c) => (
               <LocalLink
                 key={c}
@@ -221,22 +230,23 @@ export function ShopHeader() {
             <LocalLink href={link("/discover", { ...reset, sort: "price" })} className="brv-catlink">
               Aanbiedingen
             </LocalLink>
+            <LocalLink href={link("/requests")} className="brv-catlink hidden md:inline-flex">
+              Klantenservice
+            </LocalLink>
           </nav>
-          <div className="hidden items-center gap-3 text-[12px] text-muted-foreground lg:flex">
-            <span>Zakelijk</span>
-            <span>Cadeaukaart</span>
+          <div className="hidden items-center gap-3 text-[12px] text-white/85 lg:flex">
             <label htmlFor="buyer-country" className="sr-only">
               {nl.country}
             </label>
             <select
               id="buyer-country"
               data-testid="country-select"
-              className="h-7 rounded border border-border px-1.5 text-[12px]"
+              className="h-7 rounded border-0 bg-white/10 px-1.5 text-[12px] text-white"
               value={route.country}
               onChange={(event) => navigate(link(route.path, { country: event.target.value }), true)}
             >
-              <option value="NL">NL</option>
-              <option value="BE">BE</option>
+              <option className="text-foreground" value="NL">NL</option>
+              <option className="text-foreground" value="BE">BE</option>
             </select>
             <label htmlFor="buyer-language" className="sr-only">
               Language · اللغة · Taal
@@ -244,15 +254,15 @@ export function ShopHeader() {
             <select
               id="buyer-language"
               data-testid="language-select"
-              className="h-7 rounded border border-border px-1.5 text-[12px]"
+              className="h-7 rounded border-0 bg-white/10 px-1.5 text-[12px] text-white"
               value={route.language}
               onChange={(e) =>
                 navigate(link(route.path, { lang: e.target.value === "nl" ? null : e.target.value }), true)
               }
             >
-              <option value="nl">NL</option>
-              <option value="en">EN</option>
-              <option value="ar">العربية</option>
+              <option className="text-foreground" value="nl">NL</option>
+              <option className="text-foreground" value="en">EN</option>
+              <option className="text-foreground" value="ar">العربية</option>
             </select>
           </div>
         </div>

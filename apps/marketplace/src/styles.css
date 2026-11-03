@@ -61,24 +61,29 @@
   --popover: #ffffff;
   --popover-foreground: #14161a;
 
-  --primary: #a4172a;
+  /* BORVAT cobalt. The reference header measures oklch(0.3249 0.2251 264.05);
+     same visual weight and saturation, a distinct hue so the identity stays ours. */
+  --primary: #12357f;
   --primary-foreground: #ffffff;
-  --brand: #a4172a;
+  --brand: #12357f;
   --brand-foreground: #ffffff;
+  --brand-deep: #0c2760;
+  --brand-nav: #0f2f73;
+  --deal: #b42318;
 
   --secondary: #eceef1;
   --secondary-foreground: #14161a;
   --muted: #f2f3f5;
   --muted-foreground: #575d67;
-  --accent: #fbeceb;
-  --accent-foreground: #8c1122;
+  --accent: #eef3fd;
+  --accent-foreground: #12357f;
   --accent-yellow: #ffe9a8;
 
   --destructive: #b42318;
   --destructive-foreground: #ffffff;
   --border: #dcdfe4;
   --input: #c9ced6;
-  --ring: #a4172a;
+  --ring: #12357f;
 
   --price: #14161a;
   --success: #0b6b3a;
@@ -105,8 +110,8 @@
   --muted-foreground: #9aa1ac;
   --surface: #14171d;
   --surface-muted: #1a1e25;
-  --primary: #e0505f;
-  --primary-foreground: #101216;
+  --primary: #6f9bff;
+  --primary-foreground: #0b1220;
   --price: #ffffff;
   --ink: #0b0d11;
 }
@@ -172,12 +177,12 @@
   .brv-shell {
     margin-inline: auto;
     width: 100%;
-    max-width: 1340px;
+    max-width: 1216px;
     padding-inline: 16px;
   }
   @media (min-width: 1024px) {
     .brv-shell {
-      padding-inline: 24px;
+      padding-inline: 32px;
     }
   }
 
@@ -186,51 +191,55 @@
     letter-spacing: -0.01em;
   }
 
-  /* ---------- header ---------- */
+  /* ---------- header (measured against the reference at 1440) ----------
+     32px white utility strip · 72px brand bar · 57px nav row = 161px total */
   .brv-util {
-    background: var(--ink);
-    color: #d3d7dd;
+    height: 32px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    color: #4b5563;
     font-size: 11.5px;
   }
   .brv-util a:hover {
-    color: #fff;
+    color: var(--brand);
     text-decoration: underline;
   }
   .brv-top {
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
+    background: var(--brand);
+    color: #fff;
   }
   .brv-cats {
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
+    background: var(--brand-nav);
+    color: #fff;
   }
   .brv-catlink {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    height: 42px;
-    padding-inline: 11px;
+    height: 57px;
+    padding-inline: 10px;
     font-size: 13.5px;
-    color: var(--foreground);
+    color: #fff;
     white-space: nowrap;
   }
   .brv-catlink:hover {
-    color: var(--primary);
-    box-shadow: inset 0 -2px 0 var(--primary);
+    color: #fff;
+    box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.9);
   }
 
   /* ---------- search ---------- */
   .brv-search {
     display: flex;
     align-items: stretch;
-    height: 44px;
-    border: 2px solid var(--ink);
-    border-radius: var(--radius);
+    height: 48px;
+    border: 2px solid transparent;
+    border-radius: 4px;
     background: #fff;
     overflow: hidden;
   }
   .brv-search:focus-within {
-    border-color: var(--primary);
+    border-color: #0c2760;
+    box-shadow: 0 0 0 1px #0c2760 inset;
   }
   .brv-search .scope {
     display: none;
@@ -310,15 +319,16 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    background: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
     overflow: hidden;
     transition:
       border-color 0.15s ease,
       box-shadow 0.15s ease;
   }
   .brv-card:hover {
+    border-color: var(--border);
     border-color: #b9bfc7;
     box-shadow: 0 8px 18px -14px rgb(20 22 26 / 0.55);
   }
@@ -595,3 +605,154 @@
     }
   }
 }
+
+  /* ---------- home bands, measured from the reference ---------- */
+  .brv-band {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+  }
+  @media (min-width: 1024px) {
+    .brv-band {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .brv-catgrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (min-width: 640px) {
+    .brv-catgrid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .brv-cattile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    font-size: 12.5px;
+    line-height: 1.25;
+    color: var(--foreground);
+  }
+  .brv-cattile .ph {
+    display: block;
+    aspect-ratio: 130 / 98;
+    border-radius: 8px;
+    background: var(--surface-muted);
+    overflow: hidden;
+  }
+  .brv-cattile .ph img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+  }
+  .brv-cattile:hover .ph img {
+    transform: scale(1.03);
+  }
+  .brv-promos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media (min-width: 640px) {
+    .brv-promos {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .brv-promos {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+    }
+  }
+  .brv-promo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface-muted);
+    aspect-ratio: 172 / 229;
+  }
+  .brv-promo img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .brv-promo .cap {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: 8px 10px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .brv-section {
+    margin-top: 40px;
+  }
+  .brv-section > header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .brv-section h2 {
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  @media (min-width: 1024px) {
+    .brv-section h2 {
+      font-size: 32px;
+      line-height: 48px;
+    }
+  }
+  .brv-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 640px) {
+    .brv-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .brv-row {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+    }
+  }
+  .brv-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+  }
+  @media (min-width: 1024px) {
+    .brv-links {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  .brv-links h3 {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .brv-links li a {
+    display: block;
+    padding-block: 3px;
+    font-size: 12.5px;
+    color: var(--muted-foreground);
+  }
+  .brv-links li a:hover {
+    color: var(--brand);
+    text-decoration: underline;
+  }
