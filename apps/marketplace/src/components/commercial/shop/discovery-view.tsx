@@ -346,8 +346,8 @@ function MarketplaceHome() {
   const sellable = catalog.products.filter((p) => publishedOffers(catalog, p.id).length > 0);
   const hero = sellable[0];
   const tileProducts = sellable.slice(0, 6);
-  const rowOne = sellable.slice(0, 6);
-  const rowTwo = sellable.slice(6, 12);
+  const rowOne = sellable.slice(0, 5);
+  const rowTwo = sellable.slice(5, 11);
   const productHref = (id: string) => link(`/product/${encodeURIComponent(id)}`, { offer: null, sku: null });
   const linkCols: { title: string; items: [string, string][] }[] = [
     {
@@ -441,7 +441,7 @@ function MarketplaceHome() {
             <LocalLink key={prod.id} href={productHref(prod.id)} className="brv-cattile">
               <span className="ph bg-white">
                 {demoMedia(prod.id) ? (
-                  <img src={demoMedia(prod.id) as string} alt="" loading="lazy" className="object-contain p-1" />
+                  <img src={demoMedia(prod.id) as string} alt="" loading="lazy" className="contain" />
                 ) : null}
               </span>
               <span className="line-clamp-2">{prod.title}</span>

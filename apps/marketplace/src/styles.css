@@ -615,7 +615,12 @@
   }
   @media (min-width: 1024px) {
     .brv-band {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 568px 1fr;
+      align-items: start;
+    }
+    .brv-band > .brv-promo {
+      aspect-ratio: auto;
+      height: 312px;
     }
   }
   .brv-catgrid {
@@ -626,23 +631,29 @@
   @media (min-width: 640px) {
     .brv-catgrid {
       grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 148px;
     }
   }
   .brv-cattile {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    min-height: 0;
     text-align: center;
-    font-size: 12.5px;
+    font-size: 12px;
     line-height: 1.25;
     color: var(--foreground);
   }
   .brv-cattile .ph {
     display: block;
-    aspect-ratio: 130 / 98;
+    height: 98px;
     border-radius: 8px;
     background: var(--surface-muted);
     overflow: hidden;
+  }
+  .brv-cattile .ph img.contain {
+    object-fit: contain;
+    padding: 6px;
   }
   .brv-cattile .ph img {
     height: 100%;
