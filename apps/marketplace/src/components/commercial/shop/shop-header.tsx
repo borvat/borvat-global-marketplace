@@ -285,7 +285,7 @@ export function ShopFooter() {
       <div className="brv-shell grid gap-8 py-9 sm:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-2.5">
           <p className="text-xl font-black tracking-[-0.03em]">
-            BOR<span className="text-primary">V</span>AT
+            BOR<span className="text-[#8fb3ff]">V</span>AT
           </p>
           <p className="max-w-xs text-[12.5px] leading-relaxed text-white/70">{nl.footer}</p>
           <p className="text-[11.5px] text-white/50">{nl.footerNote}</p>
