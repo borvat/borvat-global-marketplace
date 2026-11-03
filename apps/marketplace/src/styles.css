@@ -54,7 +54,7 @@
 :root {
   --radius: 0.25rem;
 
-  --background: #f1f2f4;
+  --background: #ffffff;
   --foreground: #14161a;
   --card: #ffffff;
   --card-foreground: #14161a;
@@ -81,7 +81,7 @@
 
   --destructive: #b42318;
   --destructive-foreground: #ffffff;
-  --border: #dcdfe4;
+  --border: #e5e5e5;
   --input: #c9ced6;
   --ring: #12357f;
 
@@ -92,8 +92,8 @@
   --ink-soft: #1f2228;
   --ink-foreground: #ffffff;
 
-  --surface: #f7f8f9;
-  --surface-muted: #eceef1;
+  --surface: #ffffff;
+  --surface-muted: #f5f6f7;
 
   --account-sky: #e8f0fb;
   --account-sky-soft: #f3f7fd;
@@ -208,23 +208,34 @@
     background: var(--brand);
     color: #fff;
   }
+  /* the navigation row under the brand bar is white in the reference */
   .brv-cats {
-    background: var(--brand-nav);
-    color: #fff;
+    background: #fff;
+    color: var(--foreground);
+    border-bottom: 1px solid var(--border);
   }
   .brv-catlink {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    height: 57px;
-    padding-inline: 10px;
+    height: 40px;
+    margin-block: 8px;
+    padding-inline: 12px;
     font-size: 13.5px;
-    color: #fff;
+    color: var(--foreground);
     white-space: nowrap;
+    border-radius: 6px;
   }
   .brv-catlink:hover {
+    background: var(--surface-muted);
+  }
+  .brv-catlink.is-primary {
+    background: var(--brand);
     color: #fff;
-    box-shadow: inset 0 -3px 0 rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+  }
+  .brv-catlink.is-primary:hover {
+    background: var(--brand-deep);
   }
 
   /* ---------- search ---------- */
@@ -232,30 +243,17 @@
     display: flex;
     align-items: stretch;
     height: 48px;
-    max-width: 512px;
     border: 2px solid transparent;
-    border-radius: 4px;
+    border-radius: 8px;
     background: #fff;
     overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04);
   }
   .brv-search:focus-within {
     border-color: #0c2760;
     box-shadow: 0 0 0 1px #0c2760 inset;
   }
-  .brv-search .scope {
-    display: none;
-    align-items: center;
-    padding-inline: 8px 6px;
-    border-right: 1px solid var(--border);
-    background: var(--surface);
-    font-size: 12px;
-    color: var(--muted-foreground);
-  }
-  @media (min-width: 900px) {
-    .brv-search .scope {
-      display: flex;
-    }
-  }
+
   .brv-search input {
     flex: 1 1 auto;
     min-width: 0;
@@ -718,7 +716,7 @@
   }
   .brv-section h2 {
     font-size: 26px;
-    font-weight: 300;
+    font-weight: 700;
     letter-spacing: -0.01em;
   }
   @media (min-width: 1024px) {
@@ -768,3 +766,151 @@
     color: var(--brand);
     text-decoration: underline;
   }
+
+/* ---------- hero banner (reference: full width, 356 tall) ---------- */
+.brv-banner {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #e8eefb;
+}
+@media (min-width: 900px) {
+  .brv-banner {
+    grid-template-columns: 46% 54%;
+    min-height: 356px;
+  }
+}
+.brv-banner .copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 32px;
+}
+.brv-banner .eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.brv-banner h2 {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 900px) {
+  .brv-banner h2 { font-size: 44px; }
+}
+.brv-banner p {
+  max-width: 40ch;
+  font-size: 14.5px;
+  color: #33404f;
+}
+.brv-banner .cta {
+  align-self: flex-start;
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding-inline: 22px;
+  border-radius: 6px;
+  background: #101418;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+.brv-banner .cta:hover { background: #000; }
+.brv-banner .art { position: relative; min-height: 240px; }
+.brv-banner .art img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* ---------- category row ---------- */
+.brv-catrow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+@media (min-width: 900px) {
+  .brv-catrow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.brv-catcard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+}
+.brv-catcard .ph { display: block; height: 150px; background: var(--surface-muted); }
+.brv-catcard .ph img { height: 100%; width: 100%; object-fit: cover; }
+.brv-catcard .meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 12px 14px;
+}
+.brv-catcard .meta b { font-size: 15px; font-weight: 700; }
+.brv-catcard .meta span { font-size: 12px; color: var(--muted-foreground); }
+
+/* ---------- promo panels ---------- */
+.brv-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+@media (min-width: 640px) { .brv-panels { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .brv-panels { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.brv-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  height: 190px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--surface-muted);
+  color: var(--foreground);
+}
+.brv-panel:hover { background: #eceef1; }
+.brv-panel.is-brand { background: var(--brand); color: #fff; }
+.brv-panel.is-brand:hover { background: var(--brand-deep); }
+.brv-panel b { font-size: 15px; font-weight: 700; line-height: 1.2; }
+.brv-panel span { font-size: 12px; opacity: 0.82; }
+
+/* ---------- filler beside a short product row ---------- */
+.brv-filler {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  grid-column: span 2;
+  padding: 22px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+}
+@media (min-width: 1024px) { .brv-filler { grid-column: span 3; } }
+
+/* ---------- service band + white footer ---------- */
+.brv-service { margin-top: 48px; background: var(--brand); color: #fff; }
+.brv-service h2 { font-size: 18px; font-weight: 700; }
+.brv-service ul { display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 13px; }
+.brv-service li { display: flex; align-items: center; gap: 8px; }
+.brv-footer { background: #fff; color: var(--foreground); border-top: 1px solid var(--border); }
+.brv-footer h3 { font-size: 12.5px; font-weight: 700; margin-bottom: 8px; }
+.brv-footer li { margin-bottom: 5px; }
+.brv-footer a { font-size: 12.5px; color: #4b5563; }
+.brv-footer a:hover { color: var(--brand); text-decoration: underline; }
+.brv-footer .legal { border-top: 1px solid var(--border); padding-block: 14px; font-size: 11.5px; color: #6b7280; }

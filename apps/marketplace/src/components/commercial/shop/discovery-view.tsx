@@ -15,6 +15,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { selectDemoProducts } from "../../../lib/commercial/demo-adapter";
+import { SHIPPING_METHODS } from "../../../lib/commercial/shop-pricing";
 import { fromPrice, LocalLink, productAvailability, publishedOffers, useShop } from "./shop-context";
 import { ProductCard, ProductMedia, secondaryButton, type CardProduct } from "./shop-parts";
 import { demoMedia } from "./demo-media";
@@ -363,124 +364,124 @@ function GhostCard() {
 
 function MarketplaceHome() {
   const copy = useShopCopy();
+  const nl = useShopText();
+  const formatEur = useShopMoney();
   const { catalog, link } = useShop();
   const reset = { q: null, category: null, min: null, max: null, stock: null, sort: null };
   const sellable = catalog.products.filter((p) => publishedOffers(catalog, p.id).length > 0);
   const hero = sellable[0];
-  const tileProducts = sellable.slice(0, 6);
-  const rowOne = sellable.slice(0, 6);
-  const rowTwo = sellable.slice(6, 12);
   const productHref = (id: string) => link(`/product/${encodeURIComponent(id)}`, { offer: null, sku: null });
+  const countIn = (c: string) => sellable.filter((p) => p.category === c).length;
+  const freeFrom = formatEur(SHIPPING_METHODS.standaard.freeFromCents);
+
+  const panels = [
+    { icon: Sofa, title: copy("Wonen"), note: `${countIn("Wonen")} producten`, href: link("/discover", { ...reset, category: "Wonen" }) },
+    { icon: Trees, title: copy("Tuin"), note: `${countIn("Tuin")} producten`, href: link("/discover", { ...reset, category: "Tuin" }) },
+    { icon: Truck, title: "Bezorging", note: `Gratis vanaf ${freeFrom}`, href: link("/requests") },
+    { icon: RotateCcw, title: "Retourneren", note: "Volgens voorwaarden", href: link("/requests") },
+    { icon: Store, title: "Verkopen", note: "Eigen aanbod beheren", href: link("/workbench") },
+    { icon: ShieldCheck, title: "Veilig betalen", note: "Betaling in de checkout", href: link("/requests") },
+  ];
+
   const linkCols: { title: string; items: [string, string][] }[] = [
-    {
-      title: "Wonen",
-      items: [
-        ["Alles in Wonen", link("/discover", { ...reset, category: "Wonen" })],
-        ["Laagste prijs eerst", link("/discover", { ...reset, category: "Wonen", sort: "price" })],
-        ["Direct leverbaar", link("/discover", { ...reset, category: "Wonen", stock: "1" })],
-      ],
-    },
-    {
-      title: "Tuin",
-      items: [
-        ["Alles in Tuin", link("/discover", { ...reset, category: "Tuin" })],
-        ["Laagste prijs eerst", link("/discover", { ...reset, category: "Tuin", sort: "price" })],
-        ["Direct leverbaar", link("/discover", { ...reset, category: "Tuin", stock: "1" })],
-      ],
-    },
-    {
-      title: "Aanbiedingen",
-      items: [
-        ["Alle producten", link("/discover", reset)],
-        ["Sorteren op prijs", link("/discover", { ...reset, sort: "price" })],
-      ],
-    },
-    {
-      title: "Jouw account",
-      items: [
-        ["Inloggen", link("/account")],
-        ["Bestellingen", link("/requests")],
-        ["Verlanglijst", link("/account")],
-      ],
-    },
-    {
-      title: "Klantenservice",
-      items: [
-        ["Bezorging", link("/requests")],
-        ["Retourneren", link("/requests")],
-        ["Contact", link("/requests")],
-      ],
-    },
-    {
-      title: "Verkopen",
-      items: [
-        ["Verkoperswerkbank", link("/workbench")],
-        ["Aanbod beheren", link("/workbench")],
-      ],
-    },
+    { title: copy("Wonen"), items: [
+      ["Alle meubels", link("/discover", { ...reset, category: "Wonen" })],
+      ["Laagste prijs eerst", link("/discover", { ...reset, category: "Wonen", sort: "price" })],
+      ["Direct leverbaar", link("/discover", { ...reset, category: "Wonen", stock: "1" })],
+    ] },
+    { title: copy("Tuin"), items: [
+      ["Alles voor buiten", link("/discover", { ...reset, category: "Tuin" })],
+      ["Laagste prijs eerst", link("/discover", { ...reset, category: "Tuin", sort: "price" })],
+      ["Direct leverbaar", link("/discover", { ...reset, category: "Tuin", stock: "1" })],
+    ] },
+    { title: "Assortiment", items: [
+      ["Alle producten", link("/discover", reset)],
+      ["Sorteren op prijs", link("/discover", { ...reset, sort: "price" })],
+      ["Hoogste prijs eerst", link("/discover", { ...reset, sort: "price-desc" })],
+    ] },
+    { title: "Jouw account", items: [
+      ["Inloggen", link("/account")],
+      ["Bestellingen", link("/requests")],
+      ["Verlanglijst", link("/account")],
+    ] },
+    { title: "Klantenservice", items: [
+      ["Bezorging", link("/requests")],
+      ["Retourneren", link("/requests")],
+      ["Contact", link("/requests")],
+    ] },
+    { title: "Verkopen", items: [
+      ["Verkoperswerkbank", link("/workbench")],
+      ["Aanbod beheren", link("/workbench")],
+    ] },
   ];
 
   return (
     <div className="brv-shell">
       <h1 className="sr-only">BORVAT — wonen en tuin van gecontroleerde verkopers</h1>
 
-      <section className="brv-band">
-        <LocalLink
-          href={hero ? productHref(hero.id) : link("/discover", reset)}
-          className="brv-promo !aspect-auto min-h-[220px]"
-        >
-          <img src="/demo/prd_001.jpg" alt="" fetchPriority="high" />
-          <div className="cap">
-            <b className="block text-[15px]">Uitgelicht deze week</b>
-            <span className="text-[12.5px] font-normal">Eiken eettafel 180×90 — bekijk alle verkopers</span>
-          </div>
-        </LocalLink>
-
-        <div className="brv-catgrid">
-          {CATEGORIES.map((c) => {
-            const Icon = categoryIcon[c];
-            const first = sellable.find((p) => p.category === c);
-            return (
-              <LocalLink
-                key={c}
-                href={link("/discover", { ...reset, category: c })}
-                data-testid={`category-tile-${c.toLowerCase()}`}
-                className="brv-cattile"
-              >
-                <span className="ph">
-                  {first && demoMedia(first.id) ? <img src={demoMedia(first.id) as string} alt="" loading="lazy" /> : null}
-                </span>
-                <span className="flex items-center justify-center gap-1 font-semibold">
-                  <Icon aria-hidden className="h-3.5 w-3.5" /> {copy(c)}
-                </span>
-                <span className="brv-num text-[11px] text-muted-foreground">
-                  {sellable.filter((p) => p.category === c).length} producten
-                </span>
-              </LocalLink>
-            );
-          })}
-          {tileProducts.map((prod) => (
-            <LocalLink key={prod.id} href={productHref(prod.id)} className="brv-cattile">
-              <span className="ph bg-white">
-                {demoMedia(prod.id) ? (
-                  <img src={demoMedia(prod.id) as string} alt="" loading="lazy" className="contain" />
-                ) : null}
-              </span>
-              <span className="line-clamp-2">{prod.title}</span>
-            </LocalLink>
-          ))}
+      {/* banner: copy left, image right, like the reference */}
+      <section className="brv-banner" aria-labelledby="banner-h">
+        <div className="copy">
+          <span className="eyebrow">Uitgelicht</span>
+          <h2 id="banner-h">Eiken eettafel 180×90, van drie verkopers</h2>
+          <p>
+            Vergelijk aanbieders, prijzen en voorraad in één oogopslag. Alle producten in deze omgeving
+            zijn testproducten.
+          </p>
+          <LocalLink href={hero ? productHref(hero.id) : link("/discover", reset)} className="cta">
+            Bekijk de aanbieders <ChevronRight aria-hidden className="h-4 w-4" />
+          </LocalLink>
+        </div>
+        <div className="art">
+          <img src="/demo/prd_001.jpg" alt="Eiken eettafel met stoelen" fetchPriority="high" />
         </div>
       </section>
 
-      <section aria-label="Uitgelicht" className="brv-promos">
-        {sellable.length === 0
-          ? Array.from({ length: 6 }, (_, i) => <div key={i} className="brv-promo animate-pulse" aria-hidden />)
-          : sellable.slice(0, 6).map((prod) => (
-              <LocalLink key={prod.id} href={productHref(prod.id)} className="brv-promo">
-                {demoMedia(prod.id) ? <img src={demoMedia(prod.id) as string} alt="" loading="lazy" /> : null}
-                <span className="cap">{prod.title}</span>
-              </LocalLink>
-            ))}
+      {/* categories only, short name + image + count */}
+      <section className="brv-catrow" aria-label="Categorieën">
+        {CATEGORIES.map((c) => {
+          const first = sellable.find((p) => p.category === c);
+          return (
+            <LocalLink
+              key={c}
+              href={link("/discover", { ...reset, category: c })}
+              data-testid={`category-tile-${c.toLowerCase()}`}
+              className="brv-catcard"
+            >
+              <span className="ph">
+                {first && demoMedia(first.id) ? <img src={demoMedia(first.id) as string} alt="" loading="lazy" /> : null}
+              </span>
+              <span className="meta">
+                <b>{copy(c)}</b>
+                <span className="brv-num">{countIn(c)} producten</span>
+              </span>
+            </LocalLink>
+          );
+        })}
+        <LocalLink href={link("/discover", reset)} className="brv-catcard">
+          <span className="ph">
+            {sellable[2] && demoMedia(sellable[2].id) ? (
+              <img src={demoMedia(sellable[2].id) as string} alt="" loading="lazy" />
+            ) : null}
+          </span>
+          <span className="meta">
+            <b>Alle producten</b>
+            <span className="brv-num">{sellable.length} artikelen</span>
+          </span>
+        </LocalLink>
+      </section>
+
+      {/* service panels instead of invented promotions */}
+      <section className="brv-panels" aria-label="Diensten">
+        {panels.map(({ icon: Icon, title, note, href }, i) => (
+          <LocalLink key={title} href={href} className={`brv-panel${i === 0 ? " is-brand" : ""}`}>
+            <Icon aria-hidden className="h-6 w-6" />
+            <span>
+              <b className="block">{title}</b>
+              <span>{note}</span>
+            </span>
+          </LocalLink>
+        ))}
       </section>
 
       <section className="brv-section">
@@ -497,7 +498,7 @@ function MarketplaceHome() {
                   <GhostCard />
                 </li>
               ))
-            : rowOne.map((prod) => (
+            : sellable.slice(0, 6).map((prod) => (
                 <li key={prod.id} className="h-full">
                   <ProductCard p={toCard(prod.id, catalog, link)} />
                 </li>
@@ -505,23 +506,31 @@ function MarketplaceHome() {
         </ul>
       </section>
 
-      {rowTwo.length > 0 && (
-        <section className="brv-section">
-          <header>
-            <h2>Nieuw in de collectie</h2>
-            <LocalLink href={link("/discover", reset)} className="text-[12.5px] font-semibold text-brand hover:underline">
-              Alles bekijken
+      <section className="brv-section">
+        <header>
+          <h2>Ook in de collectie</h2>
+          <LocalLink href={link("/discover", reset)} className="text-[12.5px] font-semibold text-brand hover:underline">
+            Alles bekijken
+          </LocalLink>
+        </header>
+        <ul aria-label={copy("Productresultaten")} className="brv-row">
+          {sellable.slice(6, 9).map((prod) => (
+            <li key={prod.id} className="h-full">
+              <ProductCard p={toCard(prod.id, catalog, link)} />
+            </li>
+          ))}
+          <li className="brv-filler">
+            <Store aria-hidden className="h-6 w-6 text-brand" />
+            <b className="text-[15px]">Verkoop je eigen aanbod op BORVAT</b>
+            <p className="text-[12.5px] text-muted-foreground">
+              De verkoperswerkbank in deze omgeving is een testomgeving met voorbeelddata.
+            </p>
+            <LocalLink href={link("/workbench")} className="text-[12.5px] font-semibold text-brand hover:underline">
+              Naar de werkbank
             </LocalLink>
-          </header>
-          <ul aria-label={copy("Productresultaten")} className="brv-row">
-            {rowTwo.map((prod) => (
-              <li key={prod.id} className="h-full">
-                <ProductCard p={toCard(prod.id, catalog, link)} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+          </li>
+        </ul>
+      </section>
 
       <section className="brv-section" aria-labelledby="ontdek-h">
         <header>
@@ -543,7 +552,22 @@ function MarketplaceHome() {
         </div>
       </section>
 
-      <TrustBand />
+      <section className="brv-service" aria-label="Service en contact">
+        <div className="brv-shell flex flex-wrap items-center justify-between gap-4 py-4">
+          <h2>Service &amp; contact</h2>
+          <ul>
+            <li>
+              <Truck aria-hidden className="h-4 w-4" /> Gratis bezorgd vanaf {freeFrom}
+            </li>
+            <li>
+              <RotateCcw aria-hidden className="h-4 w-4" /> Retourneren volgens voorwaarden
+            </li>
+            <li>
+              <ShieldCheck aria-hidden className="h-4 w-4" /> Betalen in de beveiligde checkout
+            </li>
+          </ul>
+        </div>
+      </section>
     </div>
   );
 }

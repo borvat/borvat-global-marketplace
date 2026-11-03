@@ -1,6 +1,6 @@
 import { useShopCopy, useShopText, useShopMoney } from "./i18n";
 import { useEffect, useId, useState, type FormEvent, type KeyboardEvent } from "react";
-import { Search, ShoppingCart, Heart, User, Truck, RotateCcw, Package, ChevronDown, Menu } from "lucide-react";
+import { Search, ShoppingCart, Heart, User, Truck, RotateCcw, Package, Menu } from "lucide-react";
 import { normalizeSearch } from "../../../lib/commercial/demo-adapter";
 import { SHIPPING_METHODS } from "../../../lib/commercial/shop-pricing";
 import { LocalLink, useShop } from "./shop-context";
@@ -54,9 +54,6 @@ function SearchBar() {
         {nl.searchLabel}
       </label>
       <div className="brv-search">
-        <span className="scope">
-          Alle categorieën <ChevronDown aria-hidden className="ml-1 h-3 w-3" />
-        </span>
         <input
           id="buyer-search"
           data-testid="search-input"
@@ -160,7 +157,7 @@ export function ShopHeader() {
             BORVAT
           </LocalLink>
 
-          <div className="order-last w-full lg:order-none lg:max-w-[512px] lg:flex-1">
+          <div className="order-last w-full lg:order-none lg:max-w-[720px] lg:flex-1">
             <SearchBar />
           </div>
 
@@ -213,9 +210,9 @@ export function ShopHeader() {
       <div className="brv-cats">
         <div className="brv-shell flex h-[57px] items-center justify-between gap-3">
           <nav aria-label={copy("Hoofdnavigatie")} className="-mx-2 flex min-w-0 items-center overflow-x-auto">
-            <LocalLink href={link("/discover", reset)} className="brv-catlink font-semibold">
+            <LocalLink href={link("/discover", reset)} className="brv-catlink is-primary">
               <Menu aria-hidden className="h-4 w-4" />
-              Alle categorieën
+              Categorieën
             </LocalLink>
             {(["Wonen", "Tuin"] as const).map((c) => (
               <LocalLink
@@ -235,34 +232,34 @@ export function ShopHeader() {
             </LocalLink>
           </nav>
           <div className="hidden items-center gap-3 text-[12px] text-white/85 lg:flex">
-            <label htmlFor="buyer-country" className="sr-only">
-              {nl.country}
+            <label htmlFor="buyer-country" className="text-[11.5px] text-muted-foreground">
+              Land
             </label>
             <select
               id="buyer-country"
               data-testid="country-select"
-              className="h-7 rounded border-0 bg-white/10 px-1.5 text-[12px] text-white"
+              className="h-7 rounded border border-border bg-white px-1.5 text-[12px]"
               value={route.country}
               onChange={(event) => navigate(link(route.path, { country: event.target.value }), true)}
             >
-              <option className="text-foreground" value="NL">NL</option>
-              <option className="text-foreground" value="BE">BE</option>
+              <option value="NL">NL</option>
+              <option value="BE">BE</option>
             </select>
-            <label htmlFor="buyer-language" className="sr-only">
-              Language · اللغة · Taal
+            <label htmlFor="buyer-language" className="text-[11.5px] text-muted-foreground">
+              Taal
             </label>
             <select
               id="buyer-language"
               data-testid="language-select"
-              className="h-7 rounded border-0 bg-white/10 px-1.5 text-[12px] text-white"
+              className="h-7 rounded border border-border bg-white px-1.5 text-[12px]"
               value={route.language}
               onChange={(e) =>
                 navigate(link(route.path, { lang: e.target.value === "nl" ? null : e.target.value }), true)
               }
             >
-              <option className="text-foreground" value="nl">NL</option>
-              <option className="text-foreground" value="en">EN</option>
-              <option className="text-foreground" value="ar">العربية</option>
+              <option value="nl">NL</option>
+              <option value="en">EN</option>
+              <option value="ar">العربية</option>
             </select>
           </div>
         </div>
@@ -278,36 +275,33 @@ export function ShopFooter() {
   const columns: { title: string; items: string[] }[] = [
     { title: "Klantenservice", items: ["Bestelstatus", "Bezorging", "Retourneren", "Contact"] },
     { title: "Over BORVAT", items: ["Over ons", "Verkopen op BORVAT", "Zakelijk", "Werken bij"] },
+    { title: "Categorieën", items: [copy("Wonen"), copy("Tuin"), "Alle producten", "Aanbiedingen"] },
     { title: "Voorwaarden", items: ["Algemene voorwaarden", "Privacy", "Cookies", "Toegankelijkheid"] },
+    { title: "Betaling", items: ["Betaalmethoden", "Cadeaukaart", "Zakelijke factuur"] },
   ];
   return (
-    <footer className="mt-10 bg-ink text-ink-foreground">
-      <div className="brv-shell grid gap-8 py-9 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="space-y-2.5">
-          <p className="text-xl font-black tracking-[-0.03em]">
-            BOR<span className="text-[#8fb3ff]">V</span>AT
-          </p>
-          <p className="max-w-xs text-[12.5px] leading-relaxed text-white/70">{nl.footer}</p>
-          <p className="text-[11.5px] text-white/50">{nl.footerNote}</p>
-        </div>
+    <footer className="brv-footer mt-0">
+      <div className="brv-shell grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-5">
         {columns.map((col) => (
           <div key={col.title}>
-            <p className="mb-2 text-[12.5px] font-semibold">{col.title}</p>
-            <ul className="space-y-1.5 text-[12.5px] text-white/70">
+            <h3>{col.title}</h3>
+            <ul>
               {col.items.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item}>
+                  <LocalLink href={link("/requests")}>{item}</LocalLink>
+                </li>
               ))}
             </ul>
           </div>
         ))}
       </div>
-      <div className="border-t border-white/10">
-        <div className="brv-shell flex flex-wrap items-center justify-between gap-3 py-3 text-[11.5px] text-white/60">
-          <span>© {new Date().getFullYear()} BORVAT · {nl.tagline}</span>
-          <LocalLink href={link("/workbench")} data-testid="footer-workbench" className="hover:text-white">
-            {nl.workbench}
-          </LocalLink>
-        </div>
+      <div className="brv-shell legal flex flex-wrap items-center justify-between gap-3">
+        <span>
+          © {new Date().getFullYear()} BORVAT · {nl.tagline} · {nl.footerNote}
+        </span>
+        <LocalLink href={link("/workbench")} data-testid="footer-workbench" className="font-semibold text-brand">
+          {nl.workbench}
+        </LocalLink>
       </div>
     </footer>
   );
