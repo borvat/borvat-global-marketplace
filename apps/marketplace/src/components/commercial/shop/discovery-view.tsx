@@ -476,10 +476,12 @@ function MarketplaceHome() {
       <section className="brv-panels" aria-label="Diensten">
         {panels.map(({ icon: Icon, title, note, href }, i) => (
           <LocalLink key={title} href={href} className={`brv-panel${i === 0 ? " is-brand" : ""}`}>
-            <Icon aria-hidden className="h-6 w-6" />
+            <span className="iconwrap">
+              <Icon aria-hidden className="h-[18px] w-[18px]" />
+            </span>
             <span>
               <b className="block">{title}</b>
-              <span>{note}</span>
+              <small className={i === 0 ? "text-white/80" : undefined}>{note}</small>
             </span>
           </LocalLink>
         ))}
