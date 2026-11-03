@@ -297,6 +297,56 @@
   </div>
 </div></section>
 
+
+<style>
+  .cart{margin-top:22px}
+  .cart .shell{display:grid;grid-template-columns:1fr 320px;gap:18px;padding-block:20px}
+  @media(max-width:760px){.cart .shell{grid-template-columns:1fr}}
+  .cart h2{font-size:20px;margin-bottom:10px}
+  .cline{display:grid;grid-template-columns:88px 1fr auto;gap:12px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px;margin-bottom:8px;align-items:start}
+  .cline .im{background:#f7f8fa;border:1px solid var(--line);border-radius:3px;aspect-ratio:1/1;display:grid;place-items:center}
+  .cline .im img{width:80%;object-fit:contain}
+  .cline .t{font-size:13.5px;font-weight:600}
+  .cline .m{font-size:11.5px;color:#6b7280;margin-top:3px}
+  .cline .q{display:flex;align-items:center;gap:6px;margin-top:8px}
+  .cline .q span,.cline .q button{width:28px;height:28px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;border-radius:3px;font-size:12.5px}
+  .cline .p{font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+  .cline .p s{display:block;font-size:11px;color:#8a8f99;font-weight:400}
+  .sum{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;height:max-content}
+  .sum h3{font-size:15px;margin-bottom:10px}
+  .sum .row{display:flex;justify-content:space-between;font-size:13px;padding-block:5px;color:#31353d}
+  .sum .row.total{border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-size:17px;font-weight:800;color:var(--ink)}
+  .sum .free{font-size:11.5px;color:var(--green);margin-top:6px}
+  .bar-free{height:5px;background:#e9ebee;border-radius:99px;margin-top:6px;overflow:hidden}
+  .bar-free i{display:block;height:100%;width:72%;background:var(--green)}
+  .sum .go{width:100%;height:44px;border:0;border-radius:var(--r);background:var(--red);color:#fff;font-weight:700;margin-top:12px}
+  .sum .alt{width:100%;height:38px;border:1px solid var(--line);background:#fff;border-radius:var(--r);margin-top:6px;font-size:13px}
+</style>
+<section class="cart"><div class="shell">
+  <div>
+    <h2>Je mandje <span style="font-size:13px;font-weight:400;color:#6b7280">(2 artikelen)</span></h2>
+    <div class="cline"><div class="im"><img src="assets/chair.jpg" alt=""></div>
+      <div><div class="t">Bureaustoel ergonomisch met lendensteun</div><div class="m">Antraciet · per stuk · BORVAT</div>
+        <div class="m" style="color:var(--green);font-weight:600">Morgen in huis</div>
+        <div class="q"><button>−</button><span>1</span><button>+</button><span style="border:0;font-size:11.5px;color:#6b7280">Verwijderen</span></div></div>
+      <div class="p">€ 189,00</div></div>
+    <div class="cline"><div class="im"><img src="assets/pan.jpg" alt=""></div>
+      <div><div class="t">Koekenpan 24 cm, inductiegeschikt</div><div class="m">RVS · per stuk · BORVAT</div>
+        <div class="m" style="color:var(--green);font-weight:600">Morgen in huis</div>
+        <div class="q"><button>−</button><span>2</span><button>+</button><span style="border:0;font-size:11.5px;color:#6b7280">Verwijderen</span></div></div>
+      <div class="p">€ 69,90<small style="display:block;font-weight:400;color:#8a8f99">€ 34,95 p/st</small></div></div>
+  </div>
+  <aside class="sum">
+    <h3>Overzicht</h3>
+    <div class="row"><span>Subtotaal</span><span class="num">€ 258,90</span></div>
+    <div class="row"><span>Bezorging</span><span style="color:var(--green);font-weight:600">Gratis</span></div>
+    <div class="row"><span>waarvan btw (21%)</span><span class="num">€ 44,93</span></div>
+    <div class="row total"><span>Totaal</span><span class="num">€ 258,90</span></div>
+    <div class="free">Gratis bezorging gehaald</div><div class="bar-free"><i></i></div>
+    <button class="go">Naar afrekenen</button>
+    <button class="alt">Verder winkelen</button>
+  </aside>
+</div></section>
 <footer><div class="shell">
   <div><div class="logo" style="font-size:20px">BOR<i>V</i>AT</div><p style="margin-top:6px;color:#5f6470">Voorbeeldontwerp — richting A, Kiosk. Productfoto's van Wikimedia Commons (CC).</p></div>
   <div><h4>Klantenservice</h4><ul><li>Bestelstatus</li><li>Bezorging</li><li>Retourneren</li></ul></div>

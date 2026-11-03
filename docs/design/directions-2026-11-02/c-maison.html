@@ -256,6 +256,65 @@
   </div>
 </div></section>
 
+
+<style>
+  .cart{background:var(--card);border-top:1px solid var(--line)}
+  .cart .shell{display:grid;grid-template-columns:1fr 330px;gap:30px;padding-block:30px}
+  @media(max-width:820px){.cart .shell{grid-template-columns:1fr}}
+  .cart h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:26px;margin-bottom:14px}
+  .seller-group{border:1px solid var(--line);margin-bottom:12px}
+  .seller-group header{display:flex;justify-content:space-between;padding:9px 12px;background:var(--paper);border-bottom:1px solid var(--line);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .seller-group header b{color:var(--ox);letter-spacing:.06em}
+  .c-line{display:grid;grid-template-columns:80px 1fr auto;gap:14px;padding:12px;align-items:start}
+  .c-line + .c-line{border-top:1px solid var(--line)}
+  .c-line .im{background:var(--paper-2);border:1px solid var(--line);aspect-ratio:1/1;display:grid;place-items:center;padding:6px}
+  .c-line .im img{width:88%;object-fit:contain}
+  .c-line h3{font-size:14px;font-weight:500;line-height:1.35}
+  .c-line .m{font-size:11.5px;color:var(--dim);margin-top:4px}
+  .c-line .q{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-size:12.5px}
+  .c-line .q b{width:26px;height:26px;border:1px solid var(--line);display:grid;place-items:center;font-weight:400}
+  .c-line .p{text-align:right;font-size:15px;font-weight:600}
+  .c-sum{border:1px solid var(--line);padding:18px;height:max-content;background:var(--paper)}
+  .c-sum h3{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:20px;margin-bottom:12px}
+  .c-sum .r{display:flex;justify-content:space-between;font-size:13px;padding-block:5px;color:var(--ink-2)}
+  .c-sum .r.tot{border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-size:19px;font-weight:600;color:var(--ink)}
+  .c-sum .go{width:100%;height:48px;border:0;background:var(--ox);color:#fff;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;margin-top:14px}
+  .c-sum .alt{width:100%;height:40px;border:1px solid var(--line);background:transparent;margin-top:8px;font-size:12.5px}
+  .c-sum .note{font-size:11.5px;color:var(--dim);margin-top:10px}
+</style>
+<section class="cart"><div class="shell">
+  <div>
+    <h2>Je mandje <span style="font-size:13px;color:var(--dim);font-family:Inter">2 artikelen · 2 verkopers</span></h2>
+    <div class="seller-group">
+      <header><span>Verkocht door <b>BORVAT</b></span><span>Morgen in huis</span></header>
+      <div class="c-line"><div class="im"><img src="assets/chair.jpg" alt=""></div>
+        <div><h3>Bureaustoel ergonomisch met lendensteun</h3><div class="m">Antraciet · per stuk</div>
+          <div class="q"><b>−</b> 1 <b>+</b> <span style="color:var(--dim)">verwijderen</span></div></div>
+        <div class="p num">€ 189,00</div></div>
+      <div class="c-line"><div class="im"><img src="assets/pan.jpg" alt=""></div>
+        <div><h3>Koekenpan 24 cm, inductiegeschikt</h3><div class="m">RVS · per stuk</div>
+          <div class="q"><b>−</b> 2 <b>+</b> <span style="color:var(--dim)">verwijderen</span></div></div>
+        <div class="p num">€ 69,90</div></div>
+    </div>
+    <div class="seller-group">
+      <header><span>Verkocht door <b>Nordic Home</b></span><span>Over 2 dagen</span></header>
+      <div class="c-line"><div class="im"><img src="assets/lamp.jpg" alt=""></div>
+        <div><h3>Wandlamp vintage, messing</h3><div class="m">Messing · per stuk</div>
+          <div class="q"><b>−</b> 1 <b>+</b> <span style="color:var(--dim)">verwijderen</span></div></div>
+        <div class="p num">€ 64,95</div></div>
+    </div>
+  </div>
+  <aside class="c-sum">
+    <h3>Overzicht</h3>
+    <div class="r"><span>Subtotaal</span><span class="num">€ 258,90</span></div>
+    <div class="r"><span>Bezorging</span><span style="color:var(--green)">Gratis</span></div>
+    <div class="r"><span>waarvan btw</span><span class="num">€ 44,93</span></div>
+    <div class="r tot"><span>Totaal</span><span class="num">€ 258,90</span></div>
+    <button class="go">Naar afrekenen</button>
+    <button class="alt">Verder winkelen</button>
+    <p class="note">Per verkoper ontvang je een eigen verzendbevestiging.</p>
+  </aside>
+</div></section>
 <footer><div class="shell">
   <div><div class="logo" style="color:#f7f2ec;font-size:22px">BOR<i style="color:#d8b98e">V</i>AT</div><p style="margin-top:8px;color:#b9a893;max-width:34ch">Voorbeeldontwerp — richting C, Maison. Productfoto's van Wikimedia Commons (CC BY / CC BY-SA).</p></div>
   <div><h4>Klantenservice</h4><ul><li>Bestelstatus</li><li>Bezorging</li><li>Retourneren</li></ul></div>

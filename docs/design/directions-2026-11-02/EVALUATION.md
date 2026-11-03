@@ -53,6 +53,19 @@ Oxblood and warm paper, serif for product names, Inter for utility, curated row 
   explicit; the product is the hero without an empty hero band.
 - Weakness: depends on photography quality; mixed photo backgrounds show more here than in A.
 
+## Shopping journey coverage
+
+Each direction now renders the full path in one page, so the choice is not made on a hero alone:
+
+| State | A Kiosk | B Signaal | C Maison |
+|---|---|---|---|
+| Homepage / promo band | ✓ | ✓ | ✓ |
+| Listing with facets or filter pills | ✓ facet sidebar | ✓ filter pills | ✓ filter pills + curated row |
+| Product detail with buy box | ✓ | ✓ | ✓ plus a three-seller comparison table |
+| Cart | ✓ table lines, free-shipping bar | ✓ mono totals block | ✓ grouped per seller, per-seller delivery |
+
+Cart crops: `shots/cart-a-kiosk.png`, `shots/cart-b-signaal.png`, `shots/cart-c-maison.png`.
+
 ## Scoring
 
 1 = poor, 5 = strong. Scores are my judgement after looking at the renders, not measurements.
