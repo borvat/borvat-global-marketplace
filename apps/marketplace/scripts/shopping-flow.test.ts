@@ -62,8 +62,15 @@ test("search, price, availability filters and sorting", () => {
   // Dataset-independent invariants: the filters must agree with the offer set, not with
   // a frozen list of ids that changes whenever the demo catalogue grows.
   const publishedOffers = s.offers.filter((o) => o.state === "published");
+  const cheapestByProduct = new Map<string, number>();
+  for (const o of publishedOffers) {
+    const current = cheapestByProduct.get(o.productId);
+    if (current === undefined || o.priceCents < current) cheapestByProduct.set(o.productId, o.priceCents);
+  }
   const cheap = selectDemoProducts(s, { ...base, maxCents: 10_000 });
-  const cheapExpected = new Set(publishedOffers.filter((o) => o.priceCents <= 10_000).map((o) => o.productId));
+  const cheapExpected = new Set(
+    [...cheapestByProduct].filter(([, price]) => price <= 10_000).map(([id]) => id),
+  );
   assert.ok(cheap.length > 0);
   assert.deepEqual(new Set(cheap.map((p) => p.id)), cheapExpected);
   const inStockExpected = new Set(publishedOffers.filter((o) => o.availabilityExample > 0).map((o) => o.productId));
