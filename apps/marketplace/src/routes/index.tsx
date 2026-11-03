@@ -11,6 +11,7 @@ const heroImage = "/images/hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [{ rel: 'preload', as: 'image', href: '/demo/prd_001.jpg', fetchpriority: 'high' }],
     meta: [
       { title: "Borvat — Smart living, made affordable" },
       {

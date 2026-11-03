@@ -351,21 +351,21 @@ function MarketplaceHome() {
   return (
     <div className="space-y-4 py-3">
       <h1 className="sr-only">BORVAT — wonen en tuin van gecontroleerde verkopers</h1>
-      <section className="brv-shell grid gap-3 lg:grid-cols-[1.55fr_1fr]">
+      {/* Fixed heights: the hero is server-rendered and never resizes when the
+          catalogue resolves, which is what kept CLS above budget. */}
+      <section className="brv-shell grid gap-3 lg:h-[340px] lg:grid-cols-[1.55fr_1fr]">
         <LocalLink
-          href={hero ? link(`/product/${encodeURIComponent(hero.id)}`, { offer: null, sku: null }) : link("/discover", reset)}
-          className="brv-tile min-h-[300px] lg:min-h-[340px]"
+          href={link("/discover", reset)}
+          className="brv-tile h-[220px] lg:h-full"
         >
-          {hero && demoMedia(hero.id) ? (
-            <img src={demoMedia(hero.id) as string} alt={hero.title} fetchPriority="high" className="h-full w-full object-cover" />
-          ) : null}
+          <img src="/demo/prd_001.jpg" alt="" fetchPriority="high" className="h-full w-full object-cover" />
           <div className="cap">
-            <b>{hero ? hero.title : "Alle producten"}</b>
-            <span>Vanaf {hero ? "" : ""}{hero ? "meerdere aanbieders" : ""} · bekijk alle aanbieders</span>
+            <b>Uitgelicht: eiken eettafel 180×90</b>
+            <span>Meerdere aanbieders · bekijk alle verkopers</span>
           </div>
         </LocalLink>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3 lg:h-full">
           {CATEGORIES.map((c) => {
             const Icon = categoryIcon[c];
             const first = sellable.find((p) => p.category === c);
@@ -374,30 +374,28 @@ function MarketplaceHome() {
                 key={c}
                 href={link("/discover", { ...reset, category: c })}
                 data-testid={`category-tile-${c.toLowerCase()}`}
-                className="brv-tile min-h-[130px]"
+                className="brv-tile h-[110px] lg:h-full"
               >
                 {first && demoMedia(first.id) ? (
-                  <img src={demoMedia(first.id) as string} alt="" className="h-full w-full object-cover" />
+                  <img src={demoMedia(first.id) as string} alt="" loading="lazy" className="h-full w-full object-cover" />
                 ) : null}
                 <div className="cap">
                   <b className="flex items-center gap-1.5">
                     <Icon aria-hidden className="h-4 w-4" /> {copy(c)}
                   </b>
-                  <span className="brv-num">
-                    {sellable.filter((p) => p.category === c).length} producten
-                  </span>
+                  <span className="brv-num">{sellable.filter((p) => p.category === c).length} producten</span>
                 </div>
               </LocalLink>
             );
           })}
-          <LocalLink href={link("/discover", { ...reset, stock: "1" })} className="brv-card p-3">
+          <LocalLink href={link("/discover", { ...reset, stock: "1" })} className="brv-card h-[110px] justify-center p-3 lg:h-full">
             <Truck aria-hidden className="h-5 w-5 text-primary" />
-            <p className="mt-6 text-[13.5px] font-bold">Direct leverbaar</p>
+            <p className="mt-2 text-[13.5px] font-bold">Direct leverbaar</p>
             <p className="text-[11.5px] text-muted-foreground">{nl.deliveryShort}</p>
           </LocalLink>
-          <LocalLink href={link("/workbench")} className="brv-card p-3">
+          <LocalLink href={link("/workbench")} className="brv-card h-[110px] justify-center p-3 lg:h-full">
             <Store aria-hidden className="h-5 w-5 text-primary" />
-            <p className="mt-6 text-[13.5px] font-bold">Verkoop op BORVAT</p>
+            <p className="mt-2 text-[13.5px] font-bold">Verkoop op BORVAT</p>
             <p className="text-[11.5px] text-muted-foreground">Beheer je aanbod</p>
           </LocalLink>
         </div>
