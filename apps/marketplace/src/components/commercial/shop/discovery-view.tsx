@@ -237,7 +237,7 @@ function toCard(
     available: productAvailability(catalog, id),
     rating: null,
     reviewCount: null,
-    seller,
+    seller: seller ?? "BORVAT",
     variantLabel: null,
     href: link(`/product/${encodeURIComponent(id)}`, { offer: null, sku: null }),
   };
@@ -349,13 +349,11 @@ function MarketplaceHome() {
   const copy = useShopCopy();
   const nl = useShopText();
   const { catalog, route, link } = useShop();
-  const all = catalog.products.map((p) => p.id);
-  const deals = all.filter((id) => {
-    const offers = publishedOffers(catalog, id);
-    if (offers.length < 2) return false;
-    const prices = offers.map((o) => o.priceCents);
-    return Math.min(...prices) < Math.max(...prices);
-  });
+  const sellable = catalog.products
+    .filter((p) => publishedOffers(catalog, p.id).length > 0)
+    .map((p) => p.id);
+  const popular = sellable.slice(0, 4);
+  const more = sellable.slice(4, 8);
   const reset = { q: null, category: null, min: null, max: null, stock: null, sort: null };
   return (
     <div className="space-y-5">
@@ -443,21 +441,18 @@ function MarketplaceHome() {
             {nl.seeAll}
           </LocalLink>
         </header>
-        {all.length ? <CardRow ids={all.slice(0, 4)} /> : <CardRowSkeleton />}
+        {popular.length ? <CardRow ids={popular} /> : <CardRowSkeleton />}
       </section>
 
-      {deals.length > 0 && (
+      {more.length > 0 && (
         <section className="brv-shell space-y-3">
           <header className="flex items-baseline justify-between">
-            <h2 className="text-[19px] font-bold">{nl.deals}</h2>
-            <LocalLink
-              href={link("/discover", { ...reset, sort: "price" })}
-              className="text-[12.5px] font-semibold text-primary hover:underline"
-            >
+            <h2 className="text-[19px] font-bold">Meer uit de collectie</h2>
+            <LocalLink href={link("/discover", reset)} className="text-[12.5px] font-semibold text-primary hover:underline">
               {nl.seeAll}
             </LocalLink>
           </header>
-          <CardRow ids={deals.slice(0, 4)} />
+          <CardRow ids={more} />
         </section>
       )}
 
