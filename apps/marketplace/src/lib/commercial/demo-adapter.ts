@@ -88,6 +88,32 @@ export interface CommercialDemoAdapter {
   reset(): void;
 }
 
+const V6_CATEGORY: Record<string, string> = {
+  prd_001: "Wonen",
+  prd_002: "Wonen",
+  prd_003: "Wonen",
+  prd_004: "Verlichting",
+  prd_005: "Textiel",
+  prd_006: "Tuin",
+  prd_007: "Tuin",
+  prd_008: "Tuin",
+  prd_009: "Tuin",
+  prd_010: "Verlichting",
+  prd_011: "Koken",
+  prd_012: "Opbergen",
+  prd_013: "Textiel",
+  prd_014: "Koken",
+};
+
+/** Extra demo articles so the catalogue can carry six categories. Isolated fixtures only. */
+const V6_EXTRA = [
+  { id: "prd_010", title: "Keramische tafellamp — zand", priceCents: 8900, stockAvailable: 14, deliveryPromise: "Voorbeeld: 2-4 werkdagen" },
+  { id: "prd_011", title: "Keramisch servies 12-delige set", priceCents: 7900, stockAvailable: 9, deliveryPromise: "Voorbeeld: 2-4 werkdagen" },
+  { id: "prd_012", title: "Rieten opbergmand met handvatten", priceCents: 3500, stockAvailable: 22, deliveryPromise: "Voorbeeld: 1-3 werkdagen" },
+  { id: "prd_013", title: "Katoenen plaid — warm oatmeal", priceCents: 4900, stockAvailable: 17, deliveryPromise: "Voorbeeld: 2-4 werkdagen" },
+  { id: "prd_014", title: "Gietijzeren braadpan 28 cm", priceCents: 6900, stockAvailable: 6, deliveryPromise: "Voorbeeld: 3-5 werkdagen" },
+];
+
 const neutralTitles: Record<string, string> = {
   prd_002: "Linnen bankstel 3-zits",
   prd_006: "Keramische plantenpot — off-white",
@@ -95,12 +121,12 @@ const neutralTitles: Record<string, string> = {
 
 function initialSnapshot(): DemoSnapshot {
   // Reuse original, explicitly labelled Lovable demo fixtures. No real customer data.
-  const selected = demoProducts.slice(0, 9);
+  const selected = [...demoProducts.slice(0, 9), ...V6_EXTRA];
   const products = selected.map((p, i) => ({
     id: p.id,
     // Variant-neutral titles where the test shop offers several colours/sizes.
     title: neutralTitles[p.id] ?? p.title,
-    category: i < 6 ? "Wonen" : "Tuin",
+    category: V6_CATEGORY[p.id] ?? (i < 6 ? "Wonen" : "Tuin"),
     image: null,
   }));
   const offers: DemoOffer[] = selected.map((p, i) => ({
