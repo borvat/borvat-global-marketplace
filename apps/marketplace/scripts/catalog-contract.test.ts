@@ -31,9 +31,10 @@ test("buyer SKU selection stays on product routes and clears outside detail", ()
 
 test("canonical fixture separates products, SKU, companies, stores and competing offers", () => {
   const c = fixture();
-  assert.equal(c.products.length, 9);
-  // 9 base SKUs + synthetic 2-pack + synthetic colour variant + synthetic size variant.
-  assert.equal(c.skus.length, 12);
+  // 14 demo articles (nine original fixtures plus five added with the six-category catalogue).
+  assert.equal(c.products.length, 14);
+  // 14 base SKUs + synthetic 2-pack + synthetic colour variant + synthetic size variant.
+  assert.equal(c.skus.length, 17);
   assert.ok(c.skus.some((sku) => sku.packQuantity === 2));
   assert.equal(c.companies.length, 2);
   const competitors = c.offers.filter((o) => o.skuId === c.skus[0].id);
