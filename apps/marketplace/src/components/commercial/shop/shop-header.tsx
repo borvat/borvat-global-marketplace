@@ -160,7 +160,7 @@ export function ShopHeader() {
             BORVAT
           </LocalLink>
 
-          <div className="order-last w-full lg:order-none lg:max-w-[620px] lg:flex-1">
+          <div className="order-last w-full lg:order-none lg:max-w-[512px] lg:flex-1">
             <SearchBar />
           </div>
 
