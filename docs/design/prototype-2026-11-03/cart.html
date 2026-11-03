@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandje — BORVAT</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="strip">
+  <div class="shell">
+    <ul><li><b>Voor 23:59 besteld</b> · volgende dag in huis (illustratief)</li><li>30 dagen retour (illustratief)</li></ul>
+    <span class="note">Demonstratie — geen echte bestellingen</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="shell top">
+    <a class="logo" href="index.html" aria-label="BORVAT, naar de voorpagina">BOR<i>V</i>AT<small>Marketplace</small></a>
+    <form class="search" role="search" onsubmit="return go(event)">
+      <label for="q" class="visually-hidden">Zoek in het assortiment</label>
+      <input id="q" type="search" placeholder="Zoek op product, merk of categorie" autocomplete="off">
+      <button type="submit">Zoeken</button>
+    </form>
+    <nav class="tools" aria-label="Account en bestellingen">
+      <a href="#">Inloggen</a><a href="#">Lijst</a>
+      <a class="bag" href="cart.html">Mandje <em data-bag-count>0</em></a>
+    </nav>
+  </div>
+  <div class="nav">
+    <div class="shell">
+      <a href="listing.html">Alles</a><a href="listing.html?c=Wonen">Wonen</a><a href="listing.html?c=Tuin">Tuin</a>
+      <a href="listing.html?c=Wonen&amp;type=Verlichting">Verlichting</a><a href="listing.html?c=Wonen&amp;type=Textiel">Textiel</a>
+      <span class="right"><a href="#">Klantenservice</a><a href="#">Verkopen op BORVAT</a></span>
+    </div>
+  </div>
+</header>
+
+<main class="shell">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">›</span><span class="here">Mandje</span></div>
+  <div id="root"></div>
+</main>
+
+<footer class="site">
+  <div class="shell cols">
+    <div><p class="brandline">BOR<span style="color:#d8b98e">V</span>AT</p>
+      <p style="margin-top:10px;max-width:34ch;font-size:13px;color:#b3a99c">Demonstratie-omgeving met voorbeeldinhoud en gelicentieerde foto's.</p></div>
+    <div><h4>Klantenservice</h4><ul><li>Bestelstatus</li><li>Bezorging</li><li>Retourneren</li></ul></div>
+    <div><h4>Verkopen</h4><ul><li>Word verkoper</li><li>Verkopersbeleid</li><li>Werkbank</li></ul></div>
+    <div><h4>Over BORVAT</h4><ul><li>Ons verhaal</li><li>Voorwaarden</li><li>Privacy</li></ul></div>
+  </div>
+  <div class="shell fine"><span>Demonstratie · geen echte betalingen</span><span>Bezorging en retour zijn illustratief</span></div>
+</footer>
+
+<script>if (location.search.includes("shot=1")) document.querySelector(".preview-tag").style.display = "none";</script>
+<div class="preview-tag">Prototype · Heirloom Modern</div>
+
+<script type="module">
+import { readCart, setQty, groupBySeller, priceCart, eur, byId, renderChrome, SHIPPING } from "./app.js";
+
+renderChrome("");
+
+const root = document.getElementById("root");
+
+function paint() {
+  const lines = readCart();
+  if (!lines.length) {
+    root.innerHTML = `<div class="empty">
+      <h1>Je mandje is leeg</h1>
+      <p>Bewaar een artikel of voeg iets toe vanuit het assortiment.</p>
+      <a class="btn" href="listing.html" style="margin-top:18px">Naar het assortiment</a>
+    </div>`;
+    return;
+  }
+
+  const groups = groupBySeller(lines);
+  const totals = priceCart(lines);
+  const sum = groups.reduce((s, g) => s + g.subtotalCents, 0);
+  let index = -1;
+
+  const html = groups.map((g) => {
+    const rows = g.lines.map((l) => {
+      index += 1;
+      const p = byId(l.productId);
+      const i = index;
+      return `<div class="line">
+        <div class="ph"><img src="${p.image}" alt="${p.title}"></div>
+        <div>
+          <h3>${p.title}</h3>
+          <p class="sub">${p.category} · ${p.type} · ${eur(l.unitCents)} per stuk</p>
+          <div class="qrow">
+            <div class="qty" role="group" aria-label="Aantal voor ${p.title}">
+              <button type="button" onclick="chg(${i}, ${l.qty - 1})" aria-label="Eén minder">−</button>
+              <span class="num">${l.qty}</span>
+              <button type="button" onclick="chg(${i}, ${l.qty + 1})" aria-label="Eén meer">+</button>
+            </div>
+            <button class="rm" onclick="chg(${i}, 0)">Verwijderen</button>
+          </div>
+        </div>
+        <div class="amt num">${eur(l.unitCents * l.qty)}<small>incl. btw</small></div>
+      </div>`;
+    }).join("");
+    return `<section class="seller">
+      <header><span>Verkocht door <b>${g.seller}</b></span><span>Aparte zending</span></header>
+      ${rows}
+      <footer><span>Subtotaal ${g.seller}</span><span class="num">${eur(g.subtotalCents)}</span></footer>
+    </section>`;
+  }).join("");
+
+  root.innerHTML = `<div class="cartwrap">
+    <div>
+      <h1 class="serif" style="font-size:30px;margin-bottom:4px">Mandje</h1>
+      <p style="color:var(--stone);font-size:12.5px;margin-bottom:18px">
+        ${lines.reduce((s, l) => s + l.qty, 0)} artikelen · ${groups.length} verkoper${groups.length > 1 ? "s" : ""} · ${groups.length} zending${groups.length > 1 ? "en" : ""}
+      </p>
+      ${html}
+      ${groups.length > 1 ? `<p class="notice">Elke verkoper verzendt afzonderlijk. Je ontvangt per zending een bevestiging; de bezorgkosten hieronder gelden voor de hele bestelling.</p>` : ""}
+    </div>
+    <aside class="summary" aria-label="Overzicht">
+      <h2>Overzicht</h2>
+      <div class="r"><span>Subtotaal</span><span class="num">${eur(totals.subtotalCents)}</span></div>
+      <div class="r"><span>Bezorging</span><span class="num">${totals.shippingCents === 0 ? "Gratis" : eur(totals.shippingCents)}</span></div>
+      <div class="r"><span>waarvan btw (21%)</span><span class="num">${eur(totals.vatCents)}</span></div>
+      <div class="r tot"><span>Totaal</span><span class="num">${eur(totals.totalCents)}</span></div>
+      <button class="btn">Naar afrekenen</button>
+      <p class="fine">Afrekenen is in deze demonstratie uitgeschakeld. Bezorging is gratis vanaf ${eur(SHIPPING.freeFromCents)}; tarieven zijn illustratief.</p>
+      <p class="fine">Controle: som van de verkopers = ${eur(sum)} · ordertotaal = ${eur(totals.subtotalCents)} ${sum === totals.subtotalCents ? "✓" : "✗"}</p>
+    </aside>
+  </div>`;
+}
+
+window.chg = (index, qty) => { setQty(index, qty); paint(); };
+window.go = (e) => {
+  e.preventDefault();
+  const q = document.getElementById("q").value.trim();
+  location.href = "listing.html" + (q ? `?q=${encodeURIComponent(q)}` : "");
+  return false;
+};
+
+paint();
+</script>
+</body>
+</html>

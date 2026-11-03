@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assortiment — BORVAT</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="strip">
+  <div class="shell">
+    <ul><li><b>Voor 23:59 besteld</b> · volgende dag in huis (illustratief)</li><li>30 dagen retour (illustratief)</li></ul>
+    <span class="note">Demonstratie — geen echte bestellingen</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="shell top">
+    <a class="logo" href="index.html" aria-label="BORVAT, naar de voorpagina">BOR<i>V</i>AT<small>Marketplace</small></a>
+    <form class="search" role="search" onsubmit="return go(event)">
+      <label for="q" class="visually-hidden">Zoek in het assortiment</label>
+      <input id="q" type="search" placeholder="Zoek op product, merk of categorie" autocomplete="off">
+      <button type="submit">Zoeken</button>
+    </form>
+    <nav class="tools" aria-label="Account en bestellingen">
+      <a href="#">Inloggen</a><a href="#">Lijst</a>
+      <a class="bag" href="cart.html">Mandje <em data-bag-count>0</em></a>
+    </nav>
+  </div>
+  <div class="nav">
+    <div class="shell">
+      <a href="listing.html">Alles</a><a href="listing.html?c=Wonen">Wonen</a><a href="listing.html?c=Tuin">Tuin</a>
+      <a href="listing.html?c=Wonen&amp;type=Verlichting">Verlichting</a><a href="listing.html?c=Wonen&amp;type=Textiel">Textiel</a>
+      <span class="right"><a href="#">Klantenservice</a><a href="#">Verkopen op BORVAT</a></span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="crumbs" id="crumbs" aria-label="Kruimelpad"></nav>
+  <div class="listing">
+    <aside aria-label="Filters">
+      <div class="facets" id="facets"></div>
+    </aside>
+    <div>
+      <div class="listhead">
+        <div>
+          <h1 id="heading">Assortiment</h1>
+          <p id="intro">Meubels, verlichting en buitenleven. Vergelijk aanbieders en levertijd per artikel.</p>
+        </div>
+      </div>
+      <div class="chips" id="chips"></div>
+      <div class="sortbar">
+        <span class="count" id="count"></span>
+        <label style="font-size:12.5px;color:var(--stone)">Sorteer
+          <select id="sort">
+            <option value="pop">Populariteit</option>
+            <option value="low">Prijs laag–hoog</option>
+            <option value="high">Prijs hoog–laag</option>
+          </select>
+        </label>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty" hidden>
+        <h1>Geen artikelen gevonden</h1>
+        <p>Pas je zoekterm of filters aan.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="shell cols">
+    <div><p class="brandline">BOR<span style="color:#d8b98e">V</span>AT</p>
+      <p style="margin-top:10px;max-width:34ch;font-size:13px;color:#b3a99c">Demonstratie-omgeving met voorbeeldinhoud en gelicentieerde foto's.</p></div>
+    <div><h4>Klantenservice</h4><ul><li>Bestelstatus</li><li>Bezorging</li><li>Retourneren</li></ul></div>
+    <div><h4>Verkopen</h4><ul><li>Word verkoper</li><li>Verkopersbeleid</li><li>Werkbank</li></ul></div>
+    <div><h4>Over BORVAT</h4><ul><li>Ons verhaal</li><li>Voorwaarden</li><li>Privacy</li></ul></div>
+  </div>
+  <div class="shell fine"><span>Demonstratie · geen echte betalingen</span><span>Bezorging en retour zijn illustratief</span></div>
+</footer>
+
+<script>if (location.search.includes("shot=1")) document.querySelector(".preview-tag").style.display = "none";</script>
+<div class="preview-tag">Prototype · Heirloom Modern</div>
+
+<script type="module">
+import { PRODUCTS, offersFor, eur, renderChrome } from "./app.js";
+
+renderChrome("");
+
+const params = new URLSearchParams(location.search);
+const state = {
+  c: params.get("c") ?? "",
+  type: params.get("type") ?? "",
+  q: (params.get("q") ?? "").toLowerCase().trim(),
+  sort: "pop",
+};
+
+const lowest = (p) => Math.min(...offersFor(p.id).map((o) => o.priceCents));
+
+function filtered() {
+  let list = PRODUCTS.filter((p) => {
+    if (state.c && p.category !== state.c) return false;
+    if (state.type && p.type !== state.type) return false;
+    if (state.q && !(`${p.title} ${p.type} ${p.category}`.toLowerCase().includes(state.q))) return false;
+    return true;
+  });
+  if (state.sort === "low") list = [...list].sort((a, b) => lowest(a) - lowest(b));
+  if (state.sort === "high") list = [...list].sort((a, b) => lowest(b) - lowest(a));
+  return list;
+}
+
+function paint() {
+  const list = filtered();
+  document.getElementById("heading").textContent = state.q
+    ? `Resultaten voor “${state.q}”`
+    : state.type || state.c || "Assortiment";
+  document.getElementById("count").textContent = `${list.length} ${list.length === 1 ? "artikel" : "artikelen"}`;
+
+  const crumbs = [`<a href="index.html">Home</a>`, `<span class="sep">›</span>`];
+  if (state.c) crumbs.push(`<a href="listing.html?c=${encodeURIComponent(state.c)}">${state.c}</a>`);
+  if (state.type) crumbs.push(`<span class="sep">›</span><a href="listing.html?c=${encodeURIComponent(state.c)}&type=${encodeURIComponent(state.type)}">${state.type}</a>`);
+  crumbs.push(`<span class="sep">›</span><span class="here">${state.q ? "Zoeken" : state.type || state.c || "Alles"}</span>`);
+  document.getElementById("crumbs").innerHTML = crumbs.join(" ");
+
+  const cats = [...new Set(PRODUCTS.map((p) => p.category))];
+  const types = [...new Set(PRODUCTS.map((p) => p.type))];
+  document.getElementById("facets").innerHTML = `
+    <details class="facet" open>
+      <summary>Categorie <span>${state.c || "alles"}</span></summary>
+      ${cats.map((c) => `<label><input type="radio" name="c" ${state.c === c ? "checked" : ""} onchange="pick('c','${c}')"> ${c} <span class="count">${PRODUCTS.filter((p) => p.category === c).length}</span></label>`).join("")}
+      <label><input type="radio" name="c" ${!state.c ? "checked" : ""} onchange="pick('c','')"> Alles <span class="count">${PRODUCTS.length}</span></label>
+    </details>
+    <details class="facet" open>
+      <summary>Type <span>${state.type || "alles"}</span></summary>
+      ${types.map((t) => `<label><input type="radio" name="t" ${state.type === t ? "checked" : ""} onchange="pick('type','${t}')"> ${t} <span class="count">${PRODUCTS.filter((p) => p.type === t).length}</span></label>`).join("")}
+    </details>
+    <details class="facet" open>
+      <summary>Prijs</summary>
+      <p style="font-size:12.5px;color:var(--stone);margin-top:6px">Alle artikelen liggen tussen € 59,00 en € 1.899,00. Prijsfilters werken op de laagste aanbieding per artikel.</p>
+    </details>`;
+
+  const chips = [];
+  if (state.q) chips.push(`“${state.q}”`);
+  if (state.c) chips.push(state.c);
+  if (state.type) chips.push(state.type);
+  document.getElementById("chips").innerHTML = chips.length
+    ? chips.map((c) => `<span class="chip on">${c} ×</span>`).join("") + `<button class="chip" onclick="reset()">Wis alles</button>`
+    : "";
+
+  document.getElementById("grid").innerHTML = list.map((p) => {
+    const offers = offersFor(p.id);
+    const low = Math.min(...offers.map((o) => o.priceCents));
+    const best = offers.find((o) => o.priceCents === low);
+    const discount = p.was ? Math.round((1 - p.price / p.was) * 100) : 0;
+    return `<article class="card">
+      <div class="plate">
+        <img src="${p.image}" alt="${p.title}" loading="lazy">
+        ${discount ? `<span class="badge">-${discount}%</span>` : ""}
+        <button class="fav" aria-label="Bewaar ${p.title}">♡</button>
+      </div>
+      <div class="body">
+        <p class="kicker">${p.category} · ${p.type}</p>
+        <h3><a href="product.html?id=${p.id}">${p.title}</a></h3>
+        <p class="offerline">${offers.length} aanbieders · vanaf ${eur(low)}</p>
+        <div class="priceline"><span class="price num">${eur(low)}</span>${p.was ? `<span class="was num">${eur(p.was)}</span>` : ""}</div>
+        <p class="delivery">◆ ${best.delivery} <span style="color:var(--stone)">· ${best.name}</span></p>
+      </div>
+    </article>`;
+  }).join("");
+
+  document.getElementById("empty").hidden = list.length > 0;
+}
+
+window.pick = (key, value) => {
+  state[key] = value;
+  if (key === "c") state.type = "";
+  const q = new URLSearchParams();
+  if (state.c) q.set("c", state.c);
+  if (state.type) q.set("type", state.type);
+  if (state.q) q.set("q", state.q);
+  history.replaceState(null, "", "listing.html" + (q.toString() ? `?${q}` : ""));
+  paint();
+};
+window.reset = () => { state.c = ""; state.type = ""; state.q = ""; history.replaceState(null, "", "listing.html"); paint(); };
+window.go = (e) => {
+  e.preventDefault();
+  state.q = document.getElementById("q").value.trim().toLowerCase();
+  paint();
+  return false;
+};
+document.getElementById("sort").onchange = (e) => { state.sort = e.target.value; paint(); };
+if (state.q) document.getElementById("q").value = params.get("q");
+
+paint();
+</script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BORVAT — Wonen en tuin, zorgvuldig gekozen</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="strip">
+  <div class="shell">
+    <ul>
+      <li><b>Voor 23:59 besteld</b> · volgende dag in huis (illustratief)</li>
+      <li>30 dagen retour (illustratief)</li>
+    </ul>
+    <span class="note">Demonstratie — geen echte bestellingen</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="shell top">
+    <a class="logo" href="index.html" aria-label="BORVAT, naar de voorpagina">BOR<i>V</i>AT<small>Marketplace</small></a>
+    <form class="search" role="search" onsubmit="return go(event)">
+      <label for="q" class="visually-hidden">Zoek in het assortiment</label>
+      <input id="q" type="search" placeholder="Zoek op product, merk of categorie" autocomplete="off">
+      <button type="submit">Zoeken</button>
+    </form>
+    <nav class="tools" aria-label="Account en bestellingen">
+      <a href="#">Inloggen</a>
+      <a href="#">Lijst</a>
+      <a class="bag" href="cart.html">Mandje <em data-bag-count>0</em></a>
+    </nav>
+  </div>
+  <div class="nav">
+    <div class="shell">
+      <a href="listing.html" data-nav="alles">Alles</a>
+      <a href="listing.html?c=Wonen" data-nav="wonen">Wonen</a>
+      <a href="listing.html?c=Tuin" data-nav="tuin">Tuin</a>
+      <a href="listing.html?c=Wonen&amp;type=Verlichting">Verlichting</a>
+      <a href="listing.html?c=Wonen&amp;type=Textiel">Textiel</a>
+      <span class="right"><a href="#">Klantenservice</a><a href="#">Verkopen op BORVAT</a></span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="shell">
+    <div class="copy">
+      <p class="eyebrow">Collectie · najaar</p>
+      <h1>Meubels die blijven, van verkopers die je kunt controleren</h1>
+      <p>Elk artikel met meerdere aanbieders, levertijd per verkoper en de totaalprijs vóór je bestelt. Geen verrassingen bij het afrekenen.</p>
+      <div class="actions">
+        <a class="btn" href="listing.html">Bekijk het assortiment</a>
+        <a class="btn ghost" href="product.html?id=prd_001">Uitgelicht artikel</a>
+      </div>
+    </div>
+    <div class="plate">
+      <img src="assets/prd_001.jpg" alt="Eiken eettafel met twee stoelen in een lichte kamer">
+      <div class="tag">
+        <p class="eyebrow">Uitgelicht</p>
+        <p class="t">Eiken eettafel 180×90</p>
+        <p class="p num">€ 749,00 · 3 aanbieders</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="sec-head">
+      <h2>Shop per categorie</h2>
+      <span class="meta">9 artikelen · 4 verkopers</span>
+    </div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+
+<section class="band" style="padding-top:0">
+  <div class="shell">
+    <div class="sec-head">
+      <h2>Uitgelicht bij BORVAT</h2>
+      <a href="listing.html">Alle artikelen</a>
+    </div>
+    <div class="grid" id="featured"></div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="shell">
+    <div><span class="ic">◆</span><span><b>Vergelijk aanbieders</b>Meerdere verkopers per artikel, prijs en levertijd naast elkaar.</span></div>
+    <div><span class="ic">◆</span><span><b>Duidelijke totalen</b>Btw en bezorging zichtbaar vóór het afrekenen.</span></div>
+    <div><span class="ic">◆</span><span><b>Per verkoper geleverd</b>Je ziet welke artikelen samen of apart komen.</span></div>
+    <div><span class="ic">◆</span><span><b>30 dagen retour</b>Illustratieve voorwaarden in deze demonstratie.</span></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="shell">
+    <div class="sec-head">
+      <h2>Deze week bij verkopers</h2>
+      <span class="meta">Prijzen zoals aangeboden, per artikel</span>
+    </div>
+    <div class="dealrows" id="deals"></div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="shell cols">
+    <div>
+      <p class="brandline">BOR<span style="color:#d8b98e">V</span>AT</p>
+      <p style="margin-top:10px;max-width:34ch;font-size:13px;color:#b3a99c">Een marketplace voor wonen en tuin. Demonstratie-omgeving met voorbeeldinhoud en gelicenseerde foto's.</p>
+    </div>
+    <div>
+      <h4>Klantenservice</h4>
+      <ul><li>Bestelstatus</li><li>Bezorging</li><li>Retourneren</li><li>Contact</li></ul>
+    </div>
+    <div>
+      <h4>Verkopen</h4>
+      <ul><li>Word verkoper</li><li>Verkopersbeleid</li><li>Tarieven</li><li>Werkbank</li></ul>
+    </div>
+    <div>
+      <h4>Over BORVAT</h4>
+      <ul><li>Ons verhaal</li><li>Voorwaarden</li><li>Privacy</li><li>Toegankelijkheid</li></ul>
+    </div>
+  </div>
+  <div class="shell fine">
+    <span>Demonstratie · geen echte betalingen · foto's Wikimedia Commons (CC)</span>
+    <span>Bezorging en retour zijn illustratief</span>
+  </div>
+</footer>
+
+<div class="preview-tag">Prototype · Heirloom Modern</div>
+<script>if (location.search.includes("shot=1")) document.querySelector(".preview-tag").style.display = "none";</script>
+
+<script type="module">
+import { PRODUCTS, offersFor, eur, renderChrome } from "./app.js";
+
+renderChrome("");
+
+const card = (p) => {
+  const offers = offersFor(p.id);
+  const low = Math.min(...offers.map((o) => o.priceCents));
+  const featured = offers.find((o) => o.priceCents === low);
+  const discount = p.was ? Math.round((1 - p.price / p.was) * 100) : 0;
+  return `<article class="card">
+    <div class="plate">
+      <img src="${p.image}" alt="${p.title}" loading="lazy">
+      ${discount > 0 ? `<span class="badge">-${discount}%</span>` : ""}
+      <button class="fav" aria-label="Bewaar ${p.title}">♡</button>
+    </div>
+    <div class="body">
+      <p class="kicker">${p.category} · ${p.type}</p>
+      <h3><a href="product.html?id=${p.id}">${p.title}</a></h3>
+      <p class="offerline">${offers.length} aanbieder${offers.length > 1 ? "s" : ""}${offers.length > 1 ? " · prijs per verkoper" : ""}</p>
+      <div class="priceline">
+        <span class="price num">${eur(low)}</span>
+        ${p.was ? `<span class="was num">${eur(p.was)}</span>` : ""}
+      </div>
+      <p class="delivery">◆ ${featured.delivery} <span style="color:var(--stone)">· ${featured.name}</span></p>
+    </div>
+  </article>`;
+};
+
+document.getElementById("featured").innerHTML = PRODUCTS.slice(0, 4).map(card).join("");
+document.getElementById("deals").innerHTML = PRODUCTS.filter((p) => p.was).map((p) => {
+  const save = p.was - p.price;
+  const pct = Math.round((save / p.was) * 100);
+  const best = offersFor(p.id)[0];
+  return `<a class="dealrow" href="product.html?id=${p.id}">
+    <div class="dr-plate"><img src="${p.image}" alt="${p.title}" loading="lazy"></div>
+    <div class="dr-body">
+      <p class="kicker">${p.category} · ${p.type}</p>
+      <h3>${p.title}</h3>
+      <p class="offerline">${best.name} · ${best.delivery}</p>
+    </div>
+    <div class="dr-price">
+      <span class="badge">-${pct}%</span>
+      <span class="price num">${eur(p.price)}</span>
+      <span class="was num">${eur(p.was)}</span>
+      <span class="save">Je bespaart ${eur(save)}</span>
+    </div>
+  </a>`;
+}).join("");
+
+const cats = [
+  { name: "Wonen", img: "assets/prd_002.jpg", count: PRODUCTS.filter((p) => p.category === "Wonen").length },
+  { name: "Tuin", img: "assets/prd_007.jpg", count: PRODUCTS.filter((p) => p.category === "Tuin").length },
+  { name: "Verlichting", img: "assets/prd_004.jpg", count: 1 },
+  { name: "Textiel", img: "assets/prd_005.jpg", count: 1 },
+];
+document.getElementById("cats").innerHTML = cats.map((c) => `
+  <a class="cat" href="listing.html?c=${encodeURIComponent(c.name)}">
+    <img src="${c.img}" alt="">
+    <span class="cap"><b>${c.name}</b><span>${c.count} artikelen</span></span>
+  </a>`).join("");
+
+window.go = (e) => {
+  e.preventDefault();
+  const q = document.getElementById("q").value.trim();
+  location.href = "listing.html" + (q ? `?q=${encodeURIComponent(q)}` : "");
+  return false;
+};
+</script>
+</body>
+</html>

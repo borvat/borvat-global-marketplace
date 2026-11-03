@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product — BORVAT</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="strip">
+  <div class="shell">
+    <ul><li><b>Voor 23:59 besteld</b> · volgende dag in huis (illustratief)</li><li>30 dagen retour (illustratief)</li></ul>
+    <span class="note">Demonstratie — geen echte bestellingen</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="shell top">
+    <a class="logo" href="index.html" aria-label="BORVAT, naar de voorpagina">BOR<i>V</i>AT<small>Marketplace</small></a>
+    <form class="search" role="search" onsubmit="return go(event)">
+      <label for="q" class="visually-hidden">Zoek in het assortiment</label>
+      <input id="q" type="search" placeholder="Zoek op product, merk of categorie" autocomplete="off">
+      <button type="submit">Zoeken</button>
+    </form>
+    <nav class="tools" aria-label="Account en bestellingen">
+      <a href="#">Inloggen</a><a href="#">Lijst</a>
+      <a class="bag" href="cart.html">Mandje <em data-bag-count>0</em></a>
+    </nav>
+  </div>
+  <div class="nav">
+    <div class="shell">
+      <a href="listing.html">Alles</a><a href="listing.html?c=Wonen">Wonen</a><a href="listing.html?c=Tuin">Tuin</a>
+      <a href="listing.html?c=Wonen&amp;type=Verlichting">Verlichting</a><a href="listing.html?c=Wonen&amp;type=Textiel">Textiel</a>
+      <span class="right"><a href="#">Klantenservice</a><a href="#">Verkopen op BORVAT</a></span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="crumbs" aria-label="Kruimelpad" id="crumbs"></nav>
+</div>
+
+<main class="shell">
+  <div class="pdp">
+    <div class="gallery">
+      <div class="main"><img id="hero" src="" alt=""></div>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+
+    <div>
+      <p class="eyebrow" id="kicker"></p>
+      <h1 id="title"></h1>
+      <p class="meta" id="meta"></p>
+
+      <div class="priceblock">
+        <span class="now num" id="price"></span>
+        <span class="was num" id="was" hidden></span>
+        <span class="vat">inclusief btw</span>
+      </div>
+
+      <div class="offers" id="offers" role="radiogroup" aria-label="Aanbieders"></div>
+
+      <div class="buyrow">
+        <div class="qty" role="group" aria-label="Aantal">
+          <button type="button" id="minus" aria-label="Eén minder">−</button>
+          <span id="qty" class="num">1</span>
+          <button type="button" id="plus" aria-label="Eén meer">+</button>
+        </div>
+        <button class="btn" id="add">In mandje</button>
+      </div>
+      <p class="notice" id="added" hidden></p>
+
+      <ul class="trustlist">
+        <li><span class="ic">◆</span><span><b id="delivery">Levertijd</b> — bezorging en retour zijn in deze demonstratie illustratief.</span></li>
+        <li><span class="ic">◆</span><span>Per verkoper ontvang je een eigen bevestiging en zending.</span></li>
+        <li><span class="ic">◆</span><span>Btw en totaal worden in het mandje opnieuw berekend uit dezelfde prijsopgave.</span></li>
+      </ul>
+
+      <div class="specs">
+        <h2>Productspecificaties</h2>
+        <dl id="specs"></dl>
+        <p class="notice">Foto's zijn gelicenseerde demonstratiebeelden, geen leveranciersfoto's.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="buybar" id="buybar">
+  <span class="p num" id="barprice"></span>
+  <button class="btn" id="addbar">In mandje</button>
+</div>
+
+<footer class="site">
+  <div class="shell cols">
+    <div><p class="brandline">BOR<span style="color:#d8b98e">V</span>AT</p>
+      <p style="margin-top:10px;max-width:34ch;font-size:13px;color:#b3a99c">Demonstratie-omgeving met voorbeeldinhoud en gelicentieerde foto's.</p></div>
+    <div><h4>Klantenservice</h4><ul><li>Bestelstatus</li><li>Bezorging</li><li>Retourneren</li></ul></div>
+    <div><h4>Verkopen</h4><ul><li>Word verkoper</li><li>Verkopersbeleid</li><li>Werkbank</li></ul></div>
+    <div><h4>Over BORVAT</h4><ul><li>Ons verhaal</li><li>Voorwaarden</li><li>Privacy</li></ul></div>
+  </div>
+  <div class="shell fine"><span>Demonstratie · geen echte betalingen</span><span>Bezorging en retour zijn illustratief</span></div>
+</footer>
+
+<script>if (location.search.includes("shot=1")) document.querySelector(".preview-tag").style.display = "none";</script>
+<div class="preview-tag">Prototype · Heerlijk Modern</div>
+
+<script type="module">
+import { byId, offersFor, eur, addLine, renderChrome, PRODUCTS } from "./app.js";
+
+renderChrome("");
+
+const params = new URLSearchParams(location.search);
+const product = byId(params.get("id")) ?? PRODUCTS[0];
+const offers = offersFor(product.id);
+let selected = 0;
+let qty = 1;
+
+document.title = `${product.title} — BORVAT`;
+document.getElementById("kicker").textContent = `${product.category} · ${product.type}`;
+document.getElementById("title").textContent = product.title;
+document.getElementById("meta").textContent = `Artikel ${product.id.toUpperCase()} · ${offers.length} aanbieders · demonstratievoorraad`;
+document.getElementById("hero").src = product.image;
+document.getElementById("hero").alt = product.title;
+document.getElementById("thumbs").innerHTML = [0, 1, 2, 3].map((i) => `
+  <button type="button" aria-current="${i === 0}" aria-label="Foto ${i + 1}">
+    <img src="${product.image}" alt="">
+  </button>`).join("");
+
+document.getElementById("crumbs").innerHTML = `
+  <a href="index.html">Home</a><span class="sep">›</span>
+  <a href="listing.html?c=${encodeURIComponent(product.category)}">${product.category}</a>
+  <span class="sep">›</span>
+  <a href="listing.html?c=${encodeURIComponent(product.category)}&type=${encodeURIComponent(product.type)}">${product.type}</a>
+  <span class="sep">›</span><span class="here">${product.title}</span>`;
+
+const specs = document.getElementById("specs");
+specs.innerHTML = Object.entries(product.specs).map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+
+function paint() {
+  const offer = offers[selected];
+  document.getElementById("price").textContent = eur(offer.priceCents);
+  const was = document.getElementById("was");
+  if (product.was) { was.hidden = false; was.textContent = eur(product.was); } else was.hidden = true;
+  document.getElementById("barprice").textContent = eur(offer.priceCents);
+  document.getElementById("qty").textContent = String(qty);
+  document.getElementById("delivery").textContent = `${offer.delivery} via ${offer.name}`;
+  document.getElementById("offers").innerHTML = `
+    <div class="row head"><span></span><span>Verkoper</span><span class="p">Prijs</span><span class="d">Levering</span></div>
+    ${offers.map((o, i) => `
+      <label class="row ${i === selected ? "on" : ""}">
+        <input type="radio" name="offer" value="${i}" ${i === selected ? "checked" : ""} aria-label="${o.name}">
+        <span class="who">${o.name}<small>★ ${o.rating.toFixed(1)} · ${o.orders.toLocaleString("nl-NL")} bestellingen · ${o.stock} op voorraad</small></span>
+        <span class="p num">${eur(o.priceCents)}</span>
+        <span class="d">${o.delivery}</span>
+      </label>`).join("")}`;
+  document.querySelectorAll('input[name="offer"]').forEach((el) =>
+    el.addEventListener("change", () => { selected = Number(el.value); paint(); }));
+}
+
+document.getElementById("minus").onclick = () => { qty = Math.max(1, qty - 1); paint(); };
+document.getElementById("plus").onclick = () => { qty = Math.min(offers[selected].stock, qty + 1); paint(); };
+
+function add() {
+  const offer = offers[selected];
+  addLine(product.id, offer.name, offer.priceCents, qty);
+  const note = document.getElementById("added");
+  note.hidden = false;
+  note.innerHTML = `${qty} × ${product.title} toegevoegd via <b>${offer.name}</b> · <a href="cart.html" style="color:var(--ox);text-decoration:underline">naar mandje</a>`;
+}
+document.getElementById("add").onclick = add;
+document.getElementById("addbar").onclick = add;
+
+window.go = (e) => {
+  e.preventDefault();
+  const q = document.getElementById("q").value.trim();
+  location.href = "listing.html" + (q ? `?q=${encodeURIComponent(q)}` : "");
+  return false;
+};
+
+paint();
+</script>
+</body>
+</html>
