@@ -222,7 +222,8 @@ function toCard(
     title: product.title,
     category: product.category,
     priceCents: Number.isFinite(fromPrice(catalog, id)) ? fromPrice(catalog, id) : lowest,
-    fromCents: highest > lowest ? highest : lowest,
+    // Cross-seller price spread is not a discount: no strike-through, no badge.
+    fromCents: lowest,
     available: productAvailability(catalog, id),
     rating: null,
     reviewCount: null,
