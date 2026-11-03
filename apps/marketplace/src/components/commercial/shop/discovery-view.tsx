@@ -467,7 +467,7 @@ function MarketplaceHome() {
                   <b className="flex items-center gap-1.5">
                     <Icon aria-hidden className="h-3.5 w-3.5 text-brand" /> {c.label}
                   </b>
-                  <span className="brv-num">{countIn(c.key)} producten</span>
+                  <span className="brv-num">{countIn(c.key)} {countIn(c.key) === 1 ? "product" : "producten"}</span>
                 </span>
               </LocalLink>
             );
