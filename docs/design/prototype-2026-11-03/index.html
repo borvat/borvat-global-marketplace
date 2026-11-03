@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<section class="masthead" aria-label="Servicebeloftes">
 <div class="strip">
   <div class="shell">
     <ul>
@@ -20,7 +21,7 @@
 
 <header class="site">
   <div class="shell top">
-    <a class="logo" href="index.html" aria-label="BORVAT, naar de voorpagina">BOR<i>V</i>AT<small>Marketplace</small></a>
+    <a class="logo" href="index.html" >BOR<i>V</i>AT<small>Marketplace</small><span class="visually-hidden">— naar de voorpagina</span></a>
     <form class="search" role="search" onsubmit="return go(event)">
       <label for="q" class="visually-hidden">Zoek in het assortiment</label>
       <input id="q" type="search" placeholder="Zoek op product, merk of categorie" autocomplete="off">
@@ -43,7 +44,9 @@
     </div>
   </div>
 </header>
+</section>
 
+<main>
 <section class="hero">
   <div class="shell">
     <div class="copy">
@@ -105,6 +108,8 @@
   </div>
 </section>
 
+</main>
+
 <footer class="site">
   <div class="shell cols">
     <div>
@@ -112,15 +117,15 @@
       <p style="margin-top:10px;max-width:34ch;font-size:13px;color:#b3a99c">Een marketplace voor wonen en tuin. Demonstratie-omgeving met voorbeeldinhoud en gelicenseerde foto's.</p>
     </div>
     <div>
-      <h4>Klantenservice</h4>
+      <h2 class="fh">Klantenservice</h2>
       <ul><li>Bestelstatus</li><li>Bezorging</li><li>Retourneren</li><li>Contact</li></ul>
     </div>
     <div>
-      <h4>Verkopen</h4>
+      <h2 class="fh">Verkopen</h2>
       <ul><li>Word verkoper</li><li>Verkopersbeleid</li><li>Tarieven</li><li>Werkbank</li></ul>
     </div>
     <div>
-      <h4>Over BORVAT</h4>
+      <h2 class="fh">Over BORVAT</h2>
       <ul><li>Ons verhaal</li><li>Voorwaarden</li><li>Privacy</li><li>Toegankelijkheid</li></ul>
     </div>
   </div>
@@ -130,7 +135,7 @@
   </div>
 </footer>
 
-<div class="preview-tag">Prototype · Heirloom Modern</div>
+<div class="preview-tag" aria-hidden="true">Prototype · Heirloom Modern</div>
 <script>if (location.search.includes("shot=1")) document.querySelector(".preview-tag").style.display = "none";</script>
 
 <script type="module">

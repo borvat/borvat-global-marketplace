@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<section class="masthead" aria-label="Servicebeloftes">
 <div class="strip">
   <div class="shell">
     <ul><li><b>Voor 23:59 besteld</b> · volgende dag in huis (illustratief)</li><li>30 dagen retour (illustratief)</li></ul>
@@ -17,7 +18,7 @@
 
 <header class="site">
   <div class="shell top">
-    <a class="logo" href="index.html" aria-label="BORVAT, naar de voorpagina">BOR<i>V</i>AT<small>Marketplace</small></a>
+    <a class="logo" href="index.html" >BOR<i>V</i>AT<small>Marketplace</small><span class="visually-hidden">— naar de voorpagina</span></a>
     <form class="search" role="search" onsubmit="return go(event)">
       <label for="q" class="visually-hidden">Zoek in het assortiment</label>
       <input id="q" type="search" placeholder="Zoek op product, merk of categorie" autocomplete="off">
@@ -36,6 +37,7 @@
     </div>
   </div>
 </header>
+</section>
 
 <main class="shell">
   <div class="crumbs"><a href="index.html">Home</a><span class="sep">›</span><span class="here">Mandje</span></div>
@@ -46,15 +48,15 @@
   <div class="shell cols">
     <div><p class="brandline">BOR<span style="color:#d8b98e">V</span>AT</p>
       <p style="margin-top:10px;max-width:34ch;font-size:13px;color:#b3a99c">Demonstratie-omgeving met voorbeeldinhoud en gelicentieerde foto's.</p></div>
-    <div><h4>Klantenservice</h4><ul><li>Bestelstatus</li><li>Bezorging</li><li>Retourneren</li></ul></div>
-    <div><h4>Verkopen</h4><ul><li>Word verkoper</li><li>Verkopersbeleid</li><li>Werkbank</li></ul></div>
-    <div><h4>Over BORVAT</h4><ul><li>Ons verhaal</li><li>Voorwaarden</li><li>Privacy</li></ul></div>
+    <div><h2 class="fh">Klantenservice</h2><ul><li>Bestelstatus</li><li>Bezorging</li><li>Retourneren</li></ul></div>
+    <div><h2 class="fh">Verkopen</h2><ul><li>Word verkoper</li><li>Verkopersbeleid</li><li>Werkbank</li></ul></div>
+    <div><h2 class="fh">Over BORVAT</h2><ul><li>Ons verhaal</li><li>Voorwaarden</li><li>Privacy</li></ul></div>
   </div>
   <div class="shell fine"><span>Demonstratie · geen echte betalingen</span><span>Bezorging en retour zijn illustratief</span></div>
 </footer>
 
 <script>if (location.search.includes("shot=1")) document.querySelector(".preview-tag").style.display = "none";</script>
-<div class="preview-tag">Prototype · Heirloom Modern</div>
+<div class="preview-tag" aria-hidden="true">Prototype · Heirloom Modern</div>
 
 <script type="module">
 import { readCart, setQty, groupBySeller, priceCart, eur, byId, renderChrome, SHIPPING } from "./app.js";
@@ -102,7 +104,7 @@ function paint() {
       </div>`;
     }).join("");
     return `<section class="seller">
-      <header><span>Verkocht door <b>${g.seller}</b></span><span>Aparte zending</span></header>
+      <header><h2 class="fh" style="margin:0;color:var(--stone)">Verkocht door <b style="color:var(--ox)">${g.seller}</b></h2><span>Aparte zending</span></header>
       ${rows}
       <footer><span>Subtotaal ${g.seller}</span><span class="num">${eur(g.subtotalCents)}</span></footer>
     </section>`;

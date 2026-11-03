@@ -9,11 +9,11 @@
   --card: #fffdfa;
   --ink: #16130f;
   --ink-2: #3d3831;
-  --stone: #857c72;
+  --stone: #6c645a;
   --line: #e0d8cc;
   --ox: #7a1f2b;
   --ox-soft: #f4e6e4;
-  --brass: #a98545;
+  --brass: #8a6a2f;
   --green: #2f6b46;
   --shell: 1320px;
   --r: 2px;
@@ -326,7 +326,7 @@ section.band { padding-block: 44px; }
 /* ---------- footer ---------- */
 footer.site { background: var(--ink); color: #d7cec2; margin-top: 10px; }
 footer.site .cols { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 26px; padding-block: 40px; }
-footer.site h4 { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #a99f92; margin-bottom: 10px; }
+footer.site h2.fh { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #a99f92; margin-bottom: 10px; }
 footer.site li { list-style: none; padding-block: 3px; font-size: 13px; color: #c3b9ac; }
 footer.site .brandline { font-family: var(--serif); font-size: 22px; letter-spacing: 0.16em; color: #f7f3ec; }
 footer.site .fine { border-top: 1px solid #2b2723; padding-block: 14px; font-size: 11.5px; color: #8f877c; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -354,3 +354,5 @@ footer.site .fine { border-top: 1px solid #2b2723; padding-block: 14px; font-siz
   .line { grid-template-columns: 76px 1fr; }
   .line .amt { grid-column: 2; text-align: left; margin-top: 6px; }
 }
+
+footer.site h2.fh { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: #a99f92; margin-bottom: 10px; font-weight: 500; }

@@ -61,6 +61,20 @@ line make the multi-vendor model legible.
 | Mobile 390 | no horizontal overflow on any page; separate mobile layout (stacked hero, wrapped header, 2-column grid, sticky buy bar on the product page) |
 | Empty cart | explicit empty state with a route back to the assortment |
 
+## Accessibility
+
+axe-core 4.14 on all four pages at 1440: **0 violations** (was 4 serious and 3 moderate before
+this pass). What the audit forced:
+
+- secondary text `#857C72` on bone measured 3.6:1 — darkened to `#6C645A`;
+- the brass kicker measured 3.37:1 on white cards — darkened to `#8A6A2F`;
+- the footer used `h4` under an `h1`, and the listing grid jumped `h1 → h3` — both fixed with real
+  heading levels;
+- the logo carried an `aria-label` that omitted its own visible text — replaced with the wordmark
+  plus a visually hidden destination;
+- page content sat outside landmarks — the service strip is now a labelled `section`, content sits
+  in `main`, and the prototype badge is marked decorative.
+
 ## Screenshots
 
 `shots/home-1440.png`, `home-390.png`, `listing-1440.png`, `listing-390.png`,
