@@ -853,7 +853,8 @@
   background: #fff;
 }
 .brv-catcard .ph { display: block; height: 150px; background: var(--surface-muted); }
-.brv-catcard .ph img { height: 100%; width: 100%; object-fit: cover; }
+.brv-catcard .ph { background: #fff; border-bottom: 1px solid var(--border); }
+.brv-catcard .ph img { height: 100%; width: 100%; object-fit: contain; padding: 10px; }
 .brv-catcard .meta {
   display: flex;
   align-items: baseline;
@@ -901,7 +902,7 @@
   border: 1px solid var(--border);
   background: var(--surface-muted);
 }
-@media (min-width: 1024px) { .brv-filler { grid-column: span 3; } }
+@media (min-width: 1024px) { .brv-filler { grid-column: span 4; } }
 
 /* ---------- service band + white footer ---------- */
 .brv-service { margin-top: 48px; background: var(--brand); color: #fff; }

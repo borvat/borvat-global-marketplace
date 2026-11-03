@@ -86,7 +86,6 @@ export function ProductCard({ p }: { p: CardProduct }) {
         </span>
       </LocalLink>
       <div className="body">
-        <p className="kicker">{p.category}</p>
         <LocalLink href={p.href} className="brv-title-link">
           {p.title}
         </LocalLink>

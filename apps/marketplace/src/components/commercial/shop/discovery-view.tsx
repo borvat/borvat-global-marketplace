@@ -460,9 +460,10 @@ function MarketplaceHome() {
         })}
         <LocalLink href={link("/discover", reset)} className="brv-catcard">
           <span className="ph">
-            {sellable[2] && demoMedia(sellable[2].id) ? (
-              <img src={demoMedia(sellable[2].id) as string} alt="" loading="lazy" />
-            ) : null}
+            {(() => {
+              const pick = sellable.find((p) => demoMedia(p.id) && p.id !== sellable[0]?.id);
+              return pick ? <img src={demoMedia(pick.id) as string} alt="" loading="lazy" /> : null;
+            })()}
           </span>
           <span className="meta">
             <b>Alle producten</b>
