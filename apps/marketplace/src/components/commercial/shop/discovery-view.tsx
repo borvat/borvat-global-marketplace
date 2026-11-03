@@ -481,7 +481,7 @@ function MarketplaceHome() {
             </span>
             <span>
               <b className="block">{title}</b>
-              <small className={i === 0 ? "text-white/80" : undefined}>{note}</small>
+              <small className={i === 0 ? "text-white" : undefined}>{note}</small>
             </span>
           </LocalLink>
         ))}
