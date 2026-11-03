@@ -1,0 +1,191 @@
+{
+ "viewport": {
+  "w": 1440,
+  "h": 900
+ },
+ "scrollW": 1440,
+ "scrollH": 2308,
+ "header": {
+  "y": 30,
+  "h": 161,
+  "x": 0,
+  "w": 1440,
+  "bg": "rgba(0, 0, 0, 0)"
+ },
+ "headerRows": [
+  {
+   "y": 30,
+   "h": 32,
+   "x": 0,
+   "w": 1440,
+   "bg": "rgb(255, 255, 255)"
+  },
+  {
+   "y": 62,
+   "h": 72,
+   "x": 0,
+   "w": 1440,
+   "bg": "rgb(18, 53, 127)"
+  },
+  {
+   "y": 134,
+   "h": 57,
+   "x": 0,
+   "w": 1440,
+   "bg": "rgb(15, 47, 115)"
+  }
+ ],
+ "searchWrap": {
+  "y": 74,
+  "h": 48,
+  "x": 273,
+  "w": 579
+ },
+ "bands": [
+  {
+   "tag": "div",
+   "cls": "",
+   "y": 247,
+   "h": 1737,
+   "x": 104,
+   "w": 1232,
+   "bg": "rgba(0, 0, 0, 0)",
+   "text": "BORVAT — wonen en tuin van gecontroleerde verkopers Uitgelicht deze we"
+  }
+ ],
+ "heads": [
+  {
+   "tag": "H1",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "20.3px",
+   "text": "BORVAT — wonen en tuin van gecontroleerd",
+   "y": 246,
+   "h": 1,
+   "x": 103,
+   "w": 1
+  },
+  {
+   "tag": "H2",
+   "fs": "32px",
+   "fw": "400",
+   "lh": "48px",
+   "text": "Populair bij BORVAT",
+   "y": 877,
+   "h": 48,
+   "x": 104,
+   "w": 276
+  },
+  {
+   "tag": "H2",
+   "fs": "32px",
+   "fw": "400",
+   "lh": "48px",
+   "text": "Nieuw in de collectie",
+   "y": 1330,
+   "h": 48,
+   "x": 104,
+   "w": 287
+  },
+  {
+   "tag": "H2",
+   "fs": "32px",
+   "fw": "400",
+   "lh": "48px",
+   "text": "Ontdek alles bij BORVAT",
+   "y": 1782,
+   "h": 48,
+   "x": 104,
+   "w": 335
+  },
+  {
+   "tag": "H3",
+   "fs": "12px",
+   "fw": "600",
+   "lh": "17.4px",
+   "text": "Wonen",
+   "y": 1842,
+   "h": 17,
+   "x": 104,
+   "w": 192
+  },
+  {
+   "tag": "H3",
+   "fs": "12px",
+   "fw": "600",
+   "lh": "17.4px",
+   "text": "Tuin",
+   "y": 1842,
+   "h": 17,
+   "x": 312,
+   "w": 192
+  },
+  {
+   "tag": "H3",
+   "fs": "12px",
+   "fw": "600",
+   "lh": "17.4px",
+   "text": "Aanbiedingen",
+   "y": 1842,
+   "h": 17,
+   "x": 520,
+   "w": 192
+  },
+  {
+   "tag": "H3",
+   "fs": "12px",
+   "fw": "600",
+   "lh": "17.4px",
+   "text": "Jouw account",
+   "y": 1842,
+   "h": 17,
+   "x": 728,
+   "w": 192
+  }
+ ],
+ "cards": [
+  {
+   "w": 185,
+   "h": 247,
+   "x": 104,
+   "y": 591,
+   "t": "Eiken eettafel 180×90 — natuurlijke afwe"
+  },
+  {
+   "w": 185,
+   "h": 247,
+   "x": 313,
+   "y": 591,
+   "t": "Linnen bankstel 3-zits"
+  },
+  {
+   "w": 185,
+   "h": 247,
+   "x": 523,
+   "y": 591,
+   "t": "Vloerlamp messing met linnen kap"
+  },
+  {
+   "w": 185,
+   "h": 247,
+   "x": 732,
+   "y": 591,
+   "t": "Wollen vloerkleed 200×300 — zand"
+  },
+  {
+   "w": 185,
+   "h": 247,
+   "x": 941,
+   "y": 591,
+   "t": "Keramische plantenpot — off-white"
+  },
+  {
+   "w": 185,
+   "h": 247,
+   "x": 1151,
+   "y": 591,
+   "t": "Teakhouten tuinset 6 personen"
+  }
+ ],
+ "font": "Inter, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif"
+}

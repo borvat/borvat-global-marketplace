@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BORVAT vs bol.com — first screen and overlay</title>
+<style>
+  body { margin: 0; padding: 24px; background: #f4f5f7; font: 13px/1.45 "Inter", system-ui, sans-serif; color: #14161a; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p { margin: 0 0 16px; color: #4b5563; max-width: 120ch; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .frame { background: #fff; border: 1px solid #dcdfe4; border-radius: 6px; overflow: hidden; }
+  .frame h2 { font-size: 12px; margin: 0; padding: 6px 10px; color: #12357f; border-bottom: 1px solid #eef0f3; }
+  .crop { height: 880px; overflow: hidden; }
+  .crop img { width: 100%; display: block; }
+  .overlay { position: relative; height: 880px; overflow: hidden; background: #fff; }
+  .overlay img { position: absolute; inset: 0; width: 100%; }
+  .overlay .top { mix-blend-mode: difference; opacity: .85; }
+  .legend { font-size: 12px; color: #6b7280; margin: 8px 0 0; }
+</style>
+</head>
+<body>
+  <h1>First screen, same viewport, same scroll</h1>
+  <p>Reference: archived bol.com home (snapshot 2026-10-05 19:52:03), 1440×900, rendered in Chromium.
+     BORVAT: local build of <code>fix/bol-parity-20261103</code>, 1440×900.
+     Both are the top 880px of a full-page capture, unscaled and uncropped horizontally.</p>
+
+  <div class="row">
+    <div class="frame">
+      <h2>bol.com (reference)</h2>
+      <div class="crop"><img src="../reference/bol/bol-home-1440.png" alt="bol.com first screen"></div>
+    </div>
+    <div class="frame">
+      <h2>BORVAT</h2>
+      <div class="crop"><img src="../visual/v5/borvat-home-1440.png" alt="BORVAT first screen"></div>
+    </div>
+  </div>
+
+  <h1 style="margin-top:22px">Overlay (difference blend)</h1>
+  <p class="legend">Identical pixels render black; differences render bright. BORVAT carries a 30px test
+     notice above the header, so its bands sit 30px lower — that offset dominates the overlay and is expected.</p>
+  <div class="frame">
+    <div class="overlay">
+      <img src="../reference/bol/bol-home-1440.png" alt="reference layer">
+      <img class="top" src="../visual/v5/borvat-home-1440.png" alt="BORVAT layer">
+    </div>
+  </div>
+</body>
+</html>

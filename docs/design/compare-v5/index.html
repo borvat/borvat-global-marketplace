@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BORVAT vs bol.com — reference comparison</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 32px; font: 14px/1.5 "Inter", system-ui, sans-serif; color: #14161a; background: #f4f5f7; }
+  h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: -0.02em; }
+  h2 { font-size: 20px; margin: 32px 0 4px; }
+  .lede { max-width: 80ch; color: #4b5563; }
+  .case { background: #fff; border: 1px solid #dcdfe4; border-radius: 8px; padding: 20px; margin-top: 20px; }
+  .src { color: #4b5563; font-size: 12.5px; max-width: 100ch; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  .pair figure { margin: 0; }
+  figcaption { font-size: 12px; font-weight: 600; margin-bottom: 6px; color: #12357f; }
+  .pair img { width: 100%; height: auto; border: 1px solid #e5e7eb; border-radius: 4px; }
+  .overlay { margin-top: 20px; }
+  .stack { position: relative; overflow: hidden; border: 1px solid #e5e7eb; border-radius: 4px; max-height: 900px; }
+  .stack img { position: absolute; inset: 0; width: 100%; height: auto; }
+  .stack .base { position: relative; }
+  .slider { display: inline-flex; gap: 8px; align-items: center; margin-top: 8px; font-size: 12.5px; }
+  .note { font-size: 12px; color: #6b7280; margin: 4px 0 0; }
+  .mob { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+  .mobpair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mobpair img { width: 100%; border: 1px solid #e5e7eb; border-radius: 4px; }
+  .gaps { background: #fff; border: 1px solid #dcdfe4; border-radius: 8px; padding: 20px; margin-top: 20px; }
+  .gaps td, .gaps th { text-align: left; padding: 6px 10px; border-bottom: 1px solid #eef0f3; font-size: 13px; vertical-align: top; }
+  code { background: #f1f3f6; padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+</style>
+</head>
+<body>
+  <h1>BORVAT vs bol.com — reference comparison</h1>
+  <p class="lede">Owner directive: match the reference composition, keep the BORVAT identity.
+    Live bol.com is unreachable from this machine (<code>IP address is blocked</code>), so the reference is the
+    Wayback snapshot recorded below, rendered in a real Chromium at the same viewport as the local build.
+    Every capture is dated and full-length: nothing is cropped to hide a difference.</p>
+
+  
+  <section class="case" id="home">
+    <h2>Startpagina</h2>
+    <p class="src">Referentie: archived snapshot of <code>https://web.archive.org/web/20261005195203/https://www.bol.com/nl/nl/</code> — captured 1440×900, full page.
+      BORVAT: local build, same viewport, same scroll position.
+      Heights differ because the reference page is longer: 3214px vs 2256px.</p>
+
+    <div class="pair">
+      <figure><figcaption>bol.com (reference)</figcaption>
+        <img src="../reference/bol/bol-home-1440.png" alt="Reference Startpagina" width="1440" height="3214"></figure>
+      <figure><figcaption>BORVAT (this branch)</figcaption>
+        <img src="../visual/v5/borvat-home-1440.png" alt="BORVAT Startpagina" width="1440" height="2256"></figure>
+    </div>
+
+    <div class="overlay" data-mode="off">
+      <div class="stack" style="aspect-ratio:1440/3214">
+        <img class="base" src="../reference/bol/bol-home-1440.png" alt="Reference layer">
+        <img class="top" src="../visual/v5/borvat-home-1440.png" alt="BORVAT layer" style="mix-blend-mode:difference;opacity:.85">
+      </div>
+      <label class="slider">Overlay opacity
+        <input type="range" min="0" max="100" value="85" oninput="this.closest('.overlay').querySelector('.top').style.opacity=this.value/100">
+      </label>
+      <p class="note">Difference blending: identical pixels render black, differences render bright.
+        This shows alignment and scale, not beauty.</p>
+    </div>
+  </section>
+  <section class="case" id="listing">
+    <h2>Categorie / resultaten</h2>
+    <p class="src">Referentie: archived snapshot of <code>https://web.archive.org/web/20260615045304/https://www.bol.com/nl/nl/l/zwemvesten/25311/</code> — captured 1440×900, full page.
+      BORVAT: local build, same viewport, same scroll position.
+      Heights differ because the reference page is longer: 8517px vs 1549px.</p>
+
+    <div class="pair">
+      <figure><figcaption>bol.com (reference)</figcaption>
+        <img src="../reference/bol/bol-listing-1440.png" alt="Reference Categorie / resultaten" width="1440" height="8517"></figure>
+      <figure><figcaption>BORVAT (this branch)</figcaption>
+        <img src="../visual/v5/borvat-listing-1440.png" alt="BORVAT Categorie / resultaten" width="1440" height="1549"></figure>
+    </div>
+
+    <div class="overlay" data-mode="off">
+      <div class="stack" style="aspect-ratio:1440/8517">
+        <img class="base" src="../reference/bol/bol-listing-1440.png" alt="Reference layer">
+        <img class="top" src="../visual/v5/borvat-listing-1440.png" alt="BORVAT layer" style="mix-blend-mode:difference;opacity:.85">
+      </div>
+      <label class="slider">Overlay opacity
+        <input type="range" min="0" max="100" value="85" oninput="this.closest('.overlay').querySelector('.top').style.opacity=this.value/100">
+      </label>
+      <p class="note">Difference blending: identical pixels render black, differences render bright.
+        This shows alignment and scale, not beauty.</p>
+    </div>
+  </section>
+
+  <section class="case">
+    <h2>Mobile 390</h2>
+    <p class="src">Same snapshot and same build at 390×844, full page.</p>
+    <div class="mob">
+    <figure><figcaption>Startpagina</figcaption>
+      <div class="mobpair">
+        <img src="../reference/bol/bol-home-390.png" alt="Reference Startpagina 390"><img src="../visual/v5/borvat-home-390.png" alt="BORVAT Startpagina 390">
+      </div>
+      <p class="src">left: reference · right: BORVAT</p></figure>
+    <figure><figcaption>Categorie / resultaten</figcaption>
+      <div class="mobpair">
+        <img src="../reference/bol/bol-listing-390.png" alt="Reference Categorie / resultaten 390"><img src="../visual/v5/borvat-listing-390.png" alt="BORVAT Categorie / resultaten 390">
+      </div>
+      <p class="src">left: reference · right: BORVAT</p></figure></div>
+  </section>
+
+  <section class="gaps">
+    <h2>Remaining differences</h2>
+    <table>
+      <tr><th>Area</th><th>Difference</th><th>Reason</th></tr>
+      <tr><td>Product detail page</td><td>No reference capture</td><td>No archived bol.com PDP returns 200 for this host: earlier attempts returned 404/403. The PDP was built from the same measured system, not compared pixel to pixel.</td></tr>
+      <tr><td>Cart</td><td>No reference capture</td><td>bol.com cart requires a session; the archived copy has no cart state. Our cart keeps seller grouping and per-seller subtotals by design.</td></tr>
+      <tr><td>Assortment depth</td><td>6-column rows partly filled</td><td>Nine articles, two categories. The grid rhythm matches; the volume does not.</td></tr>
+      <tr><td>Photography</td><td>Mixed studio and museum shots</td><td>Commons-licensed images only; two do not represent their article.</td></tr>
+      <tr><td>Ratings and reviews</td><td>Absent</td><td>The fixtures carry no review data, so no star row is rendered anywhere.</td></tr>
+    </table>
+  </section>
+</body>
+</html>

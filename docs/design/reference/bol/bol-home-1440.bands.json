@@ -1,0 +1,198 @@
+{
+ "viewport": {
+  "w": 1440,
+  "h": 900
+ },
+ "scrollW": 1440,
+ "scrollH": 3210,
+ "header": {
+  "y": 0,
+  "h": 161,
+  "x": 0,
+  "w": 1440,
+  "bg": "oklch(0.3249 0.2251 264.05)"
+ },
+ "headerRows": [
+  {
+   "y": 0,
+   "h": 0,
+   "x": 0,
+   "w": 1440,
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "y": 0,
+   "h": 32,
+   "x": 0,
+   "w": 1440,
+   "bg": "oklch(1 0 0)"
+  },
+  {
+   "y": 32,
+   "h": 72,
+   "x": 112,
+   "w": 1216,
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "y": 104,
+   "h": 57,
+   "x": 0,
+   "w": 1440,
+   "bg": "oklch(1 0 0)"
+  }
+ ],
+ "searchWrap": {
+  "y": 36,
+  "h": 64,
+  "x": 343,
+  "w": 512
+ },
+ "bands": [
+  {
+   "tag": "div",
+   "cls": "relative grid pt-6 gap-8",
+   "y": 161,
+   "h": 2309,
+   "x": 0,
+   "w": 1440,
+   "bg": "rgba(0, 0, 0, 0)",
+   "text": "Telefoonaccessoires Luiers Oogmake-up Dames parfum Bouwsets Audio voor"
+  }
+ ],
+ "heads": [
+  {
+   "tag": "H1",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "text": "Bol, de winkel van ons allemaal",
+   "y": 160,
+   "h": 1,
+   "x": -1,
+   "w": 1
+  },
+  {
+   "tag": "H2",
+   "fs": "32px",
+   "fw": "300",
+   "lh": "48px",
+   "text": "Trending nu",
+   "y": 1046,
+   "h": 48,
+   "x": 144,
+   "w": 1152
+  },
+  {
+   "tag": "H2",
+   "fs": "32px",
+   "fw": "300",
+   "lh": "48px",
+   "text": "Trending Deals",
+   "y": 1486,
+   "h": 48,
+   "x": 144,
+   "w": 1152
+  },
+  {
+   "tag": "H2",
+   "fs": "32px",
+   "fw": "300",
+   "lh": "48px",
+   "text": "Ontdek alles bij bol",
+   "y": 1926,
+   "h": 48,
+   "x": 144,
+   "w": 1152
+  },
+  {
+   "tag": "H3",
+   "fs": "12px",
+   "fw": "600",
+   "lh": "16px",
+   "text": "Boeken",
+   "y": 1998,
+   "h": 16,
+   "x": 144,
+   "w": 179
+  },
+  {
+   "tag": "H3",
+   "fs": "12px",
+   "fw": "600",
+   "lh": "16px",
+   "text": "Muziek, Films & Gaming",
+   "y": 2208,
+   "h": 16,
+   "x": 144,
+   "w": 179
+  },
+  {
+   "tag": "H3",
+   "fs": "12px",
+   "fw": "600",
+   "lh": "16px",
+   "text": "Sport, Outdoor & Reizen",
+   "y": 2382,
+   "h": 16,
+   "x": 144,
+   "w": 179
+  },
+  {
+   "tag": "H3",
+   "fs": "12px",
+   "fw": "600",
+   "lh": "16px",
+   "text": "Computer & Elektronica",
+   "y": 1998,
+   "h": 16,
+   "x": 339,
+   "w": 179
+  }
+ ],
+ "cards": [
+  {
+   "w": 172,
+   "h": 229,
+   "x": 144,
+   "y": 528,
+   "t": "Woondeals maak je huis gezellig"
+  },
+  {
+   "w": 172,
+   "h": 229,
+   "x": 144,
+   "y": 528,
+   "t": "Woondeals maak je huis gezellig"
+  },
+  {
+   "w": 172,
+   "h": 229,
+   "x": 144,
+   "y": 528,
+   "t": "Woondeals maak je huis gezellig"
+  },
+  {
+   "w": 172,
+   "h": 229,
+   "x": 340,
+   "y": 528,
+   "t": "Kinderboeken- week vol leesplezier"
+  },
+  {
+   "w": 172,
+   "h": 229,
+   "x": 340,
+   "y": 528,
+   "t": "Kinderboeken- week vol leesplezier"
+  },
+  {
+   "w": 172,
+   "h": 229,
+   "x": 340,
+   "y": 528,
+   "t": "Kinderboeken- week vol leesplezier"
+  }
+ ],
+ "font": "graphik, arial, helvetica, sans-serif"
+}

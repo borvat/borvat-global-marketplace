@@ -1,0 +1,162 @@
+{
+  "gate": "borvat-storefront",
+  "verdict": "DEMO READY (production stages excluded by scope)",
+  "at": "2026-11-03T04:11:58.716Z",
+  "project": "C:/Users/Zulik/borvat",
+  "scope": {
+    "deployment": "none",
+    "ci": false
+  },
+  "stages": [
+    {
+      "stage": 1,
+      "name": "implementation (syntax/build)",
+      "status": "PASS",
+      "detail": "wsl.exe -d Ubuntu -- bash /mnt/c/Users/Zulik/verification-lab/bin/borvat-syntax.sh: clean",
+      "evidence": [
+        {
+          "cmd": "wsl.exe -d Ubuntu -- bash /mnt/c/Users/Zulik/verification-lab/bin/borvat-syntax.sh",
+          "code": 0,
+          "tail": "tsc clean"
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "name": "automated tests",
+      "status": "PASS",
+      "detail": "ok 27 - hydration boot snapshot remains empty and stable while browser storage is restored",
+      "evidence": [
+        {
+          "cmd": "wsl.exe -d Ubuntu -- bash /mnt/c/Users/Zulik/verification-lab/bin/borvat-tests.sh",
+          "code": 0,
+          "tail": "ok 27 - hydration boot snapshot remains empty and stable while browser storage is restored"
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "name": "browser E2E (playwright)",
+      "status": "PASS",
+      "detail": "2 passed",
+      "evidence": {
+        "code": 0,
+        "output": "Running 2 tests using 1 worker\n\nconsole: 0 total, 0 non-resource\n  ok 1 [chromium-cached] › tests\\borvat-storefront.spec.js:8:1 › storefront: browse, add to cart, read the cart (3.6s)\n  ok 2 [chromium-cached] › tests\\borvat-storefront.spec.js:60:1 › mobile 390: no horizontal overflow on the four storefront pages (2.7s)\n\n  2 passed (8.7s)"
+      }
+    },
+    {
+      "stage": 3.1,
+      "name": "accessibility (axe-core)",
+      "status": "PASS",
+      "detail": "0 serious/critical, 0 minor/moderate",
+      "evidence": null
+    },
+    {
+      "stage": 3.2,
+      "name": "performance (lighthouse)",
+      "status": "PASS",
+      "detail": "LCP 1460ms | CLS 0.000 | TBT 7ms | FCP 1340ms (exit 0)",
+      "evidence": {
+        "code": 0,
+        "out": "Lighthouse 12.8.2 (desktop) - http://127.0.0.1:4173\n  performance 91 | a11y 100 | best-practices 93 | seo 100\n  LCP 1460ms | CLS 0.000 | TBT 7ms | FCP 1340ms\nreport: C:\\Users\\Zulik\\verification-lab\\out\\borvat-storefront-perf.json"
+      }
+    },
+    {
+      "stage": 4,
+      "name": "security review",
+      "status": "PASS",
+      "detail": "7 checks, 7 findings :: info:hardcoded credential assignment in apps/marketplace/tests/redaction.test.ts (test fixture, review only); info:hardcoded credential assignment in experiments/core-engine-v1/tests/fixtures/demo-credentials.sh (test fixture, review only); info:hardcoded credential assignment in experiments/core-engine-v1/tests/helpers/harness.ts (test fixture, review only); info:hardcoded credential assignment in experiments/mercur-hardening/payment/durability.test.mjs (test fixture, review only); info:hardcoded credential assignment in experiments/oss-evaluation/vendure/tests/fixtures/synthetic-seller.ts (test fixture, review only); info:hardcoded credential assignment in tests/commerce-server/_payments-support.mjs (test fixture, review only); info:hardcoded credential assignment in tests/commerce-server/service.test.mjs (test fixture, review only)",
+      "evidence": {
+        "passes": [
+          "content-security-policy",
+          "x-content-type-options",
+          "x-frame-options",
+          "referrer-policy",
+          "authorization probes (2)",
+          "secrets scan (850 tracked files)",
+          "dependency audit skipped: no lockfile"
+        ],
+        "findings": [
+          {
+            "sev": "info",
+            "what": "hardcoded credential assignment in apps/marketplace/tests/redaction.test.ts (test fixture, review only)"
+          },
+          {
+            "sev": "info",
+            "what": "hardcoded credential assignment in experiments/core-engine-v1/tests/fixtures/demo-credentials.sh (test fixture, review only)"
+          },
+          {
+            "sev": "info",
+            "what": "hardcoded credential assignment in experiments/core-engine-v1/tests/helpers/harness.ts (test fixture, review only)"
+          },
+          {
+            "sev": "info",
+            "what": "hardcoded credential assignment in experiments/mercur-hardening/payment/durability.test.mjs (test fixture, review only)"
+          },
+          {
+            "sev": "info",
+            "what": "hardcoded credential assignment in experiments/oss-evaluation/vendure/tests/fixtures/synthetic-seller.ts (test fixture, review only)"
+          },
+          {
+            "sev": "info",
+            "what": "hardcoded credential assignment in tests/commerce-server/_payments-support.mjs (test fixture, review only)"
+          },
+          {
+            "sev": "info",
+            "what": "hardcoded credential assignment in tests/commerce-server/service.test.mjs (test fixture, review only)"
+          }
+        ]
+      }
+    },
+    {
+      "stage": 5,
+      "name": "github (branch/PR/checks)",
+      "status": "N/A",
+      "detail": "branch fix/bol-parity-20261103 has no PR; 18 uncommitted path(s) in the working tree",
+      "evidence": {
+        "branch": "fix/bol-parity-20261103",
+        "dirty": 18
+      }
+    },
+    {
+      "stage": 6,
+      "name": "deployment (public HTTP)",
+      "status": "SKIPPED BY SCOPE",
+      "detail": "deployment scope: none",
+      "evidence": null
+    },
+    {
+      "stage": 7,
+      "name": "live verification (revision)",
+      "status": "SKIPPED BY SCOPE",
+      "detail": "deployment scope: none",
+      "evidence": null
+    },
+    {
+      "stage": 7.1,
+      "name": "persistence (local restart)",
+      "status": "N/A",
+      "detail": "external app: the gate does not own its process",
+      "evidence": null
+    },
+    {
+      "stage": 7.2,
+      "name": "persistence (live target)",
+      "status": "SKIPPED BY SCOPE",
+      "detail": "no published target in scope",
+      "evidence": null
+    },
+    {
+      "stage": 8,
+      "name": "owner acceptance",
+      "status": "N/A",
+      "detail": "waiting for the owner to look at the build",
+      "evidence": null
+    }
+  ],
+  "artifacts": {
+    "a11y": "C:\\Users\\Zulik\\verification-lab\\out\\borvat-storefront-a11y.json",
+    "perf": "C:\\Users\\Zulik\\verification-lab\\out\\borvat-storefront-perf.json",
+    "e2e": "C:\\Users\\Zulik\\verification-lab\\out\\e2e-report.json"
+  }
+}
