@@ -70,6 +70,12 @@ Two deliberate deviations:
 - `product-view.tsx`: seller comparison table (seller · price · stock) and a related-products row.
 - `routes/index.tsx`: preload for the hero image.
 
+Copy correction found while reviewing the listing capture: cards promised **"Morgen in huis"** and the
+header promised free 30-day returns. Neither is backed by the app — the shipping model computes cost at
+checkout and there is no returns flow. Cards now read *Levertijd in checkout*, the strip reads
+*Retourneren* without the free/days claim, and the same wording was fixed on the legacy PDP route and the
+landing route. The demo label stays, but no delivery date is promised anywhere.
+
 ## 5. Artifacts
 
 | Artifact | Path |
@@ -93,6 +99,7 @@ Two deliberate deviations:
 | Mega menu | "Alle categorieën" is a link, not a panel | only two real categories exist; a panel would be empty |
 | Test banner | 30 px strip above the header | demo data must be labelled |
 | Search x position | 273 vs 343 | shorter wordmark block; width and height match |
+| Delivery messaging | reference promises next-day | ours states the lead time is calculated at checkout, because no carrier data exists |
 
 ## 7. Preview
 
