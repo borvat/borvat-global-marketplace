@@ -126,7 +126,7 @@ export function ShopHeader() {
     <header className="sticky top-0 z-40">
       {/* 32px white utility strip */}
       <div className="brv-util">
-        <div className="brv-shell flex h-8 items-center justify-between gap-4">
+        <div className="brv-shell flex h-8 items-center justify-between gap-4 max-lg:h-7">
           <nav aria-label="Service" className="flex min-w-0 items-center gap-4 overflow-hidden">
             <LocalLink href={link("/discover", reset)}>Cadeau &amp; Inspiratie</LocalLink>
             <LocalLink href={link("/workbench")} className="hidden sm:inline">
@@ -148,6 +148,13 @@ export function ShopHeader() {
       {/* 72px brand bar */}
       <div className="brv-top">
         <div className="brv-shell flex flex-wrap items-center gap-x-4 gap-y-2 py-2.5 lg:h-[72px] lg:flex-nowrap lg:gap-6 lg:py-0">
+          <LocalLink
+            href={link("/discover", reset)}
+            aria-label="Categorieën"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded text-white hover:bg-white/10 lg:hidden"
+          >
+            <Menu aria-hidden className="h-5 w-5" />
+          </LocalLink>
           <LocalLink
             href={link("/discover", reset)}
             data-testid="header-logo"
@@ -207,7 +214,7 @@ export function ShopHeader() {
       </div>
 
       {/* 57px nav row */}
-      <div className="brv-cats">
+      <div className="brv-cats hidden lg:block">
         <div className="brv-shell flex h-[57px] items-center justify-between gap-3">
           <nav aria-label={copy("Hoofdnavigatie")} className="-mx-2 flex min-w-0 items-center overflow-x-auto">
             <LocalLink href={link("/discover", reset)} className="brv-catlink is-primary">
@@ -218,7 +225,7 @@ export function ShopHeader() {
               <LocalLink
                 key={c}
                 href={link("/discover", { ...reset, category: c })}
-                data-testid={`category-tile-${c.toLowerCase()}`}
+                data-testid={`nav-category-${c.toLowerCase()}`}
                 className="brv-catlink"
               >
                 {copy(c)}

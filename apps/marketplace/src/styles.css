@@ -208,6 +208,12 @@
     background: var(--brand);
     color: #fff;
   }
+  @media (max-width: 1023px) {
+    .brv-top .brv-shell {
+      height: auto;
+      padding-block: 6px;
+    }
+  }
   /* the navigation row under the brand bar is white in the reference */
   .brv-cats {
     background: #fff;
