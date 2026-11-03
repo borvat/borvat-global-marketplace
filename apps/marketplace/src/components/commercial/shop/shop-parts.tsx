@@ -112,6 +112,23 @@ export function ProductCard({ p }: { p: CardProduct }) {
   );
 }
 
+
+export function DeliveryLine({ available, compact }: { available: number; compact?: boolean }) {
+  const nl = useShopText();
+  if (available < 1)
+    return (
+      <p className="flex items-center gap-1.5 text-[12.5px] text-destructive">
+        <Truck aria-hidden className="h-3.5 w-3.5" /> {nl.outOfStock}
+      </p>
+    );
+  return (
+    <p className="brv-delivery">
+      <Truck aria-hidden className="h-3.5 w-3.5" />
+      <span>{compact ? nl.deliveryShort : nl.deliveryLong}</span>
+    </p>
+  );
+}
+
 export function AvailabilityBadge({ available, testId }: { available: number; testId?: string }) {
   const nl = useShopText();
   const [label, tone] =
