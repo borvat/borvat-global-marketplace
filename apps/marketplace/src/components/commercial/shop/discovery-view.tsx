@@ -346,8 +346,8 @@ function MarketplaceHome() {
   const sellable = catalog.products.filter((p) => publishedOffers(catalog, p.id).length > 0);
   const hero = sellable[0];
   const tileProducts = sellable.slice(0, 6);
-  const rowOne = sellable.slice(0, 5);
-  const rowTwo = sellable.slice(5, 11);
+  const rowOne = sellable.slice(0, 6);
+  const rowTwo = sellable.slice(6, 12);
   const productHref = (id: string) => link(`/product/${encodeURIComponent(id)}`, { offer: null, sku: null });
   const linkCols: { title: string; items: [string, string][] }[] = [
     {
