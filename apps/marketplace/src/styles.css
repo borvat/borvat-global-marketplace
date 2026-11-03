@@ -960,3 +960,24 @@
   .brv-promo { aspect-ratio: 172 / 229; }
 }
 .brv-promo .cap b { color: #fff; }
+
+/* promo card: picture above, caption below on white, as in the reference */
+.brv-promo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: auto;
+  aspect-ratio: auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+.brv-promo .pic { display: block; aspect-ratio: 172 / 200; overflow: hidden; background: var(--surface-muted); }
+.brv-promo .pic img { height: 100%; width: 100%; object-fit: cover; transition: transform .25s ease; }
+.brv-promo:hover .pic img { transform: scale(1.03); }
+.brv-promo .txt { display: block; padding: 10px 12px 12px; }
+.brv-promo .txt b { display: block; font-size: 13px; font-weight: 700; line-height: 1.25; color: var(--foreground); }
+.brv-promo .txt small { display: block; margin-top: 2px; font-size: 11.5px; color: var(--muted-foreground); }
+.brv-banner h2 { font-size: 46px; }
+@media (max-width: 899px) { .brv-banner h2 { font-size: 24px; } }

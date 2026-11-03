@@ -435,10 +435,12 @@ function MarketplaceHome() {
         <section key={rowIndex} aria-label={`Uitgelicht ${rowIndex + 1}`} className="brv-promos">
           {row.map((promo) => (
             <LocalLink key={promo.title} href={catHref(promo.category)} className="brv-promo">
-              <img src={promo.image} alt="" loading="lazy" />
-              <span className="cap">
-                <b className="block text-[13px]">{promo.title}</b>
-                <span className="text-[11px] font-normal opacity-90">{promo.note}</span>
+              <span className="pic">
+                <img src={promo.image} alt="" loading="lazy" />
+              </span>
+              <span className="txt">
+                <b>{promo.title}</b>
+                <small>{promo.note}</small>
               </span>
             </LocalLink>
           ))}
@@ -465,7 +467,7 @@ function MarketplaceHome() {
                   <b className="flex items-center gap-1.5">
                     <Icon aria-hidden className="h-3.5 w-3.5 text-brand" /> {c.label}
                   </b>
-                  <span className="brv-num">{countIn(c.key)}</span>
+                  <span className="brv-num">{countIn(c.key)} producten</span>
                 </span>
               </LocalLink>
             );
