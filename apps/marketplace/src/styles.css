@@ -901,6 +901,7 @@
   background: #eef3fd;
   color: var(--brand);
 }
+.brv-panel.is-brand small { color: #fff; }
 .brv-panel.is-brand .iconwrap {
   background: rgba(255, 255, 255, 0.18);
   color: #fff;
