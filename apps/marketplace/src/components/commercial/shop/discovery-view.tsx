@@ -339,6 +339,28 @@ function TrustBand() {
   );
 }
 
+
+function GhostCard() {
+  return (
+    <article className="brv-card" aria-hidden>
+      <div className="plate">
+        <div className="aspect-square w-full animate-pulse bg-muted" />
+      </div>
+      <div className="body" aria-hidden>
+        <p className="kicker">&nbsp;</p>
+        <p className="h-[34px] w-full animate-pulse rounded bg-muted" />
+        <p className="mt-1 h-3 w-1/2 animate-pulse rounded bg-muted" />
+        <p className="mt-1 h-3 w-1/3 animate-pulse rounded bg-muted" />
+        <div className="mt-auto pt-1">
+          <p className="h-5 w-1/3 animate-pulse rounded bg-muted" />
+          <p className="mt-1.5 h-3 w-2/3 animate-pulse rounded bg-muted" />
+          <p className="mt-1 h-3 w-1/2 animate-pulse rounded bg-muted" />
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function MarketplaceHome() {
   const copy = useShopCopy();
   const { catalog, link } = useShop();
@@ -451,12 +473,14 @@ function MarketplaceHome() {
       </section>
 
       <section aria-label="Uitgelicht" className="brv-promos">
-        {sellable.slice(0, 6).map((prod) => (
-          <LocalLink key={prod.id} href={productHref(prod.id)} className="brv-promo">
-            {demoMedia(prod.id) ? <img src={demoMedia(prod.id) as string} alt="" loading="lazy" /> : null}
-            <span className="cap">{prod.title}</span>
-          </LocalLink>
-        ))}
+        {sellable.length === 0
+          ? Array.from({ length: 6 }, (_, i) => <div key={i} className="brv-promo animate-pulse" aria-hidden />)
+          : sellable.slice(0, 6).map((prod) => (
+              <LocalLink key={prod.id} href={productHref(prod.id)} className="brv-promo">
+                {demoMedia(prod.id) ? <img src={demoMedia(prod.id) as string} alt="" loading="lazy" /> : null}
+                <span className="cap">{prod.title}</span>
+              </LocalLink>
+            ))}
       </section>
 
       <section className="brv-section">
@@ -467,11 +491,17 @@ function MarketplaceHome() {
           </LocalLink>
         </header>
         <ul aria-label={copy("Productresultaten")} className="brv-row">
-          {rowOne.map((prod) => (
-            <li key={prod.id} className="h-full">
-              <ProductCard p={toCard(prod.id, catalog, link)} />
-            </li>
-          ))}
+          {sellable.length === 0
+            ? Array.from({ length: 6 }, (_, i) => (
+                <li key={i} className="h-full">
+                  <GhostCard />
+                </li>
+              ))
+            : rowOne.map((prod) => (
+                <li key={prod.id} className="h-full">
+                  <ProductCard p={toCard(prod.id, catalog, link)} />
+                </li>
+              ))}
         </ul>
       </section>
 
