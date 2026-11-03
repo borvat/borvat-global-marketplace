@@ -117,7 +117,7 @@ export function ProductView() {
         <span className="max-w-[45ch] truncate text-foreground">{product.title}</span>
       </nav>
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,25rem)]">
-        <div className="space-y-6">
+        <div className="order-1 space-y-6">
           <ProductMedia seed={product.id} title={product.title} size="lg" />
           <section aria-labelledby="desc-h">
             <h2 id="desc-h" className="text-lg font-bold">
@@ -156,7 +156,7 @@ export function ProductView() {
             <MessageSquareOff aria-hidden className="h-4 w-4 shrink-0" /> {nl.noReviews}
           </p>
         </div>
-        <div className="order-first min-w-0 space-y-4 rounded-md border border-border bg-card p-4 lg:sticky lg:top-[152px] lg:order-none">
+        <div className="order-2 min-w-0 space-y-4 rounded-md border border-border bg-card p-4 lg:sticky lg:top-[152px] lg:order-none">
           <h1
             tabIndex={-1}
             className="break-words text-[22px] font-bold leading-snug"
