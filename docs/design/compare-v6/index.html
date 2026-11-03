@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>BORVAT vs bol.com — v6 comparison</title>
+<style>
+  body { margin:0; padding:28px; background:#f4f5f7; font:13px/1.5 Inter, system-ui, sans-serif; color:#14161a; }
+  h1 { font-size:24px; margin:0 0 6px; }
+  h2 { font-size:18px; margin:0 0 4px; }
+  .lede { max-width:100ch; color:#4b5563; }
+  .case { background:#fff; border:1px solid #dcdfe4; border-radius:8px; padding:18px; margin-top:18px; }
+  .src { color:#4b5563; font-size:12.5px; max-width:110ch; }
+  .pair, .mob { display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:start; }
+  figure { margin:0; } figcaption { font-size:12px; font-weight:700; color:#12357f; margin-bottom:6px; }
+  img { width:100%; height:auto; border:1px solid #e5e7eb; border-radius:4px; }
+  .single img { max-width:720px; }
+  .stack { position:relative; overflow:hidden; border:1px solid #e5e7eb; border-radius:4px; max-height:1000px; }
+  .stack img { position:absolute; inset:0; } .stack .base { position:relative; }
+  .stack .top { mix-blend-mode:difference; opacity:.85; }
+  .note { font-size:12px; color:#6b7280; margin:6px 0 0; }
+  table { width:100%; border-collapse:collapse; margin-top:8px; }
+  td, th { text-align:left; padding:6px 10px; border-bottom:1px solid #eef0f3; font-size:12.5px; vertical-align:top; }
+  code { background:#f1f3f6; padding:1px 4px; border-radius:3px; }
+</style></head>
+<body>
+  <h1>BORVAT vs bol.com — comparison pack v6</h1>
+  <p class="lede">Reference fixed first: the earlier snapshot was missing assets. This pack uses
+     snapshot <code>20260507133613</code>, where all 29 images load, captured at 1440×900 and 390×844.
+     BORVAT captures come from <code>fix/bol-parity-20261103</code> at the same viewports.</p>
+  
+    <section class="case">
+      <h2>Startpagina</h2>
+      <p class="src">Reference: Wayback 20260507133613 · https://www.bol.com/nl/nl/ · 29/29 assets loaded. BORVAT: local build, same viewport, full page.
+         The test-notice strip is removed from the BORVAT capture in this sheet only, so alignment is 1:1.
+         Heights differ by content volume: 4116px vs 2478px.</p>
+      <div class="pair">
+        <figure><figcaption>bol.com</figcaption><img src="../reference/bol/bol-complete-1440.png" alt="reference"></figure>
+        <figure><figcaption>BORVAT</figcaption><img src="../visual/v6/borvat-home-1440-align.png" alt="borvat"></figure>
+      </div>
+      <div class="overlay">
+        <div class="stack">
+          <img class="base" src="../reference/bol/bol-complete-1440.png" alt="reference layer">
+          <img class="top" src="../visual/v6/borvat-home-1440-align.png" alt="BORVAT layer">
+        </div>
+        <p class="note">Difference blend: identical pixels are black, differences are bright.
+          The hero band, header bands and container edges should line up.</p>
+      </div>
+    </section>
+        <section class="case">
+          <h2>Categorie</h2>
+          <p class="src">No archived reference for this page (product and cart pages return 404/403 in the
+             Wayback index and the cart requires a session). Shown alone, on the same measured system.</p>
+          <div class="single"><img src="../visual/v6/borvat-listing-1440-align.png" alt="BORVAT Categorie"></div>
+        </section>
+        <section class="case">
+          <h2>Product</h2>
+          <p class="src">No archived reference for this page (product and cart pages return 404/403 in the
+             Wayback index and the cart requires a session). Shown alone, on the same measured system.</p>
+          <div class="single"><img src="../visual/v6/borvat-pdp-1440-align.png" alt="BORVAT Product"></div>
+        </section>
+        <section class="case">
+          <h2>Mandje</h2>
+          <p class="src">No archived reference for this page (product and cart pages return 404/403 in the
+             Wayback index and the cart requires a session). Shown alone, on the same measured system.</p>
+          <div class="single"><img src="../visual/v6/borvat-cart-1440-align.png" alt="BORVAT Mandje"></div>
+        </section>
+  
+<section class="case">
+  <h2>Mobile 390</h2>
+  <p class="src">Reference 390×844 and BORVAT 390×844, full page, test strip removed from BORVAT.</p>
+  <div class="mob">
+    <figure><figcaption>bol.com</figcaption><img src="../reference/bol/bol-complete-390.png" alt="ref 390"></figure>
+    <figure><figcaption>BORVAT</figcaption><img src="../visual/v6/borvat-home-390-align.png" alt="borvat 390"></figure>
+  </div>
+</section>
+  <section class="case">
+    <h2>Remaining differences</h2>
+    <table>
+      <tr><th>Area</th><th>Difference</th><th>Reason</th></tr>
+      <tr><td>Promo carousels</td><td>Reference runs two image carousels of campaign tiles; BORVAT shows one service panel row</td><td>Campaign content and discounts would be invented; panels carry real destinations instead</td></tr>
+      <tr><td>Category tiles</td><td>Reference shows six categories; BORVAT shows two categories plus "all products"</td><td>Only two categories exist in the catalogue</td></tr>
+      <tr><td>Assortment</td><td>Six-card row then two cards plus a panel</td><td>Nine articles; composition sized to the real content</td></tr>
+      <tr><td>Photography</td><td>Two photos do not represent their article</td><td>Commons-licensed images only</td></tr>
+      <tr><td>Type</td><td>Reference uses bol's own Product/Graphik faces</td><td>Not licensed; Inter at the measured sizes and heavier weights</td></tr>
+      <tr><td>Ratings and badges</td><td>Reference shows review counts and campaign badges</td><td>No review or campaign data exists</td></tr>
+      <tr><td>Product and cart pages</td><td>No reference capture</td><td>Not archived; built on the same measured system</td></tr>
+    </table>
+  </section>
+</body></html>

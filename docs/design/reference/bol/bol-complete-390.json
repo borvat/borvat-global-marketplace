@@ -1,0 +1,463 @@
+{
+ "viewportW": 390,
+ "scrollH": 4069,
+ "bodyBg": "rgba(0, 0, 0, 0)",
+ "mainBg": "rgba(0, 0, 0, 0)",
+ "header": {
+  "x": 0,
+  "y": 0,
+  "w": 390,
+  "h": 144,
+  "bg": "rgba(0, 0, 0, 0)",
+  "rad": "0px",
+  "fs": "14px",
+  "fw": "400",
+  "lh": "21px",
+  "ff": "graphik, arial, helvetica, san"
+ },
+ "headerRows": [
+  {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 144,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  }
+ ],
+ "searchForm": {
+  "x": 16,
+  "y": 80,
+  "w": 358,
+  "h": 48,
+  "bg": "rgba(0, 0, 0, 0)",
+  "rad": "0px",
+  "fs": "14px",
+  "fw": "400",
+  "lh": "21px",
+  "ff": "graphik, arial, helvetica, san"
+ },
+ "searchInput": {
+  "x": 16,
+  "y": 80,
+  "w": 310,
+  "h": 48,
+  "bg": "rgba(0, 0, 0, 0)",
+  "rad": "0px",
+  "fs": "14px",
+  "fw": "400",
+  "lh": "21px",
+  "ff": "graphik, arial, helvetica, san"
+ },
+ "nav": {
+  "x": 0,
+  "y": 0,
+  "w": 0,
+  "h": 0,
+  "bg": "rgba(0, 0, 0, 0)",
+  "rad": "0px",
+  "fs": "14px",
+  "fw": "400",
+  "lh": "21px",
+  "ff": "graphik, arial, helvetica, san"
+ },
+ "navLinks": [
+  {
+   "t": "Alles in boeken",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Top 10's",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Nieuwe Boeken",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Aanbiedingen",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Engelse Boeken",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Kinderboeken",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Te reserveren",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Literatuur & Romans",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Thrillers & Spanning",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Non-fictie",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Kinderboeken",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  },
+  {
+   "t": "Koken, Eten & Drinke",
+   "x": 0,
+   "y": 0,
+   "w": 0,
+   "h": 0,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san"
+  }
+ ],
+ "sections": [
+  {
+   "x": 0,
+   "y": 144,
+   "w": 390,
+   "h": 309,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san",
+   "t": "Verras je moeder met de mooiste cadeaus"
+  },
+  {
+   "x": 0,
+   "y": 485,
+   "w": 390,
+   "h": 207,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san",
+   "t": "Sla deze carousel over De leukste cadeaus voor mam"
+  },
+  {
+   "x": 0,
+   "y": 724,
+   "w": 390,
+   "h": 245,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san",
+   "t": "Sla deze carousel over Tot 30% korting* op LEGO Mo"
+  },
+  {
+   "x": 0,
+   "y": 1001,
+   "w": 390,
+   "h": 238,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san",
+   "t": "Populaire categorieën Sla deze carousel over Telef"
+  },
+  {
+   "x": 0,
+   "y": 1271,
+   "w": 390,
+   "h": 329,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san",
+   "t": "Topdeals Sla deze carousel over USAopoly - Hues an"
+  },
+  {
+   "x": 0,
+   "y": 1633,
+   "w": 390,
+   "h": 329,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san",
+   "t": "Bekijk onze Topkeuzes Sla deze carousel over Prism"
+  },
+  {
+   "x": 0,
+   "y": 1994,
+   "w": 390,
+   "h": 1137,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, san",
+   "t": "Ontdek alles bij bol Boeken Muziek, Films & Gaming"
+  }
+ ],
+ "h1": {
+  "x": -1,
+  "y": 143,
+  "w": 1,
+  "h": 1,
+  "bg": "rgba(0, 0, 0, 0)",
+  "rad": "0px",
+  "fs": "14px",
+  "fw": "400",
+  "lh": "21px",
+  "ff": "graphik, arial, helvetica, san"
+ },
+ "h2s": [
+  {
+   "x": 32,
+   "y": 385,
+   "w": 262,
+   "h": 44,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "18px",
+   "fw": "700",
+   "lh": "22px",
+   "ff": "produkt, arial, helvetica, san",
+   "t": "Verras je moedermet de mooiste"
+  },
+  {
+   "x": 16,
+   "y": 1001,
+   "w": 358,
+   "h": 30,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "20px",
+   "fw": "300",
+   "lh": "30px",
+   "ff": "produkt, arial, helvetica, san",
+   "t": "Populaire categorieën"
+  },
+  {
+   "x": 16,
+   "y": 1271,
+   "w": 358,
+   "h": 30,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "20px",
+   "fw": "300",
+   "lh": "30px",
+   "ff": "produkt, arial, helvetica, san",
+   "t": "Topdeals"
+  },
+  {
+   "x": 16,
+   "y": 1633,
+   "w": 358,
+   "h": 30,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "20px",
+   "fw": "300",
+   "lh": "30px",
+   "ff": "produkt, arial, helvetica, san",
+   "t": "Bekijk onze Topkeuzes"
+  },
+  {
+   "x": 16,
+   "y": 1994,
+   "w": 358,
+   "h": 30,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "20px",
+   "fw": "300",
+   "lh": "30px",
+   "ff": "produkt, arial, helvetica, san",
+   "t": "Ontdek alles bij bol"
+  },
+  {
+   "x": 16,
+   "y": 3211,
+   "w": 159,
+   "h": 20,
+   "bg": "rgba(0, 0, 0, 0)",
+   "rad": "0px",
+   "fs": "18px",
+   "fw": "700",
+   "lh": "20px",
+   "ff": "produkt, arial, helvetica, san",
+   "t": "Service & contact"
+  }
+ ],
+ "typos": {
+  "h1": {
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, sans-serif"
+  },
+  "h2": {
+   "fs": "18px",
+   "fw": "700",
+   "lh": "22px",
+   "ff": "produkt, arial, helvetica, sans-serif"
+  },
+  "h3": {
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, sans-serif"
+  },
+  "p": {
+   "fs": "18px",
+   "fw": "400",
+   "lh": "22px",
+   "ff": "produkt, arial, helvetica, sans-serif"
+  },
+  "a": {
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, sans-serif"
+  },
+  "span": {
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, sans-serif"
+  },
+  "button": {
+   "fs": "14px",
+   "fw": "400",
+   "lh": "21px",
+   "ff": "graphik, arial, helvetica, sans-serif"
+  }
+ },
+ "images": {
+  "total": 29,
+  "loaded": 29
+ },
+ "fonts": [
+  "produkt, arial, helvetica, sans-serif",
+  "graphik, arial, helvetica, sans-serif"
+ ]
+}
