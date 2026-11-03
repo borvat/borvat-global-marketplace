@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>BORVAT vs bol.com — v7</title>
+<style>
+  body { margin:0; padding:24px; background:#f4f5f7; font:13px/1.5 Inter, system-ui, sans-serif; color:#14161a; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  h2 { font-size:17px; margin:22px 0 6px; }
+  .lede { max-width:105ch; color:#4b5563; margin:0 0 12px; }
+  .frame { background:#fff; border:1px solid #dcdfe4; border-radius:8px; padding:14px; }
+  .pair { display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:start; }
+  figure { margin:0; } figcaption { font-size:12px; font-weight:700; color:#12357f; margin-bottom:6px; }
+  img { width:100%; height:auto; border:1px solid #e5e7eb; border-radius:4px; display:block; }
+  .stack { position:relative; overflow:hidden; max-height:1100px; border:1px solid #e5e7eb; border-radius:4px; }
+  .stack img { position:absolute; inset:0; } .stack .base { position:relative; }
+  .stack .top { mix-blend-mode:difference; opacity:.85; }
+  .note { font-size:12px; color:#6b7280; margin:6px 0 0; }
+</style></head>
+<body>
+  <h1>BORVAT vs bol.com — round 3</h1>
+  <p class="lede">Reference: archive snapshot 20260507133613, all 29 assets loaded, 1440×900 and 390×844.
+     BORVAT: <code>fix/bol-parity-20261103</code>, same viewports, test strip removed from the BORVAT
+     captures so alignment is 1:1. Full length, nothing cropped.</p>
+
+  <h2>First screen</h2>
+  <div class="frame"><div class="pair">
+    <figure><figcaption>bol.com</figcaption><img src="../reference/bol/bol-complete-1440.png" alt="reference"></figure>
+    <figure><figcaption>BORVAT</figcaption><img src="../visual/v7/borvat-home-1440-align.png" alt="borvat"></figure>
+  </div></div>
+
+  <h2>Whole page</h2>
+  <div class="frame"><div class="pair">
+    <figure><figcaption>bol.com — 4116px</figcaption><img src="../reference/bol/bol-complete-1440.png" alt="reference full"></figure>
+    <figure><figcaption>BORVAT — 2846px</figcaption><img src="../visual/v7/borvat-home-1440-align.png" alt="borvat full"></figure>
+  </div></div>
+
+  <h2>Overlay (difference)</h2>
+  <div class="frame">
+    <div class="stack">
+      <img class="base" src="../reference/bol/bol-complete-1440.png" alt="reference layer">
+      <img class="top" src="../visual/v7/borvat-home-1440-align.png" alt="BORVAT layer">
+    </div>
+    <p class="note">Identical pixels render black. Header bands, container edges and the banner start
+       should line up; content below diverges because the reference page is longer.</p>
+  </div>
+
+  <h2>Mobile 390</h2>
+  <div class="frame"><div class="pair">
+    <figure><figcaption>bol.com</figcaption><img src="../reference/bol/bol-complete-390.png" alt="reference mobile"></figure>
+    <figure><figcaption>BORVAT</figcaption><img src="../visual/v7/borvat-home-390-align.png" alt="borvat mobile"></figure>
+  </div></div>
+</body></html>
