@@ -1,7 +1,8 @@
-import { useShopCopy, useShopText } from "./i18n";
+import { useShopCopy, useShopText, useShopMoney } from "./i18n";
 import { useEffect, useId, useState, type FormEvent, type KeyboardEvent } from "react";
 import { Search, ShoppingCart, Heart, User, Truck, RotateCcw, Package, ChevronDown } from "lucide-react";
 import { normalizeSearch } from "../../../lib/commercial/demo-adapter";
+import { SHIPPING_METHODS } from "../../../lib/commercial/shop-pricing";
 import { LocalLink, useShop } from "./shop-context";
 import { nl } from "./nl";
 
@@ -53,6 +54,9 @@ function SearchBar() {
         {nl.searchLabel}
       </label>
       <div className="brv-search">
+        <span className="scope">
+          Alle categorieën <ChevronDown aria-hidden className="ml-1 h-3 w-3" />
+        </span>
         <input
           id="buyer-search"
           data-testid="search-input"
@@ -85,7 +89,7 @@ function SearchBar() {
           role="listbox"
           aria-label={nl.suggestions}
           data-testid="search-suggestions"
-          className="absolute inset-x-0 top-full z-50 mt-1 overflow-hidden rounded-md border border-border bg-popover text-popover-foreground shadow-lg"
+          className="absolute inset-x-0 top-full z-50 mt-1 overflow-hidden rounded border border-border bg-popover shadow-lg"
         >
           {suggestions.map((p, i) => (
             <li
@@ -94,7 +98,7 @@ function SearchBar() {
               role="option"
               aria-selected={i === active}
               data-testid={`search-suggestion-${p.id}`}
-              className={`cursor-pointer px-3 py-2 text-sm ${i === active ? "bg-muted" : "hover:bg-muted"}`}
+              className={`cursor-pointer px-3 py-2 text-[13px] ${i === active ? "bg-muted" : "hover:bg-muted"}`}
               onMouseDown={(event) => {
                 event.preventDefault();
                 setOpen(false);
@@ -102,7 +106,7 @@ function SearchBar() {
               }}
             >
               <span className="font-medium">{p.title}</span>
-              <span className="ml-2 text-xs text-muted-foreground">
+              <span className="ml-2 text-[11.5px] text-muted-foreground">
                 {copy("in")} {copy(p.category)}
               </span>
             </li>
@@ -116,19 +120,21 @@ function SearchBar() {
 export function ShopHeader() {
   const copy = useShopCopy();
   const nl = useShopText();
+  const formatEur = useShopMoney();
   const { snapshot, route, link, navigate } = useShop();
   const count = snapshot.cart.reduce((sum, line) => sum + line.quantity, 0);
   const reset = { q: null, category: null, min: null, max: null, stock: null, sort: null };
+  const freeFrom = formatEur(SHIPPING_METHODS.standaard.freeFromCents);
   return (
     <header className="sticky top-0 z-40">
       <div className="brv-util">
         <div className="brv-shell flex h-9 items-center justify-between gap-4">
-          <div className="flex min-w-0 items-center gap-4 overflow-hidden">
+          <div className="flex min-w-0 items-center gap-5 overflow-hidden">
             <span className="hidden items-center gap-1.5 sm:flex">
-              <Truck aria-hidden className="h-3.5 w-3.5" /> Gratis verzending vanaf € 29,-
+              <Truck aria-hidden className="h-3.5 w-3.5" /> Gratis bezorgd vanaf {freeFrom}
             </span>
             <span className="hidden items-center gap-1.5 md:flex">
-              Vandaag besteld, morgen in huis*
+              {nl.deliveryLong}
             </span>
             <span className="flex items-center gap-1.5">
               <RotateCcw aria-hidden className="h-3.5 w-3.5" /> Gratis retourneren
@@ -140,45 +146,36 @@ export function ShopHeader() {
         </div>
       </div>
 
-      <div className="brv-topbar">
-        <div className="brv-shell flex flex-wrap items-center gap-x-3 gap-y-2 py-2.5 lg:flex-nowrap lg:gap-8">
+      <div className="brv-top">
+        <div className="brv-shell flex flex-wrap items-center gap-x-4 gap-y-2 py-2.5 lg:flex-nowrap lg:gap-7">
           <LocalLink
             href={link("/discover", reset)}
             data-testid="header-logo"
-            aria-label={copy("BORVAT – naar de startpagina")}
-            className="shrink-0 text-[26px] font-black tracking-[-0.03em] text-foreground"
+            aria-label="BORVAT — naar de startpagina"
+            className="shrink-0 text-[25px] font-black tracking-[-0.03em]"
           >
             BOR<span className="text-primary">V</span>AT
-            <span className="ml-1.5 hidden align-super text-[10px] font-semibold tracking-normal text-muted-foreground lg:inline">
-              MARKETPLACE
-            </span>
           </LocalLink>
 
-          <div className="order-last w-full lg:order-none lg:max-w-[640px] lg:flex-1">
+          <div className="order-last w-full lg:order-none lg:max-w-[620px] lg:flex-1">
             <SearchBar />
           </div>
 
-          <div className="ml-auto flex shrink-0 items-center gap-1">
-            <LocalLink
-              href={link("/account")}
-              className="hidden items-center gap-2 rounded px-2.5 py-2 text-[13px] hover:bg-muted sm:flex"
-            >
+          <div className="ml-auto flex shrink-0 items-center gap-0.5">
+            <LocalLink href={link("/account")} className="hidden items-center gap-2 rounded px-2.5 py-2 text-[12.5px] hover:bg-muted sm:flex">
               <User aria-hidden className="h-[18px] w-[18px]" />
-              <span className="hidden lg:inline">Inloggen</span>
+              <span className="hidden xl:inline">Inloggen</span>
             </LocalLink>
             <LocalLink
               href={link("/requests")}
               data-testid="nav-orders"
               aria-label={nl.orders}
-              className="flex items-center gap-2 rounded px-2.5 py-2 text-[13px] hover:bg-muted"
+              className="flex items-center gap-2 rounded px-2.5 py-2 text-[12.5px] hover:bg-muted"
             >
               <Package aria-hidden className="h-[18px] w-[18px]" />
               <span className="hidden xl:inline">Bestellingen</span>
             </LocalLink>
-            <LocalLink
-              href={link("/account")}
-              className="hidden items-center gap-2 rounded px-2.5 py-2 text-[13px] hover:bg-muted md:flex"
-            >
+            <LocalLink href={link("/account")} className="hidden items-center gap-2 rounded px-2.5 py-2 text-[12.5px] hover:bg-muted md:flex">
               <Heart aria-hidden className="h-[18px] w-[18px]" />
               <span className="hidden xl:inline">Verlanglijst</span>
             </LocalLink>
@@ -186,7 +183,7 @@ export function ShopHeader() {
               href={link("/cart")}
               data-testid="nav-cart"
               aria-label={`${nl.cart} (${count})`}
-              className="flex items-center gap-2 rounded px-2.5 py-2 text-[13px] font-medium hover:bg-muted"
+              className="flex items-center gap-2 rounded px-2.5 py-2 text-[12.5px] font-semibold hover:bg-muted"
             >
               <span className="relative">
                 <ShoppingCart aria-hidden className="h-[19px] w-[19px]" />
@@ -203,10 +200,10 @@ export function ShopHeader() {
         </div>
       </div>
 
-      <div className="brv-catrow">
-        <div className="brv-shell flex items-center justify-between gap-4">
+      <div className="brv-cats">
+        <div className="brv-shell flex items-center justify-between gap-3">
           <nav aria-label={copy("Hoofdnavigatie")} className="-mx-2 flex min-w-0 items-center overflow-x-auto">
-            <LocalLink href={link("/discover", reset)} className="brv-catlink font-medium">
+            <LocalLink href={link("/discover", reset)} className="brv-catlink font-semibold">
               <ChevronDown aria-hidden className="h-3.5 w-3.5" />
               Alle categorieën
             </LocalLink>
@@ -221,11 +218,11 @@ export function ShopHeader() {
                 {copy(c)}
               </LocalLink>
             ))}
-            <LocalLink href={link("/discover", { ...reset, sort: "price_asc" })} className="brv-catlink">
+            <LocalLink href={link("/discover", { ...reset, sort: "price" })} className="brv-catlink">
               Aanbiedingen
             </LocalLink>
           </nav>
-          <div className="hidden items-center gap-3 text-[12.5px] text-muted-foreground lg:flex">
+          <div className="hidden items-center gap-3 text-[12px] text-muted-foreground lg:flex">
             <span>Zakelijk</span>
             <span>Cadeaukaart</span>
             <label htmlFor="buyer-country" className="sr-only">
@@ -234,7 +231,7 @@ export function ShopHeader() {
             <select
               id="buyer-country"
               data-testid="country-select"
-              className="h-8 rounded border border-border bg-white px-1.5 text-[12.5px] text-foreground"
+              className="h-7 rounded border border-border px-1.5 text-[12px]"
               value={route.country}
               onChange={(event) => navigate(link(route.path, { country: event.target.value }), true)}
             >
@@ -247,7 +244,7 @@ export function ShopHeader() {
             <select
               id="buyer-language"
               data-testid="language-select"
-              className="h-8 rounded border border-border bg-white px-1.5 text-[12.5px] text-foreground"
+              className="h-7 rounded border border-border px-1.5 text-[12px]"
               value={route.language}
               onChange={(e) =>
                 navigate(link(route.path, { lang: e.target.value === "nl" ? null : e.target.value }), true)
@@ -274,19 +271,19 @@ export function ShopFooter() {
     { title: "Voorwaarden", items: ["Algemene voorwaarden", "Privacy", "Cookies", "Toegankelijkheid"] },
   ];
   return (
-    <footer className="mt-12 bg-ink text-ink-foreground">
-      <div className="brv-shell grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="space-y-3">
+    <footer className="mt-10 bg-ink text-ink-foreground">
+      <div className="brv-shell grid gap-8 py-9 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="space-y-2.5">
           <p className="text-xl font-black tracking-[-0.03em]">
             BOR<span className="text-primary">V</span>AT
           </p>
-          <p className="max-w-xs text-[13px] leading-relaxed text-white/70">{nl.footer}</p>
-          <p className="text-[12px] text-white/50">{nl.footerNote}</p>
+          <p className="max-w-xs text-[12.5px] leading-relaxed text-white/70">{nl.footer}</p>
+          <p className="text-[11.5px] text-white/50">{nl.footerNote}</p>
         </div>
         {columns.map((col) => (
           <div key={col.title}>
-            <p className="mb-2 text-[13px] font-semibold">{col.title}</p>
-            <ul className="space-y-1.5 text-[13px] text-white/70">
+            <p className="mb-2 text-[12.5px] font-semibold">{col.title}</p>
+            <ul className="space-y-1.5 text-[12.5px] text-white/70">
               {col.items.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -295,7 +292,7 @@ export function ShopFooter() {
         ))}
       </div>
       <div className="border-t border-white/10">
-        <div className="brv-shell flex flex-wrap items-center justify-between gap-3 py-3 text-[12px] text-white/60">
+        <div className="brv-shell flex flex-wrap items-center justify-between gap-3 py-3 text-[11.5px] text-white/60">
           <span>© {new Date().getFullYear()} BORVAT · {nl.tagline}</span>
           <LocalLink href={link("/workbench")} data-testid="footer-workbench" className="hover:text-white">
             {nl.workbench}

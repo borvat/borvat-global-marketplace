@@ -210,31 +210,43 @@ export function ProductView() {
             </div>
           )}
           {offers.length > 1 && (
-            <fieldset className="min-w-0 space-y-2">
-              <legend className="mb-1 text-sm font-semibold">{copy("Kies een verkoper")}</legend>
-              {offers.map((o) => (
-                <label
-                  key={o.id}
-                  className="flex cursor-pointer items-center justify-between gap-3 rounded border border-border p-2.5 has-[:checked]:border-primary has-[:checked]:bg-accent/50"
-                >
-                  <span className="flex items-center gap-3">
+            <div className="mt-3">
+              <p className="mb-1.5 text-[13px] font-bold">{copy("Kies een verkoper")}</p>
+              <div className="overflow-hidden rounded border border-border">
+                <div className="brv-offer-row brv-offer-head" aria-hidden>
+                  <span />
+                  <span>Verkoper</span>
+                  <span className="p">Prijs</span>
+                  <span className="d">Voorraad</span>
+                </div>
+                {offers.map((o) => (
+                  <label
+                    key={o.id}
+                    className="brv-offer-row"
+                    data-selected={selected?.id === o.id}
+                  >
                     <input
                       type="radio"
                       name="buyer-offer"
                       value={o.id}
                       data-testid={`offer-radio-${o.id}`}
                       checked={selected?.id === o.id}
-                      onChange={() =>
-                        navigate(link(route.path, { offer: o.id, sku: o.skuId }), true)
-                      }
-                      className="h-4 w-4 accent-[var(--accent)]"
+                      onChange={() => navigate(link(route.path, { offer: o.id, sku: o.skuId }), true)}
+                      className="h-4 w-4"
                     />
-                    <span className="text-sm font-medium">{o.sellerName}</span>
-                  </span>
-                  <span className="font-bold">{formatEur(o.priceCents)}</span>
-                </label>
-              ))}
-            </fieldset>
+                    <span className="who">
+                      {o.sellerName}
+                      <small>{nl.deliveryShort} · {copy("demo verkoper")}</small>
+                    </span>
+                    <span className="p">{formatEur(o.priceCents)}</span>
+                    <span className="d">{o.availabilityExample} st.</span>
+                  </label>
+                ))}
+              </div>
+              <p className="mt-1.5 text-[11.5px] text-muted-foreground">
+                Bezorgkosten worden één keer voor de bestelling berekend; ze verschillen hier niet per verkoper.
+              </p>
+            </div>
           )}
           {!offers.length && (
             <p role="status" data-testid="no-offer">
@@ -312,6 +324,38 @@ export function ProductView() {
           <ShippingInfo />
         </div>
       </div>
+
+      <section aria-labelledby="related-h" className="brv-shell mt-6 border-t border-border pt-4">
+        <h2 id="related-h" className="text-[18px] font-bold">Gerelateerd in {copy(product.category)}</h2>
+        <ul className="mt-3 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+          {catalog.products
+            .filter((x) => x.id !== product.id && x.category === product.category)
+            .slice(0, 4)
+            .map((x) => {
+              const offer = publishedOffers(catalog, x.id)[0];
+              return (
+                <li key={x.id} className="h-full">
+                  <article className="brv-card">
+                    <LocalLink href={link(`/product/${encodeURIComponent(x.id)}`, { offer: null, sku: null })} className="plate">
+                      <ProductMedia seed={x.id} title={x.title} size="sm" />
+                    </LocalLink>
+                    <div className="body">
+                      <LocalLink href={link(`/product/${encodeURIComponent(x.id)}`, { offer: null, sku: null })} className="brv-title-link">
+                        {x.title}
+                      </LocalLink>
+                      <p className="brv-price mt-auto text-[15px]">
+                        {offer ? formatEur(offer.priceCents) : copy("Prijs op aanvraag")}
+                      </p>
+                      <p className="brv-seller">
+                        Verkocht door <b>{offer?.sellerName ?? "BORVAT"}</b>
+                      </p>
+                    </div>
+                  </article>
+                </li>
+              );
+            })}
+        </ul>
+      </section>
     </article>
   );
 }
