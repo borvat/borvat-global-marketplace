@@ -210,13 +210,13 @@ function LegacyProductPage() {
 
           <div className="space-y-2 text-sm mb-5">
             <div className="flex items-center gap-2">
-              <Truck className="w-4 h-4 text-brand" /> Voor 23:59 besteld, morgen in huis
+              <Truck className="w-4 h-4 text-brand" /> Levertijd en bezorgkosten bij het afrekenen
             </div>
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-brand" /> Veilig betalen
             </div>
             <div className="flex items-center gap-2">
-              <RotateCcw className="w-4 h-4 text-brand" /> 30 dagen retour
+              <RotateCcw className="w-4 h-4 text-brand" /> Retour volgens voorwaarden
             </div>
             <div className={p.stock > 0 ? "text-success" : "text-destructive"}>
               {p.stock > 0 ? `✓ Op voorraad (${p.stock} beschikbaar)` : "Uitverkocht"}

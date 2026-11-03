@@ -206,7 +206,7 @@ export function ProductView() {
                 testId="product-availability"
               />
               <DeliveryLine available={selected.availabilityExample} />
-              <p className="text-[12.5px] text-muted-foreground">{copy("Gratis retourneren binnen 30 dagen.")}</p>
+              <p className="text-[12.5px] text-muted-foreground">{copy("Retourneren volgens de voorwaarden van BORVAT.")}</p>
             </div>
           )}
           {offers.length > 1 && (

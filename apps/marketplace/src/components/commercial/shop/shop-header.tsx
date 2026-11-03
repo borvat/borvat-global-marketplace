@@ -141,7 +141,7 @@ export function ShopHeader() {
           </nav>
           <nav aria-label="Hulp" className="flex shrink-0 items-center gap-4">
             <span className="hidden items-center gap-1.5 lg:inline-flex">
-              <RotateCcw aria-hidden className="h-3.5 w-3.5" /> Gratis retourneren
+              <RotateCcw aria-hidden className="h-3.5 w-3.5" /> Retourneren
             </span>
             <LocalLink href={link("/requests")}>Klantenservice</LocalLink>
           </nav>
