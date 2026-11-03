@@ -97,7 +97,7 @@ function LegacyHome() {
         {[
           { icon: Truck, label: "Gratis verzending vanaf €20" },
           { icon: ShieldCheck, label: "Veilig achteraf betalen" },
-          { icon: RotateCcw, label: "30 dagen retour" },
+          { icon: RotateCcw, label: "Retour volgens voorwaarden" },
         ].map((f, i) => (
           <div
             key={i}
