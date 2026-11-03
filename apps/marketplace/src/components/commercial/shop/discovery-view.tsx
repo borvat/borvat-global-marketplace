@@ -15,6 +15,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { selectDemoProducts } from "../../../lib/commercial/demo-adapter";
+import { demoMedia } from "./demo-media";
 import { fromPrice, LocalLink, productAvailability, publishedOffers, useShop } from "./shop-context";
 import {
   ProductCard,
@@ -360,22 +361,28 @@ function MarketplaceHome() {
     <div className="space-y-5">
       <UspStrip />
 
-      <section className="brv-shell grid gap-3 lg:grid-cols-[1.55fr_1fr]">
-        <div className="flex flex-col justify-between rounded-md bg-primary p-6 text-primary-foreground sm:p-8">
-          <div>
-            <p className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-white/80">
+      <section className="brv-shell grid gap-3 lg:grid-cols-[1.45fr_1fr]">
+        <div className="relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-md bg-primary p-6 text-primary-foreground sm:p-8">
+          <img
+            src="/demo/prd_001.jpg"
+            alt=""
+            aria-hidden
+            className="absolute inset-y-0 right-0 hidden h-full w-[46%] object-cover opacity-90 lg:block"
+          />
+          <div className="relative max-w-[34ch]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/75">
               {copy("Testcollectie")}
             </p>
-            <h1 tabIndex={-1} className="mt-2 max-w-[22ch] text-[26px] font-black leading-[1.15] sm:text-[34px]">
+            <h1 tabIndex={-1} className="mt-2 text-[26px] font-black leading-[1.12] sm:text-[34px]">
               Wonen en tuin, van verkopers die je kunt vergelijken
             </h1>
-            <p className="mt-3 max-w-[46ch] text-[13.5px] leading-relaxed text-white/85">
+            <p className="mt-3 text-[13.5px] leading-relaxed text-white/85">
               {copy(
                 "Vergelijk verkopers, kies je variant en probeer het volledige bestelproces — zonder te betalen.",
               )}
             </p>
           </div>
-          <div className="mt-6 flex flex-wrap items-center gap-3">
+          <div className="relative mt-6 flex flex-wrap items-center gap-3">
             <LocalLink href={link("/discover", reset)} className="brv-cta bg-white text-primary hover:bg-white/90">
               {nl.allProducts}
             </LocalLink>
@@ -386,17 +393,26 @@ function MarketplaceHome() {
         <div className="grid grid-cols-2 gap-3">
           {CATEGORIES.map((c) => {
             const Icon = categoryIcon[c];
+            const first = catalog.products.find((p) => p.category === c);
             return (
               <LocalLink
                 key={c}
                 href={link("/discover", { ...reset, category: c })}
                 data-testid={`category-tile-${c.toLowerCase()}`}
-                className="brv-card flex flex-col justify-between p-4 hover:border-primary"
+                className="brv-card group relative flex flex-col justify-end overflow-hidden p-0 hover:border-primary"
               >
-                <Icon aria-hidden className="h-6 w-6 text-primary" />
-                <div>
-                  <p className="mt-6 text-[15px] font-bold">{copy(c)}</p>
-                  <p className="brv-num text-[12px] text-muted-foreground">
+                {first ? (
+                  <img
+                    src={demoMedia(first.id) ?? ""}
+                    alt=""
+                    aria-hidden
+                    className="absolute inset-0 h-full w-full object-cover opacity-95 transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
+                ) : null}
+                <div className="relative bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 text-white">
+                  <Icon aria-hidden className="mb-6 h-5 w-5" />
+                  <p className="text-[14.5px] font-bold">{copy(c)}</p>
+                  <p className="brv-num text-[11.5px] text-white/80">
                     {catalog.products.filter((p) => p.category === c).length} producten
                   </p>
                 </div>
@@ -404,17 +420,17 @@ function MarketplaceHome() {
             );
           })}
           <LocalLink href={link("/discover", { ...reset, stock: "1" })} className="brv-card flex flex-col justify-between p-4 hover:border-primary">
-            <Truck aria-hidden className="h-6 w-6 text-primary" />
+            <Truck aria-hidden className="h-5 w-5 text-primary" />
             <div>
-              <p className="mt-6 text-[15px] font-bold">Direct leverbaar</p>
-              <p className="text-[12px] text-muted-foreground">Vandaag besteld, morgen in huis</p>
+              <p className="mt-5 text-[14px] font-bold">Direct leverbaar</p>
+              <p className="text-[11.5px] text-muted-foreground">Vandaag besteld, morgen in huis</p>
             </div>
           </LocalLink>
           <LocalLink href={link("/workbench")} className="brv-card flex flex-col justify-between p-4 hover:border-primary">
-            <Store aria-hidden className="h-6 w-6 text-primary" />
+            <Store aria-hidden className="h-5 w-5 text-primary" />
             <div>
-              <p className="mt-6 text-[15px] font-bold">Verkoop op BORVAT</p>
-              <p className="text-[12px] text-muted-foreground">Beheer je aanbod in de werkbank</p>
+              <p className="mt-5 text-[14px] font-bold">Verkoop op BORVAT</p>
+              <p className="text-[11.5px] text-muted-foreground">Beheer je aanbod in de werkbank</p>
             </div>
           </LocalLink>
         </div>

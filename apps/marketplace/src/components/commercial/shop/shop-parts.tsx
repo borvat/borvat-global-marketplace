@@ -3,6 +3,7 @@ import { Minus, Plus, Star, Truck, Store, ImageOff, FlaskConical, Heart } from "
 import { formatEur, productImage } from "../../../lib/format";
 import { orderTotals, type ShippingMethodId } from "../../../lib/commercial/shop-pricing";
 import { LocalLink } from "./shop-context";
+import { demoMedia } from "./demo-media";
 import { nl } from "./nl";
 
 export type CardProduct = {
@@ -25,37 +26,45 @@ export function ProductMedia({
   seed,
   title,
   size = "md",
+  priority,
 }: {
   seed: string;
   title: string;
   size?: "sm" | "md" | "lg";
+  priority?: boolean;
 }) {
   const nl = useShopText();
+  const photo = demoMedia(seed);
   const box =
     size === "sm" ? "aspect-square" : size === "md" ? "aspect-square" : "aspect-[4/5] max-h-[560px]";
-  // No genuine product photography exists for this catalogue. Rather than dressing
-  // a generated pattern up as a product, the slot shows a neutral field and says so.
   return (
     <figure className={`brv-card-media relative ${box} w-full`}>
-      <div
-        aria-hidden
-        className="flex h-full w-full flex-col items-center justify-center gap-2 bg-surface-muted text-muted-foreground"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(135deg, rgba(20,22,26,0.035) 0 2px, transparent 2px 9px)",
-        }}
-      >
-        <ImageOff className={size === "sm" ? "h-4 w-4" : "h-7 w-7"} />
-        {size !== "sm" && <span className="text-[11px] font-medium">Geen productfoto</span>}
-      </div>
-      {size !== "sm" && (
-        <figcaption className="absolute inset-x-0 bottom-0 flex items-center gap-1.5 bg-white/85 px-2 py-1 text-[10px] leading-tight text-muted-foreground">
-          <ImageOff aria-hidden className="h-3 w-3 shrink-0" />
-          <span className="truncate">{nl.mediaMissing}</span>
+      {photo ? (
+        <img
+          src={photo}
+          alt={title}
+          loading={priority ? "eager" : "lazy"}
+          className="h-full w-full object-cover"
+        />
+      ) : (
+        <div
+          aria-hidden
+          className="flex h-full w-full flex-col items-center justify-center gap-2 bg-surface-muted text-muted-foreground"
+        >
+          <ImageOff className={size === "sm" ? "h-4 w-4" : "h-7 w-7"} />
+          {size !== "sm" && <span className="text-[11px] font-medium">Geen productfoto</span>}
+        </div>
+      )}
+      {!photo && size !== "sm" && (
+        <figcaption className="absolute inset-x-0 bottom-0 bg-white/85 px-2 py-1 text-[10px] leading-tight text-muted-foreground">
+          {nl.mediaMissing}
         </figcaption>
       )}
-      <span className="sr-only">{`${title} — ${nl.mediaMissing}`}</span>
-      <span hidden>{seed}</span>
+      {photo && size !== "sm" && (
+        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/45 to-transparent px-2 py-1 text-[10px] leading-tight text-white/90">
+          Demonstratiebeeld
+        </figcaption>
+      )}
     </figure>
   );
 }
@@ -91,8 +100,7 @@ export function DeliveryLine({ available, compact }: { available: number; compac
 
 export function Rating({ rating, count }: { rating: number | null; count: number | null }) {
   const nl = useShopText();
-  if (rating == null)
-    return <p className="truncate text-[12px] text-muted-foreground">Nog geen beoordelingen</p>;
+  if (rating == null) return null;
   return (
     <p className="brv-stars">
       <Star aria-hidden className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
